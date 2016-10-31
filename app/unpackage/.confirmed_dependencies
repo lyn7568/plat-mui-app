@@ -1,0 +1,104 @@
+{
+	"index.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"libs/mui.min.js",
+			"html/login.html",
+			"css/app.css",
+			"images/field18.png",
+			"images/qq.png",
+			"images/weixin.png",
+			"images/authicon.png",
+			"images/default-photo.jpg",
+			"images/field-icon8.png",
+			"html/proinforbrow.html",
+			"html/fillinfo.html"
+		],
+		"refer": [
+			"html/login.html",
+			"html/reg.html",
+			"html/setpass.html",
+			"html/fillinfo.html",
+			"html/proinforbrow.html"
+		]
+	},
+	"html/login.html": {
+		"resources": [
+			"images/logo.png",
+			"css/app.css",
+			"images/workclose.png",
+			"libs/mui.js",
+			"css/reset.css",
+			"images/sinaweibo.png",
+			"images/weixin.png",
+			"images/qq.png",
+			"index.html",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"html/reg.html": {
+		"resources": [
+			"images/logo.png",
+			"css/app.css",
+			"images/workclose.png",
+			"libs/mui.js",
+			"images/sinaweibo.png",
+			"images/weixin.png",
+			"images/qq.png",
+			"css/reset.css",
+			"images/agreenicon.png",
+			"css/mui.min.css"
+		]
+	},
+	"html/fillinfo.html": {
+		"resources": [
+			"css/app.css",
+			"css/mui.min.css",
+			"libs/mui.min.js",
+			"images/default-photo.jpg",
+			"index.html",
+			"images/requiredicon.png"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"html/proinforbrow.html": {
+		"resources": [
+			"images/dialogue.png",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/authicon.png",
+			"libs/mui.min.js",
+			"images/default-photo.jpg",
+			"index.html",
+			"images/zan.png",
+			"images/goto.png",
+			"html/proinforbrow-more.html"
+		],
+		"refer": [
+			"index.html",
+			"html/proinforbrow-more.html"
+		]
+	},
+	"html/proinforbrow-more.html": {
+		"resources": [
+			"images/icon-acad.png",
+			"images/icon-honor.png",
+			"images/icon-project.png",
+			"images/icon-work.png",
+			"images/icon-edu.png",
+			"images/icon-mono.png",
+			"html/proinforbrow.html"
+		],
+		"refer": [
+			"html/proinforbrow.html"
+		]
+	}
+}

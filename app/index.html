@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet"/>
+    <script src="js/public/mui.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+
+    </script>
+</head>
+<body>
+
+	<!-- 主页面标题 -->
+    <header class="mui-bar mui-bar-nav toptitbox">
+		<!--<div class="mui-input-row frm-input searchbox">
+            <input type="text" class="mui-input-clear frmtype searchtxt" placeholder="搜索专家、设备资源">
+            <span class="mui-icon mui-icon-search searchicon"></span>
+        </div>-->
+        <div class="mui-input-row mui-search searchbox">
+		    <input type="search" class="mui-input-clear searchtxt" placeholder="搜索专家、设备资源">
+		</div>
+	</header>
+	<!--主页面底部菜单-->
+    <nav class="mui-bar mui-bar-tab footbox">
+	    <a class="mui-tab-item mui-active" href="index.html">
+	        <span class="mui-icon mui-icon-home"></span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-chat"></span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-email"></span>
+	    </a>
+	    <a class="mui-tab-item" href="html/myaccount.html">
+	        <span class="mui-icon mui-icon-person"></span>
+	    </a>
+	</nav>
+    <!-- 主页面内容容器 -->
+    <div class="mui-content">
+    	<!-- 主界面具体展示内容 -->
+    	        
+            <a href="html/login.html">登录</a>
+             <a href="html/reg.html">注册</a>
+             <a href="html/setpass.html">设置密码</a>
+             <a href="html/fillinfo.html">完善信息</a>
+        
+    	<!--图片轮播-->
+        <div id="slider" class="mui-slider" >
+          <div class="mui-slider-group mui-slider-loop">
+            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+              <a href="#">
+                 <img src="http://placehold.it/200x100">
+              </a>
+            </div>
+            <!-- 第一张 -->
+            <div class="mui-slider-item">
+              <a href="#">
+                 <img src="http://placehold.it/200x100">
+              </a>
+            </div>
+            <!-- 第二张 -->
+            <div class="mui-slider-item">
+              <a href="#">
+                 <img src="http://placehold.it/200x100">
+              </a>
+            </div>
+            <!-- 第三张 -->
+            <div class="mui-slider-item">
+              <a href="#">
+                 <img src="http://placehold.it/200x100">
+              </a>
+            </div>
+            <!-- 第四张 -->
+            <div class="mui-slider-item">
+              <a href="#">
+                 <img src="http://placehold.it/200x100">
+              </a>
+            </div>
+            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+              <a href="#">
+                 <img src="http://placehold.it/200x100">
+              </a>
+            </div>
+          </div>
+          <div class="mui-slider-indicator">
+            <div class="mui-indicator mui-active"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+          </div>
+        </div>
+         
+        <!-- 九宫格排版-->
+        <div class="mui-card-content conblock">
+        	<div class="maintitbox">
+        		<h4 class="maintit">热门领域</h4>
+        	</div>
+	        <ul class="mui-table-view mui-grid-view mui-grid-9 gridbg">
+		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+		            <a href="#">
+		                <div class="fieldicon">
+		                	<img src="images/field-icon8.png"/>
+		                </div>
+		                <div class="mui-media-body">材料失效与保护</div>
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+		            <a href="#">
+		                <div class="fieldicon">
+		                	<img src="images/field-icon8.png"/>
+		                </div>
+		                <div class="mui-media-body">材料失效与保护</div>
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+		            <a href="#">
+		                <div class="fieldicon">
+		                	<img src="images/field-icon8.png"/>
+		                </div>
+		                <div class="mui-media-body">材料失效与保护</div>
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+		            <a href="#">
+		                <div class="fieldicon">
+		                	<img src="images/field-icon8.png"/>
+		                </div>
+		                <div class="mui-media-body">材料失效与保护</div>
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+		            <a href="#">
+		                <div class="fieldicon">
+		                	<img src="images/field-icon8.png"/>
+		                </div>
+		                <div class="mui-media-body">材料失效与保护</div>
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+		            <a href="#">
+		                <div class="fieldicon">
+		                	<img src="images/field-icon8.png"/>
+		                </div>
+		                <div class="mui-media-body">材料失效与保护</div>
+		            </a>
+		        </li>
+            </ul>
+        </div>
+        <!--图文列表-->
+        <div class="mui-card-content conblock">
+        	<div class="maintitbox">
+        		<h4 class="maintit">热门专家</h4>
+        	</div>
+	        <ul class="mui-table-view protable">
+	            <li class="mui-table-view-cell mui-media">
+	                <a class="proinfor" href="html/proinforbrow.html">
+	                    <img class="mui-media-object mui-pull-left headimg" src="images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	        </ul>
+		</div>
+    </div>
+	       	 
+</body>
+</html>

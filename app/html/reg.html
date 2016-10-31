@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="closebtn">
+			<span class="mui-icon mui-icon-closeempty closeicon"></span>
+			<!--<div class="closeicon"></div>-->
+		</div>
+		<div class="mui-content">
+			<div class="logobox">
+				<a class="logolink" href="../index.html">
+					<img class="logoimg" src="../images/logo.png" />
+				</a>
+			</div>
+		    <form class="mui-input-group frmbox">
+		        <div class="mui-input-row frm-input">
+		            <input type="text" class="mui-input-clear frmtype" placeholder="请输入您的手机号">
+		        </div>
+		        <div class="mui-input-row frm-input">
+					<input id='password' type="password" class="mui-input-clear frmtype" placeholder="请输入验证码">
+					<a class="forgetword">获取验证码</a>
+				</div>
+		    </form>
+		    
+		    <div class="mui-content-padded frmbox">
+		    	<div class="protocolbox">
+			    	<label checked="true"> 
+			    		<span class="mui-icon mui-icon-checkmarkempty agreecheck"></span>	
+			    		
+	                     <!--<em><img class="agreeicon" src="../images/agreenicon.png"/></em> -->
+	                     <input type="checkbox" name="checkbox" checked="true" style="display:none;">已同意<a href="" class="protocollink" target="_blank">科袖网用户协议</a>
+	               </label>
+		    	</div>
+					
+					
+				
+		    	<button id='reg' class="mui-btn mui-btn-block frmbtn frmactive">注&nbsp;册</button>
+				<button id='login' class="mui-btn mui-btn-block mui-btn-outlined frmbtn">返回登录</button>
+				
+			</div>
+			
+		</div>
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

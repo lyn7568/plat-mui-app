@@ -1,0 +1,216 @@
+/*清除mui部分原有样式*/
+.mui-input-group:before{background: none;}
+.mui-input-group:after{background: none;}
+.mui-table-view:before{ background: none;}
+.mui-table-view:after{ background: none;}
+.mui-table-view-cell:after{right: 0;bottom: 0;left: -10px;}
+.mui-input-group .mui-input-row:last-child:after{ background: none;}
+
+/*///////////////common公共样式///////////////////////*/
+body{ color: #666666; font-size:14px;}
+.floatL{ float: left;}
+.floatR{ float: right;}
+.marginbox{ margin: 10px 0; padding:0 10px;}
+.mainbox{width: 96%; margin:2% auto;}
+.mainbox:before{ position:static;}
+
+
+.smallicon{ width: 16px; height:16px; margin: 0 4px;}
+/*必填项样式*/
+.requiredcon{ position: absolute; top:0; width: 8px; height:8px; background: url(../images/requiredicon.png) center center no-repeat; background-size: 100% 100%;}
+/*功能icon样式*/
+.actionicon{display: block; width: 20px; height: 20px;margin-right:6px;}
+/*主题色开关样式*/
+.witchbg.mui-active{border:2px solid #FF9900; background-color:#FF9900;}
+.witchbg{ height: 26px;}
+.witchbg .mui-switch-handle{ width: 24px; height: 24px;left: 4px;/*transition-duration: 0.2s;transform: translate(-4px, 0px);*/}
+
+/*列表右侧无箭头*/
+.rightnone:after{ right: 15px;content:none;}
+/*小标签提示*/
+.litlabel .listtit2{ color: #AAAAAA;}
+
+/*顶部标题栏*/
+.toptitbox{ background:#FF9900; }
+.topback{color: #FFFFFF;}
+.topmore {
+	color: #FFFFFF;
+	filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=1);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+.topsave{color: #FFFFFF; line-height: 42px; cursor: pointer;}
+.toptit{color: #FFFFFF; font-size: 20px;}
+/*底部导航栏*/
+.footbox{ background: #FFFFFF;}
+.footbox .mui-tab-item.mui-active{ color: #FF9900;}
+
+/*****表单公共样式********/
+/*input输入相关*/
+.frmbox{ width: 100%; margin:2% auto; border-radius: 6px; }
+.frmtype{ width: 100%; margin: auto; padding:2%;font-size: 14px;}
+.frmbtn{margin:4% 0;  font-size: 16px; padding:2%;border:1px solid #FF9900; color:#FF9900 ;}
+/*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
+.frmbox{ border:none; width: 90%; height: 100%; }
+.frmactive{color:#fff;background-color:#FF9900;}
+.frmtextarea{ height: auto; border-bottom: 1px solid #F0F0F0; } 
+.exitbtn{ border:none; margin: 0; color:#FF0000; border-radius: 0;}
+/*///////////////common公共样式///////////////////////*/
+
+/*关闭*/
+.closebtn{ position: relative;border:1px transparent solid;}
+/*.closeicon{background: url(../images/workclose.png) center center no-repeat; background-size: 100% 100%;  width: 30px; height: 30px; position: absolute;right:5%; top:20px;}*/
+.closeicon{font-size: 60px; color:#999999; position: absolute;right:1%; top:14px;}
+
+.frmbox .frm-input{/*height:60px;*/width:98%;height: 0;height: 100%;padding: 2% 0;}
+.frmbox .frm-input .frmtype{ height: 0; height: 100%;}
+.frmbox .frm-input .frmtypel{ height: 0;height: 100%; width: 90%;}
+/*logo盒子的相关*/
+.logobox{ padding:6%; margin:12% auto 6% ; }
+.logolink{display: block;width:40%;margin: auto;}
+.logoimg{ width: 100%; margin: auto; text-align:center;}
+/*忘记密码*/
+.forgetword{ position: absolute;top: 50%; margin-top:-16px;right: 2px;padding:6px 20px;line-height: 20px; font-size: 14px; background: #f0f0f0; color: #AAAAAA; border-radius: 6px;}
+.forgeticon{ background: url(../images/forget.png) center center no-repeat; background-size: 100% 100%;padding:2%; position: absolute; margin-top:-2%;}
+.passwordbox .frmtypel~.mui-icon-clear{right:4%; top:50%; margin-top: -2%;}
+
+/*第三方快捷登录*/
+.quickbox{ width: 100%; margin-top:80px;text-align: center;}
+/*.borderline{ border:1px dashed #999999; width: 86%; margin:auto; position: relative;}
+.borderline div{ position: absolute; left:50%; width: 40%; height:4px; margin-left:-20% ; top:-2px; background:#DDDDDD ;}*/
+.borderword{ font-size: 16px; color:#999999;}
+.quickway{margin: 1% auto; overflow: hidden;}
+.quickicon{margin: 2% 3%; padding: 1%;}
+.quickicon img{width:28px; height: 28px; }
+.weixinicon{ color: #86C610;}
+.weiboicon{color:#F29600; font-size: 36px;}
+.qqicon{color:#0093DD;}
+/*用户协议*/
+.protocolbox{overflow: hidden; font-size: 14px; color: #999999; margin: 0 0 20px 0;}
+.agreeicon{width:20px; height:20px;}
+.agreecheck{font-size:30px; line-height: 30px; color: #FF9900 ;}
+.protocollink{ color: #FF9900;}
+/*设置密码*/
+.setpassbox{ margin: 20% auto;}
+
+/*完善信息*/
+.maincon{ padding:4% 2%; overflow: hidden;}
+.maincon .headbox{ text-align: center;}
+.headbox .headimg{width: 20%;}
+.maincon .pinfor{ color: #888888; font-size: 13px;}
+.maincon .basicinfo {padding-left:4%;  }
+.maincon .basicinfo li{ list-style: none;padding-left: 2%;}
+/*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
+.maincon .basicinfo li.basicfrm{ font-size: 14px; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin-left: 2%;padding-left:0; }
+.maincon .basicinfo li.basicfrm .frmtype{ height: 30px; padding:0; padding-right:2%;font-size: 14px; }
+.maincon .basicinfo li label{ position: relative; font-size: 16px; color: #888888; line-height:40px;}
+
+/***********************首页*******************/
+/*.searchbox{position: relative;}
+.searchbox .searchtxt{ position: absolute; height: 30px; top:50%; margin-top:-13px; border-radius: 6px; border:1px transparent solid; padding:0 30px; line-height: 20px; font-size: 14px;}
+*/
+.searchbox .mui-placeholder .mui-icon-search{font-size:20px; color: #999999;}
+.mui-search input[type=search].searchtxt{background: #FFFFFF;}
+.maintitbox .maintit{ line-height: 40px; font-size: 16px; text-align: center; color: #FF9900; border-bottom: 1px solid #F0F0F0;}
+.conblock{ background: #FFFFFF; margin:10px 0;}
+.mui-grid-view.gridbg{ background: #FFFFFF; border: none;}
+.mui-grid-view.gridbg .mui-table-view-cell{ border:none;}
+.mui-grid-view.gridbg .mui-table-view-cell .mui-media-body{ font-size: 12px;}
+/*热门领域*/
+.fieldicon{border-radius: 50%; overflow: hidden; background: #999999;width:40px; height:40px;margin: auto;}
+.fieldicon img{width: 100%; height: 100%;}
+/*热门专家*/
+.protable:before{ background-color:transparent;}
+.mui-media-body .listtit img.authicon{ width: 12px; height:12px; border: none;}
+.listtit{ font-size: 14px; color: #333333;}
+.listtit2{font-size: 13px; color: #666666; position: relative;}
+.listtit3{font-size: 12px; color: #888888;}
+.mui-media .headimg{ border-radius: 50%; max-width:60px; height:60px; margin: 1% 0;}
+.mui-table-view-cell>a.proinfor{ white-space:normal; overflow: auto; }
+/***********************首页*******************/
+
+/***********************专家信息浏览*******************/
+.personinfo .listtit{ font-size: 18px; line-height: 30px; color: #333333;}
+.personinfo .listtit3{font-size: 14px; line-height: 24px; color: #AAAAAA; margin: 0;}
+/*咨询记录及等级*/
+.peolevelbox{ padding:4% 16px; border-top:1px #F0F0F0 solid;}
+.peocountbox{width: 150px;}
+.peocount {font-size: 13px; color:#888888 ; overflow:hidden; }
+.peocount span em{font-size: 14px; padding: 0 3px; color: #FF9900; font-weight: 600;}
+.peocount .dialogicon{ display: block; width: 20px; height: 20px; background: url(../images/dialogue.png) center center no-repeat; background-size:100% 100% ; margin-right:6px;}
+.levelbox{ width:106px;}
+.levelbox .mui-icon{ font-size: 16px;color: #FF9900;}
+/*专家相关信息*/
+.infocontit{font-size:16px; position: relative;}
+.infocon{padding:6px 10px; /*text-align: justify;*/ font-size: 13px;}
+.infocon ul{ padding:0; margin: 0; overflow: hidden;}
+.infosubject li{ list-style: none; padding:4px 10px; padding-right:20px; margin:4px; border:1px solid #FF9900; border-radius: 6px; float: left;}
+
+.listbox{ margin:5px 0;max-width:100%; overflow:hidden;}
+.listbrowse{border: 1px solid #FF9900; border-radius: 0 6px 6px 0; text-align:center;font-size:13px;line-height:26px; float:left;padding-right: 8px; max-width:40%; overflow:hidden;}
+.plusbtn{ float:left;width:22px; height:22px; background:url(../images/zan.png) no-repeat center center; background-size:100% 100% ; margin-left:4px; margin-top:2px;  }
+.like {display: block;float: left;width: 28px;font-size:12px;background: #FF9900; color: #fff; line-height: 26px;margin-right: 5px;}
+.likenum{ float:right;max-width:130px;overflow:hidden; }
+.likepeople{ width:26px; height:26px; float:left; overflow:hidden; margin-right:5px; }
+.likepeople img{ width:100%; height:100%;}
+.likemore{ display: block; width: 26px; height: 26px; border:1px solid #CCCCCC; border-radius: 50%;}
+
+.infoapply li{ padding-left:6px;padding-right:2px; list-style: disc inside; width: 50%; float: left;}
+.gotonext{ width:140px; margin: auto; font-size: 14px; color: #FF9900; overflow: hidden;}
+.gotonext2{ width: 110px;}
+.gotonext em{display: block; width: 20px; height: 20px; margin-left:6px ; background:url(../images/goto.png) center center no-repeat; background-size:100% 100% ; }
+
+.dialogbtn{margin: auto; overflow: hidden; width: 130px;padding: 12px;}
+.dialogbtn span{font-size: 14px; line-height: 24px; padding: 0 3px; color: #FF9900; font-weight: 600;}
+.dialogbtn em{display: block; width: 24px; height: 24px; background: url(../images/dialogue.png) center center no-repeat; background-size:100% 100% ; margin-right:6px;}
+
+.listitembox{ position: static;width: 108%;}
+.listitembox .listitem{ position: static;padding:10px; margin-right: 2%;}
+.listitembox .listitem .iconposition{ border-radius: 50%; max-width:60px; height:60px; margin: 1% 0; margin-right: 10px;}
+.listitembox .listitem>a .mutlinebox{ white-space:normal; overflow: auto; }
+.listitembox .listitem .mui-media-body{ border-bottom:1px solid #F0F0F0;  padding-right:20px;padding-bottom:10px;}
+.listitembox .listitem:last-child .mui-media-body{ border-bottom:none;}
+/***********************专家信息浏览*******************/
+
+/***********************我的账户*******************/
+.headbox2{ overflow: hidden; position: relative;}
+.headbox2 .proinfor{ display: block; width: 60%; min-width: 260px;}
+.headbox2 .headimg2{width:30%;margin: 6px 0; }
+.headbox2 .infobasic{ margin: 6px 4%; }
+.headbox2 .infobasic .listtit{ font-size: 18px;}
+.headbox2 .infobasic .listtit2{ margin: 4px 0;}
+.headbox2 .updatebtn{position: absolute; top:50%; margin-top: -12px; right:10px;  }
+.headbox2 .editbox{ display: block; width: 24px; height: 24px; }
+.headbox2 .editbox img{ width: 100%; height: 100%;}
+
+.wallteicon{background: url(../images/wallter.png) center center no-repeat;background-size:100% 100% ;}
+.addicon{background: url(../images/personadd.png) center center no-repeat;background-size:100% 100% ;}
+.seticon{background: url(../images/set.png) center center no-repeat;background-size:100% 100% ;}
+.rightword{ position: absolute; right:40px; font-size:13px;}
+/*已认证*/
+.verified{ color: #FF9900;}
+/***********************我的账户*******************/
+
+/***********************专家信息修改*******************/
+.generalinfo li{ line-height:26px ;}
+.generalinfo .ginfolist{}
+.generalinfo span{letter-spacing:normal;}
+.generalinfo .letspace{font-style:normal;letter-spacing: 2em;}
+
+.updatebox{ position: absolute; right:1%; top:0; font-size: 13px; line-height:16px;color: #FF9900;}
+.updatebox:hover,.updatebox:active,.updatebox:link{ color: #FF9900;}
+.updatebox .updatebtn{display: block; margin-right:3px; width: 14px;height: 14px; background: url(../images/edit2.png) center center no-repeat; background-size:100% 100% ;}
+
+.addinfobox{ position: absolute; right:0; top:0; font-size: 13px; line-height:16px;color: #FF9900;}
+.addinfobox .addinfobtn{display: block; margin-right:3px; width: 14px;height: 14px; background: url(../images/add.png) center center no-repeat; background-size:100% 100% ;}
+
+
+.addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 80%; height: 34px;}
+.addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px; padding-left:20px; padding-right:20px;}
+.labelarea{ margin: 20px 0;}
+.labelshow{ margin: 0; padding:0;}
+.labelshow li{ list-style: none; padding:4px 10px; margin:4px; border:1px solid #FF9900; border-radius: 6px; float: left; }
+.labelshow li .mui-icon{ color: #FF9900; font-size:20px; margin-left: 10px;}
+/***********************专家信息修改*******************/

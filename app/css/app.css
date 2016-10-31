@@ -207,8 +207,8 @@ body{ color: #666666; font-size:14px;}
 .addinfobox .addinfobtn{display: block; margin-right:3px; width: 14px;height: 14px; background: url(../images/add.png) center center no-repeat; background-size:100% 100% ;}
 
 
-.addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 80%; height: 34px;}
-.addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px; padding-left:20px; padding-right:20px;}
+.addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 78%; height: 34px;}
+.addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px;  width: 18%;/*padding-left:20px; padding-right:20px;*/}
 .labelarea{ margin: 20px 0;}
 .labelshow{ margin: 0; padding:0;}
 .labelshow li{ list-style: none; padding:4px 10px; margin:4px; border:1px solid #FF9900; border-radius: 6px; float: left; }

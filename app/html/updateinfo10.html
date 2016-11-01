@@ -12,7 +12,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">教育背景</h1>
+		    <h1 class="mui-title toptit">发表专利</h1>
 		    <span class="mui-pull-right topsave">保存</span>
 		</header>
 		<div class="mui-content">
@@ -20,29 +20,24 @@
 		    <div class="mui-input-group marginbox">
 				<div class="maincon">
 					<ul class="basicinfo">
-						<li><label>学校名称<em class="requiredcon"></em></label></li>
-						<li class="basicfrm"><input type="text" name="schoolname" class="mui-input-clear frmtype"></li>
-						<li><label>学院<em class="requiredcon"></em></label></li>
-						<li class="basicfrm"><input type="text" name="college" class="mui-input-clear frmtype"></li>
-						<li><label>专业</label></li>
-						<li class="basicfrm"><input type="text" name="major" class="mui-input-clear frmtype"></li>
-						<li><label>学位</label></li>
+						<li><label>专利名称<em class="requiredcon"></em></label></li>
+						<li class="basicfrm"><input type="text" name="comname" class="mui-input-clear frmtype"></li>
+						<li><label>发表年份</label></li>
 						<li class="basicfrm">
-							<select class="mui-select selectbox frmtype">
-								<option class="mui-selected">学士</option>
-								<option>硕士</option>
-								<option>博士</option>
-							</select>
+							<input type="number" name="year" class="mui-input-clear frmtype">
 							<span class="mui-icon mui-icon-arrowdown downarrow"></span>
 						</li>
-						<li><label>毕业年份</label></li>
+						<li><label>详细描述</label></li>
 						<li class="basicfrm">
-							<input type="number" name="gradyear" class="mui-input-clear frmtype">
-							<span class="mui-icon mui-icon-arrowdown downarrow"></span>
+							<div class="textareabox" contenteditable="true"></div> 
+						</li>
+						<li><label>外部链接</label></li>
+						<li class="basicfrm">
+							<input type="url" name="url" class="mui-input-clear frmtype">
 						</li>
 					</ul>
 			        <div class="mui-input-group">
-						<button class="mui-btn mui-btn-block frmbtn exitbtn">删除此教育背景</button>
+						<button class="mui-btn mui-btn-block frmbtn exitbtn">删除此专利</button>
 				    </div>
 		        </div>
 		    </div>

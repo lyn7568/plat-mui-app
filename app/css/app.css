@@ -6,6 +6,8 @@
 .mui-table-view-cell:after{right: 0;bottom: 0;left: -10px;}
 .mui-input-group .mui-input-row:last-child:after{ background: none;}
 
+a{text-decoration:none;color:#007aff}a:active{color:#0062cc}
+.mui-btn.mui-active:enabled,.mui-btn:enabled:active,button.mui-active:enabled,button:enabled:active,input[type=button].mui-active:enabled,input[type=button]:enabled:active,input[type=reset].mui-active:enabled,input[type=reset]:enabled:active,input[type=submit].mui-active:enabled,input[type=submit]:enabled:active{color:#fff;background-color:#FF9900}
 /*///////////////common公共样式///////////////////////*/
 body{ color: #666666; font-size:14px;}
 .floatL{ float: left;}
@@ -13,7 +15,9 @@ body{ color: #666666; font-size:14px;}
 .marginbox{ margin: 10px 0; padding:0 10px;}
 .mainbox{width: 96%; margin:2% auto;}
 .mainbox:before{ position:static;}
-
+/*div模拟textarea多行文本框*/
+.textareabox{/*border-bottom: 1px solid #F0F0F0;*/}
+.borderarea{border-bottom: 1px solid #F0F0F0;}
 
 .smallicon{ width: 16px; height:16px; margin: 0 4px;}
 /*必填项样式*/
@@ -22,8 +26,8 @@ body{ color: #666666; font-size:14px;}
 .actionicon{display: block; width: 20px; height: 20px;margin-right:6px;}
 /*主题色开关样式*/
 .witchbg.mui-active{border:2px solid #FF9900; background-color:#FF9900;}
-.witchbg{ height: 26px;}
-.witchbg .mui-switch-handle{ width: 24px; height: 24px;left: 4px;/*transition-duration: 0.2s;transform: translate(-4px, 0px);*/}
+.witchbg{ height: 30px;}
+/*.witchbg .mui-switch-handle{ width: 24px; height: 24px;left: 4px;transition-duration: 0.2s;transform: translate(-4px, 0px);}*/
 
 /*列表右侧无箭头*/
 .rightnone:after{ right: 15px;content:none;}
@@ -51,14 +55,15 @@ body{ color: #666666; font-size:14px;}
 /*input输入相关*/
 .frmbox{ width: 100%; margin:2% auto; border-radius: 6px; }
 .frmtype{ width: 100%; margin: auto; padding:2%;font-size: 14px;}
-.frmbtn{margin:4% 0;  font-size: 16px; padding:2%;border:1px solid #FF9900; color:#FF9900 ;}
+.frmbtn{margin:4% 0;  font-size: 16px; padding:2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;}
 /*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
 .frmbox{ border:none; width: 90%; height: 100%; }
 .frmactive{color:#fff;background-color:#FF9900;}
-.frmtextarea{ height: auto; border-bottom: 1px solid #F0F0F0; } 
+
 .exitbtn{ border:none; margin: 0; color:#FF0000; border-radius: 0;}
 /*///////////////common公共样式///////////////////////*/
 
+/***********************登录注册相关页面*******************/
 /*关闭*/
 .closebtn{ position: relative;border:1px transparent solid;}
 /*.closeicon{background: url(../images/workclose.png) center center no-repeat; background-size: 100% 100%;  width: 30px; height: 30px; position: absolute;right:5%; top:20px;}*/
@@ -93,7 +98,7 @@ body{ color: #666666; font-size:14px;}
 .agreecheck{font-size:30px; line-height: 30px; color: #FF9900 ;}
 .protocollink{ color: #FF9900;}
 /*设置密码*/
-.setpassbox{ margin: 20% auto;}
+.setfindbox{ margin: 20% auto;}
 
 /*完善信息*/
 .maincon{ padding:4% 2%; overflow: hidden;}
@@ -101,11 +106,17 @@ body{ color: #666666; font-size:14px;}
 .headbox .headimg{width: 20%;}
 .maincon .pinfor{ color: #888888; font-size: 13px;}
 .maincon .basicinfo {padding-left:4%;  }
-.maincon .basicinfo li{ list-style: none;padding-left: 2%;}
+.maincon .basicinfo li{ list-style: none;padding-left: 2%; overflow: hidden;}
 /*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
-.maincon .basicinfo li.basicfrm{ font-size: 14px; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin-left: 2%;padding-left:0; }
+.maincon .basicinfo li.basicfrm{ position: relative; overflow: hidden; font-size: 14px; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin-left: 2%;padding-left:0; }
 .maincon .basicinfo li.basicfrm .frmtype{ height: 30px; padding:0; padding-right:2%;font-size: 14px; }
 .maincon .basicinfo li label{ position: relative; font-size: 16px; color: #888888; line-height:40px;}
+
+.nextstep{ color: #FF9900; font-size: 13px;}
+.nextstep{ position: relative;}
+.nextstep em{display: block;position: absolute; right:-18px; top:1px; width: 14px; height: 14px; margin-left:6px ; background:url(../images/goto.png) center center no-repeat; background-size:100% 100% ; }
+.nexstepbtn{ border:1px solid transparent;}
+/***********************登录注册相关页面*******************/
 
 /***********************首页*******************/
 /*.searchbox{position: relative;}
@@ -204,8 +215,8 @@ body{ color: #666666; font-size:14px;}
 .updatebox .updatebtn{display: block; margin-right:3px; width: 14px;height: 14px; background: url(../images/edit2.png) center center no-repeat; background-size:100% 100% ;}
 
 .addinfobox{ position: absolute; right:0; top:0; font-size: 13px; line-height:16px;color: #FF9900;}
+.addinfobox:hover,.addinfobox:active,.addinfobox:link{ color: #FF9900;}
 .addinfobox .addinfobtn{display: block; margin-right:3px; width: 14px;height: 14px; background: url(../images/add.png) center center no-repeat; background-size:100% 100% ;}
-
 
 .addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 78%; height: 34px;}
 .addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px;  width: 18%;/*padding-left:20px; padding-right:20px;*/}
@@ -213,4 +224,13 @@ body{ color: #666666; font-size:14px;}
 .labelshow{ margin: 0; padding:0;}
 .labelshow li{ list-style: none; padding:4px 10px; margin:4px; border:1px solid #FF9900; border-radius: 6px; float: left; }
 .labelshow li .mui-icon{ color: #FF9900; font-size:20px; margin-left: 10px;}
+
+.selectbox{padding:0;/* margin: 4px 0;*/}
+
+.downarrow{ position:absolute; right:10px; top:50%; margin-top:-12px; color: #999999; font-size: 18px;}
+.timearea{ float: left; width: 46%;}
+.timeareashow{float: left; width: 46%; position: relative; border-bottom:1px #F0F0F0 solid;  }
+.timearea:last-child{float: right; margin-left:4% ;}
+.timeareashow:last-child{float: right; margin-left:4% ;}
+.maincon .basicinfo li.timebox{ border-bottom:none; }
 /***********************专家信息修改*******************/

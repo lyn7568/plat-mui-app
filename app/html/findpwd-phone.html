@@ -12,26 +12,27 @@
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">设置密码</h1>
+		    <h1 class="mui-title toptit">验证手机</h1>
 		</header>
 		<div class="mui-content">
 			<div class="setfindbox">
 			    <form class="mui-input-group frmbox">
-			    	<div class="mui-input-row frm-input passwordbox">
-						<input id='password' type="password" class="mui-input-clear frmtype frmtypel floatL" placeholder="请设置您的账户密码">
-						<a id='forgetPassword' class="forgetword forgeticon floatL"></a>
-					</div>
 			        <div class="mui-input-row frm-input">
-			            <input id='password2' type="password" class="mui-input-clear frmtype" placeholder="请再次确认密码">
+			            <input type="text" class="mui-input-clear frmtype" placeholder="请输入已验证的手机号">
 			        </div>
-			        
+			        <div class="mui-input-row frm-input">
+						<input type="number" class="mui-input-clear frmtype" placeholder="请输入验证码">
+						<a class="forgetword">获取验证码</a>
+					</div>
 			    </form>
 			    
 			    <div class="mui-content-padded frmbox">
-					<button class="mui-btn mui-btn-block frmbtn frmactive">完&nbsp;成</button>
+					<button class="mui-btn mui-btn-block frmbtn nexstepbtn">下一步</button>
+					<span class="nextstep">通过邮箱找回密码<em></em></span>
 				</div>
 			</div>
 		</div>
+		
 		<script src="../js/public/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init()

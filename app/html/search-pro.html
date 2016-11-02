@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/app.css" rel="stylesheet"/>
+	<link href="../css/mui.picker.min.css" rel="stylesheet" />
+</head>
+<body>
+	<!-- 主页面标题 -->
+    <header class="mui-bar mui-bar-nav toptitbox">
+    	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+        <div class="searchbox2">
+        	<div class="mui-pull-left searchselect">
+	        	<select class="mui-select">
+	        		<option>专家</option>
+	        		<option>资源</option>
+	        	</select>
+	        	<em class="mui-icon mui-icon-arrowdown"></em>
+		    </div>
+		    <input type="text" class="mui-input-clear mui-pull-left searchtxt2" placeholder="搜索专家、设备资源">
+        </div>
+	</header>
+	
+    <!-- 主页面内容容器 -->
+    <div class="mui-content">
+    	<!-- 主界面具体展示内容 -->
+		<div class="filterbox">
+			<ul class="filterblock">
+				<li>
+					<button id='showCityPicker' class="mui-btn mui-btn-block filterlist" type='button'>
+						<span id='cityResult' class="ui-alert">河北省</span>
+						<em class="mui-icon mui-icon-arrowdown"></em>
+					</button>
+					
+				</li>
+				<li>
+					<button class="mui-btn mui-btn-block filterlist" type='button'>学术领域<em class="mui-icon mui-icon-arrowdown"></em></button>
+				</li>
+				<li>
+					<button class="mui-btn mui-btn-block filterlist" type='button'>应用行业<em class="mui-icon mui-icon-arrowdown"></em></button>
+				</li>
+			</ul>
+		</div>
+        <!--图文列表-->
+        <div class="mui-card-content conblock">
+	        <ul class="mui-table-view protable">
+	            <li class="mui-table-view-cell mui-media">
+	                <a class="proinfor" href="../html/proinforbrow.html">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>， <span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
+	                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
+	                    </div>
+	                </a>
+	            </li>
+	        </ul>
+		</div>
+		<a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowup"></span> </a>
+		
+    </div>
+    <script src="../js/public/mui.min.js"></script>
+    <script src="../js/public/mui.picker.min.js"></script>
+	<script src="../js/public/city.data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/public/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		(function($, doc) {
+				$.init();
+				$.ready(function() {
+					//-----------------------------------------
+					//级联示例
+					var cityPicker = new $.PopPicker({
+						layer: 2
+					});
+					cityPicker.setData(cityData);
+					var showCityPickerButton = doc.getElementById('showCityPicker');
+					var cityResult = doc.getElementById('cityResult');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker.show(function(items) {
+							cityResult.innerText = items[0].text ;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					//-----------------------------------------
+				});
+			})(mui, document);
+	</script>      	 
+</body>
+</html>

@@ -59,6 +59,7 @@ body{ color: #666666; font-size:14px;}
 /*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
 .frmbox{ border:none; width: 90%; height: 100%; }
 .frmactive{color:#fff;background-color:#FF9900;}
+.frmactive2{color:#fff;background-color:#ccc; border:1px solid #ccc;}
 
 .exitbtn{ border:none; margin: 0; color:#FF0000; border-radius: 0;}
 /*///////////////common公共样式///////////////////////*/

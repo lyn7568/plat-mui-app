@@ -47,6 +47,7 @@ body{ color: #666666; font-size:14px;}
 }
 .topsave{color: #FFFFFF; line-height: 42px; cursor: pointer;}
 .toptit{color: #FFFFFF; font-size: 20px;}
+.personhead{color: #FFFFFF;}
 /*底部导航栏*/
 .footbox{ background: #FFFFFF;}
 .footbox .mui-tab-item.mui-active{ color: #FF9900;}
@@ -57,10 +58,10 @@ body{ color: #666666; font-size:14px;}
 .frmtype{ width: 100%; margin: auto; padding:2%;font-size: 14px;}
 .frmbtn{margin:4% 0;  font-size: 16px; padding:2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;}
 /*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
-.frmbox{ border:none; width: 90%; height: 100%; }
-.frmactive{color:#fff;background-color:#FF9900;}
+.frmbox{ border:none; width: 90%; height: 100%; } 
 .frmactive2{color:#fff;background-color:#ccc; border:1px solid #ccc;}
-
+.frmactive{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
+.frmactiveok{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
 .exitbtn{ border:none; margin: 0; color:#FF0000; border-radius: 0;}
 /*///////////////common公共样式///////////////////////*/
 
@@ -175,9 +176,12 @@ body{ color: #666666; font-size:14px;}
 .gotonext2{ width: 110px;}
 .gotonext em{display: block; width: 20px; height: 20px; margin-left:6px ; background:url(../images/goto.png) center center no-repeat; background-size:100% 100% ; }
 
-.dialogbtn{margin: auto; overflow: hidden; width: 130px;padding: 12px;}
+.dialogbtn{ overflow: hidden; width:80%;padding: 12px;}
+.dialogbtn div{ width: 100px;overflow: hidden;margin: auto; }
 .dialogbtn span{font-size: 14px; line-height: 24px; padding: 0 3px; color: #FF9900; font-weight: 600;}
 .dialogbtn em{display: block; width: 24px; height: 24px; background: url(../images/dialogue.png) center center no-repeat; background-size:100% 100% ; margin-right:6px;}
+.attentbtn{margin: auto; overflow: hidden; width:20%;padding: 12px; border-left:1px solid #F0F0F0;}
+.attentbtn em{display: block; margin: auto; width: 22px; height: 22px; background: url(../images/attenticon.png) center center no-repeat; background-size:100% 100% ;}
 
 .listitembox{ position: static;width: 108%;}
 .listitembox .listitem{ position: static;padding:10px; margin-right: 2%;}
@@ -201,6 +205,7 @@ body{ color: #666666; font-size:14px;}
 .wallteicon{background: url(../images/wallter.png) center center no-repeat;background-size:100% 100% ;}
 .addicon{background: url(../images/personadd.png) center center no-repeat;background-size:100% 100% ;}
 .seticon{background: url(../images/set.png) center center no-repeat;background-size:100% 100% ;}
+.attenticon{background: url(../images/attenticon.png) center center no-repeat;background-size:100% 100% ;}
 .rightword{ position: absolute; right:40px; font-size:13px;}
 /*已认证*/
 .verified{ color: #FF9900;}
@@ -272,10 +277,10 @@ body{ color: #666666; font-size:14px;}
 .consultbox{ padding:20px 0px 60px 0px;}
 
 .consultaim{ text-align: center; margin: auto; }
-.consultaim ul{padding: 0; margin: 0; width:96%; overflow: hidden; margin:1% auto;}
-.consultaim ul li{ list-style: none;float: left; padding:1% 4%;border:#CCCCCC 1px solid;border-radius: 6px; margin:1%; font-size: 13px;}
-.consultaim ul .liactive{ border:1px solid #6CA8FF;padding:1% 2%;padding-left:6%; color: #6CA8FF;position: relative;}
-.consultaim ul .liactive em{ display:block;position: absolute; left:5%; top:50%;margin-top: -8px; width:16px; height:16px;background: url(../images/selected.png) center center no-repeat; background-size:100% 100% ;}
+.consultaim ul{padding: 0; margin: 0; overflow: hidden; margin:1% auto; padding:0 4%; }
+.consultaim ul li{ list-style: none;float: left; padding:2px 16px;border:#CCCCCC 1px solid;border-radius: 6px; margin:1%; font-size: 13px;}
+.consultaim ul .liactive{ border:1px solid #6CA8FF;padding-left:28px; color: #6CA8FF;position: relative;}
+.consultaim ul .liactive em{ display:block;position: absolute; left:10px; top:50%;margin-top: -8px; width:16px; height:16px;background: url(../images/selected.png) center center no-repeat; background-size:100% 100% ;}
 .divline{border-top:1px solid #F0F0F0; width: 100%; height: 1px;} 
 
 .consultinfo{ width: 96%; margin: auto; margin-top:6px;}
@@ -286,4 +291,27 @@ body{ color: #666666; font-size:14px;}
 .consultinfo tr td.sendbox{text-align: right;position: relative;}
 .consultinfo tr td .sendbtn{width: 20%;font-size: 13px; padding: 4px 10px;margin:0;position:absolute;right:0; top:0; }
 
+.operatebox{ width:100%;background: #FFFFFF;overflow: hidden; padding:10px;position: relative;}
+.themespan{ width: 54%;}
+.operatebtnbox{width:44%;position:absolute; top:50%; right:1%;margin-top:-14px;}
+.operatebtn{padding:1% 4%; margin: 0; position: absolute;right:0;}
+
+.filterbox2{}
+.filterblock2{padding:0; margin: 0; margin-top:2px ; background:#FFFFFF;overflow: hidden;}
+.filterblock2 li{list-style:none; position: relative; float: left; border-right:1px solid #F0F0F0;} 
+.filterblock2 li select{  margin:0 2px;}
+.filterlist2{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 14px;}
+
+.coutopicbox{ position: relative; background: #F0F0F0; margin-bottom: 10px; width:110%; margin-left:-16px; padding:4%; overflow: hidden;}
+.coutopicbox .coutheme{ max-width: 60%;}
+
+.coutopicbox .coustatus span{ font-size: 12px; padding:4px 10px; color: #FFFFFF; border-radius: 6px;}
+.coutopicbox .aimlabel{background:#6CA8FF;}
+.coutopicbox .status-1{background:#FF9900;}/*咨询状态*/
+.coutopicbox .status-2{background:#dd524d;}
+.coutopicbox .status-3{background:#4cd964;}
+
+.thistime{ position: absolute; right:2px; font-size: 12px; color: #999999;}
+
+.mui-table-view-cell>.proinfor>.mui-badge{top: 20px;left:10px; right:auto;}
 /*********************** 咨询*******************/

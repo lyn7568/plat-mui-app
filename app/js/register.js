@@ -7,57 +7,63 @@ mui.plusReady(function(){
 	var setCode = document.getElementById("set-code");
 	var obtainCode = document.getElementById("obtain-code");
 	var reg = document.getElementById("reg");
+	var login = document.getElementById("login");
 	var phoneCode=false;
-	var codeVal2 = false;
 	var state = 0;
-		
-	phoneName.addEventListener('blur', function() {
-		phoneVal();
+	
+	/*点击登录页面*/
+	login.addEventListener('tap',function(){
+		mui.openWindow({
+  			url:'setpass.html',
+  			id:'setpass.html',
+  			show:{
+            	aniShow:"slide-in-right"
+  			}
+      	});	
+	})
+	
+	/*校验提交按钮显示状态*/
+	mui('.frmbox').on('keyup',"#username,#set-code",function() {
+		hideButtn();
 	});
 	
-	setCode.addEventListener('blur', function() {
-		codeVal();
-	});
-
 	/*点击获取验证码*/
 	obtainCode.addEventListener('tap',function(){
-		//console.log(phoneCode)
-		sendAuthentication();
+		if(phoneCode){
+			sendAuthentication();	
+		}else{
+			phoneVal();
+		}
 	})
 	
 	/*注册按钮*/
 	reg.addEventListener('tap',function(){
-		if(phoneCode&&codeVal2){
-			mui.openWindow({
-      			url:'setpass.html',
-      			id:'setpass.html',
-      			extras:{
-					phoneName:phoneName.value,
-					setCode:setCode.value,
-					state:state
-				}
-      		});	
-		}else{
-			phoneVal();
+		if(phoneCode){
 			codeVal();	
+		}else{
+			phoneVal();	
 		}
 	})
+	
+	/*校验按钮显示状态*/
+	function hideButtn(){
+		if(phoneName.value==""||setCode.value==""){
+			reg.classList.remove('frmactiveok');
+			reg.disabled="disabled";
+		}else{
+			reg.classList.add('frmactiveok');
+			reg.disabled="";
+		}
+	}
 	
 	/*校验手机号*/
 	function phoneVal(){
 		var hunPhone=/^1[3|4|5|7|8]\d{9}$/;
-		if(phoneName.value.length==0){
-			plus.nativeUI.toast("手机号不能为空",toastStyle)
-			document.querySelector('.frmactive').style.display="none";
-			document.querySelector('.frmactive2').style.display="block";
-			phoneCode=false;
-      	}else{
-			if(hunPhone.test(phoneName.value)){
-				isReg(); 
-			}else{
-				plus.nativeUI.toast("请输入正确的手机号码",toastStyle);
-				phoneCode=false;
-			}
+		if(hunPhone.test(phoneName.value)){
+			isReg(); 
+		}else{
+			plus.nativeUI.toast("请输入正确的手机号码",toastStyle);
+			return;
 		}
 	}
 	
@@ -69,46 +75,37 @@ mui.plusReady(function(){
 			timeout: 10000, //超时设置
 			success: function(data) {
 				if(data.data == false) {
-					//mui.back();
-					phoneCode=false;
-					//alert(phoneCode);
 					plus.nativeUI.toast("您的手机已被注册",toastStyle);
+					return;
 				}else{
-					//plus.nativeUI.toast(phoneCode,toastStyle);
 					phoneCode=true;
-					return phoneCode; 
 				}
 			},
 			error: function() {
-					plus.nativeUI.toast("服务器链接超时",toastStyle);
-					phoneCode=false;
-					
+				plus.nativeUI.toast("服务器链接超时",toastStyle);
 			}
-		})
+		});
 	}
 
 	/*手机发送验证码*/
 	function sendAuthentication(){
-		console.log(phoneCode)
-		if(phoneCode){
-			mui.ajax(baseUrl+'/ajax/regmobilephone',{
-				data:{mobilePhone:phoneName.value},
-				dataType: 'json', //数据格式类型
-				type: 'GET', //http请求类型
-				async: false,
-				timeout: 10000, //超时设置
-				success: function(data) {
-					if(data.success) {
-						state=data.data;
-						console.log(state)
-						doClick();
-					}
-				},
-				error: function() {
-						plus.nativeUI.toast("服务器链接超时",toastStyle);
+		mui.ajax(baseUrl+'/ajax/regmobilephone',{
+			data:{mobilePhone:phoneName.value},
+			dataType: 'json', //数据格式类型
+			type: 'GET', //http请求类型
+			async: false,
+			timeout: 10000, //超时设置
+			success: function(data) {
+				if(data.success) {
+					state=data.data;
+					doClick();
 				}
-			})
-		}
+			},
+			error: function() {
+					plus.nativeUI.toast("服务器链接超时",toastStyle);
+					return;
+			}
+		})
 	}
 	
 	/*30s后重新获取验证码*/
@@ -134,45 +131,40 @@ mui.plusReady(function(){
 	
 	/*校验验证码*/
 	function codeVal(){
-		//console.log(state)
-		if(setCode.value.length==0){
-			plus.nativeUI.toast("验证码不能为空",toastStyle);
-			codeVal2 = false;
-			document.querySelector('.frmactive').style.display="none";
-			document.querySelector('.frmactive2').style.display="block";
-      	}else{
-      		document.querySelector('.frmactive2').style.display="none";
-		    document.querySelector('.frmactive').style.display="block";
-      		mui.ajax(baseUrl+'/ajax/validCode',{
-				data:{"state":state,"vc":setCode.value},
-				dataType: 'json', //数据格式类型
-				async: false,
-				type: 'POST', //http请求类型
-				timeout: 10000, //超时设置
-				success: function(data) {
-					console.log(data.data);
-					if(data.success){
-						console.log(data.success);
-						if(data.data){
-							//plus.nativeUI.toast("验证码输入正确",toastStyle);
-							codeVal2 = true;
-						}else{
-							plus.nativeUI.toast("验证码不正确",toastStyle);
-							codeVal2 = false;
-						}
+  		mui.ajax(baseUrl+'/ajax/validCode',{
+			data:{"state":state,"vc":setCode.value},
+			dataType: 'json', //数据格式类型
+			async: false,
+			type: 'POST', //http请求类型
+			timeout: 10000, //超时设置
+			success: function(data) {
+				console.log(data.success);
+				if(data.success){
+					if(data.data){
+						mui.openWindow({
+			      			url:'setpass.html',
+			      			id:'setpass.html',
+			      			extras:{
+								phoneName:phoneName.value,
+								setCode:setCode.value,
+								state:state
+							}
+			      		});	
 					}else{
-						plus.nativeUI.toast("验证超时",toastStyle);
-						codeVal2 = false;
-						console.log(data.msg);
+						plus.nativeUI.toast("验证码不正确",toastStyle);
+						return;	
 					}
-				},
-				error: function() {
-						plus.nativeUI.toast("服务器链接超时",toastStyle);
-						codeVal2 = false;
+				}else{
+					plus.nativeUI.toast("验证超时,请重新获取",toastStyle);
+					return;	
 				}
-			})
-      	}
-	}
+			},
+			error: function() {
+				plus.nativeUI.toast("服务器链接超时",toastStyle);
+				return;
+			}
+		})
+    }
 	
 	
 })

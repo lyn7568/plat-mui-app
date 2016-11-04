@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>完善个人信息</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
@@ -28,28 +28,27 @@
 				<div class="maincon">
 					<ul class="basicinfo">
 						<li><label>姓名<em class="requiredcon"></em></label></li>
-						<li class="basicfrm"><input type="text" name="name" class="mui-input-clear frmtype"></li>
+						<li class="basicfrm"><input type="text"  class="mui-input-clear frmtype" id="userName"></li>
 						<li><label>所在机构(高校/科研机构/企业名称)<em class="requiredcon"></em></label></li>
-						<li class="basicfrm"><input type="text" name="organization" class="mui-input-clear frmtype"></li>
+						<li class="basicfrm"><input type="text"  class="mui-input-clear frmtype" id="userMechanism"></li>
 						<li><label>所属部门(院系/科研室/部门名称)</label></li>
-						<li class="basicfrm"><input type="text" name="department" class="mui-input-clear frmtype"></li>
+						<li class="basicfrm"><input type="text"  class="mui-input-clear frmtype" id="userDepartment"></li>
 						<li><label>职位</label></li>
-						<li class="basicfrm"><input type="text" name="position" class="mui-input-clear frmtype"></li>
+						<li class="basicfrm"><input type="text"  class="mui-input-clear frmtype" id="userPosition"></li>
 						<li><label>职称</label></li>
-						<li class="basicfrm"><input type="text" name="title" class="mui-input-clear frmtype"></li>
+						<li class="basicfrm"><input type="text"  class="mui-input-clear frmtype" id="userTitle"></li>
 						
 					</ul>
 			        
 		        </div>
 		    </div>
 		    <div class="mui-content-padded mainbox">
-				<button class="mui-btn mui-btn-block frmbtn frmactive">进入科袖</button>
+				<button class="mui-btn mui-btn-block frmbtn frmactive2" id="goIndex">进入科袖</button>
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init()
-		</script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/fillinfo.js"></script>
 	</body>
 
 </html>

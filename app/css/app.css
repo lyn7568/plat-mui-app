@@ -3,7 +3,8 @@
 .mui-input-group:after{background: none;}
 .mui-table-view:before{ background: none;}
 .mui-table-view:after{ background: none;}
-.mui-table-view-cell:after{right: 0;bottom: 0;left: -10px;}
+.mui-table-view-cell:after{right: 0;bottom: 0;left: -10px;/*background: none;*/}
+/*.mui-table-view-cell .mui-media-body{padding-bottom:10px; border-bottom:1px solid #CCCCCC;}*/
 .mui-input-group .mui-input-row:last-child:after{ background: none;}
 
 a{text-decoration:none;color:#007aff}a:active{color:#0062cc}
@@ -31,6 +32,7 @@ body{ color: #666666; font-size:14px;}
 
 /*列表右侧无箭头*/
 .rightnone:after{ right: 15px;content:none;}
+.rightnone{line-height: 30px;}
 /*小标签提示*/
 .litlabel .listtit2{ color: #AAAAAA;}
 
@@ -137,6 +139,7 @@ body{ color: #666666; font-size:14px;}
 /*热门专家*/
 .protable:before{ background-color:transparent;}
 .mui-media-body .listtit img.authicon{ width: 12px; height:12px; border: none;}
+.listtit0{font-size: 13px; color: #222222;}
 .listtit{ font-size: 14px; color: #333333;}
 .listtit2{font-size: 13px; color: #666666; position: relative;}
 .listtit3{font-size: 12px; color: #888888;}
@@ -149,13 +152,13 @@ body{ color: #666666; font-size:14px;}
 .personinfo .listtit{ font-size: 18px; line-height: 30px; color: #333333;}
 .personinfo .listtit3{font-size: 14px; line-height: 24px; color: #AAAAAA; margin: 0;}
 /*咨询记录及等级*/
-.peolevelbox{ padding:4% 16px; border-top:1px #F0F0F0 solid;}
+.peolevelbox{ display: block; padding:4% 16px; border-top:1px #F0F0F0 solid;}
 .peocountbox{width: 150px;}
 .peocount {font-size: 13px; color:#888888 ; overflow:hidden; }
 .peocount span em{font-size: 14px; padding: 0 3px; color: #FF9900; font-weight: 600;}
 .peocount .dialogicon{ display: block; width: 20px; height: 20px; background: url(../images/dialogue.png) center center no-repeat; background-size:100% 100% ; margin-right:6px;}
-.levelbox{ width:106px;}
-.levelbox .mui-icon{ font-size: 16px;color: #FF9900;}
+.levelbox{ width:72px;margin: auto; overflow: hidden; }
+.levelbox .star{ float: left; width:14px; height: 14px; background: url(../images/staricon.png) center center no-repeat;background-size:100% 100% ;}
 /*专家相关信息*/
 .infocontit{font-size:16px; position: relative;}
 .infocon{padding:6px 10px; /*text-align: justify;*/ font-size: 13px;}
@@ -209,6 +212,19 @@ body{ color: #666666; font-size:14px;}
 .rightword{ position: absolute; right:40px; font-size:13px;}
 /*已认证*/
 .verified{ color: #FF9900;}
+.authword{ padding:2px 6px; margin-left:6px; background: #FF9900; border-radius:4px; color: #FFFFFF; font-size: 12px;}
+/*我的关注*/
+.fixbox{ background: #FFFFFF;}
+.fixbox .fixbtn{ padding:0; margin: 0; overflow: hidden;}
+.fixbox .fixbtn li{ list-style: none; float: left; padding:10px; border:1px solid #F0F0F0; width:50%;text-align: center;}
+.fixbox .fixbtn li.liactive{ color: #FF9900;border-bottom-color: #FF9900;}
+.childlist{ display: none;}
+/*合作历史及评价*/
+.lefthead{ margin-right: 10px; text-align:center;}
+.contit{ position:relative;}
+.contit span{ display: block; width: 70%; }
+.conbrief{ max-height: 46px; overflow: hidden;}
+.conresoult{ position: absolute; right:0;top:50%; margin-top:-10px; width:30%; height:18px;}
 /***********************我的账户*******************/
 
 /***********************专家信息修改*******************/
@@ -270,7 +286,7 @@ body{ color: #666666; font-size:14px;}
 .filterblock{padding:0; margin: 0; margin-top:2px ; background:#FFFFFF;overflow: hidden;}
 .filterblock li{list-style:none; float: left; border-right:1px solid #F0F0F0;} 
 .filterblock li em{ font-size:18px; margin:0 2px;}
-.filterlist{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 14px;}
+.filterlist{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 12px;}
 /***********************搜索*******************/
 
 /*********************** 咨询*******************/
@@ -293,14 +309,16 @@ body{ color: #666666; font-size:14px;}
 
 .operatebox{ width:100%;background: #FFFFFF;overflow: hidden; padding:10px;position: relative;}
 .themespan{ width: 54%;}
-.operatebtnbox{width:44%;position:absolute; top:50%; right:1%;margin-top:-14px;}
-.operatebtn{padding:1% 4%; margin: 0; position: absolute;right:0;}
+.operatebtnbox{width:44%;position:absolute; top:50%; right:1%;margin-top:-13px;}
+/*已评价*/.operated{width:30%; margin-top:-18px;}
+.operatebtn{padding:2% 4%; margin: 0; position: absolute;right:0; font-size: 13px; line-height: 20px;}
+
 
 .filterbox2{}
 .filterblock2{padding:0; margin: 0; margin-top:2px ; background:#FFFFFF;overflow: hidden;}
-.filterblock2 li{list-style:none; position: relative; float: left; border-right:1px solid #F0F0F0;} 
+.filterblock2 li{list-style:none; position: relative; float: left; border-right:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;} 
 .filterblock2 li select{  margin:0 2px;}
-.filterlist2{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 14px;}
+.filterlist2{ padding:0; margin: 0; border:none; border-radius:0;padding:6px;font-size: 13px;}
 
 .coutopicbox{ position: relative; background: #F0F0F0; margin-bottom: 10px; width:110%; margin-left:-16px; padding:4%; overflow: hidden;}
 .coutopicbox .coutheme{ max-width: 60%;}
@@ -314,4 +332,8 @@ body{ color: #666666; font-size:14px;}
 .thistime{ position: absolute; right:2px; font-size: 12px; color: #999999;}
 
 .mui-table-view-cell>.proinfor>.mui-badge{top: 20px;left:10px; right:auto;}
+
+.evabox{ text-align: center;}
+.evabox span{ font-size: 12px;}
+.evabox .levelbox .mui-icon{ font-size: 14px; line-height: 14px; border:1px solid red;}
 /*********************** 咨询*******************/

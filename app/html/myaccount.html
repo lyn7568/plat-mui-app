@@ -6,6 +6,9 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/myaccount.js"></script>
 	</head>
 	
 	<body>
@@ -34,11 +37,11 @@
 				<div class="maincon personinfo2">
 					<div class="headbox2" >
 					    <a class="mui-pull-left proinfor">
-		                    <img class="mui-pull-left headimg2" src="../images/default-photo.jpg">
+		                    <img class="mui-pull-left headimg2" src="../images/default-photo.jpg" id="userImg">
 		                    <div class="mui-pull-left infobasic" style="display:none;" id="loginYes">
-		                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
-		                        <p class="listtit2"><span>职称</span>，<span>职务</span></p>
-		                    	<p class="listtit3"><span>所在部门</span>，<span>所属机构</span> | <span>所在地</span></p>
+		                        <span class="listtit"><span id="userName"></span><img class="smallicon authicon" src="../images/authicon.png"/></span>	
+		                        <p class="listtit2"><span id="userTitle"></span>，<span id="userPosition"></span></p>
+		                    	<p class="listtit3"><span id="userDepartment"></span>，<span id="userMechanism"></span> | <span id="userCity"></span></p>
 		                    </div>
 		                    <div id="loginNo" style="display:none;"><span id="goreg">注册</span>/<span id="gologin">登录</span> </div>
 		                </a>
@@ -102,9 +105,7 @@
 				</ul>
 		    </div>
 		</div>
-		<script src="../js/public/mui.min.js"></script>
-		<script src="../js/public/base.js"></script>
-		<script src="../js/myaccount.js"></script>
+		
 	</body>
 
 </html>

@@ -10,12 +10,12 @@
     <style>
     /*跨webview需要手动指定位置*/
 			
-			.mui-plus header.mui-bar {
+			/*.mui-plus header.mui-bar {
 				display: none!important;
 			}
 			.mui-plus .mui-bar-nav~.mui-content {
 				padding: 0!important;
-			}
+			}*/
 			
 			.mui-plus .plus{
 				display: inline;
@@ -42,14 +42,31 @@
 				padding-right: 10px;
 			}
 			.mui-popover {
-				height: 300px;
+				border-radius: 6px;
+				width:0;
+				height:0;
+				min-width: 90px;
+				min-height:110px;
+				font-size: 13px;
 			}
+			.mui-popover .mui-popover-arrow{
+				top: -22px;
+				width: 22px;
+    			height: 22px;
+    			
+    		}
+    		.mui-popover .mui-table-view-cell{
+    			padding:8px 14px;
+    		}
+    		
+    		.mui-popover4{ width: 130px;  }
     </style>
 </head>
 <body>
 
 	<!-- 主页面标题 -->
 	<header class="mui-bar mui-bar-nav toptitbox">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
 	    <h1 class="mui-title toptit">咨询</h1>
 	</header>
 	<!--主页面底部菜单-->
@@ -72,24 +89,22 @@
     	<!-- 主界面具体展示内容 -->
     	<div class="filterbox2">
 			<ul class="filterblock2">
-				<li>
-					<select class="filterlist2">
-						<option>全部</option>
-						<option>我的需求</option>
-						<option>向我咨询</option>
-					</select>
-					<span class="mui-icon mui-icon-arrowdown downarrow"></span>
+				<li style="width:22%;">
+					<a href="#middlePopover1" class="mui-btn mui-btn-block mui-btn-outlined filterlist2">全部<em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
-				<li>
-					<a href="#middlePopover" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined filterlist" >学术领域<em class="mui-icon mui-icon-arrowdown"></em></a>
+				<li style="width:22%;">
+					<a href="#middlePopover2" class="mui-btn mui-btn-block mui-btn-outlined filterlist2">咨询方向<em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
-				<li>
-					<button class="mui-btn mui-btn-block filterlist" type='button'>应用行业<em class="mui-icon mui-icon-arrowdown"></em></button>
+				<li style="width:22%;">
+					<a href="#middlePopover3" class="mui-btn mui-btn-block mui-btn-outlined filterlist2">咨询状态<em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+				<li style="width:34%;">
+					<a href="#middlePopover4" class="mui-btn mui-btn-block mui-btn-outlined filterlist2" >按最后回复排序<em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
 			</ul>
 		</div>
         <!--图文列表-->
-        <div class="mui-card-content conblock">
+        <div class="mui-card-content conblock" style="margin-top:0 ;">
         	
 	        <ul class="mui-table-view protable">
 	            <li class="mui-table-view-cell mui-media">
@@ -151,40 +166,100 @@
 	                    </div>
 	                </a>
 	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	            	<div class="coutopicbox">
+	            		<span class="coutheme mui-ellipsis mui-pull-left">关于某某技术的咨询某某技术的咨询某某技术的咨询某某技术的咨询</span>
+	            		<div class="coustatus mui-pull-right">
+	            			<span class="aimlabel">资源</span>
+	            			<span class="status-3">已完成</span>
+	            			<!--进行中"status-1"  待评价"status-2"  已完成"status-3"-->
+	            		</div>
+	            		
+	            	</div>
+	                <a class="proinfor" href="chats.html">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/><span class="thistime">今天 10:20</span></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="listtit3">专家姓名专姓名专家姓名专家姓名专姓名专家姓名专家姓名</p>
+	                    </div>
+	                </a>
+	            </li>
+	            <li class="mui-table-view-cell mui-media">
+	            	<div class="coutopicbox">
+	            		<span class="coutheme mui-ellipsis mui-pull-left">关于某某技术的咨询某某技术的咨询某某技术的咨询某某技术的咨询</span>
+	            		<div class="coustatus mui-pull-right">
+	            			<span class="aimlabel">资源</span>
+	            			<span class="status-3">已完成</span>
+	            			<!--进行中"status-1"  待评价"status-2"  已完成"status-3"-->
+	            		</div>
+	            		
+	            	</div>
+	                <a class="proinfor" href="chats.html">
+	                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+	                    <div class="mui-media-body">
+	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/><span class="thistime">今天 10:20</span></span>	
+	                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
+	                    	<p class="listtit3">专家姓名专姓名专家姓名专家姓名专姓名专家姓名专家姓名</p>
+	                    </div>
+	                </a>
+	            </li>
+	            
 	        </ul>
 		</div>
-    </div>
-	
-	<div id="middlePopover" class="mui-popover">
+		
+		<div id="middlePopover1" class="mui-popover mui-popover1">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view mui-table-view-radio">
+						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">全部</a></li>
+						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">我的需求</a></li>
+						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">收到咨询</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="middlePopover2" class="mui-popover mui-popover2">
 			<div class="mui-popover-arrow"></div>
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<ul class="mui-table-view">
-						<li class="mui-table-view-cell"><a href="#">Item1</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item2</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item3</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item4</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item5</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item6</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item7</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item8</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item9</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item10</a>
-						</li>
+						<li class="mui-table-view-cell"><a href="#">技术咨询</a></li>
+						<li class="mui-table-view-cell"><a href="#">资源咨询</a></li>
+						<li class="mui-table-view-cell"><a href="#">其它事务</a></li>
 					</ul>
 				</div>
 			</div>
-
 		</div>
+		<div id="middlePopover3" class="mui-popover mui-popover3">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell"><a href="#">进行中</a></li>
+						<li class="mui-table-view-cell"><a href="#">待评价</a></li>
+						<li class="mui-table-view-cell"><a href="#">已完成</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="middlePopover4" class="mui-popover mui-popover4">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell"><a href="#">按最后回复排序</a></li>
+						<li class="mui-table-view-cell"><a href="#">按发起时间排序</a></li>
+						<li class="mui-table-view-cell"><a href="#">按完成时间排序</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+    </div>
+	
+	
 	<script src="../js/public/mui.min.js"></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init({

@@ -1,5 +1,4 @@
 //注册信息
-mui.init();
 mui.plusReady(function(){
 	
 	/*定义全局变量*/

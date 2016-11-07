@@ -2,7 +2,6 @@
 mui.init();
 mui.plusReady(function(){
 	/*定义全局变量*/
-	//var userid = plus.storage.getItem('userid');
 	var userName = document.getElementById("userName");
 	var userMechanism = document.getElementById("userMechanism");
 	var userDepartment = document.getElementById("userDepartment");

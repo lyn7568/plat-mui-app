@@ -54,7 +54,7 @@ mui.plusReady(function(){
 			timeout: 10000, //超时设置
 			success: function(data) {
 				if(data.success) {
-					userId=data.data;
+					var userId=data.data;
 				    plus.storage.setItem('userid',userId);
 					plus.nativeUI.toast("已完成注册，请填写个人信息",toastStyle);
 					mui.openWindow({

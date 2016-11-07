@@ -6,14 +6,9 @@
     <title></title>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <link href="css/app.css" rel="stylesheet"/>
-    <script src="js/public/mui.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-
-    </script>
 </head>
 <body>
-
+     
 	<!-- 主页面标题 -->
     <header class="mui-bar mui-bar-nav toptitbox">
 		<!--<div class="mui-input-row frm-input searchbox">
@@ -24,30 +19,9 @@
 		    <input type="search" class="mui-input-clear searchtxt" placeholder="搜索专家、设备资源">
 		</div>
 	</header>
-	<!--主页面底部菜单-->
-    <nav class="mui-bar mui-bar-tab footbox">
-	    <a class="mui-tab-item mui-active" href="index.html">
-	        <span class="mui-icon mui-icon-home"></span>
-	    </a>
-	    <a class="mui-tab-item">
-	        <span class="mui-icon mui-icon-chat"></span>
-	    </a>
-	    <a class="mui-tab-item">
-	        <span class="mui-icon mui-icon-email"></span>
-	    </a>
-	    <a class="mui-tab-item" href="html/myaccount.html">
-	        <span class="mui-icon mui-icon-person"></span>
-	    </a>
-	</nav>
     <!-- 主页面内容容器 -->
     <div class="mui-content">
     	<!-- 主界面具体展示内容 -->
-    	        
-            <a href="html/login.html">登录</a>
-             <a href="html/reg.html">注册</a>
-             <a href="html/setpass.html">设置密码</a>
-             <a href="html/fillinfo.html">完善信息</a>
-        <a href="html/proinforupdate.html">修改信息</a>
     	<!--图片轮播-->
         <div id="slider" class="mui-slider" >
           <div class="mui-slider-group mui-slider-loop">
@@ -105,7 +79,7 @@
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
 		            <a href="#">
 		                <div class="fieldicon">
-		                	<img src="images/field-icon8.png"/>
+		                	<img src="images/field05.png"/>
 		                </div>
 		                <div class="mui-media-body">材料失效与保护</div>
 		            </a>
@@ -113,41 +87,41 @@
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
 		            <a href="#">
 		                <div class="fieldicon">
-		                	<img src="images/field-icon8.png"/>
+		                	<img src="images/field02.png"/>
 		                </div>
-		                <div class="mui-media-body">材料失效与保护</div>
+		                <div class="mui-media-body">材料表面与界面</div>
 		            </a>
 		        </li>
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
 		            <a href="#">
 		                <div class="fieldicon">
-		                	<img src="images/field-icon8.png"/>
+		                	<img src="images/field07.png"/>
 		                </div>
-		                <div class="mui-media-body">材料失效与保护</div>
+		                <div class="mui-media-body">黑色金属及其合金</div>
 		            </a>
 		        </li>
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
 		            <a href="#">
 		                <div class="fieldicon">
-		                	<img src="images/field-icon8.png"/>
+		                	<img src="images/field18.png"/>
 		                </div>
-		                <div class="mui-media-body">材料失效与保护</div>
+		                <div class="mui-media-body">有色金属及其合金</div>
 		            </a>
 		        </li>
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
 		            <a href="#">
 		                <div class="fieldicon">
-		                	<img src="images/field-icon8.png"/>
+		                	<img src="images/field04.png"/>
 		                </div>
-		                <div class="mui-media-body">材料失效与保护</div>
+		                <div class="mui-media-body">材料检测与分析技术</div>
 		            </a>
 		        </li>
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4">
 		            <a href="#">
 		                <div class="fieldicon">
-		                	<img src="images/field-icon8.png"/>
+		                	<img src="images/field16.png"/>
 		                </div>
-		                <div class="mui-media-body">材料失效与保护</div>
+		                <div class="mui-media-body">非晶、微晶金属材料</div>
 		            </a>
 		        </li>
             </ul>
@@ -238,6 +212,23 @@
 	        </ul>
 		</div>
     </div>
-	       	 
+    <!--主页面底部菜单-->
+    <nav class="mui-bar mui-bar-tab footbox">
+	    <a class="mui-tab-item mui-active" href="index.html">
+	        <span class="mui-icon mui-icon-home"></span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-chat"></span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-email"></span>
+	    </a>
+	    <a class="mui-tab-item" id="isLogin">
+	        <span class="mui-icon mui-icon-person"></span>
+	    </a>
+	</nav>
+    <script src="js/public/mui.min.js"></script>
+	<script src="js/public/base.js"></script>
+	<script src="js/index.js"></script>	       	 
 </body>
 </html>

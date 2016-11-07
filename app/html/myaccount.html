@@ -13,27 +13,44 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
 		    <h1 class="mui-title toptit">我的账户</h1>
 		</header>
+		<!--主页面底部菜单-->
+	    <nav class="mui-bar mui-bar-tab footbox">
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-home"></span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-chat"></span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-email"></span>
+		    </a>
+		    <a class="mui-tab-item mui-active">
+		        <span class="mui-icon mui-icon-person"></span>
+		    </a>
+		</nav>
 		<div class="mui-content">
 			<!-- 主界面具体展示内容 -->
     		<div class="mui-input-group  marginbox">
 				<div class="maincon personinfo2">
 					<div class="headbox2" >
-					    <a class="mui-pull-left proinfor" href="proinforbrow.html">
+					    <a class="mui-pull-left proinfor">
 		                    <img class="mui-pull-left headimg2" src="../images/default-photo.jpg">
-		                    <div class="mui-pull-left infobasic">
+		                    <div class="mui-pull-left infobasic" style="display:none;" id="loginYes">
 		                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
 		                        <p class="listtit2"><span>职称</span>，<span>职务</span></p>
 		                    	<p class="listtit3"><span>所在部门</span>，<span>所属机构</span> | <span>所在地</span></p>
 		                    </div>
+		                    <div id="loginNo" style="display:none;"><span id="goreg">注册</span>/<span id="gologin">登录</span> </div>
 		                </a>
 		                <div class="mui-pull-right updatebtn">
-			        		<a class="editbox" href="proinforupdate.html">
+			        		<a class="editbox" id="editbox">
 			        			<img src="../images/edit.png" />
 			        		</a>
 			        	</div>
+			        	<span id="removeid">退出登录</span>
 			        </div>
 		        </div>
-		        <div class="mui-clearfix peolevelbox">
+		        <a class="mui-clearfix peolevelbox" href="coophistory.html">
 		        	<div class="mui-pull-left peocountbox">
 		        		<div class="peocount mui-clearfix">
 		        			<em class="actionicon dialogicon mui-pull-left "></em>
@@ -41,15 +58,16 @@
 		        		</div>
 		        	</div>
 		        	<div class="mui-pull-right levelbox">
-		        		<span class="mui-icon mui-icon-star"></span>
-		        		<span class="mui-icon mui-icon-star"></span>
-		        		<span class="mui-icon mui-icon-star"></span>
-		        		<span class="mui-icon mui-icon-star"></span>
-		        		<span class="mui-icon mui-icon-star"></span>
+		        		<span class="star"></span>
+		        		<span class="star"></span>
+		        		<span class="star"></span>
+		        		<span class="star"></span>
+		        		<span class="star"></span>
 		        	</div>
-		        </div>
+		        </a>
 		    </div>
-			<div class="mui-input-group  marginbox">
+		    
+	        <div class="mui-input-group  marginbox">
 				<ul class="mui-table-view">
 				    <!--<li class="mui-table-view-cell">
 				        <a class="mui-navigate-right walltebox">
@@ -84,10 +102,9 @@
 				</ul>
 		    </div>
 		</div>
-		<script src=" ../js/public/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init()
-		</script>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/myaccount.js"></script>
 	</body>
 
 </html>

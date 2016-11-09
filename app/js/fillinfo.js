@@ -15,23 +15,13 @@ mui.ready(function() {
 		
 		/*校验提交按钮显示状态*/
 		mui('.basicinfo').on('keyup', "#userName,#userMechanism", function() {
-			hideButtn();
+			hideButtn(userName,userMechanism,goIndex,"frmactiveok");
 		});
 
 		/*提交个人信息*/
 		goIndex.addEventListener('tap', function() {
 			goVal();
 		});
-
-		function hideButtn() {
-			if(userName.value == "" || userMechanism.value == "") {
-				goIndex.classList.remove('frmactiveok');
-				goIndex.disabled = "disabled";
-			} else {
-				goIndex.classList.add('frmactiveok');
-				goIndex.disabled = "";
-			}
-		}
 
 		function goVal() {
 			var $data = {};

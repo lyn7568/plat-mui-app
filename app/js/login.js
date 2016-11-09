@@ -6,6 +6,7 @@ mui.ready(function() {
 	var login = document.getElementById("login");
 	var userName = document.getElementById("username");
 	var userPassword = document.getElementById("password");
+	var forgetPassword = document.getElementById("forgetPassword");
 
 	mui.plusReady(function() {
 		
@@ -13,12 +14,23 @@ mui.ready(function() {
 		reg.addEventListener("tap", function() {
 			goRegFun();
 		})
+		
+		/*点击忘记密码按钮*/
+		forgetPassword.addEventListener("tap", function() {
+			mui.openWindow({
+				url: '../html/findpwd-phone.html',
+				id: '../html/findpwd-phone.html',
+				show: {
+					aniShow: "slide-in-right"
+				}
+			});
+		})
 
 		/*校验登录按钮显示状态*/
 		mui('.frmbox').on('keyup', "#username,#password", function() {
-			hideButtn();
+			hideButtn(userName,userPassword,login,"frmactiveok");
 		});
-
+		
 		/*登录按钮*/
 		login.addEventListener('tap', function() {
 			userVal()
@@ -37,7 +49,6 @@ mui.ready(function() {
 
 		/*校验用户账号*/
 		function userVal() {
-			console.log(userName.value);
 			var gunf = /^\w+@\w+\.((cn)|(com)|(com\.cn))$/;
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
 			if(hunPhone.test(userName.value)) {

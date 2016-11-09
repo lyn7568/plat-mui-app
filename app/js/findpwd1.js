@@ -1,63 +1,59 @@
-//注册信息
+//手机找回密码
 mui.ready(function() {
 	
 	/*定义全局变量*/
-	var phoneName = document.getElementById("username");
-	var setCode = document.getElementById("set-code");
+	var userPhone = document.getElementById("userPhone");
+	var userCode = document.getElementById("userCode");
+	var nextPage = document.getElementById("nextPage");
 	var obtainCode = document.getElementById("obtain-code");
-	var reg = document.getElementById("reg");
-	var login = document.getElementById("login");
 	var phoneCode = false;
-	var state = 0;
+	var state = "";
+	var num;
 	
-	mui.plusReady(function() {
-
-		/*点击登录页面*/
-		login.addEventListener('tap', function() {
-			goLoginFun();
-		})
-
+	mui.plusReady(function(){
+		
 		/*校验提交按钮显示状态*/
-		mui('.frmbox').on('keyup', "#username,#set-code", function() {
-			hideButtn(phoneName,setCode,reg,"frmactiveok");
+		mui('.frmbox').on('keyup', "#userPhone,#userCode", function() {
+			hideButtn(userPhone,userCode,nextPage,"frmactiveok");
 		});
-
+		
+		/*下一步按钮*/
+		nextPage.addEventListener('tap', function() {
+			codeVal();
+		})
+		
 		/*点击获取验证码*/
 		obtainCode.addEventListener('tap', function() {
 			phoneVal();
 		})
-
-		/*注册按钮*/
-		reg.addEventListener('tap', function() {
-			codeVal();
-		})
-
+		
 		/*校验手机号*/
 		function phoneVal() {
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
-			if(hunPhone.test(phoneName.value)) {
+			if(hunPhone.test(userPhone.value)) {
 				isReg();
 			} else {
 				plus.nativeUI.toast("请输入正确的手机号码", toastStyle);
 				return;
 			}
 		}
-
+		
 		/*校验用户名是否注册*/
 		function isReg() {
-			mui.ajax(baseUrl + '/ajax/isReg?key=' + phoneName.value, {
+			mui.ajax(baseUrl + '/ajax/isReg?key=' + userPhone.value, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
-				timeout: 10000, //超时设置
+				async: false,
 				success: function(data) {
+					console.log(data.data);
 					if(data.data == false) {
-						plus.nativeUI.toast("您的手机已被注册", toastStyle);
-						return;
-					} else {
 						phoneCode = true;
 						if(phoneCode){
 							sendAuthentication();
 						}
+					} else {
+						plus.nativeUI.toast("该手机号码未注册账户，请先注册", toastStyle);
+						return;
 					}
 				},
 				error: function() {
@@ -65,21 +61,21 @@ mui.ready(function() {
 				}
 			});
 		}
-
+		
 		/*手机发送验证码*/
 		function sendAuthentication() {
-			mui.ajax(baseUrl + '/ajax/regmobilephone', {
+			mui.ajax(baseUrl + '/ajax/vcWithRP', {
 				data: {
-					mobilePhone: phoneName.value
+					mobilePhone: userPhone.value
 				},
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				async: false,
-				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
 						state = data.data;
 						doClick();
+						return;
 					}
 				},
 				error: function() {
@@ -115,23 +111,24 @@ mui.ready(function() {
 			mui.ajax(baseUrl + '/ajax/validCode', {
 				data: {
 					"state": state,
-					"vc": setCode.value
+					"vc": userCode.value
 				},
 				dataType: 'json', //数据格式类型
 				async: false,
 				type: 'POST', //http请求类型
-				timeout: 10000, //超时设置
 				success: function(data) {
 					console.log(data.success);
+					console.log(data.data);
 					if(data.success) {
 						if(data.data) {
 							mui.openWindow({
 								url: 'setpass.html',
 								id: 'setpass.html',
 								extras: {
-									phoneName: phoneName.value,
-									setCode: setCode.value,
-									state: state
+									phoneName: userPhone.value,
+									setCode: userCode.value,
+									state: state,
+									num:1
 								}
 							});
 						}else{
@@ -140,14 +137,13 @@ mui.ready(function() {
 						}
 					}else{
 						console.log(data.msg);
-						if(data.msg=="验证超时"){
+					    if(data.msg=="验证超时"){
 							plus.nativeUI.toast("验证码超时", toastStyle);
 							return;
 						}else{
 							plus.nativeUI.toast("请填写正确的手机号,验证码", toastStyle);
 							return;
 						}
-						
 					}
 				},
 				error: function() {
@@ -157,5 +153,7 @@ mui.ready(function() {
 			})
 		}
 
+	
 	});
+	
 });

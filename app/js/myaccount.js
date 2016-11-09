@@ -29,9 +29,12 @@ mui.plusReady(function(){
 			});
 		})
 		
+		/*登录按钮*/
 		goLogin.addEventListener('tap',function(){
 			goLoginFun();
 		})
+		
+		/*注册按钮*/
 		goReg.addEventListener('tap',function(){
 			goRegFun();
 			
@@ -65,7 +68,7 @@ mui.plusReady(function(){
 						}else{
 							document.getElementById("userImg").setAttribute("src", "../images/default-photo.jpg");
 						}
-						console.log($info.hasHeadImage);
+
 					}
 				},
 				error: function() {

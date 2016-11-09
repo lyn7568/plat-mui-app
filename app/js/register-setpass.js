@@ -12,23 +12,13 @@ mui.ready(function() {
         
 		/*校验提交按钮显示状态*/
 		mui('.frmbox').on('keyup', "#password,#password2", function() {
-			hideButtn();
+			hideButtn(passWord,passwordOK,registerOk,"frmactiveok");
 		});
 
 		/*提交设置密码*/
 		registerOk.addEventListener('tap', function() {
 			valOld()
 		});
-
-		function hideButtn() {
-			if(passWord.value == "" || passwordOK.value == "") {
-				registerOk.classList.remove('frmactiveok');
-				registerOk.disabled = "disabled";
-			} else {
-				registerOk.classList.add('frmactiveok');
-				registerOk.disabled = "";
-			}
-		}
 
 		function valOld() {
 			if(passWord.value.length < 6 && passwordOK.value.length < 6) {
@@ -38,10 +28,16 @@ mui.ready(function() {
 				plus.nativeUI.toast("两次密码不一致", toastStyle);
 				return;
 			} else {
-				completeReg();
+				if(self.num==1){
+					completepaw();
+				}else{
+					completeReg();	
+				}
+				
 			}
 		}
 
+		//注册提交
 		function completeReg() {
 			mui.ajax(baseUrl + '/ajax/regmobile', {
 				data: {
@@ -53,7 +49,6 @@ mui.ready(function() {
 				dataType: 'json', //数据格式类型
 				type: 'post', //http请求类型
 				async: false,
-				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
 						var userId = data.data;
@@ -69,6 +64,30 @@ mui.ready(function() {
 								aniShow: "slide-in-right"
 							}
 						});
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+				}
+			});
+		}
+		
+		//找回密码提交
+		function completepaw() {
+			mui.ajax(baseUrl + '/ajax/resetPasswordWithMobilePhone', {
+				data: {
+					state: self.state,
+					mobilePhone: self.phoneName,
+					vc: self.setCode,
+					pw: passwordOK.value
+				},
+				dataType: 'json', //数据格式类型
+				type: 'post', //http请求类型
+				async: false,
+				success: function(data) {
+					if(data.success&&data.data) {
+						goLoginFun();
+						plus.webview.close(self);
 					}
 				},
 				error: function() {

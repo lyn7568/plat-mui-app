@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>完善个人信息</title>
+		<title>绑定邮箱</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
@@ -24,16 +24,18 @@
 				<div class="maincon">
 					<ul class="basicinfo" style="margin: 0; padding: 0;">
 						<li><label>邮箱地址</label></li>
-						<li class="basicfrm"><input type="email" class="mui-input-clear frmtype" placeholder="请输入邮箱地址"></li>
+						<li class="basicfrm"><input type="email" class="mui-input-clear frmtype" placeholder="请输入邮箱地址" id="inputemail"></li>
 						
 					</ul>
 		        </div>
 		    </div>
 		    <div class="mui-content-padded mainbox">
-				<button class="mui-btn mui-btn-block frmbtn" style="width: 96%;">发送验证链接</button>
+				<button class="mui-btn mui-btn-block frmbtn" style="width: 96%;" id="sendcode">发送验证链接</button>
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/bindmail.js"></script>
 	</body>
 
 </html>

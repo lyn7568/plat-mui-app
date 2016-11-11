@@ -20,17 +20,18 @@ function goLoginFun() {
 		url: '../html/login.html',
 		id: '../html/login.html',
 		show: {
-			aniShow: "slide-in-right"
+			aniShow: "slide-in-bottom"
 		}
 	});
 }
+
 
 function goRegFun() {
 	mui.openWindow({
 		url: '../html/reg.html',
 		id: '../html/reg.html',
 		show: {
-			aniShow: "slide-in-right"
+			aniShow: "slide-in-bottom"
 		}
 	});
 }
@@ -38,6 +39,16 @@ function goRegFun() {
 /*校验下一步按钮显示状态*/
 function hideButtn(oneName,twoName,threeName,fourName) {
 	if(oneName.value == "" || twoName.value == "") {
+		threeName.classList.remove(fourName);
+		threeName.disabled = "disabled";
+	} else {
+		threeName.classList.add(fourName);
+		threeName.disabled = "";
+	}
+}
+
+function hideButtn2(oneName,twoName,threeName,fourName,fiveName) {
+	if(oneName.value == "" || twoName.value == "" || fiveName.value == "") {
 		threeName.classList.remove(fourName);
 		threeName.disabled = "disabled";
 	} else {

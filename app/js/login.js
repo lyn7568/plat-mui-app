@@ -36,17 +36,7 @@ mui.ready(function() {
 			userVal()
 		})
 
-		/*校验按钮显示状态*/
-		function hideButtn() {
-			if(userName.value == "" || userPassword.value == "") {
-				login.classList.remove('frmactiveok');
-				login.disabled = "disabled";
-			} else {
-				login.classList.add('frmactiveok');
-				login.disabled = "";
-			}
-		}
-
+		
 		/*校验用户账号*/
 		function userVal() {
 			var gunf = /^\w+@\w+\.((cn)|(com)|(com\.cn))$/;

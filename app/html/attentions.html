@@ -20,8 +20,8 @@
     	<!-- 主界面具体展示内容 -->
 		<div class="fixbox">
 			<ul class="fixbtn" id="fixbtn">
-				<li class="liactive">专家</li><!--当前选中状态    'liactive'-->
-				<li>资源</li>
+				<li index="0" class="liactive">专家</li><!--当前选中状态    'liactive'-->
+				<li index="1">资源</li>
 			</ul>
 		</div>
 		<div class="alllist">
@@ -168,11 +168,32 @@
 		        </ul>
 			</div>
 		</div>
-		<a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowup"></span> </a>
+		<!--<a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowup"></span> </a>-->
     </div>
     <script src="../js/public/mui.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
-		mui.init()
+		mui.init();
+		//------------------------------
+		//菜单tab切换
+		mui("#fixbtn").on("tap","li",function(){
+			var checkedindex=this.getAttribute("index");
+			var checkedcontent_arr=document.getElementsByClassName("childlist");
+			var libtn_arr = document.getElementById("fixbtn").getElementsByTagName("li");
+			mui.toast(checkedindex);
+			if(checkedindex==0){
+				libtn_arr[0].classList.add("liactive");
+				libtn_arr[1].classList.remove("liactive");
+				checkedcontent_arr[1].style.display = 'none';
+				checkedcontent_arr[0].style.display = 'block';
+			}else{
+				libtn_arr[1].classList.add("liactive");
+				libtn_arr[0].classList.remove("liactive");
+				checkedcontent_arr[0].style.display = 'none';
+				checkedcontent_arr[1].style.display = 'block';
+			}
+		})
+		//-----------------------------
+		
 	</script>      	 
 </body>
 </html>

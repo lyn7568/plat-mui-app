@@ -14,15 +14,18 @@
 	<!-- 主页面标题 -->
     <header class="mui-bar mui-bar-nav toptitbox">
     	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-        <div class="searchbox2">
+        <div class="searchbox2 mui-pull-right">
         	<div class="mui-pull-left searchselect">
-	        	<select class="mui-select">
-	        		<option>专家</option>
-	        		<option>资源</option>
-	        	</select>
+	        	<div class="simuselect">
+                	<div class="ulbox lookwho" id="div_select">专家</div> 
+					<ul id="li_show" class="lishow"> 
+					    <li>专家</li> 
+					    <li>资源</li> 
+					</ul>
+				</div>
 	        	<em class="mui-icon mui-icon-arrowdown"></em>
 		    </div>
-		    <input type="text" class="mui-input-clear mui-pull-left searchtxt2" placeholder="搜索专家、设备资源">
+		    <input type="text" class="mui-input-clear mui-pull-right searchtxt2" placeholder="搜索专家、设备资源">
         </div>
 	</header>
 	
@@ -38,17 +41,11 @@
 					</button>
 					
 				</li>
-				<li>
-					<button id='showAcadPicker' class="mui-btn mui-btn-block filterlist" type='button'>
-						<span id='acadResult' class="ui-alert">学术领域</span>
-						<em class="mui-icon mui-icon-arrowdown"></em>
-					</button>
+				<li style="width:25%;">
+					<a href="#middlePopoveracad" class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span>学术领域</span><em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
-				<li>
-					<button class="mui-btn mui-btn-block filterlist" type='button'>
-						应用行业
-						<em class="mui-icon mui-icon-arrowdown"></em>
-					</button>
+				<li style="width:25%;">
+					<a href="#middlePopoveruse" class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span>应用行业</span><em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
 			</ul>
 		</div>
@@ -101,80 +98,79 @@
 	            </li>
 	        </ul>
 		</div>
-		<a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowup"></span> </a>
 		
+		<div id="middlePopoveracad" class="mui-popover popoverbox2">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell"><a class="mui-active" href="#">不限</a></li>
+						<li class="mui-table-view-cell"><a href="#">我的需求</a></li>
+						<li class="mui-table-view-cell"><a href="#">收到咨询</a></li>
+						<li class="mui-table-view-cell"><a href="#">全部</a></li>
+						<li class="mui-table-view-cell"><a href="#">我的需求</a></li>
+						<li class="mui-table-view-cell"><a href="#">收到咨询</a></li>
+						<li class="mui-table-view-cell"><a href="#">全部</a></li>
+						<li class="mui-table-view-cell"><a href="#">我的需求</a></li>
+						<li class="mui-table-view-cell"><a href="#">收到咨询</a></li>
+						<li class="mui-table-view-cell"><a href="#">全部</a></li>
+						<li class="mui-table-view-cell"><a href="#">我的需求</a></li>
+						<li class="mui-table-view-cell"><a href="#">收到咨询</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="middlePopoveruse" class="mui-popover popoverbox2">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell"><a class="mui-active" href="#">不限</a></li>
+						<li class="mui-table-view-cell"><a href="#">我的需求</a></li>
+						<li class="mui-table-view-cell"><a href="#">收到咨询</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
     </div>
     <script src="../js/public/mui.min.js"></script>
     <script src="../js/public/mui.picker.min.js"></script>
 	<script src="../js/public/city.data.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/public/city.data-3.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" charset="utf-8">
-		(function($, doc) {
-				$.init();
-				$.ready(function() {
-					//-----------------------------------------
-					//级联示例
-					var cityPicker = new $.PopPicker({
-						layer: 2
-					});
-					cityPicker.setData(cityData);
-					var showCityPickerButton = doc.getElementById('showCityPicker');
-					var cityResult = doc.getElementById('cityResult');
-					showCityPickerButton.addEventListener('tap', function(event) {
-						cityPicker.show(function(items) {
-							cityResult.innerText = items[1].text ;
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
-					//-----------------------------------------
-					
-					//级联示例
-					var acadPicker = new $.PopPicker();
-					acadPicker.setData([{
-						value: 'ywj',
-						text: '1'
-					}, {
-						value: 'aaa',
-						text: '2'
-					}, {
-						value: 'lj',
-						text: '3'
-					}, {
-						value: 'ymt',
-						text: '4'
-					}, {
-						value: 'shq',
-						text: '5'
-					}, {
-						value: 'zhbh',
-						text: '6'
-					}, {
-						value: 'zhy',
-						text: '7'
-					}, {
-						value: 'gyf',
-						text: '8'
-					}, {
-						value: 'zhz',
-						text: '9'
-					}, {
-						value: 'gezh', 
-						text: '10'
-					}]);
-					var showAcadPickerButton = doc.getElementById('showAcadPicker');
-					var acadResult = doc.getElementById('acadResult');
-					showAcadPickerButton.addEventListener('tap', function(event) {
-						acadPicker.show(function(items) {
-							acadResult.innerText = items[0].text;
-							//acadResult.innerText = JSON.stringify(items[0]);
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
-					//-----------------------------------------
-				});
-			})(mui, document);
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+		//-------------------------------
+		//筛选添加弹出菜单
+		mui('.mui-scroll-wrapper').scroll();
+		mui('body').on('shown', '.mui-popover', function(e) {
+			//console.log('shown', e.detail.id);//detail为当前popover元素
+		});
+		mui('body').on('hidden', '.mui-popover', function(e) {
+			//console.log('hidden', e.detail.id);//detail为当前popover元素
+		});
+		//-------------------------------------------
+		//搜专家搜资源的下拉选择框
+		var showblock = document.getElementById("li_show"); 
+		var selectblock = document.getElementById("div_select");
+		selectblock.addEventListener('tap',function(){
+			showmenu();
+		});
+		
+		mui("#li_show").on('tap','li',function(){
+			//liindex = this.getAttribute("index");
+			selectThis(this.innerHTML);
+		});
+		
+		function selectThis(value){
+			selectblock.innerHTML=value; 
+			showblock.style.display = 'none'; 
+			} 
+			
+		function showmenu(){ 
+		   showblock.style.display = 'block'; 
+		} 
 	</script>    	 
 </body>
 </html>

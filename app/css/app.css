@@ -7,6 +7,8 @@
 /*.mui-table-view-cell .mui-media-body{padding-bottom:10px; border-bottom:1px solid #CCCCCC;}*/
 .mui-input-group .mui-input-row:last-child:after{ background: none;}
 
+.mui-popover{ border-radius:0;}
+
 a{text-decoration:none;color:#007aff}a:active{color:#0062cc}
 .mui-btn.mui-active:enabled,.mui-btn:enabled:active,button.mui-active:enabled,button:enabled:active,input[type=button].mui-active:enabled,input[type=button]:enabled:active,input[type=reset].mui-active:enabled,input[type=reset]:enabled:active,input[type=submit].mui-active:enabled,input[type=submit]:enabled:active{color:#fff;background-color:#FF9900}
 /*///////////////common公共样式///////////////////////*/
@@ -64,7 +66,7 @@ body{ color: #666666; font-size:14px;}
 .frmactive2{color:#fff;background-color:#ccc; border:1px solid transparent;}
 .frmactive{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
 .frmactiveok{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
-.exitbtn{ border:none; margin: 0; color:#FF0000; border-radius: 0;}
+.exitbtn{ border:none; margin: 0; color:#FF0000; font-size: 14px; border-radius: 0;}
 
 .pompmsg{ font-size: 12px; color: #CCCCCC;}
 /*///////////////common公共样式///////////////////////*/
@@ -134,12 +136,14 @@ body{ color: #666666; font-size:14px;}
 /*.searchbox{position: relative;}
 .searchbox .searchtxt{ position: absolute; height: 30px; top:50%; margin-top:-13px; border-radius: 6px; border:1px transparent solid; padding:0 30px; line-height: 20px; font-size: 14px;}
 */
-.searchbox .mui-placeholder .mui-icon-search{font-size:20px; color: #999999;}
+.searchbox .mui-placeholder .mui-icon-search{font-size:18px; color: #999999;}
 .mui-search input[type=search].searchtxt{background: #FFFFFF;}
+.mui-search .mui-placeholder{ font-size: 14px; top:2px }
+
 .maintitbox .maintit{ line-height: 40px; font-size: 16px; text-align: center; color: #FF9900; border-bottom: 1px solid #F0F0F0;}
 .conblock{ background: #FFFFFF; margin:10px 0;}
 .mui-grid-view.gridbg{ background: #FFFFFF; border: none;}
-.mui-grid-view.gridbg .mui-table-view-cell{ border:none;}
+.mui-grid-view.gridbg .mui-table-view-cell{ border:none; padding: 10px 4px;}
 .mui-grid-view.gridbg .mui-table-view-cell .mui-media-body{ font-size: 12px;}
 /*热门领域*/
 .fieldicon{ overflow: hidden;width:40px; height:40px;margin: auto;}
@@ -231,7 +235,7 @@ body{ color: #666666; font-size:14px;}
 /*我的关注*/
 .fixbox{ background: #FFFFFF;}
 .fixbox .fixbtn{ padding:0; margin: 0; overflow: hidden;}
-.fixbox .fixbtn li{ list-style: none; float: left; padding:10px; border:1px solid #F0F0F0; width:50%;text-align: center;}
+.fixbox .fixbtn li{ list-style: none; float: left; padding:6px 10px; border:1px solid #F0F0F0; width:50%;text-align: center;font-size: 14px;height: 32px;}
 .fixbox .fixbtn li.liactive{ color: #FF9900;border-bottom-color: #FF9900;}
 .childlist{ display: none;}
 /*合作历史及评价*/
@@ -274,11 +278,16 @@ body{ color: #666666; font-size:14px;}
 /***********************专家信息修改*******************/
 
 /***********************搜索*******************/
-.searchbox2{background: #FFFFFF; border-radius: 6px; height: 30px;  margin:8px 0;overflow: hidden;}
-.searchbox2 .searchselect{width: 20%; position:relative;}
-.searchbox2 .searchselect .mui-select{width:100%; padding:8% 10%; padding-left:18%;margin: auto; background: none;}
-.searchbox2 .searchselect em{position: absolute; right:30%; top:-8%; font-size: 16px; width: 0; height: 0; z-index: 0;}
-.searchbox2 .searchtxt2{width: 80%;height: 22px; margin: 4px 0; line-height: 20px; border: none; border-radius: 0; border-left:1px solid #CCCCCC; font-size:14px;}
+.searchbox2{width:92%;background: #FFFFFF; border-radius: 6px; height: 30px;  margin:8px 0;/*overflow: hidden;*/}
+.searchbox2 .searchselect{width: 24%; position:relative;}
+/*.searchbox2 .searchselect .mui-select{width:100%; padding:8% 10%; padding-left:18%;margin: auto; background: none;}*/
+.searchbox2 .searchselect em{position: absolute; right:30%; top:-8%; font-size: 16px;color:#999999; width: 0; height: 0; z-index: 0;}
+.searchbox2 .searchtxt2{width: 76%;height: 22px; margin: 6px 0; line-height: 20px; border: none; border-radius: 0; border-left:1px solid #CCCCCC; font-size:13px;}
+.simuselect{position:relative;}
+.ulbox{ padding: 0 16px;font-size: 13px;color:#999999;line-height: 32px;cursor:pointer; position:relative;} 
+.lishow{ padding:0; margin:0;background:#fff;overflow: hidden; border-radius:2px;position:absolute; top:30px;right:0px; width:100%;box-shadow: 0px 0px 3px #ccc inset;z-index: 9999;display:none;} 
+.lishow li{list-style: none; font-size: 13px;line-height:30px; list-style:none; padding:2px 16px; margin-top:1px;cursor: pointer;} 
+.lishow li:hover{ background:#f0f0f0;} 
 
 .historybox{ background: #FFFFFF; padding-bottom:20px;}
 
@@ -301,7 +310,28 @@ body{ color: #666666; font-size:14px;}
 .filterblock{padding:0; margin: 0; margin-top:2px ; background:#FFFFFF;overflow: hidden;}
 .filterblock li{list-style:none; float: left; border-right:1px solid #F0F0F0;} 
 .filterblock li em{ font-size:18px; margin:0 2px;}
-.filterlist{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 12px;}
+.filterlist{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 13px;height: 32px;}
+/*筛选条件*/
+.popoverbox2 {border-radius:4px;width:0;height:0;width:100%;height:200px;font-size: 14px; }
+.popoverbox2 .mui-popover-arrow{left:50%; margin-left:-12px;}
+.popoverbox2 .mui-table-view{padding:4px;border-radius: 0; overflow: hidden;}
+.popoverbox2 .mui-table-view-cell{float:left;padding:8px 16px; width:40%; margin:2px 2%;border-radius:2px;}
+.popoverbox2 .mui-table-view-cell>a:not(.mui-btn){position: relative;}
+.popoverbox2 .mui-table-view-cell .mui-navigate-right:after { position:absolute;right: 0; color:#FF9900;font-size: 24px;}
+.popoverbox2 .mui-table-view .mui-table-view-cell:last-child,.popoverbox2 .mui-table-view .mui-table-view-cell:last-child>a:not(.mui-btn){border-radius:4px;}
+.popoverbox2 .mui-table-view .mui-table-view-cell:first-child,.popoverbox2 .mui-table-view .mui-table-view-cell:first-child>a:not(.mui-btn){border-radius:4px;}
+.popoverbox2 .mui-table-view .mui-table-view-cell{border-radius:4px; overflow: hidden; }
+.popoverbox2 .mui-table-view .mui-table-view-cell>a:not(.mui-btn).mui-active{background:#FF9900; color: #FFFFFF;}
+/*城市选择级联*/
+.menublock{ position: relative; }
+.menuposition{border-radius:4px; position: absolute; height:300px;width:100%; font-size: 14px;}
+.menuposition .mui-popover-arrow{left:50%; margin-left:-12px;}
+.menuposition.mui-table-view{border-radius: 0; overflow: auto;}
+.menuposition .mui-row.mui-fullscreen>[class*="mui-col-"] {height:100%;}
+.menuposition .mui-col-xs-4,.menuposition .mui-control-content {border-radius: 6px;overflow-y: auto;height: 100%;}
+.menuposition .mui-segmented-control .mui-control-item {line-height: 44px;width: 100%;}
+.menuposition .mui-segmented-control.mui-segmented-control-inverted.mui-segmented-control-vertical .mui-control-item, .mui-segmented-control.mui-segmented-control-inverted.mui-segmented-control-vertical .mui-control-item.mui-active {border-bottom: 1px solid #e8e8e8;}.menuposition .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {background-color: #FFFFFF;color:#FF9900;}
+	
 /***********************搜索*******************/
 
 /*********************** 咨询*******************/
@@ -333,7 +363,7 @@ body{ color: #666666; font-size:14px;}
 .filterblock2{padding:0; margin: 0; margin-top:2px ; background:#FFFFFF;overflow: hidden;}
 .filterblock2 li{list-style:none; position: relative; float: left; border-right:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;} 
 .filterblock2 li select{  margin:0 2px;}
-.filterlist2{ padding:0; margin: 0; border:none; border-radius:0;padding:6px;font-size: 13px;}
+.filterlist2{ padding:0; margin: 0; border:none; border-radius:0;padding:6px;font-size: 13px;height: 32px;}
 
 .coutopicbox{ position: relative; background: #F0F0F0; margin-bottom: 10px; width:110%; margin-left:-16px; padding:4%; overflow: hidden;}
 .coutopicbox .coutheme{ max-width: 60%;}
@@ -352,9 +382,11 @@ body{ color: #666666; font-size:14px;}
 .evabox span{ font-size: 12px;}
 .evabox .levelbox .mui-icon{ font-size: 14px; line-height: 14px; border:1px solid red;}
 /*咨询列表下拉菜单*/
-.popoverbox {border-radius: 6px;width:0;height:0;min-width: 90px;min-height:110px;font-size: 13px;}
-.popoverbox .mui-popover-arrow{top: -22px;width: 22px;height: 22px;}
-.popoverbox .mui-table-view-cell{padding:8px 14px;}
+.popoverbox {border-radius: 6px;width:0;height:0;min-width: 100px;min-height:110px;font-size: 13px; }
+.popoverbox .mui-popover-arrow{top: -22px;width: 22px;height: 22px; left:50%; margin-left:-12px;}
+.popoverbox .mui-table-view-cell{padding:8px 14px;/* text-align: center;*/}
+.popoverbox .mui-table-view-cell>a:not(.mui-btn){ margin-right:-12%;position: relative;}
+.popoverbox .mui-table-view-cell .mui-navigate-right:after { position:absolute;right: 0; color:#FF9900;font-size: 24px;}
 .mui-popover4{ width: 130px;  }
 /*********************** 咨询*******************/
 

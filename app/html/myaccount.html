@@ -5,6 +5,7 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 	</head>
 	
@@ -21,7 +22,7 @@
 					    <a class="mui-pull-left proinfor">
 		                    <img class="mui-pull-left headimg2" src="../images/default-photo.jpg" id="userImg">
 		                    <div class="mui-pull-left infobasic" style="display:none;" id="loginYes">
-		                        <span class="listtit"><span id="userName"></span><img class="smallicon authicon" id="rzImg" style="display:none;" src="../images/authicon.png"/></span>	
+		                        <span class="listtit"><span id="userName"></span><em class="mui-icon iconfont icon-vip authicon" id="rzImg" style="display:none;"></em></span>	
 		                        <p class="listtit2"><span id="userTitle"></span>，<span id="userPosition"></span></p>
 		                    	<p class="listtit3"><span id="userDepartment"></span>，<span id="userMechanism"></span> | <span id="userCity"></span></p>
 		                    </div>
@@ -29,7 +30,8 @@
 		                </a>
 		                <div class="mui-pull-right updatebtn">
 			        		<a class="editbox" id="editbox">
-			        			<img src="../images/edit.png" />
+			        			<!--<img src="../images/edit.png" />-->
+			        			<span class="mui-icon iconfont icon-edit"></span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -37,16 +39,16 @@
 		        <a class="mui-clearfix peolevelbox"  id="goZixun">
 		        	<div class="mui-pull-left peocountbox">
 		        		<div class="peocount mui-clearfix">
-		        			<em class="actionicon dialogicon mui-pull-left "></em>
+		        			<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
 		        			<span class="mui-pull-left">已完成咨询<em>11</em>人次</span>
 		        		</div>
 		        	</div>
 		        	<div class="mui-pull-right levelbox">
-		        		<span class="star"></span>
-		        		<span class="star"></span>
-		        		<span class="star"></span>
-		        		<span class="star"></span>
-		        		<span class="star"></span>
+		        		<span class="mui-icon iconfont icon-favorfill"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+		        		<span class="mui-icon iconfont icon-favorfill"></span>
+		        		<span class="mui-icon iconfont icon-favorfill"></span>
+		        		<span class="mui-icon iconfont icon-favor"></span>
+		        		<span class="mui-icon iconfont icon-favor"></span>
 		        	</div>
 		        </a>
 		    </div>
@@ -55,20 +57,20 @@
 				<ul class="mui-table-view">
 				    <!--<li class="mui-table-view-cell">
 				        <a class="mui-navigate-right walltebox">
-				        	<em class="actionicon wallteicon mui-pull-left"></em>
+				        	<em class="mui-icon iconfont icon-recharge actionicon wallteicon mui-pull-left"></em>
 				        	<span class="mui-pull-left">我的钱包</span>
 				        	<span class="rightword">￥0.00</span>
 				        </a>
 				    </li>-->
 				    <li class="mui-table-view-cell">
 				        <a class="mui-navigate-right" href="attentions.html" id="goFollow">
-				        	<em class="actionicon attenticon mui-pull-left"></em>
+				        	<em class="mui-icon iconfont icon-favor actionicon attenticon mui-pull-left"></em>
 				        	<span class="mui-pull-left">我的关注</span>
 				        </a>
 				    </li>
 				    <li class="mui-table-view-cell" id="goNewuser">
 				        <a class="mui-navigate-right">
-				        	<em class="actionicon addicon mui-pull-left"></em>
+				        	<em class="mui-icon iconfont icon-friendfavor actionicon addicon mui-pull-left"></em>
 				        	<span class="mui-pull-left">邀请新用户</span>
 				        </a>
 				    </li>
@@ -79,7 +81,7 @@
 				<ul class="mui-table-view">
 				    <li class="mui-table-view-cell">
 				        <a class="mui-navigate-right" id="goSetup">
-				        	<em class="actionicon seticon mui-pull-left"></em>
+				        	<em class="mui-icon iconfont icon-settings actionicon seticon mui-pull-left"></em>
 				        	<span class="mui-pull-left">设置</span>
 				        </a>
 				    </li>

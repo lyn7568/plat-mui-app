@@ -1,28 +1,16 @@
 //首页
 mui.ready(function() {
 	/*定义全局变量*/
-	var isLogin = document.getElementById("isLogin");
 	var indexlist = document.getElementById("indexlist");
 	var search = document.getElementById("search");
 	
 	mui.plusReady(function() {
 		
-		/*点击个人中心按钮*/
-		isLogin.addEventListener('tap', function() {
-			mui.openWindow({
-				url: 'html/myaccount.html',
-				id: 'html/myaccount.html',
-				show: {
-					aniShow: "slide-in-right"
-				}
-			});
-		});
-		
 		/*点击搜索按钮*/
 		search.addEventListener('focus', function() {
 			var searchpage = mui.preload({
-			    url: 'html/search.html',
-				id: 'html/search.html',
+			    url: '../html/search.html',
+				id: '../html/search.html',
 			});
 			searchpage.show("slide-in-right",150);
 		});
@@ -39,9 +27,9 @@ mui.ready(function() {
 						
 						/*获取头像*/
 						if($data.data.data[i].hasHeadImage == 1) {
-							var img = "images/head/" + $data.data.data[i].id + "_m.jpg";
+							var img = "../images/head/" + $data.data.data[i].id + "_m.jpg";
 						} else {
-							var img = "images/default-photo.jpg";
+							var img = "../images/default-photo.jpg";
 						}
 						
 						/*获取研究方向信息*/

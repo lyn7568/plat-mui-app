@@ -1,101 +1,148 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link href="../css/app.css" rel="stylesheet" />
-		<style>
-			body{background: #FFFFFF;}
-			.mui-content{ background: #FFFFFF;}
-		</style>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link href="../css/iconfont.css" rel="stylesheet" />
+	<link href="../css/app.css" rel="stylesheet" />
+</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
 		    <h1 class="mui-title toptit">资源名称</h1>
-		    <a class="mui-icon mui-icon-more mui-pull-right topmore"></a>
+		    <a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
+		    	<ul class="sharebox" style="display: block; color: #000000;">
+		    		<li>
+		    			<span class="mui-icon mui-icon-weixin"></span>
+		    		</li>
+		    		<li>
+		    			<span class="mui-icon mui-icon-weibo"></span>
+		    		</li>
+		    		<li>
+		    			<span class="mui-icon mui-icon-qq"></span>
+		    		</li>
+		    		
+		    	</ul>
+		    </a>
 		</header>
 		
 		<!--主页面底部菜单-->
-	    <nav class="mui-bar mui-bar-tab mui-clearfix footbox">
+	     <nav class="mui-bar mui-bar-tab mui-clearfix footbox">
 		    <div class="dialogbtn mui-pull-left btnactive">
 		    	<div>
-			    	<em class="mui-pull-left"></em>
+			    	<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
 					<span class="mui-pull-left">咨询</span>
 				</div>
 			</div>
 			<div class="attentbtn mui-pull-left">
-				<em></em>
+				<em class="mui-iocn iconfont icon-favor"></em><!--已经关注icon-favorfill-->
 			</div>
 		</nav>
 		<!-- 主页面内容容器 -->
     	<div class="mui-content">
     		<!-- 主界面具体展示内容 -->
-    		<div class="mui-input-group marginbox resoubox">
-    			<table>
-	            	<tr>
-	                	<td>
-	                		<div class="resouimgbox">
-								<img src="../images/default-resource.jpg"/>
-							</div>
-	                        <div class="resouinfoword">
-	                        	<ul class="resouinfobox">
-									<li>
-										<label>资源名称</label>
-										<div class="listtit2">XXXXX资源名称XX</div>
-									</li>
-									<li>
-										<label>应用用途</label>
-										<div class="listtit2">应用用途XXXXXXXXX</div>
-									</li>
-									<li>
-										<label>学术领域</label>
-										<div class="listtit2">学术领域XXXXXXXXXXXXXXXX</div>
-									</li>
-									<li>
-										<label>应用行业</label>
-										<div class="listtit2">应用行业XXXXXXXXXXXXXXXXXXXXXXXXX</div>
-									</li>
-								</ul>
-	                         </div>
-	                     </td>
-	                 </tr>
-	           </table>
-		    </div>
-			<ul class="mui-table-view protable" style="background-color: #F0F0F0;">
-	            <li class="mui-table-view-cell mui-media">
-	                <a class="proinfor" href="proinforbrow.html">
-	                    <img class="mui-media-object mui-pull-left headimg" style="width: 40px; height: 40px;" src="../images/default-photo.jpg">
-	                    <div class="mui-media-body">
-	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/></span>	
-	                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-	                    </div>
-	                </a>
-	            </li>
-	        </ul>
-			<ul class="mui-input-group marginbox remarkbox">
-				<li>
-			       <div class="infocontit">详细描述</div> 
-			       <div class="infocon">
-			       		<p class="listtit3 mutlinebox">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
-			       </div>
-				</li>
-				<li>
-			       <div class="infocontit">合作备注</div> 
-			       <div class="infocon">
-			       		<p class="listtit3 mutlinebox"> Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
-			       </div>
-			    </li>
-			</ul>
+    		<div class="mui-input-group mainbox restopblock">
+    			<div class="resouimgbox mui-pull-left">
+					<img src="../images/default-resource.jpg"/>
+				</div>
+				<div class="personblock mui-pull-left">
+                    <img class="headimg" src="../images/default-photo.jpg">
+                    <p class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon" style="font-size:16px;"></em></p>	
+                    <p class="listtit2"><span>职称</span>，<span>职务</span></p>
+                    <p class="listtit3"><span>所属机构</span></p>
+                    <p class="listtit3"><span>所在地</span></p>
+                </div>
+    		</div>
+    		<!--<div class="resomenubox">
+    			<ul class="resomenu">
+    				<li>基本信息</li>
+    			</ul>
+    		</div>-->
+    		<div class="mui-input-group mainbox resouinfoword marginbox">
+            	<ul class="resouinfobox">
+            		<li>
+            			<div class="infocontit">基本信息</div>
+            		</li>
+					<li>
+						<div class="infocon">
+							<p style="color:#666666;">
+								<span>资源名称：</span>
+								<span class="listtit2">XXXXX资源名称XXXXX资源名称XX</span>
+							</p>
+							<p style="color:#666666;">
+								<span>应用用途：</span>
+								<span class="listtit2">应用用途应用用途应用用途应用用途应用用</span>
+							</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="mui-input-group mainbox resouinfoword marginbox">
+            	<ul class="resouinfobox">
+					<li>
+						<div class="infocontit">学术领域</div>
+						<div class="infocon">
+					       	<ul class="infosubject">
+					       		<li>领域1</li>
+					       		<li>领域领域领域2</li>
+					       		<li>领域领域领域领域3</li>
+					       		<li>领域4</li>
+					       		<li>领域领1</li>
+					       		<li>领域1</li>
+					       		<li>领域1</li>
+					       	</ul>
+				       </div>
+					</li>
+				</ul>
+			</div>
+			<div class="mui-input-group mainbox resouinfoword marginbox">
+            	<ul class="resouinfobox">
+					<li>
+						<div class="infocontit">应用行业</div> 
+				        <div class="infocon">
+					       	<ul class="infoapply">
+					       		<li class="mui-ellipsis">应用行业1</li>
+					       		<li class="mui-ellipsis">领域领域领域域领域领域域领域领域域领域领域2</li>
+					       		<li class="mui-ellipsis">领域领域3</li>
+					       		<li class="mui-ellipsis">领域4</li>
+					       		<li class="mui-ellipsis">领域领1</li>
+					       		<li class="mui-ellipsis">领域1</li>
+					       		<li class="mui-ellipsis">领域1</li>
+					       	</ul>
+				        </div>
+					</li>
+				</ul>
+			</div>
+			<div class="mui-input-group mainbox resouinfoword marginbox">
+            	<ul class="resouinfobox">
+					<li>
+				       <div class="infocontit">详细描述</div> 
+				       <div class="infocon">
+				       		<p class="listtit3 mutlinebox">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
+				       </div>
+					</li>
+				</ul>
+			</div>
+			<div class="mui-input-group mainbox resouinfoword marginbox">
+            	<ul class="resouinfobox">
+		            <li>
+				       <div class="infocontit">合作备注</div> 
+				       <div class="infocon">
+				       		<p class="listtit3 mutlinebox"> Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
+				       </div>
+				    </li>
+				</ul>
+             </div>
+
         </div>
 		
 		
 		<script src=" ../js/public/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
 		</script>
 	</body>
 

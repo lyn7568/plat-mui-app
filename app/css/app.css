@@ -169,8 +169,10 @@ body{ color: #666666; font-size:14px;}
 .peocount {font-size: 13px; color:#888888 ; overflow:hidden; }
 .peocount span em{font-size: 14px; padding: 0 3px; color: #FF9900; font-weight: 600;}
 .peocount .dialogicon{ display: block; width: 20px; height: 20px; background: url(../images/dialogue.png) center center no-repeat; background-size:100% 100% ; margin-right:6px;}
-.levelbox{ width:72px;margin: auto; overflow: hidden; }
-.levelbox .star{ float: left; width:14px; height: 14px; background: url(../images/staricon.png) center center no-repeat;background-size:100% 100% ;}
+.levelbox{margin: auto; overflow: hidden; }
+.levelbox .mui-icon{ font-size: 14px; color: #CCCCCC;}
+.levelbox .icon-favorfill{ color:#F4C600;}
+/*.levelbox .star{ float: left; width:14px; height: 14px; background: url(../images/staricon.png) center center no-repeat;background-size:100% 100% ;}*/
 /*专家相关信息*/
 .infocontit{font-size:14px; position: relative;}
 .infocon{padding:6px 10px; /*text-align: justify;*/ font-size: 13px;}
@@ -241,9 +243,10 @@ body{ color: #666666; font-size:14px;}
 /*合作历史及评价*/
 .lefthead{ margin-right: 10px; text-align:center;}
 .contit{ position:relative;}
-.contit span{ display: block; width: 70%; }
+.contit .listtit{ display: block; width: 62%; }
 .conbrief{ max-height: 46px; overflow: hidden;}
-.conresoult{ position: absolute; right:0;top:50%; margin-top:-10px; width:30%; height:18px;}
+.conresoult{ position: absolute; right:0;top:50%; margin-top:-12px; width:38%; height:18px;text-align: right;}
+.conresoult .levelbox .mui-icon{font-size: 12px;}
 /***********************我的账户*******************/
 
 /***********************专家信息修改*******************/
@@ -378,9 +381,10 @@ body{ color: #666666; font-size:14px;}
 
 .mui-table-view-cell>.proinfor>.mui-badge{top: 20px;left:10px; right:auto;}
 /*星级评价*/
-.evabox{ text-align: center;}
+.evabox{position:absolute;right: 2%;top: -4px; text-align: center;}
 .evabox span{ font-size: 12px;}
-.evabox .levelbox .mui-icon{ font-size: 14px; line-height: 14px; border:1px solid red;}
+.evabox .levelbox{ width:100px;}
+.evabox .levelbox .mui-icon{ font-size: 12px; }
 /*咨询列表下拉菜单*/
 .popoverbox {border-radius: 6px;width:0;height:0;min-width: 100px;min-height:110px;font-size: 13px; }
 .popoverbox .mui-popover-arrow{top: -22px;width: 22px;height: 22px; left:50%; margin-left:-12px;}

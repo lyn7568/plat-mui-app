@@ -1,7 +1,7 @@
 //咨询
 mui.ready(function() {
 	
-	
+	 
 	mui.plusReady(function(){
 		var userid = plus.storage.getItem('userid');
 		var listContainer = document.getElementById("listContainer");//

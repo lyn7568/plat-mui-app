@@ -1,5 +1,5 @@
 mui.ready(function() {
-	
+	 
 	var oconsultTitle = document.getElementById("consultTitle");//咨询标题
 	var ochatName = document.getElementById("chatName");//与。。聊天
 	

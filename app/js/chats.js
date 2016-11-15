@@ -73,7 +73,7 @@ mui.ready(function() {
 							}
 							
 						}
-					}
+					} 
 					
 				},
 				error:function(xhr,type,errorThrown){

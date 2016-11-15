@@ -116,7 +116,7 @@ mui.ready(function() {
 						}
 					}
 				}
-				
+				 
 				//专家职称
 				if(!data[i]["professor"]["title"]){
 					zhicehng = '';

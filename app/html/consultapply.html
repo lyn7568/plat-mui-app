@@ -57,7 +57,20 @@
 					</ul>
 				</div>
 				<div class="divline"></div>
-				<table class="consultinfo">
+				<div class="consultinfo">
+					<div class="maincon" style=>
+						<ul class="basicinfo" style="padding:0;">
+							<li><label>咨询主题<em class="requiredcon"></em></label></li>
+							<li class="basicfrm"><input type="text" name="comname" class="mui-input-clear frmtype"></li>
+							<li><label>咨询内容<em class="requiredcon"></em></label></li>
+							<li class="basicfrm">
+								<div class="textareabox" contenteditable="true"></div> 
+							</li>
+						</ul>
+			       </div>
+				</div>
+				
+				<!--<table class="consultinfo">
 					<tr>
 						<td><span>咨询主题</span></td>
 						<td><input type="text"/></td>
@@ -71,14 +84,25 @@
 							<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn sendbtn">发送</button>
 						</td>
 					</tr>
-				</table>	
+				</table>-->
 		    </div>
+		    <div class="mui-input-group">
+				<button class="mui-btn mui-btn-block frmbtn" style="border: none; border-radius: 0; line-height: 28px;">发送</button>
+		   </div>
 		</div>
 		<script src=" ../js/public/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init()
-			
 			//鼠标点击联系目的li时添加liactive类
+			mui(".aimclass").on('tap','li',function(e){
+				var aimlist = document.querySelector('.aimclass').querySelectorAll("li");
+				for(var i = 0 ; i < aimlist.length;i++){
+					aimlist[i].classList.remove('liactive');
+				}
+				this.classList.add('liactive');
+				
+			})
+			
 			
 		</script>
 	</body>

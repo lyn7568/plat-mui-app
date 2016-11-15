@@ -14,7 +14,7 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
 		    <h1 class="mui-title toptit">资源名称</h1>
 		    <a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
-		    	<ul class="sharebox" style="display: block; color: #000000;">
+		    	<ul class="sharebox" id="shareBox" style="display:none; color: #000000;">
 		    		<li>
 		    			<span class="mui-icon mui-icon-weixin"></span>
 		    		</li>
@@ -143,6 +143,12 @@
 		<script src=" ../js/public/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			var shareBtn = document.getElementById("shareBtn");
+			var shareBox = document.getElementById("shareBox");
+			
+			shareBtn.addEventListener("tap",function(){
+				shareBox.toggle();
+			})
 		</script>
 	</body>
 

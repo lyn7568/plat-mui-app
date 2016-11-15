@@ -31,7 +31,7 @@ body{ color: #666666; font-size:14px;}
 .borderarea{border-bottom: 1px solid #F0F0F0;}
 
 /*必填项样式*/
-.requiredcon{ position: absolute; top:0; width: 8px; height:8px; background: url(../images/requiredicon.png) center center no-repeat; background-size: 100% 100%;}
+.requiredcon{ position: absolute; top:0; margin-left:4px; width: 8px; height:8px; background: url(../images/requiredicon.png) center center no-repeat; background-size: 100% 100%;}
 /*功能icon样式*/
 .actionicon{/*display: block; width: 20px; height: 20px;*/ font-size:20px;margin-right:6px;}
 /*主题色开关样式*/
@@ -76,7 +76,7 @@ body{ color: #666666; font-size:14px;}
 .frmactive2{color:#fff;background-color:#ccc; border:1px solid transparent;}
 .frmactive{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
 .frmactiveok{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
-.exitbtn{ border:none; margin: 0; color:#FF0000; font-size: 14px; border-radius: 0;}
+.exitbtn{ border:none; margin: 0; color:#FF0000; font-size: 14px; line-height: 28px; border-radius: 0;}
 
 .pompmsg{ font-size: 12px; color: #CCCCCC;}
 /*///////////////common公共样式///////////////////////*/
@@ -125,7 +125,7 @@ body{ color: #666666; font-size:14px;}
 .maincon .headbox{ text-align: center;}
 .headbox .headimg{width: 20%;border-radius:50%;}
 .maincon .pinfor{ color: #888888; font-size: 13px;}
-.maincon .basicinfo {padding-left:4%; }
+.maincon .basicinfo {margin:0; padding:0;padding-left:3%; }
 .maincon .basicinfo li{ list-style: none;padding-left: 2%;font-size: 14px; overflow: hidden;}
 /*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
 .maincon .basicinfo li.basicfrm{ position: relative; overflow: hidden; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin-left: 2%;padding-left:0; }
@@ -145,9 +145,6 @@ body{ color: #666666; font-size:14px;}
 /***********************登录注册相关页面*******************/
 
 /***********************首页*******************/
-/*.searchbox{position: relative;}
-.searchbox .searchtxt{ position: absolute; height: 30px; top:50%; margin-top:-13px; border-radius: 6px; border:1px transparent solid; padding:0 30px; line-height: 20px; font-size: 14px;}
-*/
 .searchbox .mui-placeholder .mui-icon-search{font-size:18px; color: #999999;}
 .mui-search input[type=search].searchtxt{background: #FFFFFF;}
 .mui-search .mui-placeholder{ font-size: 14px; top:2px }
@@ -284,11 +281,11 @@ body{ color: #666666; font-size:14px;}
 .addinfobox:hover,.addinfobox:active,.addinfobox:link{ color: #FF9900;}
 .addinfobox .addinfobtn{display: block; margin-right:3px; width: 14px;height: 14px; background: url(../images/add.png) center center no-repeat; background-size:100% 100% ;}
 
-.addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 78%; height: 34px;}
-.addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px;  width: 18%;/*padding-left:20px; padding-right:20px;*/}
+.addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 78%; height: 30px;}
+.addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px;  width: 18%; height: 30px;/*padding-left:20px; padding-right:20px;*/}
 .labelarea{ margin: 20px 0;}
-.labelshow{ margin: 0; padding:0;}
-.labelshow li{ list-style: none; padding:4px 10px; margin:4px; border:1px solid #FF9900; border-radius: 6px; float: left; }
+.labelshow{ margin: 0; padding:0;overflow: hidden;}
+.labelshow li{ list-style: none; padding:4px 10px; margin:4px; border:1px solid #FF9900; font-size: 13px; border-radius: 6px; float: left; }
 .labelshow li .mui-icon{ color: #FF9900; font-size:20px; margin-left: 10px;}
 
 .selectbox{padding:0;/* margin: 4px 0;*/}
@@ -360,7 +357,7 @@ body{ color: #666666; font-size:14px;}
 /***********************搜索*******************/
 
 /*********************** 咨询*******************/
-.consultbox{ padding:20px 0px 60px 0px;}
+.consultbox{ padding:20px 0px 20px 0px;}
 
 .consultaim{ text-align: center; margin: auto; }
 .consultaim ul{padding: 0; margin: 0; overflow: hidden; margin:1% auto; padding:0 4%; }
@@ -433,3 +430,13 @@ body{ color: #666666; font-size:14px;}
 .resouinfobox>li{ list-style: none; margin:10px 4px; padding-left: 10px; font-size: 14px; line-height: 20px; word-break: break-all;}
 
 /*********************** 资源信息浏览*******************/
+
+/***********************评价*******************/
+.feedback .row {width: 100%;background-color: #fff;font-size:14px;}
+.feedback .hidden {display: none;}
+.feedback .mui-inline{vertical-align: bottom;font-size: 14px;color: #888888;}
+.feedback .question{border-bottom:1px solid #F0F0F0;padding:4px 16px;}
+.icons.levelbox .icon-favor{color: #B5B5B5;font-size: 18px;}
+.icons.levelbox .icon-favorfill{/*color: #FFB400;*/font-size: 18px;} 
+.assessbox{margin:10px 0; background: #FFFFFF; padding:10px;padding-bottom: 30px;}
+/***********************评价*******************/

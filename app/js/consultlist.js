@@ -4,14 +4,15 @@ mui.ready(function() {
 	mui.plusReady(function(){
 		var userid = plus.storage.getItem('userid');
 		var listContainer = document.getElementById("listContainer");//咨询列表容器
-		
+		console.log(userid);
 		/*var consultStr = getConsultData(userid,0,0,0);
 		var myNeedStr = getMyNeedData(userid,0,0,0);
 		var allStr = allData(userid,0,0,1);
 		listContainer.innerHTML = consultStr + myNeedStr;
 		listContainer.innerHTML = allStr;*/
 		
-		var list = allData(userid,0,0,0,0);
+		var list = allData(userid,0,'',0,0);
+		console.log(list);
 		listContainer.innerHTML = list;
 
 		//点击选择
@@ -22,10 +23,17 @@ mui.ready(function() {
 				document.getElementById("headck"+i).setAttribute('headck',value);
 				document.querySelector('.mui-backdrop').style.display = 'none';
 				document.getElementById("middlePopover"+i).style.display = 'none';
+				var consultType;
+				if(document.getElementById("headck2").getAttribute('headck') == 0){
+					consultType = '';
+				}else {
+					consultType = document.getElementById("headck2").innerHTML;
+					console.log(typeof(consultType));
+				}
 				//去掉样式类mui-active,要不然会多点击一次
 				var oheadVal = {
 					val1:document.getElementById("headck1").getAttribute('headck'),
-					val2:document.getElementById("headck2").getAttribute('headck'),
+					val2:consultType,
 					val3:document.getElementById("headck3").getAttribute('headck'),
 					val4:document.getElementById("headck4").getAttribute('headck')
 				};
@@ -39,6 +47,7 @@ mui.ready(function() {
 				 * timeType:排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
 				 */
 				var listdata = allData(userid,oheadVal.val1,oheadVal.val2,oheadVal.val3,oheadVal.val4);
+				listContainer.innerHTML = '';
 				listContainer.innerHTML = listdata;
 			});
 			
@@ -70,6 +79,7 @@ mui.ready(function() {
 						return false;
 					}else{
 						var myData = data.data.data;
+						console.log(myData.length);
 						allStr = handleData(userid,myData,'all');
 					}
 				},
@@ -113,6 +123,8 @@ mui.ready(function() {
 					}else if(data[i]["consultStatus"] == 1){
 						if(data[i]["assessStatus"] == 0){
 							status = '待评价';
+						}else {
+							status = '已完成';
 						}
 					}
 				}

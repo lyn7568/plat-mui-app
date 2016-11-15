@@ -2,6 +2,8 @@ mui.ready(function() {
 	 
 	var oconsultTitle = document.getElementById("consultTitle");//咨询标题
 	var ochatName = document.getElementById("chatName");//与。。聊天
+	var oconsultCon = document.getElementById("consultCon");//咨询内容
+	var olookConBtn = document.getElementById("lookConBtn");//查看按钮
 	
 	var oconfirmBtn = document.getElementById("confirmBtn");//我的需求，确认完成按钮
 	var oassessBtn = document.getElementById("assessBtn");//我的需求，去评价按钮
@@ -19,6 +21,20 @@ mui.ready(function() {
 	var omsg_type = document.getElementById("msg-type");
 	var ochatFooter = document.getElementById("chatFooter");
 	
+	//查看咨询内容
+	(function lookContultCon(){
+		var flag = true;
+		olookConBtn.addEventListener('tap',function(){
+			if(flag){
+				this.innerHTML = '收起';
+				flag = false;
+			}else {
+				this.innerHTML = '查看咨询内容';
+				flag = true;
+			}
+		});
+	})();
+	
 	function getHeadInfo(manFlag,consultId){
 		var myData;
 		if(manFlag == 'myNeed'){//我的需求
@@ -32,23 +48,27 @@ mui.ready(function() {
 					ochatName.innerHTML = myData["professor"]["name"];
 					var consultTitle = '关于'+myData["consultTitle"]+"的咨询";
 					oconsultTitle.innerHTML = consultTitle;
+					oconsultCon.innerHTML = myData['consultContant'];
 					//我的需求进行中
 					if(myData["consultStatus"] == 0){
-						oconfirmBtn.style.display = 'block';//我的需求，进行中
-						ochatFooter.style.display = 'block';
+						oconfirmBtn.classList.remove('displayNone');//我的需求，进行中
+						ochatFooter.classList.remove('displayNone');
 					}else {
 						if(myData["assessStatus"] == 0){
-							oassessBtn.style.display = 'block';//我的需求，未评价
+							oassessBtn.classList.remove('displayNone');//我的需求，未评价
 						}else {
-							oassessed.style.display = 'block';//我的需求，已评价
+							
+							oassessed.classList.remove('displayNone');//我的需求，已评价
+							
 							//评价星级
 							console.log("我的需求已评价")
 							var starCount = myData["assessStar"];
-							for(var i=0;i<starCount;i++){
+							console.log(starCount);
+							for(var i=0;i < starCount;i++){
 								if(i < starCount){
-									nth(omy_starContainer,'.star',i+1)
-									.removeClass('icon-favor')
-									.addClass("icon-favorfill");
+									omy_starContainer.querySelectorAll('.iconfont')[i].classList.remove('icon-favor');
+									omy_starContainer.querySelectorAll('.iconfont')[i].classList.add('icon-favorfill');
+									console.log(omy_starContainer.querySelectorAll('.iconfont')[i].classList)
 								}
 							}
 							
@@ -71,29 +91,26 @@ mui.ready(function() {
 					ochatName.innerHTML = myData["professor"]["name"];
 					var consultTitle = '回复：关于'+myData["consultTitle"]+"的咨询";
 					oconsultTitle.innerHTML = consultTitle;
+					oconsultCon.innerHTML = myData['consultContant'];
 					//收到咨询进行中
 					if(myData["consultStatus"] == 0){
-						owaying.style.display = 'block';
-						ochatFooter.style.display = 'block';
+						owaying.classList.remove('displayNone');
+						ochatFooter.classList.remove('displayNone');
 					}else {//收到咨询已完成
 						if(myData["assessStatus"] == 0){//收到咨询未评价
-							othat_weiassess.style.display = 'block';
+							othat_weiassess.classList.remove('displayNone');
 						}else{//收到咨询已评价(评价星级和评价内容)
-							othat_assessed.style.display = 'block';
+							
+							othat_assessed.classList.remove('displayNone');
+							
 							//评价星级
-							var starItem = [];
 							var starCount = myData["assessStar"];
+							console.log(starCount);
 							for(var i = 0;i < starCount;i++){
-								if(i < starCount){
-//									console.log("收到咨询已评价");
-									/*starItem[i] = oconstarContainer.childNodes[i];
-									starItem[i].setAttribute('class','icon-favorfill');
-									oconstarContainer.childNodes[i].className = 'icon-favorfill';
-									oconstarContainer.childNodes[i].removeClassName = 'mui-icon iconfont icon-favor star';
-									console.log(oconstarContainer.childNodes[i].className)*/
-									
-									
-								}
+								othat_assessed.querySelectorAll('.iconfont')[i].classList.remove('icon-favor');
+								othat_assessed.querySelectorAll('.iconfont')[i].classList.add('icon-favorfill');
+								console.log(othat_assessed.querySelectorAll('.iconfont')[i].classList); 	
+								
 							}
 						}
 					}

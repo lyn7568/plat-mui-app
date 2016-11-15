@@ -292,10 +292,16 @@
  			.cancel {
  				background-color: darkred;
  			}
+ 			
  			.displayNone {
  				display: none;
  			}
- 			
+ 			#consultCon {
+ 				margin: -11px 15px -11px;
+ 			}
+ 			#lookConBtn {
+ 				text-align: center;
+ 			}
  			 
  		</style>
  	</head>
@@ -336,54 +342,83 @@
  		<div class="mui-content">
  			<div class="operatebox">
  				<div class="themespan mui-pull-left">
- 					<span class="" id="consultTitle"></span>
- 				</div>
- 				<!--我的需求，进行中-->
- 				<div class="operatebtnbox mui-pull-right displayNone" id="confirmBtn">
- 					<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn operatebtn" >点击确认完成咨询</button>
- 				</div>
- 				<!--我的需求，未评价-->
- 				<div class="operatebtnbox mui-pull-right displayNone" id="assessBtn">
- 					<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn operatebtn"  style="width:80px;">去评价</button>
- 				</div>
- 				<!--我的需求，已评价-->
- 				<div class="operatebtnbox mui-pull-right operated displayNone" id="assessed">
- 					<div class="evabox" >
- 						<span>对方已评价</span>
- 						<div class="levelbox" id="my_starContainer">
-				        	<span class="mui-icon iconfont icon-favorfill star"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-			        		<span class="mui-icon iconfont icon-favorfill star"></span>
-			        		<span class="mui-icon iconfont icon-favorfill star"></span>
-			        		<span class="mui-icon iconfont icon-favor star"></span>
-			        		<span class="mui-icon iconfont icon-favor star"></span>
-			        	</div>
- 					</div>
+ 					<span class="" id="consultTitle">
+ 						上面的例子用了很多属性来设置边框。
+ 					</span>
  				</div>
  				
- 				<!--收到咨询，对方未评价-->
- 				<div class="operatebtnbox mui-pull-right displayNone" style="width:30%;" id="that_weiassess">
- 					<div class="evabox"><span>对方还未评价</span></div>
- 				</div>
- 				<!--收到咨询，进行中-->
- 				<div class="operatebtnbox mui-pull-right displayNone" id="waying" style="width:30%;">
- 					<div class="evabox"><span>进行中</span></div>
- 				</div>
- 				<!--收到咨询，对方已评价-->
- 				<div class="operatebtnbox mui-pull-right operated displayNone" id="that_assessed">
- 					<div class="evabox" >
- 						<span>对方已评价</span>
- 						<div class="levelbox" id="consult_starContainer">
-				        	<span class="mui-icon iconfont icon-favor star"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-			        		<span class="mui-icon iconfont icon-favor star"></span>
-			        		<span class="mui-icon iconfont icon-favor star"></span>
-			        		<span class="mui-icon iconfont icon-favor star"></span>
-			        		<span class="mui-icon iconfont icon-favor star"></span>
+ 				<!--我的需求，进行中-->
+				<div class="operatebtnbox mui-pull-right displayNone" id="confirmBtn">
+					<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn operatebtn" >点击确认完成咨询</button>
+				</div>
+				<!--我的需求，未评价-->
+				<div class="operatebtnbox mui-pull-right displayNone" id="assessBtn">
+					<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn operatebtn"  style="width:80px;">去评价</button>
+				</div>
+				<!--我的需求，已评价-->
+				<div class="operatebtnbox mui-pull-right operated " id="assessed">
+					<div class="evabox" >
+						<span>已评价</span>
+						<div class="levelbox" id="my_starContainer">
+				        	<span class="mui-icon iconfont icon-favor"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
 			        	</div>
- 					</div>
- 				</div>
+					</div>
+				</div>
+				
+				<!--收到咨询，对方未评价-->
+				<div class="operatebtnbox mui-pull-right displayNone" style="width:30%;" id="that_weiassess">
+					<div class="evabox"><span>对方还未评价</span></div>
+				</div>
+				<!--收到咨询，进行中-->
+				<div class="operatebtnbox mui-pull-right displayNone" id="waying" style="width:30%;">
+					<div class="evabox"><span>进行中</span></div>
+				</div>
+				<!--收到咨询，对方已评价-->
+				<div class="operatebtnbox mui-pull-right operated displayNone" id="that_assessed">
+					<div class="evabox" >
+						<span>对方已评价</span>
+						<div class="levelbox" id="consult_starContainer">
+				        	<span class="mui-icon iconfont icon-favor"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        	</div>
+					</div>
+				</div>
+ 				
+ 				
+ 				
+ 				
+ 				
+ 				
+ 				
+ 				
+ 				
  				
  				
  			</div>
+ 			
+ 			
+ 			<div class="consult_content">
+ 				<ul class="mui-table-view" >
+	 				<li class="mui-table-view-cell mui-collapse" id="mui-active" style="background-color:#fff;">
+	 					<div class="mui-collapse-content" id="consultCon">
+							可以在折叠面板中放置任何内容；折叠面板默认收缩，若希望某个面板默认展开，
+							只需要在包含.mui-collapse类的li节点上，增加.mui-active类即可；mui官网中的方法说明，
+							使用的就是折叠面板控件。
+						</div>
+						<a class="mui-navigate-right" href="#" id="lookConBtn">查看咨询内容</a>
+					</li>
+ 				</ul>
+ 				
+ 			</div>
+ 			
+ 			
  			<div id='msg-list'>
  				
  			</div>

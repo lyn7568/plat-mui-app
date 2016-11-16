@@ -2,6 +2,11 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
 		var oImg=document.getElementsByTagName("img")[0];
+		var personalMaterial=document.getElementsByClassName('personalMaterial');
+		var personSummary=document.getElementsByClassName("breifinfo")[0];
+		window.addEventListener("newId",function(){
+			personalMessage();
+		})
 		//查询学术领域
 		var subjectShow = function (data){
 				if(data != undefined &&  data.length != 0 ){
@@ -100,10 +105,9 @@ var researchAreaShow = function ($datas,$datarecords){
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
 				success: function(data) {
-					console.log(data);
+				
 					var str = JSON.stringify(data.data);
-					var $data=data.data;										
-					var personalMaterial=document.getElementsByClassName('personalMaterial');										
+					var $data=data.data;																									
 					personalMaterial[0].innerText=$data.name; 										
 					//基本信息
 					if(!$data.authentication) {						
@@ -136,7 +140,7 @@ var researchAreaShow = function ($datas,$datarecords){
 						personalMaterial[5].parentNode.style.display="none";
 					}	  
 					//个人简介
-					var personSummary=document.getElementsByClassName("breifinfo")[0];
+					
 					if($data.descp) {
 						personSummary.innerHTML=$data.descp;  
 					}
@@ -202,18 +206,30 @@ var researchAreaShow = function ($datas,$datarecords){
 	});
 }		
 	//个人信息修改
-//	document.getElementsByClassName("updatebox")[0].addEventListener("tap",function(){
-//		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框  
-//  	webviewShow = plus.webview.create("../html/updateinfo1.html","../html/updateinfo1.html",{},{name:"li"});//后台创建webview并打开show.html
-//  	var str = JSON.stringify(webviewShow);	
-//  	console.log(str);
-//  	alert(webviewShow.name);
-//  	webviewShow.addEventListener("loaded", function() { //注册新webview的载入完成事件
-//      nwaiting.close(); //新webview的载入完毕后关闭等待框
-//      webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画
-//      console.log(webviewShow.name);  
-//  }, false);		
-//	})  
+	document.getElementsByClassName("updatebox")[0].addEventListener("tap",function(){
+		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框  
+		var arr={name:personalMaterial[0].innerText,office:personalMaterial[1].innerText,
+				title:personalMaterial[2].innerText,orgName:personalMaterial[3].innerText,
+				department:personalMaterial[4].innerText,address:personalMaterial[5].innerText
+		}
+		console.log(arr);
+    	webviewShow = plus.webview.create("../html/updateinfo1.html","../html/updateinfo1.html",{},arr);//后台创建webview并打开show.html   	    	
+    	webviewShow.addEventListener("loaded", function() { //注册新webview的载入完成事件
+        nwaiting.close(); //新webview的载入完毕后关闭等待框
+        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
+    }, false);		
+	});
+	document.getElementsByClassName("updatebox")[1].addEventListener("tap",function(){
+		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框  
+		var arr={descp:personSummary.innerText}				
+		
+		console.log(arr);
+    	webviewShow = plus.webview.create("../html/updateinfo2.html","updateinfo2.html",{},arr);//后台创建webview并打开show.html   	    	
+    	webviewShow.addEventListener("loaded", function() { //注册新webview的载入完成事件
+        nwaiting.close(); //新webview的载入完毕后关闭等待框
+        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
+    }, false);		
+	})
 		personalMessageHeadImage();  
 		personalMessage();
 		resource();  

@@ -4,13 +4,25 @@ var allPages = 1; // 总页数
 var table = document.body.querySelector('.list');
 var search = document.getElementById("search");
 
+mui('.list').on('tap','a',function(){
+	var id=this.getAttribute("data-id");
+	console.log(id);
+	var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+    webviewShow = plus.webview.create("../html/proinforbrow.html",{proid:id});//后台创建webview并打开show.html
+    webviewShow.addEventListener("loaded", function() {
+        nwaiting.close(); //新webview的载入完毕后关闭等待框
+        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画
+    }, false);
+})
+
 /*点击搜索按钮*/
 search.addEventListener('focus', function() {
-	var searchpage = mui.preload({
-	    url: '../html/search.html',
-		id: '../html/search.html',
-	});
-	searchpage.show("slide-in-right",150);
+	var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+    webviewShow = plus.webview.create("../html/search.html");//后台创建webview并打开show.html
+    webviewShow.addEventListener("loaded", function() {
+        nwaiting.close(); //新webview的载入完毕后关闭等待框
+        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画
+    }, false);
 });
 
 /*页面数据初始化*/
@@ -56,6 +68,7 @@ function getaData() {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
+			async:false,
 			success: function(data) {
 				if(data.success) {
 					//console.log("成功");
@@ -110,6 +123,7 @@ function getOnePase() {
 /*数据遍历*/
 function datalistEach(datalist) {
 	mui.each(datalist, function(index, item) {
+		
 		/*获取头像*/
 		if(item.hasHeadImage == 1) {
 			var img = "../images/head/" + item.id + "_m.jpg";
@@ -132,7 +146,7 @@ function datalistEach(datalist) {
 			//console.log(resources[m].caption);
 			zlist = '<span>' + resources[m].resourceName + '</span>、';
 		}
-
+		
 		var title = item.title || "";
 		var office = item.office || "";
 		var orgName = item.orgName || "";
@@ -154,7 +168,7 @@ function datalistEach(datalist) {
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';
 
-		li.innerHTML = '<a class="proinfor" ' +
+		li.innerHTML = '<a class="proinfor" data-id="'+item.id+'"' +
 			'<p><img class="mui-media-object mui-pull-left headimg" src="' + img + '"></p>' +
 			'<div class="mui-media-body">' +
 			'<span class="listtit">' + item.name + '<em class="mui-icon iconfont icon-vip authicon"></em></span>' +

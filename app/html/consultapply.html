@@ -9,14 +9,14 @@
 		<link href="../css/app.css" rel="stylesheet" />
 	</head>
 	
-	<body>
+	<body style="background: #FFFFFF;">
 		<header class="mui-bar mui-bar-nav toptitbox">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">联系专家</h1>
+		    <h1 class="mui-title toptit">咨询</h1>
 		</header>
 		<div class="mui-content">
 			<!-- 主界面具体展示内容 -->
-			<div class="marginbox">
+			<div class="mui-input-group marginbox">
 				<div class="personinfo2">
 					<div class="headbox2" >
 					    <a class="proinfor" href="proinforbrow.html">
@@ -28,9 +28,7 @@
 		                    </div>
 		                </a>
 			        </div>
-		        </div>
-		    </div>
-    		<div class="mui-input-group  marginbox">
+		       </div>
 		        <div class="mui-clearfix peolevelbox">
 		        	<div class="mui-pull-left peocountbox">
 		        		<div class="peocount mui-clearfix">
@@ -47,9 +45,10 @@
 		        	</div>
 		        </div>
 		    </div>
+    		
 			<div class="mui-input-group marginbox consultbox">
 				<div class="consultaim">
-					<div>请选择您的联系目的</div>
+					<div>请选择您的咨询类型</div>
 					<ul class="aimclass">
 						<li class="liactive"><em></em>技术咨询</li>
 						<li><em></em>资源咨询</li>
@@ -58,7 +57,7 @@
 				</div>
 				<div class="divline"></div>
 				<div class="consultinfo">
-					<div class="maincon" style=>
+					<div class="maincon">
 						<ul class="basicinfo" style="padding:0;">
 							<li><label>咨询主题<em class="requiredcon"></em></label></li>
 							<li class="basicfrm"><input type="text" name="comname" class="mui-input-clear frmtype"></li>
@@ -69,26 +68,11 @@
 						</ul>
 			       </div>
 				</div>
-				
-				<!--<table class="consultinfo">
-					<tr>
-						<td><span>咨询主题</span></td>
-						<td><input type="text"/></td>
-					</tr>
-					<tr>
-						<td><span>咨询内容</span></td>
-						<td><textarea></textarea></td>
-					</tr>
-					<tr>
-						<td colspan="2" class="sendbox">
-							<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn sendbtn">发送</button>
-						</td>
-					</tr>
-				</table>-->
+				<div class="mui-input-group">
+					<button class="mui-btn mui-btn-block frmbtn" style="width: 90%;">发送</button>
+			   </div>
 		    </div>
-		    <div class="mui-input-group">
-				<button class="mui-btn mui-btn-block frmbtn" style="border: none; border-radius: 0; line-height: 28px;">发送</button>
-		   </div>
+		    
 		</div>
 		<script src=" ../js/public/mui.min.js"></script>
 		<script type="text/javascript">

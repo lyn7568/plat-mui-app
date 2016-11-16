@@ -14,7 +14,7 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
 		    <h1 class="mui-title toptit">资源名称</h1>
 		    <a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
-		    	<ul class="sharebox" style="display: block; color: #000000;">
+		    	<ul class="sharebox" id="shareBox" style="display:none; color: #000000;">
 		    		<li>
 		    			<span class="mui-icon mui-icon-weixin"></span>
 		    		</li>
@@ -29,18 +29,6 @@
 		    </a>
 		</header>
 		
-		<!--主页面底部菜单-->
-	     <nav class="mui-bar mui-bar-tab mui-clearfix footbox">
-		    <div class="dialogbtn mui-pull-left btnactive">
-		    	<div>
-			    	<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
-					<span class="mui-pull-left">咨询</span>
-				</div>
-			</div>
-			<div class="attentbtn mui-pull-left">
-				<em class="mui-iocn iconfont icon-favor"></em><!--已经关注icon-favorfill-->
-			</div>
-		</nav>
 		<!-- 主页面内容容器 -->
     	<div class="mui-content">
     		<!-- 主界面具体展示内容 -->
@@ -139,6 +127,13 @@
 		<script src=" ../js/public/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			var shareBtn = document.getElementById("shareBtn");
+			var shareBox = document.getElementById("shareBox");
+			
+			shareBtn.addEventListener("tap",function(){
+				shareBox.style.display = 'block';
+			});
+			
 		</script>
 	</body>
 

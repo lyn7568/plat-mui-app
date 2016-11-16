@@ -11,12 +11,12 @@
 	
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
-		    <h1 class="mui-title toptit">我的账户</h1>
+		    <h1 class="mui-title toptit">我</h1>
 		</header>
 
 		<div class="mui-content">
 			<!-- 主界面具体展示内容 -->
-    		<div class="mui-input-group  marginbox">
+    		<div class="mui-input-group marginbox">
 				<div class="maincon personinfo2">
 					<div class="headbox2" >
 					    <a class="mui-pull-left proinfor">
@@ -26,7 +26,7 @@
 		                        <p class="listtit2"><span id="userTitle"></span>，<span id="userPosition"></span></p>
 		                    	<p class="listtit3"><span id="userDepartment"></span>，<span id="userMechanism"></span> | <span id="userCity"></span></p>
 		                    </div>
-		                    <div id="loginNo" style="display:none;"><span id="goreg">注册</span>/<span id="gologin">登录</span> </div>
+		                    <div class="mui-pull-left " id="loginNo" style="color:#797979; margin: 10% 5%;display:none;"><span id="goreg">注册</span> / <span id="gologin">登录</span> </div>
 		                </a>
 		                <div class="mui-pull-right updatebtn">
 			        		<a class="editbox" id="editbox">
@@ -36,7 +36,22 @@
 			        	</div>
 			        </div>
 		        </div>
-		        <a class="mui-clearfix peolevelbox"  id="goZixun">
+		        <ul class="mui-table-view">
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right peocount"  id="goZixun">
+				        	<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
+				        	<span class="mui-pull-left">已完成咨询<em>11</em>人次</span>
+				        	<div class="rightword levelbox">
+				        		<span class="mui-icon iconfont icon-favorfill"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+				        		<span class="mui-icon iconfont icon-favorfill"></span>
+				        		<span class="mui-icon iconfont icon-favorfill"></span>
+				        		<span class="mui-icon iconfont icon-favor"></span>
+				        		<span class="mui-icon iconfont icon-favor"></span>
+				        	</div>
+				        </a>
+				    </li>
+				</ul>
+		        <!--<a class="mui-clearfix peolevelbox"  id="goZixun">
 		        	<div class="mui-pull-left peocountbox">
 		        		<div class="peocount mui-clearfix">
 		        			<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
@@ -45,15 +60,15 @@
 		        	</div>
 		        	<div class="mui-pull-right levelbox">
 		        		<span class="mui-icon iconfont icon-favorfill"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-		        		<span class="mui-icon iconfont icon-favorfill"></span>
+		        		<!--<span class="mui-icon iconfont icon-favorfill"></span>
 		        		<span class="mui-icon iconfont icon-favorfill"></span>
 		        		<span class="mui-icon iconfont icon-favor"></span>
 		        		<span class="mui-icon iconfont icon-favor"></span>
 		        	</div>
-		        </a>
+		        </a>-->
 		    </div>
 		    
-	        <div class="mui-input-group  marginbox">
+	        <div class="mui-input-group marginbox">
 				<ul class="mui-table-view">
 				    <!--<li class="mui-table-view-cell">
 				        <a class="mui-navigate-right walltebox">
@@ -73,8 +88,7 @@
 				        	<em class="mui-icon iconfont icon-friendfavor actionicon addicon mui-pull-left"></em>
 				        	<span class="mui-pull-left">邀请新用户</span>
 				        </a>
-				    </li>
-				    
+				    </li> 
 				</ul>
 		    </div>
 		    <div class="mui-input-group  marginbox">

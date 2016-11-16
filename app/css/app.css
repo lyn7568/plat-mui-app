@@ -397,7 +397,7 @@ body{ color: #666666; font-size:14px;}
 .filterblock2 li select{  margin:0 2px;}
 .filterlist2{ padding:0; margin: 0; border:none; border-radius:0;padding:6px;font-size: 13px;}
 
-.coutopicbox{ position: relative; background: #F0F0F0; margin-bottom: 10px; width:110%; margin-left:-16px; padding:4%; overflow: hidden;}
+.coutopicbox{ position: relative; background: #F0F0F0; margin-bottom: 10px; width:110%; margin-left:-16px; padding:20px 10px 8px 10px; overflow: hidden;}
 .coutopicbox .coutheme{ max-width: 60%;}
 
 .coutopicbox .coustatus span{ font-size: 12px; padding:4px 10px; margin: 0 2px; color: #FFFFFF; border-radius: 6px;}

@@ -1,61 +1,26 @@
 //咨询
 mui.ready(function() {
 	
+	var pageIndex = 1; // 页数
+	var allPages = 1; // 总页数
+	var listContainer = document.getElementById("listContainer");//咨询列表容器
+	
+	var oneedval = document.getElementById("needval");//咨询/需求
+	var otypeval = document.getElementById("typeval");//咨询类型
+	var ostateval = document.getElementById("stateval");//咨询状态
+	var osortval = document.getElementById("sortval");//时间排序
+	
+	
+	
 	mui.plusReady(function(){
-		var userid = plus.storage.getItem('userid');
-		var listContainer = document.getElementById("listContainer");//咨询列表容器
-		console.log(userid);
-		/*var consultStr = getConsultData(userid,0,0,0);
-		var myNeedStr = getMyNeedData(userid,0,0,0);
-		var allStr = allData(userid,0,0,1);
-		listContainer.innerHTML = consultStr + myNeedStr;
-		listContainer.innerHTML = allStr;*/
 		
-		var list = allData(userid,0,'',0,0);
-		console.log(list);
+		var userid = plus.storage.getItem('userid');
+		
+		var list = allData(userid,0,'',0,0);//默认加载
+//		console.log(list);
 		listContainer.innerHTML = list;
-
-		//点击选择
-		function checkedFun(i){
-			mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
-				document.getElementById("headck"+i).innerHTML = e.target.innerHTML;
-				var value = e.target.getAttribute("ck"+i);
-				document.getElementById("headck"+i).setAttribute('headck',value);
-				document.querySelector('.mui-backdrop').style.display = 'none';
-				document.getElementById("middlePopover"+i).style.display = 'none';
-				var consultType;
-				if(document.getElementById("headck2").getAttribute('headck') == 0){
-					consultType = '';
-				}else {
-					consultType = document.getElementById("headck2").innerHTML;
-					console.log(typeof(consultType));
-				}
-				//去掉样式类mui-active,要不然会多点击一次
-				var oheadVal = {
-					val1:document.getElementById("headck1").getAttribute('headck'),
-					val2:consultType,
-					val3:document.getElementById("headck3").getAttribute('headck'),
-					val4:document.getElementById("headck4").getAttribute('headck')
-				};
-				console.log(oheadVal.val1+oheadVal.val2+oheadVal.val3+oheadVal.val4)
-				
-				/*allData(userid,consultOrNeed,consultType,status,timeType)
-				 * userid:专家id
-				 * consultOrNeed:接受咨询或咨询别人的状态值，0-全部，1-别人咨询我的，2-我咨询别人的 默认为0
-				 * consultType:咨询类型(技术咨询、资源咨询、其他事务)
-				 * status:查询状态 0-全部，1-进行中，2-未感谢，3-未评价，4-已完成， 可以不传，默认为0
-				 * timeType:排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
-				 */
-				var listdata = allData(userid,oheadVal.val1,oheadVal.val2,oheadVal.val3,oheadVal.val4);
-				listContainer.innerHTML = '';
-				listContainer.innerHTML = listdata;
-			});
-			
-		};
-		checkedFun(1);
-		checkedFun(2);
-		checkedFun(3);
-		checkedFun(4);
+		
+		console.log(oneedval.value +otypeval.value +ostateval.value+osortval.value);
 		
 		/*全部的咨询列表*/
 		function allData(userid,consultOrNeed,consultType,status,timeType) {
@@ -66,21 +31,20 @@ mui.ready(function() {
 				    "consultType":consultType, //咨询类型(技术咨询、资源咨询、其他事务)
 				    "status":status, //查询状态 0-全部，1-进行中，2-未感谢，3-未评价，4-已完成， 可以不传，默认为0
 				    "timeType":timeType, //排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
-				    "pageSize":"", //每页记录数 默认为5
-				    "pageNo":"" //当前页码 默认为1
+				    "pageSize":10, //每页记录数 默认为5
+				    "pageNo":pageIndex //当前页码 默认为1
 			    };
 			mui.ajax(baseUrl +'/ajax/consult/pq',{
 				data:params,
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
 				async:false,
+				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
-					if(!data.data){
-						return false;
-					}else{
+					if(data.success){
 						var myData = data.data.data;
-						console.log(myData.length);
 						allStr = handleData(userid,myData,'all');
+						
 					}
 				},
 				error:function(xhr,type,errorThrown){
@@ -89,9 +53,136 @@ mui.ready(function() {
 			});
 			
 			return allStr;
+		};
+		
+		
+		//下拉加载获得更多数据
+		function getMoreData() {
+			var allstr;
+			mui.ajax(baseUrl+'/ajax/consult/pq',{
+				data:{
+					"professorId":userid, //专家ID
+				    "consultOrNeed":consultOrNeed, //接受咨询或咨询别人的状态值，0-全部，1-别人咨询我的，2-我咨询别人的 默认为0
+				    "consultType":consultType, //咨询类型(技术咨询、资源咨询、其他事务)
+				    "status":status, //查询状态 0-全部，1-进行中，2-未感谢，3-未评价，4-已完成， 可以不传，默认为0
+				    "timeType":timeType, //排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
+				    "pageSize":10, //每页记录数 默认为5
+				    "pageNo":pageIndex //当前页码 默认为1
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					if(data.success) {
+						var myData = data.data.data;
+						var alltotal = data.data.total;//总条数
+						var pagesize = data.data.pageSize; //每页条数
+						var allpages = Math.ceil(alltotal / pagesize);//总页数
+						allStr = handleData(userid,myData,'all');
+						console.log(allpages);
+						console.log(alltotal);
+						
+						if(pageIndex == 1) { //下拉刷新需要先清空数据
+							listContainer.innerHTML = ''; // 在这里清空可以防止刷新时白屏
+						}
+						
+						if(pageIndex < allPages) {
+							
+							mui('#refreshContainer').pullRefresh().endPullupToRefresh(false); /*能上拉*/
+						} else {
+							
+							mui('#refreshContainer').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
+						}
+						
+						
+						
+					}
+					
+				},
+				error:function(xhr,type,errorThrown){
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				}
+			});
 		}
 		
-
+		
+		
+		
+		
+		
+		
+		
+		/*mui.init({
+			pullRefresh : {
+			    container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+			    down : {
+			      height:50,//可选,默认50.触发下拉刷新拖动距离,
+			      auto: true,//可选,默认false.自动下拉刷新一次
+			      contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+			      contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+			      contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+			      callback :allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value) //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+			    }
+			}
+		});
+		
+		function pullupRefresh() {
+			pageIndex = ++pageIndex;
+			setTimeout(function() {
+				allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value);
+			}, 1000);
+		};*/
+		
+		
+		
+		
+		//点击选择
+		function checkedFun(i){
+			
+			mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
+				
+				document.getElementById("headck"+i).innerHTML = this.innerHTML;
+				var value = this.getAttribute("ck"+i);
+				document.getElementById("headck"+i).setAttribute('headck',value);
+				document.querySelector('.mui-backdrop').style.display = 'none';
+				document.getElementById("middlePopover"+i).style.display = 'none';
+				var consultType;
+				if(document.getElementById("headck2").getAttribute('headck') == 0){
+					consultType = '';
+				}else {
+					consultType = document.getElementById("headck2").innerHTML;
+					
+				}
+				//去掉样式类mui-active,要不然会多点击一次
+				oneedval.value = document.getElementById("headck1").getAttribute('headck');
+				otypeval.value = consultType;
+				ostateval.value = document.getElementById("headck3").getAttribute('headck');
+				osortval.value = document.getElementById("headck4").getAttribute('headck');
+				
+				
+	//				console.log(oneedval.value +otypeval.value +ostateval.value+osortval.value)
+				
+				/*allData(userid,consultOrNeed,consultType,status,timeType)
+				 * userid:专家id
+				 * consultOrNeed:接受咨询或咨询别人的状态值，0-全部，1-别人咨询我的，2-我咨询别人的 默认为0
+				 * consultType:咨询类型(技术咨询、资源咨询、其他事务)
+				 * status:查询状态 0-全部，1-进行中，2-未感谢，3-未评价，4-已完成， 可以不传，默认为0
+				 * timeType:排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
+				 */
+				/*var listdata = allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value);*/
+				var listdata = allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value);
+				listContainer.innerHTML = '';
+				listContainer.innerHTML = listdata;
+			});
+			
+		};
+		checkedFun(1);
+		checkedFun(2);
+		checkedFun(3);
+		checkedFun(4);
+		
+		
 		/*咨询数据处理*/
 		function handleData(userid,data,manFlag) {
 			var htmlStr = '';
@@ -107,7 +198,8 @@ mui.ready(function() {
 					unreadCount,
 					unreadStyle,
 					proModify,
-					photoUrl;
+					photoUrl,
+					consultType;
 				//咨询类型和状态
 				if(data[i]['consultantId'] != userid){//收到咨询
 					title = "回复:关于" + data[i]["consultTitle"] + "的咨询";
@@ -148,7 +240,7 @@ mui.ready(function() {
 					address = '|'+ data[i]["professor"]["address"];
 				}
 				//专家认证
-				if(data[i]["professor"]["authentication" == true]){
+				if(data[i]["professor"]["authentication"] == true){
 					proModify = 'authicon';
 				}else {
 					proModify = 'unauthicon';
@@ -161,6 +253,11 @@ mui.ready(function() {
 					photoUrl = "../images/head/"+data[i]["professor"]["id"]+"_m.jpg";
 					
 				};
+				//咨询类型，只取两个字
+				if(data[i]["consultType"]) {
+					consultType = data[i]["consultType"].substr(0,2);
+				}
+				
 				
 				
 				//最后回复
@@ -180,7 +277,7 @@ mui.ready(function() {
 				
 				htmlStr += '<li class="mui-table-view-cell mui-media"><div class="coutopicbox">';
 	            htmlStr += '<span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>';
-	            htmlStr += '<div class="coustatus mui-pull-right"><span class="aimlabel">'+data[i]["consultType"]+'</span>';
+	            htmlStr += '<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>';
 	            htmlStr += '<span class="status-1">'+status+'</span></div></div>';
 	            htmlStr += '<a class="proinfor itemBtn" consultId="'+data[i]["consultId"]+'" consultantId="'+data[i]["consultantId"]+'"  manFlag="'+manFlag+'">';
 				htmlStr += '<span class="mui-badge mui-badge-danger" style="'+unreadStyle+'">'+unreadCount+'</span>';
@@ -190,26 +287,11 @@ mui.ready(function() {
 	            htmlStr += '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+data[i]["professor"]["orgName"]+'</span><span>'+address+'</span></p>';
 	            htmlStr += '<p class="listtit3">'+lastReplyCon+'</p>';
 	            htmlStr += '</div></a></li>';
-	            
-	            mui("#listContainer").on('tap','.itemBtn',function(){
-//					console.log(this.getAttribute("consultId"));
-					 mui.openWindow({
-						id:'chats',
-					    url:'chats.html',
-					    extras:{
-					    	'manFlag':this.getAttribute("manFlag"),
-					    	'consultId':this.getAttribute("consultId"),//自定义扩展参数，可以用来处理页面间传值
-					    	'consultantId':this.getAttribute("consultantId")//咨询者id
-					    }
-					});
-				});
-	            
-	            
 			};
 		
 			return htmlStr;
 		};
-		
+			
 		/*最后回复*/
 		function lastReplyFn(sendId,consultId){
 			var lastReplyTimeData,lastReplyTime,lastReplyCon;
@@ -220,6 +302,7 @@ mui.ready(function() {
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
 				async:false,
 				success:function(data){
 					/*console.log(data);*/
@@ -254,6 +337,7 @@ mui.ready(function() {
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
 				async:false,
 				success:function(data){
 					unreadCount = data["data"];
@@ -273,6 +357,62 @@ mui.ready(function() {
 					"style":style
 			}
 		};
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		//打开新页面
+		mui("#listContainer").on('tap','.itemBtn',function(){
+			/*console.log(this.getAttribute("consultId"));
+			var nwaiting = plus.nativeUI.showWaiting();
+			var consultId = this.getAttribute("consultId");
+			var consultantId = this.getAttribute("consultantId");
+			console.log(consultId);
+			console.log(consultantId);
+			webviewShow = plus.webview.create("../html/chats.html",{consultId:consultId,consultantId:consultantId});
+			webviewShow.addEventListener("loaded", function() {
+		        nwaiting.close(); //新webview的载入完毕后关闭等待框
+		        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画
+		    }, false);*/
+			
+			mui.openWindow({
+				id:'chats.html',
+			    url:'chats.html',
+			    extras:{
+			    	'manFlag':this.getAttribute("manFlag"),
+			    	'consultId':this.getAttribute("consultId"),//自定义扩展参数，可以用来处理页面间传值
+			    	'consultantId':this.getAttribute("consultantId")//咨询者id
+			    }
+			});
+		});
+		
+		
+		
+		
 		
 	});	
 });

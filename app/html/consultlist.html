@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
+    <style type="text/css">
+    	.displayNone {
+    		display: none;
+    	}
+    </style>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
     <link href="../css/app.css" rel="stylesheet"/>
@@ -35,28 +40,53 @@
 			</ul>
 		</div>
         <!--图文列表-->
-        <div class="mui-card-content conblock" style="margin-top:20px;">
+        
+		<!--下拉刷新容器-->
+		<!--<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+		  <div class="mui-scroll">
+		    
+		    <div class="mui-card-content conblock" style="margin-top:20px;">
+			    <ul class="mui-table-view protable" id="listContainer">
+					
+			    </ul>
+			</div>
+		  </div>
+		</div>-->
+        
+        <div class="mui-card-content conblock" style="margin-top:20px;" id="refreshContainer">
+        	<div class="displayNone">
+        		<!--咨询/需求-->
+	        	<input type="text" id="needval" value="0" />
+	        	<!--咨询类型-->
+	        	<input type="text" id="typeval" value="" />
+	        	<!--咨询状态-->
+	        	<input type="text" id="stateval" value="0"/>
+	        	<!--时间排序-->
+	        	<input type="text" id="sortval" value="0" />
+        	</div>
         	
-	        <ul class="mui-table-view protable" id="listContainer">
-	           <!--<li class="mui-table-view-cell mui-media">
-	            	<div class="coutopicbox">
-	            		<span class="coutheme mui-ellipsis mui-pull-left">关于某某技术的咨询某某技术的咨询某某技术的咨询某某技术的咨询</span>
-	            		<div class="coustatus mui-pull-right">
-	            			<span class="aimlabel">技术</span>
-	            			<span class="status-1">进行中</span>
-	            		</div>
-	            	</div>
-	                <a class="proinfor" href="chats.html">
-						<span class="mui-badge mui-badge-danger">45</span>
-		                <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
-	                    <div class="mui-media-body">
-	                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/><span class="thistime">今天 10:20</span></span>	
-	                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-	                    	<p class="listtit3">专家姓名专家姓</p>
-	                    </div>
-	                </a>
-	            </li>-->
-	        </ul>
+        	<div class="mui-scroll">
+		        <ul class="mui-table-view protable" id="listContainer">
+		           <!--<li class="mui-table-view-cell mui-media">
+		            	<div class="coutopicbox">
+		            		<span class="coutheme mui-ellipsis mui-pull-left">关于某某技术的咨询某某技术的咨询某某技术的咨询某某技术的咨询</span>
+		            		<div class="coustatus mui-pull-right">
+		            			<span class="aimlabel">技术</span>
+		            			<span class="status-1">进行中</span>
+		            		</div>
+		            	</div>
+		                <a class="proinfor" href="chats.html">
+							<span class="mui-badge mui-badge-danger">45</span>
+			                <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
+		                    <div class="mui-media-body">
+		                        <span class="listtit">专家姓名<img class="smallicon authicon" src="../images/authicon.png"/><span class="thistime">今天 10:20</span></span>	
+		                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
+		                    	<p class="listtit3">专家姓名专家姓</p>
+		                    </div>
+		                </a>
+		            </li>-->
+		        </ul>
+		    </div>
 		</div>
 		
 		<div id="middlePopover1" class="mui-popover popoverbox mui-popover1" style="height: 110px;">

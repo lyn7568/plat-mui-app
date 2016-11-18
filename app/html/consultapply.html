@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -20,11 +20,15 @@
 				<div class="personinfo2">
 					<div class="headbox2" >
 					    <a class="proinfor" href="proinforbrow.html">
-		                    <img class="mui-pull-left headimg2" src="../images/default-photo.jpg">
+		                    <img class="mui-pull-left headimg2" src="../images/default-photo.jpg" id="proimg">
 		                    <div class="mui-pull-left infobasic">
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon" style="font-size: 16px;"></em></span>	
-		                        <p class="listtit2"><span>职称</span>，<span>职务</span></p>
-		                    	<p class="listtit3"><span>所在部门</span>，<span>所属机构</span> | <span>所在地</span></p>
+		                        <span class="listtit" id='proname'>
+		                        	
+		                        	<!--<em id='promodify' class="mui-icon iconfont icon-vip unauthicon" style="font-size: 16px;">
+		                        	</em>-->
+		                        </span>	
+		                        <p class="listtit2"><span id='protitle'></span><span id='prooffice'></span></p>
+		                    	<p class="listtit3"><span id='prodepart'></span><span id='proorgName'></span><span id='proadress'></span></p>
 		                    </div>
 		                </a>
 			        </div>
@@ -33,13 +37,13 @@
 		        	<div class="mui-pull-left peocountbox">
 		        		<div class="peocount mui-clearfix">
 		        			<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
-		        			<span class="mui-pull-left">已完成咨询<em>11</em>人次</span>
+		        			<span class="mui-pull-left">已完成咨询<em id='consultcount'></em>人次</span>
 		        		</div>
 		        	</div>
-		        	<div class="mui-pull-right levelbox">
-		        		<span class="mui-icon iconfont icon-favorfill"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-		        		<span class="mui-icon iconfont icon-favorfill"></span>
-		        		<span class="mui-icon iconfont icon-favorfill"></span>
+		        	<div class="mui-pull-right levelbox" id='starContainer'>
+		        		<span class="mui-icon iconfont icon-favor"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+		        		<span class="mui-icon iconfont icon-favor"></span>
+		        		<span class="mui-icon iconfont icon-favor"></span>
 		        		<span class="mui-icon iconfont icon-favor"></span>
 		        		<span class="mui-icon iconfont icon-favor"></span>
 		        	</div>
@@ -49,7 +53,7 @@
 			<div class="mui-input-group marginbox consultbox">
 				<div class="consultaim">
 					<div>请选择您的咨询类型</div>
-					<ul class="aimclass">
+					<ul class="aimclass" id="consulttype_ul">
 						<li class="liactive"><em></em>技术咨询</li>
 						<li><em></em>资源咨询</li>
 						<li><em></em>其他事务</li>
@@ -60,35 +64,25 @@
 					<div class="maincon">
 						<ul class="basicinfo" style="padding:0;">
 							<li><label>咨询主题<em class="requiredcon"></em></label></li>
-							<li class="basicfrm"><input type="text" name="comname" class="mui-input-clear frmtype"></li>
-							<li><label>咨询内容<em class="requiredcon"></em></label></li>
+							<li class="basicfrm"><input type="text" name="comname" class="mui-input-clear frmtype" id="consulttitle"></li>
+							<li><label>咨询内容<em class="requiredcon" ></em></label></li>
 							<li class="basicfrm">
-								<div class="textareabox" contenteditable="true"></div> 
+								<div class="textareabox" contenteditable="true" id="consultcon">
+									hell word!
+								</div> 
 							</li>
 						</ul>
 			       </div>
 				</div>
 				<div class="mui-input-group">
-					<button class="mui-btn mui-btn-block frmbtn" style="width: 90%;">发送</button>
+					<button class="mui-btn mui-btn-block frmbtn" style="width: 90%;" id="saveconsultBtn">发送</button>
 			   </div>
 		    </div>
 		    
 		</div>
 		<script src=" ../js/public/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init()
-			//鼠标点击联系目的li时添加liactive类
-			mui(".aimclass").on('tap','li',function(e){
-				var aimlist = document.querySelector('.aimclass').querySelectorAll("li");
-				for(var i = 0 ; i < aimlist.length;i++){
-					aimlist[i].classList.remove('liactive');
-				}
-				this.classList.add('liactive');
-				
-			})
-			
-			
-		</script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/consultapply.js"></script>
 	</body>
 
 </html>

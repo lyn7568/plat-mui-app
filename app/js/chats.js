@@ -1,11 +1,13 @@
 mui.ready(function() {
-	 
+	var obackBtn = document.getElementById("backBtn");//返回按钮
+	
 	var oconsultTitle = document.getElementById("consultTitle");//咨询标题
 	var ochatName = document.getElementById("chatName");//与。。聊天
 	var oconsultCon = document.getElementById("consultCon");//咨询内容
 	var olookConBtn = document.getElementById("lookConBtn");//查看按钮
 	
-	var oconfirmBtn = document.getElementById("confirmBtn");//我的需求，确认完成按钮
+	var oconfirm = document.getElementById("confirm");//我的需求，确认完成
+	var oconfirmBtn = document.getElementById("confirmBtn");//确认完成按钮
 	var oassessBtn = document.getElementById("assessBtn");//我的需求，去评价按钮
 	var oassessed = document.getElementById("assessed");//我的需求，已评价(评价星级和评价内容)
 	var omy_starContainer = document.getElementById("my_starContainer");//我的需求，星级容器
@@ -13,7 +15,10 @@ mui.ready(function() {
 	var othat_weiassess = document.getElementById("that_weiassess");//收到咨询，未评价状态
 	var owaying = document.getElementById("waying");//收到咨询，进行中状态
 	var othat_assessed = document.getElementById("that_assessed");//收到咨询，对方已评价
-	var oconstarContainer = document.getElementById("consult_starContainer");//收到咨询星级容器
+	var ozixunstarContainer = document.getElementById("consult_starContainer");//收到咨询星级容器
+	
+	var omiddlePopover = document.getElementById("middlePopover");//评价内容容器;
+	var oassessText = document.getElementById("assessText");//评价内容
 	
 	
 	var omsg_list = document.getElementById("msg-list");
@@ -43,34 +48,44 @@ mui.ready(function() {
 				data:{"consultId":consultId,"readStatus":"1"},
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
 					myData = data.data;
 					ochatName.innerHTML = myData["professor"]["name"];
-					var consultTitle = '关于'+myData["consultTitle"]+"的咨询";
+					var consultTitle = '回复：关于'+myData["consultTitle"]+"的咨询";
 					oconsultTitle.innerHTML = consultTitle;
 					oconsultCon.innerHTML = myData['consultContant'];
 					//我的需求进行中
 					if(myData["consultStatus"] == 0){
-						oconfirmBtn.classList.remove('displayNone');//我的需求，进行中
+						oconfirm.classList.remove('displayNone');//我的需求，进行中
 						ochatFooter.classList.remove('displayNone');
+						
+						clickConfirm(consultId);
+						
+
 					}else {
 						if(myData["assessStatus"] == 0){
 							oassessBtn.classList.remove('displayNone');//我的需求，未评价
+							
+							clickweiassess(consultId);
+							
 						}else {
-							
 							oassessed.classList.remove('displayNone');//我的需求，已评价
-							
 							//评价星级
-							console.log("我的需求已评价")
 							var starCount = myData["assessStar"];
-							console.log(starCount);
-							for(var i=0;i < starCount;i++){
-								if(i < starCount){
-									omy_starContainer.querySelectorAll('.iconfont')[i].classList.remove('icon-favor');
-									omy_starContainer.querySelectorAll('.iconfont')[i].classList.add('icon-favorfill');
-									console.log(omy_starContainer.querySelectorAll('.iconfont')[i].classList)
-								}
-							}
+							console.log("我的需求已评价，星级："+starCount);
+							var starlist = omy_starContainer.children;
+							for(var i = 0; i < starCount; i++) {
+								starlist[i].classList.remove('icon-favor');
+				  				starlist[i].classList.add('icon-favorfill');
+							};
+							/*===========评价内容没做=========*/
+							oassessText.innerHTML = myData["assessContant"];//评价内容
+							console.log('评价内容是：' +oassessText.innerHTML);
+							oassessed.addEventListener('tap',function() {
+								showAssessText();
+							});
+							
 							
 						}
 					} 
@@ -86,10 +101,11 @@ mui.ready(function() {
 				data:{"consultId":consultId,"readStatus":"1"},
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
 					myData = data.data;
 					ochatName.innerHTML = myData["professor"]["name"];
-					var consultTitle = '回复：关于'+myData["consultTitle"]+"的咨询";
+					var consultTitle = '关于'+myData["consultTitle"]+"的咨询";
 					oconsultTitle.innerHTML = consultTitle;
 					oconsultCon.innerHTML = myData['consultContant'];
 					//收到咨询进行中
@@ -105,12 +121,11 @@ mui.ready(function() {
 							
 							//评价星级
 							var starCount = myData["assessStar"];
-							console.log(starCount);
-							for(var i = 0;i < starCount;i++){
-								othat_assessed.querySelectorAll('.iconfont')[i].classList.remove('icon-favor');
-								othat_assessed.querySelectorAll('.iconfont')[i].classList.add('icon-favorfill');
-								console.log(othat_assessed.querySelectorAll('.iconfont')[i].classList); 	
-								
+							console.log("收到咨询对方已评价，星级："+starCount);
+							var starlist = ozixunstarContainer.children;
+							for(var i = 0; i < starCount; i++) {
+								starlist[i].classList.remove('icon-favor');
+				  				starlist[i].classList.add('icon-favorfill');
 							}
 						}
 					}
@@ -136,6 +151,7 @@ mui.ready(function() {
 			},
 			dataType:'json',//服务器返回json格式数据
 			type:'post',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
 				console.log(data);
 			},
@@ -143,12 +159,118 @@ mui.ready(function() {
 				
 			}
 		});
+	};
+	
+	/*点击确认完成*/
+	function clickConfirm(consultId) {
+		oconfirmBtn.addEventListener('tap', function() {
+			setState(consultId);//点击确认,更新咨询状态
+			var btnArray = ['确定','取消'];
+			mui.confirm('确认此次咨询已完成？', 'ni', btnArray, function(e) {
+				console.log(e.index);
+				if (e.index == 0) {//确定
+					goassessFun(consultId);//进入评价页面
+				} else {//取消
+					oconfirm.classList.add('displayNone');
+					getHeadInfo('myNeed',consultId);
+				}
+			})
+		});
+	};
+	
+	/*点击未评价,进入评价页面*/
+	function clickweiassess(consultId){
+		oassessBtn.addEventListener('tap',function(){
+			goassessFun(consultId);
+		});
+	};
+	/*打开评价页面*/
+	function goassessFun(consultId) {
+		mui.openWindow({
+			id:'chat-assess.html',
+		    url:'chat-assess.html',
+		    extras:{'consultId':consultId}//向评价页面传值;咨询id
+		});
+	};
+	
+	/*评价内容显示与隐藏*/
+	function showAssessText() {
+		console.log('显示评价内容');
+		/*omiddlePopover,oassessText*/
+		/*先获得评价内容实际的宽高,再加padding,*/
+		var real_width = oassessText.offsetWidth;
+		var real_height = oassessText.offsetHeight;
+		console.log('实际宽：'+real_width+'高：'+real_height);
+		
+		var padding_w = 10;
+		var padding_h = 10;
+		
+		var cur_width = real_width + padding_w;
+		var cur_height = real_height + padding_h;
+		console.log("要求显示宽："+cur_width+"高："+cur_height);
+		/*oassessText.css('width',cur_width+'px');
+		oassessText.css('height',cur_height+'px');*/
+		omiddlePopover.style.width = cur_width+'px';
+		omiddlePopover.style.height = cur_height+'px';
+		/*omiddlePopover.css('width',);
+		omiddlePopover.css('height',cur_height+'px');*/
+		
+	};
+	
+	
+	
+	
+	
+	
+	
+	/*更改咨询状态,进行中--完成*/
+	function setState(consultId) {
+		
+		mui.ajax(baseUrl+'/ajax/consult/finishTime',{
+			data:{
+				"consultId":consultId, //咨询ID
+		    	"consultStatus":"1", //咨询状态 0-进行中，1-已完成
+			},
+			dataType:'json',//服务器返回json格式数据
+			type:'post',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
+			success:function(data){
+				console.log("更新咨询状态")
+				console.log(data.data)
+			},
+			error:function(xhr,type,errorThrown){
+				
+			}
+		});
+		
 	}
+	/*返回咨询列表页*/
+//	obackBtn.addEventListener('tap',function() {
+//		/*返回咨询列表*/
+//		var consultList = plus.webview.getWebviewById('consultlist.html');
+//		consultList.show();
+//		mui.fire(consultList,'refresh',{'consultList':consultList}); 
+//
+//	});
+	
+	
+	
+	/*评价完成返回 刷新==自定义事件*/
+	window.addEventListener('refresh',function(event){
+		//通过event.detail可获得传递过来的参数内容
+		var self = plus.webview.currentWebview();
+		console.log(self);
+		var consultId = self.consultId;
+	
+		oconfirm.classList.add('displayNone');
+		ochatFooter.classList.add('displayNone');
+		getHeadInfo('myNeed',consultId);
+	});
+	
 	
 		
-		
 	var MIN_SOUND_TIME = 800;
-	mui.init({
+	/*mui.init({
 		gestureConfig: {
 			tap: true, //默认为true
 			doubletap: true, //默认为false
@@ -157,8 +279,20 @@ mui.ready(function() {
 			drag: true, //默认为true
 			hold: true, //默认为false，不监听
 			release: true //默认为false，不监听
+		},
+		keyEventBind: {
+			backbutton: false,  //Boolean(默认true)关闭back按键监听
+			menubutton: false   //Boolean(默认true)关闭menu按键监听
+		},
+		beforeback: function(){//返回前刷新咨询列表页
+			//获得列表界面的webview
+			var list = plus.webview.getWebviewById('consultlist');
+			//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+//			mui.fire(list,'refresh');
+			//返回true，继续页面关闭逻辑
+			return true;
 		}
-	});
+	});*/
 	template.config('escape', false);
 	//mui.plusReady=function(fn){fn();};
 	mui.plusReady(function() {
@@ -166,10 +300,13 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
 		var consultId = self.consultId;
-//		var manFlag = self.manFlag;
 		var consultantId = self.consultantId;
+		
+		
+		
+		
+		
 		console.log(consultId);
-//		console.log(manFlag);
 		console.log('userid'+userid);
 		console.log('consultantId'+consultantId);
 		if(userid == consultantId){//我的需求
@@ -180,7 +317,17 @@ mui.ready(function() {
 			//头部信息
 			var manFlag = 'consult';
 			getHeadInfo(manFlag,consultId);
-		}
+		};
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		plus.webview.currentWebview().setStyle({
@@ -216,6 +363,7 @@ mui.ready(function() {
 			},
 			dataType:'json',//服务器返回json格式数据
 			type:'get',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
 				var myData = data.data;
 				for(var i = 0; i < myData.length; i++ ){
@@ -317,6 +465,7 @@ mui.ready(function() {
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
 					console.log('消息成功'+data.data);
 					//alert(JSON.stringify(data));

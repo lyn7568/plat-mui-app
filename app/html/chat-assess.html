@@ -11,6 +11,7 @@
 
 	<body>
 	    <header class="mui-bar mui-bar-nav toptitbox">
+	    	<!--mui-action-back-->
 			<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></span>
 			<h1 class="mui-title toptit">评价</h1>
 			<span id="submit" class="mui-pull-right topsave">发送</span>
@@ -20,7 +21,7 @@
 			<div class="assessbox">
 				<div class="mui-content-padded ">
 					<div class="mui-inline">整体评价</div>
-					<div class="icons mui-inline levelbox" style="margin-left: 6px;">
+					<div class="icons mui-inline levelbox" style="margin-left: 6px;" id="starContainer">
 						<span data-index="1" class="mui-icon iconfont icon-favor"></span>
 						<span data-index="2" class="mui-icon iconfont icon-favor"></span>
 						<span data-index="3" class="mui-icon iconfont icon-favor"></span>
@@ -32,12 +33,14 @@
 					<div class="mui-inline">评价留言</div>
 				</div>
 				<div class="row mui-input-row">
-					<div id='question' class="mui-input-clear question textareabox" contenteditable="true"></div>
+					<div id='question' class="mui-input-clear question textareabox" contenteditable="true">好评！</div>
 				</div>
 				
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+ 		<script src="../js/chat-assess.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			mui('.mui-scroll-wrapper').scroll();

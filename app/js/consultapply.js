@@ -142,12 +142,6 @@
  		});
  	}
  	
- 	/*点击发送后,跳转到专家信息页面*/
- 	function backproinfo () {
- 		
- 	};
- 	
- 	
  	
  	
    	mui.plusReady(function () {
@@ -162,8 +156,13 @@
    	    /*发送保存咨询*/
    	   	osaveconsultBtn.addEventListener('tap',function() {
 			saveconsult(proId,userid);
+			/*返回专家信息*/
+			var proinfo = plus.webview.getWebviewById('proinforbrow.html');
+			proinfo.show();
+			mui.fire(proinfo,'backproinfo',{proId:proId}); 
 
 		});
+		
    	    
    	    
    	    

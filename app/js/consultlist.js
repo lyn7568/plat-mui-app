@@ -15,23 +15,22 @@ mui.ready(function() {
 	mui.plusReady(function(){
 		
 		var userid = plus.storage.getItem('userid');
+
+		allData(userid,0,'',0,0);//默认加载
 		
-		var list = allData(userid,0,'',0,0);//默认加载
-//		console.log(list);
-		listContainer.innerHTML = list;
 		
-		console.log(oneedval.value +otypeval.value +ostateval.value+osortval.value);
+		
 		
 		/*全部的咨询列表*/
 		function allData(userid,consultOrNeed,consultType,status,timeType) {
-			var allStr;
+			
 			var params = {
 					"professorId":userid, //专家ID
 				    "consultOrNeed":consultOrNeed, //接受咨询或咨询别人的状态值，0-全部，1-别人咨询我的，2-我咨询别人的 默认为0
 				    "consultType":consultType, //咨询类型(技术咨询、资源咨询、其他事务)
 				    "status":status, //查询状态 0-全部，1-进行中，2-未感谢，3-未评价，4-已完成， 可以不传，默认为0
 				    "timeType":timeType, //排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
-				    "pageSize":10, //每页记录数 默认为5
+				    "pageSize":5, //每页记录数 默认为5
 				    "pageNo":pageIndex //当前页码 默认为1
 			    };
 			mui.ajax(baseUrl +'/ajax/consult/pq',{
@@ -42,97 +41,49 @@ mui.ready(function() {
 				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
 					if(data.success){
-						var myData = data.data.data;
-						allStr = handleData(userid,myData,'all');
-						
-					}
-				},
-				error:function(xhr,type,errorThrown){
-					
-				}
-			});
-			
-			return allStr;
-		};
-		
-		
-		//下拉加载获得更多数据
-		function getMoreData() {
-			var allstr;
-			mui.ajax(baseUrl+'/ajax/consult/pq',{
-				data:{
-					"professorId":userid, //专家ID
-				    "consultOrNeed":consultOrNeed, //接受咨询或咨询别人的状态值，0-全部，1-别人咨询我的，2-我咨询别人的 默认为0
-				    "consultType":consultType, //咨询类型(技术咨询、资源咨询、其他事务)
-				    "status":status, //查询状态 0-全部，1-进行中，2-未感谢，3-未评价，4-已完成， 可以不传，默认为0
-				    "timeType":timeType, //排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
-				    "pageSize":10, //每页记录数 默认为5
-				    "pageNo":pageIndex //当前页码 默认为1
-				},
-				dataType:'json',//服务器返回json格式数据
-				type:'get',//HTTP请求类型
-				timeout:10000,//超时时间设置为10秒；
-				success:function(data){
-					if(data.success) {
-						var myData = data.data.data;
-						var alltotal = data.data.total;//总条数
-						var pagesize = data.data.pageSize; //每页条数
-						var allpages = Math.ceil(alltotal / pagesize);//总页数
-						allStr = handleData(userid,myData,'all');
-						console.log(allpages);
-						console.log(alltotal);
-						
+						var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+						/*listContainer.innerHTML = '';*/
 						if(pageIndex == 1) { //下拉刷新需要先清空数据
 							listContainer.innerHTML = ''; // 在这里清空可以防止刷新时白屏
 						}
-						
-						if(pageIndex < allPages) {
-							
-							mui('#refreshContainer').pullRefresh().endPullupToRefresh(false); /*能上拉*/
-						} else {
-							
-							mui('#refreshContainer').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
+						var myData = data.data.data;
+						var allStr = handleData(userid,myData,'all');
+						if(allStr){
+							nwaiting.close();
 						}
-						
-						
-						
+						listContainer.innerHTML = allStr;
 					}
-					
 				},
 				error:function(xhr,type,errorThrown){
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					mui.toast('加载失败');
 				}
 			});
-		}
+			
+
+		};
 		
 		
-		
-		
-		
-		
-		
-		
-		/*mui.init({
+		mui.init({
 			pullRefresh : {
-			    container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
-			    down : {
-			      height:50,//可选,默认50.触发下拉刷新拖动距离,
-			      auto: true,//可选,默认false.自动下拉刷新一次
-			      contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
-			      contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
-			      contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
-			      callback :allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value) //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+			    container:'#refreshContainer',
+			    up : {
+			    	auto:true,//可选,默认false.自动上拉加载一次
+			    	contentrefresh : "正在加载...",
+			    	callback :pullfresh
 			    }
 			}
 		});
 		
-		function pullupRefresh() {
+		function pullfresh() {
+			console.log('pullupRefresh');
 			pageIndex = ++pageIndex;
+			
+			console.log(oneedval.value+otypeval.value+ostateval.value+osortval.value);
 			setTimeout(function() {
 				allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value);
 			}, 1000);
-		};*/
+			this.endPullupToRefresh(true|false);
+		};
 		
 		
 		
@@ -141,7 +92,6 @@ mui.ready(function() {
 		function checkedFun(i){
 			
 			mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
-				
 				document.getElementById("headck"+i).innerHTML = this.innerHTML;
 				var value = this.getAttribute("ck"+i);
 				document.getElementById("headck"+i).setAttribute('headck',value);
@@ -154,14 +104,12 @@ mui.ready(function() {
 					consultType = document.getElementById("headck2").innerHTML;
 					
 				}
+				
 				//去掉样式类mui-active,要不然会多点击一次
 				oneedval.value = document.getElementById("headck1").getAttribute('headck');
 				otypeval.value = consultType;
 				ostateval.value = document.getElementById("headck3").getAttribute('headck');
 				osortval.value = document.getElementById("headck4").getAttribute('headck');
-				
-				
-	//				console.log(oneedval.value +otypeval.value +ostateval.value+osortval.value)
 				
 				/*allData(userid,consultOrNeed,consultType,status,timeType)
 				 * userid:专家id
@@ -171,9 +119,7 @@ mui.ready(function() {
 				 * timeType:排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
 				 */
 				/*var listdata = allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value);*/
-				var listdata = allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value);
-				listContainer.innerHTML = '';
-				listContainer.innerHTML = listdata;
+				allData(userid,oneedval.value,otypeval.value,ostateval.value,osortval.value);
 			});
 			
 		};
@@ -315,7 +261,6 @@ mui.ready(function() {
 						lastReplyTimeData = data["data"]["createTime"];
 						lastReplyTime =lastReplyTimeData.substr(0,4) + "-" + lastReplyTimeData.substr(4,2) + "-" + lastReplyTimeData.substr(6,2) + " " + lastReplyTimeData.substr(8,2)+ ":" +lastReplyTimeData.substr(10,2);
 						lastReplyCon = data["data"]["tidingsContant"];
-						/*console.log(lastReplyTime);*/
 					}
 				},
 				error:function(xhr,type,errorThrown){
@@ -344,8 +289,7 @@ mui.ready(function() {
 					if(unreadCount == 0){
 						style = "display:none;"
 					}else{
-						style = "display:block;"
-						
+						style = "display:block;"	
 					}
 				},
 				error:function(xhr,type,errorThrown){
@@ -357,33 +301,6 @@ mui.ready(function() {
 					"style":style
 			}
 		};
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
 		
 		//打开新页面
 		mui("#listContainer").on('tap','.itemBtn',function(){

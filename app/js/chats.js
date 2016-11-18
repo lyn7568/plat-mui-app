@@ -172,6 +172,7 @@ mui.ready(function() {
 					goassessFun(consultId);//进入评价页面
 				} else {//取消
 					oconfirm.classList.add('displayNone');
+					ochatFooter.classList.add('displayNone');
 					getHeadInfo('myNeed',consultId);
 				}
 			})
@@ -264,6 +265,7 @@ mui.ready(function() {
 	
 		oconfirm.classList.add('displayNone');
 		ochatFooter.classList.add('displayNone');
+		oassessBtn.classList.add('displayNone');
 		getHeadInfo('myNeed',consultId);
 	});
 	
@@ -299,6 +301,7 @@ mui.ready(function() {
 		
 		var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
+		console.log(self.id)
 		var consultId = self.consultId;
 		var consultantId = self.consultantId;
 		

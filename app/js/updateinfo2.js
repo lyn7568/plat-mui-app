@@ -2,9 +2,7 @@ mui.ready(function() {
 	mui.plusReady(function(){
 		var userid = plus.storage.getItem('userid');		
 		var ws=plus.webview.currentWebview();		
-		var str = JSON.stringify(ws);	
-    	console.log(ws.descp);  
-    	console.log(str);  
+		var str = JSON.stringify(ws);	    	
     	document.getElementsByClassName("borderarea")[0].innerText=ws.descp;  
     	document.getElementsByClassName("topsave")[0].addEventListener("tap",function(){
     		mui.ajax(baseUrl + '/ajax/professor/descp', {

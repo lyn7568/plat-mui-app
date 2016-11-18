@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/app.css" rel="stylesheet"/>
+    <link href="../css/iconfont.css" rel="stylesheet" />
+</head>
+<body>
+	
+	<!-- 主页面标题 -->
+    <header class="mui-bar mui-bar-nav toptitbox">
+    	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+        <div class="searchbox2 mui-pull-right">
+        	<div class="mui-pull-left searchselect">
+	        	<div class="simuselect">
+                	<div class="ulbox lookwho" id="div_select">专家</div> 
+					<ul id="li_show" class="lishow"> 
+					    <li data-num="1">专家</li> 
+					    <li data-num="0">资源</li> 
+					</ul>
+				</div>
+	        	<em class="mui-icon mui-icon-arrowdown"></em>
+		    </div>
+		    <input type="text" class="mui-input-clear mui-pull-right searchtxt2" placeholder="搜索专家、设备资源" id="searchval">
+        </div>
+	</header>
+	
+    <!-- 主页面内容容器 -->
+    <div class="mui-content">
+    	<!-- 主界面具体展示内容 -->
+    	<div class="historybox" style=" position: absolute; top:45px;left:0; z-index:2; " id="historybox">
+			<!--<ul class="hisrecord">
+				<li>
+					<span class="histicon mui-pull-left"></span>
+					<span class="mui-pull-left">搜索历史词</span>
+					<span class="mui-icon mui-icon-closeempty delrecord"></span>
+				</li>
+				<li>
+					<span class="histicon mui-pull-left"></span>
+					<span class="mui-pull-left">搜索历史词</span>
+					<span class="mui-icon mui-icon-closeempty delrecord"></span>
+				</li>
+				<li>
+					<span class="histicon mui-pull-left"></span>
+					<span class="mui-pull-left">搜索历史词</span>
+					<span class="mui-icon mui-icon-closeempty delrecord"></span>
+				</li>
+				<li class="trashrecord"><em class="mui-icon mui-icon-trash"></em>清除历史记录</li>
+			</ul>-->
+			<div class="hotsearchbox">
+				<div>热门搜索</div>
+				<ul class="hotsearch">
+		       		<li>11</li>
+		       		<li>领域领域领域2</li>
+		       		<li>领域领域领域领域3</li>
+		       		<li>领域4</li>
+		       		<li>领域领1</li>
+		       		<li>领域1</li>
+		       		<li>领域1</li>
+		       	</ul>
+			</div>
+		</div>  
+    	
+    </div>
+   <script src="../js/public/mui.min.js"></script>
+   <script src="../js/public/base.js"></script>
+   <script type="text/javascript">
+		 var showblock = document.getElementById("li_show");
+		 var selectblock = document.getElementById("div_select");
+		 var searchVal = document.getElementById("searchval");
+		 var key,bigClass=1;
+	    /*搜专家搜资源的下拉选择框*/
+		selectblock.addEventListener('tap', function() {
+			showblock.style.display = 'block';
+		});
+		
+		mui("#li_show").on('tap', 'li', function() {
+			bigClass = this.getAttribute("data-num");
+			selectblock.innerHTML = this.innerHTML;
+			showblock.style.display = 'none';
+		});
+		
+		/*点击热门搜索*/
+		mui(".hotsearch").on('tap', 'li', function() {
+			plus.nativeUI.showWaiting();
+			key = this.innerHTML;
+			mui.openWindow({
+				url: '../html/search.html',
+				id: '../html/search.html',
+				show:{
+			      autoShow:true,
+			      aniShow:"fade-in",
+			    },
+				extras:{
+			      key:key,
+			      bigClass:bigClass
+			    }
+			});
+			
+		});
+		/*按键字搜索*/
+		searchval.addEventListener("keyup", function() {
+			var e = event || window.event || arguments.caller.arguments[0];
+			if(e.keyCode == 13) {
+				key = searchVal.value;
+				plus.nativeUI.showWaiting();
+				mui.openWindow({
+					url: '../html/search.html',
+					id: '../html/search.html',
+					show:{
+				      autoShow:true,
+				      aniShow:"fade-in",
+				    },
+					extras:{
+				      key:key,
+				      bigClass:bigClass
+				    }
+				});
+			}
+		})
+   </script>
+</body>
+</html>

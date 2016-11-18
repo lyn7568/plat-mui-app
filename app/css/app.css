@@ -352,7 +352,7 @@ body{ color: #666666; font-size:14px;}
 .popoverbox2 .mui-table-view .mui-table-view-cell:last-child,.popoverbox2 .mui-table-view .mui-table-view-cell:last-child>a:not(.mui-btn){border-radius:4px;}
 .popoverbox2 .mui-table-view .mui-table-view-cell:first-child,.popoverbox2 .mui-table-view .mui-table-view-cell:first-child>a:not(.mui-btn){border-radius:4px;}
 .popoverbox2 .mui-table-view .mui-table-view-cell{border-radius:4px; overflow: hidden; }
-.popoverbox2 .mui-table-view-cell>a:not(.mui-btn).mui-active{background:#FF9900; color: #FFFFFF;border:1px solid #FF9900;}
+.popoverbox2 .mui-table-view-cell>a:not(.mui-btn).active{background:#FF9900; color: #FFFFFF;border:1px solid #FF9900;}
 /*城市选择级联*/
 .menublock{ position: relative; }
 .menuposition.mui-popover .mui-scroll-wrapper{ margin: 0;}
@@ -363,7 +363,7 @@ body{ color: #666666; font-size:14px;}
 .menuposition .mui-col-xs-12,.menuposition .mui-control-content {border-radius: 6px;overflow-y: auto;height: 100%;}
 .menuposition .mui-segmented-control .mui-control-item {line-height: 44px;width: 100%;}
 .menuposition .mui-segmented-control.mui-segmented-control-inverted.mui-segmented-control-vertical .mui-control-item, .mui-segmented-control.mui-segmented-control-inverted.mui-segmented-control-vertical .mui-control-item.mui-active {border-bottom: 1px solid #e8e8e8;}.menuposition .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {background-color: #FFFFFF;color:#FF9900;}
-	
+.menuposition .mui-table-view-cell>a:not(.mui-btn).active{background:#FF9900; color: #FFFFFF;border:1px solid #FF9900;}	
 /***********************搜索*******************/
 
 /*********************** 咨询*******************/
@@ -410,7 +410,7 @@ body{ color: #666666; font-size:14px;}
 
 .mui-table-view-cell>.proinfor>.mui-badge{top: 20px;left:10px; right:auto;}
 /*星级评价*/
-.evabox{position:absolute;right: 2%;top: -4px; text-align: center;}
+.evabox{position:absolute;right: 2%;top: -4px; text-align: center;color: #999;}
 .evabox span{ font-size: 12px;}
 .evabox .levelbox{ width:100px;}
 .evabox .levelbox .mui-icon{ font-size: 12px; }
@@ -451,3 +451,4 @@ body{ color: #666666; font-size:14px;}
 .icons.levelbox .icon-favorfill{/*color: #FFB400;*/font-size: 18px;} 
 .assessbox{margin:10px 0; background: #FFFFFF; padding:10px;padding-bottom: 30px;}
 /***********************评价*******************/
+

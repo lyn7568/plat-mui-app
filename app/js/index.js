@@ -8,17 +8,18 @@ mui('.list').on('tap','a',function(){
 	var id=this.getAttribute("data-id");
 	console.log(id);
 	var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
-    webviewShow = plus.webview.create("../html/proinforbrow.html",{proid:id});//后台创建webview并打开show.html
+    webviewShow = plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});//后台创建webview并打开show.html
     webviewShow.addEventListener("loaded", function() {
         nwaiting.close(); //新webview的载入完毕后关闭等待框
         webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画
     }, false);
 })
 
+
 /*点击搜索按钮*/
 search.addEventListener('focus', function() {
 	var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
-    webviewShow = plus.webview.create("../html/search.html");//后台创建webview并打开show.html
+    webviewShow = plus.webview.create("../html/search-home.html");//后台创建webview并打开show.html
     webviewShow.addEventListener("loaded", function() {
         nwaiting.close(); //新webview的载入完毕后关闭等待框
         webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画

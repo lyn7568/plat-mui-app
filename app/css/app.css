@@ -261,12 +261,13 @@ body{ color: #666666; font-size:14px;}
 .verified{ color: #FF9900;}
 .authword{ padding:2px 6px; margin-left:6px; background: #FF9900; border-radius:4px; color: #FFFFFF; font-size: 12px;}
 /*我的关注*/
-.fixbox{ background: #FFFFFF;}
+.fixbox{ background: #FFFFFF; position:fixed;top:45px;left:0;width:100%; z-index:1;}
 .fixbox .fixbtn{ padding:0; margin: 0; overflow: hidden;}
 .fixbox .fixbtn li{ list-style: none; float: left; padding:6px 10px; border-bottom:1px solid #F0F0F0;text-align: center;font-size: 14px;height: 32px;}
 .fixbox .fixbtn li:first-child{ border-right:1px solid #F0F0F0;}
 .fixbox .fixbtn li.liactive{ color: #FF9900;border-bottom-color: #FF9900;}
 .childlist{ display: none;}
+.alllist{ margin-top: 45px;}
 /*合作历史及评价*/
 .lefthead{ margin-right: 10px; text-align:center;}
 .contit{ position:relative;}

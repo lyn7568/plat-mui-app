@@ -31,7 +31,7 @@
     <!-- 主页面内容容器 -->
     <div class="mui-content">
     	
-    	<div class="filterbox" style=" position: fixed; z-index:1; top:45px; width:100%">
+    	<!--<div class="filterbox" style=" position: fixed; z-index:1; top:45px; width:100%">
 			<ul class="filterblock" style="width:100%">
 				<li style="width:33.3333%;">
 					<a href="#middlePopovercity" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="addressid">全国</span><em class="mui-icon mui-icon-arrowdown"></em></a>	
@@ -40,6 +40,20 @@
 					<a href="#middlePopoveracad" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="subjectid">学术领域</span><em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
 				<li style="width:33.3333%;">
+					<a href="#middlePopoveruse" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="industryid">应用行业</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+			</ul>
+		</div>-->
+		
+		<div class="filterbox" style=" position: fixed; z-index:1; top:45px; width:100%">
+			<ul class="filterblock" style="width:100%">
+				<li class="mui-col-xs-4">
+					<a href="#middlePopovercity" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="addressid">全国</span><em class="mui-icon mui-icon-arrowdown"></em></a>	
+				</li>
+				<li class="mui-col-xs-4">
+					<a href="#middlePopoveracad" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="subjectid">学术领域</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+				<li class="mui-col-xs-4">
 					<a href="#middlePopoveruse" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="industryid">应用行业</span><em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
 			</ul>
@@ -56,17 +70,15 @@
     
     <!--城市-->
     <div id="middlePopovercity" class="mui-popover menuposition" >
-		<div class="mui-scroll-wrapper"  style=" height: 300px; width: 30%; top:0;  bottom:0px;  float: left;">
+		<div class="mui-scroll-wrapper mui-pull-left"  style=" width: 30%;border-right:1px solid #CFCFCF;">
 			<div class="mui-scroll">
 				<ul class="mui-table-view provinceval" id="provinceval">
-					
 				</ul>
 			</div>
 		</div>
-		<div class="mui-scroll-wrapper"  style=" height: 300px;width: 60%; bottom:0px; top:0;float: right;">
+		<div class="mui-scroll-wrapper mui-pull-left"  style="width: 70%;left:30%;">
 			<div class="mui-scroll">
 				<ul class="mui-table-view" id="addressval">
-					
 				</ul>
 			</div>
 		</div>

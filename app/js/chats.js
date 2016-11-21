@@ -5,6 +5,7 @@ mui.ready(function() {
 	var ochatName = document.getElementById("chatName");//与。。聊天
 	var oconsultCon = document.getElementById("consultCon");//咨询内容
 	var olookConBtn = document.getElementById("lookConBtn");//查看按钮
+	var ostatus = document.querySelector('#status');//标记状态，用于返回咨询列表传值
 	
 	var oconfirm = document.getElementById("confirm");//我的需求，确认完成
 	var oconfirmBtn = document.getElementById("confirmBtn");//确认完成按钮
@@ -59,18 +60,20 @@ mui.ready(function() {
 					if(myData["consultStatus"] == 0){
 						oconfirm.classList.remove('displayNone');//我的需求，进行中
 						ochatFooter.classList.remove('displayNone');
-						
+						ostatus.setAttribute('status','consultStatus='+myData["consultStatus"]);					
 						clickConfirm(consultId);
 						
 
 					}else {
 						if(myData["assessStatus"] == 0){
 							oassessBtn.classList.remove('displayNone');//我的需求，未评价
-							
+							ostatus.setAttribute('status','');
 							clickweiassess(consultId);
-							
+							ostatus.setAttribute('status','myNeedAssessStatus='+myData["assessStatus"]);
 						}else {
 							oassessed.classList.remove('displayNone');//我的需求，已评价
+							ostatus.setAttribute('status','myNeedAssessStatus='+myData["assessStatus"]);
+							
 							//评价星级
 							var starCount = myData["assessStar"];
 							console.log("我的需求已评价，星级："+starCount);
@@ -83,6 +86,7 @@ mui.ready(function() {
 							oassessText.innerHTML = myData["assessContant"];//评价内容
 							console.log('评价内容是：' +oassessText.innerHTML);
 							oassessed.addEventListener('tap',function() {
+								
 								showAssessText();
 							});
 							
@@ -118,7 +122,7 @@ mui.ready(function() {
 						}else{//收到咨询已评价(评价星级和评价内容)
 							
 							othat_assessed.classList.remove('displayNone');
-							
+							oassessText.innerHTML = myData["assessContant"];//评价内容
 							//评价星级
 							var starCount = myData["assessStar"];
 							console.log("收到咨询对方已评价，星级："+starCount);
@@ -197,9 +201,30 @@ mui.ready(function() {
 	/*评价内容显示与隐藏*/
 	function showAssessText() {
 		console.log('显示评价内容');
+		console.log(oassessText.innerHTML);
 		/*omiddlePopover,oassessText*/
 		/*先获得评价内容实际的宽高,再加padding,*/
-		var real_width = oassessText.offsetWidth;
+		
+		/*先获得屏幕宽度和高度,固定设置div宽:屏幕80%,高:200px;
+		 *然后定位,div,top:(屏幕高-div高)/2,left:屏幕宽的10%;
+		*/
+		var all_w = document.body.clientWidth;//屏幕宽
+		var all_h = document.body.clientHeight;//屏幕高
+		omiddlePopover.style.height = '200px';
+		omiddlePopover.style.width = (all_w* 0.8)+'px';
+		
+		omiddlePopover.style.top = (all_h-200)/2+'px';
+		omiddlePopover.style.left = (all_w * 0.1)+'px';
+		omiddlePopover.style.zIndex = '999';
+		
+		console.log('宽:'+omiddlePopover.style.width);
+		console.log('高:'+omiddlePopover.style.height);
+		
+		console.log('top:'+omiddlePopover.style.top);
+		console.log('left:'+omiddlePopover.style.left);
+		console.log(omiddlePopover.classList);
+		
+		/*var real_width = oassessText.offsetWidth;
 		var real_height = oassessText.offsetHeight;
 		console.log('实际宽：'+real_width+'高：'+real_height);
 		
@@ -209,12 +234,8 @@ mui.ready(function() {
 		var cur_width = real_width + padding_w;
 		var cur_height = real_height + padding_h;
 		console.log("要求显示宽："+cur_width+"高："+cur_height);
-		/*oassessText.css('width',cur_width+'px');
-		oassessText.css('height',cur_height+'px');*/
 		omiddlePopover.style.width = cur_width+'px';
-		omiddlePopover.style.height = cur_height+'px';
-		/*omiddlePopover.css('width',);
-		omiddlePopover.css('height',cur_height+'px');*/
+		omiddlePopover.style.height = cur_height+'px';*/
 		
 	};
 	
@@ -245,16 +266,6 @@ mui.ready(function() {
 		});
 		
 	}
-	/*返回咨询列表页*/
-//	obackBtn.addEventListener('tap',function() {
-//		/*返回咨询列表*/
-//		var consultList = plus.webview.getWebviewById('consultlist.html');
-//		consultList.show();
-//		mui.fire(consultList,'refresh',{'consultList':consultList}); 
-//
-//	});
-	
-	
 	
 	/*评价完成返回 刷新==自定义事件*/
 	window.addEventListener('refresh',function(event){
@@ -262,7 +273,6 @@ mui.ready(function() {
 		var self = plus.webview.currentWebview();
 		console.log(self);
 		var consultId = self.consultId;
-	
 		oconfirm.classList.add('displayNone');
 		ochatFooter.classList.add('displayNone');
 		oassessBtn.classList.add('displayNone');
@@ -304,7 +314,17 @@ mui.ready(function() {
 		console.log(self.id)
 		var consultId = self.consultId;
 		var consultantId = self.consultantId;
-		
+		/*返回咨询列表页*/
+		obackBtn.addEventListener('tap',function() {
+			/*返回咨询列表*/
+			var status = ostatus.getAttribute('status');
+			console.log(status);
+			var consultList = plus.webview.getWebviewById('html/consultlist.html');
+			console.log(consultId)
+			consultList.show();
+			mui.fire(consultList,'backlist',{'consultId':consultId,'status':status}); 
+	
+		});
 		
 		
 		
@@ -321,16 +341,6 @@ mui.ready(function() {
 			var manFlag = 'consult';
 			getHeadInfo(manFlag,consultId);
 		};
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		plus.webview.currentWebview().setStyle({

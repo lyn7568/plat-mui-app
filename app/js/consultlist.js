@@ -19,8 +19,6 @@ mui.ready(function() {
 		allData(userid,0,'',0,0);//默认加载
 		
 		
-		
-		
 		/*全部的咨询列表*/
 		function allData(userid,consultOrNeed,consultType,status,timeType) {
 			

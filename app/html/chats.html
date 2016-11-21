@@ -305,10 +305,13 @@
  			}
  			
  			/*#middlePopover {
- 				height: 400px;
+ 				height: 200px;
  				width:80%;
  				margin: auto;
  			}*/
+ 			.mui-popover #arrow {
+ 				background: none;
+ 			}
  			 
  		</style>
  	</head>
@@ -349,10 +352,10 @@
  			<% } %>
  		</script>
  		<div class="mui-content">
- 			
+ 			<div class="displayNone" id="status"></div>
  			<!--评价内容-->
  			<div id="middlePopover" class="mui-popover">
-				<div class="mui-popover-arrow"></div>
+				<div class="mui-popover-arrow" id="arrow"></div>
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<ul class="mui-table-view" id="assessText">
@@ -363,13 +366,6 @@
 				</div>
 	
 			</div><!--评价内容-->
- 			
- 			
- 			
- 			
- 			
- 			
- 			
  			
  			
  			

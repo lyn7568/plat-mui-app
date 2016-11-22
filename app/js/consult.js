@@ -97,7 +97,9 @@ function getaData() {
 initdata();
 /*第一次加载数据*/
 function initdata() {
+	
     mui.plusReady(function() {
+    	/*plus.nativeUI.showWaiting()//显示等待框*/
     	var userid = plus.storage.getItem('userid');
     	console.log('初始化传参'+'一：'+oneedval.value+'二'+otypeval.value+'三'+ostateval.value+'四'+osortval.value);
     	console.log()
@@ -122,7 +124,6 @@ function initdata() {
 					/*plus.nativeUI.closeWaiting();*/
                     var datalist = data.data.data;
                     console.log(datalist.length);
-                   	
 	                table.innerHTML = '';//清空容器
                     eachData(userid,datalist);
                     mui('#pullrefresh').pullRefresh().refresh(true);//重置下拉加载

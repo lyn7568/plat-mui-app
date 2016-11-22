@@ -17,10 +17,13 @@
  	
  	var osaveconsultBtn = document.getElementById("saveconsultBtn");//保存咨询，发送按钮
  	
+ 	
+ 	
  	/*保存咨询*/
- 	function saveconsult(proId,userid,consultTitle) {
+ 	function saveconsult(proId,userid) {
  		var consultType = oconsulttype_ul.querySelector('.liactive').innerText;
  		var consultcon = oconsultcon.innerText;
+ 		var consultTitle = oconsulttitle.value;
  		console.log(consultType);
  		console.log(consultTitle);
  		console.log(consultcon);
@@ -151,22 +154,25 @@
    	    
    	 	/*专家信息数据*/
    	    proinfo(proId);
+   	    if(flag == 'ziyuan') {
+   	    	oconsulttitle.value = '关于'+consulttitle+'的咨询';
+   	    }
    	    
    	    /*发送保存咨询*/
    	   	osaveconsultBtn.addEventListener('tap',function() {
-   	   		if(consulttitle){
-   	   			alert("从资源进入")
-   	   			var consulttitle = '关于'+consulttitle+"的咨询"
-   	   			saveconsult(proId,userid,consulttitle);
-   	   		}else {
-   	   			alert("从专家进入");
-   	   			saveconsult(proId,userid,oconsulttitle.value);
+   	   		saveconsult(proId,userid);
+   	   		if(flag == 'ziyuan'){
+   	   			/*返回资源信息*/
+				var ziyuaninfo = plus.webview.getWebviewById('resinforbrow.html');
+				ziyuaninfo.show();
+				mui.fire(ziyuaninfo,'backziyuaninfo'); 
+   	   		}else if(flag == 'professor'){
+   	   			/*返回专家信息*/
+				var proinfo = plus.webview.getWebviewById('proinforbrow.html');
+				proinfo.show();
+				mui.fire(proinfo,'backproinfo',{proId:proId}); 
    	   		}
 			
-			/*返回专家信息*/
-			var proinfo = plus.webview.getWebviewById('proinforbrow.html');
-			proinfo.show();
-			mui.fire(proinfo,'backproinfo',{proId:proId}); 
 
 		});
 		

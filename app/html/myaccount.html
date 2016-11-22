@@ -22,7 +22,11 @@
 					    <a class="mui-pull-left proinfor">
 		                    <img class="mui-pull-left headimg2" src="../images/default-photo.jpg" id="userImg">
 		                    <div class="mui-pull-left infobasic" style="display:none;" id="loginYes">
-		                        <span class="listtit"><span id="userName"></span><em class="mui-icon iconfont icon-vip authicon" id="rzImg" style="display:none;"></em></span>	
+		                        <span class="listtit">
+		                        	<span id="userName"></span>
+		                        	<em class="mui-icon iconfont icon-vip authicon" style="display:none;" ></em>
+		                        	<em class="mui-icon iconfont icon-vip unauthicon" style="display:none;" ></em>
+		                        </span>	
 		                        <p class="listtit2"><span id="userTitle"></span>，<span id="userPosition"></span></p>
 		                    	<p class="listtit3"><span id="userDepartment"></span>，<span id="userMechanism"></span> | <span id="userCity"></span></p>
 		                    </div>
@@ -40,13 +44,13 @@
 				    <li class="mui-table-view-cell">
 				        <a class="mui-navigate-right peocount"  id="goZixun">
 				        	<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
-				        	<span class="mui-pull-left">已完成咨询<em>11</em>人次</span>
+				        	<span class="mui-pull-left">已完成咨询<em id="zixunOk"></em>人次</span>
 				        	<div class="rightword levelbox">
-				        		<span class="mui-icon iconfont icon-favorfill"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-				        		<span class="mui-icon iconfont icon-favorfill"></span>
-				        		<span class="mui-icon iconfont icon-favorfill"></span>
-				        		<span class="mui-icon iconfont icon-favor"></span>
-				        		<span class="mui-icon iconfont icon-favor"></span>
+				        		<span class="mui-icon iconfont icon-favor star"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+				        		<span class="mui-icon iconfont icon-favor star"></span>
+				        		<span class="mui-icon iconfont icon-favor star"></span>
+				        		<span class="mui-icon iconfont icon-favor star"></span>
+				        		<span class="mui-icon iconfont icon-favor star"></span>
 				        	</div>
 				        </a>
 				    </li>
@@ -78,7 +82,7 @@
 				        </a>
 				    </li>-->
 				    <li class="mui-table-view-cell">
-				        <a class="mui-navigate-right" href="attentions.html" id="goFollow">
+				        <a class="mui-navigate-right"  id="goFollow">
 				        	<em class="mui-icon iconfont icon-favor actionicon attenticon mui-pull-left"></em>
 				        	<span class="mui-pull-left">我的关注</span>
 				        </a>

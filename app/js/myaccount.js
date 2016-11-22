@@ -1,15 +1,18 @@
 //我的账号
 mui.ready(function() {
-	   
+
 	/*定义全局变量*/
 	var loginYes = document.getElementById("loginYes");
 	var loginNo = document.getElementById("loginNo");
 	var goLogin = document.getElementById("gologin");
 	var goReg = document.getElementById("goreg");
 	var goSetup = document.getElementById("goSetup");
-	
+	var goZixun = document.getElementById("goZixun");
+	var oEdit = document.getElementById("editbox");
+	var goFollow = document.getElementById("goFollow");
+
 	mui.plusReady(function() {
-		
+
 		var userId = plus.storage.getItem('userid');
 		/*判断登录是否成功*/
 		loginStatus();
@@ -29,8 +32,8 @@ mui.ready(function() {
 		})
 
 		/*退出登录刷新页面*/
-        window.addEventListener('closeUser',function(event){
-		    userId = event.detail.id;
+		window.addEventListener('closeUser', function(event) {
+			userId = event.detail.id;
 			loginStatus();
 		});
 
@@ -38,6 +41,7 @@ mui.ready(function() {
 			if(userId && userId != "null" && userId != null) {
 				loginYes.style.display = "block";
 				loginNo.style.display = "none";
+
 				/*设置按钮*/
 				goSetup.addEventListener('tap', function() {
 					mui.openWindow({
@@ -48,6 +52,39 @@ mui.ready(function() {
 						}
 					});
 				})
+
+				/*我的关注*/
+				goFollow.addEventListener('tap', function() {
+					plus.nativeUI.showWaiting(); //显示原生等待框
+					plus.webview.create("../html/attentions.html");
+				})
+
+				/*我的修改*/
+				oEdit.addEventListener('tap', function() {
+					mui.openWindow({
+						url: '../html/proinforupdate.html',
+						id: 'html/proinforupdate.html',
+						show: {
+							autoShow: false,
+							aniShow: "slide-in-left"
+						},
+
+					});
+				})
+				
+				/*我的历史和评价*/
+				goZixun.addEventListener('tap', function() {
+					mui.openWindow({
+						url: '../html/coophistory.html',
+						id: 'html/coophistory.html',
+						show: {
+							autoShow: false,
+							aniShow: "slide-in-left"
+						},
+
+					});
+				})
+
 			} else {
 				loginNo.style.display = "block";
 				loginYes.style.display = "none";
@@ -71,15 +108,21 @@ mui.ready(function() {
 						document.getElementById("userDepartment").innerText = $info.department || '';
 						document.getElementById("userMechanism").innerText = $info.orgName || '';
 						document.getElementById("userCity").innerText = $info.address || '';
+						document.getElementById("zixunOk").innerText = $info.consultCount || '';
+						var startLeval = parseInt($info.starLevel);
+						var start = document.getElementsByClassName("star");
+						for(var i = 0; i < startLeval; i++) {
+							start[i].classList.add("icon-favorfill");
+						}
 						if($info.hasHeadImage == 1) {
 							document.getElementById("userImg").setAttribute("src", "../images/head/" + $info.id + "_m.jpg");
 						} else {
 							document.getElementById("userImg").setAttribute("src", "../images/default-photo.jpg");
 						}
 						if($info.authentication) {
-							document.getElementById("rzImg").style.display="inline";
+							document.querySelector('.authicon').style.display = "inline";
 						} else {
-							document.getElementById("rzImg").style.display="none";
+							document.querySelector('.unauthicon').style.display = "inline";
 						}
 
 					}

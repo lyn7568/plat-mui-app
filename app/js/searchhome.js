@@ -200,12 +200,12 @@ mui(".yyhy").on('tap', 'a', function() {
 	}
 	plus.nativeUI.showWaiting();
 	mui('.mui-popover').popover('hide');
-	console.log(key);
+	/*console.log(key);
 	console.log(subject);
 	console.log(industry);
 	console.log(address);
 	console.log(province);
-	console.log(authentication);
+	console.log(authentication);*/
 	expert(key, subject, industry, province, address, authentication, 10, 1);
 });
 
@@ -253,7 +253,7 @@ function expert(key, subject, industry, province, address, authentication, pageS
 			success: function(data) {
 				table.innerHTML = '';
 				plus.nativeUI.closeWaiting();
-				plus.webview.currentWebview().show();
+				plus.webview.currentWebview().show("slide-in-right",150);
 				if(data.success && data.data.data != '') {
 					var datalist = data.data.data;
 					console.log(data.data.total)
@@ -286,7 +286,7 @@ function expert(key, subject, industry, province, address, authentication, pageS
 			success: function(data) {
 				table.innerHTML = '';
 				plus.nativeUI.closeWaiting();
-				plus.webview.currentWebview().show();
+				plus.webview.currentWebview().show("slide-in-right",150);
 				if(data.success && data.data.data != '') {
 					var datalist = data.data.data;
 					resourcesEach(datalist);

@@ -451,4 +451,6 @@ body{ color: #666666; font-size:14px;}
 .icons.levelbox .icon-favorfill{/*color: #FFB400;*/font-size: 18px;} 
 .assessbox{margin:10px 0; background: #FFFFFF; padding:10px;padding-bottom: 30px;}
 /***********************评价*******************/
-
+.displayNone {
+	display: none;
+}

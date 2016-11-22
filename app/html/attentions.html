@@ -25,143 +25,22 @@
 				<li index="1" class="mui-col-xs-6">资源</li>
 			</ul>
 		</div>
-		<div class="alllist">
-	        <!--专家列表-->
-	        <div class="mui-card-content conblock childlist" style="display: block;"><!--当前x显示列表   'childlist'的显示隐藏-->
-		        <ul class="mui-table-view protable">
-		            <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="../html/proinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
-		                    <div class="mui-media-body">
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon"></em></span>	
-		                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
-		                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
-		                    </div>
-		                </a>
-		            </li>
-		            <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="../html/proinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
-		                    <div class="mui-media-body">
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip unauthicon"></em></span>	
-		                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
-		                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
-		                    </div>
-		                </a>
-		            </li>
-		            <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="../html/proinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
-		                    <div class="mui-media-body">
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon"></em></span>	
-		                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
-		                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
-		                    </div>
-		                </a>
-		            </li>
-		            <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="../html/proinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
-		                    <div class="mui-media-body">
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon"></em></span>	
-		                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
-		                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
-		                    </div>
-		                </a>
-		            </li>
-		           <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="../html/proinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
-		                    <div class="mui-media-body">
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon"></em></span>	
-		                        <p class="listtit2"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    	<p class="mui-ellipsis listtit3"><span>研究方向标题A</span>、<span>研究方向标题B</span></h5>
-		                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
-		                    </div>
-		                </a>
-		            </li>
+		<div class="alllist" id="pullrefresh">
+	        <div  class="mui-card-content conblock childlist mui-scroll-wrapper" style="display: block;"><!--当前x显示列表   'childlist'的显示隐藏-->
+		        <ul class="mui-table-view protable list mui-scroll">
+		            
 		        </ul>
 			</div>
-			<!--资源列表-->
-			<div class="mui-card-content conblock childlist">
-		        <ul class="mui-table-view protable">
-		            <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="resinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">
-		                    <div class="mui-media-body">
-		                    	<span class="listtit">资源名称</span>
-		                    	<p class="mui-ellipsis listtit2"><span>用途A</span>，<span>用途B</span></p>
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon"></em></span>	
-		                        <p class="listtit3"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    </div>
-		                </a>
-		            </li>
-		            <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="resinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">
-		                    <div class="mui-media-body">
-		                    	<span class="listtit">资源名称</span>
-		                    	<p class="mui-ellipsis listtit2"><span>用途A</span>，<span>用途B</span></p>
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon"></em></span>	
-		                        <p class="listtit3"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    </div>
-		                </a>
-		            </li>
-		            <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="resinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">
-		                    <div class="mui-media-body">
-		                    	<span class="listtit">资源名称</span>
-		                    	<p class="mui-ellipsis listtit2"><span>用途A</span>，<span>用途B</span></p>
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon"></em></span>	
-		                        <p class="listtit3"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    </div>
-		                </a>
-		            </li>
-		            <li class="mui-table-view-cell mui-media">
-		                <a class="proinfor" href="resinforbrow.html">
-		                    <img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">
-		                    <div class="mui-media-body">
-		                    	<span class="listtit">资源名称</span>
-		                    	<p class="mui-ellipsis listtit2"><span>用途A</span>，<span>用途B</span></p>
-		                        <span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon"></em></span>	
-		                        <p class="listtit3"><span>职称</span>，<span>职务</span>，<span>所属机构</span> | <span>所在地</span></p>
-		                    </div>
-		                </a>
-		            </li>
-		        </ul>
-			</div>
+			<div class="mui-card-content conblock childlist mui-scroll-wrapper" >
+			        <ul class="mui-table-view protable list2 mui-scroll">
+			           
+			        </ul>
+			 </div>
 		</div>
 		<!--<a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowup"></span> </a>-->
     </div>
     <script src="../js/public/mui.min.js"></script>
-	<script type="text/javascript" charset="utf-8">
-		mui.init();
-		//------------------------------
-		//菜单tab切换
-		mui("#fixbtn").on("tap","li",function(){
-			var checkedindex=this.getAttribute("index");
-			var checkedcontent_arr=document.getElementsByClassName("childlist");
-			var libtn_arr = document.getElementById("fixbtn").getElementsByTagName("li");
-			mui.toast(checkedindex);
-			if(checkedindex==0){
-				libtn_arr[0].classList.add("liactive");
-				libtn_arr[1].classList.remove("liactive");
-				checkedcontent_arr[1].style.display = 'none';
-				checkedcontent_arr[0].style.display = 'block';
-			}else{
-				libtn_arr[1].classList.add("liactive");
-				libtn_arr[0].classList.remove("liactive");
-				checkedcontent_arr[0].style.display = 'none';
-				checkedcontent_arr[1].style.display = 'block';
-			}
-		})
-		//-----------------------------
-		
-	</script>      	 
+	<script src="../js/public/base.js"></script>
+	<script src="../js/attentions.js"></script>
 </body>
 </html>

@@ -134,6 +134,9 @@
 	  				starlist[i].classList.add('icon-favorfill');
 				}
  				
+ 				plus.nativeUI.closeWaiting();
+				plus.webview.currentWebview().show("slide-in-right",150);
+ 				
  			},
  			error:function(xhr,type,errorThrown){
  				plus.nativeUI.toast("服务器链接超时", toastStyle);

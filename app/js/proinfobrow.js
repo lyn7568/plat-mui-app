@@ -11,13 +11,14 @@ mui.plusReady(function() {
     console.log(proId);
 	/*点击咨询*/
 	ozixun.addEventListener('tap', function() {
-		mui.openWindow({
-			url: 'consultapply.html',
-			id: 'consultapply.html',
-			extras: {
-				'proId': proId
-			}
-		});
+		var flag = 'professor';
+		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+		webviewShow = plus.webview.create("../html/consultapply.html",'consultapply.html',{},
+		{'proId': proId,'flag': flag});
+		
+	    webviewShow.addEventListener("loaded", function() {
+	        
+	    }, false);
 	});
 	//查询学术领域
 	var subjectShow = function(data) {

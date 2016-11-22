@@ -28,7 +28,7 @@ var proId;
 
 function ziyuaninfo(resourceId) {
 	mui.plusReady(function() {
-		plus.nativeUI.showWaiting();
+		
 		mui.ajax(baseUrl + '/ajax/resource/' + resourceId, {
 			data: {
 				'resourceId': resourceId
@@ -58,28 +58,37 @@ function ziyuaninfo(resourceId) {
 	
 					//学术领域
 					if(mydata['subject']) {
-						/*console.log(ofielddiv.classList)
-						ofielddiv.removeClass('displayNone');
-						ofielddiv.addClass('displayBlock');*/
-						var fieldlist = mydata['subject'].split(",");
-						for(var i = 0; i < fieldlist; i++) {
+						if(mydata['subject'].indexOf(',') != -1) {//字符串是否包含,
+							var fieldlist = mydata['subject'].split(",");
+							console.log(fieldlist.length);
+							for(var i = 0; i < fieldlist; i++) {
+								var oli = document.createElement('li');
+								oli.innerText = fieldlist[i];
+								ofield.appendChild(oli);
+							}
+						}else {
 							var oli = document.createElement('li');
-							oli.innerText = fieldlist[i];
+							oli.innerText = mydata['subject'];
 							ofield.appendChild(oli);
 						}
+						
 					} else {
 						ofielddiv.style.display = 'none';
 					}
 	
 					//应用行业
 					if(mydata['industry']) {
-						/*oapplydiv.removeClass('displayNone');
-						oapplydiv.addClass('displayBlock');*/
-						var applylist = mydata['industry'].split(",");
-						for(var i = 0; i < applylist; i++) {
+						if(mydata['industry'].indexOf(',') != -1) {//字符串是否包含,
+							var applylist = mydata['industry'].split(",");
+							console.log(applylist.length);
+							for(var i = 0; i < applylist; i++) {
+								var oli = document.createElement('li');
+								oli.innerText = fieldlist[i];
+								oapply.appendChild(oli);
+							}
+						}else {
 							var oli = document.createElement('li');
-							oli.className = 'mui-ellipsis';
-							oli.innerText = applylist[i];
+							oli.innerText = mydata['industry'];
 							oapply.appendChild(oli);
 						}
 					}else {
@@ -88,19 +97,13 @@ function ziyuaninfo(resourceId) {
 	
 					//详细描述
 					if(mydata['descp']) {
-						/*odetaildiv.removeClass('displayNone');
-						odetaildiv.addClass('displayBlock');*/
 						odetail.innerHTML = mydata['descp']
 					}else {
 						odetaildiv.style.display = 'none';
 					}
 					
-					
-	
 					//合作备注
 					if(mydata['cooperationNotes']) {
-						/*ohezuodiv.removeClass('displayNone');
-						ohezuodiv.addClass('displayBlock');*/
 						ohezuo.innerHTML = mydata['cooperationNotes'];
 					}else {
 						ohezuodiv.style.display = 'none';
@@ -125,7 +128,6 @@ mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
 	var resourceId = self.resourceId;
 	console.log(resourceId);
-
 	//资源信息
 	ziyuaninfo(resourceId);
 
@@ -133,15 +135,14 @@ mui.plusReady(function() {
 	oconsult.addEventListener('tap', function() {
 		var flag = 'ziyuan';
 		var consulttitle = oresorcename.innerHTML;
-		mui.openWindow({
-			url: 'consultapply.html',
-			id: 'consultapply.html',
-			extras: {
-				'proId': proId,
-				'flag': flag,
-				'consulttitle': consulttitle
-			}
-		});
+		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+		webviewShow = plus.webview.create("../html/consultapply.html",'consultapply.html',{},
+		{'proId': proId,'flag': flag,'consulttitle': consulttitle});
+		
+	    webviewShow.addEventListener("loaded", function() {
+	        
+	    }, false);
+		
 	});
 	/*咨询成功,返回资源信息*/
 	window.addEventListener('backziyuaninfo',function(event){

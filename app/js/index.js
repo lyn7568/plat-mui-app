@@ -4,15 +4,16 @@ var allPages = 1; // 总页数
 var table = document.body.querySelector('.list');
 var search = document.getElementById("search");
 
+mui.plusReady(function(){
+	plus.nativeUI.showWaiting();
+})
+
+
 mui('.list').on('tap','a',function(){
 	var id=this.getAttribute("data-id");
 	console.log(id);
-	var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+	plus.nativeUI.showWaiting();//显示原生等待框
     webviewShow = plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});//后台创建webview并打开show.html
-    webviewShow.addEventListener("loaded", function() {
-        nwaiting.close(); //新webview的载入完毕后关闭等待框
-        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画
-    }, false);
 })
 
 
@@ -25,6 +26,14 @@ search.addEventListener('focus', function() {
         webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画
     }, false);
 });
+
+/*点击热门领域*/
+mui('.gridbg').on('tap','li',function(){
+	var subject = this.getAttribute("data-title");
+	plus.nativeUI.showWaiting();//显示原生等待框
+    webviewShow = plus.webview.create("../html/search.html",'search.html',{},{subject:subject,bigClass:1});//后台创建webview并打开show.html
+})
+
 
 /*页面数据初始化*/
 getOnePase();
@@ -72,6 +81,7 @@ function getaData() {
 			async:false,
 			success: function(data) {
 				if(data.success) {
+			
 					//console.log("成功");
 					var dice1 = data.data.total; //总条数
 					var dice2 = data.data.pageSize; //每页条数
@@ -110,6 +120,7 @@ function getOnePase() {
 			timeout: 10000,
 			success: function(data) {
 				if(data.success) {
+					plus.nativeUI.closeWaiting();
 					var datalist = data.data.data;
 					datalistEach(datalist);
 				}

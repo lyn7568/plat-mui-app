@@ -18,6 +18,8 @@ var yyhy = document.getElementById("yyhy");
 var xsly = document.getElementById("xsly");
 var provinceVal = document.getElementById("provinceval");
 var addressVal = document.getElementById("addressval");
+var subjectid = document.getElementById("subjectid");
+var industryid = document.getElementById("industryid");
 
 
 mui.init({
@@ -55,32 +57,41 @@ if(mui.os.plus) {
 
 mui.plusReady(function(){
 	
+	/*点击专家和资源列表*/
 	mui('.list').on('tap','a',function(){
 		var id=this.getAttribute("data-id");
 		//console.log(id);
-		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+		plus.nativeUI.showWaiting();//显示原生等待框
 		if(bigClass==1){
-			webviewShow = plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});
+			plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});
 		}else{
-			webviewShow = plus.webview.create("../html/resinforbrow.html",'resinforbrow.html',{},{resourceId:id});	
+			plus.webview.create("../html/resinforbrow.html",'resinforbrow.html',{},{resourceId:id});	
 		}
-	    webviewShow.addEventListener("loaded", function() {
-	        nwaiting.close(); //新webview的载入完毕后关闭等待框
-	        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画
-	    }, false);
+	  
 	})
 	
 	var self = plus.webview.currentWebview();
-	searchVal.value=self.key;
-	key=self.key;
+	if(self.key==undefined){
+		self.key="";
+	}else{
+		key=self.key;
+		searchVal.value=key;
+	}
+	if(self.subject==undefined){
+		self.subject="学术领域";
+		
+	}else{
+		subject=self.subject;
+		subjectid.innerText = self.subject;
+	}
+	
     bigClass=self.bigClass;
     if(bigClass==1){
     	selectblock.innerText='专家';
     }else{
     	selectblock.innerText='资源';
     }
-	//var perrid = plus.webview.getWebviewById('../html/search-home.html');
-	//perrid.close();
+    
 	
     expert(key, subject, industry, province, address, authentication, 10, 1);	
 })
@@ -105,12 +116,12 @@ searchval.addEventListener("keyup", function() {
 	if(e.keyCode == 13) {
 		pageNo = 1
 		key = searchVal.value;
-		console.log(key);
+	/*	console.log(key);
 	console.log(subject);
 	console.log(industry);
 	console.log(address);
 	console.log(province);
-	console.log(authentication);
+	console.log(authentication);*/
 		plus.nativeUI.showWaiting();
 
 		expert(key, subject, industry, province, address, authentication, 10, 1);
@@ -168,8 +179,8 @@ mui("#addressval").on('tap', 'a', function() {
 	if(address == "全省") {
 		address = "";
 	}
-	console.log(province);
-	console.log(address);
+	//console.log(province);
+	//console.log(address);
 	plus.nativeUI.showWaiting();
 	mui('.mui-popover').popover('hide');
 	expert(key, subject, industry, province, address, authentication, 10, 1);
@@ -180,11 +191,12 @@ mui(".yyhy").on('tap', 'a', function() {
 	pageNo = 1
 	key = searchVal.value;
 	industry = this.innerText;
-	document.getElementById("industryid").innerText = industry;
+	industryid.innerText = industry;
 	document.querySelector('#yyhy li a.active').classList.remove('active');
 	this.classList.add("active");
 	if(industry == "不限") {
 		industry = "";
+		industryid.innerText ="应用行业";
 	}
 	plus.nativeUI.showWaiting();
 	mui('.mui-popover').popover('hide');
@@ -202,11 +214,12 @@ mui(".xsly").on('tap', 'a', function() {
 	pageNo = 1
 	key = searchVal.value;
 	subject = this.innerText;
-	document.getElementById("subjectid").innerText = subject;
+	subjectid.innerText = subject;
 	document.querySelector('#xsly li a.active').classList.remove('active');
 	this.classList.add("active");
 	if(subject == "不限") {
 		subject = "";
+		subjectid.innerText="学术领域";
 	}
 	/*	console.log(key);
 		console.log(subject);

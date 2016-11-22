@@ -32,6 +32,8 @@ function ziyuaninfo(resourceId) {
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
 			if(data.success) {
+				plus.nativeUI.closeWaiting();
+				plus.webview.currentWebview().show("slide-in-right",150);
 				console.log(data);
 				var mydata = data.data;
 				//专家信息

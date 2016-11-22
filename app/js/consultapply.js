@@ -18,9 +18,8 @@
  	var osaveconsultBtn = document.getElementById("saveconsultBtn");//保存咨询，发送按钮
  	
  	/*保存咨询*/
- 	function saveconsult(proId,userid) {
+ 	function saveconsult(proId,userid,consultTitle) {
  		var consultType = oconsulttype_ul.querySelector('.liactive').innerText;
- 		var consultTitle = oconsulttitle.value;
  		var consultcon = oconsultcon.innerText;
  		console.log(consultType);
  		console.log(consultTitle);
@@ -58,8 +57,7 @@
  				
  			}
  		});
- 	};
- 	
+ 	};  	
  	/*专家信息*/
  	function proinfo(proId) {
  		mui.ajax(baseUrl+'/ajax/professor/editBaseInfo/'+proId,{
@@ -110,8 +108,6 @@
  				
  				/*是否认证*/
  				if(myData["authentication"] == true){
- 					/*opromodify.classList.remove('unauthicon');
-					opromodify.classList.add('authicon');*/
 					emele.classList.add('authicon');
 					
 				}else if(myData["authentication"] == false){
@@ -137,7 +133,7 @@
  				
  			},
  			error:function(xhr,type,errorThrown){
- 				
+ 				plus.nativeUI.toast("服务器链接超时", toastStyle);
  			}
  		});
  	}
@@ -148,6 +144,9 @@
    		var userid = plus.storage.getItem('userid');
    	    var self = plus.webview.currentWebview();
    	    var proId = self.proId;
+   	    var flag = self.flag;
+   	    var consulttitle = self.consulttitle;//咨询主题（从资源页面传过来的）
+   	    console.log(consulttitle);
    	    console.log(proId);
    	    
    	 	/*专家信息数据*/
@@ -155,7 +154,15 @@
    	    
    	    /*发送保存咨询*/
    	   	osaveconsultBtn.addEventListener('tap',function() {
-			saveconsult(proId,userid);
+   	   		if(consulttitle){
+   	   			alert("从资源进入")
+   	   			var consulttitle = '关于'+consulttitle+"的咨询"
+   	   			saveconsult(proId,userid,consulttitle);
+   	   		}else {
+   	   			alert("从专家进入");
+   	   			saveconsult(proId,userid,oconsulttitle.value);
+   	   		}
+			
 			/*返回专家信息*/
 			var proinfo = plus.webview.getWebviewById('proinforbrow.html');
 			proinfo.show();

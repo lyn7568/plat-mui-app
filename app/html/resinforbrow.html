@@ -12,7 +12,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">资源名称</h1>
+		    <h1 class="mui-title toptit" id="resorcename">资源名称</h1>
 		    <a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
 		    	<ul class="sharebox" id="shareBox" style="display:none; color: #000000;">
 		    		<li>
@@ -31,10 +31,10 @@
 		
 		<!--主页面底部菜单-->
 	     <nav class="mui-bar mui-bar-tab mui-clearfix footbox">
-		    <div class="dialogbtn mui-pull-left btnactive">
+		    <div class="dialogbtn mui-pull-left btnactive" id="consult">
 		    	<div>
 			    	<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
-					<span class="mui-pull-left">咨询</span>
+					<span class="mui-pull-left" id="consultBtn">咨询</span>
 				</div>
 			</div>
 			<div class="attentbtn mui-pull-left">
@@ -47,14 +47,14 @@
     		<!-- 主界面具体展示内容 -->
     		<div class="mui-input-group mainbox restopblock">
     			<div class="resouimgbox mui-pull-left">
-					<img src="../images/default-resource.jpg"/>
+					<img src="../images/default-resource.jpg"/ id="ziyuanimg">
 				</div>
 				<div class="personblock mui-pull-left">
-                    <img class="headimg" src="../images/default-photo.jpg">
-                    <p class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon" style="font-size:16px;"></em></p>	
-                    <p class="listtit2"><span>职称</span>，<span>职务</span></p>
-                    <p class="listtit3"><span>所属机构</span></p>
-                    <p class="listtit3"><span>所在地</span></p>
+                    <img class="headimg" src="../images/default-photo.jpg" id="proimg">
+                    <p class="listtit" id="proname">专家姓名<em class="mui-icon iconfont icon-vip " style="font-size:16px;" id="promodify"></em></p>	
+                    <p class="listtit2" id="protitle"><span>职称</span><span id="prooffice">职务</span></p>
+                    <p class="listtit3"><span id="proorgName">所属机构</span></p>
+                    <p class="listtit3"><span id="proadress">所在地</span></p>
                 </div>
     		</div>
     		<!--<div class="resomenubox">
@@ -71,11 +71,11 @@
 						<div class="infocon">
 							<p style="color:#666666;">
 								<span>资源名称：</span>
-								<span class="listtit2">XXXXX资源名称XXXXX资源名称XX</span>
+								<span class="listtit2" id='resourceName'>XXXXX资源名称XXXXX资源名称XX</span>
 							</p>
 							<p style="color:#666666;">
 								<span>应用用途：</span>
-								<span class="listtit2">应用用途应用用途应用用途应用用途应用用</span>
+								<span class="listtit2" id="yongtu">应用用途应用用途应用用途应用用途应用用</span>
 							</p>
 						</div>
 					</li>
@@ -86,14 +86,14 @@
 					<li>
 						<div class="infocontit">学术领域</div>
 						<div class="infocon">
-					       	<ul class="infosubject">
-					       		<li>领域1</li>
+					       	<ul class="infosubject" id="field">
+					       		<!--<li>领域1</li>
 					       		<li>领域领域领域2</li>
 					       		<li>领域领域领域领域3</li>
 					       		<li>领域4</li>
 					       		<li>领域领1</li>
 					       		<li>领域1</li>
-					       		<li>领域1</li>
+					       		<li>领域1</li>-->
 					       	</ul>
 				       </div>
 					</li>
@@ -104,14 +104,14 @@
 					<li>
 						<div class="infocontit">应用行业</div> 
 				        <div class="infocon">
-					       	<ul class="infoapply">
-					       		<li class="mui-ellipsis">应用行业1</li>
+					       	<ul class="infoapply" id="apply">
+					       		<!--<li class="mui-ellipsis">应用行业1</li>
 					       		<li class="mui-ellipsis">领域领域领域域领域领域域领域领域域领域领域2</li>
 					       		<li class="mui-ellipsis">领域领域3</li>
 					       		<li class="mui-ellipsis">领域4</li>
 					       		<li class="mui-ellipsis">领域领1</li>
 					       		<li class="mui-ellipsis">领域1</li>
-					       		<li class="mui-ellipsis">领域1</li>
+					       		<li class="mui-ellipsis">领域1</li>-->
 					       	</ul>
 				        </div>
 					</li>
@@ -122,7 +122,7 @@
 					<li>
 				       <div class="infocontit">详细描述</div> 
 				       <div class="infocon">
-				       		<p class="listtit3 mutlinebox">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
+				       		<p class="listtit3 mutlinebox" id="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
 				       </div>
 					</li>
 				</ul>
@@ -132,7 +132,7 @@
 		            <li>
 				       <div class="infocontit">合作备注</div> 
 				       <div class="infocon">
-				       		<p class="listtit3 mutlinebox"> Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
+				       		<p class="listtit3 mutlinebox" id="hezuo"> Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
 				       </div>
 				    </li>
 				</ul>

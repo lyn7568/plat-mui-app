@@ -44,8 +44,8 @@ if(mui.os.plus) {
 function getaData() {
     mui.plusReady(function() {
     	var userid = plus.storage.getItem('userid');
-    	console.log("刷新传参"+oneedval.value+otypeval.value+ostateval.value+osortval.value);
-    	console.log('加载页'+pageIndex)
+    	/*console.log("刷新传参"+oneedval.value+otypeval.value+ostateval.value+osortval.value);
+    	console.log('加载页'+pageIndex)*/
         mui.ajax(baseUrl+'/ajax/consult/pq', {
             data: {
                 "professorId":userid, //专家ID
@@ -118,10 +118,11 @@ function initdata() {
             success: function(data) {
                 if (data.success) {
                     console.log("成功");
+                    /*plus.webview.currentWebview().show("slide-in-right",150);*/
+					/*plus.nativeUI.closeWaiting();*/
                     var datalist = data.data.data;
                     console.log(datalist.length);
-                   
-                    
+                   	
 	                table.innerHTML = '';//清空容器
                     eachData(userid,datalist);
                     mui('#pullrefresh').pullRefresh().refresh(true);//重置下拉加载
@@ -151,11 +152,6 @@ mui(".mui-table-view").on('tap','.itemBtn',function(){
 	    }
 	});
 });
-
-mui.plusReady(function() {
-	var self = plus.webview.currentWebview();
-	console.log(self.id)
-})
 
 
 /*由聊天页面返回咨询列表,要更新咨询状态:::自定义事件*/

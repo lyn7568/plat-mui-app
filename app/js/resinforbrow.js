@@ -1,4 +1,92 @@
 //资源信息页面 
+var oresorcename = document.getElementById("resorcename"); //资源名称标题
+var oproname = document.getElementById("proname"); //专家名称
+var oprotitle = document.getElementById("protitle"); //专家职称
+var oprooffice = document.getElementById("prooffice"); //专家职务
+var oproorgName = document.getElementById("proorgName"); //专家所属机构
+var oproadress = document.getElementById("proadress"); //专家所在地
+var opromodify = document.getElementById("promodify"); //专家认证
+var oproimg = document.getElementById("proimg"); //专家头像
+
+var oresourceName = document.getElementById("resourceName"); //资源名称
+var oyongtu = document.getElementById("yongtu"); //应用用途
+var oziyuanimg = document.getElementById("ziyuanimg"); //资源图片
+var ofield = document.getElementById("field"); //学术领域
+var oapply = document.getElementById("apply"); //应用行业
+var odetail = document.getElementById("detail"); //详细描述
+var ohezuo = document.getElementById("hezuo"); //合作备注
+
+var oconsult = document.getElementById("consult"); //咨询
+var oconsultBtn = document.getElementById("consultBtn"); //咨询按钮
+
+var proId;
+
+function ziyuaninfo(resourceId) {
+	alert("ziyuaninfo");
+	mui.ajax(baseUrl + '/ajax/resource/' + resourceId, {
+		data: {
+			'resourceId': resourceId
+		},
+		dataType: 'json', //服务器返回json格式数据
+		type: 'get', //HTTP请求类型
+		timeout: 10000, //超时时间设置为10秒；
+		success: function(data) {
+			if(data.success) {
+				console.log(data);
+				var mydata = data.data;
+				//专家信息
+				proId = mydata['professor']['id']; //专家id
+				(mydata['resourceName']) ? oresorcename.innerHTML = mydata['resourceName']: oresorcename.innerHTML = ''; //资源名称
+				(mydata['resourceName']) ? oresourceName.innerHTML = mydata['resourceName']: oresourceName.innerHTML = ''; //资源名称
+				(mydata['professor']['name']) ? oproname.innerHTML = mydata['professor']['name']: oproname.innerHTML = ''; //专家姓名
+				(mydata['professor']['title']) ? oprotitle.innerHTML = mydata['professor']['title'] + '，': oprotitle.innerHTML = ''; //专家职称
+				(mydata['professor']['office']) ? oprooffice.innerHTML = mydata['professor']['office']: oprooffice.innerHTML = ''; //专家职务
+				(mydata['professor']['orgName']) ? oproorgName.innerHTML = mydata['professor']['orgName']: oproorgName.innerHTML = ''; //专家所属机构
+				(mydata['professor']['address']) ? oproadress.innerHTML = mydata['professor']['address']: oproadress.innerHTML = ''; //专家所在地
+				(mydata['professor']['authentication']) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon'); //专家认证
+				(mydata['professor']['hasHeadImage']) ? oproimg.setAttribute('src', '../images/head/' + mydata['professor']['id'] + '_m.jpg'): oproimg.setAttribute('src', '../images/default-photo.jpg'); //专家头像
+
+				//资源基本信息
+				(mydata['images']['imageSrc']) ? oziyuanimg.setAttribute('src', mydata['images']['imageSrc']): oziyuanimg.setAttribute('src', '../images/default-resource.jpg'); //资源图片
+				(mydata['supportedServices']) ? oyongtu.innerHTML = mydata['supportedServices']: oyongtu.innerHTML = ''; //应用用途
+
+				//学术领域
+				if(mydata['subject']) {
+					var fieldlist = mydata['subject'].split(",");
+					for(var i = 0; i < fieldlist; i++) {
+						var oli = document.createElement('li');
+						oli.innerText = fieldlist[i];
+						ofield.appendChild(oli);
+					}
+				} else {
+					ofield.innerHTML = '';
+				};
+
+				//应用行业
+				if(mydata['industry']) {
+					var applylist = mydata['industry'].split(",");
+					for(var i = 0; i < applylist; i++) {
+						var oli = document.createElement('li');
+						oli.className = 'mui-ellipsis';
+						oli.innerText = applylist[i];
+						oapply.appendChild(oli);
+					}
+				} else {
+					oapply.innerHTML = '';
+				};
+
+				//详细描述
+				(mydata['descp']) ? odetail.innerHTML = mydata['descp']: odetail.innerHTML = ''; //详细描述
+
+				//合作备注
+				(mydata['cooperationNotes']) ? ohezuo.innerHTML = mydata['cooperationNotes']: ohezuo.innerHTML = ''; //合作备注
+			}
+		},
+		error: function(xhr, type, errorThrown) {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+		}
+	});
+}
 
 mui.plusReady(function() {
 	var yesExpert = document.getElementById("yesExpert");
@@ -6,6 +94,25 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var resourceId = self.resourceId;
+	console.log(resourceId);
+
+	//资源信息
+	ziyuaninfo(resourceId);
+
+	//点击咨询打开咨询申请
+	oconsult.addEventListener('tap', function() {
+		var flag = 'ziyuan';
+		var consulttitle = oresorcename.innerHTML;
+		mui.openWindow({
+			url: 'consultapply.html',
+			id: 'consultapply.html',
+			extras: {
+				'proId': proId,
+				'flag': flag,
+				'consulttitle': consulttitle
+			}
+		});
+	});
 
 	ifCollection();
 
@@ -13,9 +120,9 @@ mui.plusReady(function() {
 		var $this = this;
 		collectionExpert($this);
 	});
-	
-	noExpert.addEventListener('tap',function() {
-		var $this=this;
+
+	noExpert.addEventListener('tap', function() {
+		var $this = this;
 		cancelCollectionExpert($this);
 	});
 

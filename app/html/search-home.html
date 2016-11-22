@@ -79,6 +79,7 @@
 		
 		mui("#li_show").on('tap', 'li', function() {
 			bigClass = this.getAttribute("data-num");
+			//console.log(bigClass)
 			selectblock.innerHTML = this.innerHTML;
 			showblock.style.display = 'none';
 		});

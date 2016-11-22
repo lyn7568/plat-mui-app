@@ -57,7 +57,7 @@ mui.plusReady(function(){
 	
 	mui('.list').on('tap','a',function(){
 		var id=this.getAttribute("data-id");
-		console.log(id);
+		//console.log(id);
 		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
 		if(bigClass==1){
 			webviewShow = plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});
@@ -221,7 +221,7 @@ mui(".xsly").on('tap', 'a', function() {
 
 /*初始化数据*/
 function expert(key, subject, industry, province, address, authentication, pageSize, pageNo) {
-		console.log(pageNo)
+		console.log(bigClass)
 	if(bigClass == 1) {
 		mui.ajax(baseUrl + '/ajax/professor/pqAPP', {
 			data: {
@@ -273,6 +273,7 @@ function expert(key, subject, industry, province, address, authentication, pageS
 			success: function(data) {
 				table.innerHTML = '';
 				plus.nativeUI.closeWaiting();
+				plus.webview.currentWebview().show();
 				if(data.success && data.data.data != '') {
 					var datalist = data.data.data;
 					resourcesEach(datalist);
@@ -337,7 +338,6 @@ function expert2(key, subject, industry, province, address, authentication, page
 
 				} else {
 					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
-					
 					table.innerHTML = '';
 					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
 				}
@@ -362,7 +362,6 @@ function expert2(key, subject, industry, province, address, authentication, page
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
-			
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
 				if(data.success && data.data.data != '') {
@@ -522,6 +521,7 @@ function resourcesEach(datalist) {
 	});
 }
 
+mui.plusReady(function(){
 //省
 mui.ajax(baseUrl + '/ajax/dataDict/qaCity', {
 	data: {
@@ -589,6 +589,6 @@ mui.ajax(baseUrl + '/ajax/dataDict/qa/SUBJECT', {
 	}
 });
 
-
+})
 
 	

@@ -38,8 +38,10 @@
 					<span class="mui-pull-left" id="consultBtn">咨询</span>
 				</div>
 			</div>
-			<div class="attentbtn mui-pull-left">
-				<em class="mui-iocn iconfont icon-favor"></em><!--已经关注icon-favorfill-->
+			<div class="attentbtn mui-pull-left" >
+				<em class="mui-iocn iconfont icon-favor" id="yesExpert"></em>
+				<em class="mui-iocn iconfont icon-favorfill" style="display:none;" id="noExpert"></em>	
+				<!--已经关注icon-favorfill-->
 			</div>
 		</nav>
 		<!-- 主页面内容容器 -->
@@ -49,10 +51,10 @@
 				<div class="maincon personinfo">
 					<div class="headbox">
 				        <a href="javascript:;">
-				        	<img class="headimg" src="../images/default-photo.jpg" />
-				        	<div class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon" style="font-size:16px;"></em></div>	
-		                    <p class="listtit3"><span>职称</span>，<span>职务</span></p>
-		                    <p class="listtit3"><span>所在部门</span>，<span>所属机构</span> | <span>所在地</span></p>
+				        	<img class="headimg" src="" />
+				        	<div class="listtit "><span class="personalMaterial"></span><em class="mui-icon iconfont icon-vip authicon" style="font-size:16px;"></em></div>	
+		                    <p class="listtit3"><span class="personalMaterial"></span><span class="personalMaterial"></span></p>
+		                    <p cauthwordlass="listtit3"><span class="personalMaterial"></span>，<span class="personalMaterial"></span> <span class="personalMaterial"></span></p>
 				        </a>
 			        </div>
 		        </div>
@@ -60,24 +62,24 @@
 		        	<div class="mui-pull-left peocountbox">
 		        		<div class="peocount mui-clearfix">
 		        			<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
-		        			<span class="mui-pull-left">已完成咨询<em>11</em>人次</span>
+		        			<span class="mui-pull-left">已完成咨询<em class="consultCount"></em>人次</span>
 		        		</div>
 		        	</div>
 		        	<div class="mui-pull-right levelbox">
-		        		<span class="mui-icon iconfont icon-favorfill"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-		        		<span class="mui-icon iconfont icon-favorfill"></span>
-		        		<span class="mui-icon iconfont icon-favorfill"></span>
-		        		<span class="mui-icon iconfont icon-favor"></span>
-		        		<span class="mui-icon iconfont icon-favor"></span>
+		        		<span class="mui-icon iconfont icon-favor start"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+		        		<span class="mui-icon iconfont icon-favor start"></span>
+		        		<span class="mui-icon iconfont icon-favor start"></span>
+		        		<span class="mui-icon iconfont icon-favor start"></span>
+		        		<span class="mui-icon iconfont icon-favor start"></span>
 		        	</div>
 		        </a>
 		    </div>
-		    <div class="mui-input-group mainbox">
+		    <div class="mui-input-group mainbox" id="professorresourceList">
 				<div class="maincon">
 			       <div class="infocontit">合作资源</div> 
 			       <div class="infocon">
-				       <ul class="mui-table-view listitembox resinfo">
-				            <li class="mui-table-view-cell mui-media listitem">
+				       <ul class="mui-table-view listitembox resinfo" id="resourceList">
+				            <!--<li class="mui-table-view-cell mui-media listitem">
 				                <a class="proinfor" href="resinforbrow.html">
 				                    <img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">
 				                    <div class="mui-media-body">
@@ -102,87 +104,65 @@
 				                    	
 				                    </div>
 				                </a>
-				            </li>	
+				            </li>	-->
 		                </ul>    
 		              
 			       </div>
 		       </div>
 		    </div>
-		    <div class="mui-input-group mainbox">
+		    <div class="mui-input-group mainbox" id="professorBreifinfo">
 				<div class="maincon">
 			       <div class="infocontit">个人简介</div> 
 			       <div class="infocon">
-				       	<span>
-				       		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+				       	<span class="breifinfo">
+				       		 
 				        </span>
 			       </div>
 		       </div>
 		    </div>
-		    <div class="mui-input-group mainbox">
+		    <div class="mui-input-group mainbox" id="professorInfosubject">
 				<div class="maincon">
 			       <div class="infocontit">学术领域</div> 
 			       <div class="infocon">
 				       	<ul class="infosubject">
-				       		<li>领域1</li>
+				       		<!--<li>领域1</li>
 				       		<li>领域领域领域2</li>
 				       		<li>领域领域领域领域3</li>
 				       		<li>领域4</li>
 				       		<li>领域领1</li>
 				       		<li>领域1</li>
-				       		<li>领域1</li>
+				       		<li>领域1</li>-->
 				       	</ul>
 			       </div>
 		       </div>
 		    </div>
-		    <div class="mui-input-group mainbox">
+		    <div class="mui-input-group mainbox" id="professorReserachMess">
 				<div class="maincon">
 			       <div class="infocontit">研究方向</div> 
-			       <div class="infocon">
-				        <div class="listbox">
-				        	<div class="listbrowse mui-ellipsis">
-				        		<span class="like">0</span>方向一方向一方向一方向一方向一方向一
-				        	</div>
-				        	<!--点赞icon-appreciatefill 未点赞icon-appreciate-->
-				        	<span class="mui-icon iconfont plusbtn icon-appreciate" data-isagree="-1"></span>
-				        	<div class="likenum">
-				        		<span class="likepeople"><img class="like-h" src="../images/default-photo.jpg"></span>
-				        		<span class="likepeople"><img class="like-h" src="../images/default-photo.jpg"></span>
-				        		<span class="likepeople"><img class="like-h" src="../images/default-photo.jpg"></span>
-				        		<span class="mui-icon iconfont icon-more likepeople likemore"></span>
-				        	</div>
-				        </div>
-				        <div class="listbox">
-				        	<div class="listbrowse mui-ellipsis">
-				        		<span class="like">68</span>方向二
-				        	</div>
-				        	<span class="mui-icon iconfont plusbtn icon-appreciatefill" data-isagree="-1"></span>
-				        	<div class="likenum">
-				        		<span class="likepeople"><img class="like-h" src="../images/default-photo.jpg"></span>
-				        		<span class="likepeople"><img class="like-h" src="../images/default-photo.jpg"></span>
-				        	</div>
-				        </div>
+			       <div class="infocon reserachMess">
+				        
 			       </div>
 		       </div>
 		    </div>
-		    <div class="mui-input-group mainbox">
+		    <div class="mui-input-group mainbox" id="professorinfoapply">
 				<div class="maincon">
 			       <div class="infocontit">应用行业</div> 
 			       <div class="infocon">
 				       	<ul class="infoapply">
-				       		<li class="mui-ellipsis">应用行业1</li>
+				       		<!--<li class="mui-ellipsis">应用行业1</li>
 				       		<li class="mui-ellipsis">领域领域领域域领域领域域领域领域域领域领域2</li>
 				       		<li class="mui-ellipsis">领域领域3</li>
 				       		<li class="mui-ellipsis">领域4</li>
 				       		<li class="mui-ellipsis">领域领1</li>
 				       		<li class="mui-ellipsis">领域1</li>
-				       		<li class="mui-ellipsis">领域1</li>
+				       		<li class="mui-ellipsis">领域1</li>-->
 				       	</ul>
 			       </div>
 		       </div>
 		    </div>
 		    <div class="mui-input-group mainbox">
 				<div class="maincon">
-					<a href="proinforbrow-more.html">
+					<a >
 						<div class="gotonext">
 							<span class="mui-pull-left">查看专家详细信息</span>
 				       		<em class="mui-iocn iconfont icon-pullright mui-pull-left"></em>
@@ -193,7 +173,7 @@
         </div>
 		
 		
-		<script src=" ../js/public/mui.min.js"></script>
+		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/proinfobrow.js"></script>
 	</body>

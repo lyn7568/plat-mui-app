@@ -72,11 +72,12 @@ mui.plusReady(function(){
 		var id=this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});
+		console.log(id)
 	})
 	mui('.list2').on('tap','a',function(){
 		var id=this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{resourceId:id});
+		plus.webview.create("../html/resinforbrow.html",'resinforbrow.html',{},{resourceId:id});
 	})
 })
 
@@ -280,7 +281,7 @@ function datalistEach(datalist) {
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';
 
-		li.innerHTML = '<a class="proinfor" data-id="' + item.id + '"' +
+		li.innerHTML = '<a class="proinfor" data-id="' + item.professor.id + '"' +
 			'<p><img class="mui-media-object mui-pull-left headimg" src="' + img + '"></p>' +
 			'<div class="mui-media-body">' +
 			'<span class="listtit">' + item.professor.name + icon + '</span>' +
@@ -333,7 +334,7 @@ function resourcesEach2(datalistd) {
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';
 
-		li.innerHTML = '<a class="proinfor" data-id="' + item.resourceId + '"' +
+		li.innerHTML = '<a class="proinfor" data-id="' + item.resource.resourceId + '"' +
 			'<p><img class="mui-media-object mui-pull-left resimg" src="' + img + '" ></p>' +
 			'<div class="mui-media-body">' +
 			'<span class="listtit">' + item.resource.resourceName + '</span>' +

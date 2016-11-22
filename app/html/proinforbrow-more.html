@@ -32,12 +32,12 @@
 		<!-- 主页面内容容器 -->
     	<div class="mui-content">
     		<!-- 主界面具体展示内容 -->
-    		<div class="mui-input-group mainbox">
+    		<div class="mui-input-group mainbox" id="perfessorEducation">
 				<div class="maincon">
 			       <div class="infocontit">教育背景</div> 
 			       <div class="infocon">
-				       <ul class="mui-table-view listitembox">
-				           <li class="mui-table-view-cell mui-media listitem">
+				       <ul class="mui-table-view listitembox" id="education">
+				           <!--<li class="mui-table-view-cell mui-media listitem">
 				               <a href="javascript:;">
 				               	   <div class="mui-media-object mui-pull-left iconposition">
 				                   		<img class="" src="../images/icon-edu.png">
@@ -60,17 +60,17 @@
 									   <p class="listtit3">毕业年份</p>
 				                   </div>
 				               </a>
-				           </li>
+				           </li>-->
 				       </ul>	
 			       </div>
 		       </div>
 		    </div>
-		    <div class="mui-input-group mainbox">
+		    <div class="mui-input-group mainbox" id="perfessorsoJob">
 				<div class="maincon">
 			       <div class="infocontit">工作经历</div> 
 			       <div class="infocon">
-				       <ul class="mui-table-view listitembox">
-				           <li class="mui-table-view-cell mui-media listitem">
+				       <ul class="mui-table-view listitembox" id="soJob">
+				           <!--<li class="mui-table-view-cell mui-media listitem">
 				               <a href="javascript:;">
 				               	   <div class="mui-media-object mui-pull-left iconposition">
 				                   		<img class="" src="../images/icon-work.png">
@@ -93,17 +93,17 @@
 									   <p class="listtit3">起始时间 - 结束时间</p>
 				                   </div>
 				               </a>
-				           </li>
+				           </li>-->
 				       </ul>	
 			       </div>
 		       </div>
 		    </div>
-		     <div class="mui-input-group mainbox">
+		     <div class="mui-input-group mainbox" id="perfessorExperience">
 				<div class="maincon">
 			       <div class="infocontit">项目经历</div> 
 			       <div class="infocon">
-				       <ul class="mui-table-view listitembox">
-				           <li class="mui-table-view-cell mui-media listitem">
+				       <ul class="mui-table-view listitembox" id="projectExperience">
+				           <!--<li class="mui-table-view-cell mui-media listitem">
 				               <a href="javascript:;">
 				               	   <div class="mui-media-object mui-pull-left iconposition">
 				                   		<img class="" src="../images/icon-project.png">
@@ -126,17 +126,17 @@
 									   <p class="listtit3 mutlinebox">详细描述</p>
 				                   </div>
 				               </a>
-				           </li>
+				           </li>-->
 				       </ul>	
 			       </div>
 		       </div>
 		    </div>
-		     <div class="mui-input-group mainbox">
+		     <div class="mui-input-group mainbox" id="perfessorpaperExperience">
 				<div class="maincon">
 			       <div class="infocontit">著作、论文、文章</div> 
 			       <div class="infocon">
-				       <ul class="mui-table-view listitembox">
-				           <li class="mui-table-view-cell mui-media listitem">
+				       <ul class="mui-table-view listitembox" id="paperExperience">
+				           <!--<li class="mui-table-view-cell mui-media listitem">
 				               <a href="javascript:;">
 				               	   <div class="mui-media-object mui-pull-left iconposition">
 				                   		<img class="" src="../images/icon-acad.png">
@@ -159,17 +159,17 @@
 									   <p class="listtit3 mutlinebox">详细描述</p>
 				                   </div>
 				               </a>
-				           </li>
+				           </li>-->
 				       </ul>	
 			       </div>
 		       </div>
 		    </div>
-		    <div class="mui-input-group mainbox">
+		    <div class="mui-input-group mainbox" id="perfessorpatentExperience">
 				<div class="maincon">
 			       <div class="infocontit">专利</div> 
 			       <div class="infocon">
-				       <ul class="mui-table-view listitembox">
-				           <li class="mui-table-view-cell mui-media listitem">
+				       <ul class="mui-table-view listitembox" id="patentExperience">
+				           <!--<li class="mui-table-view-cell mui-media listitem">
 				               <a href="javascript:;">
 				               	   <div class="mui-media-object mui-pull-left iconposition">
 				                   		<img class="" src="../images/icon-mono.png">
@@ -192,17 +192,17 @@
 									   <p class="listtit3 mutlinebox">详细描述</p>
 				                   </div>
 				               </a>
-				           </li>
+				           </li>-->
 				       </ul>	
 			       </div>
 		       </div>
 		    </div>
-		    <div class="mui-input-group mainbox">
+		    <div class="mui-input-group mainbox" id="perfessorhonor">
 				<div class="maincon">
 			       <div class="infocontit">荣誉及奖项</div> 
 			       <div class="infocon">
-				       <ul class="mui-table-view listitembox">
-				           <li class="mui-table-view-cell mui-media listitem">
+				       <ul class="mui-table-view listitembox" id="honor">
+				           <!--<li class="mui-table-view-cell mui-media listitem">
 				               <a href="javascript:;">
 				               	   <div class="mui-media-object mui-pull-left iconposition">
 				                   		<img class="" src="../images/icon-honor.png">
@@ -225,7 +225,7 @@
 									   <p class="listtit3 mutlinebox">详细描述</p>
 				                   </div>
 				               </a>
-				           </li>
+				           </li>-->
 				       </ul>	
 			       </div>
 		       </div>
@@ -235,9 +235,8 @@
 		
 		
 		<script src="../js/public/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init()
-		</script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/proinfobrow-more.js"></script>
 	</body>
 
 </html>

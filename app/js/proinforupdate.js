@@ -80,174 +80,164 @@ var researchAreaShow = function ($datas,$datarecords){
 				}			
 			}
 
-		//获取头像
-		function personalMessageHeadImage() {
-			mui.ajax(baseUrl + "/ajax/professor/editBaseInfo/" + userid, {
-				dataType: 'json', //数据格式类型
-				type: 'GET', //http请求类型
-				timeout: 10000, //超时设置
-				success: function(data) {															
-					if(data.data.hasHeadImage) {						
-						oImg.src="../images/head/" + userid + "_m.jpg";						
+			//获取个人的信息
+			function personalMessage() {
+				mui.ajax(baseUrl + "/ajax/professor/info/" + userid, {
+					dataType: 'json', //数据格式类型
+					type: 'GET', //http请求类型
+					timeout: 10000, //超时设置
+					success: function(data) {
+						plus.nativeUI.closeWaiting();
+						plus.webview.currentWebview().show();
+						var $data = data.data;
+						personalMaterial[0].innerText = $data.name;
+						//头像					
+						if($data.hasHeadImage) {
+							oImg.src = "/images/head/" + $data.id + "_l.jpg";
+						}
+						//基本信息
+						if(!$data.authentication) {
+							document.getElementsByClassName('authword')[0].innerText = "未认证";
+							document.getElementsByClassName('authword')[0].style.backgroundColor = "#cccccc";
+						}
+						if($data.office) {
+							personalMaterial[1].innerText = $data.office;
+						} else {
+							personalMaterial[1].parentNode.style.display = "none";
+						}
+						if($data.title) {
+							personalMaterial[2].innerText = $data.title;
+						} else {
+							personalMaterial[2].parentNode.style.display = "none";
+						}
+						if($data.orgName) {
+							personalMaterial[3].innerText = $data.orgName;
+						} else {
+							personalMaterial[3].parentNode.style.display = "none";
+						}
+						if($data.department) {
+							personalMaterial[4].innerText = $data.department;
+						} else {
+							personalMaterial[4].parentNode.style.display = "none";
+						}
+						if($data.address) {
+							personalMaterial[5].innerText = $data.address;
+						} else {
+							personalMaterial[5].parentNode.style.display = "none";
+						}
+						//个人简介
+
+						if($data.descp) {
+							personSummary.innerHTML = $data.descp;
+						}
+						//学术领域
+						if($data.subject) {
+							subjectShow($data.subject);
+						}
+						//研究方向
+						if($data.researchAreas.length) {
+							console.log($data.researchAreaLogs);
+							console.log($data.researchAreas)
+							researchAreaShow($data.researchAreas, $data.researchAreaLogs);
+						}
+						//应用行业
+						if($data.industry) {
+							industryShow($data.industry);
+						}
+						//我的资源
+						if($data.resources.length) {
+							resource($data.resources);
+						}
+					},
+					error: function() {
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
+						return;
 					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
-				}
-			});
-		}
-		//获取个人的信息
-		function personalMessage() {			
-			mui.ajax(baseUrl + "/ajax/professor/info/" + userid, {
-				dataType: 'json', //数据格式类型
-				type: 'GET', //http请求类型
-				timeout: 10000, //超时设置
-				success: function(data) {					
-					var $data=data.data;																									
-					personalMaterial[0].innerText=$data.name; 										
-					//基本信息
-					if(!$data.authentication) {						
-						document.getElementsByClassName('authword')[0].innerText="未认证";
-						document.getElementsByClassName('authword')[0].style.backgroundColor="#cccccc";
-					}
-					if($data.office) {
-						personalMaterial[1].innerText=$data.office;             
-					}else {  
-						personalMaterial[1].parentNode.style.display="none";  
-					}
-					if($data.title) {
-						personalMaterial[2].innerText=$data.title;
-					}else {
-						personalMaterial[2].parentNode.style.display="none";
-					}
-					if($data.orgName) {
-						personalMaterial[3].innerText=$data.orgName;
-					}else {
-						personalMaterial[3].parentNode.style.display="none";
-					}
-					if($data.department) {
-						personalMaterial[4].innerText=$data.department;
-					}else {
-						personalMaterial[4].parentNode.style.display="none";
-					}
-					if($data.address) {
-						personalMaterial[5].innerText=$data.address;
-					}else {
-						personalMaterial[5].parentNode.style.display="none";
-					}	  
-					//个人简介
-					
-					if($data.descp) {
-						personSummary.innerHTML=$data.descp;  
-					}
-					//学术领域
-					if($data.subject) {
-						subjectShow($data.subject);
-					}
-					//研究方向
-					if($data.researchAreas.length) {
-								console.log($data.researchAreaLogs);
-								console.log($data.researchAreas)
-								researchAreaShow($data.researchAreas,$data.researchAreaLogs);
-					}
-					//应用行业
-					if($data.industry) {
-								industryShow($data.industry);
-					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
-				}
-			});
-		}
-		//我的所有资源、
-		function resource(){
-	mui.ajax(baseUrl + "/ajax/resource/qapro", {
-		dataType: 'json', //数据格式类型
-		type: 'GET', //http请求类型
-		data:{"professorId":userid},
-		timeout: 10000, //超时设置
-		success: function(data) {
-			
-			var str = JSON.stringify(data.data);			
-			var $data=data.data;
-			var html=[];
-			for(var i=0;i<data.data.length;i++) {
-				 var string='<li class="mui-table-view-cell mui-media">'
-				                string+='<a class="proinfor" href="resinforupdate.html">'
-				                	if($data[i].images.length) {				                		
-				                		string+='<img class="mui-media-object mui-pull-left resimg" src="../images/resource/'+$data[i].resourceId+'.jpg">'
-				                		console.log('../images/resource/'+$data[i].resourceId+'.jpg')
-				                	} else{
-				                		
-				                		string+='<img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">'
-				                	}				                    
-				                    string+='<div class="mui-media-body">'
-				                        string+='<span class="listtit">'+$data[i].resourceName+'<div class="updatebox" style="top:6px;right:6px;"><em class="updatebtn"></em></div></span>'
-				                        string+='<p class="listtit2">'+$data[i].supportedServices+'</p>'
-				                    	string+='<p class="listtit3 resbrief">'
-				                    		if($data[i].descp) {
-				                    			string+=$data[i].descp;
-				                    		}
-				                    	string+='</p></div></a></li>'
-				                    	html.push(string);				                    
+				});
 			}
-			document.getElementById("resourceList").innerHTML=html.join('');    
-		},		
-		error: function() {  
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-			return;
+			//我的所有资源、
+			function resource(oDa) {
+				var $data = oDa;
+				var html = [];
+				for(var i = 0; i < oDa.length; i++) {
+					var string = '<li class="mui-table-view-cell mui-media">'
+					string += '<a class="proinfor" href="resinforupdate.html">'
+					if($data[i].images.length) {
+						string += '<img class="mui-media-object mui-pull-left resimg" src="../images/resource/' + $data[i].resourceId + '.jpg">'
+						console.log('../images/resource/' + $data[i].resourceId + '.jpg')
+					} else {
+
+						string += '<img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">'
+					}
+					string += '<div class="mui-media-body">'
+					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox" style="top:6px;right:6px;"><em class="updatebtn"></em></div></span>'
+					string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
+					string += '<p class="listtit3 resbrief">'
+					if($data[i].descp) {
+						string += $data[i].descp;
+					}
+					string += '</p></div></a></li>'
+					html.push(string);
+				}
+				document.getElementById("resourceList").innerHTML = html.join('');
+			
 		}
+		//个人信息修改
+		document.getElementsByClassName("updatebox")[0].addEventListener("tap", function() {
+			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框  
+			var arr = {
+				name: personalMaterial[0].innerText,
+				office: personalMaterial[1].innerText,
+				title: personalMaterial[2].innerText,
+				orgName: personalMaterial[3].innerText,
+				department: personalMaterial[4].innerText,
+				address: personalMaterial[5].innerText
+			}
+			webviewShow = plus.webview.create("../html/updateinfo1.html", "../html/updateinfo1.html", {}, arr); //后台创建webview并打开show.html   	    	
+			webviewShow.addEventListener("loaded", function() { //注册新webview的载入完成事件
+				nwaiting.close(); //新webview的载入完毕后关闭等待框
+				webviewShow.show("slide-in-right", 150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
+			}, false);
+		}); document.getElementsByClassName("updatebox")[1].addEventListener("tap", function() {
+			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框  
+			var arr = {
+				descp: personSummary.innerText
+			}
+			webviewShow = plus.webview.create("../html/updateinfo2.html", "updateinfo2.html", {}, arr); //后台创建webview并打开show.html   	    	
+			webviewShow.addEventListener("loaded", function() { //注册新webview的载入完成事件
+				nwaiting.close(); //新webview的载入完毕后关闭等待框
+				webviewShow.show("slide-in-right", 150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
+			}, false);
+		});
+		var page = mui.preload({
+			url: "../html/updateinfo3.html",
+			id: "updateinfo3.html"
+		})
+		document.getElementsByClassName("updatebox")[2].addEventListener("tap", function() {
+			page.show("slide-in-right", 150);
+		});
+		var page1 = mui.preload({
+			url: "../html/updateinfo4.html",
+			id: "updateinfo4.html"
+		})
+		document.getElementsByClassName("updatebox")[3].addEventListener("tap", function() {
+			page1.show("slide-in-right", 150);
+		});
+		var page2 = mui.preload({
+			url: "../html/updateinfo5.html",
+			id: "updateinfo5.html"
+		})
+		document.getElementsByClassName("updatebox")[4].addEventListener("tap", function() {
+			page2.show("slide-in-right", 150);
+		});
+
+		//修改详细页面
+		document.getElementsByClassName("gotonext2")[0].addEventListener("tap", function() {
+			var nwaiting = plus.nativeUI.showWaiting();
+			var web = plus.webview.create("../html/proinforupdate-more.html", "proinforupdate-more.html"); //后台创建webview并打开show.html   	    	
+			web.addEventListener("loaded", function() {}, false);
+		}); personalMessage(); resource();
 	});
-}		
-	//个人信息修改
-	document.getElementsByClassName("updatebox")[0].addEventListener("tap",function(){
-		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框  
-		var arr={name:personalMaterial[0].innerText,office:personalMaterial[1].innerText,
-				title:personalMaterial[2].innerText,orgName:personalMaterial[3].innerText,
-				department:personalMaterial[4].innerText,address:personalMaterial[5].innerText
-		}		
-    	webviewShow = plus.webview.create("../html/updateinfo1.html","../html/updateinfo1.html",{},arr);//后台创建webview并打开show.html   	    	
-    	webviewShow.addEventListener("loaded", function() { //注册新webview的载入完成事件
-        nwaiting.close(); //新webview的载入完毕后关闭等待框
-        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
-    }, false);		
-	});
-	document.getElementsByClassName("updatebox")[1].addEventListener("tap",function(){
-		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框  
-		var arr={descp:personSummary.innerText}								
-    	webviewShow = plus.webview.create("../html/updateinfo2.html","updateinfo2.html",{},arr);//后台创建webview并打开show.html   	    	
-    	webviewShow.addEventListener("loaded", function() { //注册新webview的载入完成事件
-        nwaiting.close(); //新webview的载入完毕后关闭等待框
-        webviewShow.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
-    }, false);		
-	});
-	var page=mui.preload({url:"../html/updateinfo3.html",id:"updateinfo3.html"})	
-	document.getElementsByClassName("updatebox")[2].addEventListener("tap",function(){
-		page.show("slide-in-right",150);
-	});
-	var page1=mui.preload({url:"../html/updateinfo4.html",id:"updateinfo4.html"})	
-	document.getElementsByClassName("updatebox")[3].addEventListener("tap",function(){
-		page1.show("slide-in-right",150);
-	});
-	var page2=mui.preload({url:"../html/updateinfo5.html",id:"updateinfo5.html"})	
-	document.getElementsByClassName("updatebox")[4].addEventListener("tap",function(){
-		page2.show("slide-in-right",150);
-	});
-	
-	//修改详细页面
-	document.getElementsByClassName("gotonext2")[0].addEventListener("tap",function(){
-		var nwaiting = plus.nativeUI.showWaiting();		
-    	var web = plus.webview.create("../html/proinforupdate-more.html","proinforupdate-more.html");//后台创建webview并打开show.html   	    	
-    	web.addEventListener("loaded", function(){ 
-    }, false);		
-	});
-		personalMessageHeadImage();  
-		personalMessage();
-		resource();  
-	});	
 });
 
   

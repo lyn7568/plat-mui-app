@@ -143,7 +143,7 @@ function initdata() {
 
 //打开子页面
 mui(".mui-table-view").on('tap','.itemBtn',function(){
-	mui.openWindow({
+	/*mui.openWindow({
 		id:'chats.html',
 	    url:'chats.html',
 	    extras:{
@@ -151,7 +151,17 @@ mui(".mui-table-view").on('tap','.itemBtn',function(){
 	    	'consultId':this.getAttribute("consultId"),//自定义扩展参数，可以用来处理页面间传值
 	    	'consultantId':this.getAttribute("consultantId")//咨询者id
 	    }
-	});
+	});*/
+	
+	var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+	webviewShow = plus.webview.create("../html/chats.html",'chats.html',{},
+	{'manFlag':this.getAttribute("manFlag"),'consultId':this.getAttribute("consultId"),'consultantId':this.getAttribute("consultantId")});
+	
+    webviewShow.addEventListener("loaded", function() {
+        
+    }, false);
+
+	
 });
 
 

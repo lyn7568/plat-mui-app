@@ -96,8 +96,6 @@ function getOneExpert(pageNo, pageSize) {
 			type: 'GET', //http请求类型
 			timeout: 10000,
 			success: function(data) {
-				plus.nativeUI.closeWaiting();
-				plus.webview.currentWebview().show("slide-in-right", 150);
 				if(data.success && data.data.data != "") {
 					var datalist = data.data.data;
 					datalistEach(datalist);
@@ -127,6 +125,7 @@ function getOneResources(pageNo, pageSize) {
 			timeout: 10000,
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
+				plus.webview.currentWebview().show("slide-in-right", 150);
 				if(data.success && data.data.data != "") {
 					var datalistd = data.data.data;
 					resourcesEach2(datalistd);

@@ -23,6 +23,7 @@ mui.ready(function() {
 				plus.storage.removeItem("userid");
 				var userId = "null";
 				mui.currentWebview.close();
+				mui.back();
 				var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
 				mui.fire(myaccountPage, 'closeUser', {
 					id: userId

@@ -114,7 +114,7 @@ mui.ready(function() {
 		/*判断用户第一次登录，是否填写了个人信息*/
 		function firstLogin() {
 			var professorId = plus.storage.getItem('userid');
-			console.log(professorId);
+			//console.log(userId);
 			mui.ajax(baseUrl + "/ajax/professor/" + professorId, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
@@ -123,9 +123,15 @@ mui.ready(function() {
 				success: function(data) {
 					console.log(data.data)
 					if(data.data != null) {
-						goHome();
-						var myaccountClose = plus.webview.getWebviewById("html/myaccount.html");
-						plus.webview.close(myaccountClose);
+						//goHome();
+						//var myaccountClose = plus.webview.getWebviewById("html/myaccount.html");
+						//plus.webview.close(myaccountClose);
+						mui.currentWebview.close();
+						var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
+						myaccountPage.show();
+						mui.fire(myaccountPage, 'closeUser', {
+							id: professorId
+						});
 					} else {
 						var productView = mui.preload({
 							url: '../html/fillinfo.html',

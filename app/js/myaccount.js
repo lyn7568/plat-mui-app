@@ -10,6 +10,7 @@ mui.ready(function() {
 	var goZixun = document.getElementById("goZixun");
 	var oEdit = document.getElementById("editbox");
 	var goFollow = document.getElementById("goFollow");
+	
 
 	mui.plusReady(function() {
 
@@ -34,15 +35,19 @@ mui.ready(function() {
 		/*退出登录刷新页面*/
 		window.addEventListener('closeUser', function(event) {
 			userId = event.detail.id;
+			//console.log(userId);
+			//console.log('dd');
 			loginStatus();
 		});
 
 		function loginStatus() {
+			console.log(userId);
 			if(userId && userId != "null" && userId != null) {
+				
 				loginYes.style.display = "block";
 				loginNo.style.display = "none";
-
-				/*设置按钮*/
+				
+				/*设置*/
 				goSetup.addEventListener('tap', function() {
 					mui.openWindow({
 						url: '../html/setup.html',
@@ -88,13 +93,14 @@ mui.ready(function() {
 			} else {
 				loginNo.style.display = "block";
 				loginYes.style.display = "none";
-				mui(".mui-content").on("tap", "#goZixun,#goFollow,#goNewuser,#goSetup", function() {
+				mui("#loginNo").on("tap", "li", function() {
 					goLoginFun();
 				})
 			}
 		}
 
 		function userInformation() {
+			console.log(userId);
 			mui.ajax(baseUrl + "/ajax/professor/editBaseInfo/" + userId, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
@@ -103,12 +109,20 @@ mui.ready(function() {
 					var $info = data.data || {}
 					if(data.success && data.data) {
 						document.getElementById("userName").innerText = $info.name || '';
-						document.getElementById("userTitle").innerText = $info.title || '';
-						document.getElementById("userPosition").innerText = $info.office || '';
-						document.getElementById("userDepartment").innerText = $info.department || '';
-						document.getElementById("userMechanism").innerText = $info.orgName || '';
-						document.getElementById("userCity").innerText = $info.address || '';
-						document.getElementById("zixunOk").innerText = $info.consultCount || '';
+						var userTitle = document.getElementById("userTitle");
+						var userPosition = document.getElementById("userPosition");
+						var userDepartment = document.getElementById("userDepartment");
+						var userMechanism = document.getElementById("userMechanism");
+						var userCity = document.getElementById("userCity");
+						var zixunOk = document.getElementById("zixunOk");
+						
+						($info.title != '') ? userTitle.innerText = $info.title : userTitle.innerText = '';
+						($info.office != '') ? userPosition.innerText = " , " +  $info.office  : userPosition.innerText = '';
+						($info.department != '') ? userDepartment.innerText = $info.department : userDepartment.innerText = '';
+						($info.orgName != '') ? userMechanism.innerText = " , " +  $info.orgName  : userMechanism.innerText = '';
+						($info.address != '') ? userCity.innerText = " | " +  $info.address  : userCity.innerText = '';
+						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount  : zixunOk.innerText = '0';
+						
 						var startLeval = parseInt($info.starLevel);
 						var start = document.getElementsByClassName("star");
 						for(var i = 0; i < startLeval; i++) {

@@ -6,13 +6,8 @@ mui.ready(function() {
 	var security = document.getElementById("security");
 	
 	security.addEventListener('tap',function(){
-		mui.openWindow({
-			url: '../html/security.html',
-			id: '../html/security.html',
-			show: {
-				aniShow: "slide-in-right"
-			}
-		});
+		plus.nativeUI.showWaiting();//显示原生等待框
+        webviewShow = plus.webview.create("../html/security.html","../html/security.html");
 	});
 
 	/*退出按钮*/

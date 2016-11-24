@@ -87,19 +87,8 @@
 		mui(".hotsearch").on('tap', 'li', function() {
 			plus.nativeUI.showWaiting();
 			key = this.innerHTML;
-			mui.openWindow({
-				url: '../html/search.html',
-				id: '../html/search.html',
-				show:{
-			      autoShow:false,
-			      aniShow:"fade-in",
-			    },
-				extras:{
-			      key:key,
-			      bigClass:bigClass
-			    }
-			});
-			
+			plus.nativeUI.showWaiting();//显示原生等待框
+            plus.webview.create("../html/search.html",'search.html',{},{key:key,bigClass:bigClass});
 		});
 		/*按键字搜索*/
 		searchval.addEventListener("keyup", function() {

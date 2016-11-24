@@ -5,12 +5,9 @@ var allPages = 1, // 总页数;
     checkedindex = 0
 var table = document.body.querySelector('.list');
 var table1 = document.body.querySelector('.list2');
-var deceleration = mui.os.ios?0.003:0.0009;
-mui('.mui-scroll-wrapper').scroll({
-	bounce: false,
-	indicators: true, //是否显示滚动条
-	deceleration:deceleration
-});
+
+//mui('.mui-scroll-wrapper').scroll({});
+
 mui.init({
 	pullRefresh: {
 		container: '#pullrefresh',
@@ -94,7 +91,7 @@ function getOneExpert(pageNo, pageSize) {
 			},
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
-			timeout: 10000,
+			//timeout: 10000,
 			success: function(data) {
 				if(data.success && data.data.data != "") {
 					var datalist = data.data.data;
@@ -122,7 +119,7 @@ function getOneResources(pageNo, pageSize) {
 			},
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
-			timeout: 10000,
+			//timeout: 10000,
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);

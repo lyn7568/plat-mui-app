@@ -8,7 +8,21 @@ mui.ready(function() {
 	var userPosition = document.getElementById("userPosition");
 	var userTitle = document.getElementById("userTitle");
 	var goIndex = document.getElementById("goIndex");
-	
+	var dataProvince = document.getElementById("data-province");
+	var dataAddress = document.getElementById("data-address");
+	/*选择地址*/
+	var cityPicker = new mui.PopPicker({layer: 2});
+	cityPicker.setData(cityData);
+	var showCityPickerButton = document.getElementById('showCityPicker');
+	showCityPickerButton.addEventListener('tap', function(event) {
+		cityPicker.show(function(items) {
+			showCityPickerButton.value = items[0].text + " " + items[1].text;
+			dataProvince.value = items[0].text;
+			dataAddress.value = items[1].text;
+			//返回 false 可以阻止选择框的关闭
+			//return false;
+		});
+	}, false);
 	mui.plusReady(function() {
 		
 		var self = plus.webview.currentWebview();
@@ -20,6 +34,7 @@ mui.ready(function() {
 
 		/*提交个人信息*/
 		goIndex.addEventListener('tap', function() {
+			var d = document.getElementById('showCityPicker').value;
 			goVal();
 		});
 
@@ -29,8 +44,11 @@ mui.ready(function() {
 			$data.orgName = userMechanism.value;
 			$data.title = userTitle.value;
 			$data.department = userDepartment.value;
-			$data.address = userPosition.value;
+			$data.office = userPosition.value;
+			$data.province = dataProvince.value;
+			$data.address = dataAddress.value;
 			$data.id = self.userid;
+			console.log(JSON.stringify($data))
 			mui.ajax(baseUrl + '/ajax/professor', {
 				data: $data,
 				dataType: 'json', //数据格式类型

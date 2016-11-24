@@ -19,7 +19,7 @@ mui.ready(function() {
 		loginStatus();
 
 		/*用户信息初始化*/
-		userInformation()
+		userInformation();
 
 		/*登录按钮*/
 		goLogin.addEventListener('tap', function() {
@@ -29,7 +29,6 @@ mui.ready(function() {
 		/*注册按钮*/
 		goReg.addEventListener('tap', function() {
 			goRegFun();
-
 		})
 
 		/*退出登录刷新页面*/
@@ -105,7 +104,9 @@ mui.ready(function() {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
+				async:true,
 				success: function(data) {
+					
 					var $info = data.data || {}
 					if(data.success && data.data) {
 						document.getElementById("userName").innerText = $info.name || '';
@@ -115,7 +116,7 @@ mui.ready(function() {
 						var userMechanism = document.getElementById("userMechanism");
 						var userCity = document.getElementById("userCity");
 						var zixunOk = document.getElementById("zixunOk");
-						
+					
 						($info.title != '') ? userTitle.innerText = $info.title : userTitle.innerText = '';
 						($info.office != '') ? userPosition.innerText = " , " +  $info.office  : userPosition.innerText = '';
 						($info.department != '') ? userDepartment.innerText = $info.department : userDepartment.innerText = '';
@@ -129,9 +130,9 @@ mui.ready(function() {
 							start[i].classList.add("icon-favorfill");
 						}
 						if($info.hasHeadImage == 1) {
-							document.getElementById("userImg").setAttribute("src", "../images/head/" + $info.id + "_m.jpg");
+							document.getElementById("userImg").setAttribute("src", baseUrl + "/images/head/" + $info.id + "_m.jpg");
 						} else {
-							document.getElementById("userImg").setAttribute("src", "../images/default-photo.jpg");
+							document.getElementById("userImg").setAttribute("src", baseUrl +  "/images/default-photo.jpg");
 						}
 						if($info.authentication) {
 							document.querySelector('.authicon').style.display = "inline";

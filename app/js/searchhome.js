@@ -28,7 +28,7 @@ mui.init({
 			up: {
 				contentrefresh: '正在加载...',
 				callback: pullupRefresh,
-				auto:true
+				//auto:true
 			}
 		}
 });
@@ -123,7 +123,7 @@ searchval.addEventListener("keyup", function() {
 	console.log(province);
 	console.log(authentication);*/
 		plus.nativeUI.showWaiting();
-
+        
 		expert(key, subject, industry, province, address, authentication, 10, 1);
 	}
 })
@@ -252,17 +252,28 @@ function expert(key, subject, industry, province, address, authentication, pageS
 			timeout: 10000,
 			success: function(data) {
 				table.innerHTML = '';
-				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right",150);
+				plus.nativeUI.closeWaiting();
+				var perrid = plus.webview.getWebviewById('../html/search-home.html');
+				if(perrid){
+				  setTimeout(function() {
+					 perrid.close();
+				   }, 1000);
+				}
 				if(data.success && data.data.data != '') {
 					var datalist = data.data.data;
 					console.log(data.data.total)
 					datalistEach(datalist);
 					mui('#pullrefresh').pullRefresh().refresh(true);
-	                mui('#pullrefresh').pullRefresh().scrollTo(0,0,0);
+	                mui('#pullrefresh').pullRefresh().scrollTo(0,0);
+	                if(data.data.total<data.data.pageSize){
+	                	mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
+	                }
 				} else {
 					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 				}
+				
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
@@ -287,13 +298,23 @@ function expert(key, subject, industry, province, address, authentication, pageS
 				table.innerHTML = '';
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right",150);
+				var perrid = plus.webview.getWebviewById('../html/search-home.html');
+				if(perrid){
+				  setTimeout(function() {
+					 perrid.close();
+				   }, 1000);
+				}
 				if(data.success && data.data.data != '') {
 					var datalist = data.data.data;
 					resourcesEach(datalist);
 					mui('#pullrefresh').pullRefresh().refresh(true);
 	                mui('#pullrefresh').pullRefresh().scrollTo(0,0,0);
+	                if(data.data.total<data.data.pageSize){
+	                	mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
+	                }
 				} else {
 					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 				}
 			},
 			error: function() {

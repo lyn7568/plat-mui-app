@@ -170,12 +170,11 @@ mui.ready(function() {
 					console.log(data.data);
 					if(data.success && data.data) {
 						plus.nativeUI.toast("手机绑定成功", toastStyle);
-						var securityPage = plus.webview.getWebviewById('html/security.html');
-						mui.fire(securityPage, 'closeUser', {
-							phoneName: phoneName.value
+						var securityPage = plus.webview.getWebviewById('../html/security.html');
+						mui.fire(securityPage,'xsphone', {
+							phonetel:phoneName.value
 						});
-						mui.currentWebview.close();
-						return;
+						mui.back();
 					}else{
 						plus.nativeUI.toast("手机绑定失败", toastStyle);
 						return;

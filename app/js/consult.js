@@ -201,10 +201,16 @@ function checkedFun(i){
 		document.getElementById("middlePopover"+i).style.display = 'none';
 		
 		//去掉样式类mui-active,要不然会多点击一次
-//		document.getElementById("middlePopover"+i).classList.remove('mui-active');
+		document.getElementById("middlePopover"+i).classList.remove('mui-active');
 		
-		oneedval.value = document.getElementById("headck1").getAttribute('headck');
+		//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务
 		otypeval.value = document.getElementById("headck2").getAttribute('headck');
+		if(otypeval.value == 0) {
+			otypeval.value = '';
+		}else {
+			otypeval.value = document.getElementById("headck2").innerHTML;
+		}
+		oneedval.value = document.getElementById("headck1").getAttribute('headck');
 		ostateval.value = document.getElementById("headck3").getAttribute('headck');
 		osortval.value = document.getElementById("headck4").getAttribute('headck');
 		
@@ -227,6 +233,7 @@ function eachData(userid,datalist) {
 			address,
 			lastReply,
 			status,
+			statusStyle,
 			lastReplyTime,
 			lastReplyCon,
 			unreadCount,
@@ -240,18 +247,23 @@ function eachData(userid,datalist) {
 			title = "回复:关于" + item["consultTitle"] + "的咨询";
 			if(item["consultStatus"] == 0){
 				status = "进行中";
+				statusStyle = 'status-1';
 			}else if(item["consultStatus"] == 1){
 				status = "已完成";
+				statusStyle = 'status-3';
 			}
 		}else if(item['consultantId'] == userid){//我的需求
 			title = "关于" + item["consultTitle"] + "的咨询";
 			if(item["consultStatus"] == 0){
 				status = "进行中";
+				statusStyle = 'status-1';
 			}else if(item["consultStatus"] == 1){
 				if(item["assessStatus"] == 0){
 					status = '待评价';
+					statusStyle = 'status-2';
 				}else {
 					status = '已完成';
+					statusStyle = 'status-3';
 				}
 			}
 		}
@@ -289,7 +301,7 @@ function eachData(userid,datalist) {
         li.innerHTML = '<div class="coutopicbox">'
             		+ '<span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>'
             		+ '<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>'
-            		+ '<span class="status-1" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
+            		+ '<span class="'+statusStyle+'" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
             		+ '<a class="proinfor itemBtn" consultId="'+item["consultId"]+'" consultantId="'+item["consultantId"]+'" >'
 					+ '<span class="mui-badge mui-badge-danger" style="'+unreadStyle+'">'+unreadCount+'</span>'
 	        		+ '<img class="mui-media-object mui-pull-left headimg" src="'+photoUrl+'">'

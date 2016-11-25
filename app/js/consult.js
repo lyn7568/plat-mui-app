@@ -192,6 +192,10 @@ window.addEventListener('backlist',function(event){
 					this.classList.remove('status-1');
 					this.classList.add('status-2');
 					this.innerHTML = '待评价';
+				}else if(status == 'myNeedAssessStatus=1'){
+					this.classList.remove('status-1');
+					this.classList.add('status-3');
+					this.innerHTML = '已完成';
 				}
 			};
 			
@@ -318,7 +322,7 @@ function eachData(userid,datalist) {
 		//未读消息
 		unreadCount = unreadConsultFn(userid,item["consultId"],index).unreadCount;
 		unreadStyle = unreadConsultFn(userid,item["consultId"],index).style;
-    	console.log(unreadStyle)
+/*    	console.log(unreadStyle)*/
     	
         var li = document.createElement('li');
         li.className = 'mui-table-view-cell mui-media'; 
@@ -390,7 +394,7 @@ function unreadConsultFn (senderId,consultId,i){
 		async:false,
 		success:function(data){
 			unreadCount = data["data"];
-			console.log('未读取消息数==='+data.data)
+/*			console.log('未读取消息数==='+data.data)*/
 			if(unreadCount == 0){
 //				style = "display:none;"
 				style = 'displayNone';

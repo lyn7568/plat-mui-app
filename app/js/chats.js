@@ -21,6 +21,9 @@ mui.ready(function() {
 	var omiddlePopover = document.getElementById("middlePopover");//评价内容容器;
 	var oassessText = document.getElementById("assessText");//评价内容
 	
+	var oshowAssess = document.getElementById("showAssess");//显示评价
+	var oshowStar = document.getElementById("showStar");//显示星级
+	var oshowAssessText = document.getElementById("showAssessText");//显示评价内容
 	
 	var omsg_list = document.getElementById("msg-list");
 	var omsg_text = document.getElementById("msg-text");
@@ -85,11 +88,19 @@ mui.ready(function() {
 				  				starlist[i].classList.add('icon-favorfill');
 							};
 							/*===========评价内容没做=========*/
-							oassessText.innerHTML = myData["assessContant"];//评价内容
-							console.log('评价内容是：' +oassessText.innerHTML);
+//							oassessText.innerHTML = myData["assessContant"];//评价内容
+							/*oshowAssessText.innerHTML = myData["assessContant"];//评价内容
+							console.log('评价内容是：' +oshowAssessText.innerHTML);*/
 							oassessed.addEventListener('tap',function() {
 								
-								showAssessText();
+								var mask = mui.createMask(showAssessText(omy_starContainer));//callback为用户点击蒙版时自动执行的回调；
+								mask.show();//显示遮罩
+								mask.close();//关闭遮罩
+								
+								
+								
+								
+								
 							});
 							
 							
@@ -136,6 +147,27 @@ mui.ready(function() {
 								starlist[i].classList.remove('icon-favor');
 				  				starlist[i].classList.add('icon-favorfill');
 							}
+							
+							
+							othat_assessed.addEventListener('tap',function() {
+								
+								var mask = mui.createMask(showAssessText(ozixunstarContainer));//callback为用户点击蒙版时自动执行的回调；
+								mask.show();//显示遮罩
+								mask.close();//关闭遮罩
+								
+								
+								
+								
+								/*showAssessText();*/
+							});
+							
+							
+							
+							
+							
+							
+							
+							
 						}
 					}
 					
@@ -152,27 +184,6 @@ mui.ready(function() {
 		};
 	};
 	
-	//对话内容保存
-	/*function saveChatFun(consultId,userid){
-		var tidingsContant = omsg_text.innerHTML
-		console.log(tidingsContant);
-		mui.ajax(baseUrl +'/ajax/tidings',{
-			data:{
-				"consultId":consultId,
-				"sendId":userid,
-				"tidingsContant":tidingsContant
-			},
-			dataType:'json',//服务器返回json格式数据
-			type:'post',//HTTP请求类型
-			timeout:10000,//超时时间设置为10秒；
-			success:function(data){
-				console.log(data);
-			},
-			error:function(xhr,type,errorThrown){
-				
-			}
-		});
-	};*/
 	
 	/*点击确认完成*/
 	function clickConfirm(consultId) {
@@ -207,23 +218,35 @@ mui.ready(function() {
 		});
 	};
 	
-	/*评价内容显示与隐藏*/
-	function showAssessText() {
-		console.log('显示评价内容');
-		console.log(oassessText.innerHTML);
+	/*评价内容显示与隐藏
+	 * starContainer:点击已评价/对方已评价显示评价 中的星星容器
+	 */
+	function openWin(){
+	    myWindow=window.open('','','width=200,height=100');
+	    myWindow.document.write("<p>这是我的窗口</p>");
+	}
+	function showAssessText(starContainer) {
+		
+		var starlist = oshowStar.children;
+		var starNum = starContainer.querySelectorAll('.icon-favorfill');//星星数量
+		for(var i = 0; i < starNum; i++) {   
+			starlist[i].classList.remove('icon-favor');
+			starlist[i].classList.add('icon-favorfill');
+		}
+		
 		/*omiddlePopover,oassessText*/
 		/*先获得评价内容实际的宽高,再加padding,*/
 		
 		/*先获得屏幕宽度和高度,固定设置div宽:屏幕80%,高:200px;
 		 *然后定位,div,top:(屏幕高-div高)/2,left:屏幕宽的10%;
 		*/
-		var all_w = document.body.clientWidth;//屏幕宽
+		/*var all_w = document.body.clientWidth;//屏幕宽
 		var all_h = document.body.clientHeight;//屏幕高
 		omiddlePopover.style.height = '200px';
 		omiddlePopover.style.width = (all_w* 0.8)+'px';
 		
-		omiddlePopover.style.top = (all_h-200)/2+'px';
-		omiddlePopover.style.left = (all_w * 0.1)+'px';
+		omiddlePopover.style.top = (all_h-200)/2+500+'px';
+		omiddlePopover.style.left = (all_w * 0.1)+300+'px';
 		omiddlePopover.style.zIndex = '999';
 		
 		console.log('宽:'+omiddlePopover.style.width);
@@ -231,7 +254,7 @@ mui.ready(function() {
 		
 		console.log('top:'+omiddlePopover.style.top);
 		console.log('left:'+omiddlePopover.style.left);
-		console.log(omiddlePopover.classList);
+		console.log(omiddlePopover.classList);*/
 		
 		/*var real_width = oassessText.offsetWidth;
 		var real_height = oassessText.offsetHeight;
@@ -687,20 +710,6 @@ mui.ready(function() {
 			}, 0);
 		}, false);
 	});
-//			}(mui, document));
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
-	
 	
 })

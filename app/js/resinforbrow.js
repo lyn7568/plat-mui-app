@@ -29,21 +29,20 @@ var proId;
 function ziyuaninfo(resourceId) {
 	mui.plusReady(function() {
 		
-		mui.ajax(baseUrl + '/ajax/resource/' + resourceId, {
-			data: {
-				'resourceId': resourceId
-			},
+		mui.ajax(baseUrl + '/ajax/resource/resourceInfo', {
+			data:{'resourceId':resourceId},
 			dataType: 'json', //服务器返回json格式数据
 			type: 'get', //HTTP请求类型
 			timeout: 10000, //超时时间设置为10秒；
 			success: function(data) {
 				if(data.success) {
 					console.log(data);
+					
+					var mydata = data.data;
 					for (var key in mydata['professor']){
 						console.log('专家信息key==='+key);
 						
 					}
-					var mydata = data.data;
 					//专家信息
 					proId = mydata['professor']['id']; //专家id
 					

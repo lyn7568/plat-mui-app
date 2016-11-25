@@ -141,47 +141,72 @@ function initdata() {
 
 };
 
+//更新读取状态
+function setReadState(consultId) {
+		mui.ajax(baseUrl+'/ajax/consult/readStatus',{
+			data:{"consultId":consultId}, //咨询ID
+			dataType:'json',//服务器返回json格式数据
+			type:'post',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
+			success:function(data){
+				console.log("更新读取状态"+data.success);
+			},
+			error:function(xhr,type,errorThrown){
+				
+			}
+		});
+}
+
 //打开子页面
 mui(".mui-table-view").on('tap','.itemBtn',function(){
-	/*mui.openWindow({
-		id:'chats.html',
-	    url:'chats.html',
-	    extras:{
-	    	'manFlag':this.getAttribute("manFlag"),
-	    	'consultId':this.getAttribute("consultId"),//自定义扩展参数，可以用来处理页面间传值
-	    	'consultantId':this.getAttribute("consultantId")//咨询者id
-	    }
-	});*/
+	var o_this = this;
+	console.log(this.getAttribute('consultId'));
+	mui.plusReady(function() {
+		console.log(o_this.getAttribute("consultId"));
+		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+		//更新读取状态
+		setReadState(o_this.getAttribute("consultId"));
+		webviewShow = plus.webview.create("../html/chats.html",'chats.html',{},
+		{'consultId':o_this.getAttribute("consultId"),'consultantId':o_this.getAttribute("consultantId"),'readState':1});
+		//当聊天页面加载完再打开
+	    webviewShow.addEventListener("loaded", function() {
+	        
+	    }, false);
 	
-	var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
-	webviewShow = plus.webview.create("../html/chats.html",'chats.html',{},
-	{'manFlag':this.getAttribute("manFlag"),'consultId':this.getAttribute("consultId"),'consultantId':this.getAttribute("consultantId")});
-	
-    webviewShow.addEventListener("loaded", function() {
-        
-    }, false);
-
+	});
 	
 });
 
 
-/*由聊天页面返回咨询列表,要更新咨询状态:::自定义事件*/
-var statuslist = document.querySelectorAll('.status-1');
+/*由聊天页面返回咨询列表,要更新咨询状态,和更新未读信息:::自定义事件*/
 window.addEventListener('backlist',function(event){
 		//通过event.detail可获得传递过来的参数内容
 		var self = plus.webview.currentWebview();
 		var consultId = event.detail.consultId;
 		var status = event.detail.status;
-		console.log(consultId);
-		mui.each(statuslist,function(index,item){
-			if(item.getAttribute('consultId') == consultId) {
-				//consultStatus='+myData["consultStatus"]//我的需求进行中
-				//myNeedAssessStatus='+myData["assessStatus"]//我的需求，未评价/已完成
+		//由聊天页返回咨询页，改变咨询状态，和咨询状态样式
+		mui('.status').each(function(index,item){
+			if(this.getAttribute('consultId') == consultId) {
 				if(status == 'myNeedAssessStatus=0'){//未评价
+					console.log(this);
+					this.classList.remove('status-1');
+					this.classList.add('status-2');
 					this.innerHTML = '待评价';
 				}
 			};
-		})
+			
+		});
+		//由聊天页返回咨询页，改变未读状态
+		mui('.readstate').each(function(index,item){
+			if(this.getAttribute('class').indexOf('displayBlock') != -1){//包含displayBlock	
+				console.log(this.getAttribute('consultId'));
+				if(this.getAttribute('consultId') == consultId){
+					this.classList.remove('displayBlock');
+					this.classList.add('displayNone');
+					console.log(this.classList);
+				}
+			}
+		});
 //		initdata();
 		
 	});
@@ -293,7 +318,7 @@ function eachData(userid,datalist) {
 		//未读消息
 		unreadCount = unreadConsultFn(userid,item["consultId"],index).unreadCount;
 		unreadStyle = unreadConsultFn(userid,item["consultId"],index).style;
-    	
+    	console.log(unreadStyle)
     	
         var li = document.createElement('li');
         li.className = 'mui-table-view-cell mui-media'; 
@@ -301,9 +326,9 @@ function eachData(userid,datalist) {
         li.innerHTML = '<div class="coutopicbox">'
             		+ '<span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>'
             		+ '<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>'
-            		+ '<span class="'+statusStyle+'" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
+            		+ '<span class="'+statusStyle+' status" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
             		+ '<a class="proinfor itemBtn" consultId="'+item["consultId"]+'" consultantId="'+item["consultantId"]+'" >'
-					+ '<span class="mui-badge mui-badge-danger" style="'+unreadStyle+'">'+unreadCount+'</span>'
+					+ '<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item["consultId"]+'">'+unreadCount+'</span>'
 	        		+ '<img class="mui-media-object mui-pull-left headimg" src="'+photoUrl+'">'
             		+ '<div class="mui-media-body">'
             		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>'	
@@ -365,10 +390,13 @@ function unreadConsultFn (senderId,consultId,i){
 		async:false,
 		success:function(data){
 			unreadCount = data["data"];
+			console.log('未读取消息数==='+data.data)
 			if(unreadCount == 0){
-				style = "display:none;"
+//				style = "display:none;"
+				style = 'displayNone';
 			}else{
-				style = "display:block;"
+//				style = "display:block;"
+				style = 'displayBlock';
 				
 			}
 		},

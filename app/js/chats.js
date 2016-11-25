@@ -59,13 +59,15 @@ mui.ready(function() {
 					//我的需求进行中
 					if(myData["consultStatus"] == 0){
 						oconfirm.classList.remove('displayNone');//我的需求，进行中
-						ochatFooter.classList.remove('displayNone');
+//						ochatFooter.classList.remove('displayNone');
 						ostatus.setAttribute('status','consultStatus='+myData["consultStatus"]);					
 						clickConfirm(consultId);
 						
 
 					}else {
+						ochatFooter.style.display = 'none';//对话底部隐藏
 						if(myData["assessStatus"] == 0){
+							
 							oassessBtn.classList.remove('displayNone');//我的需求，未评价
 							ostatus.setAttribute('status','');
 							clickweiassess(consultId);
@@ -93,6 +95,7 @@ mui.ready(function() {
 							
 						}
 					} 
+					console.log("关闭等待狂")
 					plus.nativeUI.closeWaiting();
 					plus.webview.currentWebview().show("slide-in-right",150);
 				},
@@ -116,8 +119,9 @@ mui.ready(function() {
 					//收到咨询进行中
 					if(myData["consultStatus"] == 0){
 						owaying.classList.remove('displayNone');
-						ochatFooter.classList.remove('displayNone');
+//						ochatFooter.classList.remove('displayNone');
 					}else {//收到咨询已完成
+						ochatFooter.style.display = 'none';//对话底部隐藏
 						if(myData["assessStatus"] == 0){//收到咨询未评价
 							othat_weiassess.classList.remove('displayNone');
 						}else{//收到咨询已评价(评价星级和评价内容)
@@ -135,9 +139,13 @@ mui.ready(function() {
 						}
 					}
 					
+					console.log("关闭等待狂")
+					plus.nativeUI.closeWaiting();
+					plus.webview.currentWebview().show("slide-in-right",150);
+					
 				},
 				error:function(xhr,type,errorThrown){
-					
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
 			
@@ -145,7 +153,7 @@ mui.ready(function() {
 	};
 	
 	//对话内容保存
-	function saveChatFun(consultId,userid){
+	/*function saveChatFun(consultId,userid){
 		var tidingsContant = omsg_text.innerHTML
 		console.log(tidingsContant);
 		mui.ajax(baseUrl +'/ajax/tidings',{
@@ -164,7 +172,7 @@ mui.ready(function() {
 				
 			}
 		});
-	};
+	};*/
 	
 	/*点击确认完成*/
 	function clickConfirm(consultId) {
@@ -248,7 +256,6 @@ mui.ready(function() {
 	
 	/*更改咨询状态,进行中--完成*/
 	function setState(consultId) {
-		
 		mui.ajax(baseUrl+'/ajax/consult/finishTime',{
 			data:{
 				"consultId":consultId, //咨询ID
@@ -262,11 +269,12 @@ mui.ready(function() {
 				console.log(data.data)
 			},
 			error:function(xhr,type,errorThrown){
-				
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
 			}
 		});
 		
-	}
+	};
+	
 	
 	/*评价完成返回 刷新==自定义事件*/
 	window.addEventListener('refresh',function(event){
@@ -283,29 +291,6 @@ mui.ready(function() {
 	
 		
 	var MIN_SOUND_TIME = 800;
-	/*mui.init({
-		gestureConfig: {
-			tap: true, //默认为true
-			doubletap: true, //默认为false
-			longtap: true, //默认为false
-			swipe: true, //默认为true
-			drag: true, //默认为true
-			hold: true, //默认为false，不监听
-			release: true //默认为false，不监听
-		},
-		keyEventBind: {
-			backbutton: false,  //Boolean(默认true)关闭back按键监听
-			menubutton: false   //Boolean(默认true)关闭menu按键监听
-		},
-		beforeback: function(){//返回前刷新咨询列表页
-			//获得列表界面的webview
-			var list = plus.webview.getWebviewById('consultlist');
-			//触发列表界面的自定义事件（refresh）,从而进行数据刷新
-//			mui.fire(list,'refresh');
-			//返回true，继续页面关闭逻辑
-			return true;
-		}
-	});*/
 	template.config('escape', false);
 	//mui.plusReady=function(fn){fn();};
 	mui.plusReady(function() {
@@ -319,7 +304,7 @@ mui.ready(function() {
 		obackBtn.addEventListener('tap',function() {
 			/*返回咨询列表*/
 			var status = ostatus.getAttribute('status');
-			console.log(status);
+			
 			var consultList = plus.webview.getWebviewById('html/consultlist.html');
 			console.log(consultId)
 			consultList.show();
@@ -327,12 +312,9 @@ mui.ready(function() {
 	
 		});
 		
-		
-		
-		
-		console.log(consultId);
-		console.log('userid'+userid);
-		console.log('consultantId'+consultantId);
+		console.log('consultId=='+consultId);
+		console.log('userid=='+userid);
+		console.log('consultantId=='+consultantId);
 		if(userid == consultantId){//我的需求
 			//头部信息
 			var manFlag = 'myNeed';
@@ -342,7 +324,44 @@ mui.ready(function() {
 			var manFlag = 'consult';
 			getHeadInfo(manFlag,consultId);
 		};
-		
+		//渲染对话内容
+		chatCon(consultId,userid);
+		//根据咨询id查询消息
+		function chatCon(consultId,userid) {
+			mui.ajax(baseUrl+'/ajax/tidings/qacon',{
+				data:{
+					"consultId":consultId
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					var myData = data.data;
+					
+					for(var i = 0; i < myData.length; i++ ){
+						console.log(myData[i]['tidingsContant']);
+						if(myData[i]['professor']['id'] == userid){
+							record.push({
+								sender: 'self',
+								type: 'text',
+								content: myData[i]["tidingsContant"]
+							});
+						}else{
+							record.push({
+								sender: 'zs',
+								type: 'text',
+								content: myData[i]["tidingsContant"]
+							});
+						}
+					}
+					bindMsgList();
+				},
+				error:function(xhr,type,errorThrown){
+					//根据消息id查询消息失败
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+				}
+			});
+		}
 		
 		plus.webview.currentWebview().setStyle({
 			softinputMode: "adjustResize"
@@ -370,37 +389,8 @@ mui.ready(function() {
 			type: 'text',
 			content: 'Hi，我是 科袖 小管家！'
 		}];
-		//根据咨询id查询消息
-		mui.ajax(baseUrl+'/ajax/tidings/qacon',{
-			data:{
-				"consultId":consultId
-			},
-			dataType:'json',//服务器返回json格式数据
-			type:'get',//HTTP请求类型
-			timeout:10000,//超时时间设置为10秒；
-			success:function(data){
-				var myData = data.data;
-				for(var i = 0; i < myData.length; i++ ){
-					if(data.data[i]['professor']['id'] == userid){
-						record.push({
-							sender: 'self',
-							type: 'text',
-							content: data.data[i]["tidingsContant"]
-						});
-					}else{
-						record.push({
-							sender: 'zs',
-							type: 'text',
-							content: data.data[i]["tidingsContant"]
-						});
-					}
-				}
-				bindMsgList();
-			},
-			error:function(xhr,type,errorThrown){
-				//根据消息id查询消息失败
-			}
-		});
+		
+		
 		
 		
 		
@@ -486,6 +476,7 @@ mui.ready(function() {
 				},
 				error:function(xhr,type,errorThrown){
 					//保存消息失败
+					plus.nativeUI.toast("抱歉，咨询失败", toastStyle);
 				}
 			});
 			

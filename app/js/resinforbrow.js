@@ -39,15 +39,28 @@ function ziyuaninfo(resourceId) {
 			success: function(data) {
 				if(data.success) {
 					console.log(data);
+					for (var key in mydata['professor']){
+						console.log('专家信息key==='+key);
+						
+					}
 					var mydata = data.data;
 					//专家信息
 					proId = mydata['professor']['id']; //专家id
+					
+					/*if(mydata['resourceName']){
+						oresorcename.innerHTML = mydata['resourceName']
+					}else{
+						oresorcename.innerHTML = '';
+					}*/
+					
+					
+					
 					(mydata['resourceName']) ? oresorcename.innerHTML = mydata['resourceName']: oresorcename.innerHTML = ''; //资源名称
 					(mydata['resourceName']) ? oresourceName.innerHTML = mydata['resourceName']: oresourceName.innerHTML = ''; //资源名称
 					(mydata['professor']['name']) ? oproname.innerHTML = mydata['professor']['name']: oproname.innerHTML = ''; //专家姓名
-					(mydata['professor']['title']) ? oprotitle.innerHTML = mydata['professor']['title'] + '，': oprotitle.innerHTML = ''; //专家职称
+					(mydata['professor']['title'] !=""&& mydata['professor']['title'] != undefined) ? oprotitle.innerHTML = mydata['professor']['title'] + '，': oprotitle.innerHTML = ''; //专家职称
 					(mydata['professor']['office']) ? oprooffice.innerHTML = mydata['professor']['office']: oprooffice.innerHTML = ''; //专家职务
-					(mydata['professor']['orgName']) ? oproorgName.innerHTML = mydata['professor']['orgName']: oproorgName.innerHTML = ''; //专家所属机构
+					(mydata['professor']['orgName'] != ''&&mydata['professor']['orgName'] != undefined) ? oproorgName.innerHTML = mydata['professor']['orgName']: oproorgName.innerHTML = ''; //专家所属机构
 					(mydata['professor']['address']) ? oproadress.innerHTML = mydata['professor']['address']: oproadress.innerHTML = ''; //专家所在地
 					(mydata['professor']['authentication']) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon'); //专家认证
 					(mydata['professor']['hasHeadImage']) ? oproimg.setAttribute('src', '../images/head/' + mydata['professor']['id'] + '_m.jpg'): oproimg.setAttribute('src', '../images/default-photo.jpg'); //专家头像
@@ -127,7 +140,7 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var resourceId = self.resourceId;
-	console.log(resourceId);
+	console.log("资源id=="+resourceId);
 	//资源信息
 	ziyuaninfo(resourceId);
 

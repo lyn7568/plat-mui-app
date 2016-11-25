@@ -266,7 +266,7 @@ mui.plusReady(function() {
 	window.addEventListener('backproinfo', function(event) {
 		var proid = event.detail.proId;
 		console.log(proid);
-		ozixun.classList.add('displayNone');
+		/*ozixun.classList.add('displayNone');*/
 	});
 
 	ifCollection();

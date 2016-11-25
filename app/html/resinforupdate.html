@@ -46,17 +46,17 @@
     		<div class="mui-input-group mainbox resouinfoword marginbox">
             	<ul class="resouinfobox">
             		<li>
-            			<div class="infocontit">基本信息<a class="updatebox mui-clearfix" href="updateinfo-res01.html"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left">点击修改</span></a></div>
+            			<div class="infocontit">基本信息<a class="updatebox mui-clearfix" id="mess"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left">点击修改</span></a></div>
             		</li>
 					<li>
 						<div class="infocon">
 							<p style="color:#666666; font-size:14px;">
 								<span>资源名称：</span>
-								<span class="listtit2">XXXXX资源名称XXXXX资源名称XX</span>
+								<span class="listtit2"></span>
 							</p>
 							<p style="color:#666666; font-size:14px;">
 								<span>应用用途：</span>
-								<span class="listtit2">应用用途应用用途应用用途应用用途应用用</span>
+								<span class="listtit2"></span>
 							</p>
 						</div>
 					</li>
@@ -65,16 +65,10 @@
 			<div class="mui-input-group mainbox resouinfoword marginbox">
             	<ul class="resouinfobox">
 					<li>
-						<div class="infocontit">学术领域<a class="updatebox mui-clearfix" href="updateinfo-res02.html"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left">点击修改</span></a></div>
+						<div class="infocontit" >学术领域<a class="updatebox mui-clearfix" id="subject"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left" id="subModify">点击修改</span></a></div>
 						<div class="infocon">
 					       	<ul class="infosubject">
-					       		<li>领域1</li>
-					       		<li>领域领域领域2</li>
-					       		<li>领域领域领域领域3</li>
-					       		<li>领域4</li>
-					       		<li>领域领1</li>
-					       		<li>领域1</li>
-					       		<li>领域1</li>
+					       		
 					       	</ul>
 				       </div>
 					</li>
@@ -83,16 +77,10 @@
 			<div class="mui-input-group mainbox resouinfoword marginbox">
             	<ul class="resouinfobox">
 					<li>
-						<div class="infocontit">应用行业<a class="updatebox mui-clearfix" href="updateinfo-res03.html"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left">点击修改</span></a></div> 
+						<div class="infocontit">应用行业<a class="updatebox mui-clearfix" id="industry"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left" id="indModify">点击修改</span></a></div> 
 				        <div class="infocon">
 					       	<ul class="infoapply">
-					       		<li class="mui-ellipsis">应用行业1</li>
-					       		<li class="mui-ellipsis">领域领域领域域领域领域域领域领域域领域领域2</li>
-					       		<li class="mui-ellipsis">领域领域3</li>
-					       		<li class="mui-ellipsis">领域4</li>
-					       		<li class="mui-ellipsis">领域领1</li>
-					       		<li class="mui-ellipsis">领域1</li>
-					       		<li class="mui-ellipsis">领域1</li>
+					       		
 					       	</ul>
 				        </div>
 					</li>
@@ -101,19 +89,19 @@
 			<div class="mui-input-group mainbox resouinfoword marginbox">
             	<ul class="resouinfobox">
 					<li>
-				       <div class="infocontit">详细描述<a class="updatebox mui-clearfix" href="updateinfo-res04.html"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left">点击修改</span></a></div> 
+				       <div class="infocontit" >详细描述<a class="updatebox mui-clearfix" id="descp"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left" id="desModify">点击修改</span></a></div> 
 				       <div class="infocon">
-				       		<p class="listtit3 mutlinebox">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
+				       		<p class="listtit3 mutlinebox" id="descp1"></p>
 				       </div>
 					</li>
 				</ul>
 			</div>
-			<div class="mui-input-group mainbox resouinfoword marginbox">
+			<div class="mui-input-group mainbox resouinfoword marginbox">  
             	<ul class="resouinfobox">
 		            <li>
-				       <div class="infocontit">合作备注<a class="updatebox mui-clearfix" href="updateinfo-res05.html"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left">点击修改</span></a></div> 
+				       <div class="infocontit">合作备注<a class="updatebox mui-clearfix" id="cooperation"><em class="updatebtn mui-pull-left"></em><span class="mui-pull-left" id="cooModify">点击修改</span></a></div> 
 				       <div class="infocon">
-				       		<p class="listtit3 mutlinebox"> Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque</p>
+				       		<p class="listtit3 mutlinebox" id="cooperationNotes"> </p>
 				       </div>
 				    </li>
 				</ul>
@@ -125,16 +113,10 @@
 		
 		
 		<script src=" ../js/public/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init();
-			var shareBtn = document.getElementById("shareBtn");
-			var shareBox = document.getElementById("shareBox");
-			
-			shareBtn.addEventListener("tap",function(){
-				shareBox.style.display = 'block';
-			});
-			
-		</script>
+		<script src="../js/public/zepto.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/resinforupdate.js"></script>		
+		
 	</body>
 
 </html>

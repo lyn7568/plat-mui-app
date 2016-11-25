@@ -44,88 +44,107 @@ mui.ready(function() {
 					}	
 				}			
 			}
-		//查询研究方向
-		var getRecords = function ($researchAreaLogs,caption){
-			     var ret=[];
-			     for(var i = 0 ;i < $researchAreaLogs.length ; i++){
-			     	if(caption==$researchAreaLogs[i].caption){
-			     		ret.push($researchAreaLogs[i].opreteProfessorId);
-			     	}
-			     }
-			     return ret;
-			}
-var researchAreaShow = function ($datas,$datarecords){
-				if($datas != undefined &&  $datas.length != 0 ){
-					 var html = [];
-					for(var i =0 ; i< $datas.length;++i) {
-						var $data = $datas[i];
-						var $photos = [];
-						//获取头像
-						if($datarecords.length>0) {
-							$photos = getRecords($datarecords,$data.caption);
-						}
-						var showDiv= "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>"+$data.count+"</span>"+$data.caption+"</div><span class='plusbtn' data-isagree='-1'></span><div class='likenum'>";
-						if($photos.length>10) {
-							showDiv += "<div class='triangleR'></div>";
-						}
-						if($photos.length>0) {
-							for(var j =0 ; j< $photos.length;++j) {							
-								showDiv += "<span class='likepeople'><img class='like-h' src='../images/head/"+$photos[j]+"_s.jpg'></span>";							
-							} 
-						}
-						showDiv += "</div></div>";
-						html.push(showDiv);	
+			//查询研究方向
+		var getRecords = function($researchAreaLogs, caption) {
+			var ret = [];
+			var t = 0;
+			for(var i = 0; i < $researchAreaLogs.length; i++) {
+				if(caption == $researchAreaLogs[i].caption) {
+					ret[t] = {
+						id: $researchAreaLogs[i].opreteProfessorId,
+						img: $researchAreaLogs[i].hasHeadImage
 					}
-					document.getElementsByClassName("reserachMess")[0].innerHTML=html.join('')
-				}			
+					t++;
+				}
 			}
+			return ret;
+		}
+		var researchAreaShow = function($datas, $datarecords) {
+			if($datas != undefined && $datas.length != 0) {
+				var html = [];
+				for(var i = 0; i < $datas.length; ++i) {
+					var $data = $datas[i];
+					var $photos = [];
+					//获取头像					
+					if($datarecords.length > 0) {
+						$photos = getRecords($datarecords, $data.caption);
+					}
+					var isAgree = -1;
+					for(var j = 0; j < $photos.length; j++) {
+						if(userid == $photos[j].id)
+							isAgree++;
+					}
+					if(isAgree) {
+						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn  icon-appreciate' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
+					} else {
+						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn icon-appreciatefill' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
+					}
 
-			//获取个人的信息
-			function personalMessage() {
-				mui.ajax(baseUrl + "/ajax/professor/info/" + userid, {
-					dataType: 'json', //数据格式类型
-					type: 'GET', //http请求类型
-					timeout: 10000, //超时设置
-					success: function(data) {
-						plus.nativeUI.closeWaiting();
-						plus.webview.currentWebview().show();
-						var $data = data.data;
-						personalMaterial[0].innerText = $data.name;
-						//头像					
-						if($data.hasHeadImage) {
-							oImg.src = "/images/head/" + $data.id + "_l.jpg";
+					if($photos.length > 0) {
+						for(var j = 0; j < $photos.length; ++j) {
+							if($photos[j].hasHeadImage) {
+								showDiv += "<span class='likepeople'><img class='like-h' src='../images/head/" + $photos[j] + "_s.jpg'></span>";
+							} else {
+								showDiv += "<span class='likepeople'><img class='like-h' src='../images/default-photo.jpg'></span>";
+							}
 						}
-						//基本信息
-						if(!$data.authentication) {
-							document.getElementsByClassName('authword')[0].innerText = "未认证";
-							document.getElementsByClassName('authword')[0].style.backgroundColor = "#cccccc";
-						}
-						if($data.office) {
-							personalMaterial[1].innerText = $data.office;
-						} else {
-							personalMaterial[1].parentNode.style.display = "none";
-						}
-						if($data.title) {
-							personalMaterial[2].innerText = $data.title;
-						} else {
-							personalMaterial[2].parentNode.style.display = "none";
-						}
-						if($data.orgName) {
-							personalMaterial[3].innerText = $data.orgName;
-						} else {
-							personalMaterial[3].parentNode.style.display = "none";
-						}
-						if($data.department) {
-							personalMaterial[4].innerText = $data.department;
-						} else {
-							personalMaterial[4].parentNode.style.display = "none";
-						}
-						if($data.address) {
-							personalMaterial[5].innerText = $data.address;
-						} else {
-							personalMaterial[5].parentNode.style.display = "none";
-						}
-						//个人简介
+					}
+					if($photos.length >= 3) {
+						showDiv += "<span class='mui-icon iconfont icon-more likepeople likemore'></span>";
+					}
+					showDiv += "</div></div></div>";
+					html.push(showDiv);
+				}
+				document.getElementsByClassName("reserachMess")[0].innerHTML = html.join('')
+			}
+		}
+
+		//获取个人的信息
+		function personalMessage() {
+			mui.ajax(baseUrl + "/ajax/professor/info/" + userid, {
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				timeout: 10000, //超时设置
+				success: function(data) {
+					plus.nativeUI.closeWaiting();
+					plus.webview.currentWebview().show("slide-in-right", 150);
+					var $data = data.data;
+					personalMaterial[0].innerText = $data.name;
+					//头像					
+					if($data.hasHeadImage) {
+						oImg.src = "/images/head/" + $data.id + "_l.jpg";
+					}
+					//基本信息
+					if(!$data.authentication) {
+						document.getElementsByClassName('authword')[0].innerText = "未认证";
+						document.getElementsByClassName('authword')[0].style.backgroundColor = "#cccccc";
+					}
+					if($data.office) {
+						personalMaterial[1].innerText = $data.office;
+					} else {
+						personalMaterial[1].parentNode.style.display = "none";
+					}
+					if($data.title) {
+						personalMaterial[2].innerText = $data.title;
+					} else {
+						personalMaterial[2].parentNode.style.display = "none";
+					}
+					if($data.orgName) {
+						personalMaterial[3].innerText = $data.orgName;
+					} else {
+						personalMaterial[3].parentNode.style.display = "none";
+					}
+					if($data.department) {
+						personalMaterial[4].innerText = $data.department;
+					} else {
+						personalMaterial[4].parentNode.style.display = "none";
+					}
+					if($data.address) {
+						personalMaterial[5].innerText = $data.address;
+					} else {
+						personalMaterial[5].parentNode.style.display = "none";
+					}
+					//个人简介
 
 						if($data.descp) {
 							personSummary.innerHTML = $data.descp;
@@ -136,9 +155,7 @@ var researchAreaShow = function ($datas,$datarecords){
 						}
 						//研究方向
 						if($data.researchAreas.length) {
-							console.log($data.researchAreaLogs);
-							console.log($data.researchAreas)
-							researchAreaShow($data.researchAreas, $data.researchAreaLogs);
+							researchAreaShow($data.researchAreas, $data.editResearchAreaLogs);
 						}
 						//应用行业
 						if($data.industry) {
@@ -146,7 +163,7 @@ var researchAreaShow = function ($datas,$datarecords){
 						}
 						//我的资源
 						if($data.resources.length) {
-							resource($data.resources);
+						resource($data.resources, $data.resources.length);
 						}
 					},
 					error: function() {
@@ -156,16 +173,16 @@ var researchAreaShow = function ($datas,$datarecords){
 				});
 			}
 			//我的所有资源、
-			function resource(oDa) {
-				var $data = oDa;
-				var html = [];
-				for(var i = 0; i < oDa.length; i++) {
-					var string = '<li class="mui-table-view-cell mui-media">'
-					string += '<a class="proinfor" href="resinforupdate.html">'
-					if($data[i].images.length) {
-						string += '<img class="mui-media-object mui-pull-left resimg" src="../images/resource/' + $data[i].resourceId + '.jpg">'
-						console.log('../images/resource/' + $data[i].resourceId + '.jpg')
-					} else {
+		function resource(oDa, n) {
+			var $data = oDa;
+			var html = [];
+			for(var i = 0; i < n; i++) {
+				var string = '<li class="mui-table-view-cell mui-media" resouId=' + $data[i].resourceId + '>'
+				string += '<a class="proinfor" href="resinforupdate.html">'
+				if($data[i].images.length) {
+					string += '<img class="mui-media-object mui-pull-left resimg" src="../images/resource/' + $data[i].resourceId + '.jpg">'
+					console.log('../images/resource/' + $data[i].resourceId + '.jpg')
+				} else {
 
 						string += '<img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">'
 					}
@@ -198,7 +215,8 @@ var researchAreaShow = function ($datas,$datarecords){
 				nwaiting.close(); //新webview的载入完毕后关闭等待框
 				webviewShow.show("slide-in-right", 150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
 			}, false);
-		}); document.getElementsByClassName("updatebox")[1].addEventListener("tap", function() {
+		});
+		document.getElementsByClassName("updatebox")[1].addEventListener("tap", function() {
 			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框  
 			var arr = {
 				descp: personSummary.innerText
@@ -230,13 +248,34 @@ var researchAreaShow = function ($datas,$datarecords){
 		document.getElementsByClassName("updatebox")[4].addEventListener("tap", function() {
 			page2.show("slide-in-right", 150);
 		});
+		//添加我的资源
+		document.getElementsByClassName("addinfobox")[0].addEventListener("tap", function() {
+			var nwaiting = plus.nativeUI.showWaiting();
+			var web = plus.webview.create("../html/updateinfo-res01.html", "updateinfo-res01.html"); //后台创建webview并打开show.html   	    	
+			web.addEventListener("loaded", function() {
+				plus.nativeUI.closeWaiting();
+				web.show("slide-in-right", 150);
+			}, false);
+		});
+		//修改我的资源
+		mui("#resourceList").on("tap", "li", function() {
+				var resouId = this.getAttribute("resouId");
+				var nwaiting = plus.nativeUI.showWaiting();
+				var web = plus.webview.create("../html/resinforupdate.html", "resinforupdate.html", {}, {
+					resourceId: resouId
+				}); //后台创建webview并打开show.html   	    	
+				web.addEventListener("loaded", function() {
 
-		//修改详细页面
+				}, false);
+			})
+			//修改详细页面
 		document.getElementsByClassName("gotonext2")[0].addEventListener("tap", function() {
 			var nwaiting = plus.nativeUI.showWaiting();
 			var web = plus.webview.create("../html/proinforupdate-more.html", "proinforupdate-more.html"); //后台创建webview并打开show.html   	    	
 			web.addEventListener("loaded", function() {}, false);
-		}); personalMessage(); resource();
+		});
+		personalMessage();
+		resource();
 	});
 });
 

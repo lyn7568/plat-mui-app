@@ -8,7 +8,6 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var proId = self.proid;
-    console.log(proId);
 	/*点击咨询*/
 	ozixun.addEventListener('tap', function() {
 		var flag = 'professor';
@@ -41,9 +40,14 @@ mui.plusReady(function() {
 		//查询研究方向	
 	var getRecords = function($researchAreaLogs, caption) {
 		var ret = [];
+		var t = 0;
 		for(var i = 0; i < $researchAreaLogs.length; i++) {
 			if(caption == $researchAreaLogs[i].caption) {
-				ret.push($researchAreaLogs[i].opreteProfessorId);
+				ret[t] = {
+					id: $researchAreaLogs[i].opreteProfessorId,
+					img: $researchAreaLogs[i].hasHeadImage
+				}
+				t++;
 			}
 		}
 		return ret;
@@ -54,31 +58,34 @@ mui.plusReady(function() {
 				for(var i = 0; i < $datas.length; ++i) {
 					var $data = $datas[i];
 					var $photos = [];
-					//获取头像
-					//console.log($data.count)
+					//获取头像					
 					if($datarecords.length > 0) {
 						$photos = getRecords($datarecords, $data.caption);
 					}
 					var isAgree = -1;
 					for(var j = 0; j < $photos.length; j++) {
-						if(userid == $photos[j])
+						if(userid == $photos[j].id)
 							isAgree++;
 					}
-					var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn icon-appreciate' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
-					if($photos.length > 3) {
-						showDiv += "<span class='mui-icon iconfont icon-more likepeople likemore'></span>'></div>";
+					if(isAgree) {
+						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn  icon-appreciate' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
+					} else {
+						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn icon-appreciatefill' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
 					}
 
 					if($photos.length > 0) {
 						for(var j = 0; j < $photos.length; ++j) {
-
-							showDiv += "<span class='likepeople'><img class='like-h' src='../images/head/" + $photos[j] + "_s.jpg'></span>";
-
+							if($photos[j].hasHeadImage) {
+								showDiv += "<span class='likepeople'><img class='like-h' src='../images/head/" + $photos[j] + "_s.jpg'></span>";
+							} else {
+								showDiv += "<span class='likepeople'><img class='like-h' src='../images/default-photo.jpg'></span>";
+							}
 						}
 					}
-
-					showDiv += "</div></div>";
-
+					if($photos.length >= 3) {
+						showDiv += "<span class='mui-icon iconfont icon-more likepeople likemore'></span>";
+					}
+					showDiv += "</div></div></div>";
 					html.push(showDiv);
 				}
 				document.getElementsByClassName("reserachMess")[0].innerHTML = html.join('')
@@ -187,7 +194,7 @@ mui.plusReady(function() {
 				//研究方向
 				if($data.researchAreas.length) {
 
-					researchAreaShow($data.researchAreas, $data.researchAreaLogs);
+					researchAreaShow($data.researchAreas, $data.editResearchAreaLogs);
 				} else {
 					document.getElementById("professorReserachMess").style.display = "none";
 				}
@@ -243,7 +250,7 @@ mui.plusReady(function() {
 								document.getElementsByClassName("reserachMess")[0].innerHTML = "";
 								if($data.researchAreas.length) {
 
-									researchAreaShow($data.researchAreas, $data.researchAreaLogs);
+									researchAreaShow($data.researchAreas, $data.editResearchAreaLogs);
 								}
 
 							},
@@ -364,5 +371,17 @@ mui.plusReady(function() {
 		});
 
 	}
-
+	/*专家的历史和评价*/
+	document.getElementById("accessHistory").addEventListener('tap', function() {
+		mui.openWindow({
+			url: '../html/coophistory-other.html',
+			id: 'html/coophistory-other.html',
+			show: {
+				autoShow: false,
+			},
+			extras: {
+				professorId: proId
+			}
+		});
+	})
 });

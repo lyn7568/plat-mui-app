@@ -13,7 +13,7 @@ function userInformation() {
 					var $info = data.data.data || {}
 					if(data.success) {
 						plus.nativeUI.closeWaiting();
-					plus.webview.currentWebview().show();
+					plus.webview.currentWebview().show("slide-in-right",150);
 					var html=[];
 			for(var i=0;i<data.data.data.length;i++) {
 				  var assessTime=$info[i]["assessTime"].substr(0,4) + "年" +  $info[i].assessTime.substr(4,2) + "月" +  $info[i].assessTime.substr(6,2) + "日"

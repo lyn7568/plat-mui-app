@@ -27,13 +27,11 @@
 	    	<!--mui-action-back-->
 			<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></span>
 			<h1 class="mui-title toptit">评价</h1>
-			<span id="submit" class="mui-pull-right topsave">发送</span>
 		</header>
-	
 		<div class="mui-content">
 			<div class="assessbox">
 				<div class="mui-content-padded ">
-					<div class="mui-inline">整体评价</div>
+					
 					<div class="icons mui-inline levelbox" style="margin-left: 6px;" id="starContainer">
 						<span data-index="1" class="mui-icon iconfont icon-favor"></span>
 						<span data-index="2" class="mui-icon iconfont icon-favor"></span>
@@ -43,23 +41,17 @@
 					</div>
 				</div>
 				<div class="mui-content-padded">
-					<div class="mui-inline">评价留言</div>
+					<div id='assesscon'></div>
 				</div>
-				<div class="row mui-input-row" id="textbox">
-					<div id='question' class="mui-input-clear question textareabox" contenteditable="true">
-						
-					</div>
-					<div class="text_count"><span><span id="text-count">0</span>/300字</span></div>
-					<input type="text" value="0" style="display: none;" id="inp"/>
-				</div>
+				
 				
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
- 		<script src="../js/chat-assess.js"></script>
+ 		<script src="../js/chat-assess-detail.js"></script>
 		<script type="text/javascript">
-			mui.init();
+			/*mui.init();
 			mui('.mui-scroll-wrapper').scroll();
 			(function() {
 				var index = 1;
@@ -70,9 +62,7 @@
 					question: document.getElementById('question'), 
 					submitBtn: document.getElementById('submit')
 				};
-				/**
-				 *提交成功之后，恢复表单项 
-				 */
+				
 				feedback.clearForm = function() {
 					feedback.question.value = '';
 			
@@ -106,7 +96,7 @@
 				  	}
 				  	starIndex = index;
 			  });
-			 })();
+			 })();*/
 		</script>
 	</body>
 

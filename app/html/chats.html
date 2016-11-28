@@ -323,7 +323,17 @@
  			.showCon {
  				padding: 10px 20px;
  			}
- 			 
+ 			/*待评价开始*/
+ 			.frmbtn1 {
+ 				border:1px solid red;
+ 				border-radius:6px;
+ 				color:red;
+ 			}
+ 			.frmbtn1.mui-btn:enabled:active{
+ 				background: red;
+ 				color: #fff;
+ 			}
+ 			/*待评价结束*/
  		</style>
  	</head>
   	<body contextmenu="return false;">
@@ -365,7 +375,7 @@
  		<div class="mui-content">
  			<div class="displayNone" id="status"></div>
  			<!--评价内容-->
- 			<div id="middlePopover" class="mui-popover">
+ 			<!--<div id="middlePopover" class="mui-popover">
 				<div class="mui-popover-arrow" id="arrow"></div>
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
@@ -384,7 +394,7 @@
 					</div>
 				</div>
 	
-			</div><!--评价内容-->
+			</div>--><!--评价内容-->
  			
  			
  			
@@ -401,7 +411,7 @@
 				</div>
 				<!--我的需求，未评价-->
 				<div class="operatebtnbox mui-pull-right displayNone" id="assessBtn">
-					<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn operatebtn"  style="width:80px;">去评价</button>
+					<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn1 operatebtn"  style="width:80px;">去评价</button>
 				</div>
 				<!--我的需求，已评价-->
 				<div class="operatebtnbox mui-pull-right operated displayNone" id="assessed">

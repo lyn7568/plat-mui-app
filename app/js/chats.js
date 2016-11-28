@@ -88,10 +88,12 @@ mui.ready(function() {
 				  				starlist[i].classList.add('icon-favorfill');
 							};
 							/*===========评价内容没做=========*/
-							oassessText.innerHTML = myData["assessContant"];//评价内容
+							
+//							oassessText.innerHTML = myData["assessContant"];//评价内容
 							
 							oassessed.addEventListener('tap',function() {
-								showAssessText(omy_starContainer);
+//								showAssessText(omy_starContainer);
+								clickGodetail(omy_starContainer,consultId)
 							});
 							
 							
@@ -139,9 +141,10 @@ mui.ready(function() {
 				  				starlist[i].classList.add('icon-favorfill');
 							}
 							
+							
 							othat_assessed.addEventListener('tap',function() {
-								
-								showAssessText(ozixunstarContainer);
+								clickGodetail(ozixunstarContainer,consultId)
+//								showAssessText(ozixunstarContainer);
 							});
 
 						}
@@ -176,6 +179,21 @@ mui.ready(function() {
 			})
 		});
 	};
+	
+	/*打开评价详情函数*/
+	function goassessDetail(consultId) {
+		mui.openWindow({
+			id:'chat-assess-detail.html',
+		    url:'chat-assess-detail.html',
+		    extras:{'consultId':consultId}//向评价页面传值;咨询id
+		});
+	}
+	/*点击已评价,进入评价详情*/
+	function clickGodetail(btn,consultId) {
+		btn.addEventListener('tap',function(){
+			goassessDetail(consultId);
+		});
+	}
 	
 	/*点击未评价,进入评价页面*/
 	function clickweiassess(consultId){

@@ -302,7 +302,8 @@ function eachData(userid,datalist) {
 		(!item["professor"]["office"])? zhiwei  = ''  : zhiwei = item["professor"]["office"] + '，';
 		(!item["professor"]["address"])? address = '' : address = '|'+ item["professor"]["address"];
 		(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
-		(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg" :photoUrl = "../images/head/"+item["professor"]["id"]+"_m.jpg";
+		(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
+		
 		
 		//咨询类型，只取两个字
 		if(item["consultType"]) {

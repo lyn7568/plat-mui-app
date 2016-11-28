@@ -11,13 +11,15 @@ mui.plusReady(function() {
 	/*点击咨询*/
 	ozixun.addEventListener('tap', function() {
 		var flag = 'professor';
-		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
-		webviewShow = plus.webview.create("../html/consultapply.html",'consultapply.html',{},
-		{'proId': proId,'flag': flag});
-		
-	    webviewShow.addEventListener("loaded", function() {
-	        
-	    }, false);
+		var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
+		webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
+			'proId': proId,
+			'flag': flag
+		});
+
+		webviewShow.addEventListener("loaded", function() {
+
+		}, false);
 	});
 	//查询学术领域
 	var subjectShow = function(data) {
@@ -113,8 +115,8 @@ mui.plusReady(function() {
 			var $data = odata;
 			var html = [];
 			for(var i = 0; i < odata.length; i++) {
-				var string = '<li class="mui-table-view-cell mui-media">'
-				string += '<a class="proinfor" href="resinforupdate.html">'
+				var string = '<li class="mui-table-view-cell mui-media" resouseId=' + $data[i].resourceId + '>'
+				string += '<a class="proinfor">'
 				if($data[i].images.length) {
 					string += '<img class="mui-media-object mui-pull-left resimg" src="../images/resource/' + $data[i].resourceId + '.jpg">'
 
@@ -143,7 +145,7 @@ mui.plusReady(function() {
 			timeout: 10000, //超时设置
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
-				plus.webview.currentWebview().show("slide-in-right",150);
+				plus.webview.currentWebview().show("slide-in-right", 150);
 				var $data = data.data;
 				personalMaterial[0].innerText = $data.name;
 				//基本信息
@@ -268,7 +270,14 @@ mui.plusReady(function() {
 	})
 
 	personalMessage();
-
+	/*进入资源详细页面*/
+	mui("#resourceList").on('tap', 'li', function() {
+		var resouId = this.getAttribute("resouseId");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
+			resourceId: resouId
+		});
+	});
 	/*咨询成功,返回专家信息*/
 	window.addEventListener('backproinfo', function(event) {
 		var proid = event.detail.proId;

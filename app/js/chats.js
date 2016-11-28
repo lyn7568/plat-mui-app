@@ -131,7 +131,7 @@ mui.ready(function() {
 						}else{//收到咨询已评价(评价星级和评价内容)
 							
 							othat_assessed.classList.remove('displayNone');
-							oassessText.innerHTML = myData["assessContant"];//评价内容
+//							oassessText.innerHTML = myData["assessContant"];//评价内容
 							//评价星级
 							var starCount = myData["assessStar"];
 							console.log("收到咨询对方已评价，星级："+starCount);

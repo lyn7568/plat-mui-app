@@ -273,7 +273,7 @@ function eachData(userid,datalist) {
     	
     	//咨询类型和状态
 		if(item['consultantId'] != userid){//收到咨询
-			title = "回复:关于" + item["consultTitle"] + "的咨询";
+			title = "回复:" + item["consultTitle"];
 			if(item["consultStatus"] == 0){
 				status = "进行中";
 				statusStyle = 'status-1';
@@ -282,7 +282,7 @@ function eachData(userid,datalist) {
 				statusStyle = 'status-3';
 			}
 		}else if(item['consultantId'] == userid){//我的需求
-			title = "关于" + item["consultTitle"] + "的咨询";
+			title =  item["consultTitle"];
 			if(item["consultStatus"] == 0){
 				status = "进行中";
 				statusStyle = 'status-1';

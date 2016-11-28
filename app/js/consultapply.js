@@ -123,7 +123,7 @@
 				if(myData["hasHeadImage"] == 0) {
 					oproimg.setAttribute('src','../images/default-photo.jpg');
 				}else {
-					oproimg.setAttribute('src','../images/head/'+myData['id']+'_m.jpg');
+					oproimg.setAttribute('src',baseUrl+'/images/head/'+myData['id']+'_m.jpg');
 				}
  				
  				/*星级*/

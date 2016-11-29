@@ -152,7 +152,7 @@ mui.ready(function() {
 		oconfirmBtn.addEventListener('tap', function() {
 			setState(consultId);//点击确认,更新咨询状态
 			var btnArray = ['确定','取消'];
-			mui.confirm('确认此次咨询已完成？', 'ni', btnArray, function(e) {
+			mui.confirm('确认此次咨询已完成？', '', btnArray, function(e) {
 				console.log(e.index);
 				if (e.index == 0) {//确定
 					goassessFun(consultId);//进入评价页面

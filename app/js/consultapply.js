@@ -105,10 +105,10 @@
  				}else {
  					oproorgName.innerHTML = myData["orgName"];//所在机构
  				}
- 				if(myData["adress"] == null || myData["adress"] == undefined ) {
+ 				if(myData["address"] == null || myData["address"] == undefined ) {
  					oproadress.innerHTML = '';
  				}else {
- 					oproadress.innerHTML = '|'+myData["adress"];//所在地
+ 					oproadress.innerHTML = ' | '+myData["address"];//所在地
  				}
  				if(myData["consultCount"] == null || myData["consultCount"] == undefined ) {
  					myData["consultCount"] = 0;
@@ -163,7 +163,6 @@
    	    var flag = self.flag;
    	    var consulttitle = self.consulttitle;//咨询主题（从资源页面传过来的）
    	    
-   	    console.log(proId);
    	    
    	 	/*专家信息数据*/
    	    proinfo(proId);
@@ -195,16 +194,7 @@
 		
 		/*专家的历史和评价*/
 		ofinished.addEventListener('tap', function() {
-			/*mui.openWindow({
-				url: '../html/coophistory-other.html',
-				id: 'html/coophistory-other.html',
-				show: {
-					autoShow: false,
-				},
-				extras: {
-					professorId: proId
-				}
-			});*/
+			
 			mui.openWindow({
 				url: '../html/coophistory.html',
 				id: 'html/coophistory.html',
@@ -223,7 +213,9 @@
 		var aimlist = document.querySelector('.aimclass').querySelectorAll("li");
 		for(var i = 0 ; i < aimlist.length;i++){
 			aimlist[i].classList.remove('liactive');
+			aimlist[i].querySelector('em').classList.remove('icon-check');
 		}
 		this.classList.add('liactive');
+		this.querySelector("em").classList.add("icon-check");
 	});
 })

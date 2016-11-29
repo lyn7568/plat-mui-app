@@ -7,6 +7,8 @@
 /*.mui-table-view-cell .mui-media-body{padding-bottom:10px; border-bottom:1px solid #CCCCCC;}*/
 .mui-input-group .mui-input-row:last-child:after{ background: none;}
 .mui-input-group .mui-input-row:after{left:10px; background-color: #E6E6E6;}/*登录注册等表单的横线*/
+.mui-poppicker-header .mui-btn.mui-poppicker-btn-ok {border: 1px solid #ff9900;background-color: #ff9900;}
+.mui-poppicker-body .mui-picker{background:#fff;}/*城市选择器*/
 
 .mui-popover{ border-radius:0;}
 /*弹出框样式popup*/
@@ -26,6 +28,11 @@ body{ color: #666666; font-size:14px;}
 .floatR{ float: right;}
 .displayNone {display: none;}
 .displayBlock {display: block;}
+/*圆角*/
+/*头像、资源圆角*/
+.headRadius{border-radius: 4px;}
+/*底板背景圆角*/
+.bgRadius{border-radius: 6px;}
 
 .marginbox{ margin: 10px 0; padding:0; }
 .marginbox:first-child{margin: 0;}
@@ -158,7 +165,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 /*完善信息*/
 .maincon{ padding:4% 2%; overflow: hidden;}
 .maincon .headbox{ text-align: center;}
-.headbox .headimg{width: 20%;border-radius:50%;}
+.headbox .headimg{width: 20%;}
 .maincon .pinfor{ color: #888888; font-size: 13px;}
 .maincon .basicinfo {margin:0; padding:0;padding-left:3%; }
 .maincon .basicinfo li{ list-style: none;padding-left: 2%;font-size: 14px; overflow: hidden;}
@@ -169,9 +176,9 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .maincon .basicinfo li small{ color:#AAAAAA;}
 
 .fillbox{margin-top:20%;padding:4% 0;}
-.maincon .headbox3{width:100px; height: 100px;position: absolute;top:-14%; left: 50%; margin-left: -50px;border-radius: 50%;border:2px #FFFFFF solid;box-shadow: 1px 1px 2px 1px #F0F0F0; overflow: hidden;background: url(../images/default-photo.jpg); background-size:100% 100%;}
+.maincon .headbox3{width:100px; height: 100px;position: absolute;top:-15%; left: 50%; margin-left: -50px;border:2px #FFFFFF solid;box-shadow: 1px 1px 2px 1px #F0F0F0; overflow: hidden;background: url(../images/default-photo-up.jpg); background-size:100% 100%;}
 .headbox3 .headimg3{width:100%; height: 100%;}
-.headbox3 .headimglink{position: absolute;bottom: 0; display: block; background: url(../images/take-photo.png) center center no-repeat rgba(0,0,0,.4);width: 100%; height:100%;z-index: 4;}
+.headbox3 .headimglink{position: absolute;line-height:100px;color:#FFFFFF; font-size:20px;padding:0 38px;display: block; background:rgba(0,0,0,.4);width: 100%; height:100%;z-index: 4;}
 
 .nextstep{ color: #FF9900; font-size: 13px;}
 .nextstep{ position: relative;}
@@ -199,7 +206,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .protable:before{ background-color:transparent;}
 
 
-.mui-media .headimg{ border-radius: 50%; max-width:60px; height:60px; margin: 1% 0;}
+.mui-media .headimg{max-width:60px; height:60px; margin: 1% 0;overflow:hidden;}
 .mui-media .resimg{border-radius:2px; max-width:60px; height:60px; margin: 1% 0;}
 .mui-table-view-cell>a.proinfor{ white-space:normal; overflow: auto;position: relative; overflow: hidden; }
 /***********************首页*******************/
@@ -240,7 +247,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .likenum .mui-icon{ font-size:24px; color:#CCCCCC;}
 .likepeople{ width:26px; height:26px; float:left; overflow:hidden; margin-right:5px; }
 .likepeople img{ width:100%; height:100%;}
-.likemore{ display: block; width: 26px; height: 26px; border:1px solid #CCCCCC; border-radius: 50%;}
+.likemore{ display: block; width: 26px; height: 26px; border:1px solid #CCCCCC;}
 
 .infoapply li{ padding-left:6px;padding-right:2px; list-style: disc inside; width: 50%; float: left;}
 .gotonext{ width:140px; margin: auto; font-size: 14px; color: #FF9900; overflow: hidden;}
@@ -269,7 +276,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 /***********************我的账户*******************/
 .headbox2{ overflow: hidden; position: relative;}
 .headbox2 .proinfor{ display: block; width: 100%;overflow: hidden;}
-.headbox2 .headimg2{width:24%;border-radius:50%;margin: 2%; }
+.headbox2 .headimg2{width:24%;margin: 2%; }
 .headbox2 .infobasic{ margin: 6px 4%;position:absolute; left:25%; top:50%; margin-top: -40px;}
 .headbox2 .infobasic .listtit{ font-size: 18px;}
 .headbox2 .infobasic .listtit2{ margin: 4px 0;}
@@ -312,12 +319,13 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .generalinfo .letspace{font-style:normal;letter-spacing: 2em;}
 
 .updatebox{ position: absolute; right:1%; top:0; font-size: 13px; line-height:16px;color: #FF9900;}
+.updatebox2{right:6%; }
 .updatebox:hover,.updatebox:active,.updatebox:link{ color: #FF9900;}
-.updatebox .updatebtn{display: block; margin-right:3px; width: 14px;height: 14px; background: url(../images/edit2.png) center center no-repeat; background-size:100% 100% ;}
+.updatebox .updatebtn{font-size:16px;}
 
 .addinfobox{ position: absolute; right:0; top:0; font-size: 13px; line-height:16px;color: #FF9900;}
 .addinfobox:hover,.addinfobox:active,.addinfobox:link{ color: #FF9900;}
-.addinfobox .addinfobtn{display: block; margin-right:3px; width: 14px;height: 14px; background: url(../images/add.png) center center no-repeat; background-size:100% 100% ;}
+.addinfobox .addinfobtn{font-size:16px;}
 
 .addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 78%; height: 30px;}
 .addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px;  width: 18%; height: 30px;/*padding-left:20px; padding-right:20px;*/}
@@ -396,12 +404,22 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 
 /*********************** 咨询*******************/
 .consultbox{ padding:20px 0px 20px 0px;}
+@font-face {font-family: "iconfont";}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 .consultaim{ text-align: center; margin: auto;position:relative;width:100%; }
-.consultaim ul{padding: 0; margin: 0;padding:2%; width:70%; position:relative; left:50%;margin-left:-34%; overflow: hidden;}
-.consultaim ul li{ list-style: none;float: left; width:100px; padding:2px 16px;border:#CCCCCC 1px solid;border-radius: 6px; margin:1%; font-size: 13px;}
-.consultaim ul .liactive{ border:1px solid #6CA8FF;padding-left:28px; color: #6CA8FF;position: relative;}
-.consultaim ul .liactive em{ display:block;position: absolute; left:10px; top:50%;margin-top: -8px; width:16px; height:16px;background: url(../images/selected.png) center center no-repeat; background-size:100% 100% ;}
+.consultaim ul{padding: 0; margin: 0;padding: 2% 5%;/* width:70%; position:relative; left:50%;margin-left:-34%;*/ overflow: hidden;}
+.consultaim ul li{ list-style: none;float: left; width:31%; padding:2px 8px;border:#CCCCCC 1px solid;border-radius: 6px; margin:1%; font-size: 12px;line-height: 24px;vertical-align: middle;}
+.consultaim ul li .icon-check{border:1px solid #6CA8FF;color:#6CA8FF;border-radius: 50%;font-size:12px; margin-right: 2%; }
+.consultaim ul .liactive{ border:1px solid #6CA8FF;color: #6CA8FF;/*padding-left:28px; position: relative;}*/
+/*.consultaim ul .liactive em{ /*display:block;position: absolute; left:10px; top:50%;margin-top: -8px; width:16px; height:16px;background: url(../images/selected.png) center center no-repeat; background-size:100% 100% ;*/}*/
 .divline{border-top:1px solid #F0F0F0; width: 100%; height: 1px;} 
 
 .consultinfo{ width: 96%; margin: auto; margin-top:6px;}
@@ -458,7 +476,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .resouimgbox img{ width: 100%;margin: auto;}
 .personblock{ position:absolute;top:50%; margin-top:-88px ;left:56%; padding:8px 2px; text-align: center; width:40%;}
 .personblock p{ margin-bottom: 4px;}
-.personblock .headimg{ width:40%; border-radius: 50%;overflow: hidden;}
+.personblock .headimg{ width:40%;overflow: hidden;}
 
 .resomenubox{background: #FFFFFF; padding:8px 10px;}
 .resomenubox ul.resomenu{padding: 0;margin: 0;overflow: hidden;}

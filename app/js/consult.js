@@ -333,7 +333,7 @@ function eachData(userid,datalist) {
             		+ '<span class="'+statusStyle+' status" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
             		+ '<a class="proinfor itemBtn" consultId="'+item["consultId"]+'" consultantId="'+item["consultantId"]+'" >'
 					+ '<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item["consultId"]+'">'+unreadCount+'</span>'
-	        		+ '<img class="mui-media-object mui-pull-left headimg" src="'+photoUrl+'">'
+	        		+ '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">'
             		+ '<div class="mui-media-body">'
             		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>'	
             		+ '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+item["professor"]["orgName"]+'</span><span>'+address+'</span></p>'

@@ -278,7 +278,7 @@ function datalistEach(datalist) {
 		li.className = 'mui-table-view-cell mui-media';
 
 		li.innerHTML = '<a class="proinfor" data-id="' + item.professor.id + '"' +
-			'<p><img class="mui-media-object mui-pull-left headimg" src="' + img + '"></p>' +
+			'<p><img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '"></p>' +
 			'<div class="mui-media-body">' +
 			'<span class="listtit">' + item.professor.name + icon + '</span>' +
 			'<p class="listtit2"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +

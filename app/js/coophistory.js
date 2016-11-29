@@ -23,9 +23,9 @@ function userInformation() {
 	                string+='<a class="proinfor" href="../html/proinforbrow.html">'
 	                	string+='<div class="mui-pull-left lefthead">'
 	                	if($info[i].professor.hasHeadImage) {
-	                		string+='<img class="mui-media-object headimg" src="/images/head/'+userid+'_l.jpg">'
+	                		string+='<img class="mui-media-object headimg headRadius" src="/images/head/'+userid+'_l.jpg">'
 	                	}else {
-	                		string+='<img class="mui-media-object headimg" src="../images/default-photo.jpg">'
+	                		string+='<img class="mui-media-object headimg headRadius" src="../images/default-photo.jpg">'
 	                	}
 	                    	
 	                    	string+='<p class="listtit0">'+$info[i].professor.name+'</p>'

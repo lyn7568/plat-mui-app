@@ -83,14 +83,14 @@ mui.ready(function() {
 					if($photos.length > 0) {
 						for(var j = 0; j < $photos.length; ++j) {
 							if($photos[j].hasHeadImage) {
-								showDiv += "<span class='likepeople'><img class='like-h' src='../images/head/" + $photos[j] + "_s.jpg'></span>";
+								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/head/" + $photos[j] + "_s.jpg'></span>";
 							} else {
-								showDiv += "<span class='likepeople'><img class='like-h' src='../images/default-photo.jpg'></span>";
+								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
 							}
 						}
 					}
 					if($photos.length >= 3) {
-						showDiv += "<span class='mui-icon iconfont icon-more likepeople likemore'></span>";
+						showDiv += "<span class='mui-icon iconfont icon-more likepeople likemore headRadius'></span>";
 					}
 					showDiv += "</div></div></div>";
 					html.push(showDiv);
@@ -187,7 +187,7 @@ mui.ready(function() {
 						string += '<img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">'
 					}
 					string += '<div class="mui-media-body">'
-					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox" style="top:6px;right:6px;"><em class="updatebtn"></em></div></span>'
+					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox updatebox2" style="top:6px;right:6px;"><em class="mui-icon mui-icon-compose updatebtn"></em></div></span>'
 					string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
 					string += '<p class="listtit3 resbrief">'
 					if($data[i].descp) {

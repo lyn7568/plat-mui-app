@@ -225,7 +225,7 @@ mui.ready(function() {
 	            htmlStr += '<span class="status-1">'+status+'</span></div></div>';
 	            htmlStr += '<a class="proinfor itemBtn" consultId="'+data[i]["consultId"]+'" consultantId="'+data[i]["consultantId"]+'"  manFlag="'+manFlag+'">';
 				htmlStr += '<span class="mui-badge mui-badge-danger" style="'+unreadStyle+'">'+unreadCount+'</span>';
-		        htmlStr += '<img class="mui-media-object mui-pull-left headimg" src="'+photoUrl+'">';
+		        htmlStr += '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">';
 	            htmlStr += '<div class="mui-media-body">';
 	            htmlStr += '<span class="listtit">'+data[i]["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>';	
 	            htmlStr += '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+data[i]["professor"]["orgName"]+'</span><span>'+address+'</span></p>';

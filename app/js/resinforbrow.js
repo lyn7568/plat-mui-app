@@ -43,16 +43,61 @@ function ziyuaninfo(resourceId) {
 					//专家信息
 					proId = mydata['professor']['id']; //专家id
 					
-					(mydata['resourceName']) ? oresorcename.innerHTML = mydata['resourceName']: oresorcename.innerHTML = ''; //资源名称
-					(mydata['resourceName']) ? oresourceName.innerHTML = mydata['resourceName']: oresourceName.innerHTML = ''; //资源名称
-					(mydata['professor']['name']) ? oproname.innerHTML = mydata['professor']['name']: oproname.innerHTML = ''; //专家姓名
-					(mydata['professor']['title'] !=""&& mydata['professor']['title'] != undefined) ? oprotitle.innerHTML = mydata['professor']['title'] + '，': oprotitle.innerHTML = ''; //专家职称
-					(mydata['professor']['office']) ? oprooffice.innerHTML = mydata['professor']['office']: oprooffice.innerHTML = ''; //专家职务
-					(mydata['professor']['orgName'] != ''&&mydata['professor']['orgName'] != undefined) ? oproorgName.innerHTML = mydata['professor']['orgName']: oproorgName.innerHTML = ''; //专家所属机构
-					(mydata['professor']['address']) ? oproadress.innerHTML = mydata['professor']['address']: oproadress.innerHTML = ''; //专家所在地
-					(mydata['professor']['authentication']) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon'); //专家认证
-					(mydata['professor']['hasHeadImage'] == 1) ? oproimg.setAttribute('src', baseUrl +'/images/head/' + mydata['professor']['id'] + '_m.jpg'): oproimg.setAttribute('src', '../images/default-photo.jpg'); //专家头像
-	
+					if(mydata['professor']["name"] == null || mydata['professor']["name"] == undefined ) {
+	 					oproname.innerText = '';
+	 				}else {
+	 					oproname.innerText = mydata['professor']["name"];//专家名字
+	 				}
+	 				if(mydata['professor']["title"] == null || mydata['professor']["title"] == undefined ) {
+	 					oprotitle.innerHTML = '';
+	 				}else {
+	 					if(mydata['professor']["office"]){
+	 						oprotitle.innerHTML = mydata['professor']["title"]+'，';//职称
+	 					}else {
+	 						oprotitle.innerHTML = mydata['professor']["title"]
+	 					}
+	 					
+	 				};
+	 				if(mydata['professor']["office"] == null || mydata['professor']["office"] == undefined ) {
+	 					oprooffice.innerHTML = '';
+	 				}else {
+	 					oprooffice.innerHTML = mydata['professor']["office"];//职位
+	 				};
+	 				/*if(mydata['professor']["department"] == null || mydata['professor']["department"] == undefined ) {
+	 					oprodepart.innerHTML = '';
+	 				}else {
+	 					if(mydata['professor']["orgName"]){
+	 						oprodepart.innerHTML = mydata['professor']["department"]+'，';//所在部门
+	 					}else {
+	 						oprodepart.innerHTML = mydata['professor']["department"];
+	 					}
+	 				}*/
+	 				if(mydata['professor']["orgName"] == null || mydata['professor']["orgName"] == undefined ) {
+	 					oproorgName.innerHTML = '';
+	 				}else {
+	 					oproorgName.innerHTML = mydata['professor']["orgName"];//所在机构
+	 				}
+	 				if(mydata['professor']["adress"] == null || mydata['professor']["adress"] == undefined ) {
+	 					oproadress.innerHTML = '';
+	 				}else {
+	 					oproadress.innerHTML = '|'+mydata['professor']["adress"];//所在地
+	 				}
+	 				/*是否认证*/
+	 				if(mydata['professor']["authentication"] == true){
+						opromodify.classList.add('authicon');
+						
+					}else if(mydata['professor']["authentication"] == false){
+						opromodify.classList.add('unauthicon');
+					}
+					/*专家头像*/
+					if(mydata['professor']["hasHeadImage"] == 0) {
+						oproimg.setAttribute('src','../images/default-photo.jpg');
+					}else {
+						oproimg.setAttribute('src',baseUrl+'/images/head/'+mydata['professor']['id']+'_m.jpg');
+					}
+					
+					
+					
 					//资源基本信息
 					(mydata['images']['imageSrc']) ? oziyuanimg.setAttribute('src', mydata['images']['imageSrc']): oziyuanimg.setAttribute('src', '../images/default-resource.jpg'); //资源图片
 					(mydata['supportedServices']) ? oyongtu.innerHTML = mydata['supportedServices']: oyongtu.innerHTML = ''; //应用用途

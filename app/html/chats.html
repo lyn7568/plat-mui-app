@@ -81,7 +81,7 @@
  				background-color: #eaeaea;
  			}
  			#msg-list {
- 				height: 100%;
+ 				height: 83%;
  				overflow: auto;
  				-webkit-overflow-scrolling: touch;
  			}
@@ -302,6 +302,7 @@
  			}
  			#lookConBtn {
  				text-align: center;
+ 				font-size: 12px;
  			}
  			
  			/*#middlePopover {
@@ -351,9 +352,9 @@
  					<!--对话内容渲染-->
  					<% if(item.sender=='self' ) { %>
  						<!--<i class="msg-user mui-icon mui-icon-person"></i>-->
- 						<img class="msg-user msg-user-img" src="../images/dialogue.png" alt="" />
+ 						<img class="msg-user msg-user-img" src="" alt="" id="selfImg"/>
  					<% } else { %>
- 						<img class="msg-user msg-user-img" src="../images/logo.png" alt="" />
+ 						<img class="msg-user msg-user-img" src="" alt="" id="thatImg"/>
  					<% } %>
  					<div class="msg-content">
  						<div class="msg-content-inner">
@@ -374,30 +375,6 @@
  		</script>
  		<div class="mui-content">
  			<div class="displayNone" id="status"></div>
- 			<!--评价内容-->
- 			<!--<div id="middlePopover" class="mui-popover">
-				<div class="mui-popover-arrow" id="arrow"></div>
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<ul class="mui-table-view showCon" >
-							<div class="assessAtarStyle">
-								<div class="levelbox" id="showStar">
-						        	<span class="mui-icon iconfont icon-favor"></span>
-					        		<span class="mui-icon iconfont icon-favor"></span>
-					        		<span class="mui-icon iconfont icon-favor"></span>
-					        		<span class="mui-icon iconfont icon-favor"></span>
-					        		<span class="mui-icon iconfont icon-favor"></span>
-					        	</div>
-					       </div>
-					       <div id="assessText"></div>
-						</ul>
-					</div>
-				</div>
-	
-			</div>--><!--评价内容-->
- 			
- 			
- 			
  			<div class="operatebox">
  				<div class="themespan mui-pull-left">
  					<span class="" id="consultTitle">
@@ -415,18 +392,16 @@
 				</div>
 				<!--我的需求，已评价-->
 				<div class="operatebtnbox mui-pull-right operated displayNone" id="assessed">
-					<a href="#middlePopover">
-						<div class="evabox" id="assessed_center">
-							<span>已评价</span>
-							<div class="levelbox" id="my_starContainer">
-					        	<span class="mui-icon iconfont icon-favor"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-				        		<span class="mui-icon iconfont icon-favor"></span>
-				        		<span class="mui-icon iconfont icon-favor"></span>
-				        		<span class="mui-icon iconfont icon-favor"></span>
-				        		<span class="mui-icon iconfont icon-favor"></span>
-				        	</div>
-						</div>
-					</a>
+					<div class="evabox" id="myNeeAss">
+						<span>已评价</span>
+						<div class="levelbox" id="my_starContainer">
+				        	<span class="mui-icon iconfont icon-favor"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        		<span class="mui-icon iconfont icon-favor"></span>
+			        	</div>
+					</div>
 				</div>
 				
 				<!--收到咨询，对方未评价-->
@@ -439,8 +414,7 @@
 				</div>
 				<!--收到咨询，对方已评价-->
 				<div class="operatebtnbox mui-pull-right operated displayNone" id="that_assessed" style="cursor: pointer;">
-					<a href="#middlePopover">
-						<div class="evabox" >
+						<div class="evabox" id="getConAss">
 							<span>对方已评价</span>
 							<div class="levelbox" id="consult_starContainer">
 					        	<span class="mui-icon iconfont icon-favor"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
@@ -450,9 +424,6 @@
 				        		<span class="mui-icon iconfont icon-favor"></span>
 				        	</div>
 						</div>
-					</a>
-					
-					
 				</div>
  				
  			</div>
@@ -479,15 +450,15 @@
  		</div>
  		
  		<footer class="" id="chatFooter">
- 			<div class="footer-left">
+ 			<!--<div class="footer-left">
  				<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
- 			</div>
+ 			</div>-->
  			<div class="footer-center">
  				<textarea id='msg-text' type="text" class='input-text'></textarea>
  				<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
  			</div>
  			<label for="" class="footer-right">
- 				<i id='msg-type' class="mui-icon mui-icon-mic"></i>
+ 				<i id='msg-type' class="mui-icon mui-icon-paperplane"></i>
  			</label>
  		</footer>
  		<div id='sound-alert' class="rprogress">

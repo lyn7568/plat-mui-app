@@ -18,12 +18,11 @@ mui.ready(function() {
 	var othat_assessed = document.getElementById("that_assessed");//收到咨询，对方已评价
 	var ozixunstarContainer = document.getElementById("consult_starContainer");//收到咨询星级容器
 	
-	var omiddlePopover = document.getElementById("middlePopover");//评价内容容器;
-	var oassessText = document.getElementById("assessText");//评价内容
+	var omyNeeAss = document.getElementById("myNeeAss");//我的需求已评价，点击跳转评价详情
+	var ogetConAss = document.getElementById("getConAss");//收到咨询对方已评价，点击跳转评价详情
 	
-	var oshowAssess = document.getElementById("showAssess");//显示评价
-	var oshowStar = document.getElementById("showStar");//显示星级
-	var oshowAssessText = document.getElementById("showAssessText");//显示评价内容
+	var oselfImg = document.getElementById("selfImg")//自己的头像
+	var othatImg = document.getElementById("thatImg");//对方头像
 	
 	var omsg_list = document.getElementById("msg-list");
 	var omsg_text = document.getElementById("msg-text");
@@ -62,15 +61,12 @@ mui.ready(function() {
 					//我的需求进行中
 					if(myData["consultStatus"] == 0){
 						oconfirm.classList.remove('displayNone');//我的需求，进行中
-//						ochatFooter.classList.remove('displayNone');
 						ostatus.setAttribute('status','consultStatus='+myData["consultStatus"]);					
 						clickConfirm(consultId);
-						
 
 					}else {
 						ochatFooter.style.display = 'none';//对话底部隐藏
 						if(myData["assessStatus"] == 0){
-							
 							oassessBtn.classList.remove('displayNone');//我的需求，未评价
 							ostatus.setAttribute('status','');
 							clickweiassess(consultId);
@@ -81,22 +77,15 @@ mui.ready(function() {
 							
 							//评价星级
 							var starCount = myData["assessStar"];
-							console.log("我的需求已评价，星级："+starCount);
 							var starlist = omy_starContainer.children;
 							for(var i = 0; i < starCount; i++) {
 								starlist[i].classList.remove('icon-favor');
 				  				starlist[i].classList.add('icon-favorfill');
 							};
-							/*===========评价内容没做=========*/
 							
-//							oassessText.innerHTML = myData["assessContant"];//评价内容
-							
-							oassessed.addEventListener('tap',function() {
-//								showAssessText(omy_starContainer);
-								clickGodetail(omy_starContainer,consultId)
+							omyNeeAss.addEventListener('tap',function() {
+								clickGodetail(omy_starContainer,consultId,manFlag)
 							});
-							
-							
 						}
 					} 
 					console.log("关闭等待狂")
@@ -129,22 +118,18 @@ mui.ready(function() {
 						if(myData["assessStatus"] == 0){//收到咨询未评价
 							othat_weiassess.classList.remove('displayNone');
 						}else{//收到咨询已评价(评价星级和评价内容)
-							
 							othat_assessed.classList.remove('displayNone');
-//							oassessText.innerHTML = myData["assessContant"];//评价内容
 							//评价星级
 							var starCount = myData["assessStar"];
-							console.log("收到咨询对方已评价，星级："+starCount);
 							var starlist = ozixunstarContainer.children;
 							for(var i = 0; i < starCount; i++) {
 								starlist[i].classList.remove('icon-favor');
 				  				starlist[i].classList.add('icon-favorfill');
 							}
 							
-							
-							othat_assessed.addEventListener('tap',function() {
-								clickGodetail(ozixunstarContainer,consultId)
-//								showAssessText(ozixunstarContainer);
+							ogetConAss.addEventListener('tap',function() {
+								clickGodetail(ozixunstarContainer,consultId,manFlag)
+//								
 							});
 
 						}
@@ -181,17 +166,17 @@ mui.ready(function() {
 	};
 	
 	/*打开评价详情函数*/
-	function goassessDetail(consultId) {
+	function goassessDetail(consultId,manFlag) {
 		mui.openWindow({
 			id:'chat-assess-detail.html',
 		    url:'chat-assess-detail.html',
-		    extras:{'consultId':consultId}//向评价页面传值;咨询id
+		    extras:{'consultId':consultId,'manFlag':manFlag}//向评价页面传值;咨询id
 		});
 	}
 	/*点击已评价,进入评价详情*/
-	function clickGodetail(btn,consultId) {
+	function clickGodetail(btn,consultId,manFlag) {
 		btn.addEventListener('tap',function(){
-			goassessDetail(consultId);
+			goassessDetail(consultId,manFlag);
 		});
 	}
 	
@@ -217,26 +202,6 @@ mui.ready(function() {
 	    myWindow=window.open('','','width=200,height=100');
 	    myWindow.document.write("<p>这是我的窗口</p>");
 	}
-	
-	function showAssessText(starContainer) {
-		var starlist = oshowStar.children;
-		var starNum = starContainer.querySelectorAll('.icon-favorfill').length;//星星数量
-		
-		for(var i = 0; i < starNum; i++) { 
-			starlist[i].classList.remove('icon-favor');
-			starlist[i].classList.add('icon-favorfill');
-		}
-		var all_w = document.body.clientWidth;//屏幕宽
-		var all_h = document.body.clientHeight;//屏幕高
-		omiddlePopover.style.height = '200px';
-		omiddlePopover.style.width = (all_w* 0.8)+'px';
-		
-	};
-	
-	
-	
-	
-	
 	
 	
 	/*更改咨询状态,进行中--完成*/
@@ -322,16 +287,28 @@ mui.ready(function() {
 				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
 					var myData = data.data;
-					
 					for(var i = 0; i < myData.length; i++ ){
 						console.log(myData[i]['tidingsContant']);
 						if(myData[i]['professor']['id'] == userid){
+							/*判断是否有头像*/
+							/*if(myData[i]['professor']['hasHeadImage'] == 1){
+								oselfImg.setAttribute('src',baseUrl + "/images/head/" + item["professor"].id + "_m.jpg")
+							}else {
+								oselfImg.setAttribute("src","../images/default-photo.jpg");
+							}*/
+							
 							record.push({
 								sender: 'self',
 								type: 'text',
 								content: myData[i]["tidingsContant"]
 							});
 						}else{
+							/*判断是否有头像*/
+							/*if(myData[i]['professor']['hasHeadImage'] == 1){
+								othatImg.setAttribute('src',baseUrl + "/images/head/" + item["professor"].id + "_m.jpg")
+							}else {
+								othatImg.setAttribute("src","../images/default-photo.jpg");
+							}*/
 							record.push({
 								sender: 'zs',
 								type: 'text',
@@ -369,12 +346,12 @@ mui.ready(function() {
 			}
 		};
 		
-		var record = [{
+		/*var record = [{
 			sender: 'zs',
 			type: 'text',
 			content: 'Hi，我是 科袖 小管家！'
-		}];
-		
+		}];*/
+		var record = [];
 		
 		
 		
@@ -442,8 +419,6 @@ mui.ready(function() {
 			toRobot(msg.content);
 		};
 		var toRobot = function(info) {
-// 						var apiUrl = 'http://www.tuling123.com/openapi/api';
-//			var apiUrl = baseUrl+'/ajax/tidings/qacon';//根据咨询id查询对话消息
 			var apiUrl = baseUrl+"/ajax/tidings";//保存消息接口
 			
 			mui.ajax(apiUrl,{
@@ -474,17 +449,17 @@ mui.ready(function() {
 			}
 			//解决长按“发送”按钮，导致键盘关闭的问题；
 		ui.footerRight.addEventListener('touchstart', function(event) {
-			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+//			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 				msgTextFocus();
-				event.preventDefault();
-			}
+//				event.preventDefault();
+//			}
 		});
 		//解决长按“发送”按钮，导致键盘关闭的问题；
 		ui.footerRight.addEventListener('touchmove', function(event) {
-			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+//			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 				msgTextFocus();
-				event.preventDefault();
-			}
+//				event.preventDefault();
+//			}
 		});
 		//					ui.footerRight.addEventListener('touchcancel', function(event) {
 		//						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
@@ -499,7 +474,7 @@ mui.ready(function() {
 		//						}
 		//					});
 		ui.footerRight.addEventListener('release', function(event) {
-			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {//发送
+//			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {//发送
 				//showKeyboard();
 				ui.boxMsgText.focus();
 				setTimeout(function() {
@@ -513,7 +488,7 @@ mui.ready(function() {
 				});
 				ui.boxMsgText.value = '';
 				mui.trigger(ui.boxMsgText, 'input', null); //发送消息向后台传数据
-			} else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {//说话
+			/*} else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {//说话功能
 				ui.btnMsgType.classList.add('mui-icon-compose');
 				ui.btnMsgType.classList.remove('mui-icon-mic');
 				ui.boxMsgText.style.display = 'none';
@@ -531,9 +506,9 @@ mui.ready(function() {
 				setTimeout(function() {
 					ui.boxMsgText.focus();
 				}, 150);
-			}
+			}*/
 		}, false);
-		ui.footerLeft.addEventListener('tap', function(event) {
+		/*ui.footerLeft.addEventListener('tap', function(event) {
 			var btnArray = [{
 				title: "拍照"
 			}, {
@@ -569,7 +544,7 @@ mui.ready(function() {
 						break;
 				}
 			});
-		}, false); 
+		}, false); */
 		var setSoundAlertVisable=function(show){
 			if(show){
 				ui.boxSoundAlert.style.display = 'block';

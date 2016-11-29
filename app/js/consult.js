@@ -1,7 +1,7 @@
 
 var pageIndex = 1; // 页数
 var allPages = 1; // 总页数
-var table = document.body.querySelector(".mui-table-view");//咨询列表容器
+var table = document.body.querySelector("#table");//咨询列表容器
 
 var oneedval = document.getElementById("needval");//咨询/需求
 var otypeval = document.getElementById("typeval");//咨询类型
@@ -11,7 +11,7 @@ var osortval = document.getElementById("sortval");//时间排序
 
 mui.init({
     pullRefresh: {
-        container: '#pullrefresh',
+        container: '#zixunpullrefresh',
         up: {
             contentrefresh: '正在加载...',
            
@@ -32,12 +32,12 @@ function pullupRefresh() {
 if(mui.os.plus) {
 	mui.plusReady(function() {
 		setTimeout(function() {
-			mui('#pullrefresh').pullRefresh().pulldownLoading();
+			mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
 		}, 500);
 	});
 } else {
 	mui.ready(function() {
-		mui('#pullrefresh').pullRefresh().pulldownLoading();
+		mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
 	});
 }
 
@@ -79,16 +79,15 @@ function getaData() {
                     eachData(userid,datalist);
                    
                     if(pageIndex < allPages){
-                        mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);    /*能上拉*/
+                        mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(false);    /*能上拉*/
                     }else{
-                        mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);/*不能上拉*/
+                        mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(true);/*不能上拉*/
                     }
                 }
             },
             error: function(xhr, type, errerThrown) {
                 mui.toast('网络异常,请稍候再试');
-                plus.nativeUI.closeWaiting();  
-                mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+                plus.nativeUI.closeWaiting(); 
             }
         });
     });
@@ -119,15 +118,11 @@ function initdata() {
             timeout: 10000,
             success: function(data) {
                 if (data.success) {
-                    console.log("成功");
-                    /*plus.webview.currentWebview().show("slide-in-right",150);*/
-					/*plus.nativeUI.closeWaiting();*/
                     var datalist = data.data.data;
-                    console.log(datalist.length);
 	                table.innerHTML = '';//清空容器
                     eachData(userid,datalist);
-                    mui('#pullrefresh').pullRefresh().refresh(true);//重置下拉加载
-                    mui('#pullrefresh').scroll().scrollTo(0,0);//滚动到顶部
+                    mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
+//                  mui('#pullrefresh').scroll().scrollTo(0,0);//滚动到顶部
                     
                     plus.nativeUI.closeWaiting();//关闭等待框
                 }

@@ -24,8 +24,18 @@
 	<header class="mui-bar mui-bar-nav toptitbox">
 	    <h1 class="mui-title toptit">咨询</h1>
 	</header>
+	<div class="displayNone">
+		<!--咨询/需求-->
+    	<input type="text" id="needval" value="0" />
+    	<!--咨询类型-->
+    	<input type="text" id="typeval" value="0" />
+    	<!--咨询状态-->
+    	<input type="text" id="stateval" value="0"/>
+    	<!--时间排序-->
+    	<input type="text" id="sortval" value="0" />
+	</div>
     <!-- 主页面内容容器 -->
-    <div class="mui-content" style="overflow-y: hidden;">
+    <div class="mui-content">
     	<!-- 主界面具体展示内容 -->
     	<div class="filterbox2" style="top:45px ;left: 0;">
 			<ul class="filterblock2">
@@ -43,24 +53,8 @@
 				</li>
 			</ul>
 		</div>
-        <div class="displayNone">
-    		<!--咨询/需求-->
-        	<input type="text" id="needval" value="0" />
-        	<!--咨询类型-->
-        	<input type="text" id="typeval" value="0" />
-        	<!--咨询状态-->
-        	<input type="text" id="stateval" value="0"/>
-        	<!--时间排序-->
-        	<input type="text" id="sortval" value="0" />
-    	</div>
-      
-        <div id="pullrefresh" class="mui-card-content"  style="margin-top:20px; ">
-	        <ul class="mui-table-view protable" >
-	           
-	        </ul>
-        </div>
-        
-		<div id="middlePopover1" class="mui-popover popoverbox mui-popover1" style="height: 110px;">
+       	
+       	<div id="middlePopover1" class="mui-popover popoverbox mui-popover1" style="height: 110px;">
 			<div class="mui-popover-arrow"></div>
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -110,6 +104,13 @@
 				</div>
 			</div>
 		</div>
+       	
+       	<div id="zixunpullrefresh" class="mui-card-content"  style="margin-top:20px; ">
+	        <ul class="mui-table-view protable" id="table">
+	           
+	        </ul>
+        </div>
+        
 		
     </div>
 	

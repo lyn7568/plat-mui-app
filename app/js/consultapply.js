@@ -14,6 +14,7 @@
  	var oproimg = document.getElementById("proimg");//专辑头像
  	var oconsultcount = document.getElementById("consultcount");//咨询次数
  	var ostarContainer = document.getElementById("starContainer");//星级容器
+ 	var ofinished = document.getElementById("finished");//点击完成咨询，进入合作历史评价
  	
  	var osaveconsultBtn = document.getElementById("saveconsultBtn");//保存咨询，发送按钮
  	
@@ -71,14 +72,19 @@
  			success:function(data){
  				var myData = data["data"];
  				if(myData["name"] == null || myData["name"] == undefined ) {
- 					
+ 					oproname.innerText = '';
  				}else {
  					oproname.innerText = myData["name"];//专家名字
  				}
  				if(myData["title"] == null || myData["title"] == undefined ) {
  					oprotitle.innerHTML = '';
  				}else {
- 					oprotitle.innerHTML = myData["title"]+'，';//职称
+ 					if(myData["office"]){
+ 						oprotitle.innerHTML = myData["title"]+'，';//职称
+ 					}else {
+ 						oprotitle.innerHTML = myData["title"]
+ 					}
+ 					
  				};
  				if(myData["office"] == null || myData["office"] == undefined ) {
  					oprooffice.innerHTML = '';
@@ -88,7 +94,11 @@
  				if(myData["department"] == null || myData["department"] == undefined ) {
  					oprodepart.innerHTML = '';
  				}else {
- 					oprodepart.innerHTML = myData["department"]+'，';//所在部门
+ 					if(myData["orgName"]){
+ 						oprodepart.innerHTML = myData["department"]+'，';//所在部门
+ 					}else {
+ 						oprodepart.innerHTML = myData["department"];
+ 					}
  				}
  				if(myData["orgName"] == null || myData["orgName"] == undefined ) {
  					oproorgName.innerHTML = '';
@@ -117,7 +127,7 @@
 					emele.classList.add('unauthicon');
 				}
 				oproname.appendChild(emele);
-				console.log(emele.classList);
+				
 				
 				/*专家头像*/
 				if(myData["hasHeadImage"] == 0) {
@@ -152,13 +162,19 @@
    	    var proId = self.proId;
    	    var flag = self.flag;
    	    var consulttitle = self.consulttitle;//咨询主题（从资源页面传过来的）
-   	    console.log(consulttitle);
+   	    
    	    console.log(proId);
    	    
    	 	/*专家信息数据*/
    	    proinfo(proId);
    	    if(flag == 'ziyuan') {
    	    	oconsulttitle.value = '关于'+consulttitle+'的咨询';
+   	    	var lilist = oconsulttype_ul.querySelectorAll('li');
+   	    	for(var i = 0 ; i < lilist.length; i++){
+   	    		lilist[i].classList.remove('liactive');
+   	    		lilist[1].classList.add('liactive');
+   	    	}
+   	    	
    	    }
    	    
    	    /*发送保存咨询*/
@@ -175,13 +191,21 @@
 				proinfo.show();
 				mui.fire(proinfo,'backproinfo',{proId:proId}); 
    	   		}
-			
-
 		});
 		
-   	    
-   	    
-   	    
+		/*专家的历史和评价*/
+		ofinished.addEventListener('tap', function() {
+			mui.openWindow({
+				url: '../html/coophistory-other.html',
+				id: 'html/coophistory-other.html',
+				show: {
+					autoShow: false,
+				},
+				extras: {
+					professorId: proId
+				}
+			});
+		});
    	});
    	
    	
@@ -192,7 +216,5 @@
 			aimlist[i].classList.remove('liactive');
 		}
 		this.classList.add('liactive');
-		
 	});
-   	
 })

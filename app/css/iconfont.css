@@ -94,6 +94,8 @@
 
 .icon-pullright:before { content: "\e720"; }
 
+.icon-edit1:before { content: "\e69e"; }
+
 .icon-markfill:before { content: "\e730"; }
 
 .icon-mark:before { content: "\e731"; }
@@ -104,5 +106,9 @@
 
 .icon-community:before { content: "\e741"; }
 
+.icon-print:before { content: "\e6c9"; }
+
 .icon-exit:before { content: "\e7cb"; }
+
+.icon-renzheng:before { content: "\e609"; }
 

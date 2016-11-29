@@ -24,6 +24,9 @@ a{text-decoration:none;color:#007aff}a:active{color:#0062cc}
 body{ color: #666666; font-size:14px;}
 .floatL{ float: left;}
 .floatR{ float: right;}
+.displayNone {display: none;}
+.displayBlock {display: block;}
+
 .marginbox{ margin: 10px 0; padding:0; }
 .marginbox:first-child{margin: 0;}
 .mainbox{width: 96%; margin:2% auto;}
@@ -67,6 +70,33 @@ body{ color: #666666; font-size:14px;}
 /*底部导航栏*/
 .footbox{ background: #FFFFFF;}
 .footbox .mui-tab-item.mui-active{ color: #FF9900;}
+
+.listtit0{font-size: 13px; color: #222222;}
+.listtit{ font-size: 14px; color: #333333;}/*中标题*/
+.listtit2{font-size: 13px; color: #666666;}/*较小标题*/
+.listtit3{font-size: 12px; color: #888888;}/*小标题*/
+/*/////专家身份认证状态///////*/
+/*已认证*/
+.authword{ padding:2px 6px; margin-left:6px;border-radius:4px; color: #FFFFFF; font-size: 12px;}
+.authed{ background: #FF9900; }
+/*认证中*/
+.authing{background: #4cd964;}
+/*未认证*/
+.unauth{background: #efefef;color: #CCCCCC;}
+
+/*/////////认证身份标识///////////*/
+/*企业和专家认证标识 icon-vip*/
+.unauthicon{color:#C0C0C0; }/*未认证*/
+.authicon{color:#FF9900;}
+.icon-vip{}
+.authicon-cu{color:#FF9900;}/*认证科研型专家*/
+.authicon-com{/*color:#00aaee;*/ color:#2082fb;}/*认证企业型专家*/
+/*普通用户认证标识 icon-renzheng*/
+em.icon-renzheng{border:1px solid;border-radius:8px;font-size:12px;line-height:10px;}
+em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
+.authicon-mana{color:#007AFF;}/*认证在企高管*/
+.authicon-staff{color:#007AFF;}/*认证在企职员*/
+.authicon-stu{color:#4cd964;}/*认证在读学生*/
 
 /*****表单公共样式********/
 /*input输入相关*/
@@ -167,12 +197,8 @@ body{ color: #666666; font-size:14px;}
 /*热门专家*/
 .mui-table-view-cell.prolist:after{/*background:#C0C0C0*//*#c8c7cc*/;}
 .protable:before{ background-color:transparent;}
-.listtit .unauthicon{margin-left:4px;font-size: 14px; color:#C0C0C0; }
-.listtit .authicon{margin-left:4px;font-size: 14px;color:#FF9900;}
-.listtit0{font-size: 13px; color: #222222;}
-.listtit{ font-size: 14px; color: #333333;}
-.listtit2{font-size: 13px; color: #666666; position: relative;}
-.listtit3{font-size: 12px; color: #888888;}
+
+
 .mui-media .headimg{ border-radius: 50%; max-width:60px; height:60px; margin: 1% 0;}
 .mui-media .resimg{border-radius:2px; max-width:60px; height:60px; margin: 1% 0;}
 .mui-table-view-cell>a.proinfor{ white-space:normal; overflow: auto;position: relative; overflow: hidden; }
@@ -202,6 +228,7 @@ body{ color: #666666; font-size:14px;}
 .resinfo li .mui-media-body{ border-bottom:1px solid #F0F0F0; padding-bottom:4px; margin-bottom: 6px;}
 .resinfo li .mui-media-body .resbrief{ max-height: 46px; overflow: hidden;}
 .resinfo li:last-child .mui-media-body{ border-bottom:none;padding-bottom:0px; margin-bottom:0px;}
+.resinfo.mui-table-view .mui-table-view-cell:after{right: 0;bottom: 0;left: -10px;background: none;}
 
 .listbox{ margin:5px 0;max-width:100%; overflow:hidden;}
 .listbrowse{border: 1px solid #FF9900; border-radius: 0 6px 6px 0; text-align:center;font-size:13px;line-height:26px; float:left;padding-right: 8px; max-width:40%; overflow:hidden;}
@@ -259,7 +286,8 @@ body{ color: #666666; font-size:14px;}
 .rightword{ position: absolute; right:40px; font-size:13px; color: #999999;}
 /*已认证*/
 .verified{ color: #FF9900;}
-.authword{ padding:2px 6px; margin-left:6px; background: #FF9900; border-radius:4px; color: #FFFFFF; font-size: 12px;}
+
+
 /*我的关注*/
 .fixbox{ background: #FFFFFF; position:fixed;top:45px;left:0;width:100%; z-index:1;}
 .fixbox .fixbtn{ padding:0; margin: 0; overflow: hidden;}
@@ -402,9 +430,9 @@ body{ color: #666666; font-size:14px;}
 
 .coutopicbox .coustatus span{ font-size: 12px; padding:4px 10px; margin: 0 2px; color: #FFFFFF; border-radius: 6px;}
 .coutopicbox .aimlabel{background:#6CA8FF;}
-.coutopicbox .status-1{background:#FF9900;}/*咨询状态*/
-.coutopicbox .status-2{background:#dd524d;}
-.coutopicbox .status-3{background:#4cd964;}
+.coutopicbox .status-1{background:#FF9900;}/*进行中*//*咨询状态*/
+.coutopicbox .status-2{background:#dd524d;}/*待评价*/
+.coutopicbox .status-3{background:#4cd964;}/*已完成*/
 
 .thistime{ position: absolute; right:2px; font-size: 12px; color: #999999;}
 
@@ -451,9 +479,13 @@ body{ color: #666666; font-size:14px;}
 .icons.levelbox .icon-favorfill{/*color: #FFB400;*/font-size: 18px;} 
 .assessbox{margin:10px 0; background: #FFFFFF; padding:10px;padding-bottom: 30px;}
 /***********************评价*******************/
-.displayNone {
-	display: none;
-}
-.displayBlock {
-	display: block;
-}
+
+/***********************缺省页面*******************/
+.nodatabox{width:100%;height: 100%; margin:50px auto;text-align: center;}
+.nodatabox .picbox{width: 40%;margin: auto;}
+.nodatabox .picbox .defpic{width:100%;}
+.nodatabox .txtbox { margin:10px 0;}
+.nodatabox .txtbox .currword{font-size: 14px;color: #999999;line-height: 14px;}
+.nodatabox .txtbox .currtip{ font-size:12px;color: #AAAAAA;}
+.nodatabox .txtbox .keyword{ padding:0 6px;}
+/***********************缺省页面*******************/

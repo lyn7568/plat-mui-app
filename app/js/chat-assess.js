@@ -38,17 +38,13 @@ mui.ready(function(){
 		});
 	};
 	//点击评价区域，placeholder效果，字数限制效果、
-	console.log(oassesscontent.innerHTML)
 	oassesscontent.addEventListener('keyup',function(){
-		/*alert(oassesscontent.innerHTML)*/
 		limitTextCountFn();
 	});
 	//评价字数限制
 	//字数限制函数
 	function limitTextCountFn(){
-		/*alert(oassesscontent.innerHTML)*/
 		var curLength = oassesscontent.innerHTML.length;
-		
 		if(curLength > 300){
 			var num= oassesscontent.innerHTML.substr(0,300); 
 		} 

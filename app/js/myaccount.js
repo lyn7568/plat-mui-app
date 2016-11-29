@@ -34,7 +34,7 @@ mui.ready(function() {
 		/*退出登录刷新页面*/
 		window.addEventListener('closeUser', function(event) {
 			userId = event.detail.id;
-			//console.log(userId);
+			console.log(userId);
 			//console.log('dd');
 			loginStatus();
 		});
@@ -42,10 +42,9 @@ mui.ready(function() {
 		function loginStatus() {
 			console.log(userId);
 			if(userId && userId != "null" && userId != null) {
-				
-				loginYes.style.display = "block";
 				loginNo.style.display = "none";
-				
+				loginYes.style.display = "block";
+				//alert('dd')
 				/*设置*/
 				goSetup.addEventListener('tap', function() {
 					mui.openWindow({
@@ -60,7 +59,7 @@ mui.ready(function() {
 				/*我的关注*/
 				goFollow.addEventListener('tap', function() {
 					plus.nativeUI.showWaiting(); //显示原生等待框
-					plus.webview.create("../html/attentions.html");
+					plus.webview.create("../html/attentions.html","../html/attentions.html");
 				})
 
 				/*我的修改*/
@@ -130,7 +129,7 @@ mui.ready(function() {
 							start[i].classList.add("icon-favorfill");
 						}
 						if($info.hasHeadImage == 1) {
-							document.getElementById("userImg").setAttribute("src", baseUrl + "/images/head/" + $info.id + "_m.jpg");
+							document.getElementById("userImg").setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg");
 						} else {
 							document.getElementById("userImg").setAttribute("src", baseUrl +  "/images/default-photo.jpg");
 						}

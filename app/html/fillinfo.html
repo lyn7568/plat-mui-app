@@ -6,7 +6,8 @@
 		<title>完善个人信息</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 	</head>
 
@@ -17,8 +18,8 @@
 		<div class="mui-content">
 		    <div class="mui-input-group mainbox fillbox">
 				<div class="maincon" style="margin: 0;padding:4% 0;">
-					<div class="headbox3">
-						<a href="javascript:;" class="headimglink"></a>
+					<div class="headbox3 headRadius">
+						<a href="javascript:;" class="mui-icon iconfont icon-camera headimglink" id="userimg"></a>
 			        </div>
 					<ul class="basicinfo">
 						<li><label>姓名<em class="requiredcon"></em></label></li>
@@ -32,7 +33,10 @@
 						<li><label>职称</label></li>
 						<li class="basicfrm"><input type="text"  class="mui-input-clear frmtype" id="userTitle"></li>
 						<li><label>所在地</label></li>
-						<li class="basicfrm"><input type="text" class="mui-input-clear frmtype"  id ="showCityPicker" value=""></li>
+						<li class="basicfrm">
+							<input type="text" class="mui-input-clear frmtype"  id ="showCityPicker" value="">
+							<span class="mui-icon mui-icon-arrowdown downarrow"></span>
+						</li>
 					    <input type="hidden"  class="mui-input-clear frmtype" id="data-province">
 					    <input type="hidden"  class="mui-input-clear frmtype" id="data-address">
 					</ul>
@@ -47,7 +51,8 @@
 		<script src="../js/public/mui.picker.min.js"></script>
 		<script src="../js/public/city.data.js" ></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/public/upload-avatar.js"></script>
 		<script src="../js/fillinfo.js"></script>
-	</body>
+	</body> 
 
 </html>

@@ -3,126 +3,15 @@ var cityData = [{
 	text: '北京市',
 	children: [{
 		value: "110101",
-		text: "东城区"
-	}, {
-		value: "110102",
-		text: "西城区"
-	}, {
-		value: "110103",
-		text: "崇文区"
-	}, {
-		value: "110104",
-		text: "宣武区"
-	}, {
-		value: "110105",
-		text: "朝阳区"
-	}, {
-		value: "110106",
-		text: "丰台区"
-	}, {
-		value: "110107",
-		text: "石景山区"
-	}, {
-		value: "110108",
-		text: "海淀区"
-	}, {
-		value: "110109",
-		text: "门头沟区"
-	}, {
-		value: "110111",
-		text: "房山区"
-	}, {
-		value: "110112",
-		text: "通州区"
-	}, {
-		value: "110113",
-		text: "顺义区"
-	}, {
-		value: "110114",
-		text: "昌平区"
-	}, {
-		value: "110115",
-		text: "大兴区"
-	}, {
-		value: "110116",
-		text: "怀柔区"
-	}, {
-		value: "110117",
-		text: "平谷区"
-	}, {
-		value: "110228",
-		text: "密云县"
-	}, {
-		value: "110229",
-		text: "延庆县"
-	}, {
-		value: "110230",
-		text: "其它区"
+		text: "北京市" 
 	}]
 }, {
 	value: '120000',
 	text: '天津市',
 	children: [{
 		value: "120101",
-		text: "和平区"
-	}, {
-		value: "120102",
-		text: "河东区"
-	}, {
-		value: "120103",
-		text: "河西区"
-	}, {
-		value: "120104",
-		text: "南开区"
-	}, {
-		value: "120105",
-		text: "河北区"
-	}, {
-		value: "120106",
-		text: "红桥区"
-	}, {
-		value: "120107",
-		text: "塘沽区"
-	}, {
-		value: "120108",
-		text: "汉沽区"
-	}, {
-		value: "120109",
-		text: "大港区"
-	}, {
-		value: "120110",
-		text: "东丽区"
-	}, {
-		value: "120111",
-		text: "西青区"
-	}, {
-		value: "120112",
-		text: "津南区"
-	}, {
-		value: "120113",
-		text: "北辰区"
-	}, {
-		value: "120114",
-		text: "武清区"
-	}, {
-		value: "120115",
-		text: "宝坻区"
-	}, {
-		value: "120116",
-		text: "滨海新区"
-	}, {
-		value: "120221",
-		text: "宁河县"
-	}, {
-		value: "120223",
-		text: "静海县"
-	}, {
-		value: "120225",
-		text: "蓟县"
-	}, {
-		value: "120226",
-		text: "其它区"
-	}]
+		text: "天津市"
+	}] 
 }, {
 	value: '130000',
 	text: '河北省',
@@ -199,7 +88,7 @@ var cityData = [{
 	}]
 }, {
 	value: '150000',
-	text: '内蒙古',
+	text: '内蒙古自治区',
 	children: [{
 		value: "150100",
 		text: "呼和浩特市"
@@ -362,67 +251,7 @@ var cityData = [{
 	text: '上海市',
 	children: [{
 		value: "310101",
-		text: "黄浦区"
-	}, {
-		value: "310103",
-		text: "卢湾区"
-	}, {
-		value: "310104",
-		text: "徐汇区"
-	}, {
-		value: "310105",
-		text: "长宁区"
-	}, {
-		value: "310106",
-		text: "静安区"
-	}, {
-		value: "310107",
-		text: "普陀区"
-	}, {
-		value: "310108",
-		text: "闸北区"
-	}, {
-		value: "310109",
-		text: "虹口区"
-	}, {
-		value: "310110",
-		text: "杨浦区"
-	}, {
-		value: "310112",
-		text: "闵行区"
-	}, {
-		value: "310113",
-		text: "宝山区"
-	}, {
-		value: "310114",
-		text: "嘉定区"
-	}, {
-		value: "310115",
-		text: "浦东新区"
-	}, {
-		value: "310116",
-		text: "金山区"
-	}, {
-		value: "310117",
-		text: "松江区"
-	}, {
-		value: "310118",
-		text: "青浦区"
-	}, {
-		value: "310119",
-		text: "南汇区"
-	}, {
-		value: "310120",
-		text: "奉贤区"
-	}, {
-		value: "310152",
-		text: "川沙区"
-	}, {
-		value: "310230",
-		text: "崇明县"
-	}, {
-		value: "310231",
-		text: "其它区"
+		text: "上海市"
 	}]
 }, {
 	value: '320000',
@@ -907,7 +736,7 @@ var cityData = [{
 	}]
 }, {
 	value: '450000',
-	text: '广西壮族',
+	text: '广西壮族自治区 ',
 	children: [{
 		value: "450100",
 		text: "南宁市"
@@ -1020,130 +849,10 @@ var cityData = [{
 	}]
 }, {
 	value: '500000',
-	text: '重庆',
+	text: '重庆市',
 	children: [{
 		value: "500101",
-		text: "万州区"
-	}, {
-		value: "500102",
-		text: "涪陵区"
-	}, {
-		value: "500103",
-		text: "渝中区"
-	}, {
-		value: "500104",
-		text: "大渡口区"
-	}, {
-		value: "500105",
-		text: "江北区"
-	}, {
-		value: "500106",
-		text: "沙坪坝区"
-	}, {
-		value: "500107",
-		text: "九龙坡区"
-	}, {
-		value: "500108",
-		text: "南岸区"
-	}, {
-		value: "500109",
-		text: "北碚区"
-	}, {
-		value: "500110",
-		text: "万盛区"
-	}, {
-		value: "500111",
-		text: "双桥区"
-	}, {
-		value: "500112",
-		text: "渝北区"
-	}, {
-		value: "500113",
-		text: "巴南区"
-	}, {
-		value: "500114",
-		text: "黔江区"
-	}, {
-		value: "500115",
-		text: "长寿区"
-	}, {
-		value: "500222",
-		text: "綦江县"
-	}, {
-		value: "500223",
-		text: "潼南县"
-	}, {
-		value: "500224",
-		text: "铜梁县"
-	}, {
-		value: "500225",
-		text: "大足县"
-	}, {
-		value: "500226",
-		text: "荣昌县"
-	}, {
-		value: "500227",
-		text: "璧山县"
-	}, {
-		value: "500228",
-		text: "梁平县"
-	}, {
-		value: "500229",
-		text: "城口县"
-	}, {
-		value: "500230",
-		text: "丰都县"
-	}, {
-		value: "500231",
-		text: "垫江县"
-	}, {
-		value: "500232",
-		text: "武隆县"
-	}, {
-		value: "500233",
-		text: "忠县"
-	}, {
-		value: "500234",
-		text: "开县"
-	}, {
-		value: "500235",
-		text: "云阳县"
-	}, {
-		value: "500236",
-		text: "奉节县"
-	}, {
-		value: "500237",
-		text: "巫山县"
-	}, {
-		value: "500238",
-		text: "巫溪县"
-	}, {
-		value: "500240",
-		text: "石柱土家族自治县"
-	}, {
-		value: "500241",
-		text: "秀山土家族苗族自治县"
-	}, {
-		value: "500242",
-		text: "酉阳土家族苗族自治县"
-	}, {
-		value: "500243",
-		text: "彭水苗族土家族自治县"
-	}, {
-		value: "500381",
-		text: "江津区"
-	}, {
-		value: "500382",
-		text: "合川区"
-	}, {
-		value: "500383",
-		text: "永川区"
-	}, {
-		value: "500384",
-		text: "南川区"
-	}, {
-		value: "500385",
-		text: "其它区"
+		text: "重庆市"
 	}]
 }, {
 	value: '510000',
@@ -1297,7 +1006,7 @@ var cityData = [{
 	}]
 }, {
 	value: '540000',
-	text: '西藏',
+	text: '西藏自治区',
 	children: [{
 		value: "540100",
 		text: "拉萨市"
@@ -1430,7 +1139,7 @@ var cityData = [{
 	}]
 }, {
 	value: '640000',
-	text: '宁夏',
+	text: '宁夏回族自治区',
 	children: [{
 		value: "640100",
 		text: "银川市"
@@ -1449,7 +1158,7 @@ var cityData = [{
 	}]
 }, {
 	value: '650000',
-	text: '新疆',
+	text: '新疆维吾尔自治区 ',
 	children: [{
 		value: "650100",
 		text: "乌鲁木齐市"
@@ -1574,26 +1283,17 @@ var cityData = [{
 	}]
 }, {
 	value: '810000',
-	text: '香港',
+	text: '香港特别行政区',
 	children: [{
 		value: "810100",
-		text: "香港岛"
-	}, {
-		value: "810200",
-		text: "九龙"
-	}, {
-		value: "810300",
-		text: "新界"
+		text: "香港特别行政区"
 	}]
 }, {
 	value: '820000',
-	text: '澳门',
+	text: '澳门特别行政区',
 	children: [{
 		value: "820100",
-		text: "澳门半岛"
-	}, {
-		value: "820200",
-		text: "离岛"
+		text: "澳门特别行政区"
 	}]
 }, {
 	value: '990000',

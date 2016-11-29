@@ -10,6 +10,8 @@ mui.ready(function() {
 	var goIndex = document.getElementById("goIndex");
 	var dataProvince = document.getElementById("data-province");
 	var dataAddress = document.getElementById("data-address");
+	
+	
 	/*选择地址*/
 	var cityPicker = new mui.PopPicker({layer: 2});
 	cityPicker.setData(cityData);
@@ -24,9 +26,8 @@ mui.ready(function() {
 		});
 	}, false);
 	mui.plusReady(function() {
-		
 		var self = plus.webview.currentWebview();
-		
+	
 		/*校验提交按钮显示状态*/
 		mui('.basicinfo').on('keyup', "#userName,#userMechanism", function() {
 			hideButtn(userName,userMechanism,goIndex,"frmactiveok");

@@ -195,7 +195,7 @@
 		
 		/*专家的历史和评价*/
 		ofinished.addEventListener('tap', function() {
-			mui.openWindow({
+			/*mui.openWindow({
 				url: '../html/coophistory-other.html',
 				id: 'html/coophistory-other.html',
 				show: {
@@ -204,6 +204,15 @@
 				extras: {
 					professorId: proId
 				}
+			});*/
+			mui.openWindow({
+				url: '../html/coophistory.html',
+				id: 'html/coophistory.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-left"
+				},
+
 			});
 		});
    	});

@@ -195,15 +195,6 @@ mui.ready(function() {
 		});
 	};
 	
-	/*评价内容显示与隐藏
-	 * starContainer:点击已评价/对方已评价显示评价 中的星星容器
-	 */
-	function openWin(){
-	    myWindow=window.open('','','width=200,height=100');
-	    myWindow.document.write("<p>这是我的窗口</p>");
-	}
-	
-	
 	/*更改咨询状态,进行中--完成*/
 	function setState(consultId) {
 		mui.ajax(baseUrl+'/ajax/consult/finishTime',{
@@ -288,13 +279,12 @@ mui.ready(function() {
 				success:function(data){
 					var myData = data.data;
 					for(var i = 0; i < myData.length; i++ ){
-						console.log(myData[i]['tidingsContant']);
 						if(myData[i]['professor']['id'] == userid){
 							/*判断是否有头像*/
 							/*if(myData[i]['professor']['hasHeadImage'] == 1){
-								oselfImg.setAttribute('src',baseUrl + "/images/head/" + item["professor"].id + "_m.jpg")
+								document.getElementById("selfImg").setAttribute('src',baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg")
 							}else {
-								oselfImg.setAttribute("src","../images/default-photo.jpg");
+								document.getElementById("selfImg").setAttribute("src","../images/default-photo.jpg");
 							}*/
 							
 							record.push({
@@ -304,11 +294,17 @@ mui.ready(function() {
 							});
 						}else{
 							/*判断是否有头像*/
-							/*if(myData[i]['professor']['hasHeadImage'] == 1){
-								othatImg.setAttribute('src',baseUrl + "/images/head/" + item["professor"].id + "_m.jpg")
-							}else {
-								othatImg.setAttribute("src","../images/default-photo.jpg");
+							console.log(myData[i]['professor'].id);
+							console.log(userid);
+							/*if(myData[i]['professor'] != '' && myData[i]['professor'] != undefined){
+								if(myData[i]['professor']['hasHeadImage'] == 1){
+									document.getElementById("thatImg").setAttribute('src',baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg")
+								}else {
+									console.log(document.getElementById("thatImg"))
+									document.getElementById("thatImg").setAttribute("src","../images/default-photo.jpg");
+								}
 							}*/
+							
 							record.push({
 								sender: 'zs',
 								type: 'text',

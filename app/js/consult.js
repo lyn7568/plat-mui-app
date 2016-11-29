@@ -39,7 +39,44 @@ if(mui.os.plus) {
 	mui.ready(function() {
 		mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
 	});
-}
+};
+
+//点击选择
+function checkedFun(i){
+	mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
+		allPages = 1;
+		pageIndex = 1;
+		plus.nativeUI.showWaiting(); //显示等待框
+		document.getElementById("headck"+i).innerHTML = this.innerHTML;
+		var value = this.getAttribute("ck"+i);
+		document.getElementById("headck"+i).setAttribute('headck',value);
+		document.querySelector('.mui-backdrop').style.display = 'none';
+		document.getElementById("middlePopover"+i).style.display = 'none';
+		
+		//去掉样式类mui-active,要不然会多点击一次
+		document.getElementById("middlePopover"+i).classList.remove('mui-active');
+		
+		//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务
+		otypeval.value = document.getElementById("headck2").getAttribute('headck');
+		if(otypeval.value == 0) {
+			otypeval.value = '';
+		}else {
+			otypeval.value = document.getElementById("headck2").innerHTML;
+		}
+		oneedval.value = document.getElementById("headck1").getAttribute('headck');
+		ostateval.value = document.getElementById("headck3").getAttribute('headck');
+		osortval.value = document.getElementById("headck4").getAttribute('headck');
+		
+		initdata();
+		plus.nativeUI.closeWaiting();//关闭等待框
+	});
+	
+};
+checkedFun(1);
+checkedFun(2);
+checkedFun(3);
+checkedFun(4);
+
 
 function getaData() {
     mui.plusReady(function() {
@@ -100,7 +137,10 @@ function initdata() {
     mui.plusReady(function() {
     	/*plus.nativeUI.showWaiting()//显示等待框*/
     	var userid = plus.storage.getItem('userid');
-    	console.log('初始化传参'+'一：'+oneedval.value+'二'+otypeval.value+'三'+ostateval.value+'四'+osortval.value);
+    	if(otypeval.value == 0){
+    		otypeval.value ='';
+    	}
+    	console.log('初始化传参一：'+oneedval.value+'二'+otypeval.value+'三'+ostateval.value+'四'+osortval.value);
     	console.log()
     	plus.nativeUI.showWaiting();
         mui.ajax(baseUrl+'/ajax/consult/pq', {
@@ -117,8 +157,10 @@ function initdata() {
             type: 'get',  
             timeout: 10000,
             success: function(data) {
+            	
                 if (data.success) {
                     var datalist = data.data.data;
+                    console.log(datalist.length);
 	                table.innerHTML = '';//清空容器
                     eachData(userid,datalist);
                     mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
@@ -209,45 +251,7 @@ window.addEventListener('backlist',function(event){
 //		initdata();
 		
 	});
-
-
-//点击选择
-function checkedFun(i){
 	
-	mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
-		allPages = 1;
-		pageIndex = 1;
-		plus.nativeUI.showWaiting(); //显示等待框
-		document.getElementById("headck"+i).innerHTML = this.innerHTML;
-		var value = this.getAttribute("ck"+i);
-		document.getElementById("headck"+i).setAttribute('headck',value);
-		document.querySelector('.mui-backdrop').style.display = 'none';
-		document.getElementById("middlePopover"+i).style.display = 'none';
-		
-		//去掉样式类mui-active,要不然会多点击一次
-		document.getElementById("middlePopover"+i).classList.remove('mui-active');
-		
-		//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务
-		otypeval.value = document.getElementById("headck2").getAttribute('headck');
-		if(otypeval.value == 0) {
-			otypeval.value = '';
-		}else {
-			otypeval.value = document.getElementById("headck2").innerHTML;
-		}
-		oneedval.value = document.getElementById("headck1").getAttribute('headck');
-		ostateval.value = document.getElementById("headck3").getAttribute('headck');
-		osortval.value = document.getElementById("headck4").getAttribute('headck');
-		
-		initdata();
-		plus.nativeUI.closeWaiting();//关闭等待框
-	});
-	
-};
-checkedFun(1);
-checkedFun(2);
-checkedFun(3);
-checkedFun(4);
-
 function eachData(userid,datalist) {
 	/*表格填充数据 mui.each是异步的*/
     mui.each(datalist, function(index, item) {

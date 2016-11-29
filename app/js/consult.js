@@ -100,15 +100,13 @@ function getaData() {
             success: function(data) {
                   
                 if (data.success) {
-                    console.log("成功");
                     var datalist = data.data.data;
                     var total = data.data.total;
                     var pageSize = data.data.pageSize;
-                    	console.log(total)
-                    	console.log(pageSize)
+                    
                     var result = '';
                     allPages = Math.ceil(total / pageSize);/*获取总的分页数*/
-                   console.log(allPages)
+                   
                     if (allPages == 1) { //下拉刷新需要先清空数据
                         table.innerHTML = '';// 在这里清空可以防止刷新时白屏
                     }
@@ -140,7 +138,7 @@ function initdata() {
     	if(otypeval.value == 0){
     		otypeval.value ='';
     	}
-    	console.log('初始化传参一：'+oneedval.value+'二'+otypeval.value+'三'+ostateval.value+'四'+osortval.value);
+//  	console.log('初始化传参一：'+oneedval.value+'二'+otypeval.value+'三'+ostateval.value+'四'+osortval.value);
     	console.log()
     	plus.nativeUI.showWaiting();
         mui.ajax(baseUrl+'/ajax/consult/pq', {
@@ -160,7 +158,7 @@ function initdata() {
             	
                 if (data.success) {
                     var datalist = data.data.data;
-                    console.log(datalist.length);
+//                  console.log(datalist.length);
 	                table.innerHTML = '';//清空容器
                     eachData(userid,datalist);
                     mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
@@ -186,7 +184,7 @@ function setReadState(consultId) {
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
-				console.log("更新读取状态"+data.success);
+
 			},
 			error:function(xhr,type,errorThrown){
 				
@@ -197,9 +195,9 @@ function setReadState(consultId) {
 //打开子页面
 mui(".mui-table-view").on('tap','.itemBtn',function(){
 	var o_this = this;
-	console.log(this.getAttribute('consultId'));
+//	console.log(this.getAttribute('consultId'));
 	mui.plusReady(function() {
-		console.log(o_this.getAttribute("consultId"));
+//		console.log(o_this.getAttribute("consultId"));
 		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
 		//更新读取状态
 		setReadState(o_this.getAttribute("consultId"));
@@ -225,7 +223,6 @@ window.addEventListener('backlist',function(event){
 		mui('.status').each(function(index,item){
 			if(this.getAttribute('consultId') == consultId) {
 				if(status == 'myNeedAssessStatus=0'){//未评价
-					console.log(this);
 					this.classList.remove('status-1');
 					this.classList.add('status-2');
 					this.innerHTML = '待评价';
@@ -258,6 +255,7 @@ function eachData(userid,datalist) {
     	var title,
 			zhicehng,
 			zhiwei,
+			orgName,
 			address,
 			lastReply,
 			status,
@@ -303,6 +301,41 @@ function eachData(userid,datalist) {
 		(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
 		(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
 		
+		if(item["professor"]["title"] == null || item["professor"]["title"] == undefined ) {
+			zhicehng = '';
+		}else {
+			if(item["professor"]["office"] == ' ' && item["professor"]["orgName"] == ' '){
+				zhicehng = item["professor"]["title"];//职称
+			}
+			zhicehng = item["professor"]["title"]+'，';//职称
+		};
+		if(item["professor"]["office"] == null || item["professor"]["office"] == undefined ) {
+			zhiwei = '';
+		}else {
+			zhiwei = item["professor"]["office"];//职位
+		};
+		/*if(item["professor"]["department"] == null || item["professor"]["department"] == undefined ) {
+			oprodepart.innerHTML = '';
+		}else {
+			if(item["professor"]["orgName"]){
+				oprodepart.innerHTML = item["professor"]["department"]+'，';//所在部门
+			}else {
+				oprodepart.innerHTML = item["professor"]["department"];
+			}
+		}*/
+		if(item["professor"]["orgName"] == null || item["professor"]["orgName"] == undefined ) {
+			orgName = '';
+		}else {
+			orgName = item["professor"]["orgName"];//所在机构
+		}
+		if(item["professor"]["address"] == null || item["professor"]["address"] == undefined ) {
+			address = '';
+		}else {
+			address = ' | '+item["professor"]["address"];//所在地
+		}
+		
+		
+		
 		
 		//咨询类型，只取两个字
 		if(item["consultType"]) {
@@ -336,7 +369,7 @@ function eachData(userid,datalist) {
 	        		+ '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">'
             		+ '<div class="mui-media-body">'
             		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>'	
-            		+ '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+item["professor"]["orgName"]+'</span><span>'+address+'</span></p>'
+            		+ '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+orgName+'</span><span>'+address+'</span></p>'
             		+ '<p class="listtit3">'+lastReplyCon+'</p>'
             		+ '</div></a>';
             		

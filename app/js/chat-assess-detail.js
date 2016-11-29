@@ -4,7 +4,6 @@ mui.ready(function(){
 	
 	function getAssDetail(manFlag,consultId) {
 		if(manFlag == 'myNeed'){
-			console.log('我的');
 			mui.ajax(baseUrl+'/ajax/consult/qacon',{
 				data:{"consultId":consultId,"readStatus":"1"},
 				dataType:'json',
@@ -58,8 +57,8 @@ mui.ready(function(){
 		var self = plus.webview.currentWebview();
 		var consultId = self.consultId;
 		var manFlag = self.manFlag;
-		console.log(consultId);
-		console.log(manFlag);
+		/*console.log(consultId);
+		console.log(manFlag);*/
 		//填充评价详情
 		getAssDetail(manFlag,consultId);
 	});

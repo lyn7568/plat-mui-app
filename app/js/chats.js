@@ -88,7 +88,6 @@ mui.ready(function() {
 							});
 						}
 					} 
-					console.log("关闭等待狂")
 					plus.nativeUI.closeWaiting();
 					plus.webview.currentWebview().show("slide-in-right",150);
 				},
@@ -153,7 +152,7 @@ mui.ready(function() {
 			setState(consultId);//点击确认,更新咨询状态
 			var btnArray = ['确定','取消'];
 			mui.confirm('确认此次咨询已完成？', '', btnArray, function(e) {
-				console.log(e.index);
+				
 				if (e.index == 0) {//确定
 					goassessFun(consultId);//进入评价页面
 				} else {//取消
@@ -206,8 +205,8 @@ mui.ready(function() {
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
 			success:function(data){
-				console.log("更新咨询状态")
-				console.log(data.data)
+				/*console.log("更新咨询状态")
+				console.log(data.data)*/
 			},
 			error:function(xhr,type,errorThrown){
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
@@ -221,7 +220,7 @@ mui.ready(function() {
 	window.addEventListener('refresh',function(event){
 		//通过event.detail可获得传递过来的参数内容
 		var self = plus.webview.currentWebview();
-		console.log(self);
+		
 		var consultId = self.consultId;
 		oconfirm.classList.add('displayNone');
 		ochatFooter.classList.add('displayNone');
@@ -238,7 +237,6 @@ mui.ready(function() {
 		
 		var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
-		console.log(self.id)
 		var consultId = self.consultId;
 		var consultantId = self.consultantId;
 		/*返回咨询列表页*/
@@ -247,15 +245,15 @@ mui.ready(function() {
 			var status = ostatus.getAttribute('status');
 			
 			var consultList = plus.webview.getWebviewById('html/consultlist.html');
-			console.log(consultId)
+//			console.log(consultId)
 			consultList.show();
 			mui.fire(consultList,'backlist',{'consultId':consultId,'status':status}); 
 	
 		});
 		
-		console.log('consultId=='+consultId);
+		/*console.log('consultId=='+consultId);
 		console.log('userid=='+userid);
-		console.log('consultantId=='+consultantId);
+		console.log('consultantId=='+consultantId);*/
 		if(userid == consultantId){//我的需求
 			//头部信息
 			var manFlag = 'myNeed';
@@ -281,11 +279,15 @@ mui.ready(function() {
 					for(var i = 0; i < myData.length; i++ ){
 						if(myData[i]['professor']['id'] == userid){
 							/*判断是否有头像*/
-							/*if(myData[i]['professor']['hasHeadImage'] == 1){
+							console.log('自己是否有头像=='+myData[i]['professor']['hasHeadImage']);
+							if(myData[i]['professor']['hasHeadImage'] == 1){
 								document.getElementById("selfImg").setAttribute('src',baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg")
 							}else {
-								document.getElementById("selfImg").setAttribute("src","../images/default-photo.jpg");
-							}*/
+								if(document.getElementById("selfImg") != null){
+									document.getElementById("selfImg").setAttribute("src","../images/default-photo.jpg");
+								}
+								
+							}
 							
 							record.push({
 								sender: 'self',
@@ -293,17 +295,21 @@ mui.ready(function() {
 								content: myData[i]["tidingsContant"]
 							});
 						}else{
+							console.log('对方是否有头像=='+myData[i]['professor']['hasHeadImage'])
 							/*判断是否有头像*/
 							console.log(myData[i]['professor'].id);
 							console.log(userid);
-							/*if(myData[i]['professor'] != '' && myData[i]['professor'] != undefined){
+							if(myData[i]['professor'] != '' && myData[i]['professor'] != undefined){
 								if(myData[i]['professor']['hasHeadImage'] == 1){
 									document.getElementById("thatImg").setAttribute('src',baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg")
 								}else {
 									console.log(document.getElementById("thatImg"))
-									document.getElementById("thatImg").setAttribute("src","../images/default-photo.jpg");
+									if(document.getElementById("thatImg") != null){
+										document.getElementById("thatImg").setAttribute("src","../images/default-photo.jpg");
+									}
+									
 								}
-							}*/
+							}
 							
 							record.push({
 								sender: 'zs',

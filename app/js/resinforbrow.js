@@ -51,10 +51,10 @@ function ziyuaninfo(resourceId) {
 	 				if(mydata['professor']["title"] == null || mydata['professor']["title"] == undefined ) {
 	 					oprotitle.innerHTML = '';
 	 				}else {
-	 					if(mydata['professor']["office"]){
+	 					if(mydata['professor']["office"] !=null && mydata['professor']["office"] != undefined){
 	 						oprotitle.innerHTML = mydata['professor']["title"]+'，';//职称
 	 					}else {
-	 						oprotitle.innerHTML = mydata['professor']["title"]
+	 						oprotitle.innerHTML = mydata['professor']["title"];
 	 					}
 	 					
 	 				};
@@ -63,15 +63,7 @@ function ziyuaninfo(resourceId) {
 	 				}else {
 	 					oprooffice.innerHTML = mydata['professor']["office"];//职位
 	 				};
-	 				/*if(mydata['professor']["department"] == null || mydata['professor']["department"] == undefined ) {
-	 					oprodepart.innerHTML = '';
-	 				}else {
-	 					if(mydata['professor']["orgName"]){
-	 						oprodepart.innerHTML = mydata['professor']["department"]+'，';//所在部门
-	 					}else {
-	 						oprodepart.innerHTML = mydata['professor']["department"];
-	 					}
-	 				}*/
+	 				
 	 				if(mydata['professor']["orgName"] == null || mydata['professor']["orgName"] == undefined ) {
 	 					oproorgName.innerHTML = '';
 	 				}else {

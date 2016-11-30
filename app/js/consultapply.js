@@ -196,12 +196,14 @@
 		ofinished.addEventListener('tap', function() {
 			
 			mui.openWindow({
-				url: '../html/coophistory.html',
-				id: 'html/coophistory.html',
+				url: '../html/coophistory-other.html',
+				id: 'html/coophistory-other.html',
 				show: {
-					autoShow: false,
-					aniShow: "slide-in-left"
-				},
+				autoShow: false,
+			},
+			extras: {
+				professorId: proId
+			}
 
 			});
 		});

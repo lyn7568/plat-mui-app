@@ -295,47 +295,12 @@ function eachData(userid,datalist) {
 		}
 		 
 		//专家职称
-		(!item["professor"]["title"])? zhicehng = '' : zhicehng = item["professor"]["title"];
-		(!item["professor"]["office"])? zhiwei  = ''  : zhiwei = item["professor"]["office"] + '，';
-		(!item["professor"]["address"])? address = '' : address = '|'+ item["professor"]["address"];
+		(item["professor"]["title"])?  zhicehng = item["professor"]["title"]: zhicehng = '';
+		(item["professor"]["office"])?   zhiwei = '，'+item["professor"]["office"]: zhiwei  = '';
+		(item["professor"]["orgName"])?   orgName = '，'+item["professor"]["orgName"]: orgName  = '';
+		(item["professor"]["address"])?  address = ' | '+ item["professor"]["address"] :address = '' ;
 		(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
 		(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
-		
-		if(item["professor"]["title"] == null || item["professor"]["title"] == undefined ) {
-			zhicehng = '';
-		}else {
-			if(item["professor"]["office"] == ' ' && item["professor"]["orgName"] == ' '){
-				zhicehng = item["professor"]["title"];//职称
-			}
-			zhicehng = item["professor"]["title"]+'，';//职称
-		};
-		if(item["professor"]["office"] == null || item["professor"]["office"] == undefined ) {
-			zhiwei = '';
-		}else {
-			zhiwei = item["professor"]["office"];//职位
-		};
-		/*if(item["professor"]["department"] == null || item["professor"]["department"] == undefined ) {
-			oprodepart.innerHTML = '';
-		}else {
-			if(item["professor"]["orgName"]){
-				oprodepart.innerHTML = item["professor"]["department"]+'，';//所在部门
-			}else {
-				oprodepart.innerHTML = item["professor"]["department"];
-			}
-		}*/
-		if(item["professor"]["orgName"] == null || item["professor"]["orgName"] == undefined ) {
-			orgName = '';
-		}else {
-			orgName = item["professor"]["orgName"];//所在机构
-		}
-		if(item["professor"]["address"] == null || item["professor"]["address"] == undefined ) {
-			address = '';
-		}else {
-			address = ' | '+item["professor"]["address"];//所在地
-		}
-		
-		
-		
 		
 		//咨询类型，只取两个字
 		if(item["consultType"]) {

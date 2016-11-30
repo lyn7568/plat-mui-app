@@ -138,7 +138,7 @@ function datalistEach(datalist) {
 		
 		/*获取头像*/
 		if(item.hasHeadImage == 1) {
-			var img = "../images/head/" + item.id + "_m.jpg";
+			var img = baseUrl + "/images/head/" + item.id + "_l.jpg";
 		} else {
 			var img = "../images/default-photo.jpg";
 		}

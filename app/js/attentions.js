@@ -92,6 +92,7 @@ function getOneExpert(pageNo, pageSize) {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			//timeout: 10000,
+			async:false, 
 			success: function(data) {
 				if(data.success && data.data.data != "") {
 					var datalist = data.data.data;
@@ -120,6 +121,7 @@ function getOneResources(pageNo, pageSize) {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			//timeout: 10000,
+			async:false,
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
@@ -151,6 +153,7 @@ function expert2(pageNo, pageSize) {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000,
+				async:false,
 				success: function(data) {
 					console.log(data.success)
 					if(data.success && data.data.data != "") {
@@ -191,6 +194,7 @@ function expert2(pageNo, pageSize) {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000,
+				async:false,
 				success: function(data) {
 					console.log(data.success)
 					if(data.success && data.data.data != "") {

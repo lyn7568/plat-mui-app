@@ -1,6 +1,6 @@
 //公共文件
 mui.init();
-var baseUrl = "http://192.168.3.174:8080",
+var baseUrl = "http://www.ekexiu.com:81",    
 	toastStyle = {
 		'verticalAlign': 'top'
 	}

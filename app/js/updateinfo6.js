@@ -17,7 +17,7 @@ mui.ready(function() {
 						plus.nativeUI.closeWaiting();	; //新webview的载入完毕后关闭等待框
         				ws.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画    
 						$info = $data.data;			
-						oDt[4].value=$info.year;
+						oDt[4].innerText=$info.year;
 						oDt[0].value=$info.school;
 						 oDt[1].value=$info.college;
 						 if(!$info.major)
@@ -51,10 +51,22 @@ mui.ready(function() {
     	oDt[3].addEventListener("change",function(){
     		oDegree=oDt[3].value;
     	});
+    	
+		var oEduYear = document.getElementById("eduYear");
+		var oBtn=document.getElementsByClassName("btn")[0];
+		oBtn.addEventListener("click", function() {
+			var optionsJson = this.getAttribute('data-options') || '{}';
+			var options = JSON.parse(optionsJson);			
+			var picker = new mui.DtPicker(options);
+			picker.show(function(rs) { 				
+					oEduYear.innerText = rs.text.substr(0,4);				
+			});
+
+		});
     	function savePro() {    		  		
     		var $data = {};							
 			$data.professorId = userid;
-			$data.year = oDt[4].value;
+			$data.year = oDt[4].innerText;
 			$data.school =oDt[0].value;
 			$data.college = oDt[1].value;
 			$data.major = oDt[2].value;

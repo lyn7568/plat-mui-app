@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
 	</head>
 
 	<body>
@@ -24,8 +25,8 @@
 						<li class="basicfrm"><input type="text" name="comname" class="mui-input-clear frmtype"></li>
 						<li><label>获奖年份</label></li>
 						<li class="basicfrm">
-							<input type="number" name="year" class="mui-input-clear frmtype">
-							<span class="mui-icon mui-icon-arrowdown downarrow"></span>
+							<span type="number" name="year" class="mui-input-clear frmtype" id="eduYear"></span>
+							<span class="mui-icon mui-icon-arrowdown downarrow btn" data-options='{"type":"month"}'></span>
 						</li>
 						<li><label>详细描述</label></li>
 						<li class="basicfrm">
@@ -44,6 +45,7 @@
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/zepto.min.js"></script>
+		<script src="../js/public/mui.picker.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script type="text/javascript" src="../js/updateinfo11.js"></script>
 	</body>

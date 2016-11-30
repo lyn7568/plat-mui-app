@@ -20,7 +20,7 @@ mui.ready(function() {
         				ws.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画    
 						$info = $data.data;									
 						oDt[0].value=$info.name;												
-						 oDt[1].value=$info.year;
+						 oDt[1].innerText=$info.year;
 						 oDt[2].value =$info.url;
 						 if(!$info.descp) 
 						 $info.descp="";						
@@ -44,13 +44,21 @@ mui.ready(function() {
     		if(!length) 
     		plus.nativeUI.toast("专利名称不能为空");
     	});
-    	
-    	
+    	var oEduYear = document.getElementById("eduYear");
+		var oBtn=document.getElementsByClassName("btn")[0];
+		oBtn.addEventListener("click", function() {
+			var optionsJson = this.getAttribute('data-options') || '{}';
+			var options = JSON.parse(optionsJson);			
+			var picker = new mui.DtPicker(options);
+			picker.show(function(rs) { 				
+					oEduYear.innerText = rs.text.substr(0,4);				
+			}); 
+		})
     	function savePro() {    		  		
     		var $data = {};							
 			$data.professorId = userid;
 			$data.name =oDt[0].value;
-			$data.year = oDt[1].value;			
+			$data.year = oDt[1].innerText;			
 			$data.url = oDt[2].value;
 			$data.descp = document.getElementsByClassName("textareabox")[0].innerText;			
 			if(ws.edu) {

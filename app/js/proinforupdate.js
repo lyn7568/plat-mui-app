@@ -4,7 +4,12 @@ mui.ready(function() {
 		var oImg=document.getElementsByTagName("img")[0];
 		var personalMaterial=document.getElementsByClassName('personalMaterial');
 		var personSummary=document.getElementsByClassName("breifinfo")[0];
-		window.addEventListener("newId",function(){			
+		window.addEventListener("newId",function(){	
+			personalMaterial[1].parentNode.style.display = "block";
+			personalMaterial[2].parentNode.style.display = "block";
+			personalMaterial[3].parentNode.style.display = "block";
+			personalMaterial[4].parentNode.style.display = "block";
+			personalMaterial[5].parentNode.style.display = "block";
 			personalMessage();						
 		})
 		
@@ -140,7 +145,7 @@ mui.ready(function() {
 						personalMaterial[4].parentNode.style.display = "none";
 					}
 					if($data.address) {
-						personalMaterial[5].innerText = $data.address;
+						personalMaterial[5].innerText =$data.province+" "+$data.address;
 					} else {
 						personalMaterial[5].parentNode.style.display = "none";
 					}

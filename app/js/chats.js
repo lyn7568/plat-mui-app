@@ -277,7 +277,8 @@ mui.ready(function() {
 				success:function(data){
 					var myData = data.data;
 					for(var i = 0; i < myData.length; i++ ){
-						if(myData[i]['professor']['id'] == userid){//自己说话							
+						if(myData[i]['professor']['id'] == userid){//自己说话
+							
 							/*判断是否有头像*/
 							if(myData[i]['professor']['hasHeadImage'] == 1){
 								record.push({
@@ -295,10 +296,8 @@ mui.ready(function() {
 									imgurl:"../images/default-photo.jpg"
 								});
 							}
-						
 							
 						}else{//对方说话
-							alert('对方说话');
 							console.log('对方id=='+myData[i]['professor'].id)
 							/*判断是否有头像*/
 							if(myData[i]['professor'] != '' && myData[i]['professor'] != undefined){
@@ -417,6 +416,43 @@ mui.ready(function() {
 		window.addEventListener('resize', function() {
 			ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight +  ui.areaMsgList.offsetHeight;
 		}, false);
+		/*var send = function(msg) {
+			record.push(msg);
+			bindMsgList();
+			toRobot(msg.content);
+		};*/
+		function getSelfImg (consultId,userid) {
+			var selfImgUrl;
+			mui.ajax(baseUrl+'/ajax/tidings/qacon',{
+				data:{
+					"consultId":consultId
+				},
+				dataType:'json',//服务器返回json格式数据
+				async:false,
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					var myData = data.data;
+					console.log()
+					for(var i = 0; i < myData.length; i++ ){
+						if(myData[i]['professor']['id'] == userid){
+							if(myData[i]['professor']['hasHeadImage'] == 1){
+								selfImgUrl = baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg";
+							}else {
+								selfImgUrl = "../images/default-photo.jpg";
+							}
+						}
+					}
+					
+				},
+				error:function(xhr,type,errorThrown){
+					//根据消息id查询消息失败
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+				}
+			});
+			return selfImgUrl;
+		};
+		
 		var send = function(msg) {
 			record.push(msg);
 			bindMsgList();
@@ -424,7 +460,6 @@ mui.ready(function() {
 		};
 		var toRobot = function(info) {
 			var apiUrl = baseUrl+"/ajax/tidings";//保存消息接口
-			
 			mui.ajax(apiUrl,{
 				data:{
 					"tidingsContant":ui.boxMsgText.value, //消息内容
@@ -485,10 +520,13 @@ mui.ready(function() {
 					ui.boxMsgText.focus();//获取焦点
 				}, 150);
 				//							event.detail.gesture.preventDefault();
+				//执行是否有头像
+				console.log(getSelfImg(consultId,userid));
 				send({
 					sender: 'self',
 					type: 'text',
-					content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
+					content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>'),
+					imgurl:getSelfImg (consultId,userid)
 				});
 				ui.boxMsgText.value = '';
 				mui.trigger(ui.boxMsgText, 'input', null); //发送消息向后台传数据

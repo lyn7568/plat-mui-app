@@ -80,9 +80,9 @@ mui.ready(function() {
 							isAgree++;
 					}
 					if(isAgree) {
-						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn  icon-appreciate' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
+						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><div class='likenum'>";
 					} else {
-						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn icon-appreciatefill' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
+						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><div class='likenum'>";
 					}
 
 					if($photos.length > 0) {
@@ -117,7 +117,7 @@ mui.ready(function() {
 					personalMaterial[0].innerText = $data.name;
 					//头像					
 					if($data.hasHeadImage) {
-						oImg.src = "/images/head/" + $data.id + "_l.jpg";
+						oImg.src = baseUrl + "/images/head/" + $data.id + "_l.jpg";
 					}
 					//基本信息
 					if(!$data.authentication) {
@@ -185,7 +185,7 @@ mui.ready(function() {
 				var string = '<li class="mui-table-view-cell mui-media" resouId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor" href="resinforupdate.html">'
 				if($data[i].images.length) {
-					string += '<img class="mui-media-object mui-pull-left resimg" src="../images/resource/' + $data[i].resourceId + '.jpg">'
+					string += '<img class="mui-media-object mui-pull-left resimg" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'
 					console.log('../images/resource/' + $data[i].resourceId + '.jpg')
 				} else {
 

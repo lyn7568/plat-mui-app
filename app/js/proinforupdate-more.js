@@ -16,7 +16,7 @@ var eduBgShow = function(data) {
 				                   string+='</div>'
 				                   string+='<div class="mui-media-body">'
 				                   if(data[i].school) {
-							string += '<div class="listtit2">' + data[i].school + '<div class="updatebox updatebox2 edu" title=' + data[i].id + '><em class="mui-icon mui-icon-compose updatebtn"></em></div></div>'
+							string += '<div class="listtit2 mutlinebox">' + data[i].school + '<div class="updatebox updatebox2 edu" title=' + data[i].id + '><em class="mui-icon mui-icon-compose updatebtn"></em></div></div>'
 				                   }				                       
 				                   string+='<p class="listtit3 mutlinebox">'
 				                    if(data[i].college) {
@@ -49,7 +49,7 @@ var eduBgShow = function(data) {
 				               	   string+='<div class="mui-media-object mui-pull-left iconposition">'
 				                   string+='<img class="" src="../images/icon-work.png"></div>'				                   
 				                   string+='<div class="mui-media-body">'
-				                       string+='<div class="listtit2">'
+				                       string+='<div class="listtit2 mutlinebox">'
 				                       if(data[i].company) {
 				                       		string+=data[i].company;
 				                       }
@@ -87,7 +87,7 @@ var eduBgShow = function(data) {
 						string += '<img class="" src="../images/icon-project.png">'
 						string += '</div>'
 						string += '<div class="mui-media-body">'
-						string += '<div class="listtit2">'
+						string += '<div class="listtit2 mutlinebox">'
 						if(data[i].name) {
 							string += data[i].name;
 						}
@@ -123,7 +123,7 @@ var eduBgShow = function(data) {
 						string += '<img class="" src="../images/icon-acad.png">'
 						string += '</div>'
 						string += '<div class="mui-media-body">'
-						string += '<div class="listtit2">'
+						string += '<div class="listtit2 mutlinebox">'
 						if(data[i].name) {
 							string += data[i].name;
 						}
@@ -155,7 +155,7 @@ var eduBgShow = function(data) {
 						string += '<img class="" src="../images/icon-mono.png">'
 						string += '</div>'
 						string += '<div class="mui-media-body">'
-						string += '<div class="listtit2">'
+						string += '<div class="listtit2 mutlinebox">'
 						if(data[i].name) {
 							string += data[i].name;
 						}
@@ -187,7 +187,7 @@ var eduBgShow = function(data) {
 					string += '<img class="" src="../images/icon-honor.png">'
 					string += '</div>'
 					string += '<div class="mui-media-body">'
-					string += '<div class="listtit2">'
+					string += '<div class="listtit2 mutlinebox">'
 					if(data[i].name) {
 						string += data[i].name;
 					}

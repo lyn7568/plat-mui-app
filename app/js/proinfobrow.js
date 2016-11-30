@@ -93,9 +93,10 @@ mui.plusReady(function() {
 
 					if($photos.length > 0) {
 						for(var j = 0; j < $photos.length; ++j) {
-							if($photos[j].hasHeadImage) {
-								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/head/" + $photos[j] + "_s.jpg'></span>";
-							} else {
+						
+							if($photos[j].img) {						
+								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_s.jpg'></span>";
+							} else {								
 								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
 							}
 						}
@@ -134,7 +135,7 @@ mui.plusReady(function() {
 				var string = '<li class="mui-table-view-cell mui-media" resouseId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor">'
 				if($data[i].images.length) {
-					string += '<img class="mui-media-object mui-pull-left resimg" src="../images/resource/' + $data[i].resourceId + '.jpg">'
+					string += '<img class="mui-media-object mui-pull-left resimg" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'
 
 				} else {
 
@@ -172,7 +173,7 @@ mui.plusReady(function() {
 					start[i].classList.add("icon-favorfill");
 				}
 				if($data.hasHeadImage) {
-					document.getElementsByClassName("headimg")[0].src = "/images/head/" + $data.id + "_l.jpg";
+					document.getElementsByClassName("headimg")[0].src = baseUrl + "/images/head/" + $data.id + "_l.jpg";
 				} else {
 					document.getElementsByClassName("headimg")[0].src = "../images/default-photo.jpg";
 				}
@@ -182,16 +183,30 @@ mui.plusReady(function() {
 					document.getElementsByClassName('icon-vip')[0].classList.add("unauthicon");
 				}
 				if($data.office) {
-					personalMaterial[1].innerText = $data.office;
+					if($data.title) {
+						personalMaterial[1].innerText = $data.office + "，";
+					} else {
+						personalMaterial[1].innerText = $data.office;
+					}
 				}
 				if($data.title) {
 					personalMaterial[2].innerText = $data.title;
 				}
 				if($data.orgName) {
-					personalMaterial[3].innerText = $data.orgName;
+					if($data.department) {
+						personalMaterial[3].innerText = $data.orgName + " , ";
+					} else {
+						personalMaterial[3].innerText = $data.orgName;
+					}
+
 				}
 				if($data.department) {
-					personalMaterial[4].innerText = $data.department;
+					if($data.address) {
+						personalMaterial[4].innerText = $data.department + " | ";
+					} else {
+						personalMaterial[4].innerText = $data.department;
+					}
+
 				}
 				if($data.address) {
 					personalMaterial[5].innerText = $data.address;
@@ -227,6 +242,10 @@ mui.plusReady(function() {
 					professorResource($data.resources);
 				} else {
 					document.getElementById("professorresourceList").style.display = "none";
+				}
+				//如无详细内容数据，隐藏详细点击的按钮
+				if(!$data.edus.length && !$data.jobs.length && !$data.projects.length && !$data.papers.length && !$data.patents.length && !$data.honors.length) {
+					document.getElementById("detailProfessor").style.display = "none";
 				}
 			},
 			error: function() {
@@ -281,6 +300,8 @@ mui.plusReady(function() {
 
 				}
 			})
+		} else {
+			plus.nativeUI.toast("请先登录");
 		}
 
 	})

@@ -43,6 +43,8 @@ function ziyuaninfo(resourceId) {
 					//专家信息
 					proId = mydata['professor']['id']; //专家id
 					
+					(mydata['resourceName'])? oresorcename.innerHTML = mydata['resourceName'] : oresorcename.innerHTML ='';
+					
 					if(mydata['professor']["name"] == null || mydata['professor']["name"] == undefined ) {
 	 					oproname.innerText = '';
 	 				}else {

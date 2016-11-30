@@ -8,19 +8,35 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var proId = self.proid;
+	console.log(userid);
 	/*点击咨询*/
-	ozixun.addEventListener('tap', function() {
-		var flag = 'professor';
-		var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
-		webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
-			'proId': proId,
-			'flag': flag
+	if(userid){
+		ozixun.addEventListener('tap', function() {
+			var flag = 'professor';
+			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
+			webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
+				'proId': proId,
+				'flag': flag
+			});
+	
+			webviewShow.addEventListener("loaded", function() {
+	
+			}, false);
 		});
-
-		webviewShow.addEventListener("loaded", function() {
-
-		}, false);
-	});
+	}else if(userid == '' || userid == undefined){
+		ozixun.addEventListener('tap', function() {
+			mui.alert('请登录', '' ,function(){
+				mui.openWindow({
+					url: '../html/reg.html',
+					id: 'html/reg.html',
+					show: {
+						aniShow: "slide-in-left"
+					}
+				});
+			});
+		});
+	}
+	
 	//查询学术领域
 	var subjectShow = function(data) {
 			if(data != undefined && data.length != 0) {

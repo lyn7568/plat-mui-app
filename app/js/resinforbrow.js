@@ -164,8 +164,8 @@ mui.plusReady(function() {
 		oconsult.addEventListener('tap', function() {
 			mui.alert('请登录', '' ,function(){
 				mui.openWindow({
-					url: '../html/reg.html',
-					id: 'html/reg.html',
+					url: '../html/login.html',
+					id: 'html/login.html',
 					show: {
 						aniShow: "slide-in-left"
 					}

@@ -108,11 +108,14 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 /*****表单公共样式********/
 /*input输入相关*/
 .frmbox{ width: 100%; margin:2% auto; border-radius: 6px; }
-.frmtype{ width: 100%; margin: auto; padding:2%;font-size: 14px;}
-.frmbtn{margin:4% auto;  font-size: 14px; padding:2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;}
+.frmtype{ width: 100%; margin: auto;line-height: 24px;padding: 1% 2%;font-size: 14px;}
+.frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;}
 /*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
 .frmbox{ border:none; width: 90%;height: 100%; } 
+/*未激活按钮状态*/
 .frmactive2{color:#f0f0f0;background-color:#d6d6d6; border:1px solid #d6d6d6;}
+.frmactive2.mui-btn.mui-active:active,.frmactive2.mui-btn:enabled:active{color:#f0f0f0;background-color:#d6d6d6; border:1px solid #d6d6d6;}
+
 .frmactive{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
 .frmactiveok{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
 .exitbox{ text-align: center;margin-top:40px;}
@@ -230,7 +233,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .infocon{padding:6px 10px; /*text-align: justify;*/ font-size: 13px; color:#888888;}
 .infocon ul{ padding:0; margin: 0; overflow: hidden;}
 .infosubject li{ list-style: none; padding:4px 10px; padding-right:20px; margin:4px; border:1px solid #BBBBBB; border-radius: 6px; float: left;}
-
+/*合作资源*/
 .resinfo li{padding:6px 8px;}
 .resinfo li .mui-media-body{ border-bottom:1px solid #F0F0F0; padding-bottom:4px; margin-bottom: 6px;}
 .resinfo li .mui-media-body .resbrief{ max-height: 46px; overflow: hidden;}
@@ -265,12 +268,17 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .attentbtn em{font-size: 20px;line-height: 24px;color:#F6DC00;}
 /*.attentbtn em{display: block; margin: auto; width: 22px; height: 22px; background: url(../images/attenticon.png) center center no-repeat; background-size:100% 100% ;}*/
 
-.listitembox{ position: static;width: 108%;}
-.listitembox .listitem{ position: static;padding:10px; margin-right: 2%;}
+.maincon2{padding-right:0;}
+.infocon2{padding:0;}
+.listitembox{ position: static;width: 100%;}
+.listitembox .listitem{ position: static;padding:10px;padding-right: 0;}
 .listitembox .listitem .iconposition{ border-radius: 50%; max-width:60px; height:60px; margin: 1% 0; margin-right: 10px;}
-.listitembox .listitem>a .mutlinebox{ white-space:normal; overflow: auto; }
+.listitembox .listitem>a .mutlinebox{ white-space:normal; overflow: auto;word-break:break-word; }
 .listitembox .listitem .mui-media-body{ border-bottom:1px solid #F0F0F0;  padding-right:20px;padding-bottom:10px;}
 .listitembox .listitem:last-child .mui-media-body{ border-bottom:none;}
+.listitembox .listitem.mui-table-view-cell:after{background:none;}
+.listitembox .listitem.mui-table-view-cell>a:not(.mui-btn).mui-active{background:none;}
+.resinfo .listitem.mui-table-view-cell>a:not(.mui-btn).mui-active{background:#eee;}
 /***********************专家信息浏览*******************/
 
 /***********************我的账户*******************/
@@ -404,16 +412,6 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 
 /*********************** 咨询*******************/
 .consultbox{ padding:20px 0px 20px 0px;}
-@font-face {font-family: "iconfont";}
-.iconfont {
-  font-family:"iconfont" !important;
-  font-size:16px;
-  font-style:normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke-width: 0.2px;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 .consultaim{ text-align: center; margin: auto;position:relative;width:100%; }
 .consultaim ul{padding: 0; margin: 0;padding: 2% 5%;/* width:70%; position:relative; left:50%;margin-left:-34%;*/ overflow: hidden;}
 .consultaim ul li{ list-style: none;float: left; width:31%; padding:2px 8px;border:#CCCCCC 1px solid;border-radius: 6px; margin:1%; font-size: 12px;line-height: 24px;vertical-align: middle;}

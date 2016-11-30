@@ -35,7 +35,7 @@ mui.ready(function() {
 		window.addEventListener('closeUser', function(event) {
 			userId = event.detail.id;
 			console.log(userId);
-			//console.log('dd');
+			console.log('dd');
 			loginStatus();
 		});
 

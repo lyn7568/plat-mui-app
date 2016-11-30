@@ -126,9 +126,10 @@ mui.ready(function() {
 						//goHome();
 						//var myaccountClose = plus.webview.getWebviewById("html/myaccount.html");
 						//plus.webview.close(myaccountClose);
+						//mui.currentWebview.close();
 						mui.currentWebview.close();
-						var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
-						myaccountPage.show();
+			        	mui.back();
+				        var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
 						mui.fire(myaccountPage, 'closeUser', {
 							id: professorId
 						});

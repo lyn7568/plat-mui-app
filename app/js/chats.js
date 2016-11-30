@@ -277,45 +277,48 @@ mui.ready(function() {
 				success:function(data){
 					var myData = data.data;
 					for(var i = 0; i < myData.length; i++ ){
-						if(myData[i]['professor']['id'] == userid){
+						if(myData[i]['professor']['id'] == userid){//自己说话
+							alert('自己说话')
 							/*判断是否有头像*/
-							console.log('自己是否有头像=='+myData[i]['professor']['hasHeadImage']);
 							if(myData[i]['professor']['hasHeadImage'] == 1){
-								document.getElementById("selfImg").setAttribute('src',baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg")
-							}else {
-								if(document.getElementById("selfImg") != null){
-									document.getElementById("selfImg").setAttribute("src","../images/default-photo.jpg");
-								}
+								record.push({
+									sender: 'self',
+									type: 'text',
+									content: myData[i]["tidingsContant"],
+									imgurl:baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg"
+								});
 								
+							}else {
+								record.push({
+									sender: 'self',
+									type: 'text',
+									content: myData[i]["tidingsContant"],
+									imgurl:"../images/default-photo.jpg"
+								});
 							}
+						
 							
-							record.push({
-								sender: 'self',
-								type: 'text',
-								content: myData[i]["tidingsContant"]
-							});
-						}else{
-							console.log('对方是否有头像=='+myData[i]['professor']['hasHeadImage'])
+						}else{//对方说话
+							alert('对方说话');
+							console.log('对方id=='+myData[i]['professor'].id)
 							/*判断是否有头像*/
-							console.log(myData[i]['professor'].id);
-							console.log(userid);
 							if(myData[i]['professor'] != '' && myData[i]['professor'] != undefined){
 								if(myData[i]['professor']['hasHeadImage'] == 1){
-									document.getElementById("thatImg").setAttribute('src',baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg")
+									record.push({
+										sender: 'zs',
+										type: 'text',
+										content: myData[i]["tidingsContant"],
+										imgurl:baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg"
+									});
 								}else {
-									console.log(document.getElementById("thatImg"))
-									if(document.getElementById("thatImg") != null){
-										document.getElementById("thatImg").setAttribute("src","../images/default-photo.jpg");
-									}
-									
+									record.push({
+										sender: 'zs',
+										type: 'text',
+										content: myData[i]["tidingsContant"],
+										imgurl:"../images/default-photo.jpg"
+									});
 								}
 							}
-							
-							record.push({
-								sender: 'zs',
-								type: 'text',
-								content: myData[i]["tidingsContant"]
-							});
 						}
 					}
 					bindMsgList();

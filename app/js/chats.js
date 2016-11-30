@@ -277,8 +277,7 @@ mui.ready(function() {
 				success:function(data){
 					var myData = data.data;
 					for(var i = 0; i < myData.length; i++ ){
-						if(myData[i]['professor']['id'] == userid){//自己说话
-							alert('自己说话')
+						if(myData[i]['professor']['id'] == userid){//自己说话							
 							/*判断是否有头像*/
 							if(myData[i]['professor']['hasHeadImage'] == 1){
 								record.push({

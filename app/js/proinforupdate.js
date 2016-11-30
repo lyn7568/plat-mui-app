@@ -217,8 +217,8 @@ mui.ready(function() {
 			}
 			webviewShow = plus.webview.create("../html/updateinfo1.html", "../html/updateinfo1.html", {}, arr); //后台创建webview并打开show.html   	    	
 			webviewShow.addEventListener("loaded", function() { //注册新webview的载入完成事件
-				nwaiting.close(); //新webview的载入完毕后关闭等待框
-				webviewShow.show("slide-in-right", 150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
+//				nwaiting.close(); //新webview的载入完毕后关闭等待框
+//				webviewShow.show("slide-in-right", 150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画         
 			}, false);
 		});
 		document.getElementsByClassName("updatebox")[1].addEventListener("tap", function() {

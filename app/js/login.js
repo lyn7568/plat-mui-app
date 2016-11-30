@@ -123,11 +123,7 @@ mui.ready(function() {
 				success: function(data) {
 					console.log(data.data)
 					if(data.data != null) {
-						//goHome();
-						//var myaccountClose = plus.webview.getWebviewById("html/myaccount.html");
-						//plus.webview.close(myaccountClose);
 						//mui.currentWebview.close();
-						mui.currentWebview.close();
 			        	mui.back();
 				        var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
 						mui.fire(myaccountPage, 'closeUser', {

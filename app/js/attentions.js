@@ -92,8 +92,9 @@ function getOneExpert(pageNo, pageSize) {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			//timeout: 10000,
-			async:false, 
+			//async:false, 
 			success: function(data) {
+				console.log("1");
 				if(data.success && data.data.data != "") {
 					var datalist = data.data.data;
 					datalistEach(datalist);
@@ -121,10 +122,9 @@ function getOneResources(pageNo, pageSize) {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			//timeout: 10000,
-			async:false,
+			//async:false,
 			success: function(data) {
-				plus.nativeUI.closeWaiting();
-				plus.webview.currentWebview().show("slide-in-right", 150);
+				console.log("2");
 				if(data.success && data.data.data != "") {
 					var datalistd = data.data.data;
 					resourcesEach2(datalistd);
@@ -153,7 +153,7 @@ function expert2(pageNo, pageSize) {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000,
-				async:false,
+				//async:false,
 				success: function(data) {
 					console.log(data.success)
 					if(data.success && data.data.data != "") {
@@ -194,7 +194,7 @@ function expert2(pageNo, pageSize) {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000,
-				async:false,
+				//async:false,
 				success: function(data) {
 					console.log(data.success)
 					if(data.success && data.data.data != "") {
@@ -291,6 +291,7 @@ function datalistEach(datalist) {
 			'</div></a></li>';
 
 		table.appendChild(li, table.firstChild);
+		
 	});
 }
 
@@ -343,5 +344,7 @@ function resourcesEach2(datalistd) {
 			'<p class="listtit3"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
 			'</div></a></li>';
 		table1.appendChild(li, table1.firstChild);
+		plus.nativeUI.closeWaiting();
+		plus.webview.currentWebview().show("slide-in-right", 150);
 	});
 }

@@ -15,6 +15,7 @@ mui.ready(function() {
 	mui.plusReady(function() {
 
 		var userId = plus.storage.getItem('userid');
+		console.log(userId);
 		/*判断登录是否成功*/
 		loginStatus();
 
@@ -35,8 +36,8 @@ mui.ready(function() {
 		window.addEventListener('closeUser', function(event) {
 			userId = event.detail.id;
 			console.log(userId);
-			console.log('dd');
 			loginStatus();
+			userInformation();
 		});
 
 		function loginStatus() {
@@ -103,7 +104,7 @@ mui.ready(function() {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
-				async:true,
+				async:false,
 				success: function(data) {
 					
 					var $info = data.data || {}

@@ -5,7 +5,7 @@ window.addEventListener('closePage', function(event) {
 	bimg = event.detail.id;
 	var imgvar='<img src="'+bimg+'" style="width:100%"/>';  
 	userimg.innerHTML=imgvar;
-});		
+});
 
 mui.plusReady(function() {
 

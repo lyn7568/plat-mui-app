@@ -4,6 +4,7 @@
 .mui-table-view:before{ background: none;}
 .mui-table-view:after{ background: none;}
 .mui-table-view-cell:after{right: 0;bottom: 0;left: 80px;}
+.setblock .mui-table-view-cell:after{right: 0;bottom: 0;left: 8px;}
 /*.mui-table-view-cell .mui-media-body{padding-bottom:10px; border-bottom:1px solid #CCCCCC;}*/
 .mui-input-group .mui-input-row:last-child:after{ background: none;}
 .mui-input-group .mui-input-row:after{left:10px; background-color: #E6E6E6;}/*登录注册等表单的横线*/
@@ -377,7 +378,8 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 
 .hotsearchbox{ padding:10px 14px;}
 .hotsearchbox ul{ padding:0; margin: 0; margin:6px 0; overflow: hidden;}
-.hotsearch li{ list-style: none; padding:4px 16px; margin:4px; border:1px solid #FF9900; color: #FF9900; border-radius: 6px; float: left;}
+.hotsearch li{ list-style: none; padding:2px 18px; margin:4px;font-size:14px; border:1px solid #FF9900; color: #FF9900; border-radius: 6px; float: left;}
+.hotsearch li:active{background: #FF9900; border:1px solid #FF9900;color:#FFFFFF;}
 
 /*.hide { display: none; } */
 .backTop{ background: #DDDDDD; border-radius: 50%; position: fixed; right: 10px; bottom: 15px; width: 38px; height: 38px; z-index: 9999; text-align: center; font-size: 24px; color: #666666; padding-top: 8px; opacity: 0.8; }

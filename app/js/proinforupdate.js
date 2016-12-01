@@ -9,8 +9,8 @@ mui.ready(function() {
 			personalMaterial[2].parentNode.style.display = "block";
 			personalMaterial[3].parentNode.style.display = "block";
 			personalMaterial[4].parentNode.style.display = "block";
-			personalMaterial[5].parentNode.style.display = "block";
-			personalMessage();						
+			personalMaterial[5].parentNode.style.display = "block";			
+			personalMessage();
 		})
 		
 		//查询学术领域
@@ -116,8 +116,8 @@ mui.ready(function() {
 					var $data = data.data;
 					personalMaterial[0].innerText = $data.name;
 					//头像					
-					if($data.hasHeadImage) {
-						oImg.src = baseUrl + "/images/head/" + $data.id + "_l.jpg";
+					if($data.hasHeadImage) {						
+						oImg.src = baseUrl + "/images/head/" + $data.id + "_l.jpg";						
 					}
 					//基本信息
 					if(!$data.authentication) {

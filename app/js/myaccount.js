@@ -39,7 +39,10 @@ mui.ready(function() {
 			loginStatus();
 			userInformation();
 		});
-
+		//在修改上传图片触发的事件
+		window.addEventListener('photoUser', function(event) {			
+			userInformation();
+		});
 		function loginStatus() {
 			console.log(userId);
 			if(userId && userId != "null" && userId != null) {

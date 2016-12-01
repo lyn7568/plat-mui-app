@@ -20,13 +20,28 @@ mui.plusReady(function() {
 			success: function(data) {
 				console.log(JSON.stringify(data));
 				console.log(data.success);
-				plus.nativeUI.toast("图片上传成功", toastStyle);
-				mui.currentWebview.close();
-				mui.back();
-				var fPage = plus.webview.getWebviewById('../html/fillinfo.html');
-				mui.fire(fPage, 'closePage', {
-					id: imgfh
-				});
+				if(data.success) {
+					plus.nativeUI.toast("图片上传成功", toastStyle);
+					mui.currentWebview.close();
+					mui.back();
+					var flag = list.flag;
+					if(flag == 0) {
+						var Page = plus.webview.getWebviewById('html/proinforupdate.html');
+						mui.fire(Page, 'newId');
+						var Pa = plus.webview.getWebviewById('html/myaccount.html');
+						mui.fire(Pa, 'photoUser');
+						
+					} else {
+						var fPage = plus.webview.getWebviewById('../html/fillinfo.html');
+						mui.fire(fPage, 'closePage', {
+							id: imgfh
+						});
+					}
+				} else {
+					plus.nativeUI.toast("图片上传失败", toastStyle);
+
+				}
+
 			},
 			error: function(data) {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
@@ -35,7 +50,6 @@ mui.plusReady(function() {
 
 	})
 })
-
 
 //获取手机屏幕宽高
 var c_w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

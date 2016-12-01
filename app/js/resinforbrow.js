@@ -36,7 +36,7 @@ function ziyuaninfo(resourceId) {
 			timeout: 10000, //超时时间设置为10秒；
 			success: function(data) {
 				if(data.success) {
-					console.log(data);
+					console.log(JSON.stringify(data));
 					
 					var mydata = data.data;
 					//资源名称
@@ -69,7 +69,13 @@ function ziyuaninfo(resourceId) {
 					: oproimg.setAttribute('src',baseUrl+'/images/head/'+mydata['professor']['id']+'_m.jpg');
 					
 					//资源基本信息
-					(mydata['images']['imageSrc']) ? oziyuanimg.setAttribute('src', mydata['images']['imageSrc']): oziyuanimg.setAttribute('src', '../images/default-resource.jpg'); //资源图片
+					//(mydata['images']['imageSrc']) ? oziyuanimg.setAttribute('src', mydata['images']['imageSrc']): oziyuanimg.setAttribute('src', '../images/default-resource.jpg'); //资源图片
+					
+					if(mydata['images'].length) {						
+						oziyuanimg.setAttribute('src', mydata['images'][0]['imageSrc'])
+					} else {						
+						oziyuanimg.setAttribute('src', '../images/default-resource.jpg')
+					}
 					(mydata['supportedServices']) ? oyongtu.innerHTML = mydata['supportedServices']: oyongtu.innerHTML = ''; //应用用途
 	
 					//学术领域

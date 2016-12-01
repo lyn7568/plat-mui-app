@@ -1,6 +1,6 @@
 /*头像上传*/
 var userimg = document.getElementById("userimg");
-
+var flag;
 window.addEventListener('closePage', function(event) {
 	bimg = event.detail.id;
 	var imgvar='<img src="'+bimg+'" style="width:100%"/>';  
@@ -8,7 +8,11 @@ window.addEventListener('closePage', function(event) {
 });
 
 mui.plusReady(function() {
-
+	var ws=plus.webview.currentWebview();
+	var web=plus.webview.getWebviewById("html/proinforupdate.html");
+	if(ws==web) {
+		flag=0;
+	}
 	userimg.addEventListener("tap", function() {
 		if(mui.os.plus) {
 			var a = [{
@@ -42,6 +46,7 @@ mui.plusReady(function() {
 		var c = plus.camera.getCamera();
 		c.captureImage(function(e) {
 			plus.io.resolveLocalFileSystemURL(e, function(entry) {
+				
 				mui.openWindow({
 					url: '../html/picture-upload.html',
 					id: 'html/picture-upload.html',
@@ -50,6 +55,7 @@ mui.plusReady(function() {
 					},
 					extras: {
 						imgurl: entry.toLocalURL(),
+						flag:flag
 					}
 				});
 			}, function(e) {
@@ -80,10 +86,11 @@ mui.plusReady(function() {
 				url: '../html/picture-upload.html',
 				id: 'html/picture-upload.html',
 				show: {
-					aniShow: "slide-in-right"
+					aniShow: "slide-in-right"					
 				},
 				extras: {
 					imgurl: entry.toLocalURL(),
+					flag:flag
 				}
 			});
 		});

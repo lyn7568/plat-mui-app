@@ -3,7 +3,7 @@
 .mui-input-group:after{background: none;}
 .mui-table-view:before{ background: none;}
 .mui-table-view:after{ background: none;}
-/*.mui-table-view-cell:after{right: 0;bottom: 0;left: -10px;background: none;}*/
+.mui-table-view-cell:after{right: 0;bottom: 0;left: 80px;}
 /*.mui-table-view-cell .mui-media-body{padding-bottom:10px; border-bottom:1px solid #CCCCCC;}*/
 .mui-input-group .mui-input-row:last-child:after{ background: none;}
 .mui-input-group .mui-input-row:after{left:10px; background-color: #E6E6E6;}/*登录注册等表单的横线*/
@@ -75,7 +75,7 @@ body{ color: #666666; font-size:14px;}
 .toptit{color: #FFFFFF; font-size: 20px;}
 .personhead{color: #FFFFFF;}
 /*底部导航栏*/
-.footbox{ background: #FFFFFF;}
+.footbox{ /*background: #FFFFFF;*/border-top:1px solid #EFEFEF;-webkit-box-shadow: 0px 6px 6px 2px #CCCCCC;box-shadow: 0px 6px 6px 2px #CCCCCC;}
 .footbox .mui-tab-item.mui-active{ color: #FF9900;}
 
 .listtit0{font-size: 13px; color: #222222;}
@@ -108,7 +108,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 /*****表单公共样式********/
 /*input输入相关*/
 .frmbox{ width: 100%; margin:2% auto; border-radius: 6px; }
-.frmtype{ width: 100%; margin: auto;line-height: 24px;padding: 1% 2%;font-size: 14px;}
+.frmtype{ width: 100%; margin: auto;line-height: 30px;padding: 1% 2%;font-size: 14px;}
 .frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;}
 /*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
 .frmbox{ border:none; width: 90%;height: 100%; } 
@@ -135,10 +135,10 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .frmbox .frm-input .frmtypel{ height: 0;height: 100%; width: 90%;}
 /*logo盒子的相关*/
 .logobox{ padding:6%; margin:12% auto 6% ; }
-.logolink{display: block;width:40%;margin: auto;}
+.logolink{display: block;width:30%;margin: auto;}
 .logoimg{ width: 100%; margin: auto; text-align:center;}
 /*忘记密码*/
-.forgetword{ position: absolute;top: 50%; margin-top:-14px;right: 2%;padding:4px 10px;line-height: 20px; font-size: 13px; background: #f0f0f0;border:1px solid #f0f0f0; color: #AAAAAA; border-radius: 6px;}
+.forgetword{ position: absolute;top: 50%; margin-top:-14px;right: 2%;padding:4px 10px;line-height: 20px; font-size: 12px; background: #f0f0f0;border:1px solid #f0f0f0; color: #AAAAAA; border-radius: 6px;}
 .forgetword2{ background: #FF9900;border:1px solid #FF9900; color: #FFFFFF;}
 .forgetword em{font-size:16px; line-height:16px; margin-left:3px;}
 .forgeticon{ background: url(../images/forget.png) center center no-repeat; background-size: 100% 100%;padding:2%; position: absolute; margin-top:-2%;}
@@ -190,8 +190,9 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 /***********************登录注册相关页面*******************/
 
 /***********************首页*******************/
-.searchbox {width: 96%;margin: auto;}
-.searchbox .mui-placeholder .mui-icon-search{font-size:18px; color: #999999;}
+.searchbox {width: 96%;margin:6px auto;background:#FFFFFF;height:32px;text-align: center;}
+.searchbox .searchtxt.mui-icon{font-size:16px; color: #999999;}
+.searchbox .searchtxt.mui-icon span{font-size:14px;margin-left:4px;line-height:16px;}
 .mui-search input[type=search].searchtxt{background: #FFFFFF;}
 .mui-search .mui-placeholder{ font-size: 14px; top:2px }
 
@@ -207,7 +208,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 /*热门专家*/
 .mui-table-view-cell.prolist:after{/*background:#C0C0C0*//*#c8c7cc*/;}
 .protable:before{ background-color:transparent;}
-
+#table .mui-table-view-cell:after{right: 0;bottom: 0;left:0;background: none;}
 
 .mui-media .headimg{max-width:60px; height:60px; margin: 1% 0;overflow:hidden;}
 .mui-media .resimg{border-radius:2px; max-width:60px; height:60px; margin: 1% 0;}
@@ -306,7 +307,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 /*我的关注*/
 .fixbox{ background: #FFFFFF; position:fixed;top:45px;left:0;width:100%; z-index:1;}
 .fixbox .fixbtn{ padding:0; margin: 0; overflow: hidden;}
-.fixbox .fixbtn li{ list-style: none; float: left; padding:6px 10px; border-bottom:1px solid #F0F0F0;text-align: center;font-size: 14px;height: 32px;}
+.fixbox .fixbtn li{ list-style: none; float: left;height:40px;line-height:30px; padding:6px 10px; border-bottom:1px solid #F0F0F0;text-align: center;font-size: 14px;}
 .fixbox .fixbtn li:first-child{ border-right:1px solid #F0F0F0;}
 .fixbox .fixbtn li.liactive{ color: #FF9900;border-bottom-color: #FF9900;}
 .childlist{ display: none;}
@@ -331,7 +332,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .updatebox:hover,.updatebox:active,.updatebox:link{ color: #FF9900;}
 .updatebox .updatebtn{font-size:16px;}
 
-.addinfobox{ position: absolute; right:0; top:0; font-size: 13px; line-height:16px;color: #FF9900;}
+.addinfobox{ position: absolute;right: 10px;/* top: 0; */ font-size: 13px; line-height:16px;color: #FF9900;}
 .addinfobox:hover,.addinfobox:active,.addinfobox:link{ color: #FF9900;}
 .addinfobox .addinfobtn{font-size:16px;}
 
@@ -383,7 +384,9 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 
 .filterbox{ position: fixed; z-index:2; width: 100%;}
 .filterblock{padding:0; margin: 0;background:#FFFFFF;overflow: hidden;}
-.filterblock li{list-style:none; float: left; border-right:1px solid #F0F0F0; border-bottom:1px solid #F0F0F0;} 
+.filterblock li{list-style:none; float: left;border-right:1px solid #F0F0F0; border-bottom:1px solid #F0F0F0;} 
+.filterblock li a.mui-btn{height:40px;line-height:30px; }
+.filterblock li a.mui-btn.mui-active,.filterblock li a.mui-btn:enabled:active{background: none;border:none;color:#666666;}
 .filterblock li em{ font-size:18px; margin:0 2px;}
 .filterlist{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 13px;}
 /*筛选条件*/
@@ -400,12 +403,13 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .popoverbox2 .mui-table-view-cell>a:not(.mui-btn).active{background:#FF9900; color: #FFFFFF;border:1px solid #FF9900;}
 /*城市选择级联*/
 .menublock{ position: relative; }
+.menublock .mui-popover-arrow{z-index: 20px;}
 .menuposition.mui-popover .mui-scroll-wrapper{ margin: 0; height: 300px; top:0;  bottom:0px; border-radius: 0;}
 .menuposition{border-radius:4px; position: absolute; height:300px;width:100%; font-size: 14px;}
 .menuposition .mui-popover-arrow{left:50%; margin-left:-12px;}
 .menuposition .mui-table-view{border-radius: 0; overflow: auto;}
-.menuposition.mui-table-view .mui-table-view-cell:after{left: 8px;background: #BBBBBB;}
-.mui-popover.menuposition  .mui-table-view .mui-table-view-cell:first-child,.mui-popover.menuposition  .mui-table-view .mui-table-view-cell:last-child{border-radius: 0; }
+.mui-popover.menuposition .mui-table-view .mui-table-view-cell:after{left: 8px;right: 0;bottom: 0;background: #BBBBBB;}
+.mui-popover.menuposition .mui-table-view .mui-table-view-cell:first-child,.mui-popover.menuposition  .mui-table-view .mui-table-view-cell:last-child{border-radius: 0; }
 .mui-popover.menuposition .mui-table-view-cell:first-child>a:not(.mui-btn),.mui-popover.menuposition .mui-table-view-cell:last-child>a:not(.mui-btn){border-radius: 0;}
 .menuposition .mui-table-view-cell>a:not(.mui-btn).active{border-radius:0;background:#FF9900; color: #FFFFFF;border:1px solid #FF9900;}	
 /***********************搜索*******************/
@@ -437,7 +441,9 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 
 .filterbox2{ position: fixed; z-index:2; width: 100%;}
 .filterblock2{padding:0; margin: 0; background:#FFFFFF;overflow: hidden;}
-.filterblock2 li{list-style:none; position: relative; float: left; border-right:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;} 
+.filterblock2 li{list-style:none; position: relative;float: left; border-right:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;} 
+.filterblock2 li a.mui-btn{height:40px;line-height:30px; }
+.filterblock2 li a.mui-btn.mui-active,.filterblock2 li a.mui-btn:enabled:active{background: none;border:none;color:#666666;}
 .filterblock2 li select{  margin:0 2px;}
 .filterlist2{ padding:0; margin: 0; border:none; border-radius:0;padding:6px;font-size: 13px;}
 

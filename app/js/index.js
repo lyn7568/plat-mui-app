@@ -18,7 +18,7 @@ mui('.list').on('tap','a',function(){
 
 
 /*点击搜索按钮*/
-search.addEventListener('focus', function() {
+search.addEventListener('tap', function() {
 	var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
     webviewShow = plus.webview.create("../html/search-home.html","../html/search-home.html");//后台创建webview并打开show.html
     webviewShow.addEventListener("loaded", function() {

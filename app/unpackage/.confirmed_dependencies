@@ -1,104 +1,268 @@
 {
-	"index.html": {
-		"resources": [
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"libs/mui.min.js",
-			"html/login.html",
-			"css/app.css",
-			"images/field18.png",
-			"images/qq.png",
-			"images/weixin.png",
-			"images/authicon.png",
-			"images/default-photo.jpg",
-			"images/field-icon8.png",
-			"html/proinforbrow.html",
-			"html/fillinfo.html"
-		],
-		"refer": [
-			"html/login.html",
-			"html/reg.html",
-			"html/setpass.html",
-			"html/fillinfo.html",
-			"html/proinforbrow.html"
-		]
-	},
-	"html/login.html": {
-		"resources": [
-			"images/logo.png",
-			"css/app.css",
-			"images/workclose.png",
-			"libs/mui.js",
-			"css/reset.css",
-			"images/sinaweibo.png",
-			"images/weixin.png",
-			"images/qq.png",
-			"index.html",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"index.html"
-		]
-	},
-	"html/reg.html": {
-		"resources": [
-			"images/logo.png",
-			"css/app.css",
-			"images/workclose.png",
-			"libs/mui.js",
-			"images/sinaweibo.png",
-			"images/weixin.png",
-			"images/qq.png",
-			"css/reset.css",
-			"images/agreenicon.png",
-			"css/mui.min.css"
-		]
-	},
-	"html/fillinfo.html": {
-		"resources": [
-			"css/app.css",
-			"css/mui.min.css",
-			"libs/mui.min.js",
-			"images/default-photo.jpg",
-			"index.html",
-			"images/requiredicon.png"
-		],
-		"refer": [
-			"index.html"
-		]
-	},
-	"html/proinforbrow.html": {
-		"resources": [
-			"images/dialogue.png",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"images/authicon.png",
-			"libs/mui.min.js",
-			"images/default-photo.jpg",
-			"index.html",
-			"images/zan.png",
-			"images/goto.png",
-			"html/proinforbrow-more.html"
-		],
-		"refer": [
-			"index.html",
-			"html/proinforbrow-more.html"
-		]
-	},
-	"html/proinforbrow-more.html": {
-		"resources": [
-			"images/icon-acad.png",
-			"images/icon-honor.png",
-			"images/icon-project.png",
-			"images/icon-work.png",
-			"images/icon-edu.png",
-			"images/icon-mono.png",
-			"html/proinforbrow.html"
-		],
-		"refer": [
-			"html/proinforbrow.html"
-		]
-	}
+  "index.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "libs/mui.min.js",
+      "html/login.html",
+      "css/app.css",
+      "images/field18.png",
+      "images/qq.png",
+      "images/weixin.png",
+      "images/authicon.png",
+      "images/default-photo.jpg",
+      "images/field-icon8.png",
+      "html/proinforbrow.html",
+      "html/fillinfo.html",
+      "js/public/base.js",
+      "html/index_home.html",
+      "css/iconfont.css",
+      "js/public/mui.min.js",
+      "fonts/iconfont.ttf",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "html/login.html",
+      "html/reg.html",
+      "html/setpass.html",
+      "html/fillinfo.html",
+      "html/proinforbrow.html",
+      "html/consultlist.html",
+      "html/index_home.html",
+      "html/myaccount.html"
+    ]
+  },
+  "html/login.html": {
+    "resources": [
+      "images/logo.png",
+      "css/app.css",
+      "images/workclose.png",
+      "libs/mui.js",
+      "css/reset.css",
+      "images/sinaweibo.png",
+      "images/weixin.png",
+      "images/qq.png",
+      "index.html",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/public/base.js",
+      "js/login.js",
+      "js/public/mui.min.js"
+    ],
+    "refer": [
+      "index.html",
+      "html/fillinfo.html"
+    ]
+  },
+  "html/reg.html": {
+    "resources": [
+      "images/logo.png",
+      "css/app.css",
+      "images/workclose.png",
+      "libs/mui.js",
+      "images/sinaweibo.png",
+      "images/weixin.png",
+      "images/qq.png",
+      "css/reset.css",
+      "images/agreenicon.png",
+      "css/mui.min.css",
+      "js/register.js"
+    ],
+    "refer": [
+      "html/setpass.html"
+    ]
+  },
+  "html/fillinfo.html": {
+    "resources": [
+      "css/app.css",
+      "css/mui.min.css",
+      "libs/mui.min.js",
+      "images/default-photo.jpg",
+      "index.html",
+      "images/requiredicon.png",
+      "js/public/mui.picker.min.js",
+      "js/public/upload-avatar.js",
+      "js/public/city.data.js",
+      "js/fillinfo.js",
+      "css/mui.picker.min.css",
+      "images/default-photo-up.jpg",
+      "js/public/base.js",
+      "fonts/mui.ttf",
+      "fonts/iconfont.woff",
+      "css/iconfont.css",
+      "js/public/mui.min.js"
+    ],
+    "refer": [
+      "index.html",
+      "html/picture-upload.html"
+    ]
+  },
+  "html/proinforbrow.html": {
+    "resources": [
+      "images/dialogue.png",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/authicon.png",
+      "libs/mui.min.js",
+      "images/default-photo.jpg",
+      "index.html",
+      "images/zan.png",
+      "images/goto.png",
+      "html/proinforbrow-more.html",
+      "js/public/base.js",
+      "css/iconfont.css",
+      "js/public/mui.min.js",
+      "js/proinfobrow.js",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "index.html",
+      "html/proinforbrow-more.html"
+    ]
+  },
+  "html/proinforbrow-more.html": {
+    "resources": [
+      "images/icon-acad.png",
+      "images/icon-honor.png",
+      "images/icon-project.png",
+      "images/icon-work.png",
+      "images/icon-edu.png",
+      "images/icon-mono.png",
+      "html/proinforbrow.html"
+    ],
+    "refer": [
+      "html/proinforbrow.html"
+    ]
+  },
+  "html/consultlist.html": {
+    "resources": [
+      "js/consult.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/public/mui.min.js"
+    ],
+    "refer": []
+  },
+  "html/index_home.html": {
+    "resources": [
+      "images/field05.png",
+      "images/2.jpg",
+      "images/field02.png",
+      "images/field16.png",
+      "images/field18.png",
+      "fonts/mui.ttf",
+      "images/1.jpg",
+      "images/field07.png",
+      "images/3.jpg",
+      "js/index.js",
+      "images/field04.png",
+      "images/4.jpg",
+      "js/public/base.js",
+      "images/default-photo.jpg",
+      "css/app.css",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/public/mui.min.js",
+      "fonts/iconfont.ttf",
+      "html/fillinfo.html"
+    ],
+    "refer": [
+      "html/fillinfo.html",
+      "html/proinforbrow.html",
+      "html/search-home.html",
+      "html/search.html"
+    ]
+  },
+  "html/myaccount.html": {
+    "resources": [
+      "images/default-photo.jpg",
+      "js/myaccount.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/public/mui.min.js",
+      "fonts/iconfont.ttf",
+      "js/public/base.js",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "html/setup.html",
+      "html/login.html",
+      "html/reg.html",
+      "html/attentions.html"
+    ]
+  },
+  "html/setup.html": {
+    "resources": [
+      "js/setup.js"
+    ],
+    "refer": []
+  },
+  "html/picture-upload.html": {
+    "resources": [
+      "js/picture-upload.js",
+      "js/public/base.js",
+      "css/mui.min.css",
+      "js/public/mui.min.js"
+    ],
+    "refer": []
+  },
+  "html/setpass.html": {
+    "resources": [
+      "images/forget.png",
+      "js/register-setpass.js"
+    ],
+    "refer": [
+      "html/fillinfo.html"
+    ]
+  },
+  "html/attentions.html": {
+    "resources": [
+      "js/public/base.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/public/mui.min.js",
+      "js/attentions.js",
+      "images/default-photo.jpg",
+      "images/default-resource.jpg",
+      "fonts/iconfont.woff"
+    ],
+    "refer": []
+  },
+  "html/search-home.html": {
+    "resources": [
+      "js/public/base.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/public/mui.min.js"
+    ],
+    "refer": [
+      "html/search.html"
+    ]
+  },
+  "html/search.html": {
+    "resources": [
+      "js/searchhome.js",
+      "images/default-photo.jpg",
+      "fonts/iconfont.woff",
+      "images/default-resource.jpg",
+      "js/public/base.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "js/public/mui.min.js"
+    ],
+    "refer": [
+      "html/proinforbrow.html"
+    ]
+  }
 }

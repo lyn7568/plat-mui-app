@@ -380,7 +380,7 @@ mui.plusReady(function() {
 					noExpert.style.display = "block";
 					returnId = data.data;
 					//console.log(returnId)
-					plus.nativeUI.toast("专家收藏成功", toastStyle);
+					plus.nativeUI.toast("专家关注成功", toastStyle);
 				}
 			},
 			error: function() {
@@ -408,7 +408,7 @@ mui.plusReady(function() {
 				if(data.success) {
 					$this.style.display = "none";
 					yesExpert.style.display = "block";
-					plus.nativeUI.toast("取消收藏成功", toastStyle);
+					plus.nativeUI.toast("取消关注成功", toastStyle);
 				}
 			},
 			error: function(data) {

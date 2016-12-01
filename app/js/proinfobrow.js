@@ -25,7 +25,7 @@ mui.plusReady(function() {
 		});
 	}else if(userid == '' || userid == undefined){
 		ozixun.addEventListener('tap', function() {
-			mui.alert('请登录', '' ,function(){
+			/*mui.alert('请登录', '' ,function(){
 				mui.openWindow({
 					url: '../html/login.html',
 					id: 'html/login.html',
@@ -33,7 +33,8 @@ mui.plusReady(function() {
 						aniShow: "slide-in-left"
 					}
 				});
-			});
+			});*/
+			plus.nativeUI.toast("请先登录");
 		});
 	}
 	
@@ -326,7 +327,11 @@ mui.plusReady(function() {
 
 	yesExpert.addEventListener('tap', function() {
 		var $this = this;
-		collectionExpert($this);
+		if(userid && userid != null && userid != "null") {
+			collectionExpert($this);
+		}else{
+			plus.nativeUI.toast("请先登录");
+		}
 	});
 
 	noExpert.addEventListener('tap', function() {

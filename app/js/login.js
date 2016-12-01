@@ -99,6 +99,12 @@ mui.ready(function() {
 						var userId = data.data.id;
 						plus.storage.setItem('userid', userId);
 						firstLogin();
+						var consultPage = plus.webview.getWebviewById('html/consultlist.html');
+						console.log("目前id=="+plus.storage.getItem('userid'))
+						console.log(userId)
+						mui.fire(consultPage, 'relogin', {
+							id: plus.storage.getItem('userid')
+						});
 					} else {
 						plus.nativeUI.toast("登录账号和密码不匹配!", toastStyle);
 						return;

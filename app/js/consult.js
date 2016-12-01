@@ -8,17 +8,41 @@ var otypeval = document.getElementById("typeval");//咨询类型
 var ostateval = document.getElementById("stateval");//咨询状态
 var osortval = document.getElementById("sortval");//时间排序
 
+mui.plusReady(function() {
+	var self = plus.webview.currentWebview();
+	console.log('当前咨询列表页id==='+self.id);
+})
+
 
 mui.init({
     pullRefresh: {
-        container: '#zixunpullrefresh',
+    	container: '#zixunpullrefresh',
+    	/*down: {
+        	auto: true,
+		    contentdown : "下拉可以刷新",
+		    contentover : "释放立即刷新",
+		    contentrefresh : "正在刷新...",
+            callback: pulldownRefresh
+       },*/
         up: {
             contentrefresh: '正在加载...',
-           
             callback: pullupRefresh
         }
     }
 });
+ /**
+ * 下拉刷新具体业务实现
+ */
+function pulldownRefresh() {
+    pageIndex = 1;
+    console.log('下拉刷新');
+    //table.innerHTML = '';
+    setTimeout(function() {
+        getaData();
+        mui('#zixunpullrefresh').pullRefresh().endPulldownToRefresh();
+        mui('#zixunpullrefresh').pullRefresh().refresh(true);
+    }, 1000);
+}
 
 //上拉加载具体业务实现
 function pullupRefresh() {
@@ -123,10 +147,20 @@ function getaData() {
             error: function(xhr, type, errerThrown) {
                 mui.toast('网络异常,请稍候再试');
                 plus.nativeUI.closeWaiting(); 
+                mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(true);
             }
         });
     });
 };
+
+/*重新登陆，咨询列表数据刷新*/
+window.addEventListener('relogin', function(event) {
+//	alert('重新登陆')
+	userId = event.detail.id;
+	console.log(userId);
+	initdata();
+});
+
 
 initdata();
 /*第一次加载数据*/

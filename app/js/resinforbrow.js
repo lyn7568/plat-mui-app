@@ -71,8 +71,9 @@ function ziyuaninfo(resourceId) {
 					//资源基本信息
 					//(mydata['images']['imageSrc']) ? oziyuanimg.setAttribute('src', mydata['images']['imageSrc']): oziyuanimg.setAttribute('src', '../images/default-resource.jpg'); //资源图片
 					
+					var imgRes=baseUrl + "/images/resource/" + mydata.resourceId + ".jpg";
 					if(mydata['images'].length) {						
-						oziyuanimg.setAttribute('src', mydata['images'][0]['imageSrc'])
+						oziyuanimg.setAttribute('src', imgRes)
 					} else {						
 						oziyuanimg.setAttribute('src', '../images/default-resource.jpg')
 					}

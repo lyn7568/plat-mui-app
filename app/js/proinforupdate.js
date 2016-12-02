@@ -4,7 +4,9 @@ mui.ready(function() {
 		var oImg=document.getElementsByTagName("img")[0];
 		var personalMaterial=document.getElementsByClassName('personalMaterial');
 		var personSummary=document.getElementsByClassName("breifinfo")[0];
-		window.addEventListener("newId",function(){	
+		var fl;
+		window.addEventListener("newId",function(event){
+			fl=event.detail.rd;
 			personalMaterial[1].parentNode.style.display = "block";
 			personalMaterial[2].parentNode.style.display = "block";
 			personalMaterial[3].parentNode.style.display = "block";
@@ -111,8 +113,10 @@ mui.ready(function() {
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
 				success: function(data) {
-					plus.nativeUI.closeWaiting();
+					if(!fl){
+						plus.nativeUI.closeWaiting(); 
 					plus.webview.currentWebview().show("slide-in-right", 150);
+					}
 					var $data = data.data;
 					personalMaterial[0].innerText = $data.name;
 					//头像					
@@ -185,8 +189,7 @@ mui.ready(function() {
 				var string = '<li class="mui-table-view-cell mui-media" resouId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor" href="resinforupdate.html">'
 				if($data[i].images.length) {
-					string += '<img class="mui-media-object mui-pull-left resimg" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'
-					console.log('../images/resource/' + $data[i].resourceId + '.jpg')
+					string += '<img class="mui-media-object mui-pull-left resimg" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'					
 				} else {
 
 						string += '<img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">'

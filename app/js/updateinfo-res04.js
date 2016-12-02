@@ -38,6 +38,8 @@ mui.ready(function() {
 						var web = plus.webview.getWebviewById("resinforupdate.html");
 						mui.fire(web, "resourceMess");
 						mui.back();
+						var web1 = plus.webview.getWebviewById("html/proinforupdate.html"); 
+							mui.fire(web1,"newId",{rd:1});
 					}
 				},
 				error: function() {

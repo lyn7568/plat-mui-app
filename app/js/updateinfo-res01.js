@@ -58,11 +58,11 @@ mui.ready(function() {
 						var y = JSON.stringify(data)
 						if(data.success) {
 							var web = plus.webview.getWebviewById("resinforupdate.html");
-							var web1 = plus.webview.getWebviewById("proinforupdate.html"); 
-							mui.fire(web1,"newId");  
 							mui.fire(web, "resourceMess");
 							mui.back();
-
+							var web1 = plus.webview.getWebviewById("html/proinforupdate.html"); 
+							mui.fire(web1,"newId",{rd:1});  
+							
 						} else {
 							plus.nativeUI.toast("服务器链接超时", toastStyle);
 							return;
@@ -80,6 +80,8 @@ mui.ready(function() {
 						if(data.success) {							
 							var id = data.data;
 							plus.nativeUI.showWaiting();
+							var web2 = plus.webview.getWebviewById("html/proinforupdate.html"); 
+							mui.fire(web2,"newId",{rd:1});
 							var web = plus.webview.create("../html/resinforupdate.html", "resinforupdate.html", {}, {
 								resourceId: id
 							}); //后台创建webview并打开show.html   	    	

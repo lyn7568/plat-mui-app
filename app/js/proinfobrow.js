@@ -10,7 +10,7 @@ mui.plusReady(function() {
 	var proId = self.proid;
 	console.log(userid);
 	/*点击咨询*/
-	if(userid){
+	if(userid) {
 		ozixun.addEventListener('tap', function() {
 			var flag = 'professor';
 			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
@@ -18,12 +18,12 @@ mui.plusReady(function() {
 				'proId': proId,
 				'flag': flag
 			});
-	
+
 			webviewShow.addEventListener("loaded", function() {
-	
+
 			}, false);
 		});
-	}else if(userid == '' || userid == undefined){
+	} else if(userid == '' || userid == undefined) {
 		ozixun.addEventListener('tap', function() {
 			/*mui.alert('请登录', '' ,function(){
 				mui.openWindow({
@@ -37,7 +37,7 @@ mui.plusReady(function() {
 			plus.nativeUI.toast("请先登录");
 		});
 	}
-	
+
 	//查询学术领域
 	var subjectShow = function(data) {
 			if(data != undefined && data.length != 0) {
@@ -91,18 +91,22 @@ mui.plusReady(function() {
 					} else {
 						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn icon-appreciatefill' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
 					}
-
-					if($photos.length > 0) {
+					if($photos.length < 4) {
 						for(var j = 0; j < $photos.length; ++j) {
-						
-							if($photos[j].img) {						
+							if($photos[j].img) {
 								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_s.jpg'></span>";
-							} else {								
+							} else {
 								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
 							}
 						}
-					}
-					if($photos.length >= 3) {
+					} else {
+						for(var j = $photos.length - 2; j < $photos.length; ++j) {
+							if($photos[j].img) {
+								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_s.jpg'></span>";
+							} else {
+								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
+							}
+						}
 						showDiv += "<span class='mui-icon iconfont icon-more likepeople likemore headRadius'></span>";
 					}
 					showDiv += "</div></div></div>";
@@ -136,7 +140,7 @@ mui.plusReady(function() {
 				var string = '<li class="mui-table-view-cell mui-media" resouseId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor">'
 				if($data[i].images.length) {
-					string += '<img class="mui-media-object mui-pull-left resimg" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'
+					string += '<img class="mui-media-object mui-pull-left resimg" src="' + baseUrl + '/images/resource/' + $data[i].resourceId + '.jpg">'
 
 				} else {
 
@@ -172,6 +176,7 @@ mui.plusReady(function() {
 				var start = document.getElementsByClassName("start");
 				for(var i = 0; i < startLeval; i++) {
 					start[i].classList.add("icon-favorfill");
+					start[i].classList.remove("icon-favor");
 				}
 				if($data.hasHeadImage) {
 					document.getElementsByClassName("headimg")[0].src = baseUrl + "/images/head/" + $data.id + "_l.jpg";
@@ -264,8 +269,23 @@ mui.plusReady(function() {
 		web.addEventListener("loaded", function() {}, false);
 	});
 	//点赞
+	var clFlag = 1;
 	mui(".reserachMess").on("click", ".plusbtn", function() {
+
 		if(userid && userid != null && userid != "null") {
+			if(clFlag) {
+				clFlag = 0;
+			} else {
+				return;
+			}
+			if(this.getAttribute("data-isagree") > -1) {
+				this.classList.remove("icon-appreciatefill");
+				this.classList.add("icon-appreciate");
+			} else {
+				this.classList.add("icon-appreciatefill");
+				//this.classlist.remove("plusbtn");
+			}
+
 			mui.ajax(this.getAttribute("data-isagree") > -1 ? baseUrl + "/ajax/researchArea/unAgree" : baseUrl + "/ajax/researchArea/agree", {
 				"type": "POST",
 				"data": {
@@ -282,7 +302,7 @@ mui.plusReady(function() {
 							type: 'GET', //http请求类型
 							timeout: 10000, //超时设置
 							success: function(data) {
-
+								clFlag = 1;
 								var $data = data.data;
 								//研究方向
 								document.getElementsByClassName("reserachMess")[0].innerHTML = "";
@@ -329,7 +349,7 @@ mui.plusReady(function() {
 		var $this = this;
 		if(userid && userid != null && userid != "null") {
 			collectionExpert($this);
-		}else{
+		} else {
 			plus.nativeUI.toast("请先登录");
 		}
 	});

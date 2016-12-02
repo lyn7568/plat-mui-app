@@ -131,6 +131,7 @@ mui.ready(function() {
 						var start = document.getElementsByClassName("star");
 						for(var i = 0; i < startLeval; i++) {
 							start[i].classList.add("icon-favorfill");
+							start[i].classList.remove("icon-favor");
 						}
 						if($info.hasHeadImage == 1) {
 							document.getElementById("userImg").setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg");

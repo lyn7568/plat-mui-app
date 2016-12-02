@@ -267,7 +267,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .dialogbtn span{font-size: 14px; line-height: 24px; padding: 0 3px; font-weight: 600;}
 .dialogbtn em{font-size: 20px;line-height: 24px; }
 /*.dialogbtn em{display: block; width: 24px; height: 24px; background: url(../images/dialogue.png) center center no-repeat; background-size:100% 100% ; margin-right:6px;}*/
-.dialogbtn:hover{ background:#FF9900; color: #FFFFFF;}
+/*.dialogbtn:hover{ background:#FF9900; color: #FFFFFF;}*/
 
 .attentbtn{margin: auto; overflow: hidden; width:20%;padding: 12px;text-align: center; border-left:1px solid #F0F0F0;}
 .attentbtn em{font-size: 20px;line-height: 24px;color:#F6DC00;}

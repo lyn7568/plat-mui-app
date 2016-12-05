@@ -455,14 +455,14 @@ function datalistEach(datalist) {
 		var researchAreas = item.researchAreas;
 		var rlist = ''
 		for(var n = 0; n < researchAreas.length; n++) {
-			rlist = '<span>' + researchAreas[n].caption + '</span>、';
+			rlist = '<span>' + researchAreas[n].caption + '</span>';
 		}
 
 		/*获取资源信息*/
 		var resources = item.resources;
 		var zlist = ''
 		for(var m = 0; m < resources.length; m++) {
-			zlist = '<span>' + resources[m].resourceName + '</span>、';
+			zlist = '<span>' + resources[m].resourceName + '</span>';
 		}
 		
 		//var title;

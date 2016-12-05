@@ -1,11 +1,6 @@
 /*头像上传*/
 var userimg = document.getElementById("userimg");
 var flag;
-window.addEventListener('closePage', function(event) {
-	bimg = event.detail.id;
-	var imgvar='<img src="'+bimg+'" style="width:100%"/>';  
-	userimg.innerHTML=imgvar;
-});
 
 mui.plusReady(function() {
 	var ws=plus.webview.currentWebview();
@@ -82,6 +77,9 @@ mui.plusReady(function() {
 
 	function changeToLocalUrl(path) {
 		plus.io.resolveLocalFileSystemURL(path, function(entry) {
+			var imgvar='<img src="'+entry.toLocalURL()+'" style="width:100%"/>'; 
+			console.log(imgvar) 
+	         document.getElementById('imgshow').innerHTML=imgvar;
 			mui.openWindow({
 				url: '../html/picture-upload.html',
 				id: 'html/picture-upload.html',

@@ -33,8 +33,7 @@ mui.plusReady(function() {
 						mui.fire(Pa, 'photoUser');
 
 					} else {
-						var fPage = plus.webview.getWebviewById('../html/fillinfo.html');
-						mui.fire(fPage, 'closePage');
+					
 					}
 				} else {
 					plus.nativeUI.toast("图片上传失败", toastStyle);

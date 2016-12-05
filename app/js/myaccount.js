@@ -10,8 +10,8 @@ mui.ready(function() {
 	var goZixun = document.getElementById("goZixun");
 	var oEdit = document.getElementById("editbox");
 	var goFollow = document.getElementById("goFollow");
+	var userImg= document.getElementById("userImg");
 	
-
 	mui.plusReady(function() {
 
 		var userId = plus.storage.getItem('userid');
@@ -62,8 +62,14 @@ mui.ready(function() {
 
 				/*我的关注*/
 				goFollow.addEventListener('tap', function() {
-					plus.nativeUI.showWaiting(); //显示原生等待框
-					plus.webview.create("../html/attentions.html","../html/attentions.html");
+					mui.openWindow({
+						url: '../html/attentions.html',
+						id: '../html/attentions.html',
+						show: {
+							autoShow: false,
+							aniShow: "slide-in-right"
+						}
+					});
 				})
 
 				/*我的修改*/
@@ -134,16 +140,16 @@ mui.ready(function() {
 							start[i].classList.remove("icon-favor");
 						}
 						if($info.hasHeadImage == 1) {
-							document.getElementById("userImg").setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg");
+							userImg.setAttribute("src",baseUrl + "/images/head/" + $info.id + "_l.jpg");
 						} else {
-							document.getElementById("userImg").setAttribute("src", baseUrl +  "/images/default-photo.jpg");
+							userImg.setAttribute("src", baseUrl +  "/images/default-photo.jpg");
 						}
 						if($info.authentication) {
 							document.querySelector('.authicon').style.display = "inline";
 						} else {
 							document.querySelector('.unauthicon').style.display = "inline";
 						}
-
+							
 					}
 				},
 				error: function() {
@@ -156,3 +162,5 @@ mui.ready(function() {
 	});
 
 });
+
+

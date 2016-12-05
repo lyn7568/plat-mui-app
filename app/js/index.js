@@ -3,7 +3,6 @@ var pageIndex = 1; // 页数
 var allPages = 1; // 总页数
 var table = document.body.querySelector('.list');
 var search = document.getElementById("search");
-
 mui.plusReady(function(){
 	plus.nativeUI.showWaiting();
 })
@@ -43,6 +42,7 @@ mui.init({
 		container: '#pullrefresh',
 		up: {
 			contentrefresh: '正在加载...',
+			auto:true,
 			callback: pullupRefresh
 		}
 	}
@@ -81,7 +81,6 @@ function getaData() {
 			async:false,
 			success: function(data) {
 				if(data.success) {
-			
 					//console.log("成功");
 					var dice1 = data.data.total; //总条数
 					var dice2 = data.data.pageSize; //每页条数
@@ -118,6 +117,7 @@ function getOnePase() {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
+			async:false, 
 			success: function(data) {
 				if(data.success) {
 					plus.nativeUI.closeWaiting();
@@ -148,7 +148,7 @@ function datalistEach(datalist) {
 		var rlist = ''
 		for(var n = 0; n < researchAreas.length; n++) {
 			//console.log(researchAreas[n].caption);
-			rlist = '<span>' + researchAreas[n].caption + '</span>、';
+			rlist = '<span>' + researchAreas[n].caption + '</span>';
 		}
 
 		/*获取资源信息*/
@@ -156,7 +156,7 @@ function datalistEach(datalist) {
 		var zlist = ''
 		for(var m = 0; m < resources.length; m++) {
 			//console.log(resources[m].caption);
-			zlist = '<span>' + resources[m].resourceName + '</span>、';
+			zlist = '<span>' + resources[m].resourceName + '</span>';
 		}
 		
 		var title = item.title || "";
@@ -190,5 +190,6 @@ function datalistEach(datalist) {
 			'</div></a></li>';
 
 		table.appendChild(li, table.firstChild);
+		 
 	});
 }

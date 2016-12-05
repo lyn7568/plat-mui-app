@@ -11,7 +11,7 @@ mui.plusReady(function() {
 		save_img();
 		imgOk = document.querySelector("#img_base64").value;
 		console.log(imgOk)
-		alert(angle)
+		//alert(angle)
 		mui.ajax(baseUrl + '/ajax/image/test', {
 			data: {
 				"id": userId,
@@ -79,7 +79,7 @@ img_obj.onload = function() {
 	EXIF.getData(img_obj, function() {
 		//alert(EXIF.pretty(this));
 		EXIF.getAllTags(this);
-		alert(EXIF.getTag(this, 'Orientation'));
+		//alert(EXIF.getTag(this, 'Orientation'));
 		Orientation = EXIF.getTag(this, 'Orientation');
 		//return;
 		if(Orientation == 6) {

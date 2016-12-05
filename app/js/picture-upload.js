@@ -3,12 +3,13 @@ mui.plusReady(function() {
 	var canvas_ok = document.querySelector("#canvas_ok");
 	var list = plus.webview.currentWebview();
 	var userId = plus.storage.getItem('userid');
+	var Orientation; 
 	img_obj.setAttribute("src", list.imgurl);
+
 	canvas_ok.addEventListener("tap", function() {
 		save_img();
 		imgOk = document.querySelector("#img_base64").value;
-		imgfh = document.querySelector("#imgfh").value;
-		console.log(imgfh)
+		console.log(imgOk)
 		mui.ajax(baseUrl + '/ajax/image/saveHead', {
 			data: {
 				"id": userId,
@@ -30,12 +31,10 @@ mui.plusReady(function() {
 						mui.fire(Page, 'newId');
 						var Pa = plus.webview.getWebviewById('html/myaccount.html');
 						mui.fire(Pa, 'photoUser');
-						
+
 					} else {
 						var fPage = plus.webview.getWebviewById('../html/fillinfo.html');
-						mui.fire(fPage, 'closePage', {
-							id: imgfh
-						});
+						mui.fire(fPage, 'closePage');
 					}
 				} else {
 					plus.nativeUI.toast("图片上传失败", toastStyle);
@@ -49,6 +48,7 @@ mui.plusReady(function() {
 		});
 
 	})
+
 })
 
 //获取手机屏幕宽高
@@ -70,7 +70,33 @@ var start_sqrt = 0; //开始缩放比例
 var sqrt = 1;
 var left_x = 0,
 	left_y = 0; //计算 偏移量 设置画布中的X，Y轴 (加偏移量)
+
+img_obj.onload = function() {
+
+	EXIF.getData(img_obj, function() {
+		//alert(EXIF.pretty(this));
+		EXIF.getAllTags(this);
+		//alert(EXIF.getTag(this, 'Orientation'));
+		Orientation = EXIF.getTag(this, 'Orientation');
+		//return;
+		if(Orientation == 6) {
+			//alert('需要顺时针（向左）90度旋转');
+			var current = 0;
+			//objImg.rotate(degree); 
+			current = (current + 90) % 360;
+			img_obj.style.transform = 'rotate(' + current + 'deg)';
+			can_obj.style.transform = 'rotate(' + current + 'deg)';
+		}else{
+			//alert('需要顺时针（向左）-90度旋转');
+		}
+	});
+
+	load();
+
+}
+
 function load() {
+
 	//设置canvas 宽度（全屏显示），高度,上下居中显示
 	can_obj.width = c_w - 50;
 	can_obj.height = c_w - 50;
@@ -78,19 +104,21 @@ function load() {
 	// can_obj.style.left ="25px";
 
 	//设置图片自适应大小及图片的居中显示
-	// autoResizeImage(c_w,c_h,img_obj);
-	// img_obj.style.top = (c_h - img_obj.height - 2) / 2 + "px";
-	//img_obj.style.left = (c_w - img_obj.width) / 2 + "px";
-
+	autoResizeImage(c_w, c_h, img_obj);
+	//img_obj.width=c_w - 50;
+	img_obj.style.top = (c_h - img_obj.height - 50) / 2 + "px";
+	img_obj.style.left = (c_w - img_obj.width) / 2 + "px";
+	
 	document.querySelector("#canvas_div").addEventListener('touchstart', touch, false);
 	document.querySelector("#canvas_div").addEventListener('touchmove', touch, false);
 	document.querySelector("#canvas_div").addEventListener('touchend', touch, false);
-
-	var ctx_img = can_obj.getContext("2d");
+	ctx_img = can_obj.getContext("2d");
 	var ctx_X = (can_obj.width - img_obj.width) / 2,
 		ctx_Y = (can_obj.height - img_obj.height) / 2;
-	ctx_img.drawImage(img_obj, ctx_X, ctx_Y, img_obj.width, img_obj.height); //初始化 canvas 加入图片
-
+		
+	    ctx_img.drawImage(img_obj, ctx_X, ctx_Y, img_obj.width, img_obj.height); //初始化 canvas 加入图片
+    
+	
 	function touch(event) {
 		var event = event || window.event;
 		event.preventDefault(); //阻止浏览器或body 其他冒泡事件
@@ -101,6 +129,7 @@ function load() {
 		if(event.touches.length == 1) { //单指操作
 			if(event.type == "touchstart") { //开始移动
 				posX = mv_x1 - img_obj.offsetLeft; //获取img相对坐标
+				//posd = mv_x1 - img_obj.offsetRight; //获取img相对坐标
 				posY = mv_y1 - img_obj.offsetTop;
 			} else if(event.type == "touchmove") { //移动中
 				var _x = mv_x1 - posX; //移动坐标
@@ -108,9 +137,14 @@ function load() {
 				img_obj.style.left = _x + "px";
 				img_obj.style.top = _y + "px";
 				ctx_img.clearRect(0, 0, can_obj.width, can_obj.height); //清除画布
-				ctx_img.drawImage(img_obj, _x + left_x / 2 - 25, _y - parseFloat(can_obj.style.top) + left_y / 2, img_obj.width * sqrt, img_obj.height * sqrt); //画布内图片移动
+				console.log(Orientation);
+				if(Orientation == 6) {
+					ctx_img.drawImage(img_obj, _y - parseFloat(can_obj.style.top) + left_y-120 / 2, -(_x + left_x / 2 + 32), img_obj.width * sqrt, img_obj.height * sqrt); //画布内图片移动		
+				} else {
+					ctx_img.drawImage(img_obj, _x + left_x / 2 - 25, _y - parseFloat(can_obj.style.top) + left_y / 2, img_obj.width * sqrt, img_obj.height * sqrt); //画布内图片移动
+				}
 			}
-		} else if(event.touches.length == 2) { //双指操作
+		} /*else if(event.touches.length == 2) { //双指操作
 			if(event.type == "touchstart") {
 				scale = img_obj.style.Transform == undefined ? 1 : parseFloat(img_obj.style.Transform.replace(/[^0-9^\.]/g, "")); //获取在手指按下瞬间的放大缩小值（scale），作用，在移动时，记录上次移动的放大缩小值
 				start_X1 = event.touches[0].clientX; //记录开始的坐标值,作用：在下次放大缩小后，去掉上次放大或缩小的值
@@ -138,16 +172,92 @@ function load() {
 				left_y = h - sh;
 				ctx_img.drawImage(img_obj, dImg_left + left_x / 2 - 25, dImg_top - parseFloat(can_obj.style.top.replace("px", "")) + left_y / 2, sw, sh); //画布内图片重置
 			}
-		}
+		}*/
 	}
 }
 
-window.addEventListener('load', load, false);
+//window.addEventListener('load', load, false);
 
 //裁图
 function save_img() {
-	var base64 = can_obj.toDataURL("image/jpeg", 1);
-	var subbase = base64.substring(22);
-	document.querySelector("#img_base64").value = subbase;
-	document.querySelector("#imgfh").value = base64;
+    var base64 = can_obj.toDataURL("image/jpeg", 1);
+    var subbase = base64.substring(22);
+    document.querySelector("#img_base64").value = subbase;
 }
+
+//图片自适应
+function autoResizeImage(maxWidth, maxHeight, objImg) {
+	//var img = new Image();
+	//img.src = objImg.src;
+	//var hRatio;
+	//var wRatio;
+	//var ratio = 1;
+	var w = objImg.width;
+	var h = objImg.height;
+
+	//alert(w);
+	//alert(h);
+	wRatio = maxWidth / w;
+	hRatio = maxHeight / h;
+
+	if(w > maxWidth) {
+		if(w > h) {
+			objImg.height = maxWidth - 50;
+			//alert('1')
+		} else {
+			objImg.width = c_w - 46;
+			//objImg.height=maxHeight;
+			// alert('2')
+		}
+	} else {
+		objImg.width = maxWidth - 50;
+		objImg.height = maxWidth - 50;
+	}
+	/* if(w < maxWidth && h < maxHeight){
+	 	objImg.width=maxWidth-50;
+	 	objImg.height=maxWidth-50;
+	 	alert('2')
+	 }
+	 if(w > maxWidth && h < maxHeight){
+	 	objImg.width=maxWidth-50;
+	 	objImg.height=maxWidth-50;
+	 	alert('3')
+	 }*/
+	/*if (w < maxWidth && h < maxHeight) {
+	      return;
+	      alert('1')
+	  }
+	  if (maxWidth == 0 && maxHeight == 0) {
+	      ratio = 1;
+	      alert('2')
+	  } else if (maxWidth == 0) {
+	      if (hRatio < 1) {
+	          ratio = hRatio;
+	          alert('3')
+	      }
+	  } else if (maxHeight == 0) {
+	      if (wRatio < 1) {
+	          ratio = wRatio;
+	          alert('4')
+	      }
+	  } else if (wRatio < 1 || hRatio < 1) {
+	      ratio = (wRatio <= hRatio ? wRatio : hRatio);
+	      alert('5')
+	  } else {
+	      ratio = (wRatio <= hRatio ? wRatio : hRatio) - Math.floor(wRatio <= hRatio ? wRatio : hRatio);
+	      alert('6')
+	  }
+	  if (ratio < 1) {
+	      if (ratio < 0.5 && w < maxWidth && h < maxHeight) {
+	          ratio = 1 - ratio;
+	      }
+	      w = w * ratio;
+	      h = h * ratio;
+	      alert('7')
+	      objImg.width=maxWidth-45;
+	  	objImg.height=maxHeight;
+	  }*/
+	// objImg.height = h+50;
+	//objImg.width = w;
+}
+

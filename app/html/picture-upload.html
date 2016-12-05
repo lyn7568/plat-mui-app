@@ -10,7 +10,7 @@
     body,html{background-color:#000;position:relative;width:100%;height:100%;overflow: hidden;}
     .canvas_img,.canvas,.canvas_div,.canvas_btn,.canvas_bg{position: absolute;}
     .canvas_div,.canvas_bg{left:0;top:0;bottom:0;right:0;}
-    .canvas_img{z-index:1;width:100%; top:0;}
+    .canvas_img{z-index:1;}
     .canvas_bg{background-color: rgba(0,0,0,.6);z-index:2;}
     .canvas{left:25px ;border:1px solid #fff;top:30px;z-index:100; }
     .canvas_div{z-index:999;}
@@ -21,9 +21,8 @@
 </style>
 </head>
 <body>
-	<input type="hidden" name="imgfh" id="imgfh" value="" />
 	<input type="hidden" name="img_base64" id="img_base64" value="" />
-	<img id="canvas_img" src="" class="canvas_img"/>
+	<img id="canvas_img" src="" class="canvas_img" />  
 	<div class="canvas_bg"></div>
 	<canvas id="canvas" class="canvas"></canvas> 
 	<div id="canvas_div" class="canvas_div"></div>
@@ -33,6 +32,7 @@
 	</div>
 	<script src="../js/public/mui.min.js"></script>
 	<script src="../js/public/base.js"></script>
+		<script src="../js/public/exif.js"></script>
 	<script src="../js/picture-upload.js"></script>
 </body>
 </html>

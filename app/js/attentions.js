@@ -126,7 +126,7 @@ function getOneResources(pageNo, pageSize) {
 			success: function(data) {
 				console.log("2");
 				plus.nativeUI.closeWaiting();
-		plus.webview.currentWebview().show("slide-in-right", 150);
+		        plus.webview.currentWebview().show("slide-in-right", 150);
 				if(data.success && data.data.data != "") {
 					var datalistd = data.data.data;
 					resourcesEach2(datalistd);
@@ -243,12 +243,12 @@ function datalistEach(datalist) {
 		var rlist = '';
 		for(var n = 0; n < researchAreas.length; n++) {
 			//console.log(researchAreas[n].caption);
-			rlist = '<span>' + researchAreas[n].caption + '</span>、';
+			rlist = '<span>' + researchAreas[n].caption + '</span>';
 		}
 
 		/*判断用户是否认证*/
 		var icon = '';
-		if(item.professor.authentication == true) {
+		if(item.professor.authentication == 1) {
 			icon = '<em class="mui-icon iconfont icon-vip authicon"></em>';
 		} else {
 			icon = '<em class="mui-icon iconfont icon-vip unauthicon"></em>';
@@ -259,7 +259,7 @@ function datalistEach(datalist) {
 		var zlist = '';
 		for(var m = 0; m < resources.length; m++) {
 			//console.log(resources[m].caption);
-			zlist = '<span>' + resources[m].resourceName + '</span>、';
+			zlist = '<span>' + resources[m].resourceName + '</span>';
 		}
 
 		var title = item.professor.title || "";
@@ -310,7 +310,7 @@ function resourcesEach2(datalistd) {
 
 		/*判断用户是否认证*/
 		var icont = '';
-		if(item.resource.professor.authentication == true) {
+		if(item.resource.professor.authentication == 1) {
 			icont = '<em class="mui-icon iconfont icon-vip authicon"></em>';
 		} else {
 			icont = '<em class="mui-icon iconfont icon-vip unauthicon"></em>';

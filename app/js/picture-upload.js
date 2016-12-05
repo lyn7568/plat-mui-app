@@ -4,16 +4,19 @@ mui.plusReady(function() {
 	var list = plus.webview.currentWebview();
 	var userId = plus.storage.getItem('userid');
 	var Orientation; 
+	var angle=0;
 	img_obj.setAttribute("src", list.imgurl);
 
 	canvas_ok.addEventListener("tap", function() {
 		save_img();
 		imgOk = document.querySelector("#img_base64").value;
 		console.log(imgOk)
-		mui.ajax(baseUrl + '/ajax/image/saveHead', {
+		alert(angle)
+		mui.ajax(baseUrl + '/ajax/image/test', {
 			data: {
 				"id": userId,
 				"base64": imgOk,
+				"angle":angle,
 			},
 			dataType: 'json', //数据格式类型
 			type: 'post', //http请求类型
@@ -33,7 +36,7 @@ mui.plusReady(function() {
 						mui.fire(Pa, 'photoUser');
 
 					} else {
-					
+					   			
 					}
 				} else {
 					plus.nativeUI.toast("图片上传失败", toastStyle);
@@ -48,7 +51,7 @@ mui.plusReady(function() {
 
 	})
 
-})
+
 
 //获取手机屏幕宽高
 var c_w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -57,6 +60,7 @@ var c_h = window.innerHeight || document.documentElement.clientHeight || documen
 var can_obj = document.querySelector("#canvas");
 var img_obj = document.querySelector("#canvas_img");
 var div_obj = document.querySelector("#canvas_div");
+
 
 var posX = 0,
 	posY = 0; //相对坐标
@@ -75,19 +79,40 @@ img_obj.onload = function() {
 	EXIF.getData(img_obj, function() {
 		//alert(EXIF.pretty(this));
 		EXIF.getAllTags(this);
-		//alert(EXIF.getTag(this, 'Orientation'));
+		alert(EXIF.getTag(this, 'Orientation'));
 		Orientation = EXIF.getTag(this, 'Orientation');
 		//return;
 		if(Orientation == 6) {
 			//alert('需要顺时针（向左）90度旋转');
+			angle=90;
 			var current = 0;
+			//alert(angle);
 			//objImg.rotate(degree); 
 			current = (current + 90) % 360;
 			img_obj.style.transform = 'rotate(' + current + 'deg)';
 			can_obj.style.transform = 'rotate(' + current + 'deg)';
-		}else{
-			//alert('需要顺时针（向左）-90度旋转');
 		}
+		
+		if(Orientation == 3) {
+			//alert('需要顺时针（向左）90度旋转');
+			angle=180;
+			var current = 0;
+			//objImg.rotate(degree); 
+			current = (current + 180) % 360;
+			img_obj.style.transform = 'rotate(' + current + 'deg)';
+			can_obj.style.transform = 'rotate(' + current + 'deg)';
+		}
+		
+		if(Orientation == 8) {
+			//alert('需要顺时针（向左）90度旋转');
+			angle=-90;
+			var current = 0;
+			//objImg.rotate(degree); 
+			current = (current - 90) % 360;
+			img_obj.style.transform = 'rotate(' + current + 'deg)';
+			can_obj.style.transform = 'rotate(' + current + 'deg)';
+		}
+		
 	});
 
 	load();
@@ -260,3 +285,4 @@ function autoResizeImage(maxWidth, maxHeight, objImg) {
 	//objImg.width = w;
 }
 
+})

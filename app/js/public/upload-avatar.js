@@ -3,10 +3,16 @@ var userimg = document.getElementById("userimg");
 var flag;
 
 mui.plusReady(function() {
-	var ws=plus.webview.currentWebview();
-	var web=plus.webview.getWebviewById("html/proinforupdate.html");
-	if(ws==web) {
-		flag=0;
+	var ws = plus.webview.currentWebview();
+	var resourceId = ws.resourceId;
+	console.log(resourceId)
+	var web = plus.webview.getWebviewById("html/proinforupdate.html");
+	var web1 = plus.webview.getWebviewById("resinforupdate.html");
+	if(ws == web) {
+		flag = 0;
+	}
+	if(ws == web1) {
+		flag = 1;
 	}
 	userimg.addEventListener("tap", function() {
 		if(mui.os.plus) {
@@ -41,7 +47,7 @@ mui.plusReady(function() {
 		var c = plus.camera.getCamera();
 		c.captureImage(function(e) {
 			plus.io.resolveLocalFileSystemURL(e, function(entry) {
-				
+
 				mui.openWindow({
 					url: '../html/picture-upload.html',
 					id: 'html/picture-upload.html',
@@ -50,7 +56,8 @@ mui.plusReady(function() {
 					},
 					extras: {
 						imgurl: entry.toLocalURL(),
-						flag:flag
+						flag: flag,
+						resourceId: resourceId
 					}
 				});
 			}, function(e) {
@@ -77,18 +84,24 @@ mui.plusReady(function() {
 
 	function changeToLocalUrl(path) {
 		plus.io.resolveLocalFileSystemURL(path, function(entry) {
-			var imgvar='<img src="'+entry.toLocalURL()+'" style="width:100%"/>'; 
-			console.log(imgvar) 
-	         document.getElementById('imgshow').innerHTML=imgvar;
+			var filPage = plus.webview.getWebviewById('../html/fillinfo.html');
+			var dyPage = plus.webview.currentWebview();
+			if(dyPage == filPage) {
+				var imgvar = '<img src="' + entry.toLocalURL() + '" style="width:100%"/>';
+				//console.log(imgvar) 
+				document.getElementById('imgshow').innerHTML = imgvar;
+			}
+
 			mui.openWindow({
 				url: '../html/picture-upload.html',
 				id: 'html/picture-upload.html',
 				show: {
-					aniShow: "slide-in-right"					
+					aniShow: "slide-in-right"
 				},
 				extras: {
 					imgurl: entry.toLocalURL(),
-					flag:flag
+					flag: flag,
+					resourceId: resourceId
 				}
 			});
 		});

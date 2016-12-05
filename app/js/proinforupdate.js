@@ -282,8 +282,7 @@ mui.ready(function() {
 			var web = plus.webview.create("../html/proinforupdate-more.html", "proinforupdate-more.html"); //后台创建webview并打开show.html   	    	
 			web.addEventListener("loaded", function() {}, false);
 		});
-		personalMessage();
-		resource();
+		personalMessage();		
 	});
 });
 

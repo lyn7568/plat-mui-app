@@ -159,6 +159,11 @@ window.addEventListener('relogin', function(event) {
 	userId = event.detail.id;
 	console.log(userId);
 	initdata();
+	if(plus.nativeUI.showWaiting()){
+		console.log("showWaiting")
+		plus.nativeUI.closeWaiting();//关闭等待框
+	}
+	
 });
 
 
@@ -301,7 +306,7 @@ function eachData(userid,datalist) {
 			proModify,
 			photoUrl,
 			consultType;
-    	
+			
     	//咨询类型和状态
 		if(item['consultantId'] != userid){//收到咨询
 			title = "回复:" + item["consultTitle"];
@@ -326,9 +331,11 @@ function eachData(userid,datalist) {
 					statusStyle = 'status-3';
 				}
 			}
+		};
+		
+		if(item["professor"] == undefined){
+			return ;
 		}
-		 
-		//专家职称
 		(item["professor"]["title"])?  zhicehng = item["professor"]["title"]: zhicehng = '';
 		(item["professor"]["office"])?   zhiwei = '，'+item["professor"]["office"]: zhiwei  = '';
 		(item["professor"]["orgName"])?   orgName = '，'+item["professor"]["orgName"]: orgName  = '';

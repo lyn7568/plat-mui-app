@@ -7,6 +7,9 @@
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link href="../css/app.css" rel="stylesheet"/>
     <link href="../css/iconfont.css" rel="stylesheet" />
+  <!--  <style type="text/css">
+    	#middlePopoveracad{position: absolute;z-index: 1;-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-transform: translateZ(0);-moz-transform: translateZ(0);-ms-transform: translateZ(0);-o-transform: translateZ(0);transform: translateZ(0);-webkit-touch-callout: none;-webkit-user-select: none;	-moz-user-select: none;	-ms-user-select: none;user-select:none;-webkit-text-size-adjust: none;	-moz-text-size-adjust: none;-ms-text-size-adjust: none;	-o-text-size-adjust: none;	text-size-adjust: none;}
+    </style>-->
 </head>
 <body>
 	
@@ -27,12 +30,7 @@
 		    <input type="text" class="mui-input-clear mui-pull-right searchtxt2" placeholder="搜索专家、设备资源" id="searchval">
         </div>
 	</header>
-	
-    <!-- 主页面内容容器 -->
-    <div class="mui-content">
-    	
-		
-		<div class="filterbox" style=" position: fixed; z-index:1; top:45px; width:100%">
+	<div class="filterbox" style=" position: fixed; z-index:1; top:45px; width:100%">
 			<ul class="filterblock" style="width:100%">
 				<li class="mui-col-xs-4">
 					<a href="#middlePopovercity" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="addressid">全国</span><em class="mui-icon mui-icon-arrowdown"></em></a>	
@@ -44,15 +42,16 @@
 					<a href="#middlePopoveruse" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="industryid">应用行业</span><em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
 			</ul>
-		</div>
+	</div>
+    <!-- 主页面内容容器 -->
+    <div class="mui-content">
 		
-    	<div id="pullrefresh"  style="margin-top:45px; ">
+    	<div id="pullrefresh3"  style="margin-top:45px; ">
 			<!--数据列表-->
 			<ul class="mui-table-view mui-table-view-chevron list">
 				
 			</ul>
 		</div>
-    	
     </div>
     
     <!--城市-->
@@ -84,19 +83,42 @@
 	
 	<!--学术领域-->
 	<div id="middlePopoveracad" class="mui-popover popoverbox2" >
-		<div class="mui-scroll-wrapper" style="height: 200px; top:0;">
-			<div class="mui-scroll">
+		<div class="mui-scroll-wrapper" style="height:200px; top:0; ";>
+			<div class="mui-scroll" >
 				<ul class="mui-table-view xsly"  id="xsly">
 					
 				</ul>
 			</div>
 		</div>
 	</div>
+	
+<!--	<div id="middlePopoveracad" class="mui-popover popoverbox2" >
+		<ul class="mui-table-view xsly"  id="xsly"></ul>
+	</div>-->
+	
    <script src="../js/public/mui.min.js"></script>
    <script src="../js/public/base.js"></script>
+<!--   <script src="../js/public/iscroll.js"></script>-->
    <script src="../js/searchhome.js"></script>
    <script type="text/javascript">
-	   mui('.mui-scroll-wrapper').scroll();
+	   mui('.mui-scroll-wrapper').scroll(
+	   options = {
+			 scrollY: true, //是否竖向滚动
+			 scrollX: false, //是否横向滚动
+			 startX: 0, //初始化时滚动至x
+			 startY: 0, //初始化时滚动至y
+			 indicators: true, //是否显示滚动条
+			 deceleration:0.0005,//阻尼系数,系数越小滑动越灵敏
+			 bounce:false, //是否启用回弹
+			}
+	   );
+
+	
+	 	/*  var myscroll = new IScroll('#middlePopoveracad', {
+				mouseWheel: false,
+				click: true,
+			});*/
+
    </script>
 </body>
 </html>

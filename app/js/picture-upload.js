@@ -52,7 +52,7 @@ mui.plusReady(function() {
 					   	var Page = plus.webview.getWebviewById('html/proinforupdate.html');
 						mui.fire(Page, 'newId');
 						var Pa = plus.webview.getWebviewById('resinforupdate.html');
-						mui.fire(Pa, 'resourceMess');0
+						mui.fire(Pa, 'resourceMess');
 					}
 				} else {
 					plus.nativeUI.toast("图片上传失败", toastStyle);

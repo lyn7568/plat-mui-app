@@ -5,19 +5,33 @@ mui.plusReady(function() {
 	var userId = plus.storage.getItem('userid');
 	var Orientation; 
 	var angle=0;
+	var flag = list.flag;
 	img_obj.setAttribute("src", list.imgurl);
 
 	canvas_ok.addEventListener("tap", function() {
 		save_img();
 		imgOk = document.querySelector("#img_base64").value;
 		console.log(imgOk)
+		console.log(flag);
+		console.log(list.resourceId);
 		//alert(angle)
-		mui.ajax(baseUrl + '/ajax/image/test', {
-			data: {
+		if(flag==1) {
+			var urlAdd=baseUrl+"/ajax/images/saveResImg";
+			var $data={
+				"resourceId":list.resourceId ,
+				"base64": imgOk,
+				"angle":angle,
+			}
+		}else {
+			var urlAdd=baseUrl + '/ajax/image/saveHead';
+			var $data={
 				"id": userId,
 				"base64": imgOk,
 				"angle":angle,
-			},
+			}
+		}
+		mui.ajax(urlAdd, {
+			data: $data,
 			dataType: 'json', //数据格式类型
 			type: 'post', //http请求类型
 			timeout: 10000,
@@ -27,16 +41,18 @@ mui.plusReady(function() {
 				if(data.success) {
 					plus.nativeUI.toast("图片上传成功", toastStyle);
 					mui.currentWebview.close();
-					mui.back();
-					var flag = list.flag;
+					mui.back();					
 					if(flag == 0) {
 						var Page = plus.webview.getWebviewById('html/proinforupdate.html');
 						mui.fire(Page, 'newId');
 						var Pa = plus.webview.getWebviewById('html/myaccount.html');
 						mui.fire(Pa, 'photoUser');
 
-					} else {
-					   			
+					} else if(flag==1){
+					   	var Page = plus.webview.getWebviewById('html/proinforupdate.html');
+						mui.fire(Page, 'newId');
+						var Pa = plus.webview.getWebviewById('resinforupdate.html');
+						mui.fire(Pa, 'resourceMess');0
 					}
 				} else {
 					plus.nativeUI.toast("图片上传失败", toastStyle);

@@ -55,6 +55,9 @@ mui.ready(function() {
 						plus.nativeUI.closeWaiting();
 						self.show("slide-in-right", 150);
 						//资源基本信息
+						if($data.images.length) {
+							document.getElementById("userimg").src = baseUrl + '/images/resource/' + $data.resourceId + '.jpg';					
+						}
 						var oRes = document.getElementsByClassName("listtit2");
 						oRes[0].innerText = $data.resourceName;
 						oRes[1].innerText = $data.supportedServices;

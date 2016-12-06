@@ -14,7 +14,7 @@ mui.plusReady(function() {
 	if(ws == web1) {
 		flag = 1;
 	}
-	userimg.addEventListener("tap", function() {
+	userimg.addEventListener("click", function() {
 		if(mui.os.plus) {
 			var a = [{
 				title: "拍照"

@@ -47,7 +47,13 @@ mui.plusReady(function() {
 		var c = plus.camera.getCamera();
 		c.captureImage(function(e) {
 			plus.io.resolveLocalFileSystemURL(e, function(entry) {
-
+			var filPage = plus.webview.getWebviewById('../html/fillinfo.html');
+			var dyPage = plus.webview.currentWebview();
+			if(dyPage == filPage) {
+				var imgvar = '<img src="' + entry.toLocalURL() + '" style="width:100%"/>';
+				//console.log(imgvar) 
+				document.getElementById('imgshow').innerHTML = imgvar;
+			}
 				mui.openWindow({
 					url: '../html/picture-upload.html',
 					id: 'html/picture-upload.html',

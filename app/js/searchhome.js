@@ -24,7 +24,7 @@ var industryid = document.getElementById("industryid");
 
 mui.init({
 		pullRefresh: {
-			container: '#pullrefresh',
+			container: '#pullrefresh3',
 			up: {
 				contentrefresh: '正在加载...',
 				callback: pullupRefresh,
@@ -40,18 +40,18 @@ function pullupRefresh() {
 	setTimeout(function() {
 		expert2(key, subject, industry, province, address, authentication, 10, pageNo)
 	}, 1000);
-	mui('#pullrefresh').pullRefresh().refresh(true);
+	mui('#pullrefresh3').pullRefresh().refresh(true);
 }
 
 if(mui.os.plus) {
 	mui.plusReady(function() {
 		setTimeout(function() {
-			mui('#pullrefresh').pullRefresh().pulldownLoading();
+			mui('#pullrefresh3').pullRefresh().pulldownLoading();
 		}, 500);
 	});
 } else {
 	mui.ready(function() {
-		mui('#pullrefresh').pullRefresh().pulldownLoading();
+		mui('#pullrefresh3').pullRefresh().pulldownLoading();
 	});
 }
 
@@ -234,7 +234,7 @@ mui(".xsly").on('tap', 'a', function() {
 
 /*初始化数据*/
 function expert(key, subject, industry, province, address, authentication, pageSize, pageNo) {
-		console.log(bigClass)
+		//console.log(bigClass)
 	if(bigClass == 1) {
 		mui.ajax(baseUrl + '/ajax/professor/pqAPP', {
 			data: {
@@ -264,14 +264,14 @@ function expert(key, subject, industry, province, address, authentication, pageS
 					var datalist = data.data.data;
 					console.log(data.data.total)
 					datalistEach(datalist);
-					mui('#pullrefresh').pullRefresh().refresh(true);
-	                mui('#pullrefresh').pullRefresh().scrollTo(0,0);
+					mui('#pullrefresh3').pullRefresh().refresh(true);
+	                mui('#pullrefresh3').pullRefresh().scrollTo(0,0);
 	                if(data.data.total<data.data.pageSize){
-	                	mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
+	                	mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
 	                }
 				} else {
 					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
-					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
+					mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 				}
 				
 			},
@@ -307,14 +307,14 @@ function expert(key, subject, industry, province, address, authentication, pageS
 				if(data.success && data.data.data != '') {
 					var datalist = data.data.data;
 					resourcesEach(datalist);
-					mui('#pullrefresh').pullRefresh().refresh(true);
-	                mui('#pullrefresh').pullRefresh().scrollTo(0,0,0);
+					mui('#pullrefresh3').pullRefresh().refresh(true);
+	                mui('#pullrefresh3').pullRefresh().scrollTo(0,0,0);
 	                if(data.data.total<data.data.pageSize){
-	                	mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
+	                	mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
 	                }
 				} else {
 					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
-					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
+					mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 				}
 			},
 			error: function() {
@@ -350,7 +350,7 @@ function expert2(key, subject, industry, province, address, authentication, page
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
 				if(data.success && data.data.data != '') {
-					mui('#pullrefresh').pullRefresh().enablePullupToRefresh(); //启用上拉刷新
+					mui('#pullrefresh3').pullRefresh().enablePullupToRefresh(); //启用上拉刷新
 					var datalist = data.data.data;
 					var dice1 = data.data.total; //总条数
 					var dice2 = data.data.pageSize; //每页条数
@@ -363,22 +363,22 @@ function expert2(key, subject, industry, province, address, authentication, page
 					console.log(allPages);
 					var datalist = data.data.data;
 					datalistEach(datalist);
-					mui('#pullrefresh').pullRefresh().refresh(true);//重置上拉加载
+					mui('#pullrefresh3').pullRefresh().refresh(true);//重置上拉加载
 					if(pageNo < allPages) {
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //能上拉
+						mui('#pullrefresh3').pullRefresh().endPullupToRefresh(false); //能上拉
 					} else {
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
+						mui('#pullrefresh3').pullRefresh().endPullupToRefresh(true); //不能上拉
 					}
 
 				} else {
-					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
+					mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 					table.innerHTML = '';
 					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
 				}
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				mui('#pullrefresh3').pullRefresh().endPullupToRefresh(true);
 			}
 		});
 	} else {
@@ -399,7 +399,7 @@ function expert2(key, subject, industry, province, address, authentication, page
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
 				if(data.success && data.data.data != '') {
-					mui('#pullrefresh').pullRefresh().enablePullupToRefresh(); //启用上拉刷新
+					mui('#pullrefresh3').pullRefresh().enablePullupToRefresh(); //启用上拉刷新
 					var datalist = data.data.data;
 					var dice1 = data.data.total; //总条数
 					var dice2 = data.data.pageSize; //每页条数
@@ -409,22 +409,22 @@ function expert2(key, subject, industry, province, address, authentication, page
 					}
 					var datalist = data.data.data;
 					resourcesEach(datalist);
-					mui('#pullrefresh').pullRefresh().refresh(true);
+					mui('#pullrefresh3').pullRefresh().refresh(true);
 					if(pageNo < allPages) {
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //能上拉
+						mui('#pullrefresh3').pullRefresh().endPullupToRefresh(false); //能上拉
 					} else {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
 					}
 
 				} else {
-					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
+					mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 					table.innerHTML = '';
 					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
 				}
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				mui('#pullrefresh3').pullRefresh().endPullupToRefresh(true);
 			}
 		});
 	}

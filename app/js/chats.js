@@ -55,7 +55,7 @@ mui.ready(function() {
 				success:function(data){
 					myData = data.data;
 					ochatName.innerHTML = myData["professor"]["name"];
-					var consultTitle = '回复：关于'+myData["consultTitle"]+"的咨询";
+					var consultTitle = '回复：'+myData["consultTitle"];
 					oconsultTitle.innerHTML = consultTitle;
 					oconsultCon.innerHTML = myData['consultContant'];
 					//我的需求进行中
@@ -105,7 +105,7 @@ mui.ready(function() {
 				success:function(data){
 					myData = data.data;
 					ochatName.innerHTML = myData["professor"]["name"];
-					var consultTitle = '关于'+myData["consultTitle"]+"的咨询";
+					var consultTitle = myData["consultTitle"];
 					oconsultTitle.innerHTML = consultTitle;
 					oconsultCon.innerHTML = myData['consultContant'];
 					//收到咨询进行中

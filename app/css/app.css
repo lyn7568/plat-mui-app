@@ -395,7 +395,7 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .filterblock li em{ font-size:18px; margin:0 2px;}
 .filterlist{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 13px;}
 /*筛选条件*/
-.popoverbox2 {border-radius:4px;width:0;height:0;width:100%;height:200px;font-size: 13px; }
+.popoverbox2 {border-radius:4px;width:0;height:0;width:100%;min-height:300px;font-size: 13px; }
 .popoverbox2 .mui-popover-arrow{left:50%; margin-left:-12px;}
 .popoverbox2 .mui-table-view{padding:4px;border-radius: 0; overflow: hidden;}
 .popoverbox2 .mui-table-view-cell{text-align: center;float: left; margin:4px 4%;border-radius:4px;}
@@ -406,11 +406,12 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .popoverbox2 .mui-table-view .mui-table-view-cell:first-child,.popoverbox2 .mui-table-view .mui-table-view-cell:first-child>a:not(.mui-btn){border-radius:4px;}
 .popoverbox2 .mui-table-view .mui-table-view-cell{border-radius:4px; overflow: hidden; }
 .popoverbox2 .mui-table-view-cell>a:not(.mui-btn).active{background:#FF9900; color: #FFFFFF;border:1px solid #FF9900;}
+.popoverbox2.mui-popover .mui-table-view{max-height: none; min-height: 300px;}
 /*城市选择级联*/
 .menublock{ position: relative; }
 .menublock .mui-popover-arrow{z-index: 20px;}
-.menuposition.mui-popover .mui-scroll-wrapper{ margin: 0; height: 300px; top:0;  bottom:0px; border-radius: 0;}
-.menuposition{border-radius:4px; position: absolute; height:300px;width:100%; font-size: 14px;}
+.menuposition.mui-popover .mui-scroll-wrapper{ margin: 0; height: auto; top:0;  bottom:0px; border-radius: 0;}
+.menuposition{border-radius:4px; position: absolute; height: auto; width:100%; font-size: 14px;}
 .menuposition .mui-popover-arrow{left:50%; margin-left:-12px;}
 .menuposition .mui-table-view{border-radius: 0; overflow: auto;}
 .mui-popover.menuposition .mui-table-view .mui-table-view-cell:after{left: 8px;right: 0;bottom: 0;background: #BBBBBB;}

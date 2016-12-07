@@ -215,6 +215,34 @@ function initdata() {
 
 };
 
+//判断对方是否有聊天内容,加回复：。。。
+function isChat(consultId,userid) {
+	var length = 0;
+	mui.ajax(baseUrl+'/ajax/tidings/qacon',{
+		data:{
+			"consultId":consultId
+		},
+		async:false,
+		dataType:'json',//服务器返回json格式数据
+		type:'get',//HTTP请求类型
+		timeout:10000,//超时时间设置为10秒；
+		success:function(data){
+			var myData = data.data;
+			for(var i = 0; i < myData.length; i++ ){
+				if(myData[i]['professor']['id'] !=userid){
+					length++;
+				}
+			}
+			
+		},
+		error:function(xhr,type,errorThrown){
+			//根据消息id查询消息失败
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+		}
+	});
+	return length;	
+}
+
 //更新读取状态
 function setReadState(consultId) {
 		mui.ajax(baseUrl+'/ajax/consult/readStatus',{
@@ -305,11 +333,18 @@ function eachData(userid,datalist) {
 			unreadStyle,
 			proModify,
 			photoUrl,
-			consultType;
+			consultType,
+			chatlength;
 			
+		chatlength = isChat(item['consultId'],userid);//判断对方是否有发出消息
+		if(chatlength == 0){
+			title =  item["consultTitle"];	
+		}else{
+			title = "回复:" + item["consultTitle"];
+		}
+		
     	//咨询类型和状态
 		if(item['consultantId'] != userid){//收到咨询
-			title = "回复:" + item["consultTitle"];
 			if(item["consultStatus"] == 0){
 				status = "进行中";
 				statusStyle = 'status-1';
@@ -318,7 +353,6 @@ function eachData(userid,datalist) {
 				statusStyle = 'status-3';
 			}
 		}else if(item['consultantId'] == userid){//我的需求
-			title =  item["consultTitle"];
 			if(item["consultStatus"] == 0){
 				status = "进行中";
 				statusStyle = 'status-1';

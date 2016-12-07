@@ -251,9 +251,6 @@ mui.ready(function() {
 	
 		});
 		
-		/*console.log('consultId=='+consultId);
-		console.log('userid=='+userid);
-		console.log('consultantId=='+consultantId);*/
 		if(userid == consultantId){//我的需求
 			//头部信息
 			var manFlag = 'myNeed';
@@ -265,6 +262,7 @@ mui.ready(function() {
 		};
 		//渲染对话内容
 		chatCon(consultId,userid);
+		
 		//根据咨询id查询消息
 		function chatCon(consultId,userid) {
 			mui.ajax(baseUrl+'/ajax/tidings/qacon',{

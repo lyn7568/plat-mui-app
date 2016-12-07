@@ -169,9 +169,14 @@
    	    if(flag == 'ziyuan') {
    	    	oconsulttitle.value = '关于'+consulttitle+'的咨询';
    	    	var lilist = oconsulttype_ul.querySelectorAll('li');
+   	    	var oziyuanspan = document.getElementById("ziyuanspan");
+   	    	var emele = document.createElement('em');
+   	    	emele.className = "mui-icon iconfont icon-check";
    	    	for(var i = 0 ; i < lilist.length; i++){
    	    		lilist[i].classList.remove('liactive');
+   	    		lilist[i].querySelector("em").remove();
    	    		lilist[1].classList.add('liactive');
+   	    		lilist[1].insertBefore(emele,oziyuanspan);
    	    	}
    	    	
    	    }

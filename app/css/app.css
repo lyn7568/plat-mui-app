@@ -61,6 +61,9 @@ body{ color: #666666; font-size:14px;}
 /*小标签提示*/
 .litlabel .listtit2{ color: #AAAAAA;}
 
+/*单行省略号*/
+.onlyone{overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+
 /*顶部标题栏*/
 .toptitbox{ background:#FF9900; }
 .topback.mui-icon{color: #FFFFFF; font-size:30px; line-height: 24px;}

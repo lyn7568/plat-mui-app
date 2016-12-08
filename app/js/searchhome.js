@@ -581,7 +581,10 @@ mui.ajax(baseUrl + '/ajax/dataDict/qaCity', {
 	}
 });
 //应用行业
-mui.ajax(baseUrl + '/ajax/dataDict/qa/INDUSTRY', {
+mui.ajax(baseUrl + '/ajax/dataDict/qaDictCode', {
+	data: {
+		"dictCode": "INDUSTRY"
+	},
 	dataType: 'json', //数据格式类型
 	type: 'GET', //http请求类型
 	timeout: 10000,
@@ -602,7 +605,10 @@ mui.ajax(baseUrl + '/ajax/dataDict/qa/INDUSTRY', {
 	}
 });
 //学术领域
-mui.ajax(baseUrl + '/ajax/dataDict/qa/SUBJECT', {
+mui.ajax(baseUrl + '/ajax/dataDict/qaDictCode', {
+	data: {
+		"dictCode": "SUBJECT"
+	},
 	dataType: 'json', //数据格式类型
 	type: 'GET', //http请求类型
 	timeout: 10000,

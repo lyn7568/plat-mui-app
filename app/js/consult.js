@@ -194,16 +194,16 @@ function initdata() {
             type: 'get',  
             timeout: 10000,
             success: function(data) {
-            	
-                if (data.success) {
+            	table.innerHTML = '';//清空容器
+                if (data.success && data.data.data != '') {
                     var datalist = data.data.data;
-//                  console.log(datalist.length);
-	                table.innerHTML = '';//清空容器
                     eachData(userid,datalist);
                     mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
-//                  mui('#pullrefresh').scroll().scrollTo(0,0);//滚动到顶部
-                    
                     plus.nativeUI.closeWaiting();//关闭等待框
+                }else {
+                	plus.nativeUI.closeWaiting();//关闭等待框
+                	plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					mui('#zixunpullrefresh').pullRefresh().disablePullupToRefresh(); 
                 }
             },
             error: function(xhr, type, errerThrown) {
@@ -370,12 +370,49 @@ function eachData(userid,datalist) {
 		if(item["professor"] == undefined){
 			return ;
 		}
-		(item["professor"]["title"])?  zhicehng = item["professor"]["title"]: zhicehng = '';
+		/*(item["professor"]["title"])?  zhicehng = item["professor"]["title"]: zhicehng = '';
 		(item["professor"]["office"])?   zhiwei = '，'+item["professor"]["office"]: zhiwei  = '';
 		(item["professor"]["orgName"])?   orgName = '，'+item["professor"]["orgName"]: orgName  = '';
-		(item["professor"]["address"])?  address = ' | '+ item["professor"]["address"] :address = '' ;
+		(item["professor"]["address"])?  address = ' | '+ item["professor"]["address"] :address = '' ;*/
 		(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
 		(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
+		
+		if(item["professor"]["title"] == undefined || item["professor"]["title"] == null || item["professor"]["title"] == ''){
+			zhicehng = '';
+		}else {
+			zhicehng = item["professor"]["title"];
+		}
+		if(item["professor"]["office"] == undefined || item["professor"]["office"] == null || item["professor"]["office"] == ''){
+			zhiwei = '';
+		}else {
+			if(zhicehng != ''){
+				zhiwei = ','+item["professor"]["office"];
+			}else{
+				zhiwei = item["professor"]["office"];
+			}
+		}
+		if(item["professor"]["orgName"] == undefined || item["professor"]["orgName"] == null || item["professor"]["orgName"] == ''){
+			orgName = '';
+		}else {
+			if(zhicehng != '' || zhiwei != ''){
+				orgName = ','+item["professor"]["orgName"];
+			}else {
+				orgName = item["professor"]["orgName"];
+			}
+		}
+		if(item["professor"]["address"] == undefined || item["professor"]["address"] == null || item["professor"]["address"] == ''){
+			address = '';
+		}else {
+			if(zhicehng != '' || zhiwei != '' || orgName !=''){
+				address = ' | ' + item["professor"]["address"];
+			}else {
+				address = item["professor"]["address"];
+			}
+		}
+		
+		
+		
+		
 		
 		//咨询类型，只取两个字
 		if(item["consultType"]) {
@@ -410,7 +447,7 @@ function eachData(userid,datalist) {
             		+ '<div class="mui-media-body">'
             		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>'	
             		+ '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+orgName+'</span><span>'+address+'</span></p>'
-            		+ '<p class="listtit3">'+lastReplyCon+'</p>'
+            		+ '<p class="listtit3 onlyone">'+lastReplyCon+'</p>'
             		+ '</div></a>';
             		
         table.appendChild(li,table.firstChild);

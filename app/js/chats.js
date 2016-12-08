@@ -55,7 +55,7 @@ mui.ready(function() {
 				success:function(data){
 					myData = data.data;
 					ochatName.innerHTML = myData["professor"]["name"];
-					var consultTitle = '回复：'+myData["consultTitle"];
+					var consultTitle = myData["consultTitle"];
 					oconsultTitle.innerHTML = consultTitle;
 					oconsultCon.innerHTML = myData['consultContant'];
 					//我的需求进行中
@@ -84,7 +84,7 @@ mui.ready(function() {
 							};
 							
 							omyNeeAss.addEventListener('tap',function() {
-								clickGodetail(omy_starContainer,consultId,manFlag)
+								clickGodetail(oassessed,consultId,manFlag)
 							});
 						}
 					} 
@@ -105,7 +105,7 @@ mui.ready(function() {
 				success:function(data){
 					myData = data.data;
 					ochatName.innerHTML = myData["professor"]["name"];
-					var consultTitle = myData["consultTitle"];
+					var consultTitle = '回复：'+ myData["consultTitle"];
 					oconsultTitle.innerHTML = consultTitle;
 					oconsultCon.innerHTML = myData['consultContant'];
 					//收到咨询进行中
@@ -127,7 +127,7 @@ mui.ready(function() {
 							}
 							
 							ogetConAss.addEventListener('tap',function() {
-								clickGodetail(ozixunstarContainer,consultId,manFlag)
+								clickGodetail(othat_assessed,consultId,manFlag)
 //								
 							});
 

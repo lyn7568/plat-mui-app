@@ -202,7 +202,7 @@ function initdata() {
                     plus.nativeUI.closeWaiting();//关闭等待框
                 }else {
                 	plus.nativeUI.closeWaiting();//关闭等待框
-                	plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+                	plus.nativeUI.toast("您目前没有咨询", toastStyle);
 					mui('#zixunpullrefresh').pullRefresh().disablePullupToRefresh(); 
                 }
             },

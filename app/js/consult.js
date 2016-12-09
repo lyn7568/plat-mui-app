@@ -207,7 +207,7 @@ function initdata() {
                 }
             },
             error: function(xhr, type, errerThrown) {
-                mui.toast('网络异常,请稍候再试');
+                mui.toast('网络异常,请稍候再试'); 
             	plus.nativeUI.closeWaiting();
             }
         });

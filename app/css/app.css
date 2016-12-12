@@ -524,3 +524,13 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .nodatabox .txtbox .currtip{ font-size:12px;color: #AAAAAA;}
 .nodatabox .txtbox .keyword{ padding:0 6px;}
 /***********************缺省页面*******************/
+
+/***********************科袖用户协议*******************/
+.privacyBox{width:100%;padding:10px;background:#fafafa;margin:auto;line-height:28px;font-size:15px;}
+.privacyBox dl,.privacyBox dd{padding:0; margin: 0;}
+.privacyBox h3{font-size: 16px;line-height: 30px; color:#444;padding:4px;}
+.privacyBox p{text-indent:1.5em; margin:0; padding:6px;color:#666;}
+.privacyBox p.text_indentP{text-indent:2em; }
+.privacyBox ul{ margin:0 4px;text-indent:1.5em;padding:0 4px; color:#666;}
+.privacyBox ul li{list-style: none;}
+/***********************科袖用户协议*******************/

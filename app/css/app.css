@@ -141,9 +141,9 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .frmbox .frm-input .frmtype{ height: 0; height: 100%;}
 .frmbox .frm-input .frmtypel{ height: 0;height: 100%; width: 90%;}
 /*logo盒子的相关*/
-.logobox{ padding:6%; margin:12% auto 6% ; }
+.logobox{ padding:6%; margin:20% auto 6% ; }
 .logolink{display: block;width:30%;margin: auto;}
-.logoimg{ width: 100%; margin: auto; text-align:center;}
+.logoimg{ width: 94%; margin: auto; text-align:center;}
 /*忘记密码*/
 .forgetword{ position: absolute;top: 50%; margin-top:-14px;right: 2%;padding:4px 10px;line-height: 20px; font-size: 12px; background: #f0f0f0;border:1px solid #f0f0f0; color: #AAAAAA; border-radius: 6px;}
 .forgetword2{ background: #FF9900;border:1px solid #FF9900; color: #FFFFFF;}
@@ -533,4 +533,6 @@ em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
 .privacyBox p.text_indentP{text-indent:2em; }
 .privacyBox ul{ margin:0 4px;text-indent:1.5em;padding:0 4px; color:#666;}
 .privacyBox ul li{list-style: none;}
+
+.versionbox{position:absolute;width:20%;margin: auto; bottom:10%;left:50%; color:#999999;font-size:12px;margin-left:-10%;text-align: center;}
 /***********************科袖用户协议*******************/

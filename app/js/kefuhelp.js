@@ -35,6 +35,7 @@ mui.ready(function() {
 		
 	});
 	
+	
 	/*常见问题*/
 	/*FAQ.addEventListener('tap',function(){
 		var userid = plus.storage.getItem('userid');

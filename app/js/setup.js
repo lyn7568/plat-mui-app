@@ -8,6 +8,7 @@ mui.ready(function() {
 	var about = document.getElementById("about");
 	var kefu = document.getElementById("kefu");
 	
+	
 	/*账户与安全*/
 	security.addEventListener('tap',function(){
 		plus.nativeUI.showWaiting();//显示原生等待框

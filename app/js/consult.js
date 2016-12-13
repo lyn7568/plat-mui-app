@@ -100,7 +100,7 @@ checkedFun(1);
 checkedFun(2);
 checkedFun(3);
 checkedFun(4);
-
+ 
 
 function getaData() {
     mui.plusReady(function() {

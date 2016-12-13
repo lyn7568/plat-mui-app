@@ -6,10 +6,7 @@ mui.ready(function() {
 	var security = document.getElementById("security");
 	var userAgreement = document.getElementById("userAgreement");
 	var about = document.getElementById("about");
-	var feedBack = document.getElementById("feedBack");
-	var claims = document.getElementById("claims");
-	var FAQ = document.getElementById("FAQ");
-	var contactService = document.getElementById("contactService");
+	var kefu = document.getElementById("kefu");
 	
 	/*账户与安全*/
 	security.addEventListener('tap',function(){
@@ -59,64 +56,18 @@ mui.ready(function() {
 		});
 	});
 	
-	/*意见反馈*/
-	feedBack.addEventListener('tap',function(){
-		var userid = plus.storage.getItem('userid');
-		console.log(userid);
+	/*客服帮助*/
+	kefu.addEventListener('tap',function(){
 		mui.openWindow({
-			url: '../html/feedback.html',
-			id: '../html/feedback.html',
+			url: '../html/kefuhelp.html',
+			id: '../html/kefuhelp.html',
 			show: {
 				aniShow: "slide-in-right"
-			},
-			extras:{userId:userid}
+			}
 		});
 		
 	});
 	
-	/*投诉举报*/
-	claims.addEventListener('tap',function(){
-		var userid = plus.storage.getItem('userid');
-		console.log(userid);
-		mui.openWindow({
-			url: '../html/claims.html',
-			id: '../html/claims.html',
-			show: {
-				aniShow: "slide-in-right"
-			},
-			extras:{userId:userid}
-		});
-		
-	});
 	
-	/*常见问题*/
-	FAQ.addEventListener('tap',function(){
-		var userid = plus.storage.getItem('userid');
-		console.log(userid);
-		mui.openWindow({
-			url: '../html/faq.html',
-			id: '../html/faq.html',
-			show: {
-				aniShow: "slide-in-right"
-			},
-			extras:{userId:userid}
-		});
-		
-	});
-	
-	/*联系客服*/
-	contactService.addEventListener('tap',function(){
-		var userid = plus.storage.getItem('userid');
-		console.log(userid);
-		mui.openWindow({
-			url: '../html/contactservice.html',
-			id: '../html/contactservice.html',
-			show: {
-				aniShow: "slide-in-right"
-			},
-			extras:{userId:userid}
-		});
-		
-	});
 	
 });

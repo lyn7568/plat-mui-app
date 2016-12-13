@@ -202,7 +202,7 @@ function initdata() {
                     plus.nativeUI.closeWaiting();//关闭等待框
                 }else {
                 	plus.nativeUI.closeWaiting();//关闭等待框
-                	plus.nativeUI.toast("您目前没有咨询", toastStyle);
+                	/*plus.nativeUI.toast("您目前没有咨询");*/
 					mui('#zixunpullrefresh').pullRefresh().disablePullupToRefresh(); 
                 }
             },
@@ -342,7 +342,7 @@ function eachData(userid,datalist) {
 		}else{
 			title = "回复:" + item["consultTitle"];
 		}
-		
+//		console.log(title)
     	//咨询类型和状态
 		if(item['consultantId'] != userid){//收到咨询
 			if(item["consultStatus"] == 0){
@@ -370,14 +370,11 @@ function eachData(userid,datalist) {
 		if(item["professor"] == undefined){
 			return ;
 		}
-		/*(item["professor"]["title"])?  zhicehng = item["professor"]["title"]: zhicehng = '';
-		(item["professor"]["office"])?   zhiwei = '，'+item["professor"]["office"]: zhiwei  = '';
-		(item["professor"]["orgName"])?   orgName = '，'+item["professor"]["orgName"]: orgName  = '';
-		(item["professor"]["address"])?  address = ' | '+ item["professor"]["address"] :address = '' ;*/
+		
 		(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
 		(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
 		
-		if(item["professor"]["title"] == undefined || item["professor"]["title"] == null || item["professor"]["title"] == ''){
+		/*if(item["professor"]["title"] == undefined || item["professor"]["title"] == null || item["professor"]["title"] == ''){
 			zhicehng = '';
 		}else {
 			zhicehng = item["professor"]["title"];
@@ -386,7 +383,7 @@ function eachData(userid,datalist) {
 			zhiwei = '';
 		}else {
 			if(zhicehng != ''){
-				zhiwei = ','+item["professor"]["office"];
+				zhiwei = ', '+item["professor"]["office"];
 			}else{
 				zhiwei = item["professor"]["office"];
 			}
@@ -395,7 +392,7 @@ function eachData(userid,datalist) {
 			orgName = '';
 		}else {
 			if(zhicehng != '' || zhiwei != ''){
-				orgName = ','+item["professor"]["orgName"];
+				orgName = ', '+item["professor"]["orgName"];
 			}else {
 				orgName = item["professor"]["orgName"];
 			}
@@ -408,7 +405,7 @@ function eachData(userid,datalist) {
 			}else {
 				address = item["professor"]["address"];
 			}
-		}
+		}*/
 		
 		
 		
@@ -432,12 +429,39 @@ function eachData(userid,datalist) {
 		//未读消息
 		unreadCount = unreadConsultFn(userid,item["consultId"],index).unreadCount;
 		unreadStyle = unreadConsultFn(userid,item["consultId"],index).style;
-/*    	console.log(unreadStyle)*/
     	
         var li = document.createElement('li');
         li.className = 'mui-table-view-cell mui-media'; 
-
-        li.innerHTML = '<div class="coutopicbox">'
+        
+        var str = '';
+       	str += '<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>'
+       				+ '<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>'
+            		+ '<span class="'+statusStyle+' status" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
+            		+ '<a class="proinfor itemBtn" consultId="'+item["consultId"]+'" consultantId="'+item["consultantId"]+'" >'
+					+ '<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item["consultId"]+'">'+unreadCount+'</span>'
+	        		+ '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">'
+            		+ '<div class="mui-media-body">'
+            		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>';
+        str += '<p class="listtit2">';
+        if(item["professor"]["title"]){
+        	str += '<span>'+item["professor"]["title"]+'</span>, ';
+        };
+        if(item["professor"]["office"]){
+        	str += '<span>'+item["professor"]["office"]+'</span>, ';
+        };
+        if(item["professor"]["orgName"]){
+        	str += '<span>'+item["professor"]["orgName"]+'</span>';
+        };
+        if(item["professor"]["address"]){
+        	str += '<span>  | '+item["professor"]["address"]+'</span>';
+        };
+        
+        str +='</p><p class="listtit3 onlyone">'+lastReplyCon+'</p></div></a>';
+        
+		li.innerHTML = str;
+		
+		
+        /*li.innerHTML = '<div class="coutopicbox">'
             		+ '<span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>'
             		+ '<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>'
             		+ '<span class="'+statusStyle+' status" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
@@ -448,7 +472,7 @@ function eachData(userid,datalist) {
             		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>'	
             		+ '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+orgName+'</span><span>'+address+'</span></p>'
             		+ '<p class="listtit3 onlyone">'+lastReplyCon+'</p>'
-            		+ '</div></a>';
+            		+ '</div></a>';*/
             		
         table.appendChild(li,table.firstChild);
     });

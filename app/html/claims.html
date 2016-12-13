@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-input-row .content {
+				min-height: 150px;
+				font-size: 14px;
+			}
+			.mui-content-padded .claims {
+				padding: 5px 0;
+			}
+			.text {
+				position: relative;
+			}
+			#count {
+				position: absolute;
+				bottom: 23px;
+				right: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">投诉举报</h1>
+		</header>
+		<div class="mui-content">
+			<div class="row mui-input-row text">
+				<textarea id='question' class="mui-input-clear question content" placeholder="请详细描述你的投诉举报内容(500字以内)"></textarea>
+				<div id="count">500</div>
+			</div>
+			<div class="mui-content-padded">
+				<button type="submit" class="mui-btn mui-btn-danger mui-btn-block claims">提交</button>
+			</div>
+			
+		</div>
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/claims.js"></script>
+	</body>
+</html>

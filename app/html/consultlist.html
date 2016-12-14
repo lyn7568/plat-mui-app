@@ -155,9 +155,9 @@
 			</div>
 		</div>
        	
-       	<div id="zixunpullrefresh" class="mui-card-content"  style="margin-top:20px; ">
+       	<div id="zixunpullrefresh" class="mui-card-content"  style="margin-top:40px; ">
 	      <ul class="mui-table-view protable" id="table">
-				<!--<li class="mui-table-view-cell mui-media">
+				<li class="mui-table-view-cell mui-media">
 					<div class="coutopicbox">
 						<span class="coutheme mui-ellipsis mui-pull-left">title</span>
 						<div class="coustatus mui-pull-right"><span class="aimlabel">consultType</span>
@@ -172,7 +172,24 @@
 							<p class="listtit3">'+lastReplyCon+'</p>
 						</div>
 					</a>
-	           </li>-->
+	           </li>
+	           
+	           <li class="mui-table-view-cell mui-media">
+					<div class="coutopicbox">
+						<span class="coutheme mui-ellipsis mui-pull-left">title</span>
+						<div class="coustatus mui-pull-right"><span class="aimlabel">consultType</span>
+							<span class="'+statusStyle+' status" consultId="'+item[" consultId "]+'">status</span></div>
+					</div>
+					<a class="proinfor itemBtn" consultId="'+item[" consultId "]+'" consultantId="'+item[" consultantId "]+'">
+						<span class="mui-badge mui-badge-danger readstate " style ="display: none;">unreadCount</span>
+						<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">
+						<div class="mui-media-body">
+							<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>
+							<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+orgName+'</span><span>'+address+'</span></p>
+							<p class="listtit3">'+lastReplyCon+'</p>
+						</div>
+					</a>
+	           </li>
 	        </ul>
         </div>
         

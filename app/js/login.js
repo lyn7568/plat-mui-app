@@ -34,6 +34,7 @@ mui.ready(function() {
 		/*登录按钮*/
 		login.addEventListener('tap', function() {
 			userVal()
+			console.log('点击登陆时id===='+plus.storage.getItem('userid'))
 		})
 
 		
@@ -99,12 +100,17 @@ mui.ready(function() {
 						var userId = data.data.id;
 						plus.storage.setItem('userid', userId);
 						firstLogin();
+						console.log('点击登陆时iddddddd===='+plus.storage.getItem('userid'))
 						var consultPage = plus.webview.getWebviewById('html/consultlist.html');
+						mui.fire(consultPage, 'logined', {
+							id: userId
+						});	
+						/*var consultPage = plus.webview.getWebviewById('html/consultlist.html');
 						console.log("目前id=="+plus.storage.getItem('userid'))
 						console.log(userId)
 						mui.fire(consultPage, 'relogin', {
 							id: plus.storage.getItem('userid')
-						});
+						});*/
 					} else {
 						plus.nativeUI.toast("登录账号和密码不匹配!", toastStyle);
 						return;

@@ -1,3 +1,6 @@
+/*是否登录，要显示的，mui-content*/
+var  content1 = document.querySelectorAll('.mui-content')[0];
+var  content2 = document.querySelectorAll('.mui-content')[1];
 
 var pageIndex = 1; // 页数
 var allPages = 1; // 总页数
@@ -8,11 +11,76 @@ var otypeval = document.getElementById("typeval");//咨询类型
 var ostateval = document.getElementById("stateval");//咨询状态
 var osortval = document.getElementById("sortval");//时间排序
 
+
+/*登陆*/
+window.addEventListener('logined', function(event) {
+	var userId = event.detail.id; 
+	content1.style.display = 'block';
+	content2.style.display = 'none';
+	initdata();
+	if(plus.nativeUI.showWaiting()){
+		console.log("showWaiting")
+		plus.nativeUI.closeWaiting();//关闭等待框
+	}
+});
+
+/*退出*/
+window.addEventListener('exited', function(event) {
+	var userId = event.detail.id; 
+	content1.style.display = 'none';
+	content2.style.display = 'block';
+});
+mui.plusReady(function() {
+	var regBtn = document.getElementById("regBtn");
+	var logBtn = document.getElementById("logBtn");
+//	注册
+	regBtn.addEventListener('tap',function(){
+		mui.openWindow({
+			url: '../html/reg.html',
+			id: '../html/reg.html',
+			show: {
+				aniShow: "slide-in-right"
+			}
+		});
+		
+	});
+	
+	//登陆
+	logBtn.addEventListener('tap',function(){
+		mui.openWindow({
+			url: '../html/login.html',
+			id: '../html/login.html',
+			show: {
+				aniShow: "slide-in-right"
+			}
+		});
+		
+	});
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
 	console.log('当前咨询列表页id==='+self.id);
 })
-
 
 mui.init({
     pullRefresh: {
@@ -154,7 +222,7 @@ function getaData() {
 };
 
 /*重新登陆，咨询列表数据刷新*/
-window.addEventListener('relogin', function(event) {
+/*window.addEventListener('relogin', function(event) {
 //	alert('重新登陆')
 	userId = event.detail.id;
 	console.log(userId);
@@ -163,8 +231,7 @@ window.addEventListener('relogin', function(event) {
 		console.log("showWaiting")
 		plus.nativeUI.closeWaiting();//关闭等待框
 	}
-	
-});
+});*/
 
 
 initdata();
@@ -528,12 +595,9 @@ function unreadConsultFn (senderId,consultId,i){
 		async:false,
 		success:function(data){
 			unreadCount = data["data"];
-/*			console.log('未读取消息数==='+data.data)*/
 			if(unreadCount == 0){
-//				style = "display:none;"
 				style = 'displayNone';
 			}else{
-//				style = "display:block;"
 				style = 'displayBlock';
 				
 			}

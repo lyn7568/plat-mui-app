@@ -44,6 +44,7 @@ mui.ready(function() {
 		mui.confirm("是否退出", "提示", btn, function(e) {
 			if(e.index == 0) {
 				plus.storage.removeItem("userid");
+				console.log('点击退出时id=='+plus.storage.getItem('userid'));
 				//plus.cache.clear();
 				//plus.storage.clear();
 				var userId = "null";
@@ -51,6 +52,10 @@ mui.ready(function() {
 				mui.back();
 				var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
 				mui.fire(myaccountPage, 'closeUser', {
+					id: userId
+				});
+				var consultPage = plus.webview.getWebviewById('html/consultlist.html');
+				mui.fire(consultPage, 'exited', {
 					id: userId
 				});
 			}

@@ -12,6 +12,55 @@
     	.displayBlock {
     		display: block;
     	}
+    	* {
+	    	font-family: "微软雅黑";
+	    }
+    	
+    	/*筛选div*/
+    	.filterdiv {
+    		
+    	}
+    	
+    	/*图片div*/
+    	.imgdiv {
+    		width: 140px;
+    		height: 155px;
+    		margin: 15% auto 2% auto;
+    	}
+    	
+    	/*图片样式*/
+    	.chat {
+    		width: 100%;
+    		height: 100%;
+    	}
+    	
+    	/*登陆科袖样式*/
+    	.logintext {
+    		text-align: center;
+    		font-size: 20px;
+    		color: :#333;
+    	}
+    	
+    	.desc {
+    		text-align: center;
+    		font-size: 20px;
+    		color:#ccc;
+    	}
+    	/*按钮*/
+    	.frmbox .btn {
+    		margin:4% auto;
+    		line-height:24px;
+    		padding:1% 2%;
+    		border-radius:6px;
+    		border:1px solid #FF9900;
+    	}
+    	.frmbox .regBtn {
+    		color: #fff;
+    		background: #FF9900;
+    	}
+    	.frmbox .logBtn {
+    		color: #FF9900;
+    	}
     </style>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
@@ -37,7 +86,7 @@
     <!-- 主页面内容容器 -->
     <div class="mui-content">
     	<!-- 主界面具体展示内容 -->
-    	<div class="filterbox2" style="top:44px ;left: 0;">
+    	<div class="filterbox2 filterdiv" style="top:44px ;left: 0;">
 			<ul class="filterblock2">
 				<li style="width:22%;">
 					<a href="#middlePopover1"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck1" headck='0'>咨询/需求</span><em class="mui-icon mui-icon-arrowdown"></em></a>
@@ -130,22 +179,38 @@
 		
     </div>
 	
+	<!--未登录或者未注册时咨询主页面-->
+	<div class="mui-content" >
+		<div class="imgdiv">
+			<img class="chat" src="../images/chat.png"/>
+		</div>
+		<p class="logintext">登录科袖</p>
+        <p class="desc">随时和专家沟通，掌握最新动态</p>
+		<p class="desc">接收咨询通知</p>
+		
+		<div class="mui-content-padded frmbox" style="margin-top: 20%;">
+			<button  class="mui-btn mui-btn-block btn regBtn" id="regBtn">注&nbsp;册</button>
+			<button  class="mui-btn mui-btn-block btn mui-btn-outlined logBtn" id="logBtn">登&nbsp;录</button>
+		</div>
+    </div>
+	
 	
 	<script src="../js/public/mui.min.js"></script>
 	<script src="../js/public/base.js"></script>
 	<script src="../js/consult.js"></script>
-	<!--<script src="../js/consultlist.js"></script>-->
-   <!-- <script type="text/javascript" charset="utf-8">
-      	mui.init({
-				swipeBack: true //启用右滑关闭功能
-			});
-			mui('.mui-scroll-wrapper').scroll();
-			mui('body').on('shown', '.mui-popover', function(e) {
-				//console.log('shown', e.detail.id);//detail为当前popover元素
-			});
-			mui('body').on('hidden', '.mui-popover', function(e) {
-				//console.log('hidden', e.detail.id);//detail为当前popover元素
-			});
-    </script>-->	
+   	<script type="text/javascript" charset="utf-8">
+   	mui.plusReady(function() {
+   		var  content1 = document.querySelectorAll('.mui-content')[0];
+      	var  content2 = document.querySelectorAll('.mui-content')[1];
+   		var userid = plus.storage.getItem('userid');
+   		if(userid == null || userid == 'null'){
+   			content1.style.display = 'none';
+   		}else {
+   			content2.style.display = 'none';
+   		}
+   		
+   		
+   	});
+    </script>
 </body>
 </html>

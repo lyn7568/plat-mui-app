@@ -4,18 +4,55 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
-    <style type="text/css">
-    	/*控制未读消息*/
-    	.displayNone {
-    		display: none;
-    	}
-    	.displayBlock {
-    		display: block;
-    	}
-    </style>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
     <link href="../css/app.css" rel="stylesheet"/>
+    <style type="text/css">
+    * {
+    	font-family: "微软雅黑";
+    }
+    	/*图片div*/
+    	.imgdiv {
+    		width: 140px;
+    		height: 155px;
+    		margin: 15% auto 2% auto;
+    	}
+    	
+    	/*图片样式*/
+    	.chat {
+    		width: 100%;
+    		height: 100%;
+    	}
+    	
+    	/*登陆科袖样式*/
+    	.logintext {
+    		text-align: center;
+    		font-size: 20px;
+    		color: :#333;
+    	}
+    	
+    	.desc {
+    		text-align: center;
+    		font-size: 20px;
+    		color:#ccc;
+    	}
+    	/*按钮*/
+    	.frmbox .btn {
+    		margin:4% auto;
+    		line-height:24px;
+    		padding:1% 2%;
+    		border-radius:6px;
+    		border:1px solid #FF9900;
+    	}
+    	.frmbox .regBtn {
+    		color: #fff;
+    		background: #FF9900;
+    	}
+    	.frmbox .logBtn {
+    		color: #FF9900;
+    	}
+    </style>
+    
  
 </head>
 <body>
@@ -26,10 +63,17 @@
 	</header>
     <!-- 主页面内容容器 -->
     <div class="mui-content">
-    	
-    	
-        
+		<div class="imgdiv">
+			<img class="chat" src="../images/chat.png"/>
+		</div>
+		<p class="logintext">登陆科袖</p>
+        <p class="desc">随时和专家沟通，掌握最新动态</p>
+		<p class="desc">接收咨询通知</p>
 		
+		<div class="mui-content-padded frmbox" style="margin-top: 20%;">
+			<button  class="mui-btn mui-btn-block btn regBtn" id="regBtn">注&nbsp;册</button>
+			<button  class="mui-btn mui-btn-block btn mui-btn-outlined logBtn" id="logBtn">登&nbsp;陆</button>
+		</div>
     </div>
 	
 	<script src="../js/public/mui.min.js"></script>

@@ -18,13 +18,22 @@
 			<!-- 主界面具体展示内容 -->
 		    <div class="mui-input-group marginbox setblock">
 				<ul class="mui-table-view">
-				    <li class="mui-table-view-cell">
+				   <!-- <li class="mui-table-view-cell">
 				        <a class="mui-navigate-right">
 				        	<span class="mui-pull-left">实名认证</span>
-				        	<span class="rightword verified" id="verified">已认证</span><!--未认证灰色字#C0C0C0，点击提示“暂时未开通实名认证，敬请期待”-->
+				        	<span class="rightword verified" id="verified">已认证</span>
+				        </a>
+				    </li>-->
+				    <li class="mui-table-view-cell" id="identity">
+				        <a class="mui-navigate-right">
+				        	<span class="mui-pull-left">身份认证 </span> 
+				        	<span class="rightword verified" id="userType"><span typenum="" id="istypes"></span>，<span id="isrenzheng"></span></span>
 				        </a>
 				    </li>
 				</ul>
+		    </div>
+		    <div class="identity-wen">
+		    	认证身份后，才能成为科袖认证专家。
 		    </div>
 		    <div class="mui-input-group marginbox setblock">
 				<ul class="mui-table-view">

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>账户与安全</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body style="background: #fff;">
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">身份认证</h1>
+		</header>
+		<div class="mui-content"  style="background: #fff; margin-top:10px;" id="navsub">
+			<h3 class="boxnav-title">请确认您现在的身份:</h3>
+			<ul class="boxnav">
+				<li><span typenum="1">科研工作者</span></li>
+				<li><span typenum="2">在企人员</span></li>
+				<li><span typenum="3">在校生</span></li>
+			</ul>
+		</div>
+		<div class="mui-content-padded frmbox" style="margin-top:40px;">
+			<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn" id="nextStep">确定，下一步</button>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script>
+		    mui.plusReady(function(){
+		    	var self = plus.webview.currentWebview();
+		    	//判断用户初始化身份
+			    mui(".boxnav span").each(function () {
+					var typenum = this.getAttribute("typenum");
+					if(typenum==self.usertype){
+						this.parentNode.classList.add('set');
+					}
+				});
+		    })
+		    
+			tab("navsub");//身份切换
+			
+			var nextStep = document.getElementById("nextStep");
+			nextStep.addEventListener('tap', function() {
+				var typetext = document.querySelector(".boxnav li.set");
+				mui.openWindow({
+					url: '../html/identity-up.html',
+					id: '../html/identity-up.html',
+					show: {
+						aniShow: "slide-in-right"
+					},
+					extras:{
+						usertype:typetext.innerText,
+					}
+				});
+			})
+			
+			function tab(name) { 
+				var oDome = document.getElementById(name);
+				var oSpan = oDome.getElementsByTagName('ul')[0].childNodes;
+				for(var i = 0; i < oSpan.length; i++) {
+					oSpan[i].onclick = function() {
+						for(var i = 0; i < oSpan.length; i++) {
+							oSpan[i].className = '';
+						}
+						this.className = 'set';
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>账户与安全</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link href="../css/feedback-page.css" rel="stylesheet" />
+		<script src="../js/public/zepto.min.js"></script>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">身份认证</h1>
+		</header>
+		<div class="mui-content feedback">
+			<h4>科袖郑重承诺不对外提供您的个人信息</h4>
+			<p>请上传能够证明您身份的相关证件，<br />如工作证、在职证明、学生证、在读证明等：</p>
+			<div class="content">  
+				<div style="margin-top: 10px;"></div>  
+				<input type="hidden" id="ckjl.id" name="ckjl.id" value="429">  
+				<div class="collapse-content" >  
+					<form>  
+					    <label class="row-label"></label>  
+					    <div id='F_CKJLBS' class="row image-list">  
+					        <div class="image-item " id="F_CKJLB" onclick="showActionSheet(this);"></div>  
+					    </div>  
+					</form>  
+				</div>  
+			</div>  	
+		</div>
+		<div class="mui-content-padded frmbox" style="margin-top:40px;">
+			<button class="mui-btn mui-btn-block mui-btn-outlined frmbtn" id="submit">提交认证</button>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/identity-up.js"></script>
+</body>  
+
+</html>

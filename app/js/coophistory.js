@@ -18,36 +18,64 @@ function userInformation() {
 			for(var i=0;i<data.data.data.length;i++) {
 				  var assessTime=$info[i]["assessTime"].substr(0,4) + "年" +  $info[i].assessTime.substr(4,2) + "月" +  $info[i].assessTime.substr(6,2) + "日"
 				+  $info[i].assessTime.substr(8,2)+ ":" + $info[i].assessTime.substr(10,2);
-				
-					var string='<li class="mui-table-view-cell mui-media">'
-	                string+='<a class="proinfor" href="../html/proinforbrow.html">'
-	                	string+='<div class="mui-pull-left lefthead">'
-	                	if($info[i].professor.hasHeadImage) {
-	                		string+='<img class="mui-media-object headimg headRadius" src="/images/head/'+userid+'_l.jpg">'
-	                	}else {
-	                		string+='<img class="mui-media-object headimg headRadius" src="../images/default-photo.jpg">'
-	                	}
-	                    	
-	                    	string+='<p class="listtit0">'+$info[i].professor.name+'</p>'
-	                	string+='</div>'
-	                    string+='<div class="mui-media-body">'
-	                    	string+='<div class="contit">'
-	                        	string+='<span class="mui-ellipsis listtit">关于'+$info[i].consultTitle+'的咨询</span>'
-	                        	string+='<div class="conresoult">'
-	                        		string+='<div class="levelbox">'
-						        		string+='<span class="mui-icon iconfont icon-favorfill star"></span>' 
-						        		string+='<span class="mui-icon iconfont icon-favorfill star"></span>'
-						        		string+='<span class="mui-icon iconfont icon-favorfill star"></span>'
-						        		string+='<span class="mui-icon iconfont icon-favor star"></span>'
-						        		string+='<span class="mui-icon iconfont icon-favor star"></span>'
-						        	string+='</div>'
-	                        	string+='</div>'
-	                        string+='</div>'
-	                    	string+='<p class="listtit2 conbrief">'
-	                    		if($info[i].assessContant) string+=$info[i].assessContant;
-	                    	string+='</p>'
-	                    	string+='<p class="listtit3">'+assessTime+'</p>'
-	                    string+='</div></a></li>'
+						var string = '<li class="mui-table-view-cell mui-media">'
+							string += '<a class="proinfor" >'
+							string += '<div class="mui-pull-left lefthead">'
+							if($info[i].professor.hasHeadImage) {
+								string += '<img class="mui-media-object headimg headRadius" src="/images/head/' + $info[i].professor.id + '_l.jpg">'
+							} else {
+								string += '<img class="mui-media-object headimg headRadius" src="../images/default-photo.jpg">'
+							}
+							
+							string += '<p class="listtit0">' + $info[i].professor.name + '</p>'
+							string += '</div>'
+							string += '<div class="mui-media-body">'
+							string+='<p class="listtit0"><span class="mui-ellipsis listtit">关于'+$info[i].consultTitle+'的咨询</span></p>'
+							string += '<div class="contit">'
+							string += '<span class="mui-ellipsis listtit">' + assessTime + '</span>'
+							string += '<div class="conresoult">'
+							string += '<div class="levelbox">'
+							string += '<span class="mui-icon iconfont icon-favorfill star"></span>'
+							string += '<span class="mui-icon iconfont icon-favorfill star"></span>'
+							string += '<span class="mui-icon iconfont icon-favorfill star"></span>'
+							string += '<span class="mui-icon iconfont icon-favor star"></span>'
+							string += '<span class="mui-icon iconfont icon-favor star"></span>'
+							string += '</div>'
+							string += '</div>'
+							string += '</div>'
+							string += '<p class="listtit2 conbrief">'
+							if($info[i].assessContant) string += $info[i].assessContant;
+							string += '</p>'
+							string += '</div></a></li>'
+//					var string='<li class="mui-table-view-cell mui-media">'
+//	                string+='<a class="proinfor" href="../html/proinforbrow.html">'
+//	                	string+='<div class="mui-pull-left lefthead">'
+//	                	if($info[i].professor.hasHeadImage) {
+//	                		string+='<img class="mui-media-object headimg headRadius" src="/images/head/'+$info[i].professor.id+'_l.jpg">'
+//	                	}else {
+//	                		string+='<img class="mui-media-object headimg headRadius" src="../images/default-photo.jpg">'
+//	                	}
+//	                    	
+//	                    	string+='<p class="listtit0">'+$info[i].professor.name+'</p>'
+//	                	string+='</div>'
+//	                    string+='<div class="mui-media-body">'
+//	                    	string+='<div class="contit">'
+//	                        	string+='<span class="mui-ellipsis listtit">关于'+$info[i].consultTitle+'的咨询</span>'
+//	                        	string+='<div class="conresoult">'
+//	                        		string+='<div class="levelbox">'
+//						        		string+='<span class="mui-icon iconfont icon-favorfill star"></span>' 
+//						        		string+='<span class="mui-icon iconfont icon-favorfill star"></span>'
+//						        		string+='<span class="mui-icon iconfont icon-favorfill star"></span>'
+//						        		string+='<span class="mui-icon iconfont icon-favor star"></span>'
+//						        		string+='<span class="mui-icon iconfont icon-favor star"></span>'
+//						        	string+='</div>'
+//	                        	string+='</div>'
+//	                        string+='</div>'
+//	                    	string+='<p class="listtit2 conbrief">'
+//	                    		if($info[i].assessContant) string+=$info[i].assessContant;
+//	                    	string+='</p>'
+//	                    	string+='<p class="listtit3">'+assessTime+'</p>'
+//	                    string+='</div></a></li>'
 	                    html.push(string);
 	                    var startLeval=parseInt($info[i].starLevel);
 	                var start=document.getElementsByClassName("star");

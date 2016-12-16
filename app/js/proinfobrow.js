@@ -171,7 +171,11 @@ mui.plusReady(function() {
 				var $data = data.data;
 				personalMaterial[0].innerText = $data.name;
 				//基本信息
-				document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
+				if($data.consultCount){
+					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
+				}else{
+					document.getElementById("accessHistory").style.display="none";
+				}
 				var startLeval = parseInt($data.starLevel);
 				var start = document.getElementsByClassName("start");
 				for(var i = 0; i < startLeval; i++) {
@@ -183,11 +187,26 @@ mui.plusReady(function() {
 				} else {
 					document.getElementsByClassName("headimg")[0].src = "../images/default-photo.jpg";
 				}
-				if(!$data.authentication) {
-
-					document.getElementsByClassName('icon-vip')[0].classList.remove("authicon");
-					document.getElementsByClassName('icon-vip')[0].classList.add("unauthicon");
-				}
+				if($data.authType) {
+							nameli.classList.add('icon-vip');
+							nameli.classList.add('authicon-cu');
+						} else {
+							if($data.authStatus){
+								if($data.authentication==1){
+									nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-mana');
+									nameli.innerHTML="<span>科研</span>";
+							   }else if($data.authentication==2){
+							    	nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-staff');
+									nameli.innerHTML="<span>企业</span>";
+							    }else{
+							    	nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-stu');
+									nameli.innerHTML="<span>学生</span>";
+							    }
+							}
+						}	
 				if($data.office) {
 					if($data.title) {
 						personalMaterial[1].innerText = $data.office + "，";

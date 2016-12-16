@@ -106,9 +106,9 @@ body{ color: #666666; font-size:14px;}
 .authicon-cu{color:#FF9900;}/*认证科研型专家*/
 .authicon-com{/*color:#00aaee;*/ color:#2082fb;}/*认证企业型专家*/
 /*普通用户认证标识 icon-renzheng*/
-em.icon-renzheng{border:1px solid;border-radius:8px;font-size:12px;line-height:10px;}
-em.icon-renzheng span{ font-size:10px;margin-right:4px;vertical-align:middle;}
-.authicon-mana{color:##ff9900;}/*认证在企高管*/
+em.icon-renzheng{border:1px solid;border-radius:10px;font-size:16px;line-height:14px;}
+em.icon-renzheng span{ font-size:12px;margin-right:6px;vertical-align:middle;}
+.authicon-mana{color:#ff9900;}/*认证在企高管*/
 .authicon-staff{color:#007AFF;}/*认证在企职员*/
 .authicon-stu{color:#00b38a;}/*认证在读学生*/
 
@@ -193,6 +193,7 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 /*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
 .maincon ul li.basicfrm{list-style: none; position: relative; overflow: hidden; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin-left: 2%;padding-left:0; }
 .maincon ul li.basicfrm .frmtype{ height: 26px; padding:0; padding-right:2%;line-height:20px;font-size: 14px; }
+.maincon ul li.basicfrm .authu{position:absolute;left:60%;color:burlywood}
 .maincon ul li label{ position: relative; color: #888888; line-height:30px;}
 .maincon ul li small{ color:#AAAAAA;}
 .maincon ul.set2{ display: block;}

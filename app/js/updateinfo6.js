@@ -81,7 +81,7 @@ mui.ready(function() {
 				"data" :ws.edu?JSON.stringify($data):$data,
 				"contentType" : ws.edu ? "application/json"
 						: "application/x-www-form-urlencoded",
-				"success" : function(data) {					
+				"success" : function(data) {	
 					if (data.success) 
 					{
 						var web=plus.webview.getWebviewById("proinforupdate-more.html");

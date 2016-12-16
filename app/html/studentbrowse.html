@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>		   
+		    <!--<a class="mui-icon iconfont icon-moreandroid mui-pull-right topmore"></a>-->
+		    <!--<a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
+		    	<ul class="sharebox" id="shareBox" style="display:none; color: #000000;">
+		    		<li>
+		    			<span class="mui-icon mui-icon-weixin"></span>
+		    		</li>
+		    		<li>
+		    			<span class="mui-icon mui-icon-weibo"></span>
+		    		</li>
+		    		<li>
+		    			<span class="mui-icon mui-icon-qq"></span>
+		    		</li>
+		    		
+		    	</ul>
+		    </a>-->
+		</header>
+		
+		<!--主页面底部菜单-->
+	    <nav class="mui-bar mui-bar-tab mui-clearfix footbox">
+		    <div class="dialogbtn mui-pull-left btnactive" style="background:#FF9900; color: #FFFFFF;" id="zixun">
+		    	<div>
+			    	<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
+					<span class="mui-pull-left" id="consultBtn">咨询</span>
+				</div>
+			</div>
+			<div class="attentbtn mui-pull-left" >
+				<em class="mui-iocn iconfont icon-favor" id="yesExpert"></em>
+				<em class="mui-iocn iconfont icon-favorfill" style="display:none;" id="noExpert"></em>	
+				<!--已经关注icon-favorfill-->
+			</div>
+		</nav>
+		<!-- 主页面内容容器 -->
+    	<div class="mui-content">
+    		<!-- 主界面具体展示内容 -->
+    		<div class="mui-input-group mainbox">
+				<div class="maincon personinfo">
+					<div class="headbox">
+				        <a href="javascript:;">
+				        	<img class="headimg headRadius" src="" />
+				        	<div class="listtit "><span class="personalMaterial"></span><em class="mui-icon iconfont" id="nameli"></em></div>			        
+		                    <p cauthwordlass="listtit3"><span class="personalMaterial"></span><span class="personalMaterial"></span> <span class="personalMaterial"></span></p>
+				        </a>
+			        </div>
+		        </div>
+		        <ul class="mui-table-view">
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right mui-clearfix peolevelbox " id="accessHistory">
+				        	<div class="mui-pull-left peocountbox">
+				        		<div class="peocount mui-clearfix">
+				        			<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
+				        			<span class="mui-pull-left">已完成咨询<em class="consultCount"></em>人次</span>
+				        		</div>
+				        	</div>
+				        	<div class="rightword levelbox ">
+				        		<span class="mui-icon iconfont icon-favor start"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
+				        		<span class="mui-icon iconfont icon-favor start"></span>
+				        		<span class="mui-icon iconfont icon-favor start"></span>
+				        		<span class="mui-icon iconfont icon-favor start"></span>
+				        		<span class="mui-icon iconfont icon-favor start"></span>
+				        	</div>
+				        	
+				        </a>
+				    </li>
+				</ul>
+		        
+		    </div>
+		    <div class="mui-input-group mainbox" id="professorresourceList">
+				<div class="maincon">
+			       <div class="infocontit">合作资源</div> 
+			       <div class="infocon">
+				       <ul class="mui-table-view listitembox resinfo" id="resourceList">
+				            <!--<li class="mui-table-view-cell mui-media listitem">
+				                <a class="proinfor" href="resinforbrow.html">
+				                    <img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">
+				                    <div class="mui-media-body">
+				                        <span class="listtit">资源名称</span>	
+				                        <p class="listtit2">应用用途XXXXXXX</p>
+				                    	<p class="listtit3 resbrief">
+				                    		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan
+				                    	</p>
+				                    	
+				                    </div>
+				                </a>
+				            </li>
+				            <li class="mui-table-view-cell mui-media listitem">
+				                <a class="proinfor" href="resinforbrow.html">
+				                    <img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">
+				                    <div class="mui-media-body">
+				                        <span class="listtit">资源名称</span>	
+				                        <p class="listtit2">应用用途XXXXXXX</p>
+				                    	<p class="listtit3 resbrief">
+				                    		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan
+				                    	</p>
+				                    	
+				                    </div>
+				                </a>
+				            </li>	-->
+		                </ul>    
+		              
+			       </div>
+		       </div>
+		    </div>
+		    <div class="mui-input-group mainbox" id="professorBreifinfo">
+				<div class="maincon">
+			       <div class="infocontit">个人简介</div> 
+			       <div class="infocon">
+				       	<span class="breifinfo">
+				       		 
+				        </span>
+			       </div>
+		       </div>
+		    </div>
+		    <div class="mui-input-group mainbox"id="detailProfessor">
+				<div class="maincon">
+					<a >
+						<div class="gotonext">
+							<span class="mui-pull-left">查看专家详细信息</span>
+				       		<em class="mui-iocn iconfont icon-pullright mui-pull-left"></em>
+						</div>
+					</a>
+		       </div>
+		    </div>
+        </div>
+		
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/studentbrowse.js"></script>
+	</body>
+
+</html>

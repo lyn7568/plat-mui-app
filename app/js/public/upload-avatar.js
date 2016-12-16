@@ -1,20 +1,20 @@
 /*头像上传*/
 var userimg = document.getElementById("userimg");
 var flag;
-
+var headFlag;
+var resouFlag;
 mui.plusReady(function() {
 	var ws = plus.webview.currentWebview();
 	var resourceId = ws.resourceId;
-	console.log(resourceId)
 	var web = plus.webview.getWebviewById("html/proinforupdate.html");
 	var web1 = plus.webview.getWebviewById("resinforupdate.html");
-	if(ws == web) {
-		flag = 0;
-	}
-	if(ws == web1) {
-		flag = 1;
-	}
 	userimg.addEventListener("click", function() {
+		flag = this.getAttribute("flag");
+		headF = this.getAttribute("headFlag");
+		resouF = this.getAttribute("resouFlag");
+		console.log(resouFlag)
+		console.log(headF);
+		console.log(flag);
 		if(mui.os.plus) {
 			var a = [{
 				title: "拍照"
@@ -47,13 +47,13 @@ mui.plusReady(function() {
 		var c = plus.camera.getCamera();
 		c.captureImage(function(e) {
 			plus.io.resolveLocalFileSystemURL(e, function(entry) {
-			var filPage = plus.webview.getWebviewById('../html/fillinfo.html');
-			var dyPage = plus.webview.currentWebview();
-			if(dyPage == filPage) {
-				var imgvar = '<img src="' + entry.toLocalURL() + '" style="width:100%"/>';
-				//console.log(imgvar) 
-				document.getElementById('imgshow').innerHTML = imgvar;
-			}
+				var filPage = plus.webview.getWebviewById('../html/fillinfo.html');
+				var dyPage = plus.webview.currentWebview();
+				if(dyPage == filPage) {
+					var imgvar = '<img src="' + entry.toLocalURL() + '" style="width:100%"/>';
+					//console.log(imgvar) 
+					document.getElementById('imgshow').innerHTML = imgvar;
+				}
 				mui.openWindow({
 					url: '../html/picture-upload.html',
 					id: 'html/picture-upload.html',
@@ -63,7 +63,9 @@ mui.plusReady(function() {
 					extras: {
 						imgurl: entry.toLocalURL(),
 						flag: flag,
-						resourceId: resourceId
+						resourceId: resourceId,
+						headFlag: headF,
+						resouFlag: resouF
 					}
 				});
 			}, function(e) {
@@ -107,7 +109,9 @@ mui.plusReady(function() {
 				extras: {
 					imgurl: entry.toLocalURL(),
 					flag: flag,
-					resourceId: resourceId
+					resourceId: resourceId,
+					headFlag: headF,
+					resouFlag: resouF
 				}
 			});
 		});

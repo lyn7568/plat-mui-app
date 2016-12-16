@@ -10,8 +10,10 @@ mui.ready(function() {
 	var goZixun = document.getElementById("goZixun");
 	var oEdit = document.getElementById("editbox");
 	var goFollow = document.getElementById("goFollow");
-	var userImg= document.getElementById("userImg");
+	var userImg = document.getElementById("userImg");
+	var nameli = document.getElementById("nameli");
 	
+	var oFlag;
 	mui.plusReady(function() {
 
 		var userId = plus.storage.getItem('userid');
@@ -24,7 +26,7 @@ mui.ready(function() {
 
 		/*登录按钮*/
 		goLogin.addEventListener('tap', function() {
-			goLoginFun();
+			goLoginFun(); 
 		})
 
 		/*注册按钮*/
@@ -40,9 +42,10 @@ mui.ready(function() {
 			userInformation();
 		});
 		//在修改上传图片触发的事件
-		window.addEventListener('photoUser', function(event) {			
+		window.addEventListener('photoUser', function(event) {
 			userInformation();
 		});
+
 		function loginStatus() {
 			console.log(userId);
 			if(userId && userId != "null" && userId != null) {
@@ -72,19 +75,43 @@ mui.ready(function() {
 					});
 				})
 
-				/*我的修改*/
+				/*我的修改专家*/
 				oEdit.addEventListener('tap', function() {
-					mui.openWindow({
-						url: '../html/proinforupdate.html',
-						id: 'html/proinforupdate.html',
-						show: {
-							autoShow: false,
-							aniShow: "slide-in-left"
-						},
+					if(oFlag == 1) {
+						mui.openWindow({
+							url: '../html/proinforupdate.html',
+							id: 'html/proinforupdate.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-left"
+							},
 
-					});
+						});
+					} else if(oFlag == 2) {
+						/*我的修改企业工作者*/
+						mui.openWindow({
+							url: '../html/companyUpdata.html',
+							id: 'html/companyUpdata.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-left"
+							},
+
+						});
+					} else if(oFlag == 3) {
+						/*我的修改学生*/
+						mui.openWindow({
+							url: '../html/studentUpdata.html',
+							id: 'html/studentUpdata.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-left"
+							},
+
+						});
+					}
 				})
-				
+
 				/*我的历史和评价*/
 				goZixun.addEventListener('tap', function() {
 					mui.openWindow({
@@ -108,15 +135,14 @@ mui.ready(function() {
 		}
 
 		function userInformation() {
-			console.log(userId);
 			mui.ajax(baseUrl + "/ajax/professor/editBaseInfo/" + userId, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
-				async:false,
-				success: function(data) {
-					
-					var $info = data.data || {}
+				async: false,
+				success: function(data) {					
+					var $info = data.data || {};
+					oFlag = $info.authentication;					
 					if(data.success && data.data) {
 						document.getElementById("userName").innerText = $info.name || '';
 						var userTitle = document.getElementById("userTitle");
@@ -125,14 +151,14 @@ mui.ready(function() {
 						var userMechanism = document.getElementById("userMechanism");
 						var userCity = document.getElementById("userCity");
 						var zixunOk = document.getElementById("zixunOk");
-					
-						($info.title != '') ? userTitle.innerText = $info.title : userTitle.innerText = '';
-						($info.office != '') ? userPosition.innerText = " , " +  $info.office  : userPosition.innerText = '';
-						($info.department != '') ? userDepartment.innerText = $info.department : userDepartment.innerText = '';
-						($info.orgName != '') ? userMechanism.innerText = " , " +  $info.orgName  : userMechanism.innerText = '';
-						($info.address != '') ? userCity.innerText = " | " +  $info.address  : userCity.innerText = '';
-						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount  : zixunOk.innerText = '0';
-						
+
+						($info.title) ? userTitle.innerText = $info.title: userTitle.innerText = '';
+						($info.office) ? userPosition.innerText = " , " + $info.office: userPosition.innerText = '';
+						($info.department != '') ? userDepartment.innerText = $info.department: userDepartment.innerText = '';
+						($info.orgName != '') ? userMechanism.innerText = " , " + $info.orgName: userMechanism.innerText = '';
+						($info.address != '') ? userCity.innerText = " | " + $info.address: userCity.innerText = '';
+						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount: zixunOk.innerText = '0';
+
 						var startLeval = parseInt($info.starLevel);
 						var start = document.getElementsByClassName("star");
 						for(var i = 0; i < startLeval; i++) {
@@ -140,16 +166,33 @@ mui.ready(function() {
 							start[i].classList.remove("icon-favor");
 						}
 						if($info.hasHeadImage == 1) {
-							userImg.setAttribute("src",baseUrl + "/images/head/" + $info.id + "_l.jpg");
+							userImg.setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg");
 						} else {
-							userImg.setAttribute("src", baseUrl +  "/images/default-photo.jpg");
+							userImg.setAttribute("src", baseUrl + "/images/default-photo.jpg");
 						}
-						if($info.authentication) {
-							document.querySelector('.authicon').style.display = "inline";
+console.log(JSON.stringify(nameli.classList));
+						if($info.authType) {
+							nameli.classList.add('icon-vip');
+							nameli.classList.add('authicon-cu');
 						} else {
-							document.querySelector('.unauthicon').style.display = "inline";
+							if($info.authStatus){
+								if($info.authentication==1){
+									nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-mana');
+									nameli.innerHTML="<span>科研</span>";
+							   }else if($info.authentication==2){
+							    	nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-staff');
+									nameli.innerHTML="<span>企业</span>";
+							    }else{
+							    	alert(3);
+							    	nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-stu');
+									nameli.innerHTML="<span>学生</span>";
+							    }
+							}
 						}
-							
+
 					}
 				},
 				error: function() {
@@ -162,5 +205,3 @@ mui.ready(function() {
 	});
 
 });
-
-

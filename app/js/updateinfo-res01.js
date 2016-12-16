@@ -2,6 +2,7 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
+		console.log(ws.reFlag)
 		var oDt = document.getElementsByClassName("frmtype");
 		var service = document.getElementsByClassName("textareabox");
 
@@ -60,9 +61,23 @@ mui.ready(function() {
 							var web = plus.webview.getWebviewById("resinforupdate.html");
 							mui.fire(web, "resourceMess");
 							mui.back();
-							var web1 = plus.webview.getWebviewById("html/proinforupdate.html"); 
-							mui.fire(web1,"newId",{rd:1});  
-							
+							if(ws.reFlag == 0) {
+								var web1 = plus.webview.getWebviewById("html/proinforupdate.html");
+								mui.fire(web1, "newId", {
+									rd: 1
+								});
+							} else if(ws.reFlag == 1) {
+								var web2 = plus.webview.getWebviewById("html/companyUpdata.html");
+								mui.fire(web2, "newId", {
+									rd: 1
+								});
+							} else if(ws.reFlag == 2) {
+								var web2 = plus.webview.getWebviewById("html/studentUpdata.html");
+								mui.fire(web2, "newId", {
+									rd: 1
+								});
+							}
+
 						} else {
 							plus.nativeUI.toast("服务器链接超时", toastStyle);
 							return;
@@ -77,13 +92,28 @@ mui.ready(function() {
 					"data": $data,
 					"success": function(data) {
 						var y = JSON.stringify(data)
-						if(data.success) {							
+						if(data.success) {
 							var id = data.data;
 							plus.nativeUI.showWaiting();
-							var web2 = plus.webview.getWebviewById("html/proinforupdate.html"); 
-							mui.fire(web2,"newId",{rd:1});
+							if(ws.reFlag == 0) {
+								var web2 = plus.webview.getWebviewById("html/proinforupdate.html");
+								mui.fire(web2, "newId", {
+									rd: 1
+								});
+							} else if(ws.reFlag == 1) {
+								var web2 = plus.webview.getWebviewById("html/companyUpdata.html");
+								mui.fire(web2, "newId", {
+									rd: 1
+								});
+							} else if(ws.reFlag == 2) {
+								var web2 = plus.webview.getWebviewById("html/studentUpdata.html");
+								mui.fire(web2, "newId", {
+									rd: 1
+								});
+							}
 							var web = plus.webview.create("../html/resinforupdate.html", "resinforupdate.html", {}, {
-								resourceId: id
+								resourceId: id,
+								reFlag: ws.reFlag
 							}); //后台创建webview并打开show.html   	    	
 							web.addEventListener("loaded", function() {}, false);
 						} else {

@@ -6,21 +6,19 @@ mui.ready(function() {
 		var oDt = document.getElementsByClassName("frmtype");
 		var dataProvince = document.getElementById("data-province");
 		var dataAddress = document.getElementById("data-address");
-		var oAddress = document.getElementById("addressa");
+		var oAddress = document.getElementById("addressa")
 		var telePhone = document.getElementById("telePhone");
 		var mail = document.getElementById("mail");
 		var authu = document.getElementsByClassName("authu");
 		var authStatus;
 		var name;
 		var org;
-
 		function personalMessage() {
 			mui.ajax(baseUrl + "/ajax/professor/info/" + userid, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
 				success: function(data) {
-					console.log(JSON.stringify(data))
 					plus.nativeUI.closeWaiting();; //新webview的载入完毕后关闭等待框
 					ws.show("slide-in-right", 150);
 					var $data = data.data;
@@ -36,8 +34,6 @@ mui.ready(function() {
 					oDt[0].value = $data.name
 					oDt[1].value = $data.orgName;
 					oDt[2].value = $data.department;
-					oDt[3].value = $data.office;
-					oDt[4].value = $data.title;
 					oAddress.innerText = $data.province + " " + $data.address;
 					dataProvince.value = $data.province;
 					dataAddress.value = $data.address;
@@ -70,11 +66,11 @@ mui.ready(function() {
 		});
 		oDt[1].addEventListener("focus", function() {
 			if(authStatus == 1) {
-				plus.nativeUI.toast("修改所在机构后，身份认证失效，需重新认证");
+				plus.nativeUI.toast("修改所在高校后，身份认证失效，需重新认证");
 			} else {
 				var length = trim(oDt[1].value);
 				if(!length)
-					plus.nativeUI.toast("所在机构不能为空");
+					plus.nativeUI.toast("所在高校不能为空");
 			}
 
 		});
@@ -111,14 +107,11 @@ mui.ready(function() {
 				}
 			})
 		}
-
 		function savePro() {
 			var mess = {};
 			mess.name = oDt[0].value;
 			mess.orgName = oDt[1].value;
 			mess.department = oDt[2].value;
-			mess.office = oDt[3].value;
-			mess.title = oDt[4].value;
 			mess.province = dataProvince.value;
 			mess.address = dataAddress.value;
 			mess.email = trim(mail.value);
@@ -133,17 +126,18 @@ mui.ready(function() {
 				"contentType": "application/json",
 				"success": function(data) {
 					if(data.success) {
-						var web = plus.webview.getWebviewById("html/proinforupdate.html");
+						
+						var web = plus.webview.getWebviewById("html/studentUpdata.html");
 						mui.fire(web, "newId");
-						var web3 = plus.webview.getWebviewById("html/myaccount.html");
-						mui.fire(web3, "photoUser");
+//						var web3 = plus.webview.getWebviewById("html/myaccount.html");
+//						mui.fire(web3, "photoUser");
 						mui.back();
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 						return;
 					}
 				}
-			});
+			});			
 		}
 		/*校验手机号*/
 		function phoneVal() {
@@ -183,13 +177,14 @@ mui.ready(function() {
 			var length1 = trim(oDt[0].value);
 			var length2 = trim(oDt[1].value);
 			if(length1 && length2) {
+				plus.nativeUI.showWaiting();
 				savePro();
 			} else if(!length1 && length2) {
 				plus.nativeUI.toast("姓名不能为空");
 			} else if(length1 && !length2) {
-				plus.nativeUI.toast("所在机构不能为空");
+				plus.nativeUI.toast("所在高校不能为空");
 			} else if(!length1 && !length2) {
-				plus.nativeUI.toast("姓名不能为空&&所在机构不能为空");
+				plus.nativeUI.toast("姓名不能为空&&所在高校不能为空");
 			}
 		}
 		document.getElementsByClassName("topsave")[0].addEventListener("click", function() {
@@ -200,7 +195,7 @@ mui.ready(function() {
 						upStatus();
 						save();
 					}
-				}, "修改姓名或所在机构后，身份认证失效，需重新认证", ["确认", "取消"]);
+				}, "修改姓名或所在高校后，身份认证失效，需重新认证", ["确认", "取消"]);
 			} else {
 				save();
 			}
@@ -208,4 +203,4 @@ mui.ready(function() {
 		});
 		personalMessage();
 	});
-})
+})              

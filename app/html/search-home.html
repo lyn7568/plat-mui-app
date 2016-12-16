@@ -24,7 +24,7 @@
 				</div>
 	        	<em class="mui-icon mui-icon-arrowdown"></em>
 		    </div>
-		    <input type="text" class="mui-input-clear mui-pull-right searchtxt2" placeholder="搜索专家、设备资源" id="searchval">
+		    <input type="text" class="mui-input-clear mui-pull-right searchtxt2" placeholder="输入专家姓名、研究方向等关键字" id="searchval">
         </div>
 	</header>
 	
@@ -82,6 +82,12 @@
 			//console.log(bigClass)
 			selectblock.innerHTML = this.innerHTML;
 			showblock.style.display = 'none';
+			if(bigClass==1){
+				searchVal.setAttribute("placeholder","输入专家姓名、研究方向等关键字");
+			}else{
+				searchVal.setAttribute("placeholder","输入资源名称、应用用途等关键字");
+			}
+			
 		});
 		
 		/*点击热门搜索*/

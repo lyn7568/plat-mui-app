@@ -104,6 +104,11 @@ selectblock.addEventListener('tap', function() {
 mui("#li_show").on('tap', 'li', function() {
 	pageNo = 1
 	bigClass = this.getAttribute("data-num");
+	if(bigClass==1){
+		searchVal.setAttribute("placeholder","输入专家姓名、研究方向等关键字");
+	}else{
+		searchVal.setAttribute("placeholder","输入资源名称、应用用途等关键字");
+	}
 	selectblock.innerHTML = this.innerHTML;
 	showblock.style.display = 'none';
 	plus.nativeUI.showWaiting();

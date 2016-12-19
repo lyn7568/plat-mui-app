@@ -58,6 +58,7 @@ mui.ready(function() {
 					"success": function(data) {
 						var y = JSON.stringify(data)
 						if(data.success) {
+							plus.nativeUI.showWaiting();
 							var web = plus.webview.getWebviewById("resinforupdate.html");
 							mui.fire(web, "resourceMess");
 							mui.back();

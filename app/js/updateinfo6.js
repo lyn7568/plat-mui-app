@@ -81,9 +81,9 @@ mui.ready(function() {
 				"data" :ws.edu?JSON.stringify($data):$data,
 				"contentType" : ws.edu ? "application/json"
 						: "application/x-www-form-urlencoded",
-				"success" : function(data) {	
+				"success" : function(data) {
 					if (data.success) 
-					{
+					{  plus.nativeUI.showWaiting();
 						var web=plus.webview.getWebviewById("proinforupdate-more.html");
 						mui.fire(web,"newId");						
 						mui.back();
@@ -117,6 +117,7 @@ mui.ready(function() {
 					"type" : "DELETE",
 					"success" : function($data) {
 						if ($data.success) {
+							 plus.nativeUI.showWaiting();
 							var web=plus.webview.getWebviewById("proinforupdate-more.html");
 							mui.fire(web,"newId");						
 							mui.back();

@@ -84,6 +84,7 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
+						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("resinforupdate.html");
 						mui.fire(web, "resourceMess");
 						mui.back();

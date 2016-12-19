@@ -193,7 +193,7 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 /*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
 .maincon ul li.basicfrm{list-style: none; position: relative; overflow: hidden; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin-left: 2%;padding-left:0; }
 .maincon ul li.basicfrm .frmtype{ height: 26px; padding:0; padding-right:2%;line-height:20px;font-size: 14px; }
-.maincon ul li.basicfrm .authu{position:absolute;left:60%;color:burlywood}
+.maincon ul li.basicfrm .authu{position:absolute;left:80%;color:burlywood}
 .maincon ul li label{ position: relative; color: #888888; line-height:30px;}
 .maincon ul li small{ color:#AAAAAA;}
 .maincon ul.set2{ display: block;}
@@ -261,7 +261,7 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 .resinfo.mui-table-view .mui-table-view-cell:after{right: 0;bottom: 0;left: -10px;background: none;}
 
 .listbox{ margin:5px 0;max-width:100%; overflow:hidden;}
-.listbrowse{border: 1px solid #FF9900; border-radius: 0 6px 6px 0; text-align:center;font-size:13px;line-height:26px; float:left;padding-right: 8px; max-width:40%; overflow:hidden;}
+.listbrowse{border: 1px solid #FF9900; border-radius: 0 6px 6px 0; text-align:center;font-size:13px;line-height:26px; float:left;padding-right: 8px; max-width:60%; overflow:hidden;}
 /*.plusbtn{ float:left;width:22px; height:22px; background:url(../images/zan.png) no-repeat center center; background-size:100% 100% ; margin-left:4px; margin-top:2px;  }*/
 .plusbtn{ font-size:20px; line-height: 22px; color:#999999;margin-left:4px; margin-top:2px;  }
 .plusbtn.icon-appreciatefill{color:#FF9900;}

@@ -130,9 +130,12 @@ mui.ready(function() {
 				"contentType": "application/json",
 				"success": function(data) {
 					if(data.success) {
+						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById('html/companyUpdata.html');
 						mui.fire(web, "newId");
 						mui.back();
+						var web3 = plus.webview.getWebviewById("html/myaccount.html");
+						mui.fire(web3, "photoUser");
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 						return;

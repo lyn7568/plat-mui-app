@@ -125,13 +125,13 @@ mui.ready(function() {
 				"data": mess1,
 				"contentType": "application/json",
 				"success": function(data) {
-					if(data.success) {
-						
+					if(data.success) {	
+						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("html/studentUpdata.html");
 						mui.fire(web, "newId");
-//						var web3 = plus.webview.getWebviewById("html/myaccount.html");
-//						mui.fire(web3, "photoUser");
 						mui.back();
+						var web3 = plus.webview.getWebviewById("html/myaccount.html");
+						mui.fire(web3, "photoUser");						
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 						return;

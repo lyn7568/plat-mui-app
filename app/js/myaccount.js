@@ -12,7 +12,7 @@ mui.ready(function() {
 	var goFollow = document.getElementById("goFollow");
 	var userImg = document.getElementById("userImg");
 	var nameli = document.getElementById("nameli");
-	
+	var infobasic = document.getElementsByClassName("infobasic")[0];
 	var oFlag;
 	mui.plusReady(function() {
 
@@ -26,7 +26,7 @@ mui.ready(function() {
 
 		/*登录按钮*/
 		goLogin.addEventListener('tap', function() {
-			goLoginFun(); 
+			goLoginFun();
 		})
 
 		/*注册按钮*/
@@ -43,13 +43,13 @@ mui.ready(function() {
 		});
 		//在修改上传图片触发的事件
 		window.addEventListener('photoUser', function(event) {
-		console.log(JSON.stringify(nameli.classList));
-		for(var i=0;i<nameli.classList.length;i++){
-			if((nameli.classList[i]!="mui-icon")&&(nameli.classList[i]!="iconfont")){
-				nameli.classList.remove(nameli.classList[i]);
+			console.log(JSON.stringify(nameli.classList));
+			for(var i = 0; i < nameli.classList.length; i++) {
+				if((nameli.classList[i] != "mui-icon") && (nameli.classList[i] != "iconfont")) {
+					nameli.classList.remove(nameli.classList[i]);
+				}
 			}
-		}
-			nameli.innerHTML="";
+			nameli.innerHTML = "";
 			userInformation();
 		});
 
@@ -83,6 +83,41 @@ mui.ready(function() {
 				})
 
 				/*我的修改专家*/
+				infobasic.addEventListener('tap', function() {
+					if(oFlag == 1) {
+						mui.openWindow({
+							url: '../html/proinforupdate.html',
+							id: 'html/proinforupdate.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-left"
+							},
+
+						});
+					} else if(oFlag == 2) {
+						/*我的修改企业工作者*/
+						mui.openWindow({
+							url: '../html/companyUpdata.html',
+							id: 'html/companyUpdata.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-left"
+							},
+
+						});
+					} else if(oFlag == 3) {
+						/*我的修改学生*/
+						mui.openWindow({
+							url: '../html/studentUpdata.html',
+							id: 'html/studentUpdata.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-left"
+							},
+
+						});
+					}
+				})
 				oEdit.addEventListener('tap', function() {
 					if(oFlag == 1) {
 						mui.openWindow({
@@ -147,10 +182,11 @@ mui.ready(function() {
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
 				async: false,
-				success: function(data) {					
+				success: function(data) {
 					var $info = data.data || {};
-					oFlag = $info.authentication;					
-					if(data.success && data.data) { 
+					oFlag = $info.authentication;
+					console.log(oFlag)
+					if(data.success && data.data) {
 						document.getElementById("userName").innerText = $info.name || '';
 						var userTitle = document.getElementById("userTitle");
 						var userPosition = document.getElementById("userPosition");
@@ -158,12 +194,34 @@ mui.ready(function() {
 						var userMechanism = document.getElementById("userMechanism");
 						var userCity = document.getElementById("userCity");
 						var zixunOk = document.getElementById("zixunOk");
+						if($info.title) {
+							if($info.office) {
+								userTitle.innerText = $info.title + "，"
+							} else {
+								userTitle.innerText = $info.title
+							}
 
-						($info.title) ? userTitle.innerText = $info.title: userTitle.innerText = '';
-						($info.office) ? userPosition.innerText = " , " + $info.office: userPosition.innerText = '';
-						($info.department != '') ? userDepartment.innerText = $info.department: userDepartment.innerText = '';
-						($info.orgName != '') ? userMechanism.innerText = " , " + $info.orgName: userMechanism.innerText = '';
-						($info.address != '') ? userCity.innerText = " | " + $info.address: userCity.innerText = '';
+						}
+						($info.office) ? userPosition.innerText =$info.office: userPosition.innerText = '';
+						if($info.department) {
+							if($info.orgName) {
+								userDepartment.innerText=$info.department+"，"
+							}else{
+								if($info.address){
+									userDepartment.innerText=$info.department+"|"
+								}else{
+									userDepartment.innerText=$info.department;
+								}
+							}
+						}
+						if($info.orgName) {
+							if($info.address){
+									userMechanism.innerText=$info.orgName+"|"
+								}else{
+									userMechanism.innerText=$info.orgName;
+								}
+						}
+						($info.address != '') ? userCity.innerText =$info.address: userCity.innerText = '';
 						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount: zixunOk.innerText = '0';
 
 						var startLeval = parseInt($info.starLevel);
@@ -181,20 +239,20 @@ mui.ready(function() {
 							nameli.classList.add('icon-vip');
 							nameli.classList.add('authicon-cu');
 						} else {
-							if($info.authStatus){
-								if($info.authentication==1){
+							if($info.authStatus) {
+								if($info.authentication == 1) {
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-mana');
-									nameli.innerHTML="<span>科研</span>";
-							   }else if($info.authentication==2){
-							    	nameli.classList.add('icon-renzheng');
+									nameli.innerHTML = "<span>科研</span>";
+								} else if($info.authentication == 2) {
+									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-staff');
-									nameli.innerHTML="<span>企业</span>";
-							   }else{
-							    	nameli.classList.add('icon-renzheng');
+									nameli.innerHTML = "<span>企业</span>";
+								} else {
+									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-stu');
-									nameli.innerHTML="<span>学生</span>";
-							    }
+									nameli.innerHTML = "<span>学生</span>";
+								}
 							}
 						}
 

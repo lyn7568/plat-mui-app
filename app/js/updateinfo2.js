@@ -19,17 +19,20 @@ mui.ready(function() {
 					console.log(ws.flag);
 					if(data.success) {
 						if(ws.flag == 1) {
-							ws.close();
+							plus.nativeUI.showWaiting();
 							var web = plus.webview.getWebviewById("html/companyUpdata.html");
 							mui.fire(web, "newId");
+							mui.back();
 						} else if(ws.flag == 2) {
-							ws.close();
+							plus.nativeUI.showWaiting();
 							var web = plus.webview.getWebviewById("html/proinforupdate.html");
 							mui.fire(web, "newId");
+							mui.back();
 						} else if(ws.flag == 0) {
-							ws.close();
+							plus.nativeUI.showWaiting();
 							var web = plus.webview.getWebviewById("html/studentUpdata.html");
 							mui.fire(web, "newId");
+							mui.back();
 						}
 
 					}

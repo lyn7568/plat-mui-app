@@ -77,7 +77,8 @@ mui.ready(function() {
 				type: 'POST', //http请求类型
 				timeout: 10000, //超时设置
 				success: function(data) {				
-					if(data.success) {						
+					if(data.success) {	
+						plus.nativeUI.showWaiting();
 						var web=plus.webview.getWebviewById("html/proinforupdate.html");
 						mui.fire(web,"newId");
 						mui.back();					

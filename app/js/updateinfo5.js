@@ -79,7 +79,7 @@ mui.ready(function() {
 				success: function(data) {
 					console.log(data.success);
 					if(data.success) {
-						
+						plus.nativeUI.showWaiting();
 						var web=plus.webview.getWebviewById("html/proinforupdate.html");
 						mui.fire(web,"newId");						
 						mui.back();						

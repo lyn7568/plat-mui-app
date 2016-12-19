@@ -43,6 +43,13 @@ mui.ready(function() {
 		});
 		//在修改上传图片触发的事件
 		window.addEventListener('photoUser', function(event) {
+		console.log(JSON.stringify(nameli.classList));
+		for(var i=0;i<nameli.classList.length;i++){
+			if((nameli.classList[i]!="mui-icon")&&(nameli.classList[i]!="iconfont")){
+				nameli.classList.remove(nameli.classList[i]);
+			}
+		}
+			nameli.innerHTML="";
 			userInformation();
 		});
 
@@ -143,7 +150,7 @@ mui.ready(function() {
 				success: function(data) {					
 					var $info = data.data || {};
 					oFlag = $info.authentication;					
-					if(data.success && data.data) {
+					if(data.success && data.data) { 
 						document.getElementById("userName").innerText = $info.name || '';
 						var userTitle = document.getElementById("userTitle");
 						var userPosition = document.getElementById("userPosition");
@@ -170,7 +177,6 @@ mui.ready(function() {
 						} else {
 							userImg.setAttribute("src", baseUrl + "/images/default-photo.jpg");
 						}
-console.log(JSON.stringify(nameli.classList));
 						if($info.authType) {
 							nameli.classList.add('icon-vip');
 							nameli.classList.add('authicon-cu');
@@ -184,8 +190,7 @@ console.log(JSON.stringify(nameli.classList));
 							    	nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-staff');
 									nameli.innerHTML="<span>企业</span>";
-							    }else{
-							    	alert(3);
+							   }else{
 							    	nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-stu');
 									nameli.innerHTML="<span>学生</span>";

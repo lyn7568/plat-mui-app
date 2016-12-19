@@ -246,7 +246,7 @@ mui.ready(function() {
 			
 			var consultList = plus.webview.getWebviewById('html/consultlist.html');
 //			console.log(consultId)
-			consultList.show();
+//			consultList.show();
 			mui.fire(consultList,'backlist',{'consultId':consultId,'status':status}); 
 	
 		});

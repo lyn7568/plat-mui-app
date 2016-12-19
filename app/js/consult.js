@@ -1,6 +1,6 @@
 /*是否登录，要显示的，mui-content*/
-var  content1 = document.querySelectorAll('.mui-content')[0];
-var  content2 = document.querySelectorAll('.mui-content')[1];
+var  content1 = document.getElementById('logined');
+var  content2 = document.getElementById('unlogin');
 
 var pageIndex = 1; // 页数
 var allPages = 1; // 总页数
@@ -85,13 +85,13 @@ mui.plusReady(function() {
 mui.init({
     pullRefresh: {
     	container: '#zixunpullrefresh',
-    	/*down: {
+    	down: {
         	auto: true,
 		    contentdown : "下拉可以刷新",
 		    contentover : "释放立即刷新",
 		    contentrefresh : "正在刷新...",
             callback: pulldownRefresh
-       },*/
+       },
         up: {
             contentrefresh: '正在加载...',
             callback: pullupRefresh
@@ -104,6 +104,8 @@ mui.init({
 function pulldownRefresh() {
     pageIndex = 1;
     console.log('下拉刷新');
+    /*document.querySelector('header.mui-bar').style.display='none';
+    document.querySelector('.filterdiv').style.display='none';*/
     //table.innerHTML = '';
     setTimeout(function() {
         getaData();
@@ -117,6 +119,7 @@ function pullupRefresh() {
     pageIndex = ++pageIndex;
     console.log('第'+pageIndex+'页');
     console.log('上拉加载更多');
+    
     setTimeout(function() {
         getaData();
     }, 1000);
@@ -201,6 +204,11 @@ function getaData() {
                    
                     if (allPages == 1) { //下拉刷新需要先清空数据
                         table.innerHTML = '';// 在这里清空可以防止刷新时白屏
+                    }
+                    if(pageIndex == 1){
+                    	table.innerHTML = '';
+                    	/*document.querySelector('header.mui-bar').style.display='block';
+    					document.querySelector('.filterdiv').style.display='block';*/
                     }
                     
                     eachData(userid,datalist);
@@ -384,13 +392,10 @@ window.addEventListener('backlist',function(event){
 	});
 	
 function eachData(userid,datalist) {
+	
 	/*表格填充数据 mui.each是异步的*/
     mui.each(datalist, function(index, item) {
     	var title,
-			zhicehng,
-			zhiwei,
-			orgName,
-			address,
 			lastReply,
 			status,
 			statusStyle,
@@ -402,7 +407,10 @@ function eachData(userid,datalist) {
 			photoUrl,
 			consultType,
 			chatlength;
-			
+		
+		//过滤professor为空
+		if(item["professor"]){
+		
 		chatlength = isChat(item['consultId'],userid);//判断对方是否有发出消息
 		if(chatlength == 0){
 			title =  item["consultTitle"];	
@@ -434,49 +442,9 @@ function eachData(userid,datalist) {
 			}
 		};
 		
-		if(item["professor"] == undefined){
-			return ;
-		}
 		
 		(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
 		(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
-		
-		/*if(item["professor"]["title"] == undefined || item["professor"]["title"] == null || item["professor"]["title"] == ''){
-			zhicehng = '';
-		}else {
-			zhicehng = item["professor"]["title"];
-		}
-		if(item["professor"]["office"] == undefined || item["professor"]["office"] == null || item["professor"]["office"] == ''){
-			zhiwei = '';
-		}else {
-			if(zhicehng != ''){
-				zhiwei = ', '+item["professor"]["office"];
-			}else{
-				zhiwei = item["professor"]["office"];
-			}
-		}
-		if(item["professor"]["orgName"] == undefined || item["professor"]["orgName"] == null || item["professor"]["orgName"] == ''){
-			orgName = '';
-		}else {
-			if(zhicehng != '' || zhiwei != ''){
-				orgName = ', '+item["professor"]["orgName"];
-			}else {
-				orgName = item["professor"]["orgName"];
-			}
-		}
-		if(item["professor"]["address"] == undefined || item["professor"]["address"] == null || item["professor"]["address"] == ''){
-			address = '';
-		}else {
-			if(zhicehng != '' || zhiwei != '' || orgName !=''){
-				address = ' | ' + item["professor"]["address"];
-			}else {
-				address = item["professor"]["address"];
-			}
-		}*/
-		
-		
-		
-		
 		
 		//咨询类型，只取两个字
 		if(item["consultType"]) {
@@ -526,22 +494,8 @@ function eachData(userid,datalist) {
         str +='</p><p class="listtit3 onlyone">'+lastReplyCon+'</p></div></a>';
         
 		li.innerHTML = str;
-		
-		
-        /*li.innerHTML = '<div class="coutopicbox">'
-            		+ '<span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>'
-            		+ '<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>'
-            		+ '<span class="'+statusStyle+' status" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
-            		+ '<a class="proinfor itemBtn" consultId="'+item["consultId"]+'" consultantId="'+item["consultantId"]+'" >'
-					+ '<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item["consultId"]+'">'+unreadCount+'</span>'
-	        		+ '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">'
-            		+ '<div class="mui-media-body">'
-            		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>'	
-            		+ '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+orgName+'</span><span>'+address+'</span></p>'
-            		+ '<p class="listtit3 onlyone">'+lastReplyCon+'</p>'
-            		+ '</div></a>';*/
-            		
         table.appendChild(li,table.firstChild);
+       }
     });
 	
 };

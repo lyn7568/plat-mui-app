@@ -12,15 +12,49 @@ var ostateval = document.getElementById("stateval");//咨询状态
 var osortval = document.getElementById("sortval");//时间排序
 
 
+
+
+//判断是否登录,点击咨询,显示数据或登录，
+//点击咨询还要刷新数据
+//ohasconsult.addEventListener('tap',function(){
+/*mui('#hasconsult').on('tap','.mui-icon',function(){
+	console.log('点击咨询')
+	islogin();
+	//初始化数据
+	pulldownRefresh();
+});*/
+
+//显示数据还是登录
+function islogin() {
+	mui.plusReady(function(){
+		var userid = plus.storage.getItem('userid');
+		console.log('点击咨询,判断是否登录id=='+ userid);
+		if(userid == null || userid == 'null'){
+   			content1.style.display = 'none';
+   		}else {
+   			content2.style.display = 'none';
+   		}
+   		
+   		if(plus.nativeUI.showWaiting()){
+			plus.nativeUI.closeWaiting();//关闭等待框
+		}
+		
+	})
+}
+
+
 /*登陆*/
 window.addEventListener('logined', function(event) {
 	var userId = event.detail.id; 
 	content1.style.display = 'block';
 	content2.style.display = 'none';
-	initdata();
+//	initdata();
+	pulldownRefresh();
+	
 	if(plus.nativeUI.showWaiting()){
-		console.log("showWaiting")
+		
 		plus.nativeUI.closeWaiting();//关闭等待框
+		mui('#zixunpullrefresh').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
 	}
 });
 
@@ -30,6 +64,8 @@ window.addEventListener('exited', function(event) {
 	content1.style.display = 'none';
 	content2.style.display = 'block';
 });
+
+//显示登录,登陆或者注册
 mui.plusReady(function() {
 	var regBtn = document.getElementById("regBtn");
 	var logBtn = document.getElementById("logBtn");
@@ -60,235 +96,105 @@ mui.plusReady(function() {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-mui.plusReady(function() {
-	var self = plus.webview.currentWebview();
-	console.log('当前咨询列表页id==='+self.id);
-})
-
-mui.init({
-    pullRefresh: {
-    	container: '#zixunpullrefresh',
-    	down: {
-        	auto: true,
-		    contentdown : "下拉可以刷新",
-		    contentover : "释放立即刷新",
-		    contentrefresh : "正在刷新...",
-            callback: pulldownRefresh
-       },
-        up: {
-            contentrefresh: '正在加载...',
-            callback: pullupRefresh
-        }
-    }
+//接收咨询btn
+window.addEventListener('clickconbtn', function(event) {
+	var consultBtn = event.detail.btn; 
+	console.log(consultBtn);
+	console.log('点击咨询');
+	islogin();
+	pulldownRefresh();
 });
- /**
- * 下拉刷新具体业务实现
- */
-function pulldownRefresh() {
-    pageIndex = 1;
-    console.log('下拉刷新');
-    /*document.querySelector('header.mui-bar').style.display='none';
-    document.querySelector('.filterdiv').style.display='none';*/
-    //table.innerHTML = '';
-    setTimeout(function() {
-        getaData();
-        mui('#zixunpullrefresh').pullRefresh().endPulldownToRefresh();
-        mui('#zixunpullrefresh').pullRefresh().refresh(true);
-    }, 1000);
+
+
+
+
+
+/*初始化数据*/
+pulldownRefresh();
+
+//数据滚动
+mui('.mui-scroll-wrapper').scroll({
+	scrollY: true, //是否竖向滚动
+	deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+});
+
+
+//筛选条件不动，下拉刷新
+mui.ready(function(){
+	mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+		
+		mui(pullRefreshEl).pullToRefresh({
+			down: {
+				callback: function() {
+					var self = this;
+					setTimeout(function() {
+						
+						pulldownRefresh();//下拉刷新
+						
+						self.endPullDownToRefresh();
+					}, 1000);
+				}
+			}
+		});
+	});
+	
+});
+
+
+
+
+/*下拉刷新*/
+function pulldownRefresh(){
+	console.log('下拉刷新');
+	mui.plusReady(function() { 
+		var userid = plus.storage.getItem('userid');
+//		var waitingDialog = plus.nativeUI.showWaiting("加载中");
+		
+		plus.nativeUI.showWaiting();
+		
+		pageIndex = 1;
+		mui.ajax(baseUrl + '/ajax/consult/pq',{
+			data:{
+				"professorId":userid,
+			    "consultOrNeed":oneedval.value , 
+			    "consultType":otypeval.value, 
+			    "status":ostateval.value, 
+			    "timeType":osortval.value, 
+			    "pageSize":200, 
+			    "pageNo":1 
+			},
+			dataType:'json',//服务器返回json格式数据
+			type:'get',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
+			success:function(data){
+				if (data.success) {
+					
+					if(pageIndex == 1){
+                    	table.innerHTML = '';//下拉刷新，清空数据
+                    	var datalist = data.data.data;
+						eachData(userid,datalist);
+//              		waitingDialog.close(); 
+                		plus.nativeUI.closeWaiting();
+                    }
+					
+				};
+				
+			},
+			error:function(xhr,type,errorThrown){
+				mui.toast('网络异常,请稍候再试'); 
+//      		waitingDialog.close(); 
+				plus.nativeUI.closeWaiting();
+			}
+		});
+	});
 }
 
-//上拉加载具体业务实现
-function pullupRefresh() {
-    pageIndex = ++pageIndex;
-    console.log('第'+pageIndex+'页');
-    console.log('上拉加载更多');
-    
-    setTimeout(function() {
-        getaData();
-    }, 1000);
-};
-if(mui.os.plus) {
-	mui.plusReady(function() {
-		setTimeout(function() {
-			mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
-		}, 500);
-	});
-} else {
-	mui.ready(function() {
-		mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
-	});
-};
 
-//点击选择
-function checkedFun(i){
-	mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
-		allPages = 1;
-		pageIndex = 1;
-		plus.nativeUI.showWaiting(); //显示等待框
-		document.getElementById("headck"+i).innerHTML = this.innerHTML;
-		var value = this.getAttribute("ck"+i);
-		document.getElementById("headck"+i).setAttribute('headck',value);
-		document.querySelector('.mui-backdrop').style.display = 'none';
-		document.getElementById("middlePopover"+i).style.display = 'none';
-		
-		//去掉样式类mui-active,要不然会多点击一次
-		document.getElementById("middlePopover"+i).classList.remove('mui-active');
-		
-		//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务
-		otypeval.value = document.getElementById("headck2").getAttribute('headck');
-		if(otypeval.value == 0) {
-			otypeval.value = '';
-		}else {
-			otypeval.value = document.getElementById("headck2").innerHTML;
-		}
-		oneedval.value = document.getElementById("headck1").getAttribute('headck');
-		ostateval.value = document.getElementById("headck3").getAttribute('headck');
-		osortval.value = document.getElementById("headck4").getAttribute('headck');
-		
-		initdata();
-		plus.nativeUI.closeWaiting();//关闭等待框
-	});
-	
-};
-checkedFun(1);
-checkedFun(2);
-checkedFun(3);
-checkedFun(4);
+
  
 
-function getaData() {
-    mui.plusReady(function() {
-    	var userid = plus.storage.getItem('userid');
-    	/*console.log("刷新传参"+oneedval.value+otypeval.value+ostateval.value+osortval.value);
-    	console.log('加载页'+pageIndex)*/
-        mui.ajax(baseUrl+'/ajax/consult/pq', {
-            data: {
-                "professorId":userid, //专家ID
-			    "consultOrNeed":oneedval.value , //接受咨询或咨询别人的状态值，0-全部，1-别人咨询我的，2-我咨询别人的 默认为0
-			    "consultType":otypeval.value, //咨询类型(技术咨询、资源咨询、其他事务)
-			    "status":ostateval.value, //查询状态 0-全部，1-进行中，2-未感谢，3-未评价，4-已完成， 可以不传，默认为0
-			    "timeType":osortval.value, //排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
-			    "pageSize":10, 
-			    "pageNo":pageIndex //当前页码 默认为1
-            },
-            dataType: 'json',
-            type: 'get',  
-            timeout: 10000,
-           
-            success: function(data) {
-                  
-                if (data.success) {
-                    var datalist = data.data.data;
-                    var total = data.data.total;
-                    var pageSize = data.data.pageSize;
-                    
-                    var result = '';
-                    allPages = Math.ceil(total / pageSize);/*获取总的分页数*/
-                   
-                    if (allPages == 1) { //下拉刷新需要先清空数据
-                        table.innerHTML = '';// 在这里清空可以防止刷新时白屏
-                    }
-                    if(pageIndex == 1){
-                    	table.innerHTML = '';
-                    	/*document.querySelector('header.mui-bar').style.display='block';
-    					document.querySelector('.filterdiv').style.display='block';*/
-                    }
-                    
-                    eachData(userid,datalist);
-                   
-                    if(pageIndex < allPages){
-                        mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(false);    /*能上拉*/
-                    }else{
-                        mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(true);/*不能上拉*/
-                    }
-                }
-            },
-            error: function(xhr, type, errerThrown) {
-                mui.toast('网络异常,请稍候再试');
-                plus.nativeUI.closeWaiting(); 
-                mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(true);
-            }
-        });
-    });
-};
-
-/*重新登陆，咨询列表数据刷新*/
-/*window.addEventListener('relogin', function(event) {
-//	alert('重新登陆')
-	userId = event.detail.id;
-	console.log(userId);
-	initdata();
-	if(plus.nativeUI.showWaiting()){
-		console.log("showWaiting")
-		plus.nativeUI.closeWaiting();//关闭等待框
-	}
-});*/
 
 
-initdata();
-/*第一次加载数据*/
-function initdata() {
-	
-    mui.plusReady(function() {
-    	/*plus.nativeUI.showWaiting()//显示等待框*/
-    	var userid = plus.storage.getItem('userid');
-    	if(otypeval.value == 0){
-    		otypeval.value ='';
-    	}
-//  	console.log('初始化传参一：'+oneedval.value+'二'+otypeval.value+'三'+ostateval.value+'四'+osortval.value);
-    	console.log()
-    	plus.nativeUI.showWaiting();
-        mui.ajax(baseUrl+'/ajax/consult/pq', {
-            data: {
-                "professorId":userid, //专家ID
-			    "consultOrNeed":oneedval.value , //接受咨询或咨询别人的状态值，0-全部，1-别人咨询我的，2-我咨询别人的 默认为0
-			    "consultType":otypeval.value, //咨询类型(技术咨询、资源咨询、其他事务)
-			    "status":ostateval.value, //查询状态 0-全部，1-进行中，2-未感谢，3-未评价，4-已完成， 可以不传，默认为0
-			    "timeType":osortval.value, //排序类型 0-按发起时间正序，1-按最后回复时间倒序，2-按完成时间倒序 默认为1
-			    "pageSize":10, //每页记录数 默认为5
-			    "pageNo":1 //当前页码 默认为1
-            },
-            dataType: 'json',
-            type: 'get',  
-            timeout: 10000,
-            success: function(data) {
-            	table.innerHTML = '';//清空容器
-                if (data.success && data.data.data != '') {
-                    var datalist = data.data.data;
-                    eachData(userid,datalist);
-                    mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
-                    plus.nativeUI.closeWaiting();//关闭等待框
-                }else {
-                	plus.nativeUI.closeWaiting();//关闭等待框
-                	/*plus.nativeUI.toast("您目前没有咨询");*/
-					mui('#zixunpullrefresh').pullRefresh().disablePullupToRefresh(); 
-                }
-            },
-            error: function(xhr, type, errerThrown) {
-                mui.toast('网络异常,请稍候再试'); 
-            	plus.nativeUI.closeWaiting();
-            }
-        });
-    });
-
-};
 
 //判断对方是否有聊天内容,加回复：。。。
 function isChat(consultId,userid) {
@@ -337,9 +243,9 @@ function setReadState(consultId) {
 //打开子页面
 mui(".mui-table-view").on('tap','.itemBtn',function(){
 	var o_this = this;
-//	console.log(this.getAttribute('consultId'));
+	
 	mui.plusReady(function() {
-//		console.log(o_this.getAttribute("consultId"));
+		
 		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
 		//更新读取状态
 		setReadState(o_this.getAttribute("consultId"));
@@ -410,92 +316,92 @@ function eachData(userid,datalist) {
 		
 		//过滤professor为空
 		if(item["professor"]){
-		
-		chatlength = isChat(item['consultId'],userid);//判断对方是否有发出消息
-		if(chatlength == 0){
-			title =  item["consultTitle"];	
-		}else{
-			title = "回复:" + item["consultTitle"];
-		}
-//		console.log(title)
-    	//咨询类型和状态
-		if(item['consultantId'] != userid){//收到咨询
-			if(item["consultStatus"] == 0){
-				status = "进行中";
-				statusStyle = 'status-1';
-			}else if(item["consultStatus"] == 1){
-				status = "已完成";
-				statusStyle = 'status-3';
+			
+			chatlength = isChat(item['consultId'],userid);//判断对方是否有发出消息
+			if(chatlength == 0){
+				title =  item["consultTitle"];	
+			}else{
+				title = "回复:" + item["consultTitle"];
 			}
-		}else if(item['consultantId'] == userid){//我的需求
-			if(item["consultStatus"] == 0){
-				status = "进行中";
-				statusStyle = 'status-1';
-			}else if(item["consultStatus"] == 1){
-				if(item["assessStatus"] == 0){
-					status = '待评价';
-					statusStyle = 'status-2';
-				}else {
-					status = '已完成';
-					statusStyle = 'status-3';
+	//		console.log(title)
+	    	//咨询类型和状态
+			if(item['consultantId'] != userid){//收到咨询
+				if(item["consultStatus"] == 0){
+					status = "进行中";
+					statusStyle = 'status-1';
+				}else if(item["consultStatus"] == 1){
+					status = "已完成";
+					statusStyle = 'statu s-3';
 				}
+			}else if(item['consultantId'] == userid){//我的需求
+				if(item["consultStatus"] == 0){
+					status = "进行中";
+					statusStyle = 'status-1';
+				}else if(item["consultStatus"] == 1){
+					if(item["assessStatus"] == 0){
+						status = '待评价';
+						statusStyle = 'status-2';
+					}else {
+						status = '已完成';
+						statusStyle = 'status-3';
+					}
+				}
+			};
+			
+			
+			(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
+			(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
+			
+			//咨询类型，只取两个字
+			if(item["consultType"]) {
+				consultType = item["consultType"].substr(0,2);
 			}
-		};
-		
-		
-		(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
-		(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
-		
-		//咨询类型，只取两个字
-		if(item["consultType"]) {
-			consultType = item["consultType"].substr(0,2);
-		}
-		
-		//最后回复
-		lastReplyTime = lastReplyFn(userid,item["consultId"]).lastReplyTime;
-		lastReplyCon = lastReplyFn(userid,item["consultId"]).lastReplyCon;
-		
-		if(lastReplyCon == undefined){
-			lastReplyCon = '';
-		}
-		if(lastReplyTime == undefined){
-			lastReplyTime = '';
-		}
-		//未读消息
-		unreadCount = unreadConsultFn(userid,item["consultId"],index).unreadCount;
-		unreadStyle = unreadConsultFn(userid,item["consultId"],index).style;
-    	
-        var li = document.createElement('li');
-        li.className = 'mui-table-view-cell mui-media'; 
-        
-        var str = '';
-       	str += '<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>'
-       				+ '<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>'
-            		+ '<span class="'+statusStyle+' status" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
-            		+ '<a class="proinfor itemBtn" consultId="'+item["consultId"]+'" consultantId="'+item["consultantId"]+'" >'
-					+ '<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item["consultId"]+'">'+unreadCount+'</span>'
-	        		+ '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">'
-            		+ '<div class="mui-media-body">'
-            		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>';
-        str += '<p class="listtit2">';
-        if(item["professor"]["title"]){
-        	str += '<span>'+item["professor"]["title"]+'</span>, ';
-        };
-        if(item["professor"]["office"]){
-        	str += '<span>'+item["professor"]["office"]+'</span>, ';
-        };
-        if(item["professor"]["orgName"]){
-        	str += '<span>'+item["professor"]["orgName"]+'</span>';
-        };
-        if(item["professor"]["address"]){
-        	str += '<span>  | '+item["professor"]["address"]+'</span>';
-        };
-        
-        str +='</p><p class="listtit3 onlyone">'+lastReplyCon+'</p></div></a>';
-        
-		li.innerHTML = str;
-        table.appendChild(li,table.firstChild);
-       }
+			
+			//最后回复
+			lastReplyTime = lastReplyFn(userid,item["consultId"]).lastReplyTime;
+			lastReplyCon = lastReplyFn(userid,item["consultId"]).lastReplyCon;
+			
+			if(lastReplyCon == undefined){
+				lastReplyCon = '';
+			}
+			if(lastReplyTime == undefined){
+				lastReplyTime = '';
+			}
+			//未读消息
+			unreadCount = unreadConsultFn(userid,item["consultId"],index).unreadCount;
+			unreadStyle = unreadConsultFn(userid,item["consultId"],index).style;
+	    	
+	        var li = document.createElement('li');
+	        li.className = 'mui-table-view-cell mui-media'; 
+	        
+	        var str = '';
+	       	str += '<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>'
+	       				+ '<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>'
+	            		+ '<span class="'+statusStyle+' status" consultId="'+item["consultId"]+'">'+status+'</span></div></div>'
+	            		+ '<a class="proinfor itemBtn" consultId="'+item["consultId"]+'" consultantId="'+item["consultantId"]+'" >'
+						+ '<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item["consultId"]+'">'+unreadCount+'</span>'
+		        		+ '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">'
+	            		+ '<div class="mui-media-body">'
+	            		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>';
+	        str += '<p class="listtit2">';
+	        if(item["professor"]["title"]){
+	        	str += '<span>'+item["professor"]["title"]+'</span>, ';
+	        };
+	        if(item["professor"]["office"]){
+	        	str += '<span>'+item["professor"]["office"]+'</span>, ';
+	        };
+	        if(item["professor"]["orgName"]){
+	        	str += '<span>'+item["professor"]["orgName"]+'</span>';
+	        };
+	        if(item["professor"]["address"]){
+	        	str += '<span>  | '+item["professor"]["address"]+'</span>';
+	        };
+	        
+	        str +='</p><p class="listtit3 onlyone">'+lastReplyCon+'</p></div></a>';
+	        
+			li.innerHTML = str;
+	        table.appendChild(li,table.firstChild);
+	    }
     });
 	
 };
@@ -565,3 +471,42 @@ function unreadConsultFn (senderId,consultId,i){
 			"style":style
 	}
 };
+
+//点击选择
+function checkedFun(i){
+	mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
+		allPages = 1;
+		pageIndex = 1;
+		plus.nativeUI.showWaiting(); //显示等待框
+		document.getElementById("headck"+i).innerHTML = this.innerHTML;
+		var value = this.getAttribute("ck"+i);
+		document.getElementById("headck"+i).setAttribute('headck',value);
+		document.querySelector('.mui-backdrop').style.display = 'none';
+		document.getElementById("middlePopover"+i).style.display = 'none';
+		
+		//去掉样式类mui-active,要不然会多点击一次
+		document.getElementById("middlePopover"+i).classList.remove('mui-active');
+		
+		//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务
+		otypeval.value = document.getElementById("headck2").getAttribute('headck');
+		if(otypeval.value == 0) {
+			otypeval.value = '';
+		}else {
+			otypeval.value = document.getElementById("headck2").innerHTML;
+		}
+		oneedval.value = document.getElementById("headck1").getAttribute('headck');
+		ostateval.value = document.getElementById("headck3").getAttribute('headck');
+		osortval.value = document.getElementById("headck4").getAttribute('headck');
+		
+//		initdata();
+		pulldownRefresh();
+		
+		mui('#zixunpullrefresh').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
+		plus.nativeUI.closeWaiting();//关闭等待框
+	});
+	
+};
+checkedFun(1);
+checkedFun(2);
+checkedFun(3);
+checkedFun(4);

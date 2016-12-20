@@ -15,11 +15,24 @@
     	* {
 	    	font-family: "微软雅黑";
 	    }
+	    /*#table {
+	    	margin-top: 44px;
+	    }*/
     	
     	/*筛选div*/
-    	.filterdiv {
-    		
+    	.filterbox2.filterdiv {
+    		z-index: 9;
     	}
+    	
+    	/*写有下拉刷新,正在刷新的div*/
+    	/*#zixunpullrefresh .mui-pull-top-pocket {
+    		top: 90px;
+    	}*/
+    	.mui-bar-nav ~ .mui-content .mui-pull-top-pocket{
+		  top: 90px !important;
+		}
+    	
+    	
     	
     	/*图片div*/
     	.imgdiv {
@@ -61,6 +74,82 @@
     	.frmbox .logBtn {
     		color: #FF9900;
     	}
+    	
+    	
+    	html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+    	
     </style>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
@@ -70,7 +159,7 @@
 <body>
 
 	<!-- 主页面标题 -->
-	<header class="mui-bar mui-bar-nav toptitbox">
+	<header class="mui-bar mui-bar-nav toptitbox" style="position: fixed;top: 0;">
 	    <h1 class="mui-title toptit">咨询</h1>
 	</header>
 	<div class="displayNone">
@@ -86,22 +175,48 @@
     <!-- 主页面内容容器 -->
     <div class="mui-content" id="logined">
     	<!-- 主界面具体展示内容 -->
-    	<div class="filterbox2 filterdiv" style="top:44px ;left: 0;">
-			<ul class="filterblock2">
-				<li style="width:22%;">
-					<a href="#middlePopover1"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck1" headck='0'>咨询/需求</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-				</li>
-				<li style="width:22%;">
-					<a href="#middlePopover2"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck2" headck='0'>咨询类型</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-				</li>
-				<li style="width:22%;">
-					<a href="#middlePopover3"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck3" headck='0'>咨询状态</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-				</li>
-				<li style="width:34%;">
-					<a href="#middlePopover4"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2" ><span id="headck4" headck='1'>按最后回复排序</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-				</li>
-			</ul>
+    	
+		<div id="slider" class="mui-slider mui-fullscreen">
+			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div class="mui-scroll">
+					<a  href="#middlePopover1"  class="mui-control-item">
+						<span id="headck1" headck='0'>咨询/需求</span>
+					</a>
+					<a  href="#middlePopover2"  class="mui-control-item">
+						<span id="headck2" headck='0'>咨询类型</span>
+					</a>
+					<a  href="#middlePopover3"  class="mui-control-item">
+						<span id="headck3" headck='0'>咨询状态</span>
+					</a>
+					<a href="#middlePopover4"  class="mui-control-item" >
+						<span id="headck4" headck='1'>按最后回复排序</span>
+					</a>
+					
+				</div>
+			</div>
+		
+			<div class="mui-slider-group">
+				<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+					<div id="zixunpullrefresh" class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view" id="table">
+								
+								 
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		
 		</div>
+		
+		
+		
+		
+		
+		
+		
+		
        	
        	<div id="middlePopover1" class="mui-popover popoverbox mui-popover1" style="height: 110px;">
 			<div class="mui-popover-arrow"></div>
@@ -155,12 +270,70 @@
 			</div>
 		</div>
        	
-       	<div id="zixunpullrefresh" class="mui-card-content"  style="margin-top:40px; ">
-	      <ul class="mui-table-view protable" id="table">
+       	<!--<div id="zixunpullrefresh" class="mui-card-content"  >
+	      	<ul class="mui-table-view protable" id="table">
 				
 	        </ul>
-        </div>
-        
+        </div>-->
+        <!--下拉刷新容器-->
+       	<!-- 在谷歌浏览器中OK，在模拟器和手机端不OK-->
+       	
+       	<!--<div class="filterbox2 filterdiv" style="top:44px ;left: 0;">
+			<ul class="filterblock2">
+				<li style="width:22%;">
+					<a href="#middlePopover1"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck1" headck='0'>咨询/需求</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+				<li style="width:22%;">
+					<a href="#middlePopover2"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck2" headck='0'>咨询类型</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+				<li style="width:22%;">
+					<a href="#middlePopover3"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck3" headck='0'>咨询状态</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+				<li style="width:34%;">
+					<a href="#middlePopover4"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2" ><span id="headck4" headck='1'>按最后回复排序</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+			</ul>
+		</div>
+       	
+       	
+       	
+		<div id="zixunpullrefresh" class="mui-content mui-scroll-wrapper">
+			
+		  	<div class="mui-scroll">
+		  	
+		    <ul class="mui-table-view protable" id="table">
+		    	
+		    <li class="mui-table-view-cell mui-media">
+
+				<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>
+					<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>
+						<span class="'+statusStyle+' status" consultId="'+item[" consultId "]+'">'+status+'</span></div>
+				</div>
+				<a class="proinfor itemBtn" consultId="'+item[" consultId "]+'" consultantId="'+item[" consultantId "]+'">
+					<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item[" consultId "]+'">'+unreadCount+'</span>
+					<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">
+					<div class="mui-media-body">
+						<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>
+						<p class="listtit2">
+							<span>'+item["professor"]["title"]+'</span>
+							<span>'+item["professor"]["office"]+'</span>
+							<span>'+item["professor"]["orgName"]+'</span>
+							<span>  | '+item["professor"]["address"]+'</span>
+			
+						</p>
+						<p class="listtit3 onlyone">'+lastReplyCon+'</p>
+					</div>
+				</a>
+			
+			</li>
+		      
+		      
+		      
+		      
+		      
+		    </ul>
+		  </div>
+		</div>-->
 		
     </div>
 	
@@ -181,21 +354,23 @@
 	
 	
 	<script src="../js/public/mui.min.js"></script>
+	<script src="../js/mui.pullToRefresh.js"></script>
+	<script src="../js/mui.pullToRefresh.material.js"></script>
 	<script src="../js/public/base.js"></script>
 	<script src="../js/consult.js"></script>
-   	<script type="text/javascript" charset="utf-8">
-   	mui.plusReady(function() {
-   		var  content1 = document.getElementById('logined');
-      	var  content2 = document.getElementById('unlogin');
-   		var userid = plus.storage.getItem('userid');
-   		if(userid == null || userid == 'null'){
-   			content1.style.display = 'none';
-   		}else {
-   			content2.style.display = 'none';
-   		}
-   		
-   		
-   	});
+   	<script type="text/javascript">
+	   	mui.plusReady(function() {
+	   		var  content1 = document.getElementById('logined');
+	      	var  content2 = document.getElementById('unlogin');
+	   		var userid = plus.storage.getItem('userid');
+	   		if(userid == null || userid == 'null'){
+	   			content1.style.display = 'none';
+	   		}else {
+	   			content2.style.display = 'none';
+	   		}
+	   		
+	   		
+	   	});
     </script>
 </body>
 </html>

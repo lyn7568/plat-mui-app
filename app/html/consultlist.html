@@ -86,7 +86,7 @@
 			}
 			.mui-pull-top-tips {
 				position: absolute;
-				top: -20px;
+				top: 20px;
 				left: 50%;
 				margin-left: -25px;
 				width: 40px;
@@ -95,7 +95,7 @@
 				z-index: 1;
 			}
 			.mui-bar~.mui-pull-top-tips {
-				top: 24px;
+				top: 64px;
 			}
 			.mui-pull-top-wrapper {
 				width: 42px;
@@ -201,7 +201,8 @@
 						<div class="mui-scroll">
 							<ul class="mui-table-view" id="table">
 								
-								 
+								
+								
 							</ul>
 						</div>
 					</div>
@@ -211,12 +212,7 @@
 		</div>
 		
 		
-		
-		
-		
-		
-		
-		
+	
        	
        	<div id="middlePopover1" class="mui-popover popoverbox mui-popover1" style="height: 110px;">
 			<div class="mui-popover-arrow"></div>
@@ -303,29 +299,42 @@
 		  	
 		    <ul class="mui-table-view protable" id="table">
 		    	
-		    <li class="mui-table-view-cell mui-media">
+		   		<li class="mui-table-view-cell mui-media">
 
-				<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>
-					<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>
-						<span class="'+statusStyle+' status" consultId="'+item[" consultId "]+'">'+status+'</span></div>
-				</div>
-				<a class="proinfor itemBtn" consultId="'+item[" consultId "]+'" consultantId="'+item[" consultantId "]+'">
-					<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item[" consultId "]+'">'+unreadCount+'</span>
-					<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">
-					<div class="mui-media-body">
-						<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>
-						<p class="listtit2">
-							<span>'+item["professor"]["title"]+'</span>
-							<span>'+item["professor"]["office"]+'</span>
-							<span>'+item["professor"]["orgName"]+'</span>
-							<span>  | '+item["professor"]["address"]+'</span>
-			
-						</p>
-						<p class="listtit3 onlyone">'+lastReplyCon+'</p>
+					<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>
+						<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>
+							<span class="'+statusStyle+' status" consultId="'+item[" consultId "]+'">'+status+'</span></div>
 					</div>
-				</a>
-			
-			</li>
+					<a class="proinfor itemBtn" consultId="'+item[" consultId "]+'" consultantId="'+item[" consultantId "]+'">
+						<span class="mui-badge mui-badge-danger readstate displayNone" consultId="'+item[" consultId "]+'">'+unreadCount+'</span>
+						<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">
+						<div class="mui-media-body">
+							<span class="listtit">高兴
+					            <em  class="mui-icon iconfont icon-vip authicon-cu"></em>
+					            <span class="thistime">样式1</span>
+				
+								<em  class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>
+								<span class="thistime">样式2</span>
+					
+								<em  class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>
+								<span class="thistime">样式3'</span>
+					
+								<em  class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>
+								<span class="thistime">样式4</span>
+				
+							</span>
+							<p class="listtit2">
+								<span>'+item["professor"]["title"]+'</span>
+				
+								<span>'+item["professor"]["office"]+'</span>
+								<span>'+item["professor"]["orgName"]+'</span>
+								<span>  | '+item["professor"]["address"]+'</span>
+							</p>
+							<p class="listtit3 onlyone">'+lastReplyCon+'</p>
+						</div>
+					</a>
+				
+				</li>
 		      
 		      
 		      
@@ -368,8 +377,7 @@
 	   		}else {
 	   			content2.style.display = 'none';
 	   		}
-	   		
-	   		
+
 	   	});
     </script>
 </body>

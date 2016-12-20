@@ -21,7 +21,7 @@ var osortval = document.getElementById("sortval");//时间排序
 	console.log('点击咨询')
 	islogin();
 	//初始化数据
-	pulldownRefresh();
+	initData();
 });*/
 
 //显示数据还是登录
@@ -48,8 +48,8 @@ window.addEventListener('logined', function(event) {
 	var userId = event.detail.id; 
 	content1.style.display = 'block';
 	content2.style.display = 'none';
-//	initdata();
-	pulldownRefresh();
+	
+	initData();
 	
 	if(plus.nativeUI.showWaiting()){
 		
@@ -102,15 +102,12 @@ window.addEventListener('clickconbtn', function(event) {
 	console.log(consultBtn);
 	console.log('点击咨询');
 	islogin();
-	pulldownRefresh();
+	
+	initData();
 });
 
-
-
-
-
 /*初始化数据*/
-pulldownRefresh();
+initData();
 
 //数据滚动
 mui('.mui-scroll-wrapper').scroll({
@@ -121,12 +118,14 @@ mui('.mui-scroll-wrapper').scroll({
 
 //筛选条件不动，下拉刷新
 mui.ready(function(){
+	
 	mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
 		
 		mui(pullRefreshEl).pullToRefresh({
 			down: {
 				callback: function() {
 					var self = this;
+					
 					setTimeout(function() {
 						
 						pulldownRefresh();//下拉刷新
@@ -141,18 +140,11 @@ mui.ready(function(){
 });
 
 
-
-
-/*下拉刷新*/
-function pulldownRefresh(){
-	console.log('下拉刷新');
+//初始化数据
+function initData(){
 	mui.plusReady(function() { 
 		var userid = plus.storage.getItem('userid');
-//		var waitingDialog = plus.nativeUI.showWaiting("加载中");
 		
-		plus.nativeUI.showWaiting();
-		
-		pageIndex = 1;
 		mui.ajax(baseUrl + '/ajax/consult/pq',{
 			data:{
 				"professorId":userid,
@@ -169,21 +161,16 @@ function pulldownRefresh(){
 			success:function(data){
 				if (data.success) {
 					
-					if(pageIndex == 1){
-                    	table.innerHTML = '';//下拉刷新，清空数据
-                    	var datalist = data.data.data;
-						eachData(userid,datalist);
-//              		waitingDialog.close(); 
-                		plus.nativeUI.closeWaiting();
-                    }
+                	table.innerHTML = '';//下拉刷新，清空数据
+                	var datalist = data.data.data;
+					eachData(userid,datalist);
 					
 				};
 				
 			},
 			error:function(xhr,type,errorThrown){
 				mui.toast('网络异常,请稍候再试'); 
-//      		waitingDialog.close(); 
-				plus.nativeUI.closeWaiting();
+				
 			}
 		});
 	});
@@ -191,9 +178,48 @@ function pulldownRefresh(){
 
 
 
- 
-
-
+/*下拉刷新*/
+function pulldownRefresh(){
+	
+	mui.plusReady(function() { 
+		var userid = plus.storage.getItem('userid');
+		
+		pageIndex = 1;
+		mui.ajax(baseUrl + '/ajax/consult/pq',{
+			data:{
+				"professorId":userid,
+			    "consultOrNeed":oneedval.value , 
+			    "consultType":otypeval.value, 
+			    "status":ostateval.value, 
+			    "timeType":osortval.value, 
+			    "pageSize":200, 
+			    "pageNo":1 
+			},
+			async:false,
+			dataType:'json',//服务器返回json格式数据
+			type:'get',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
+			success:function(data){
+				if (data.success) {
+					
+					if(pageIndex == 1){
+                    	table.innerHTML = '';//下拉刷新，清空数据
+                    	var datalist = data.data.data;
+						eachData(userid,datalist);
+						
+                    }
+					
+				};
+				
+			},
+			error:function(xhr,type,errorThrown){
+				mui.toast('网络异常,请稍候再试'); 
+				
+			}
+		});
+	});
+	
+}
 
 
 //判断对方是否有聊天内容,加回复：。。。
@@ -314,6 +340,8 @@ function eachData(userid,datalist) {
 			consultType,
 			chatlength;
 		
+		var modifyaddEle = '';
+		
 		//过滤professor为空
 		if(item["professor"]){
 			
@@ -331,7 +359,7 @@ function eachData(userid,datalist) {
 					statusStyle = 'status-1';
 				}else if(item["consultStatus"] == 1){
 					status = "已完成";
-					statusStyle = 'statu s-3';
+					statusStyle = 'status-3';
 				}
 			}else if(item['consultantId'] == userid){//我的需求
 				if(item["consultStatus"] == 0){
@@ -348,8 +376,43 @@ function eachData(userid,datalist) {
 				}
 			};
 			
+			//认证
+			if(item["professor"].authType) {
+//				nameli.classList.add('icon-vip');
+//				nameli.classList.add('authicon-cu');
+				proModify = 'icon-vip authicon-cu';
+			} else {
+				if(item["professor"].authStatus) {
+					if(item["professor"].authentication == 1) {
+//						nameli.classList.add('icon-renzheng');
+//						nameli.classList.add('authicon-mana');
+//						nameli.innerHTML = "<span>科研</span>";
+						
+						proModify = 'icon-renzheng authicon-mana';
+						modifyaddEle = "<span >科研</span>";
+						
+						
+					} else if(item["professor"].authentication == 2) {
+//						nameli.classList.add('icon-renzheng');
+//						nameli.classList.add('authicon-staff');
+//						nameli.innerHTML = "<span>企业</span>";
+						
+						proModify = 'icon-renzheng authicon-staff';
+						modifyaddEle = "<span>企业</span>";
+						
+					} else {
+//						nameli.classList.add('icon-renzheng');
+//						nameli.classList.add('authicon-stu');
+//						nameli.innerHTML = "<span>学生</span>";
+						
+						proModify = 'icon-renzheng authicon-stu';
+						modifyaddEle = "<span>学生</span>";
+						
+					}
+				}
+			}
+//			(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
 			
-			(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
 			(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
 			
 			//咨询类型，只取两个字
@@ -382,7 +445,7 @@ function eachData(userid,datalist) {
 						+ '<span class="mui-badge mui-badge-danger readstate '+unreadStyle+'" consultId="'+item["consultId"]+'">'+unreadCount+'</span>'
 		        		+ '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">'
 	            		+ '<div class="mui-media-body">'
-	            		+ '<span class="listtit">'+item["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>';
+	            		+ '<span class="listtit">'+item["professor"]["name"]+'<em id="nameli" class="mui-icon iconfont '+proModify+'">'+modifyaddEle+'</em><span class="thistime">'+lastReplyTime+'</span></span>';
 	        str += '<p class="listtit2">';
 	        if(item["professor"]["title"]){
 	        	str += '<span>'+item["professor"]["title"]+'</span>, ';
@@ -498,8 +561,7 @@ function checkedFun(i){
 		ostateval.value = document.getElementById("headck3").getAttribute('headck');
 		osortval.value = document.getElementById("headck4").getAttribute('headck');
 		
-//		initdata();
-		pulldownRefresh();
+		 initData();
 		
 		mui('#zixunpullrefresh').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
 		plus.nativeUI.closeWaiting();//关闭等待框

@@ -15,6 +15,8 @@
  	var oconsultcount = document.getElementById("consultcount");//咨询次数
  	var ostarContainer = document.getElementById("starContainer");//星级容器
  	var ofinished = document.getElementById("finished");//点击完成咨询，进入合作历史评价
+ 	var nameli = document.getElementById("nameli");//认证
+ 	
  	
  	var osaveconsultBtn = document.getElementById("saveconsultBtn");//保存咨询，发送按钮
  	
@@ -70,82 +72,107 @@
  			type:'get',//HTTP请求类型
  			timeout:10000,//超时时间设置为10秒；
  			success:function(data){
- 				var myData = data["data"];
- 				if(myData["name"] == null || myData["name"] == undefined ) {
- 					oproname.innerText = '';
- 				}else {
- 					oproname.innerText = myData["name"];//专家名字
- 				}
- 				if(myData["title"] == null || myData["title"] == undefined ) {
- 					oprotitle.innerHTML = '';
- 				}else {
- 					if(myData["office"]){
- 						oprotitle.innerHTML = myData["title"]+'，';//职称
- 					}else {
- 						oprotitle.innerHTML = myData["title"]
- 					}
+ 				if(data.success){
+ 					var myData = data["data"];
  					
- 				};
- 				if(myData["office"] == null || myData["office"] == undefined ) {
- 					oprooffice.innerHTML = '';
- 				}else {
- 					oprooffice.innerHTML = myData["office"];//职位
- 				};
- 				if(myData["department"] == null || myData["department"] == undefined ) {
- 					oprodepart.innerHTML = '';
- 				}else {
- 					if(myData["orgName"]){
- 						oprodepart.innerHTML = myData["department"]+'，';//所在部门
- 					}else {
- 						oprodepart.innerHTML = myData["department"];
- 					}
- 				}
- 				if(myData["orgName"] == null || myData["orgName"] == undefined ) {
- 					oproorgName.innerHTML = '';
- 				}else {
- 					oproorgName.innerHTML = myData["orgName"];//所在机构
- 				}
- 				if(myData["address"] == null || myData["address"] == undefined ) {
- 					oproadress.innerHTML = '';
- 				}else {
- 					oproadress.innerHTML = ' | '+myData["address"];//所在地
- 				}
- 				if(myData["consultCount"] == null || myData["consultCount"] == undefined ) {
- 					myData["consultCount"] = 0;
- 				}else {
- 					oconsultcount.innerHTML =  myData["consultCount"];//咨询次数
- 				};
- 				
- 				var emele = document.createElement("em");
- 				emele.setAttribute('class','mui-icon iconfont icon-vip');
- 				
- 				/*是否认证*/
- 				if(myData["authentication"] == true){
-					emele.classList.add('authicon');
+ 					console.log(JSON.stringify(myData))
+ 					
+	 				if(myData["name"]){
+	 					oproname.innerText = myData["name"];//专家名字
+	 				};
+	 				if(myData["title"]){
+	 					oprotitle.innerHTML = myData["title"]+', ';//职称
+	 				}
+	 				if(myData["office"]){
+	 					oprooffice.innerHTML = myData["office"]+', ';//职位
+	 				}
+	 				if(myData["department"]){
+	 					oprodepart.innerHTML = myData["department"]+', ';//所在部门
+	 				}
+	 				if(myData["orgName"]){
+	 					oproorgName.innerHTML = myData["orgName"];//所在机构
+	 				}
+	 				if(myData["address"]){
+	 					oproadress.innerHTML = ' | '+myData["address"];//所在地
+	 				}
+	 				
+	 				if(myData["consultCount"] == null || myData["consultCount"] == undefined ) {
+	 					myData["consultCount"] = 0;
+	 				}else {
+	 					oconsultcount.innerHTML =  myData["consultCount"];//咨询次数
+	 				};
+	 				
+
+	 				
+	 				/*是否认证*/
+	 				/*
+	 				var emele = document.createElement("em");
+	 				emele.setAttribute('class','mui-icon iconfont icon-vip');
+	 				if(myData["authentication"] == true){
+						emele.classList.add('authicon');
+						
+					}else if(myData["authentication"] == false){
+						emele.classList.add('unauthicon');
+					}
+					oproname.appendChild(emele);*/
 					
-				}else if(myData["authentication"] == false){
-					emele.classList.add('unauthicon');
-				}
-				oproname.appendChild(emele);
-				
-				
-				/*专家头像*/
-				if(myData["hasHeadImage"] == 0) {
-					oproimg.setAttribute('src','../images/default-photo.jpg');
-				}else {
-					oproimg.setAttribute('src',baseUrl+'/images/head/'+myData['id']+'_m.jpg');
-				}
- 				
- 				/*星级*/
- 				var starLevel = myData['starLevel'];
- 				var starlist = ostarContainer.children;
- 				for(var i = 0; i < starLevel; i++) {
-					starlist[i].classList.remove('icon-favor');
-	  				starlist[i].classList.add('icon-favorfill');
-				}
- 				
- 				plus.nativeUI.closeWaiting();
-				plus.webview.currentWebview().show("slide-in-right",150);
+					if(myData.authType) {
+						nameli.classList.add('icon-vip');
+						nameli.classList.add('authicon-cu');
+					} else {
+						if(myData.authStatus) {
+							if(myData.authentication == 1) {
+								nameli.classList.add('icon-renzheng');
+								nameli.classList.add('authicon-mana');
+								nameli.innerHTML = "<span>科研</span>";
+							} else if(myData.authentication == 2) {
+								nameli.classList.add('icon-renzheng');
+								nameli.classList.add('authicon-staff');
+								nameli.innerHTML = "<span>企业</span>";
+							} else {
+								nameli.classList.add('icon-renzheng');
+								nameli.classList.add('authicon-stu');
+								nameli.innerHTML = "<span>学生</span>";
+							}
+						}
+					}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					/*专家头像*/
+					if(myData["hasHeadImage"] == 0) {
+						oproimg.setAttribute('src','../images/default-photo.jpg');
+					}else {
+						oproimg.setAttribute('src',baseUrl+'/images/head/'+myData['id']+'_m.jpg');
+					}
+	 				
+	 				/*星级*/
+	 				var starLevel = myData['starLevel'];
+	 				var starlist = ostarContainer.children;
+	 				for(var i = 0; i < starLevel; i++) {
+						starlist[i].classList.remove('icon-favor');
+		  				starlist[i].classList.add('icon-favorfill');
+					}
+	 				
+	 				plus.nativeUI.closeWaiting();
+					plus.webview.currentWebview().show("slide-in-right",150);
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 				}
  				
  			},
  			error:function(xhr,type,errorThrown){

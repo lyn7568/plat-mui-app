@@ -3,6 +3,7 @@ var pageIndex = 1; // 页数
 var allPages = 1; // 总页数
 var table = document.body.querySelector('.list');
 var search = document.getElementById("search");
+
 mui.plusReady(function(){
 	plus.nativeUI.showWaiting();
 })
@@ -177,19 +178,34 @@ function datalistEach(datalist) {
 			address = " | " + address;
 		}
 
+		var typeTname = '';
+		if(item.authType) {
+			typeTname='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
+		} else {
+			if(item.authStatus) {
+				if(item.authentication == 1) {
+					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
+				} else if(item.authentication == 2) {
+					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+				} else {
+					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+				}
+			}
+		}
+		
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';
 
 		li.innerHTML = '<a class="proinfor" data-id="'+item.id+'"' +
 			'<p><img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '"></p>' +
 			'<div class="mui-media-body">' +
-			'<span class="listtit">' + item.name + '<em class="mui-icon iconfont icon-vip authicon"></em></span>' +
+			'<span class="listtit">' + item.name + typeTname +'</span>' +
 			'<p class="listtit2"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
 			'<p class="mui-ellipsis listtit3">' + rlist + '</p>' +
 			'<p class="mui-ellipsis listtit3">' + zlist + '</p>' +
 			'</div></a></li>';
 
 		table.appendChild(li, table.firstChild);
-		 
+		
 	});
 }

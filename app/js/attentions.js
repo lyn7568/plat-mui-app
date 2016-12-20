@@ -249,26 +249,19 @@ function datalistEach(datalist) {
 
 		/*判断用户是否认证*/
 		var icon = '';
-		console.log(item.professor.authType)
 		if(item.professor.authType) {
-			icon = '<em class="mui-icon iconfont icon-vip authicon-cu"></em>';
-							
-						} else {
-							if(item.professor.authStatus){
-								if(item.professor.authentication==1){
-									icon = '<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';																	
-							   }else if(item.professor.authentication==2){
-							    	icon = '<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';				
-							    }else{
-							    		icon = '<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';						    	
-							    }
-							}
-						}	
-//		if(item.professor.authentication == 1) {
-//			icon = '<em class="mui-icon iconfont icon-vip authicon"></em>';
-//		} else {
-//			icon = '<em class="mui-icon iconfont icon-vip unauthicon"></em>';
-//		}
+			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
+		} else {
+			if(item.professor.authStatus) {
+				if(item.professor.authentication == 1) {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
+				} else if(item.professor.authentication == 2) {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+				} else {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+				}
+			}
+		}
 
 		/*获取资源信息*/
 		var resources = item.professor.resources;
@@ -323,13 +316,21 @@ function resourcesEach2(datalistd) {
 		} else {
 			var img = "../images/default-resource.jpg";
 		}
-
+		
 		/*判断用户是否认证*/
 		var icont = '';
-		if(item.resource.professor.authentication == 1) {
-			icont = '<em class="mui-icon iconfont icon-vip authicon"></em>';
+		if(item.resource.professor.authType) {
+			icont='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			icont = '<em class="mui-icon iconfont icon-vip unauthicon"></em>';
+			if(item.resource.professor.authStatus) {
+				if(item.resource.professor.authentication == 1) {
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
+				} else if(item.resource.professor.authentication == 2) {
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+				} else {
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+				}
+			}
 		}
 
 		var title = item.resource.professor.title || "";

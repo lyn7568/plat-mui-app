@@ -418,7 +418,7 @@ function expert2(key, subject, industry, province, address, authentication, page
 					if(pageNo < allPages) {
 						mui('#pullrefresh3').pullRefresh().endPullupToRefresh(false); //能上拉
 					} else {
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
+						mui('#pullrefresh3').pullRefresh().endPullupToRefresh(true); //不能上拉
 					}
 
 				} else {
@@ -449,13 +449,20 @@ function datalistEach(datalist) {
 		}
 
 		/*判断用户是否认证*/
-		var icon = ''
-		if(item.authentication == 1) {
-			icon = '<em class="mui-icon iconfont icon-vip authicon"></em>';
+		var icon = '';
+		if(item.authType) {
+			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			icon = '<em class="mui-icon iconfont icon-vip unauthicon"></em>';
+			if(item.authStatus) {
+				if(item.authentication == 1) {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
+				} else if(item.authentication == 2) {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+				} else {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+				}
+			}
 		}
-
 		/*获取研究方向信息*/
 		var researchAreas = item.researchAreas;
 		var rlist = ''
@@ -519,11 +526,19 @@ function resourcesEach(datalist) {
 		}
 
 		/*判断用户是否认证*/
-		var icon = ''
-		if(item.professor.authentication == true) {
-			icon = '<em class="mui-icon iconfont icon-vip authicon"></em>';
+		var icon = '';
+		if(item.authType) {
+			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			icon = '<em class="mui-icon iconfont icon-vip unauthicon"></em>';
+			if(item.authStatus) {
+				if(item.authentication == 1) {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
+				} else if(item.authentication == 2) {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+				} else {
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+				}
+			}
 		}
 
 		var title = item.professor.title || "";

@@ -21,13 +21,13 @@
 .mui-popup{text-align: left;}
 .mui-popup-button:first-child { border-radius: 0 0 0 8px;}
 .mui-popup-button:last-child { border-radius: 0 0 8px;}
-.mui-popup-button{ color:#999999; font-size:14px;}
+.mui-popup-button{ color:#999999; font-size:14px;line-height:20px;}
 .mui-popup-button:hover{background: #FF9900;color:#FFFFFF;}
 
 a{text-decoration:none;color:#007aff}a:active{color:#0062cc}
 .mui-btn.mui-active:enabled,.mui-btn:enabled:active,button.mui-active:enabled,button:enabled:active,input[type=button].mui-active:enabled,input[type=button]:enabled:active,input[type=reset].mui-active:enabled,input[type=reset]:enabled:active,input[type=submit].mui-active:enabled,input[type=submit]:enabled:active{color:#fff;background-color:#FF9900;border:1px solid #ff9900;}
 /*///////////////common公共样式///////////////////////*/
-body{ color: #666666; font-size:14px;}
+body{ color: #666666; font-size:14px;line-height:20px;}
 .floatL{ float: left;}
 .floatR{ float: right;}
 .displayNone {display: none;}
@@ -94,7 +94,7 @@ body{ color: #666666; font-size:14px;}
 .authword{ padding:2px 6px; margin-left:6px;border-radius:4px; color: #FFFFFF; font-size: 12px;}
 .authed{ background: #FF9900; }
 /*认证中*/
-.authing{background: #00b38a;}
+.authing{background: #6edb00;}
 /*未认证*/
 .unauth{background: #efefef;color: #CCCCCC;}
 
@@ -110,12 +110,12 @@ em.icon-renzheng{border:1px solid;border-radius:10px;font-size:16px;line-height:
 em.icon-renzheng span{ font-size:12px;margin-right:6px;vertical-align:middle;}
 .authicon-mana{color:#ff9900;}/*认证在企高管*/
 .authicon-staff{color:#007AFF;}/*认证在企职员*/
-.authicon-stu{color:#00b38a;}/*认证在读学生*/
+.authicon-stu{color:#6edb00;}/*认证在读学生*/
 
 /*****表单公共样式********/
 /*input输入相关*/
 .frmbox{ width: 100%; margin:2% auto; border-radius: 6px; }
-.frmtype{ width: 100%; margin: auto;line-height: 30px;padding: 1% 2%;font-size: 14px;}
+.frmtype{ width: 100%; margin: auto;line-height: 30px;padding: 1% 2%;font-size: 14px;line-height:20px;}
 .frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;}
 /*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
 .frmbox{ border:none; width: 90%;height: 100%; } 
@@ -178,11 +178,11 @@ em.icon-renzheng span{ font-size:12px;margin-right:6px;vertical-align:middle;}
 .headbox .headimg{width: 20%;}
 .maincon .pinfor{ color: #888888; font-size: 13px;}
 .maincon ul {margin:0; padding:0;padding-left:3%;}
-.maincon ul li{ list-style: none;padding-left: 2%;font-size: 14px; overflow: hidden;}
-.boxnav-title{font-size: 14px; color:#888; font-weight: normal;padding-left:6%;}
+.maincon ul li{ list-style: none;padding-left: 2%;font-size: 14px;line-height: 20px; overflow: hidden;}
+.boxnav-title{font-size: 14px; color:#888; font-weight: normal;position:relative;padding-left:6%;}
 ul.boxnav{ overflow: hidden;width:100%; padding: 0 3%;}
 ul.boxnav li{list-style: none;width:33.333%;float:left; padding:0 10px;    -webkit-box-sizing: border-box;}
-ul.boxnav li span{width:100%; font-size:12px;height:28px; line-height:28px; text-align: center; display: block; background: #fff;  border-radius: 5px;}
+ul.boxnav li span{width:100%; font-size:12px;height:28px; line-height:26px; text-align: center; display: block; background: #fff;  border-radius: 5px;}
 ul.boxnav li:nth-child(1) span{border:1px solid #ff9900; color: #ff9900;}
 ul.boxnav li:nth-child(2) span{border:1px solid #6699ff; color: #6699ff;}
 ul.boxnav li:nth-child(3) span{border:1px solid #66cc00; color: #66cc00;}
@@ -273,14 +273,15 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 .likemore{ display: block; width: 26px; height: 26px; border:1px solid #CCCCCC;}
 
 .infoapply li{ padding-left:6px;padding-right:2px; list-style: disc inside; width: 50%; float: left;}
+#industry1 li{ padding-left:6px;padding-right:2px; list-style: disc inside; width: 50%; float: left}
 .gotonext{ width:140px; margin: auto; font-size: 14px; color: #FF9900; overflow: hidden;}
 .gotonext2{ width: 110px;}
 /*.gotonext em{display: block; width: 20px; height: 20px; margin-left:6px ; background:url(../images/goto.png) center center no-repeat; background-size:100% 100% ; }*/
 
-.dialogbtn{ overflow: hidden; width:80%;padding: 12px; color: #FF9900;}
+.dialogbtn{ overflow: hidden; width:80%; line-height:50px; color: #FF9900;}
 .dialogbtn div{ width: 70px;overflow: hidden;margin: auto;}
-.dialogbtn span{font-size: 14px; line-height: 24px; padding: 0 3px; font-weight: 600;}
-.dialogbtn em{font-size: 20px;line-height: 24px; }
+.dialogbtn span{font-size: 14px; padding: 0 3px; font-weight: 600;}
+.dialogbtn em{font-size: 20px;}
 /*.dialogbtn em{display: block; width: 24px; height: 24px; background: url(../images/dialogue.png) center center no-repeat; background-size:100% 100% ; margin-right:6px;}*/
 /*.dialogbtn:hover{ background:#FF9900; color: #FFFFFF;}*/
 
@@ -349,7 +350,7 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 .updatebox{ position: absolute; right:1%; top:0; font-size: 13px; line-height:16px;color: #FF9900;}
 .updatebox2{right:6%; }
 .updatebox:hover,.updatebox:active,.updatebox:link{ color: #FF9900;}
-.updatebox .updatebtn{font-size:16px;}
+.updatebox .updatebtn{font-size:20px;margin-top:-4px;}
 
 .addinfobox{ position: absolute;right: 10px;/* top: 0; */ font-size: 13px; line-height:16px;color: #FF9900;}
 .addinfobox:hover,.addinfobox:active,.addinfobox:link{ color: #FF9900;}
@@ -479,7 +480,7 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 .coutopicbox .aimlabel{background:#6CA8FF;}
 .coutopicbox .status-1{background:#FF9900;}/*进行中*//*咨询状态*/
 .coutopicbox .status-2{background:#dd524d;}/*待评价*/
-.coutopicbox .status-3{background:#00b38a;}/*已完成*/
+.coutopicbox .status-3{background:#6edb00;}/*已完成*/
 
 .thistime{ position: absolute; right:2px; font-size: 12px; color: #999999;}
 
@@ -509,7 +510,7 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 
 .resomenubox{background: #FFFFFF; padding:8px 10px;}
 .resomenubox ul.resomenu{padding: 0;margin: 0;overflow: hidden;}
-.resomenubox ul.resomenu li{ list-style: none; font-size:16px; float: left;}
+.resomenubox ul.resomenu li{ list-style: none; font-size:16px;line-height:20px; float: left;}
 
 .resouinfoword{ padding:6px 0; background: #FFFFFF;}
 .resouinfobox{ padding:0;margin: 0;}
@@ -518,11 +519,11 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 /*********************** 资源信息浏览*******************/
 
 /***********************评价*******************/
-.feedback .row {width: 100%;background-color: #fff;font-size:14px;}
+.feedback .row {width: 100%;background-color: #fff;font-size:14px;line-height:20px; }
 .feedback .hidden {display: none;}
-.feedback .mui-inline{vertical-align: bottom;font-size: 14px;color: #888888;}
+.feedback .mui-inline{vertical-align: bottom;font-size: 14px;line-height:20px; color: #888888;}
 .feedback .question{border-bottom:1px solid #F0F0F0;padding:4px 16px;}
-.icons.levelbox .icon-favor{color: #B5B5B5;font-size: 18px;}
+.icons.levelbox .icon-favor{color: #B5B5B5;font-size: 18px;line-height:20px; }
 .icons.levelbox .icon-favorfill{/*color: #FFB400;*/font-size: 18px;} 
 .assessbox{margin:10px 0; background: #FFFFFF; padding:10px;padding-bottom: 30px;}
 /***********************评价*******************/

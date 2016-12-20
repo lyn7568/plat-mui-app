@@ -16,7 +16,9 @@ mui.ready(function() {
 						ws.show("slide-in-right", 150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画    
 						$info = $data.data;
 						oDt[0].value = $info.name;
-						oDt[1].innerText = $info.year;
+						if($info.year) {
+							oDt[1].innerText = $info.year;
+						}						
 						oDt[2].value = $info.url;
 						if(!$info.descp)
 							$info.descp = "";

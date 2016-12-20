@@ -16,8 +16,10 @@ mui.ready(function() {
 					{
 						plus.nativeUI.closeWaiting();	; //新webview的载入完毕后关闭等待框
         				ws.show("slide-in-right",150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画    
-						$info = $data.data;			
-						oDt[4].innerText=$info.year;
+						$info = $data.data;	
+						if($info.year){
+							oDt[4].innerText=$info.year;
+						}
 						oDt[0].value=$info.school;
 						 oDt[1].value=$info.college;
 						 if(!$info.major)

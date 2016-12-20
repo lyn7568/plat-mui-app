@@ -1,6 +1,5 @@
 //我的账号
 mui.ready(function() {
-
 	/*定义全局变量*/
 	var loginYes = document.getElementById("loginYes");
 	var loginNo = document.getElementById("loginNo");
@@ -39,17 +38,13 @@ mui.ready(function() {
 			userId = event.detail.id;
 			console.log(userId);
 			loginStatus();
-			userInformation();
+			userInformation()
 		});
 		//在修改上传图片触发的事件
 		window.addEventListener('photoUser', function(event) {
-			console.log(JSON.stringify(nameli.classList));
-			for(var i = 0; i < nameli.classList.length; i++) {
-				if((nameli.classList[i] != "mui-icon") && (nameli.classList[i] != "iconfont")) {
-					nameli.classList.remove(nameli.classList[i]);
-				}
-			}
-			nameli.innerHTML = "";
+					nameli.classList.remove(nameli.classList[2])
+					nameli.classList.remove(nameli.classList[2]);
+			nameli.innerHTML = ""			
 			userInformation();
 		});
 

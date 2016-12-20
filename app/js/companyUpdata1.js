@@ -33,9 +33,15 @@ mui.ready(function() {
 					//学术领域
 					oDt[0].value = $data.name
 					oDt[1].value = $data.orgName;
-					oDt[2].value = $data.department;
-					oDt[3].value = $data.title;
-					oDt[4].value = $data.office;
+					if($data.department) {
+						oDt[2].value = $data.department;
+					}
+					if($data.office) {
+						oDt[3].value = $data.office;
+					}
+					if($data.title) {
+						oDt[4].value = $data.title;
+					}
 					oAddress.innerText = $data.province + " " + $data.address;
 					dataProvince.value = $data.province;
 					dataAddress.value = $data.address;

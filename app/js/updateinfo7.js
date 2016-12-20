@@ -18,7 +18,9 @@ mui.ready(function() {
 						ws.show("slide-in-right", 150); //把新webview窗体显示出来，显示动画效果为速度150毫秒的右侧移入动画    
 						$info = $data.data;
 						oDt[0].value = $info.company;
-						oDt[1].value = $info.department;
+						if($info.department) {
+							oDt[1].value = $info.department;
+						}						
 						oDt[2].value = $info.title;
 						if($info.startMonth) {
 							oDt[3].innerText = $info.startMonth.substr(0, 4) + "-" + $info.startMonth.substr(4, 6)

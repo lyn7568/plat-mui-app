@@ -56,13 +56,19 @@ mui.plusReady(function() {
 					} else if(flag == 1) {
 						if(resouFlag == 0) {
 							var Page = plus.webview.getWebviewById('html/proinforupdate.html');
-							mui.fire(Page, 'newId');
+							mui.fire(Page, 'newId', {
+									rd: 1
+								});
 						} else if(resouFlag == 1) {
 							var Page = plus.webview.getWebviewById('html/companyUpdata.html');
-							mui.fire(Page, 'newId');
+							mui.fire(Page, 'newId', {
+									rd: 1
+								});
 						} else if(resouFlag == 2) {
 							var Page = plus.webview.getWebviewById('html/studentUpdata.html');
-							mui.fire(Page, 'newId');
+							mui.fire(Page, 'newId', {
+									rd: 1
+								});
 						}
 						var Pa = plus.webview.getWebviewById('resinforupdate.html');
 						mui.fire(Pa, 'resourceMess');

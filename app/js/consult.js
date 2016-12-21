@@ -61,8 +61,11 @@ window.addEventListener('logined', function(event) {
 /*退出*/
 window.addEventListener('exited', function(event) {
 	var userId = event.detail.id; 
+	console.log('exited=='+userId)
+	console.log(content2)
 	content1.style.display = 'none';
 	content2.style.display = 'block';
+	document.getElementById('unlogin').style.display = 'block';
 });
 
 //显示登录,登陆或者注册
@@ -97,14 +100,14 @@ mui.plusReady(function() {
 
 
 //接收咨询btn
-window.addEventListener('clickconbtn', function(event) {
+/*window.addEventListener('clickconbtn', function(event) {
 	var consultBtn = event.detail.btn; 
 	console.log(consultBtn);
 	console.log('点击咨询');
 	islogin();
 	
 	initData();
-});
+});*/
 
 /*初始化数据*/
 initData();
@@ -144,7 +147,7 @@ mui.ready(function(){
 function initData(){
 	mui.plusReady(function() { 
 		var userid = plus.storage.getItem('userid');
-		
+		plus.nativeUI.showWaiting();//显示原生等待框
 		mui.ajax(baseUrl + '/ajax/consult/pq',{
 			data:{
 				"professorId":userid,
@@ -164,13 +167,13 @@ function initData(){
                 	table.innerHTML = '';//下拉刷新，清空数据
                 	var datalist = data.data.data;
 					eachData(userid,datalist);
-					
+					plus.nativeUI.closeWaiting()();//关闭原生等待框
 				};
 				
 			},
 			error:function(xhr,type,errorThrown){
 				mui.toast('网络异常,请稍候再试'); 
-				
+				plus.nativeUI.closeWaiting()();//关闭原生等待框
 			}
 		});
 	});

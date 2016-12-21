@@ -12,22 +12,41 @@
     	.displayBlock {
     		display: block;
     	}
-    	* {
-	    	font-family: "微软雅黑";
-	    }
-	    /*#table {
-	    	margin-top: 44px;
-	    }*/
     	
     	/*筛选div*/
     	.filterbox2.filterdiv {
     		z-index: 9;
     	}
     	/*筛选条件样式*/
-    #sliderSegmentedControl .mui-control-item.filteritem {
-     	padding: 0;
-     	color: #333;
-    }
+    	#sliderSegmentedControl .mui-control-item.filteritem {
+     		padding: 0;
+     		
+    	}
+    	#sliderSegmentedControl a.filteritem:active  {
+    		color: #007aff;
+    	}
+    	
+    	#sliderSegmentedControl a.filteritem:visited {
+    		color: #333;
+    	}
+    	
+    
+    	
+    	.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+    		color: #333 !important;
+    	}
+    	
+    	
+    	/*过滤箭头样式*/
+    	#sliderSegmentedControl .mui-icon-arrowdown {
+    		margin: 0;
+    		border: none;
+    		width: 15px;
+    		height: 30px;
+    		font-size:inherit;
+    		font-family:Muiicons;
+    		line-height: 30px;
+    	}
     	
     	/*写有下拉刷新,正在刷新的div*/
     	/*#zixunpullrefresh .mui-pull-top-pocket {
@@ -184,24 +203,28 @@
 		<div id="slider" class="mui-slider mui-fullscreen">
 			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 				<div class="mui-scroll" style="width: 100%; font-size: 13px;">
-					<a style="width: 22%;" href="#middlePopover1"  class="mui-control-item filteritem">
+					<a style="width: 22%;" href="#middlePopover1"  class="mui-control-item filteritem filterlist2">
 						<span id="headck1" headck='0'>咨询/需求</span>
+						<em class="mui-icon mui-icon-arrowdown"></em>
 					</a>
 					<a style="width: 22%;"  href="#middlePopover2"  class="mui-control-item filteritem">
 						<span id="headck2" headck='0'>咨询类型</span>
+						<em class="mui-icon mui-icon-arrowdown"></em>
 					</a>
 					<a style="width: 22%;"  href="#middlePopover3"  class="mui-control-item filteritem">
 						<span id="headck3" headck='0'>咨询状态</span>
+						<em class="mui-icon mui-icon-arrowdown"></em>
 					</a>
 					<a style="width: 34%;" href="#middlePopover4"  class="mui-control-item filteritem" >
 						<span id="headck4" headck='1'>按最后回复排序</span>
+						<em class="mui-icon mui-icon-arrowdown"></em>
 					</a>
 					
 				</div>
 			</div>
 		
 			<div class="mui-slider-group">
-				<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+				<div id="item1mobile" class="mui-slider-item mui-control-content">
 					<div id="zixunpullrefresh" class="mui-scroll-wrapper">
 						<div class="mui-scroll">
 							<ul class="mui-table-view" id="table">
@@ -347,9 +370,9 @@
 		      
 		    </ul>
 		  </div>
-		</div>
+		</div>-->
 		
-    </div>-->
+    </div>
 	
 	<!--未登录或者未注册时咨询主页面-->
 	<div class="mui-content" id="unlogin">
@@ -379,6 +402,7 @@
 	   		var userid = plus.storage.getItem('userid');
 	   		if(userid == null || userid == 'null'){
 	   			content1.style.display = 'none';
+	   			
 	   		}else {
 	   			content2.style.display = 'none';
 	   		}

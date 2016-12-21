@@ -27,7 +27,7 @@ mui.ready(function() {
 							string += '<a class="proinfor" href="../html/proinforbrow.html">'
 							string += '<div class="mui-pull-left lefthead">'
 							if($info[i].professor.hasHeadImage) {
-								string += '<img class="mui-media-object headimg headRadius" src="/images/head/' + $info[i].professor.id + '_l.jpg">'
+								string += '<img class="mui-media-object headimg headRadius" src="'+baseUrl+'/images/head/' + $info[i].professor.id + '_l.jpg">'
 							} else {
 								string += '<img class="mui-media-object headimg headRadius" src="../images/default-photo.jpg">'
 							}

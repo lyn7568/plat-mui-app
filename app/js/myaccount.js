@@ -203,7 +203,7 @@ mui.ready(function() {
 								userDepartment.innerText=$info.department+"，"
 							}else{
 								if($info.address){
-									userDepartment.innerText=$info.department+"|"
+									userDepartment.innerText=$info.department+" | "
 								}else{
 									userDepartment.innerText=$info.department;
 								}
@@ -211,7 +211,7 @@ mui.ready(function() {
 						}
 						if($info.orgName) {
 							if($info.address){
-									userMechanism.innerText=$info.orgName+"|"
+									userMechanism.innerText=$info.orgName+" | "
 								}else{
 									userMechanism.innerText=$info.orgName;
 								}

@@ -537,36 +537,38 @@ function unreadConsultFn (senderId,consultId,i){
 
 //点击选择
 function checkedFun(i){
-	mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
-		allPages = 1;
-		pageIndex = 1;
-		plus.nativeUI.showWaiting(); //显示等待框
-		document.getElementById("headck"+i).innerHTML = this.innerHTML;
-		var value = this.getAttribute("ck"+i);
-		document.getElementById("headck"+i).setAttribute('headck',value);
-		document.querySelector('.mui-backdrop').style.display = 'none';
-		document.getElementById("middlePopover"+i).style.display = 'none';
+	mui.plusReady(function(){
+		mui("#middlePopover"+i).on('tap','.mui-navigate-right',function(e){
+			allPages = 1;
+			pageIndex = 1;
+			plus.nativeUI.showWaiting(); //显示等待框
+			document.getElementById("headck"+i).innerHTML = this.innerHTML;
+			var value = this.getAttribute("ck"+i);
+			document.getElementById("headck"+i).setAttribute('headck',value);
+			document.querySelector('.mui-backdrop').style.display = 'none';
+			document.getElementById("middlePopover"+i).style.display = 'none';
+			
+			//去掉样式类mui-active,要不然会多点击一次
+			document.getElementById("middlePopover"+i).classList.remove('mui-active');
+			
+			//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务
+			otypeval.value = document.getElementById("headck2").getAttribute('headck');
+			if(otypeval.value == 0) {
+				otypeval.value = '';
+			}else {
+				otypeval.value = document.getElementById("headck2").innerHTML;
+			}
+			oneedval.value = document.getElementById("headck1").getAttribute('headck');
+			ostateval.value = document.getElementById("headck3").getAttribute('headck');
+			osortval.value = document.getElementById("headck4").getAttribute('headck');
+			
+			 initData();
+			
+			mui('#zixunpullrefresh').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
+			plus.nativeUI.closeWaiting();//关闭等待框
+		});
 		
-		//去掉样式类mui-active,要不然会多点击一次
-		document.getElementById("middlePopover"+i).classList.remove('mui-active');
-		
-		//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务
-		otypeval.value = document.getElementById("headck2").getAttribute('headck');
-		if(otypeval.value == 0) {
-			otypeval.value = '';
-		}else {
-			otypeval.value = document.getElementById("headck2").innerHTML;
-		}
-		oneedval.value = document.getElementById("headck1").getAttribute('headck');
-		ostateval.value = document.getElementById("headck3").getAttribute('headck');
-		osortval.value = document.getElementById("headck4").getAttribute('headck');
-		
-		 initData();
-		
-		mui('#zixunpullrefresh').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
-		plus.nativeUI.closeWaiting();//关闭等待框
 	});
-	
 };
 checkedFun(1);
 checkedFun(2);

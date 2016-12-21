@@ -23,6 +23,11 @@
     	.filterbox2.filterdiv {
     		z-index: 9;
     	}
+    	/*筛选条件样式*/
+    #sliderSegmentedControl .mui-control-item.filteritem {
+     	padding: 0;
+     	color: #333;
+    }
     	
     	/*写有下拉刷新,正在刷新的div*/
     	/*#zixunpullrefresh .mui-pull-top-pocket {
@@ -178,17 +183,17 @@
     	
 		<div id="slider" class="mui-slider mui-fullscreen">
 			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-				<div class="mui-scroll">
-					<a  href="#middlePopover1"  class="mui-control-item">
+				<div class="mui-scroll" style="width: 100%; font-size: 13px;">
+					<a style="width: 22%;" href="#middlePopover1"  class="mui-control-item filteritem">
 						<span id="headck1" headck='0'>咨询/需求</span>
 					</a>
-					<a  href="#middlePopover2"  class="mui-control-item">
+					<a style="width: 22%;"  href="#middlePopover2"  class="mui-control-item filteritem">
 						<span id="headck2" headck='0'>咨询类型</span>
 					</a>
-					<a  href="#middlePopover3"  class="mui-control-item">
+					<a style="width: 22%;"  href="#middlePopover3"  class="mui-control-item filteritem">
 						<span id="headck3" headck='0'>咨询状态</span>
 					</a>
-					<a href="#middlePopover4"  class="mui-control-item" >
+					<a style="width: 34%;" href="#middlePopover4"  class="mui-control-item filteritem" >
 						<span id="headck4" headck='1'>按最后回复排序</span>
 					</a>
 					
@@ -342,9 +347,9 @@
 		      
 		    </ul>
 		  </div>
-		</div>-->
+		</div>
 		
-    </div>
+    </div>-->
 	
 	<!--未登录或者未注册时咨询主页面-->
 	<div class="mui-content" id="unlogin">

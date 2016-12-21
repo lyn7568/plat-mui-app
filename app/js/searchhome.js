@@ -642,7 +642,12 @@ mui.ajax(baseUrl + '/ajax/dataDict/qaDictCode', {
 			});
 			xsly.innerHTML = finallist;
 		}
-
+		mui("#xsly li a").each(function () {
+			if(this.innerText==subject){
+				document.querySelector('#xsly li a.active').classList.remove('active');
+				this.classList.add("active");
+			}
+		});
 	},
 	error: function() {
 		plus.nativeUI.toast("服务器链接超时", toastStyle);

@@ -167,7 +167,7 @@ function initData(){
                 	table.innerHTML = '';//下拉刷新，清空数据
                 	var datalist = data.data.data;
 					eachData(userid,datalist);
-					plus.nativeUI.closeWaiting()();//关闭原生等待框
+					plus.nativeUI.closeWaiting();//关闭原生等待框
 				};
 				
 			},

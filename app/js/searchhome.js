@@ -189,6 +189,7 @@ mui("#addressval").on('tap', 'a', function() {
 	this.classList.add("active");
 	if(address == "全省") {
 		address = "";
+		document.getElementById("addressid").innerText = province;
 	}
 	//console.log(province);
 	//console.log(address);

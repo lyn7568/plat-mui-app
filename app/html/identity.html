@@ -6,6 +6,7 @@
 		<title>账户与安全</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 	</head>
 
@@ -17,9 +18,9 @@
 		<div class="mui-content"  style="background: #fff; margin-top:10px;" id="navsub">
 			<h3 class="boxnav-title">请确认您现在的身份:</h3>
 			<ul class="boxnav">
-				<li><span typenum="1">科研工作者</span></li>
-				<li><span typenum="2">在企人员</span></li>
-				<li><span typenum="3">在校生</span></li>
+				<li><span typenum="1" class="liactive"><em class="mui-icon iconfont"></em>科研工作者</span></li>
+				<li><span typenum="2"><em class="mui-icon iconfont"></em>在企人员</span></li>
+				<li><span typenum="3"><em class="mui-icon iconfont"></em>在校生</span></li>
 			</ul>
 		</div>
 		<div class="mui-content-padded frmbox" style="margin-top:40px;">
@@ -68,6 +69,16 @@
 					}
 				}
 			}
+			//鼠标点击联系目的li时添加liactive类
+			mui(".boxnav").on('tap','li span',function(e){
+				var aimlist = document.querySelector('.boxnav').querySelectorAll("li span");
+				for(var i = 0 ; i < aimlist.length;i++){
+					aimlist[i].classList.remove('liactive');
+					aimlist[i].querySelector('em').classList.remove('icon-check');
+				}
+				this.classList.add('liactive');
+				this.querySelector("em").classList.add("icon-check");
+			});
 		</script>
 	</body>
 

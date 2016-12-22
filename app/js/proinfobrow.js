@@ -137,16 +137,16 @@ mui.plusReady(function() {
 			var $data = odata;
 			var html = [];
 			for(var i = 0; i < odata.length; i++) {
-				var string = '<li class="mui-table-view-cell mui-media" resouseId=' + $data[i].resourceId + '>'
-				string += '<a class="proinfor">'
+				var string = '<li class="mui-table-view-cell mui-media listitem" resouseId=' + $data[i].resourceId + '>'
+				string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox">'
 				if($data[i].images.length) {
-					string += '<img class="mui-media-object mui-pull-left resimg" src="' + baseUrl + '/images/resource/' + $data[i].resourceId + '.jpg">'
+					string += '<img class="resImg" src="' + baseUrl + '/images/resource/' + $data[i].resourceId + '.jpg">'
 
 				} else {
 
-					string += '<img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">'
+					string += '<img class="resImg" src="../images/default-resource.jpg">'
 				}
-				string += '<div class="mui-media-body">'
+				string += '</div><div class="mui-media-body">'
 				string += '<span class="listtit">' + $data[i].resourceName + '</span>'
 				string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
 				string += '<p class="listtit3 resbrief">'

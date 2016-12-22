@@ -199,16 +199,16 @@ mui.ready(function() {
 			var $data = oDa;
 			var html = [];
 			for(var i = 0; i < n; i++) {
-				var string = '<li class="mui-table-view-cell mui-media" resouId=' + $data[i].resourceId + '>'
-				string += '<a class="proinfor" href="resinforupdate.html">'
+				var string = '<li class="mui-table-view-cell mui-media listitem" resouId=' + $data[i].resourceId + '>'
+				string += '<a class="proinfor" href="resinforupdate.html"><div class="mui-media-object mui-pull-left ResImgBox">'
 				if($data[i].images.length) {
-					string += '<img class="mui-media-object mui-pull-left resimg" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'					
+					string += '<img class="resImg" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'					
 				} else {
 
-						string += '<img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">'
+						string += '<img class="resImg" src="../images/default-resource.jpg">'
 					}
-					string += '<div class="mui-media-body">'
-					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox updatebox2" style="top:6px;right:6px;"><em class="mui-icon mui-icon-compose updatebtn"></em></div></span>'
+					string += '</div><div class="mui-media-body">'
+					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox updatebox2" style="top:24px;"><em class="mui-icon mui-icon-compose updatebtn"></em></div></span>'
 					string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
 					string += '<p class="listtit3 resbrief">'
 					if($data[i].descp) {

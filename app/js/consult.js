@@ -173,7 +173,7 @@ function initData(){
 			},
 			error:function(xhr,type,errorThrown){
 				mui.toast('网络异常,请稍候再试'); 
-				plus.nativeUI.closeWaiting()();//关闭原生等待框
+				plus.nativeUI.closeWaiting();//关闭原生等待框
 			}
 		});
 	});

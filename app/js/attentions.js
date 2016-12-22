@@ -355,7 +355,7 @@ function resourcesEach2(datalistd) {
 		li.className = 'mui-table-view-cell mui-media';
 
 		li.innerHTML = '<a class="proinfor" data-id="' + item.resource.resourceId + '"' +
-			'<p><img class="mui-media-object mui-pull-left resimg" src="' + img + '" ></p>' +
+			'<p><div class="mui-media-object mui-pull-left ResImgBox"><img class="resImg" src="' + img + '"></div></p>' +
 			'<div class="mui-media-body">' +
 			'<span class="listtit">' + item.resource.resourceName + '</span>' +
 			'<p class="mui-ellipsis listtit2">' + item.resource.supportedServices + '</p>' +

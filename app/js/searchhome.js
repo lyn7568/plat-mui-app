@@ -137,12 +137,12 @@ searchval.addEventListener("keyup", function() {
 mui(".provinceval").on('tap', 'a', function() {
 	key = searchVal.value;
 	province = this.innerText;
-	document.getElementById("addressid").innerText = province;
 	document.querySelector('#provinceval li a.active').classList.remove('active');
 	this.classList.add("active");
 	if(province == "全国") {
 		province = "";
 		address = "";
+		document.getElementById("addressid").innerText = "全国";
 		addressVal.innerHTML = "";
 		plus.nativeUI.showWaiting();
 		mui('.mui-popover').popover('hide');
@@ -157,7 +157,11 @@ mui(".provinceval").on('tap', 'a', function() {
 			type: 'GET', //http请求类型
 			timeout: 10000,
 			success: function(data) {
-				var finallist = '<li class="mui-table-view-cell"><a class="active">全省</a></li>';
+				if(province == "北京市" || province == "上海市" || province == "天津市" || province == "重庆市" ){
+					var finallist = '';
+				}else{
+					var finallist = '<li class="mui-table-view-cell"><a class="active">全省</a></li>';
+				}
 				console.log(data.success)
 				console.log(JSON.stringify(data.data))
 				if(data.success && data.data != "") {
@@ -165,6 +169,7 @@ mui(".provinceval").on('tap', 'a', function() {
 						finallist += '<li class="mui-table-view-cell"><a >' + n.caption + '</a></li>';
 					});
 					addressVal.innerHTML = finallist;
+					addressVal.firstChild.childNodes.item(0).classList.add('active');
 				}
 
 			},
@@ -179,6 +184,7 @@ mui(".provinceval").on('tap', 'a', function() {
 mui("#addressval").on('tap', 'a', function() {
 	key = searchVal.value;
 	address = this.innerText;
+	document.getElementById("addressid").innerText = address;
 	document.querySelector('#addressval li a.active').classList.remove('active');
 	this.classList.add("active");
 	if(address == "全省") {

@@ -164,16 +164,5 @@ mui.ready(function() {
 		}
 
 	});
-	
-	//鼠标点击联系目的li时添加liactive类
-	mui(".boxnav").on('tap','li span',function(e){
-		var aimlist = document.querySelector('.boxnav').querySelectorAll("li span");
-		for(var i = 0 ; i < aimlist.length;i++){
-			aimlist[i].classList.remove('liactive');
-			aimlist[i].querySelector('em').classList.remove('icon-check');
-		}
-		this.classList.add('liactive');
-		this.querySelector("em").classList.add("icon-check");
-	});
 
 });

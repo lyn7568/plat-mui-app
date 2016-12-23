@@ -99,7 +99,7 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 .authword{ padding:2px 6px; margin-left:6px;border-radius:4px; color: #FFFFFF; font-size: 12px;}
 .authed{ background: #FF9900; }
 /*认证中*/
-.authing{background: #6bbf00;}
+.authing{background: #0ee032;}
 /*未认证*/
 .unauth{background: #efefef;color: #CCCCCC;}
 
@@ -115,7 +115,7 @@ em.icon-renzheng{position:absolute;border:1px solid;margin-top:2px;margin-left:2
 em.icon-renzheng span{position:relative;top:0px;font-size:8px;line-height:8px;margin-right:6px;vertical-align:middle;}
 .authicon-mana{color:#ff9900;}/*认证在企高管*/
 .authicon-staff{color:#007AFF;}/*认证在企职员*/
-.authicon-stu{color:#6bbf00;}/*认证在读学生*/
+.authicon-stu{color:#0ee032;}/*认证在读学生*/
 
 /*****表单公共样式********/
 /*input输入相关*/
@@ -193,10 +193,20 @@ ul.boxnav li:nth-child(2) span{border:1px solid #6699ff; color: #6699ff;}
 ul.boxnav li:nth-child(3) span{border:1px solid #66cc00; color: #66cc00;}
 ul.boxnav li.liactive{}
 ul.boxnav li .icon-check {border: 1px solid;border-radius: 50%;font-size: 12px;margin-right: 3%;}
-ul.boxnav li.set:nth-child(1) span{border:1px solid #ff9900; color: #fff; background: #ff9900;}
-ul.boxnav li.set:nth-child(2) span{border:1px solid #6699ff; color: #fff; background: #6699ff;}
-ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; background: #66cc00;}
-
+ul.boxnav li.set:nth-child(1) span{border:1px solid #ff9900; color: #fff; background: #ff9900; }
+ul.boxnav li.set:nth-child(2) span{border:1px solid #6699ff; color: #fff; background: #6699ff; }
+ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; background: #66cc00; }
+ul.boxnav li.set span:before{
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e645";
+  border:1px solid;
+  border-radius: 50%;
+  font-size:12px; 
+  margin-right: 4%;}
 /*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
 .maincon ul li.basicfrm{list-style: none; position: relative; overflow: hidden; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin-left: 2%;padding-left:0; }
 .maincon ul li.basicfrm .frmtype{ height: 26px; padding:0; padding-right:2%;line-height:20px;font-size: 14px; }
@@ -457,7 +467,7 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 .consultinfo tr td.sendbox{text-align: right;position: relative;}
 .consultinfo tr td .sendbtn{width: 20%;font-size: 13px; padding: 4px 10px;margin:0;position:absolute;right:0; top:0; }
 
-.operatebox{ width:100%;background: #FFFFFF;overflow: hidden; padding:10px;position: relative;}
+.operatebox{ width:100%;background: #FFFFFF;overflow: hidden;min-height: 60px;padding:10px;position: relative;}
 .themespan{ width: 54%;}
 .operatebtnbox{width:44%;position:absolute; top:50%; right:1%;margin-top:-13px;}
 /*已评价*/.operated{width:30%; margin-top:-18px;}
@@ -483,7 +493,7 @@ ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; backgr
 .coutopicbox .aimlabel{background:#6CA8FF;}
 .coutopicbox .status-1{background:#FF9900;}/*进行中*//*咨询状态*/
 .coutopicbox .status-2{background:#dd524d;}/*待评价*/
-.coutopicbox .status-3{background:#6bbf00;}/*已完成*/
+.coutopicbox .status-3{background:#0ee032;}/*已完成*/
 
 .thistime{ position: absolute; right:6px; font-size: 12px; color: #999999;}
 

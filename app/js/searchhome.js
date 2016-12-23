@@ -99,6 +99,8 @@ mui.plusReady(function(){
 /*搜专家搜资源的下拉选择框*/
 selectblock.addEventListener('tap', function() {
 	showblock.style.display = 'block';
+//	console.log(selectblock.style.width);
+//	console.log(showblock.style.width);
 });
 
 mui("#li_show").on('tap', 'li', function() {

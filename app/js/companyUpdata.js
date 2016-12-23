@@ -98,10 +98,10 @@ mui.ready(function() {
 				var string = '<li class="mui-table-view-cell mui-media" resouId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor" href="resinforupdate.html"><div class="mui-media-object mui-pull-left ResImgBox">'
 				if($data[i].images.length) {
-					string += '<img class="resImg" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'					
+					string += '<img class="resImg headRadius" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'					
 				} else {
 
-						string += '<img class="resImg" src="../images/default-resource.jpg">'
+						string += '<img class="resImg headRadius" src="../images/default-resource.jpg">'
 					}
 					string += '<div class="mui-media-body">'
 					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox updatebox2" style="top:6px;right:6px;"><em class="mui-icon mui-icon-compose updatebtn"></em></div></span>'

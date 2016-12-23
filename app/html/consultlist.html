@@ -26,6 +26,9 @@
      		border-right:1px solid #F0F0F0;
      		border-bottom:1px solid #F0F0F0;
     	}
+    	#sliderSegmentedControl .mui-control-item.filteritem:last-child{
+    		border-right:none;
+    	}
     	#sliderSegmentedControl a.filteritem:active  {
     		color: #007aff;
     	}
@@ -46,8 +49,9 @@
     	#sliderSegmentedControl .mui-icon-arrowdown {
     		margin: 0;
     		border: none;
-    		width: 15px;
+    		width: 12px;
     		height: 30px;
+    		margin-left:-3px;
     		font-size:inherit;
     		font-family:Muiicons;
     		line-height: 30px;
@@ -180,7 +184,7 @@
 		<div id="slider" class="mui-slider mui-fullscreen">
 			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 				<div class="mui-scroll" style="width: 100%; color: #333;">
-					<a style="width: 22%;" href="#middlePopover1"  class="mui-control-item filteritem">
+					<a style="width: 22%;min-width:80px;" href="#middlePopover1"  class="mui-control-item filteritem">
 						<span id="headck1" headck='0'>咨询/需求</span>
 						<em class="mui-icon mui-icon-arrowdown"></em>
 					</a>
@@ -192,7 +196,7 @@
 						<span id="headck3" headck='0'>咨询状态</span>
 						<em class="mui-icon mui-icon-arrowdown"></em>
 					</a>
-					<a style="width: 34%;" href="#middlePopover4"  class="mui-control-item filteritem" >
+					<a style="min-width: 108px;" href="#middlePopover4"  class="mui-control-item filteritem" >
 						<span id="headck4" headck='1'>按最后回复排序</span>
 						<em class="mui-icon mui-icon-arrowdown"></em>
 					</a>

@@ -24,7 +24,7 @@ mui.ready(function() {
 								$info[i].assessTime.substr(8, 2) + ":" + $info[i].assessTime.substr(10, 2);
 
 							var string = '<li class="mui-table-view-cell mui-media">'
-							string += '<a class="proinfor" href="../html/proinforbrow.html">'
+							string += '<a class="proinfor" >'
 							string += '<div class="mui-pull-left lefthead">'
 							if($info[i].professor.hasHeadImage) {
 								string += '<img class="mui-media-object headimg headRadius" src="'+baseUrl+'/images/head/' + $info[i].professor.id + '_l.jpg">'
@@ -52,12 +52,13 @@ mui.ready(function() {
 							string += '</p>'
 							string += '</div></a></li>'
 							html.push(string);
-							var startLeval = parseInt($info[i].starLevel);
-							var start = document.getElementsByClassName("star");
-							for(var j = 0; j < startLeval; j++) {
-								start[j].classList.add("icon-favorfill");
-							}
-							document.getElementsByClassName(" protable")[0].innerHTML = html.join('');
+							 var startLeval=parseInt($info[i].assessStar);  
+	                 document.getElementsByClassName(" protable")[0].innerHTML=html.join('');
+	                var start=document.getElementsByClassName("star");	                
+					    for(var j=0;j<startLeval;j++) {
+					    	start[j].classList.remove("icon-favor");
+							start[j].classList.add("icon-favorfill");
+						}					
 						}
 					}
 				},

@@ -8,7 +8,7 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var proId = self.proid;
-	console.log(userid);
+	console.log(userid); 
 	/*点击咨询*/
 	//判断是否登录，登录才可咨询，否则登录
 	function isLogin(){

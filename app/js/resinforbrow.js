@@ -247,7 +247,7 @@ mui.plusReady(function() {
 		isLogin();
 	});
 	
-
+ 
 	/*咨询成功,返回资源信息*/
 	window.addEventListener('backziyuaninfo', function(event) {
 

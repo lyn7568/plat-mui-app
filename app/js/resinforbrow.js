@@ -216,8 +216,12 @@ mui.plusReady(function() {
 	//资源信息
 	ziyuaninfo(resourceId);
 	/*点击咨询*/
-	if(userid) {
-		oconsult.addEventListener('tap', function() {
+	//判断是否登录，登录才可咨询，否则登录
+	function isLogin(){
+		var userid = plus.storage.getItem('userid');
+	
+		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined'){
+			
 			var flag = 'ziyuan';
 			var consulttitle = oresorcename.innerHTML;
 			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
@@ -230,22 +234,19 @@ mui.plusReady(function() {
 			webviewShow.addEventListener("loaded", function() {
 
 			}, false);
-
-		});
-	} else if(userid == '' || userid == undefined) {
-		oconsult.addEventListener('tap', function() {
-			/*mui.alert('请登录', '' ,function(){
-				mui.openWindow({
-					url: '../html/login.html',
-					id: 'html/login.html',
-					show: {
-						aniShow: "slide-in-left"
-					}
-				});
-			});*/
-			plus.nativeUI.toast("请先登录");
-		});
-	}
+			
+		}else {
+			mui.openWindow({
+			    url:'../html/login.html',
+			    id:'login.html'
+			})
+				
+		}
+	};
+	oconsult.addEventListener('tap', function() {
+		isLogin();
+	});
+	
 
 	/*咨询成功,返回资源信息*/
 	window.addEventListener('backziyuaninfo', function(event) {

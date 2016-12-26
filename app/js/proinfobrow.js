@@ -10,8 +10,12 @@ mui.plusReady(function() {
 	var proId = self.proid;
 	console.log(userid);
 	/*点击咨询*/
-	if(userid) {
-		ozixun.addEventListener('tap', function() {
+	//判断是否登录，登录才可咨询，否则登录
+	function isLogin(){
+		var userid = plus.storage.getItem('userid');
+	
+		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined'){
+			
 			var flag = 'professor';
 			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
 			webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
@@ -22,21 +26,21 @@ mui.plusReady(function() {
 			webviewShow.addEventListener("loaded", function() {
 
 			}, false);
-		});
-	} else if(userid == '' || userid == undefined) {
-		ozixun.addEventListener('tap', function() {
-			/*mui.alert('请登录', '' ,function(){
-				mui.openWindow({
-					url: '../html/login.html',
-					id: 'html/login.html',
-					show: {
-						aniShow: "slide-in-left"
-					}
-				});
-			});*/
-			plus.nativeUI.toast("请先登录");
-		});
+			
+		}else {
+			mui.openWindow({
+			    url:'../html/login.html',
+			    id:'login.html'
+			})
+				
+		}
 	}
+	
+	ozixun.addEventListener('tap', function() {
+		isLogin();
+	});
+	
+
 
 	//查询学术领域
 	var subjectShow = function(data) {

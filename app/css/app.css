@@ -362,8 +362,8 @@ ul.boxnav li.set span:before{
 .generalinfo span{letter-spacing:normal;}
 .generalinfo .letspace{font-style:normal;letter-spacing: 2em;}
 
-.updatebox{ position: absolute; right:1%; top:20px; font-size: 13px; line-height:16px;color: #FF9900;}
-.updatebox2{right:7%; }
+.updatebox{ position: absolute; right:1%;font-size: 13px; line-height:16px;color: #FF9900;}
+.updatebox2{right:7%; top:20px; }
 .updatebox:hover,.updatebox:active,.updatebox:link{ color: #FF9900;}
 .updatebox .updatebtn{font-size:20px;margin-top:-4px;}
 

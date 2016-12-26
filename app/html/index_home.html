@@ -1,152 +1,147 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title></title>
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link href="../css/mui.min.css" rel="stylesheet" />
-<link href="../css/app.css" rel="stylesheet" />
-<link href="../css/iconfont.css" rel="stylesheet" />
-</head>
-<body>
-	
-<!-- 主页面标题 -->
-<header class="mui-bar mui-bar-nav toptitbox">
-    <div class="searchbox bgRadius" id="search">
-    	<em class="mui-icon mui-icon-search searchtxt" ><span>搜索专家、研发资源</span></em>
-	    <!--<input type="search" class="mui-input-clear searchtxt" placeholder="搜索专家、合作资源">-->
-	</div>
-</header>
- <!-- 主页面内容容器 -->
-    <div class="mui-content">
-    	<!-- 主界面具体展示内容 -->
-    	<!--图片轮播-->
-        <div id="slider" class="mui-slider" >
-          <div class="mui-slider-group mui-slider-loop">
-            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-            <div class="mui-slider-item mui-slider-item-duplicate">
-              <a >
-                 <img src="../images/banner/4.jpg">
-              </a>
-            </div>
-            <!-- 第一张 -->
-            <div class="mui-slider-item">
-              <a >
-                 <img src="../images/banner/1.jpg">
-              </a>
-            </div>
-            <!-- 第二张 -->
-            <div class="mui-slider-item">
-              <a >
-                 <img src="../images/banner/2.jpg">
-              </a>
-            </div>
-            <!-- 第三张 -->
-            <div class="mui-slider-item">
-              <a >
-                 <img src="../images/banner/3.jpg">
-              </a>
-            </div>
-            <!-- 第四张 -->
-            <div class="mui-slider-item">
-              <a >
-                 <img src="../images/banner/4.jpg">
-              </a>
-            </div>
-            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-            <div class="mui-slider-item mui-slider-item-duplicate">
-              <a >
-                 <img src="../images/banner/1.jpg">
-              </a>
-            </div>
-          </div>
-          <div class="mui-slider-indicator">
-            <div class="mui-indicator mui-active"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-          </div>
-        </div>
-        <!-- 九宫格排版-->
-        <div class="mui-card-content conblock">
-        	<div class="maintitbox">
-        		<div class="maintit">热门领域</div>
-        	</div>
-	        <ul class="mui-table-view mui-grid-view mui-grid-9 gridbg">
-		        <li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料失效与保护">
-		            <a >
-		                <div class="fieldicon">
-		                	<img src="../images/field_icon/field05.png"/>
-		                </div>
-		                <div class="mui-media-body">材料失效与保护</div>
-		            </a>
-		        </li>
-		        <li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料表面与界面">
-		            <a >
-		                <div class="fieldicon">
-		                	<img src="../images/field_icon/field02.png"/>
-		                </div>
-		                <div class="mui-media-body">材料表面与界面</div>
-		            </a>
-		        </li>
-		        <li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="黑色金属及其合金">
-		            <a >
-		                <div class="fieldicon">
-		                	<img src="../images/field_icon/field07.png"/>
-		                </div>
-		                <div class="mui-media-body">黑色金属及其合金</div>
-		            </a>
-		        </li>
-		        <li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="金属材料">
-		            <a >
-		                <div class="fieldicon">
-		                	<img src="../images/field_icon/field18.png"/>
-		                </div>
-		                <div class="mui-media-body">金属材料</div>
-		            </a>
-		        </li>
-		        <li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="有色金属及其合金">
-		            <a >
-		                <div class="fieldicon">
-		                	<img src="../images/field_icon/field04.png"/>
-		                </div>
-		                <div class="mui-media-body">有色金属及其合金</div>
-		            </a>
-		        </li>
-		        <li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料检测与分析技术">
-		            <a >
-		                <div class="fieldicon">
-		                	<img src="../images/field_icon/field16.png"/>
-		                </div>
-		                <div class="mui-media-body">材料检测与分析技术</div>
-		            </a>
-		        </li>
-            </ul>
-        </div>
-        <!--图文列表-->
-        <div class="mui-card-content conblock">
-        	<div class="maintitbox">
-        		<div class="maintit">热门专家</div>
-        	</div>
-			
-			<div id="pullrefresh"  class="mui-scroll-wrapper" >
-				
-				<div class="mui-scroll" >
-					<!--数据列表-->
-					<ul class="mui-table-view mui-table-view-chevron list">
-						
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+	</head>
+
+	<body>
+
+		<!-- 主页面标题 -->
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<div class="searchbox bgRadius" id="search">
+				<em class="mui-icon mui-icon-search searchtxt"><span>搜索专家、研发资源</span></em>
+				<!--<input type="search" class="mui-input-clear searchtxt" placeholder="搜索专家、合作资源">-->
+			</div>
+		</header>
+		<!-- 主页面内容容器 -->
+		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+			<div class="mui-scroll">
+				<!-- 主界面具体展示内容 -->
+				<!--图片轮播-->
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a>
+								<img src="../images/banner/4.jpg">
+							</a>
+						</div>
+						<!-- 第一张 -->
+						<div class="mui-slider-item">
+							<a>
+								<img src="../images/banner/1.jpg">
+							</a>
+						</div>
+						<!-- 第二张 -->
+						<div class="mui-slider-item">
+							<a>
+								<img src="../images/banner/2.jpg">
+							</a>
+						</div>
+						<!-- 第三张 -->
+						<div class="mui-slider-item">
+							<a>
+								<img src="../images/banner/3.jpg">
+							</a>
+						</div>
+						<!-- 第四张 -->
+						<div class="mui-slider-item">
+							<a>
+								<img src="../images/banner/4.jpg">
+							</a>
+						</div>
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a>
+								<img src="../images/banner/1.jpg">
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+				<!-- 九宫格排版-->
+				<div class="mui-card-content conblock">
+					<div class="maintitbox">
+						<div class="maintit">热门领域</div>
+					</div>
+					<ul class="mui-table-view mui-grid-view mui-grid-9 gridbg">
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料失效与保护">
+							<a>
+								<div class="fieldicon">
+									<img src="../images/field_icon/field05.png" />
+								</div>
+								<div class="mui-media-body">材料失效与保护</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料表面与界面">
+							<a>
+								<div class="fieldicon">
+									<img src="../images/field_icon/field02.png" />
+								</div>
+								<div class="mui-media-body">材料表面与界面</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="黑色金属及其合金">
+							<a>
+								<div class="fieldicon">
+									<img src="../images/field_icon/field07.png" />
+								</div>
+								<div class="mui-media-body">黑色金属及其合金</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="金属材料">
+							<a>
+								<div class="fieldicon">
+									<img src="../images/field_icon/field18.png" />
+								</div>
+								<div class="mui-media-body">金属材料</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="有色金属及其合金">
+							<a>
+								<div class="fieldicon">
+									<img src="../images/field_icon/field04.png" />
+								</div>
+								<div class="mui-media-body">有色金属及其合金</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料检测与分析技术">
+							<a>
+								<div class="fieldicon">
+									<img src="../images/field_icon/field16.png" />
+								</div>
+								<div class="mui-media-body">材料检测与分析技术</div>
+							</a>
+						</li>
 					</ul>
 				</div>
-			
-			</div>
-			
-			
-		</div>
-		
-    </div>
-    <script src="../js/public/mui.min.js"></script>
-	<script src="../js/public/base.js"></script>
-	<script src="../js/index.js"></script>
+				<!--图文列表-->
+				<div class="mui-card-content conblock">
+					<div class="maintitbox">
+						<div class="maintit">热门专家</div>
+					</div>
+					<!--数据列表-->
+					<ul class="mui-table-view mui-table-view-chevron list">
 
-</body>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/index.js"></script>
+
+	</body>
+
 </html>

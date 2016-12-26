@@ -41,10 +41,13 @@ getOnePase();
 mui.init({
 	pullRefresh: {
 		container: '#pullrefresh',
+        down: {
+				callback: pulldownRefresh
+			  },
 		up: {
 			contentrefresh: '正在加载...',
 			//auto:true,
-			height:0, 
+			//height:100, 
 			callback: pullupRefresh
 		}
 	}
@@ -54,6 +57,13 @@ function pullupRefresh() {
 	pageIndex = ++pageIndex;
 	setTimeout(function() {
 		getaData()
+	}, 1000);
+}
+
+function pulldownRefresh() {
+	setTimeout(function() {
+		getOnePase();
+		mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 	}, 1000);
 }
 

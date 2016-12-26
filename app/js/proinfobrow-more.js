@@ -53,6 +53,11 @@ mui.ready(function() {
 						}
 						string += '</div>'
 						string += '<p class="listtit3">'
+						if(data[i].department) {
+							string += data[i].department;
+						}
+						string += '</p>'
+						string += '<p class="listtit3">'
 						if(data[i].title) {
 							string += data[i].title;
 						}

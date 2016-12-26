@@ -20,7 +20,7 @@ var provinceVal = document.getElementById("provinceval");
 var addressVal = document.getElementById("addressval");
 var subjectid = document.getElementById("subjectid");
 var industryid = document.getElementById("industryid");
-
+var nodatabox = document.getElementById("nodatabox");
 
 mui.init({
 		pullRefresh: {
@@ -99,8 +99,6 @@ mui.plusReady(function(){
 /*搜专家搜资源的下拉选择框*/
 selectblock.addEventListener('tap', function() {
 	showblock.style.display = 'block';
-//	console.log(selectblock.style.width);
-//	console.log(showblock.style.width);
 });
 
 mui("#li_show").on('tap', 'li', function() {
@@ -275,6 +273,7 @@ function expert(key, subject, industry, province, address, authentication, pageS
 				   }, 1000);
 				}
 				if(data.success && data.data.data != '') {
+					nodatabox.style.display = 'none';
 					var datalist = data.data.data;
 					console.log(data.data.total)
 					datalistEach(datalist);
@@ -284,7 +283,8 @@ function expert(key, subject, industry, province, address, authentication, pageS
 	                	mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
 	                }
 				} else {
-					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					//plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					nodatabox.style.display = 'block';
 					mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 				}
 				
@@ -319,6 +319,7 @@ function expert(key, subject, industry, province, address, authentication, pageS
 				   }, 1000);
 				}
 				if(data.success && data.data.data != '') {
+					nodatabox.style.display = 'none';
 					var datalist = data.data.data;
 					resourcesEach(datalist);
 					mui('#pullrefresh3').pullRefresh().refresh(true);
@@ -327,7 +328,8 @@ function expert(key, subject, industry, province, address, authentication, pageS
 	                	mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
 	                }
 				} else {
-					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					//plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					nodatabox.style.display = 'block';
 					mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 				}
 			},
@@ -364,6 +366,7 @@ function expert2(key, subject, industry, province, address, authentication, page
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
 				if(data.success && data.data.data != '') {
+					nodatabox.style.display = 'none';
 					mui('#pullrefresh3').pullRefresh().enablePullupToRefresh(); //启用上拉刷新
 					var datalist = data.data.data;
 					var dice1 = data.data.total; //总条数
@@ -387,7 +390,8 @@ function expert2(key, subject, industry, province, address, authentication, page
 				} else {
 					mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 					table.innerHTML = '';
-					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					//plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					nodatabox.style.display = 'block';
 				}
 			},
 			error: function() {
@@ -413,6 +417,7 @@ function expert2(key, subject, industry, province, address, authentication, page
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
 				if(data.success && data.data.data != '') {
+					nodatabox.style.display = 'none';
 					mui('#pullrefresh3').pullRefresh().enablePullupToRefresh(); //启用上拉刷新
 					var datalist = data.data.data;
 					var dice1 = data.data.total; //总条数
@@ -433,7 +438,8 @@ function expert2(key, subject, industry, province, address, authentication, page
 				} else {
 					mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 					table.innerHTML = '';
-					plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					//plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
+					nodatabox.style.display = 'block';
 				}
 			},
 			error: function() {

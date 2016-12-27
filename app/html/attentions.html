@@ -15,7 +15,6 @@
 		<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></span>
 		<h1 class="mui-title toptit">我的关注</h1>
 	</header>
-	
     <!-- 主页面内容容器 -->
     <div class="mui-content">
     	<!-- 主界面具体展示内容 -->
@@ -25,45 +24,65 @@
 				<li index="1" class="mui-col-xs-6">资源</li>
 			</ul>
 		</div>
-		<div class="mui-content alllist mui-scroll-wrapper" id="pullrefresh" style="margin-top: 35px;">
-			<div class="mui-scroll"> 
-		        <div  class="mui-card-content conblock childlist " style="display: block;"><!--当前x显示列表   'childlist'的显示隐藏-->
-			      	<ul class="mui-table-view protable list ">
-				            
-				    </ul>
-				    <div class="nodatabox" style="display:none; background: #efeff4;margin: 0; " id="nodatabox1">
-				        <div class="nodata">
-				            <div class="picbox"><span class="defpic"></span></div>
-				            <div class="txtbox">
-				            	<p class="currword">抱歉！您还未关注过专家</p>
-				                <p class="currtip">请重新修改搜索关键字、或筛选条件后再进行搜索</p>
-				            </div>
-				        </div>
-				    </div>
-				</div>
-				
-				<div class="mui-card-content conblock childlist ">
-			    <ul class="mui-table-view protable list2 ">
-			           
-			    </ul>
-			    <div class="nodatabox" style="display:none; background: #efeff4; margin: 0; " id="nodatabox2">
-			        <div class="nodata">
-			            <div class="picbox"><span class="defpic"></span></div>
-			            <div class="txtbox">
-			            	<p class="currword">抱歉！您还未关注过资源</p>
-			                <p class="currtip">请重新修改搜索关键字、或筛选条件后再进行搜索</p>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-				<!-- 主界面具体展示内容 -->
-    		</div>
-		</div>
-		
-		<!--<a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowup"></span> </a>-->
     </div>
     <script src="../js/public/mui.min.js"></script>
 	<script src="../js/public/base.js"></script>
-	<script src="../js/attentions.js"></script>
+	<script>
+	   var checkedindex = 0;
+		mui("#fixbtn").on("tap", "li", function() {
+			checkedindex = this.getAttribute("index");
+			var libtn_arr = document.getElementById("fixbtn").getElementsByTagName("li");
+			if(checkedindex == 0) {
+				libtn_arr[0].classList.add("liactive");
+				libtn_arr[1].classList.remove("liactive");
+				var list1 = plus.webview.getWebviewById('attentions-list2.html');
+				list1.close();
+				mui.openWindow({
+					url: 'attentions-list.html',
+					id: 'attentions-list.html',
+					show: {
+						aniShow: "slide-in",
+						autoShow: false
+					},
+					styles:{
+						top: '85px',
+						bottom: '0px',
+					}
+				});
+			} else {
+				libtn_arr[1].classList.add("liactive");
+				libtn_arr[0].classList.remove("liactive");
+				var list2 = plus.webview.getWebviewById('attentions-list.html');
+				list2.close();
+				mui.openWindow({
+					url: 'attentions-list2.html',
+					id: 'attentions-list2.html',
+					show: {
+						aniShow: "slide-in",
+						autoShow: false
+					},
+					styles:{
+						top: '85px',
+						bottom: '0px',
+					}
+				});
+			}
+		})
+	    mui.init({
+		    subpages:[{
+				url:'attentions-list.html',
+				id:'attentions-list.html',
+				styles:{
+					top: '85px',
+					bottom: '0px',
+				}
+			}]
+		});
+		mui.plusReady(function(){
+			plus.nativeUI.showWaiting();
+		})
+		
+
+	</script>
 </body>
 </html>

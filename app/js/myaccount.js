@@ -71,7 +71,7 @@ mui.ready(function() {
 						url: '../html/attentions.html',
 						id: '../html/attentions.html',
 						show: {
-							autoShow: false,
+							//autoShow: false,
 							aniShow: "slide-in-right"
 						}
 					});

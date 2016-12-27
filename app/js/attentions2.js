@@ -18,10 +18,10 @@ mui.init({
 
 function pullupRefresh() {
 	pageNo = ++pageNo;
+	console.log(pageNo);
 	setTimeout(function() {
 		expert2(pageNo, 10)
 	}, 1000);
-	mui('#pullrefresh').pullRefresh().refresh(true);
 }
 
 if(mui.os.plus) {
@@ -42,21 +42,20 @@ mui.plusReady(function(){
 	mui('.list').on('tap','a',function(){
 		var id=this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});
-		console.log(id)
+		plus.webview.create("../html/resinforbrow.html",'resinforbrow.html',{},{resourceId:id});
 	})
 })
 
 getOneExpert(1, 10);	
 
-/*获取第一页专家数据*/
+/*获取第一页资源数据*/
 function getOneExpert(pageNo, pageSize) {
 	mui.plusReady(function() {
 		var userId = plus.storage.getItem('userid');
 		mui.ajax(baseUrl + '/ajax/watch/qaPro', {
 			data: {
 				"professorId": userId,
-				"watchType": 1,
+				"watchType": 2,
 				"pageNo": pageNo,
 				"pageSize": pageSize
 			},
@@ -68,19 +67,19 @@ function getOneExpert(pageNo, pageSize) {
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("fade-in", 150);
 				table.innerHTML = '';
-				mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
+				//mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
 				if(data.success && data.data.data != "") {
 					var datalist = data.data.data;
 					datalistEach(datalist);
 					mui('#pullrefresh').pullRefresh().refresh(true);
+					
 	                if(data.data.total<data.data.pageSize){
 	                	mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
 	                }
 				}else {
-					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 					nodatabox1.style.display = 'block';
+					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
 				}
-			
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle); 
@@ -96,7 +95,7 @@ function expert2(pageNo, pageSize) {
 			mui.ajax(baseUrl + '/ajax/watch/qaPro', {
 				data: {
 					"professorId": userId,
-					"watchType": 1,
+					"watchType": 2,
 					"pageNo": pageNo,
 					"pageSize": pageSize
 				},
@@ -119,7 +118,7 @@ function expert2(pageNo, pageSize) {
 						datalistEach(datalist);
 						mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
 						if(pageNo < allPages) {
-							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //能上拉
+							mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
 						} else {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
 							
@@ -134,54 +133,37 @@ function expert2(pageNo, pageSize) {
 		});
 }
 
-/*专家数据遍历*/
-function datalistEach(datalist) {
-	mui.each(datalist, function(index, item) {
+/*资源数据遍历*/
+function datalistEach(datalistd) {
+	mui.each(datalistd, function(index, item) {
+       
 		/*获取头像*/
-		//console.log(JSON.stringify(item));
-		if(item.professor.hasHeadImage == 1) {
-			var img = baseUrl + "/images/head/" + item.professor.id + "_l.jpg";
+		if(item.resource.images.length) {
+			var img = baseUrl + "/images/resource/" + item.resource.resourceId + ".jpg";
 		} else {
-			var img = "../images/default-photo.jpg";
+			var img = "../images/default-resource.jpg";
 		}
-
-		/*获取研究方向信息*/
-		var researchAreas = item.professor.researchAreas;
-		//console.log(JSON.stringify(item.professor.researchAreas))
-		var rlist = '';
-		for(var n = 0; n < researchAreas.length; n++) {
-			//console.log(researchAreas[n].caption);
-			rlist = '<span>' + researchAreas[n].caption + '</span>';
-		}
-
+		
 		/*判断用户是否认证*/
-		var icon = '';
-		if(item.professor.authType) {
-			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
+		var icont = '';
+		if(item.resource.professor.authType) {
+			icont='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.professor.authStatus) {
-				if(item.professor.authentication == 1) {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
-				} else if(item.professor.authentication == 2) {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+			if(item.resource.professor.authStatus) {
+				if(item.resource.professor.authentication == 1) {
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
+				} else if(item.resource.professor.authentication == 2) {
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
 				} else {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
 				}
 			}
 		}
 
-		/*获取资源信息*/
-		var resources = item.professor.resources;
-		var zlist = '';
-		for(var m = 0; m < resources.length; m++) {
-			//console.log(resources[m].caption);
-			zlist = '<span>' + resources[m].resourceName + '</span>';
-		}
-
-		var title = item.professor.title || "";
-		var office = item.professor.office || "";
-		var orgName = item.professor.orgName || "";
-		var address = item.professor.address || "";
+		var title = item.resource.professor.title || "";
+		var office = item.resource.professor.office || "";
+		var orgName = item.resource.professor.orgName || "";
+		var address = item.resource.professor.address || "";
 
 		if(title != "") {
 			title = title + " , ";
@@ -199,17 +181,15 @@ function datalistEach(datalist) {
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';
 
-		li.innerHTML = '<a class="proinfor" data-id="' + item.professor.id + '"' +
-			'<p><img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '"></p>' +
+		li.innerHTML = '<a class="proinfor" data-id="' + item.resource.resourceId + '"' +
+			'<p><div class="mui-media-object mui-pull-left ResImgBox"><img class="resImg" src="' + img + '"></div></p>' +
 			'<div class="mui-media-body">' +
-			'<span class="listtit">' + item.professor.name + icon + '</span>' +
-			'<p class="listtit2"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
-			'<p class="mui-ellipsis listtit3">' + rlist + '</p>' +
-			'<p class="mui-ellipsis listtit3">' + zlist + '</p>' +
+			'<span class="listtit">' + item.resource.resourceName + '</span>' +
+			'<p class="mui-ellipsis listtit2">' + item.resource.supportedServices + '</p>' +
+			'<span class="listtit">' + item.resource.professor.name + icont + '</span>' +
+			'<p class="listtit3"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
 			'</div></a></li>';
-
 		table.appendChild(li, table.firstChild);
 		
 	});
 }
-

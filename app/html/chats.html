@@ -29,6 +29,7 @@
 				overflow: hidden;
 				padding: 0px 50px;
 				background-color: #fafafa;
+				padding-left: 5px;
 			}
 			.footer-left {
 				position: absolute;
@@ -81,10 +82,15 @@
  				background-color: #eaeaea;
  			}
  			#msg-list {
- 				height: 83%;
+ 				height: 80%;
  				overflow: auto;
  				-webkit-overflow-scrolling: touch;
  			}
+ 			/*设置聊天框离顶部距离*/
+ 			#msg-list >:first-child {
+ 				padding-top: 15px;
+ 			}
+ 			
  			.msg-item {
  				padding: 8px;
  				clear: both;
@@ -316,14 +322,23 @@
  				color: #fff;
  			}
  			/*待评价结束*/
+ 			/*折叠的咨询内容样式*/
+ 			.collapseCon#mui-active {
+ 				padding: 10px 2px; 
+ 				background-color:#fff;
+ 				border-top:1px solid #f0f0f0;
+ 				border-top:1px solid #f0f0f0;
+ 			}
  		</style>
  	</head>
   	<body contextmenu="return false;">
- 		<header class="mui-bar mui-bar-nav toptitbox">
+ 		<header class="mui-bar mui-bar-nav toptitbox" style="z-index: 999;">
  			<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback" id="backBtn">
  				<a href="consultlist.html"></a>
  			</span>
- 			<h1 class="mui-title toptit" id="chatName"></h1>
+ 			<h1 class="mui-title toptit" id="chatName">
+ 				
+ 			</h1>
  			<!--<span class="mui-icon mui-icon-contact mui-pull-right personhead"></span>-->
  		</header>
  		<pre id='h'></pre>
@@ -391,7 +406,7 @@
 				</div>
 				<!--收到咨询，进行中-->
 				<div class="operatebtnbox mui-pull-right displayNone" id="waying" style="width:30%;">
-					<!--<div class="evabox"><span>进行中</span></div>-->
+					<div class="evabox"><span>进行中</span></div>
 				</div>
 				<!--收到咨询，对方已评价-->
 				<div class="operatebtnbox mui-pull-right operated displayNone" id="that_assessed" style="cursor: pointer;">
@@ -412,11 +427,9 @@
  			
  			<div class="consult_content">
  				<ul class="mui-table-view" >
-	 				<li class="mui-table-view-cell mui-collapse" id="mui-active" style="background-color:#fff;border-top:1px solid #f0f0f0;border-top:1px solid #f0f0f0;">
+	 				<li class="mui-table-view-cell mui-collapse collapseCon" id="mui-active" style="">
 	 					<div class="mui-collapse-content" id="consultCon">
-							可以在折叠面板中放置任何内容；折叠面板默认收缩，若希望某个面板默认展开，
-							只需要在包含.mui-collapse类的li节点上，增加.mui-active类即可；mui官网中的方法说明，
-							使用的就是折叠面板控件。
+							
 						</div>
 						<a class="mui-navigate-right" href="#" id="lookConBtn">查看咨询内容</a>
 					</li>
@@ -427,10 +440,173 @@
  			
  			<div id='msg-list'> 
  				
+ 				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+				
+				<div class="msg-item msg-item-self" msg-type = 'text' msg-content = '安徽'>
+					<img class="msg-user msg-user-img" src="../images/default-photo.jpg" alt="" id="selfImg"/>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							niahidhfd
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+					
+				</div>
+ 				
+ 				
+ 				
+ 				
+ 				
+ 				
+ 				
+ 				
  			</div>
  		</div>
  		
- 		<footer class="" id="chatFooter">
+ 		<footer class="displayNone" id="chatFooter">
  			<!--<div class="footer-left">
  				<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
  			</div>-->

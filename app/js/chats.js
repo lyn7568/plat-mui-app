@@ -1,4 +1,4 @@
-mui.ready(function() {
+//mui.ready(function() {
 	var obackBtn = document.getElementById("backBtn");//返回按钮
 	
 	var oconsultTitle = document.getElementById("consultTitle");//咨询标题
@@ -60,12 +60,15 @@ mui.ready(function() {
 					oconsultCon.innerHTML = myData['consultContant'];
 					//我的需求进行中
 					if(myData["consultStatus"] == 0){
+						ochatFooter.classList.remove('displayNone');
 						oconfirm.classList.remove('displayNone');//我的需求，进行中
 						ostatus.setAttribute('status','consultStatus='+myData["consultStatus"]);					
 						clickConfirm(consultId);
 
 					}else {
-						ochatFooter.style.display = 'none';//对话底部隐藏
+//						ochatFooter.style.display = 'none';;//对话底部隐藏
+						
+						
 						if(myData["assessStatus"] == 0){
 							oassessBtn.classList.remove('displayNone');//我的需求，未评价
 							ostatus.setAttribute('status','');
@@ -111,10 +114,12 @@ mui.ready(function() {
 					//收到咨询进行中
 					if(myData["consultStatus"] == 0){
 						owaying.classList.remove('displayNone');
-//						ochatFooter.classList.remove('displayNone');
+						ochatFooter.classList.remove('displayNone');
 					}else {//收到咨询已完成
-						ochatFooter.style.display = 'none';//对话底部隐藏
-						if(myData["assessStatus"] == 0){//收到咨询未评价
+						
+//						ochatFooter.style.display = 'none';//对话底部隐藏
+						
+						if(myData["assessStatus"] == 0){//收到咨询未评价 
 							othat_weiassess.classList.remove('displayNone');
 						}else{//收到咨询已评价(评价星级和评价内容)
 							othat_assessed.classList.remove('displayNone');
@@ -486,17 +491,17 @@ mui.ready(function() {
 			}
 			//解决长按“发送”按钮，导致键盘关闭的问题；
 		ui.footerRight.addEventListener('touchstart', function(event) {
-//			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 				msgTextFocus();
-//				event.preventDefault();
-//			}
+				event.preventDefault();
+			}
 		});
 		//解决长按“发送”按钮，导致键盘关闭的问题；
 		ui.footerRight.addEventListener('touchmove', function(event) {
-//			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 				msgTextFocus();
-//				event.preventDefault();
-//			}
+				event.preventDefault();
+			}
 		});
 		//					ui.footerRight.addEventListener('touchcancel', function(event) {
 		//						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
@@ -511,7 +516,7 @@ mui.ready(function() {
 		//						}
 		//					});
 		ui.footerRight.addEventListener('release', function(event) {
-//			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {//发送
+			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {//发送
 				//showKeyboard();
 				ui.boxMsgText.focus();
 				setTimeout(function() {
@@ -519,7 +524,7 @@ mui.ready(function() {
 				}, 150);
 				//							event.detail.gesture.preventDefault();
 				//执行是否有头像
-				console.log(getSelfImg(consultId,userid));
+//				console.log(getSelfImg(consultId,userid));
 				send({
 					sender: 'self',
 					type: 'text',
@@ -528,7 +533,8 @@ mui.ready(function() {
 				});
 				ui.boxMsgText.value = '';
 				mui.trigger(ui.boxMsgText, 'input', null); //发送消息向后台传数据
-			/*} else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {//说话功能
+			} 
+			 /* else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {//说话功能
 				ui.btnMsgType.classList.add('mui-icon-compose');
 				ui.btnMsgType.classList.remove('mui-icon-mic');
 				ui.boxMsgText.style.display = 'none';
@@ -689,4 +695,4 @@ mui.ready(function() {
 	});
 
 	
-})
+//})

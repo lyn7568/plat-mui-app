@@ -186,7 +186,7 @@ function pulldownRefresh(){
 	
 	mui.plusReady(function() { 
 		var userid = plus.storage.getItem('userid');
-		
+//		plus.nativeUI.showWaiting();//显示原生等待框
 		pageIndex = 1;
 		mui.ajax(baseUrl + '/ajax/consult/pq',{
 			data:{
@@ -198,7 +198,7 @@ function pulldownRefresh(){
 			    "pageSize":200, 
 			    "pageNo":1 
 			},
-			async:false,
+//			async:false,
 			dataType:'json',//服务器返回json格式数据
 			type:'get',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
@@ -209,7 +209,9 @@ function pulldownRefresh(){
                     	table.innerHTML = '';//下拉刷新，清空数据
                     	var datalist = data.data.data;
 						eachData(userid,datalist);
-						
+//						plus.nativeUI.closeWaiting();//显示原生等待框
+//					var self = document.querySelectorAll('.mui-slider-group .mui-scroll');
+//						self.endPullDownToRefresh();
                     }
 					
 				};

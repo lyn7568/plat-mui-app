@@ -123,6 +123,7 @@ function getOnePase() {
 			timeout: 10000,
 			async:false, 
 			success: function(data) {
+				table.innerHTML="";
 				if(data.success) {
 					plus.nativeUI.closeWaiting();
 					var datalist = data.data.data;

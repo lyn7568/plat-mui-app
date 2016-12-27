@@ -30,27 +30,24 @@
 				<input type="text" class="mui-input-clear mui-pull-left searchtxt2" placeholder="搜索专家、设备资源" id="searchval">
 			</div>
 		</header>
-		
-		
-		
+		<div class="filterbox" style=" position: fixed; z-index:1; top:45px; width:100%">
+			<ul class="filterblock" style="width:100%">
+				<li class="mui-col-xs-4">
+					<a href="#middlePopovercity" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="addressid">全国</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+				<li class="mui-col-xs-4">
+					<a href="#middlePopoveracad" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="subjectid">学术领域</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+				<li class="mui-col-xs-4">
+					<a href="#middlePopoveruse" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="industryid">应用行业</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				</li>
+			</ul>
+		</div>
 
 	   <!-- 主页面内容容器 -->
-		<div class="mui-content" style="padding-top:90px">
-			<div class="filterbox" style=" position: fixed; z-index:3; top:45px; width:100%">
-				<ul class="filterblock" style="width:100%">
-					<li class="mui-col-xs-4">
-						<a href="#middlePopovercity" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="addressid">全国</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-					</li>
-					<li class="mui-col-xs-4">
-						<a href="#middlePopoveracad" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="subjectid">学术领域</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-					</li>
-					<li class="mui-col-xs-4">
-						<a href="#middlePopoveruse" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="industryid">应用行业</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-					</li>
-				</ul>
-			</div>
-			<div class="mui-content mui-scroll-wrapper" id="pullrefresh3">
-				<div class="mui-scroll" >
+		<div class="mui-content mui-scroll-wrapper" id="pullrefresh3" >
+
+			<div class="mui-scroll" >
 				<!--数据列表-->
 				<ul class="mui-table-view mui-table-view-chevron list">
 
@@ -64,7 +61,6 @@
 			            </div>
 			        </div>
 			    </div>
-			</div>
 			</div>
 		</div>
 		<!--城市-->
@@ -91,6 +87,18 @@
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/searchhome.js"></script>
+		<script type="text/javascript">
+			var box = document.getElementById("pullrefresh3");
+			var u = navigator.userAgent;
+			var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+			var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+			if(isAndroid){
+				box.style.paddingTop="90px";
+			}
+			if(isiOS){
+				box.style.top="90px";
+			}
+		</script>
 	</body>
 
 </html>

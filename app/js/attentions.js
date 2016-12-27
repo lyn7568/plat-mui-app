@@ -1,10 +1,12 @@
 //我的关注
 var allPages = 1, // 总页数;
 	pageSize = 0,
-	pageNo = 1;
-    checkedindex = 0
+	pageNo = 1,
+    checkedindex = 0;
 var table = document.body.querySelector('.list');
 var table1 = document.body.querySelector('.list2');
+var nodatabox1 = document.getElementById("nodatabox1");
+var nodatabox2 = document.getElementById("nodatabox2");
 
 //mui('.mui-scroll-wrapper').scroll({});
 
@@ -14,7 +16,7 @@ mui.init({
 		up: {
 			contentrefresh: '正在加载...',
 			callback: pullupRefresh,
-			//auto:true
+		    //auto:true
 		}
 	}
 });
@@ -22,9 +24,12 @@ mui.init({
 function pullupRefresh() {
 	pageNo = ++pageNo;
 	console.log(pageNo)
+	console.log(checkedindex)
+	
 	setTimeout(function() {
 		expert2(pageNo, 10)
 	}, 1000);
+	mui('#pullrefresh').pullRefresh().refresh(true);
 }
 
 if(mui.os.plus) {
@@ -43,15 +48,20 @@ if(mui.os.plus) {
 mui("#fixbtn").on("tap", "li", function() {
 	window.scrollTo(0, 0);
 	checkedindex = this.getAttribute("index");
+	//alert(checkedindex);
 	var checkedcontent_arr = document.getElementsByClassName("childlist");
 	var libtn_arr = document.getElementById("fixbtn").getElementsByTagName("li");
 	if(checkedindex == 0) {
+		getOneExpert(1, 10);
+		pageNo = 1;
 		libtn_arr[0].classList.add("liactive");
 		libtn_arr[1].classList.remove("liactive");
 		checkedcontent_arr[1].style.display = 'none';
 		checkedcontent_arr[0].style.display = 'block';
 		mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
 	} else {
+		getOneResources(1, 10);
+		pageNo = 1;
 		libtn_arr[1].classList.add("liactive");
 		libtn_arr[0].classList.remove("liactive");
 		checkedcontent_arr[0].style.display = 'none';
@@ -61,7 +71,6 @@ mui("#fixbtn").on("tap", "li", function() {
 })
 
 getOneExpert(1, 10);
-
 getOneResources(1, 10);
 
 mui.plusReady(function(){
@@ -94,12 +103,19 @@ function getOneExpert(pageNo, pageSize) {
 			//timeout: 10000,
 			//async:false, 
 			success: function(data) {
-				console.log("1");
+				table.innerHTML = '';
+				mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
 				if(data.success && data.data.data != "") {
 					var datalist = data.data.data;
 					datalistEach(datalist);
+					mui('#pullrefresh').pullRefresh().refresh(true);
+	                if(data.data.total<data.data.pageSize){
+	                	mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
+	                }
+				}else {
+					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
+					nodatabox1.style.display = 'block';
 				}
-				mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle); 
@@ -124,14 +140,21 @@ function getOneResources(pageNo, pageSize) {
 			//timeout: 10000,
 			//async:false,
 			success: function(data) {
-				console.log("2");
+				table1.innerHTML = '';
+				console.log(JSON.stringify(data.data.data.resource))
 				plus.nativeUI.closeWaiting();
 		        plus.webview.currentWebview().show("slide-in-right", 150);
 				if(data.success && data.data.data != "") {
 					var datalistd = data.data.data;
 					resourcesEach2(datalistd);
+					mui('#pullrefresh').pullRefresh().refresh(true);
+	                if(data.data.total<data.data.pageSize){
+	                	mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
+	                }
+				}else {
+					mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新
+					nodatabox2.style.display = 'block';
 				}
-				mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
@@ -157,7 +180,7 @@ function expert2(pageNo, pageSize) {
 				timeout: 10000,
 				//async:false,
 				success: function(data) {
-					console.log(data.success)
+					
 					if(data.success && data.data.data != "") {
 						plus.nativeUI.closeWaiting();
 						mui('#pullrefresh').pullRefresh().enablePullupToRefresh(); //启用上拉刷新
@@ -174,6 +197,7 @@ function expert2(pageNo, pageSize) {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //能上拉
 						} else {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
+							
 						}
 
 					}
@@ -205,6 +229,7 @@ function expert2(pageNo, pageSize) {
 						var dice1 = data.data.total; //总条数
 						var dice2 = data.data.pageSize; //每页条数
 						allPages = Math.ceil(dice1 / dice2);
+						
 						if(allPages == 1) { //下拉刷新需要先清空数据
 							table.innerHTML = ''; // 在这里清空可以防止刷新时白屏
 						}
@@ -213,6 +238,7 @@ function expert2(pageNo, pageSize) {
 						mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
 						if(pageNo < allPages) {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //能上拉
+							console.log("3333333");
 						} else {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
 						}
@@ -231,9 +257,9 @@ function expert2(pageNo, pageSize) {
 function datalistEach(datalist) {
 	mui.each(datalist, function(index, item) {
 		/*获取头像*/
-		console.log(JSON.stringify(item));
+		//console.log(JSON.stringify(item));
 		if(item.professor.hasHeadImage == 1) {
-			var img = baseUrl + "/images/head/" + item.professor.id + "_m.jpg";
+			var img = baseUrl + "/images/head/" + item.professor.id + "_l.jpg";
 		} else {
 			var img = "../images/default-photo.jpg";
 		}
@@ -309,7 +335,7 @@ function datalistEach(datalist) {
 /*资源数据遍历*/
 function resourcesEach2(datalistd) {
 	mui.each(datalistd, function(index, item) {
-
+       
 		/*获取头像*/
 		if(item.resource.images.length) {
 			var img = baseUrl + "/images/resource/" + item.resource.resourceId + ".jpg";

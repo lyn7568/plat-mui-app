@@ -142,7 +142,7 @@ mui.plusReady(function() {
 			var html = [];
 			for(var i = 0; i < odata.length; i++) {
 				var string = '<li class="mui-table-view-cell mui-media listitem" resouseId=' + $data[i].resourceId + '>'
-				string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox">'
+				string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
 				if($data[i].images.length) {
 					string += '<img class="resImg headRadius" src="' + baseUrl + '/images/resource/' + $data[i].resourceId + '.jpg">'
 

@@ -200,14 +200,14 @@ mui.ready(function() {
 			var html = [];
 			for(var i = 0; i < n; i++) {
 				var string = '<li class="mui-table-view-cell mui-media listitem" resouId=' + $data[i].resourceId + '>'
-				string += '<a class="proinfor" href="resinforupdate.html"><div class="mui-media-object mui-pull-left ResImgBox">'
+				string += '<a class="proinfor" href="resinforupdate.html"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
 				if($data[i].images.length) {
 					string += '<img class="resImg headRadius" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'					
 				} else {
 
 						string += '<img class="resImg headRadius" src="../images/default-resource.jpg">'
 					}
-					string += '</div><div class="mui-media-body">'
+					string += '</div><div class="mui-media-body" style="width:60%">'
 					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox updatebox2" style="top:24px;"><em class="mui-icon mui-icon-compose updatebtn"></em></div></span>'
 					string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
 					string += '<p class="listtit3 resbrief">'

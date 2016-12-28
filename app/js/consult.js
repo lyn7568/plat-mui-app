@@ -168,7 +168,7 @@ function initData(){
 					//滚动条样式
 					var scrollEle = document.body.querySelectorAll('.mui-scrollbar-vertical');
 					console.log('滚动条个数=='+scrollEle.length)
-					if(scrollEle.length > 1){alert('滚动条个数大于1')
+					if(scrollEle.length > 1){
 						for(var i = 0; i < scrollEle.length;i++){
 							scrollEle[i].style.display = 'none';
 							scrollEle[0].style.display = 'block';

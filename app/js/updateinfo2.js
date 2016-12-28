@@ -9,7 +9,7 @@ mui.ready(function() {
 			mui.ajax(baseUrl + '/ajax/professor/descp', {
 				data: {
 					"id": userid,
-					"descp": document.getElementsByClassName("borderarea")[0].innerText
+					"descp": document.getElementsByClassName("borderarea")[0].value
 				},
 				dataType: 'json', //数据格式类型
 				async: false,

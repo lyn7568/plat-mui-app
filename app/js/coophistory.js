@@ -30,7 +30,7 @@ function userInformation() {
 							string += '<p class="listtit0">' + $info[i].professor.name + '</p>'
 							string += '</div>'
 							string += '<div class="mui-media-body">'
-							string+='<p class="listtit0"><span class="mui-ellipsis listtit">关于'+$info[i].consultTitle+'的咨询</span></p>'
+							string+='<p class="listtit0"><span class="mui-ellipsis listtit">'+$info[i].consultTitle+'</span></p>'
 							string += '<div class="contit">'
 							string += '<span class="mui-ellipsis listtit">' + assessTime + '</span>'
 							string += '<div class="conresoult">'

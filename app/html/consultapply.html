@@ -8,6 +8,32 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			#consultcon {
+				min-height: 20px !important;
+				font-size: 14px;
+				padding: 0;
+				line-height: 11px;
+				margin-top: 4px;
+				border-bottom: 1px solid #F0F0F0;
+			}
+			
+			/*提交按钮*/
+			.mui-content-padded .tijiao {
+				padding: 5px 0;
+				margin-top: 20px;
+			}
+			.text {
+				position: relative;
+				border-bottom:1px solid rgba(0,0,0,.2);
+				background:#fff;
+			}
+			#count {
+				position: absolute;
+				bottom: 0px;
+				right: 10px;
+			}
+		</style>
 	</head>
 
 	<body style="background: #FFFFFF;">
@@ -73,13 +99,14 @@
 							<li><label>咨询主题<em class="requiredcon"></em></label></li>
 							<li class="basicfrm"><input type="text" name="comname" class="mui-input-clear frmtype" id="consulttitle"></li>
 							<li><label>咨询内容<em class="requiredcon" ></em></label></li>
-							<li class="basicfrm">
+							<li class="basicfrm row mui-input-group  mui-input-row" style="border-bottom: none;min-height: 80px;">
 								<!--<div class="textareabox" contenteditable="true" id="consultcon">
 
 								</div>-->
-								<div class="row mui-input-row text" style="height: 20px;">
-									<textarea id="consultcon"class="mui-input-clear question content" placeholder="" style="padding: 0;"></textarea>
-								</div>
+								<!--<div class="row mui-input-row text">-->
+									<textarea id='consultcon' class="mui-input-clear question content" style=""></textarea>
+									<!--<div id="count">300</div>-->
+								<!--</div>-->
 							</li>
 						</ul>
 					</div>

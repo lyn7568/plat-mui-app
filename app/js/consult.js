@@ -423,22 +423,6 @@ function eachData(userid,datalist) {
 		    		}
 		    	}
 		    	
-//			if(item['consultantId'] != userid){//收到咨询
-//				if(item["consultStatus"] == 1){
-//					status = "已完成";
-//					statusStyle = 'status-3';
-//				}
-//			}else if(item['consultantId'] == userid){//我的需求
-//				if(item["consultStatus"] == 1){
-//					if(item["assessStatus"] == 0){
-//						status = '待评价';
-//						statusStyle = 'status-2';
-//					}else {
-//						status = '已完成';
-//						statusStyle = 'status-3';
-//					}
-//				}
-//			};
 			
 			//认证
 			if(item["professor"].authType) {
@@ -447,17 +431,17 @@ function eachData(userid,datalist) {
 				if(item["professor"].authStatus) {
 					if(item["professor"].authentication == 1) {
 						proModify = 'icon-renzheng authicon-mana';
-						modifyaddEle = "<span >科研</span>";
+//						modifyaddEle = "<span >科研</span>";
 						
 						
 					} else if(item["professor"].authentication == 2) {
 						proModify = 'icon-renzheng authicon-staff';
-						modifyaddEle = "<span>企业</span>";
+//						modifyaddEle = "<span>企业</span>";
 						
 					} else {
 						
 						proModify = 'icon-renzheng authicon-stu';
-						modifyaddEle = "<span>学生</span>";
+//						modifyaddEle = "<span>学生</span>";
 						
 					}
 				}

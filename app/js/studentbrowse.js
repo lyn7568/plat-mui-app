@@ -101,36 +101,36 @@ mui.plusReady(function() {
 								if($data.authentication==1){
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-mana');
-									nameli.innerHTML="<span>科研</span>";
+									//nameli.innerHTML="<span>科研</span>";
 							   }else if($data.authentication==2){
 							    	nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-staff');
-									nameli.innerHTML="<span>企业</span>";
+									//nameli.innerHTML="<span>企业</span>";
 							    }else{
 							    	nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-stu');
-									nameli.innerHTML="<span>学生</span>";
+									//nameli.innerHTML="<span>学生</span>";
 							    }
 							}
 						}			
 				if($data.orgName) {
 					if($data.department) {
-						personalMaterial[0].innerText = $data.orgName + " , ";
+						personalMaterial[1].innerText = $data.orgName + " , ";
 					} else {
-						personalMaterial[0].innerText = $data.orgName;
+						personalMaterial[1].innerText = $data.orgName;
 					}
 
 				}
 				if($data.department) {
 					if($data.address) {
-						personalMaterial[1].innerText = $data.department + " | ";
+						personalMaterial[2].innerText = $data.department + " | ";
 					} else {
-						personalMaterial[1].innerText = $data.department;
+						personalMaterial[2].innerText = $data.department;
 					}
 
 				}
 				if($data.address) {
-					personalMaterial[2].innerText = $data.address;
+					personalMaterial[3].innerText = $data.address;
 				}
 				//个人简介
 

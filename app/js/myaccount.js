@@ -238,15 +238,15 @@ mui.ready(function() {
 								if($info.authentication == 1) {
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-mana');
-									nameli.innerHTML = "<span>科研</span>";
+									//nameli.innerHTML = "<span>科研</span>";
 								} else if($info.authentication == 2) {
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-staff');
-									nameli.innerHTML = "<span>企业</span>";
+									//nameli.innerHTML = "<span>企业</span>";
 								} else {
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-stu');
-									nameli.innerHTML = "<span>学生</span>";
+									//nameli.innerHTML = "<span>学生</span>";
 								}
 							}
 						}

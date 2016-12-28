@@ -188,11 +188,11 @@ function datalistEach(datalist) {
 		} else {
 			if(item.authStatus) {
 				if(item.authentication == 1) {
-					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
+					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.authentication == 2) {
-					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
 				} else {
-					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
 				}
 			}
 		}

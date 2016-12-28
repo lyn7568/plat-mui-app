@@ -151,11 +151,11 @@ function datalistEach(datalistd) {
 		} else {
 			if(item.resource.professor.authStatus) {
 				if(item.resource.professor.authentication == 1) {
-					icont='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.resource.professor.authentication == 2) {
-					icont='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
 				} else {
-					icont='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+					icont='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
 				}
 			}
 		}

@@ -29,6 +29,13 @@
 	var omsg_type = document.getElementById("msg-type");
 	var ochatFooter = document.getElementById("chatFooter");
 	
+	mui.plusReady(function() {
+		var self = plus.webview.currentWebview();
+		console.log('当前聊天页面id==='+self.id);
+	})
+	
+	
+	
 	//查看咨询内容
 	(function lookContultCon(){
 		var flag = true;
@@ -249,7 +256,7 @@
 			/*返回咨询列表*/
 			var status = ostatus.getAttribute('status');
 			
-			var consultList = plus.webview.getWebviewById('html/consultlist.html');
+			var consultList = plus.webview.getWebviewById('consultlist.html');
 //			console.log(consultId)
 //			consultList.show();
 			mui.fire(consultList,'backlist',{'consultId':consultId,'status':status}); 

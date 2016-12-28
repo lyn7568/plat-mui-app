@@ -457,7 +457,7 @@ function eachData(userid,datalist) {
 				}
 			}
 			
-			(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
+			(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_l.jpg";
 			
 			//咨询类型，只取两个字
 			if(item["consultType"]) {

@@ -103,20 +103,7 @@
 	 					oconsultcount.innerHTML =  myData["consultCount"];//咨询次数
 	 				};
 	 				
-
-	 				
 	 				/*是否认证*/
-	 				/*
-	 				var emele = document.createElement("em");
-	 				emele.setAttribute('class','mui-icon iconfont icon-vip');
-	 				if(myData["authentication"] == true){
-						emele.classList.add('authicon');
-						
-					}else if(myData["authentication"] == false){
-						emele.classList.add('unauthicon');
-					}
-					oproname.appendChild(emele);*/
-					
 					if(myData.authType) {
 						nameli.classList.add('icon-vip');
 						nameli.classList.add('authicon-cu');
@@ -138,19 +125,11 @@
 						}
 					}
 					
-					
-					
-					
-					
-					
-					
-					
-					
 					/*专家头像*/
 					if(myData["hasHeadImage"] == 0) {
 						oproimg.setAttribute('src','../images/default-photo.jpg');
 					}else {
-						oproimg.setAttribute('src',baseUrl+'/images/head/'+myData['id']+'_m.jpg');
+						oproimg.setAttribute('src',baseUrl+'/images/head/'+myData['id']+'_l.jpg');
 					}
 	 				
 	 				/*星级*/
@@ -164,15 +143,6 @@
 	 				plus.nativeUI.closeWaiting();
 					plus.webview.currentWebview().show("slide-in-right",150);
  					
- 					
- 					
- 					
- 					
- 					
- 					
- 					
- 					
- 					
  				}
  				
  			},
@@ -181,6 +151,27 @@
  			}
  		});
  	}
+ 	
+ 	
+ 	/*咨询申请字数限制*/
+	function checkLen(obj) {  
+
+		var maxChars = 300;//最多字符数  
+		
+		if (obj.value.length > maxChars) {
+			
+			obj.value = obj.value.substring(0,maxChars); 
+		}
+		
+		var curr = maxChars - obj.value.length;  
+		
+		document.getElementById("count").innerHTML = curr.toString(); 	
+	};
+ 	
+ 	oconsultcon.addEventListener('keyup',function(){
+		
+		checkLen(oconsultcon);
+	});
  	
  	
  	

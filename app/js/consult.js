@@ -37,7 +37,7 @@ window.addEventListener('logined', function(event) {
 	var userId = event.detail.id; 
 	content1.style.display = 'block';
 	content2.style.display = 'none';
-	
+	console.log('点击登录ID=='+userId)
 	initData();
 	
 	if(plus.nativeUI.showWaiting()){
@@ -47,8 +47,16 @@ window.addEventListener('logined', function(event) {
 	}
 });
 
+mui.plusReady(function() {
+	var self = plus.webview.currentWebview();
+	console.log('当前咨询列表页id==='+self.id);
+})
+
+
+
 /*退出*/
 window.addEventListener('exited', function(event) {
+	console.log('退出')
 	var userId = event.detail.id; 
 	console.log('exited=='+userId)
 	console.log(content2)
@@ -95,7 +103,9 @@ mui.init({
 	pullRefresh: {
 		container: '#zixunpullrefresh',
 		down: {
+			height:50,
 			callback: pulldownRefresh
+			
 		}
 //		up: {
 //			contentrefresh: '正在加载...',

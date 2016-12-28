@@ -100,8 +100,8 @@ mui.ready(function() {
 						var userId = data.data.id;
 						plus.storage.setItem('userid', userId);
 						firstLogin();
-						console.log('点击登陆时iddddddd===='+plus.storage.getItem('userid'))
-						var consultPage = plus.webview.getWebviewById('html/consultlist.html');
+						
+						var consultPage = plus.webview.getWebviewById('consultlist.html');
 						mui.fire(consultPage, 'logined', {
 							id: userId
 						});	

@@ -54,7 +54,7 @@ mui.ready(function() {
 				mui.fire(myaccountPage, 'closeUser', {
 					id: userId
 				});
-				var consultPage = plus.webview.getWebviewById('html/consultlist.html');
+				var consultPage = plus.webview.getWebviewById('consultlist.html');
 				mui.fire(consultPage, 'exited', {
 					id: userId
 				});

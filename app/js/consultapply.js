@@ -25,7 +25,8 @@
  	/*保存咨询*/
  	function saveconsult(proId,userid) {
  		var consultType = oconsulttype_ul.querySelector('.liactive').innerText;
- 		var consultcon = oconsultcon.innerText;
+// 		var consultcon = oconsultcon.innerText;
+		var consultcon = oconsultcon.value;
  		var consultTitle = oconsulttitle.value;
  		console.log(consultType);
  		console.log(consultTitle);
@@ -52,7 +53,7 @@
  			type:'post',//HTTP请求类型
  			timeout:10000,//超时时间设置为10秒；
  			success:function(data){
- 				console.log(data.data);
+ 				console.log('咨询申请返回值=='+data.data);
  				if(data.success) {
  					mui.toast('咨询成功');
  				}else {

@@ -11,18 +11,7 @@ var otypeval = document.getElementById("typeval");//咨询类型
 var ostateval = document.getElementById("stateval");//咨询状态
 var osortval = document.getElementById("sortval");//时间排序
 
-
-
-
-//判断是否登录,点击咨询,显示数据或登录，
-//点击咨询还要刷新数据
-//ohasconsult.addEventListener('tap',function(){
-/*mui('#hasconsult').on('tap','.mui-icon',function(){
-	console.log('点击咨询')
-	islogin();
-	//初始化数据
-	initData();
-});*/
+var ozixunpullrefresh = document.getElementById("zixunpullrefresh");//刷新容器，控制安卓和iOS容器到header距离不一样
 
 //显示数据还是登录
 function islogin() {
@@ -98,56 +87,62 @@ mui.plusReady(function() {
 
 });
 
-
-//接收咨询btn
-/*window.addEventListener('clickconbtn', function(event) {
-	var consultBtn = event.detail.btn; 
-	console.log(consultBtn);
-	console.log('点击咨询');
-	islogin();
-	
-	initData();
-});*/
-
 /*初始化数据*/
-initData();
+//initData();
 
-//数据滚动
-mui('.mui-scroll-wrapper').scroll({
-	scrollY: true, //是否竖向滚动
-	deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+//父子页面，下拉刷新
+mui.init({
+	pullRefresh: {
+		container: '#zixunpullrefresh',
+		down: {
+			callback: pulldownRefresh
+		}
+//		up: {
+//			contentrefresh: '正在加载...',
+//			callback: pullupRefresh
+//		}
+	}
 });
 
+ /* 父子页面，下拉刷新*/
+function pulldownRefresh() {
+    pageIndex = 1;
+    console.log('下拉刷新');
+    setTimeout(function() {
+       getOnePage();
+       
+    }, 1000);
+};
 
-//筛选条件不动，下拉刷新
-mui.ready(function(){
+
+//上拉加载
+function pullupRefresh() {
+	pageIndex = ++pageIndex;
 	
-	mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
-		
-		mui(pullRefreshEl).pullToRefresh({
-			down: {
-				callback: function() {
-					var self = this;
-					
-					setTimeout(function() {
-						
-						pulldownRefresh();//下拉刷新
-						
-						self.endPullDownToRefresh();
-					}, 1000);
-				}
-			}
-		});
+	setTimeout(function() {
+		getaData();
+	}, 1000);
+}
+
+
+if(mui.os.plus) {
+	mui.plusReady(function() {
+		setTimeout(function() {
+			mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
+		}, 500);	
 	});
-	
-});
+} else {
+	mui.ready(function() {
+		mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
+	});
+}
 
 
 //初始化数据
 function initData(){
 	mui.plusReady(function() { 
 		var userid = plus.storage.getItem('userid');
-		plus.nativeUI.showWaiting();//显示原生等待框
+		plus.nativeUI.showWaiting('加载中...');//显示原生等待框
 		mui.ajax(baseUrl + '/ajax/consult/pq',{
 			data:{
 				"professorId":userid,
@@ -158,18 +153,30 @@ function initData(){
 			    "pageSize":200, 
 			    "pageNo":1 
 			},
-			dataType:'json',//服务器返回json格式数据
-			type:'get',//HTTP请求类型
-			timeout:10000,//超时时间设置为10秒；
+			dataType:'json',
+			type:'get',
+			timeout:10000,
 			success:function(data){
-				if (data.success) {
-					
-                	table.innerHTML = '';//下拉刷新，清空数据
-                	var datalist = data.data.data;
+				if (data.success && data.data.data != '') {
+                		table.innerHTML = '';//下拉刷新，清空数据
+                		var datalist = data.data.data;
 					eachData(userid,datalist);
+					mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
 					plus.nativeUI.closeWaiting();//关闭原生等待框
-				};
-				
+					mui('#zixunpullrefresh').pullRefresh().scrollTo(0,0,100)//回到顶部
+
+					//滚动条样式
+					var scrollEle = document.body.querySelectorAll('.mui-scrollbar-vertical');
+					console.log('滚动条个数=='+scrollEle.length)
+					if(scrollEle.length > 1){alert('滚动条个数大于1')
+						for(var i = 0; i < scrollEle.length;i++){
+							scrollEle[i].style.display = 'none';
+							scrollEle[0].style.display = 'block';
+							console.log(scrollEle[i].classList);
+						}
+					}
+					
+				}				
 			},
 			error:function(xhr,type,errorThrown){
 				mui.toast('网络异常,请稍候再试'); 
@@ -177,17 +184,13 @@ function initData(){
 			}
 		});
 	});
-}
+};
 
-
-
-/*下拉刷新*/
-function pulldownRefresh(){
-	
+//加载第一页数据
+function getOnePage(){
 	mui.plusReady(function() { 
 		var userid = plus.storage.getItem('userid');
-//		plus.nativeUI.showWaiting();//显示原生等待框
-		pageIndex = 1;
+		 var pageIndex = 1;
 		mui.ajax(baseUrl + '/ajax/consult/pq',{
 			data:{
 				"professorId":userid,
@@ -196,35 +199,91 @@ function pulldownRefresh(){
 			    "status":ostateval.value, 
 			    "timeType":osortval.value, 
 			    "pageSize":200, 
-			    "pageNo":1 
+			    "pageNo":pageIndex 
 			},
-//			async:false,
-			dataType:'json',//服务器返回json格式数据
-			type:'get',//HTTP请求类型
-			timeout:10000,//超时时间设置为10秒；
+			dataType:'json',
+			type:'get',
+			timeout:10000,
+			
 			success:function(data){
 				if (data.success) {
-					
 					if(pageIndex == 1){
-                    	table.innerHTML = '';//下拉刷新，清空数据
-                    	var datalist = data.data.data;
+						table.innerHTML = '';//下拉刷新，清空数据
+	                		var datalist = data.data.data;
+
 						eachData(userid,datalist);
-//						plus.nativeUI.closeWaiting();//显示原生等待框
-//					var self = document.querySelectorAll('.mui-slider-group .mui-scroll');
-//						self.endPullDownToRefresh();
-                    }
-					
+
+						var scrollEle = document.body.querySelectorAll('.mui-scrollbar-vertical');
+						console.log('滚动条个数=='+scrollEle.length)
+						if(scrollEle.length > 1){alert('滚动条个数大于1')
+							for(var i = 0; i < scrollEle.length;i++){
+								scrollEle[i].style.display = 'none';
+								scrollEle[0].style.display = 'block';
+								console.log(scrollEle[i].classList);
+							}
+						}
+						mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
+						 mui('#zixunpullrefresh').pullRefresh().endPulldownToRefresh();
+					}
 				};
-				
 			},
 			error:function(xhr,type,errorThrown){
 				mui.toast('网络异常,请稍候再试'); 
-				
 			}
 		});
 	});
-	
 }
+
+
+//父子页面的上拉加载ajax
+function getaData() {
+    mui.plusReady(function() {
+    	var userid = plus.storage.getItem('userid');
+        mui.ajax(baseUrl+'/ajax/consult/pq', {
+            data: {
+                "professorId":userid, 
+			    "consultOrNeed":oneedval.value ,
+			    "consultType":otypeval.value, 
+			    "status":ostateval.value, 
+			    "timeType":osortval.value, 
+			    "pageSize":200, 
+			    "pageNo":pageIndex 
+            },
+            async:false,
+            dataType: 'json',
+            type: 'get',  
+            timeout: 10000,
+            success: function(data) {
+                if (data.success) {
+                    var datalist = data.data.data;
+                    var total = data.data.total;
+                    var pageSize = data.data.pageSize;
+                    allPages = Math.ceil(total / pageSize);/*获取总的分页数*/
+                   
+                    if (allPages == 1) { //下拉刷新需要先清空数据
+                        table.innerHTML = '';// 在这里清空可以防止刷新时白屏
+                    }
+                    console.log('第'+pageIndex+'页');
+                    if(pageIndex == 1){
+                    		table.innerHTML = '';
+                    }
+                    eachData(userid,datalist);
+                    if(pageIndex < allPages){
+                        mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(false);    /*能上拉*/
+                    }else{
+                        mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(true);/*不能上拉*/
+                    }
+                }
+            },
+            error: function(xhr, type, errerThrown) {
+                mui.toast('网络异常,请稍候再试');
+                mui('#zixunpullrefresh').pullRefresh().endPullupToRefresh(true);
+            }
+        });
+    });
+};
+
+
 
 
 //判断对方是否有聊天内容,加回复：。。。
@@ -294,14 +353,13 @@ mui(".mui-table-view").on('tap','.itemBtn',function(){
 
 /*由聊天页面返回咨询列表,要更新咨询状态,和更新未读信息:::自定义事件*/
 window.addEventListener('backlist',function(event){
-		//通过event.detail可获得传递过来的参数内容
 		var self = plus.webview.currentWebview();
 		var consultId = event.detail.consultId;
 		var status = event.detail.status;
-		//由聊天页返回咨询页，改变咨询状态，和咨询状态样式
+		//由聊天页返回咨询，改变咨询状态，和咨询状态样式
 		mui('.status').each(function(index,item){
 			if(this.getAttribute('consultId') == consultId) {
-				if(status == 'myNeedAssessStatus=0'){//未评价
+				if(status == 'myNeedAssessStatus=0'){
 					this.classList.remove('status-1');
 					this.classList.add('status-2');
 					this.innerHTML = '待评价';
@@ -311,8 +369,8 @@ window.addEventListener('backlist',function(event){
 					this.innerHTML = '已完成';
 				}
 			};
-			
 		});
+		
 		//由聊天页返回咨询页，改变未读状态
 		mui('.readstate').each(function(index,item){
 			if(this.getAttribute('class').indexOf('displayBlock') != -1){//包含displayBlock	
@@ -324,28 +382,17 @@ window.addEventListener('backlist',function(event){
 				}
 			}
 		});
-//		initdata();
-		
 	});
 	
 function eachData(userid,datalist) {
 	
 	/*表格填充数据 mui.each是异步的*/
     mui.each(datalist, function(index, item) {
-    	var title,
-			lastReply,
-			status,
-			statusStyle,
-			lastReplyTime,
-			lastReplyCon,
-			unreadCount,
-			unreadStyle,
-			proModify,
-			photoUrl,
-			consultType,
+    	var title,lastReply,status,statusStyle,lastReplyTime,lastReplyCon,
+			unreadCount,unreadStyle,proModify,photoUrl,consultType,
 			chatlength;
 		
-		var modifyaddEle = '';
+	var modifyaddEle = '';//添加不同认证
 		
 		//过滤professor为空
 		if(item["professor"]){
@@ -357,58 +404,57 @@ function eachData(userid,datalist) {
 				title = "回复:" + item["consultTitle"];
 			}
 	//		console.log(title)
-	    	//咨询类型和状态
-			if(item['consultantId'] != userid){//收到咨询
-				if(item["consultStatus"] == 0){
-					status = "进行中";
-					statusStyle = 'status-1';
-				}else if(item["consultStatus"] == 1){
-					status = "已完成";
+		    	//咨询类型和状态
+		    	if(item["consultStatus"] == 0){//进行中，我的需求和收到咨询
+		    		status = "进行中";
+				statusStyle = 'status-1';
+		    	}else if(item["consultStatus"] == 1){
+		    		if(item['consultantId'] != userid){//收到咨询
+		    			status = "已完成";
 					statusStyle = 'status-3';
-				}
-			}else if(item['consultantId'] == userid){//我的需求
-				if(item["consultStatus"] == 0){
-					status = "进行中";
-					statusStyle = 'status-1';
-				}else if(item["consultStatus"] == 1){
-					if(item["assessStatus"] == 0){
+		    		}else {//我的需求
+		    			if(item["assessStatus"] == 0){
 						status = '待评价';
 						statusStyle = 'status-2';
 					}else {
 						status = '已完成';
 						statusStyle = 'status-3';
 					}
-				}
-			};
+		    		}
+		    	}
+		    	
+//			if(item['consultantId'] != userid){//收到咨询
+//				if(item["consultStatus"] == 1){
+//					status = "已完成";
+//					statusStyle = 'status-3';
+//				}
+//			}else if(item['consultantId'] == userid){//我的需求
+//				if(item["consultStatus"] == 1){
+//					if(item["assessStatus"] == 0){
+//						status = '待评价';
+//						statusStyle = 'status-2';
+//					}else {
+//						status = '已完成';
+//						statusStyle = 'status-3';
+//					}
+//				}
+//			};
 			
 			//认证
 			if(item["professor"].authType) {
-//				nameli.classList.add('icon-vip');
-//				nameli.classList.add('authicon-cu');
 				proModify = 'icon-vip authicon-cu';
 			} else {
 				if(item["professor"].authStatus) {
 					if(item["professor"].authentication == 1) {
-//						nameli.classList.add('icon-renzheng');
-//						nameli.classList.add('authicon-mana');
-//						nameli.innerHTML = "<span>科研</span>";
-						
 						proModify = 'icon-renzheng authicon-mana';
 						modifyaddEle = "<span >科研</span>";
 						
 						
 					} else if(item["professor"].authentication == 2) {
-//						nameli.classList.add('icon-renzheng');
-//						nameli.classList.add('authicon-staff');
-//						nameli.innerHTML = "<span>企业</span>";
-						
 						proModify = 'icon-renzheng authicon-staff';
 						modifyaddEle = "<span>企业</span>";
 						
 					} else {
-//						nameli.classList.add('icon-renzheng');
-//						nameli.classList.add('authicon-stu');
-//						nameli.innerHTML = "<span>学生</span>";
 						
 						proModify = 'icon-renzheng authicon-stu';
 						modifyaddEle = "<span>学生</span>";
@@ -416,7 +462,6 @@ function eachData(userid,datalist) {
 					}
 				}
 			}
-//			(item["professor"]["authentication"] == true)? proModify = 'authicon' : proModify = 'unauthicon';
 			
 			(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg":photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_m.jpg";
 			
@@ -482,12 +527,11 @@ function lastReplyFn(sendId,consultId){
 			"consultId":consultId, //咨询ID
 		    "senderId":sendId //登录者ID
 		},
-		dataType:'json',//服务器返回json格式数据
-		type:'get',//HTTP请求类型
-		timeout:10000,//超时时间设置为10秒；
+		dataType:'json',
+		type:'get',
+		timeout:10000,
 		async:false,
 		success:function(data){
-			/*console.log(data);*/
 			if(data["data"] == null || data["data"] == "" || data["data"] == undefined){
 				lastReplyTimeData = '';
 				lastReplyTime = '';
@@ -569,7 +613,8 @@ function checkedFun(i){
 			
 			 initData();
 			
-			mui('#zixunpullrefresh').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
+			
+//			mui('#zixunpullrefresh').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
 			plus.nativeUI.closeWaiting();//关闭等待框
 		});
 		

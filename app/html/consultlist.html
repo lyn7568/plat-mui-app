@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+    <link href="../css/app.css" rel="stylesheet"/>
     <style type="text/css">
     	/*控制未读消息*/
     	.displayNone {
@@ -16,7 +19,17 @@
     	/*筛选div*/
     	.filterbox2.filterdiv {
     		z-index: 9;
+    		/*margin-bottom:44px;*/
     	}
+    	
+    	/*滚动条样式*/
+    	.mui-scrollbar.mui-scrollbar-vertical {
+    		/*display: none;*/
+    	}
+    	
+    	
+    	
+    
     	/*筛选条件样式*/
     	#sliderSegmentedControl .mui-control-item.filteritem {
      		padding: 0;
@@ -63,7 +76,7 @@
     	}*/
     	.mui-bar-nav ~ .mui-content .mui-pull-top-pocket{
 		  top: 90px !important;
-		}
+	}
     	
     	
     	
@@ -79,6 +92,8 @@
     		width: 100%;
     		height: 100%;
     	}
+
+
 
     	
     	html,
@@ -156,17 +171,15 @@
 			}
     	
     </style>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
-    <link href="../css/app.css" rel="stylesheet"/>
+    
  
 </head>
 <body>
 	
 	<!-- 主页面标题 -->
-	<header class="mui-bar mui-bar-nav toptitbox" style="position: fixed;top: 0;">
+	<!--<header class="mui-bar mui-bar-nav toptitbox" style="position: fixed;top: 0;">
 	    <h1 class="mui-title toptit">咨询</h1>
-	</header>
+	</header>-->
 	<div class="displayNone">
 		<!--咨询/需求-->
     	<input type="text" id="needval" value="0" />
@@ -181,7 +194,7 @@
     <div class="mui-content" id="logined">
     	<!-- 主界面具体展示内容 -->
     	
-		<div id="slider" class="mui-slider mui-fullscreen">
+		<!--<div id="slider" class="mui-slider mui-fullscreen">
 			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 				<div class="mui-scroll" style="width: 100%; color: #333;">
 					<a style="width: 22%;min-width:80px;" href="#middlePopover1"  class="mui-control-item filteritem">
@@ -210,43 +223,6 @@
 						<div class="mui-scroll">
 							<ul class="mui-table-view" id="table">
 								
-								<!--<li class="mui-table-view-cell mui-media">
-
-									<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>
-										<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>
-											<span class="'+statusStyle+' status" consultId="'+item[" consultId "]+'">'+status+'</span></div>
-									</div>
-									<a class="proinfor itemBtn" consultId="'+item[" consultId "]+'" consultantId="'+item[" consultantId "]+'">
-										<span class="mui-badge mui-badge-danger readstate displayNone" consultId="'+item[" consultId "]+'">'+unreadCount+'</span>
-										<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">
-										<div class="mui-media-body">
-											<span class="listtit">高兴
-									            <em  class="mui-icon iconfont icon-vip authicon-cu"></em>
-									            <span class="thistime">样式1</span>
-								
-												<em  class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>
-												<span class="thistime">样式2</span>
-									
-												<em  class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>
-												<span class="thistime">样式3'</span>
-									
-												<em  class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>
-												<span class="thistime">样式4</span>
-								
-											</span>
-											<p class="listtit2">
-												<span>'+item["professor"]["title"]+'</span>
-								
-												<span>'+item["professor"]["office"]+'</span>
-												<span>'+item["professor"]["orgName"]+'</span>
-												<span>  | '+item["professor"]["address"]+'</span>
-											</p>
-											<p class="listtit3 onlyone">'+lastReplyCon+'</p>
-										</div>
-									</a>
-								
-								</li>-->
-				
 								
 							</ul>
 						</div>
@@ -254,7 +230,7 @@
 				</div>
 			</div>
 		
-		</div>
+		</div>-->
 		
 		
 	
@@ -311,15 +287,11 @@
 			</div>
 		</div>
        	
-       	<!--<div id="zixunpullrefresh" class="mui-card-content"  >
-	      	<ul class="mui-table-view protable" id="table">
-				
-	        </ul>
-        </div>-->
+       	
         <!--下拉刷新容器-->
        	<!-- 在谷歌浏览器中OK，在模拟器和手机端不OK-->
        	
-       	<!--<div class="filterbox2 filterdiv" style="top:44px ;left: 0;">
+       	<div class="filterbox2 filterdiv" style="top:0 ;left: 0;">
 			<ul class="filterblock2">
 				<li style="width:22%;">
 					<a href="#middlePopover1"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck1" headck='0'>咨询/需求</span><em class="mui-icon mui-icon-arrowdown"></em></a>
@@ -337,14 +309,20 @@
 		</div>
        	
        	
+       	<!--<div id="zixunpullrefresh" class="mui-card-content"  >
+	      	<ul class="mui-table-view protable" id="table">
+				
+	        </ul>
+        </div>-->
        	
-		<div id="zixunpullrefresh" class="mui-content mui-scroll-wrapper">
+       	
+		<div id="zixunpullrefresh" class="mui-content mui-scroll-wrapper" style="top: 44px;">
 			
 		  	<div class="mui-scroll">
 		  	
 		    <ul class="mui-table-view protable" id="table">
 		    	
-		   		<li class="mui-table-view-cell mui-media">
+		   		<!--<li class="mui-table-view-cell mui-media">
 
 					<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">'+title+'</span>
 						<div class="coustatus mui-pull-right"><span class="aimlabel">'+consultType+'</span>
@@ -379,15 +357,13 @@
 						</div>
 					</a>
 				
-				</li>
-		      
-		      
-		      
-		      
+				</li>-->
+				
+				
 		      
 		    </ul>
 		  </div>
-		</div>-->
+		</div>
 		
     </div>
 	
@@ -427,6 +403,21 @@
 	   		}
 
 	   	});
+	   	
+	   	var box = document.getElementById("zixunpullrefresh");
+		var u = navigator.userAgent;
+		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		if(isAndroid){
+			
+			box.style.marginTop="44px";
+		}
+		if(isiOS){
+			
+			box.style.marginTop=0;
+		}
+	   	
+	   	
     </script>
 </body>
 </html>

@@ -12,7 +12,8 @@ mui.ready(function(){
 	/*保存评价评价*/
 	function saveassess(consultId) {
 		var assessStar = ostarContainer.querySelectorAll('.icon-favorfill').length;
-		var assessContant = oassesscontent.innerHTML;
+//		var assessContant = oassesscontent.innerHTML;
+		var assessContant = oassesscontent.value;
 		var params = {
 				"consultId":consultId, //咨询ID
 			    "assessStatus":"1", //评价状态 0-未评价，1-已评价
@@ -44,7 +45,8 @@ mui.ready(function(){
 	//评价字数限制
 	//字数限制函数
 	function limitTextCountFn(){
-		var curLength = oassesscontent.innerHTML.length;
+//		var curLength = oassesscontent.innerHTML.length;
+		var curLength = oassesscontent.value.length;
 		if(curLength > 300){
 			var num= oassesscontent.innerHTML.substr(0,300); 
 		} 

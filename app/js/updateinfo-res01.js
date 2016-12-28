@@ -35,7 +35,7 @@ mui.ready(function() {
 				plus.nativeUI.toast("资源名称不能为空");
 		});
 		service[0].addEventListener("blur", function() {
-			var length = trim(service[0].innerText);
+			var length = trim(service[0].value);
 			if(!length)
 				plus.nativeUI.toast("应用用途不能为空");
 		});
@@ -43,7 +43,7 @@ mui.ready(function() {
 		function savePro() {
 			var $data = {};
 			$data.resourceName = oDt[0].value;
-			$data.supportedServices = service[0].innerText;
+			$data.supportedServices = service[0].value;
 			if(ws.rsId) {
 				$data.resourceId = ws.rsId;
 				mui.ajax(baseUrl + "/ajax/resource/nameAndSupport", {
@@ -131,7 +131,7 @@ mui.ready(function() {
 		}
 		document.getElementsByClassName("topsave")[0].addEventListener("click", function() {
 			var length1 = trim(oDt[0].value);
-			var length2 = trim(service[0].innerText);
+			var length2 = trim(service[0].value);
 			if(length1 && length2) {
 				savePro();
 			} else if(!length1 && length2) {

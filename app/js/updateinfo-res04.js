@@ -26,7 +26,7 @@ mui.ready(function() {
 			mui.ajax(baseUrl + '/ajax/resource/descp', {
 				data: {
 					"resourceId": ws.rsId,
-					"descp": document.getElementsByClassName("textareabox ")[0].innerText
+					"descp": document.getElementsByClassName("textareabox ")[0].value
 				},
 				dataType: 'json', //数据格式类型
 				async: true,

@@ -547,7 +547,7 @@ ul.boxnav li.set span:before{
 /***********************缺省页面*******************/
 .nodatabox{width:100%;height: 100%; margin:50px auto;text-align: center;}
 .nodatabox .picbox{width: 40%;margin: auto;}
-.nodatabox .picbox .defpic{display:block;margin:auto;width:160px; height: 160px;background: url(../images/nodata.png);}
+.nodatabox .picbox .defpic{display:block;margin:auto;width:160px; height: 160px;background: url(../images/nodata.png) -6px 0 no-repeat;}
 .nodatabox .picbox .defpic.consult-pic{background-position: -232px -1320px;}/*咨询页面未登录*/
 
 .nodatabox .txtbox { margin:40px 0 10px 0;}

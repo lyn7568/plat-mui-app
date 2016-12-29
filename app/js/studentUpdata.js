@@ -37,13 +37,13 @@ mui.ready(function() {
 //						document.getElementsByClassName('authword')[0].style.backgroundColor = "#cccccc";
 //					}
 					
-					if($data.orgName) {
-						personalMaterial[1].innerText = $data.orgName;
+					if($data.department) {
+						personalMaterial[1].innerText = $data.department;
 					} else {
 						personalMaterial[1].parentNode.style.display = "none";
 					}
-					if($data.department) {
-						personalMaterial[2].innerText = $data.department;
+					if($data.orgName) {
+						personalMaterial[2].innerText = $data.orgName;
 					} else {
 						personalMaterial[2].parentNode.style.display = "none";
 					}

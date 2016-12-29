@@ -40,7 +40,7 @@ mui.ready(function() {
 //						document.getElementsByClassName('authword')[0].style.backgroundColor = "#cccccc";
 //					}
 					if($data.office) {
-						personalMaterial[2].innerText = $data.office;
+						personalMaterial[2].innerText = $data.office
 					} else {
 						personalMaterial[2].parentNode.style.display = "none";
 					}
@@ -49,13 +49,13 @@ mui.ready(function() {
 					} else {
 						personalMaterial[1].parentNode.style.display = "none";
 					}
-					if($data.orgName) {
-						personalMaterial[3].innerText = $data.orgName;
+					if($data.department) {
+						personalMaterial[3].innerText = $data.department;
 					} else {
 						personalMaterial[3].parentNode.style.display = "none";
 					}
-					if($data.department) {
-						personalMaterial[4].innerText = $data.department;
+					if($data.orgName) {
+						personalMaterial[4].innerText = $data.orgName;
 					} else {
 						personalMaterial[4].parentNode.style.display = "none";
 					}

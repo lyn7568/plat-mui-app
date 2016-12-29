@@ -48,8 +48,8 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 .mainbox{width: 96%; margin:2% auto;}
 .mainbox:before{ position:static;}
 /*div模拟textarea多行文本框*/
-.textareabox{font-size:13px;padding:2px;/*border-bottom: 1px solid #F0F0F0;*/}
-.borderarea{border-bottom: 1px solid #F0F0F0;}
+.textareabox{font-size:13px;padding:2px;-webkit-user-select:text;border-bottom: 1px solid #F0F0F0;}
+.borderarea{/*border-bottom: 1px solid #F0F0F0;*/}
 
 /*必填项样式*/
 .requiredcon{ position: absolute; top:0; margin-left:4px; width: 8px; height:8px; background: url(../images/requiredicon.png) center center no-repeat; background-size: 100% 100%;}

@@ -4,7 +4,7 @@ mui.ready(function(){
 	
 	var oplaceholder =document.getElementById("placeholder");//
 	var otextNum = document.getElementById("text-count");//字数
-	var oinp = document.getElementById("inp");//用来放评价字数的隐藏于
+
 	
 	var oassesscontent = document.getElementById("question");//评价内容
 	var ostarContainer = document.getElementById("starContainer");//星星容器
@@ -40,7 +40,7 @@ mui.ready(function(){
 	};
 	//点击评价区域，placeholder效果，字数限制效果、
 	oassesscontent.addEventListener('keyup',function(){
-		limitTextCountFn();
+		checkLen(oassesscontent);
 	});
 	//评价字数限制
 	//字数限制函数
@@ -55,6 +55,23 @@ mui.ready(function(){
 			
 		} 
 	};
+	
+	/*字数限制*/
+	function checkLen(obj) {  
+
+		var maxChars = 300;//最多字符数  
+		
+		if (obj.value.length > maxChars) {
+			
+			obj.value = obj.value.substring(0,maxChars); 
+		}
+		
+		var curr = maxChars - obj.value.length;  
+		
+		document.getElementById("text-count").innerHTML = curr.toString(); 	
+	};
+	
+	
 
 	mui.plusReady(function(){
 		var userid = plus.storage.getItem('userid');

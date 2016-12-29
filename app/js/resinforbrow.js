@@ -260,7 +260,8 @@ mui.plusReady(function() {
 		if(userid && userid != null && userid != "null") {
 			collectionExpert($this);
 		} else {
-			plus.nativeUI.toast("请先登录");
+//			plus.nativeUI.toast("请先登录");
+			isLogin();
 		}
 	});
 

@@ -275,7 +275,7 @@ ul.boxnav li.set span:before{
 .infocontit{font-size:14px; position: relative;}
 .infocon{padding:6px 10px; /*text-align: justify;*/ font-size: 13px; color:#888888;}
 .infocon ul{ padding:0; margin: 0; overflow: hidden;}
-.infosubject li{ list-style: none; padding:4px 10px; padding-right:20px; margin:4px; border:1px solid #BBBBBB; border-radius: 6px; float: left;}
+.infosubject li{ list-style: none; padding:4px 10px; margin:4px; border:1px solid #BBBBBB; border-radius: 6px; float: left;}
 
 .listbox{ margin:5px 0;max-width:100%; overflow:hidden;}
 .listbrowse{border: 1px solid #FF9900; border-radius: 0 6px 6px 0; text-align:center;font-size:13px;line-height:26px; float:left;padding-right: 8px; max-width:60%; overflow:hidden;}

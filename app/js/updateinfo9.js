@@ -58,7 +58,7 @@ mui.ready(function() {
 			$data.name = oDt[0].value;
 			$data.year = oDt[1].innerText;
 			$data.url = oDt[2].value;
-			$data.descp = document.getElementsByClassName("textareabox")[0].value;			
+			$data.descp = document.getElementsByClassName("textareabox")[0].innerText;			
 			if(ws.edu) {
 				$data.id=ws.edu;
 			}			

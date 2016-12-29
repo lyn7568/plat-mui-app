@@ -74,7 +74,7 @@ mui.ready(function() {
 			$data.name =oDt[0].value;
 			$data.startMonth = oDt[1].innerText.substr(0, 4) + oDt[1].innerText.substr(5, 7);
 			$data.stopMonth = oDt[2].innerText.substr(0, 4) + oDt[2].innerText.substr(5, 7);			
-			$data.descp = document.getElementsByClassName("textareabox")[0].value;		
+			$data.descp = document.getElementsByClassName("textareabox")[0].innerText;		
 			if(ws.edu) {
 				$data.id=ws.edu;
 			}			

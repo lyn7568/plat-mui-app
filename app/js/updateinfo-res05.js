@@ -28,7 +28,7 @@ mui.ready(function() {
 			mui.ajax(baseUrl + '/ajax/resource/cooperationNotes', {
 				data: {
 					"resourceId": ws.rsId,
-					"cooperationNotes": document.getElementsByClassName("textareabox")[0].value
+					"cooperationNotes": document.getElementsByClassName("textareabox")[0].innerText
 				},
 				dataType: 'json', //数据格式类型
 				async: true,

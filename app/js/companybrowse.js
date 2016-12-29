@@ -38,7 +38,6 @@ mui.plusReady(function() {
 		});
 	}
 
-	
 	var professorResource = function(odata) {
 			var $data = odata;
 			var html = [];
@@ -77,10 +76,10 @@ mui.plusReady(function() {
 				var $data = data.data;
 				personalMaterial[0].innerText = $data.name;
 				//基本信息
-				if($data.consultCount){
+				if($data.consultCount) {
 					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
-				}else{
-					document.getElementById("accessHistory").style.display="none";
+				} else {
+					document.getElementById("accessHistory").style.display = "none";
 				}
 				var startLeval = parseInt($data.starLevel);
 				var start = document.getElementsByClassName("start");
@@ -94,25 +93,29 @@ mui.plusReady(function() {
 					document.getElementsByClassName("headimg")[0].src = "../images/default-photo.jpg";
 				}
 				if($data.authType) {
-							nameli.classList.add('icon-vip');
-							nameli.classList.add('authicon-cu');
+					nameli.classList.add('icon-vip');
+					nameli.classList.add('authicon-cu');
+				} else {
+					if($data.authStatus) {
+						if($data.authentication == 1) {
+							nameli.classList.add('icon-renzheng');
+							nameli.classList.add('authicon-mana');
+							//nameli.innerHTML="<span>科研</span>";
+						} else if($data.authentication == 2) {
+							nameli.classList.add('icon-renzheng');
+							nameli.classList.add('authicon-staff');
+							//nameli.innerHTML="<span>企业</span>";
 						} else {
-							if($data.authStatus){
-								if($data.authentication==1){
-									nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-mana');
-									//nameli.innerHTML="<span>科研</span>";
-							   }else if($data.authentication==2){
-							    	nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-staff');
-									//nameli.innerHTML="<span>企业</span>";
-							    }else{
-							    	nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-stu');
-									//nameli.innerHTML="<span>学生</span>";
-							    }
-							}
-						}	
+							nameli.classList.add('icon-renzheng');
+							nameli.classList.add('authicon-stu');
+							//nameli.innerHTML="<span>学生</span>";
+						}
+					}
+				}
+				console.log($data.title);
+				console.log($data.office);
+				console.log($data.department);
+				console.log($data.orgName);
 				if($data.office) {
 					if($data.title) {
 						personalMaterial[1].innerText = $data.office + "，";
@@ -125,13 +128,19 @@ mui.plusReady(function() {
 				}
 				if($data.orgName) {
 					if($data.department) {
-						personalMaterial[3].innerText = $data.orgName + " , ";
+						personalMaterial[3].innerText = $data.orgName + "，";
 					} else {
-						personalMaterial[3].innerText = $data.orgName;
+						if($data.address) {
+							personalMaterial[3].innerText = $data.orgName+ " | ";
+						} else {
+							personalMaterial[3].innerText = $data.orgName
+						}
+						
 					}
 
 				}
 				if($data.department) {
+
 					if($data.address) {
 						personalMaterial[4].innerText = $data.department + " | ";
 					} else {
@@ -174,7 +183,6 @@ mui.plusReady(function() {
 		}); //后台创建webview并打开show.html   	    	
 		web.addEventListener("loaded", function() {}, false);
 	});
-	
 
 	personalMessage();
 	/*进入资源详细页面*/

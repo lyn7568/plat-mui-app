@@ -115,9 +115,13 @@ mui.plusReady(function() {
 						}			
 				if($data.orgName) {
 					if($data.department) {
-						personalMaterial[1].innerText = $data.orgName + " , ";
+						personalMaterial[1].innerText = $data.orgName + "，";
 					} else {
-						personalMaterial[1].innerText = $data.orgName;
+						if($data.address) {
+							personalMaterial[1].innerText = $data.orgName+ " | ";
+						} else {
+							personalMaterial[1].innerText = $data.orgName
+						}						
 					}
 
 				}
@@ -127,7 +131,6 @@ mui.plusReady(function() {
 					} else {
 						personalMaterial[2].innerText = $data.department;
 					}
-
 				}
 				if($data.address) {
 					personalMaterial[3].innerText = $data.address;

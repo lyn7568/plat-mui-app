@@ -225,7 +225,11 @@ mui.plusReady(function() {
 					if($data.department) {
 						personalMaterial[3].innerText = $data.orgName + " , ";
 					} else {
-						personalMaterial[3].innerText = $data.orgName;
+						if($data.address) {
+							personalMaterial[3].innerText = $data.orgName+ " | ";
+						} else {
+							personalMaterial[3].innerText = $data.orgName;
+						}						
 					}
 
 				}

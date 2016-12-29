@@ -174,6 +174,7 @@ mui.plusReady(function() {
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				var $data = data.data;
 				personalMaterial[0].innerText = $data.name;
+				document.getElementById("professorName").innerText=$data.name;
 				//基本信息
 				if($data.consultCount){
 					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;

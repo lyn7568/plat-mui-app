@@ -28,7 +28,7 @@ mui.ready(function() {
 						}
 						string += '</p>'
 						if(data[i].year) {
-							string += '<p class="listtit3">' + data[i].year + '</p>'
+							string += '<p class="listtit3">毕业于' + data[i].year + '年</p>'
 						}
 						string += '</div></a></li>'
 						html.push(string);
@@ -230,7 +230,7 @@ mui.ready(function() {
 					string += '</div>'
 					string += '<p class="listtit3">'
 					if(data[i].year) {
-						string += "发表于" + data[i].year + "年";
+						string += "获得于" + data[i].year + "年";
 					}
 					string += '</p>'
 					string += '<p class="listtit3 mutlinebox">'

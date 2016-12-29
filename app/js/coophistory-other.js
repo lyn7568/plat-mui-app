@@ -23,7 +23,7 @@ mui.ready(function() {
 							var assessTime = $info[i]["assessTime"].substr(0, 4) + "年" + $info[i].assessTime.substr(4, 2) + "月" + $info[i].assessTime.substr(6, 2) + "日" +
 								$info[i].assessTime.substr(8, 2) + ":" + $info[i].assessTime.substr(10, 2);
 
-							var string = '<li class="mui-table-view-cell mui-media">'
+							var string = '<li class="mui-table-view-cell mui-media NoActive">'
 							string += '<a class="proinfor" >'
 							string += '<div class="mui-pull-left lefthead">'
 							if($info[i].professor.hasHeadImage) {

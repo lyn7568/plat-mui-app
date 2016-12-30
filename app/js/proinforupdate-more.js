@@ -30,7 +30,7 @@ var eduBgShow = function(data) {
 				                       }				                       
 				                    string+='</p>'
 				                    if(data[i].year) {
-				                       	 string+='<p class="listtit3">'+data[i].year+'</p>'
+				                       	 string+='<p class="listtit3">毕业于'+data[i].year+'年</p>'
 				                       }									   
 				                    string+='</div></a></li>'
 								html.push(string);
@@ -194,7 +194,7 @@ var eduBgShow = function(data) {
 					string += '<div class="updatebox updatebox2 honor" title=' + data[i].id + '><em class="mui-icon mui-icon-compose updatebtn"></em></div></div>'
 					string += '<p class="listtit3">'
 					if(data[i].year) {
-						string += "发表于" + data[i].year + "年";
+						string += "获得于" + data[i].year + "年";
 					}
 					string += '</p>'
 					string += '<p class="listtit3 mutlinebox">'

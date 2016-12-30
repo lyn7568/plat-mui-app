@@ -39,13 +39,13 @@ mui.ready(function() {
 //						document.getElementsByClassName('authword')[0].innerText = "未认证";
 //						document.getElementsByClassName('authword')[0].style.backgroundColor = "#cccccc";
 //					}
-					if($data.office) {
-						personalMaterial[2].innerText = $data.office
+					if($data.title) {
+						personalMaterial[2].innerText = $data.title
 					} else {
 						personalMaterial[2].parentNode.style.display = "none";
 					}
-					if($data.title) {
-						personalMaterial[1].innerText = $data.title;
+					if($data.office) {
+						personalMaterial[1].innerText = $data.office;
 					} else {
 						personalMaterial[1].parentNode.style.display = "none";
 					}

@@ -38,11 +38,11 @@ mui.ready(function() {
 					if($data.department) {
 						oDt[2].value = $data.department;
 					}
-					if($data.office) {
-						oDt[3].value = $data.office;
-					}
 					if($data.title) {
-						oDt[4].value = $data.title;
+						oDt[3].value = $data.title;
+					}
+					if($data.office) {
+						oDt[4].value = $data.office;
 					}
 					oAddress.innerText = $data.province + " " + $data.address;
 					dataProvince.value = $data.province;
@@ -123,8 +123,8 @@ mui.ready(function() {
 			mess.name = oDt[0].value;
 			mess.orgName = oDt[1].value;
 			mess.department = oDt[2].value;
-			mess.office = oDt[3].value;
-			mess.title = oDt[4].value;
+			mess.title = oDt[3].value;
+			mess.office = oDt[4].value;
 			mess.province = dataProvince.value;
 			mess.address = dataAddress.value;
 			mess.email = trim(mail.value);

@@ -115,7 +115,7 @@ mui.ready(function() {
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
 				success: function(data) {
-				
+				console.log(JSON.stringify(data))
 					if(!fl){
 						plus.nativeUI.closeWaiting(); 
 					plus.webview.currentWebview().show("slide-in-right", 150);
@@ -131,13 +131,13 @@ mui.ready(function() {
 //						document.getElementsByClassName('authword')[0].innerText = "未认证";
 //						document.getElementsByClassName('authword')[0].style.backgroundColor = "#cccccc";
 //					}
-					if($data.office) {
-						personalMaterial[1].innerText = $data.office;
+					if($data.title) {
+						personalMaterial[1].innerText = $data.title;
 					} else {
 						personalMaterial[1].parentNode.style.display = "none";
 					}
-					if($data.title) {
-						personalMaterial[2].innerText = $data.title;
+					if($data.office) {
+						personalMaterial[2].innerText = $data.office;
 					} else {
 						personalMaterial[2].parentNode.style.display = "none";
 					}

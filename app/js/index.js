@@ -22,8 +22,20 @@ mui('.list').on('tap','a',function(){
 /*点击热门领域*/
 mui('.gridbg').on('tap','li',function(){
 	var subject = this.getAttribute("data-title");
-	plus.nativeUI.showWaiting();//显示原生等待框
-    webviewShow = plus.webview.create("../html/search.html",'search.html',{},{subject:subject,bigClass:1});//后台创建webview并打开show.html
+	//plus.nativeUI.showWaiting();//显示原生等待框
+    //webviewShow = plus.webview.create("../html/search.html",'search.html',{},{subject:subject,bigClass:1});//后台创建webview并打开show.html
+    mui.openWindow({
+		url: '../html/search.html',
+		id: '../html/search.html',
+		show:{
+	      //autoShow:false,
+	      aniShow:"slide-in-right",
+	    },
+		extras:{
+	      subject:subject,
+	      bigClass:1
+	    }
+	});
 })
 
 

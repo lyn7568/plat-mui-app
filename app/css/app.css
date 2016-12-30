@@ -14,6 +14,8 @@ img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:b
 .mui-input-group .mui-input-row:after{left:10px; background-color: #E6E6E6;}/*登录注册等表单的横线*/
 .mui-poppicker-header .mui-btn.mui-poppicker-btn-ok {border: 1px solid #ff9900;background-color: #ff9900;}
 .mui-poppicker-body .mui-picker{background:#fff;}/*城市选择器*/
+/*无点击效果*/
+.mui-table-view .mui-table-view-cell.NoActive>a:not(.mui-btn).mui-active{background:none;}
 
 /*图片轮播按钮圆点*/
 .mui-slider-indicator .mui-indicator{ background: rgba(130,130,130,.4);-webkit-box-shadow:none;box-shadow: none;}

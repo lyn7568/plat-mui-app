@@ -38,13 +38,9 @@ window.addEventListener('logined', function(event) {
 	content1.style.display = 'block';
 	content2.style.display = 'none';
 	console.log('点击登录ID=='+userId)
+	table.innerHTML = '';
 	initData();
 	
-	if(plus.nativeUI.showWaiting()){
-		
-		plus.nativeUI.closeWaiting();//关闭等待框
-		mui('#zixunpullrefresh').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
-	}
 });
 
 mui.plusReady(function() {
@@ -167,11 +163,11 @@ function initData(){
 			type:'get',
 			timeout:10000,
 			success:function(data){
-				if (data.success && data.data.data != '') {
+				if (data.success) {
                 		table.innerHTML = '';//下拉刷新，清空数据
                 		var datalist = data.data.data;
 					eachData(userid,datalist);
-					mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
+//					mui('#zixunpullrefresh').pullRefresh().refresh(true);//重置下拉加载
 					plus.nativeUI.closeWaiting();//关闭原生等待框
 					mui('#zixunpullrefresh').pullRefresh().scrollTo(0,0,100)//回到顶部
 
@@ -492,16 +488,20 @@ function eachData(userid,datalist) {
 	            		+ '<span class="listtit">'+item["professor"]["name"]+'<em id="nameli" class="mui-icon iconfont '+proModify+'">'+modifyaddEle+'</em><span class="thistime">'+lastReplyTime+'</span></span>';
 	        str += '<p class="listtit2">';
 	        if(item["professor"]["title"]){
-	        	str += '<span>'+item["professor"]["title"]+'</span>, ';
+	        		str += '<span>'+item["professor"]["title"]+'</span>, ';
 	        };
 	        if(item["professor"]["office"]){
-	        	str += '<span>'+item["professor"]["office"]+'</span>, ';
+	        		if(item["professor"]["orgName"]){
+	        			str += '<span>'+item["professor"]["office"]+'</span>, ';
+	        		}else {
+	        			str += '<span>'+item["professor"]["office"]+'</span>';
+	        		}
 	        };
 	        if(item["professor"]["orgName"]){
-	        	str += '<span>'+item["professor"]["orgName"]+'</span>';
+	        		str += '<span>'+item["professor"]["orgName"]+'</span>';
 	        };
 	        if(item["professor"]["address"]){
-	        	str += '<span>  | '+item["professor"]["address"]+'</span>';
+	        		str += '<span>  | '+item["professor"]["address"]+'</span>';
 	        };
 	        
 	        str +='</p><p class="listtit3 onlyone">'+lastReplyCon+'</p></div></a>';

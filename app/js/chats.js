@@ -295,7 +295,7 @@
 									sender: 'self',
 									type: 'text',
 									content: myData[i]["tidingsContant"],
-									imgurl:baseUrl + "/images/head/" + myData[i]["professor"].id + "_m.jpg"
+									imgurl:baseUrl + "/images/head/" + myData[i]["professor"].id + "_l.jpg"
 								});
 								
 							}else {

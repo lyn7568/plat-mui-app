@@ -307,6 +307,7 @@ function expert(key, subject, industry, province, address, authentication, pageS
 				   }, 1000);
 				}
 				if(data.success && data.data.data != '') {
+						console.log(data.data.total)
 					nodatabox.style.display = 'none';
 					var datalist = data.data.data;
 					resourcesEach(datalist);

@@ -28,7 +28,7 @@ mui.init({
 			up: {
 				contentrefresh: '正在加载...',
 				callback: pullupRefresh,
-				auto:true
+				//auto:true
 			}
 		}
 });

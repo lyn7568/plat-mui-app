@@ -43,18 +43,6 @@ function pullupRefresh() {
 	mui('#pullrefresh3').pullRefresh().refresh(true);
 }
 
-if(mui.os.plus) {
-	mui.plusReady(function() {
-		setTimeout(function() {
-			mui('#pullrefresh3').pullRefresh().pulldownLoading();
-		}, 500);
-	});
-} else {
-	mui.ready(function() {
-		mui('#pullrefresh3').pullRefresh().pulldownLoading();
-	});
-}
-
 mui.plusReady(function(){
 	
 	/*点击专家和资源列表*/

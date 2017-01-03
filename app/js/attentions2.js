@@ -8,9 +8,9 @@ var nodatabox1 = document.getElementById("nodatabox1");
 mui.init({
 	pullRefresh: {
 		container: '#pullrefresh',
-		down: {
+		/*down: {
 				callback: pulldownRefresh
-			  },
+			  },*/
 		up: {
 			contentrefresh: '正在加载...',
 			callback: pullupRefresh,
@@ -25,27 +25,17 @@ function pullupRefresh() {
 	setTimeout(function() {
 		expert2(pageNo, 10)
 	}, 1000);
+	mui('#pullrefresh').pullRefresh().refresh(true);
 }
 
-function pulldownRefresh() {
+/*function pulldownRefresh() {
 	setTimeout(function() {
 		getOneExpert(1, 10);	
-		mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+	    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 	}, 1000);
-}
+}*/
 
 
-if(mui.os.plus) {
-	mui.plusReady(function() {
-		setTimeout(function() {
-			mui('#pullrefresh').pullRefresh().pulldownLoading();
-		}, 500);
-	});
-} else {
-	mui.ready(function() {
-		mui('#pullrefresh').pullRefresh().pulldownLoading();
-	});
-}
 
 
 

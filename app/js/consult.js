@@ -13,7 +13,7 @@ var osortval = document.getElementById("sortval");//时间排序
 
 var ozixunpullrefresh = document.getElementById("zixunpullrefresh");//刷新容器，控制安卓和iOS容器到header距离不一样
 
-//显示数据还是登录
+//判断是否登录，显示数据或登录页面
 function islogin() {
 	mui.plusReady(function(){
 		var userid = plus.storage.getItem('userid');
@@ -22,15 +22,17 @@ function islogin() {
    			content1.style.display = 'none';
    		}else {
    			content2.style.display = 'none';
+   			getOnePage();
    		}
    		
    		if(plus.nativeUI.showWaiting()){
 			plus.nativeUI.closeWaiting();//关闭等待框
+			
 		}
 		
 	})
 }
-
+islogin();
 
 /*登陆*/
 window.addEventListener('logined', function(event) {
@@ -91,9 +93,6 @@ mui.plusReady(function() {
 
 });
 
-/*初始化数据*/
-//initData();
-
 //父子页面，下拉刷新
 mui.init({
 	pullRefresh: {
@@ -103,14 +102,9 @@ mui.init({
 			callback: pulldownRefresh
 			
 		}
-//		up: {
-//			contentrefresh: '正在加载...',
-//			callback: pullupRefresh
-//		}
 	}
 });
-
- /* 父子页面，下拉刷新*/
+ /* 父子页面，下拉刷新函数*/
 function pulldownRefresh() {
     pageIndex = 1;
     console.log('下拉刷新');
@@ -119,6 +113,17 @@ function pulldownRefresh() {
        
     }, 1000);
 };
+//if(mui.os.plus) {
+//	mui.plusReady(function() {
+//		setTimeout(function() {
+//			mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
+//		}, 500);	
+//	});
+//} else {
+//	mui.ready(function() {
+//		mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
+//	});
+//}
 
 
 //上拉加载
@@ -128,19 +133,6 @@ function pullupRefresh() {
 	setTimeout(function() {
 		getaData();
 	}, 1000);
-}
-
-
-if(mui.os.plus) {
-	mui.plusReady(function() {
-		setTimeout(function() {
-			mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
-		}, 500);	
-	});
-} else {
-	mui.ready(function() {
-		mui('#zixunpullrefresh').pullRefresh().pulldownLoading();
-	});
 }
 
 

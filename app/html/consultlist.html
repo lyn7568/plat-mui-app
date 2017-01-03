@@ -391,19 +391,6 @@
 	<script src="../js/public/base.js"></script>
 	<script src="../js/consult.js"></script>
    	<script type="text/javascript">
-	   	mui.plusReady(function() {
-	   		var  content1 = document.getElementById('logined');
-	      	var  content2 = document.getElementById('unlogin');
-	   		var userid = plus.storage.getItem('userid');
-	   		if(userid == null || userid == 'null'){
-	   			content1.style.display = 'none';
-	   			
-	   		}else {
-	   			content2.style.display = 'none';
-	   		}
-
-	   	});
-	   	
 	   	var box = document.getElementById("zixunpullrefresh");
 		var u = navigator.userAgent;
 		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端

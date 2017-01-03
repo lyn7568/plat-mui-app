@@ -38,14 +38,13 @@ function typename(userid, usertype) {
 					console.log(base64);
 					typeimg(authapplyid, base64);
 				});
-				
 				plus.nativeUI.closeWaiting();
-				mui.back();
-			    var securityPage = plus.webview.getWebviewById('html/security.html');
+			    var securityPage = plus.webview.getWebviewById('../html/security.html');
 				mui.fire(securityPage,'sPage', {
 					//phonetel:phoneName.value
 				});
-				plus.webview.open(securityPage);
+				//plus.webview.open(securityPage);
+				mui.back();
 				
 			}
 		},
@@ -131,7 +130,7 @@ function galleryImg() {
 }
 
 //拍照  
-function getImage(divid) {
+function getImage() {
 	var cmr = plus.camera.getCamera();
 	cmr.captureImage(function(p) {
 		//alert(p);//_doc/camera/1467602809090.jpg  
@@ -203,7 +202,7 @@ mui(document).on("click", '.del', function() {
 //拼接图片样式
 function showImgDetail(newsrc, oldsrc) {
 	var html = "";
-	html += '<div  class="image-item">';
+	html += '<div  class="image-item" style="float: left;margin-right:10px">';
 	html += '    <img id="picBig" data-preview-src="' + newsrc + '" data-preview-group="1" src="' + oldsrc + '"/>';
 	html += '    <span class="del">';
 	html += '        <div class="fa fa-times-circle">X</div>';

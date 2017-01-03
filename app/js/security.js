@@ -14,14 +14,17 @@ var typenum;
 /*退出绑定手机页面*/
 window.addEventListener('xsphone', function(event) {
 	phoneCookie = event.detail.phonetel;
-	phoneName.innerText = phoneCookie;
+	phoneName.innerText = phoneCookie; 
 })
 
-window.addEventListener('sPage', function(event) {
-	istyle();
-})
+
 
 mui.plusReady(function() {
+	
+	window.addEventListener('sPage', function(event) {
+		istyle();
+	})
+
 
 	//isAuthentication();
     istyle()

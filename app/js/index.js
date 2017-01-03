@@ -4,40 +4,50 @@ var allPages = 1; // 总页数
 var table = document.body.querySelector('.list');
 var search = document.getElementById("search");
 
-mui.plusReady(function(){
+mui.plusReady(function() {
 	plus.nativeUI.showWaiting();
 })
 
-
-mui('.list').on('tap','a',function(){
-	var id=this.getAttribute("data-id");
+mui('.list').on('tap', 'a', function() {
+	var id = this.getAttribute("data-id");
+	var userid = plus.storage.getItem('userid');
 	console.log(id);
-	plus.nativeUI.showWaiting();//显示原生等待框
-    webviewShow = plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});//后台创建webview并打开show.html
+	plus.nativeUI.showWaiting(); //显示原生等待框
+	if(userid == id) {
+		mui.openWindow({
+			url: '../html/proinforupdate.html',
+			id: 'html/proinforupdate.html',
+			show: {
+				autoShow: false,
+				aniShow: "slide-in-left"
+			},
+
+		});
+		return;
+	}
+	webviewShow = plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+		proid: id
+	}); //后台创建webview并打开show.html
 })
-
-
-
 
 /*点击热门领域*/
-mui('.gridbg').on('tap','li',function(){
+mui('.gridbg').on('tap', 'li', function() {
 	var subject = this.getAttribute("data-title");
 	//plus.nativeUI.showWaiting();//显示原生等待框
-    //webviewShow = plus.webview.create("../html/search.html",'search.html',{},{subject:subject,bigClass:1});//后台创建webview并打开show.html
-    mui.openWindow({
+	//webviewShow = plus.webview.create("../html/search.html",'search.html',{},{subject:subject,bigClass:1});//后台创建webview并打开show.html
+	mui.openWindow({
 		url: '../html/search.html',
 		id: '../html/search.html',
-		show:{
-	      //autoShow:false,
-	      aniShow:"slide-in-right",
-	    },
-		extras:{
-	      subject:subject,
-	      bigClass:1
-	    }
+		show: {
+			//autoShow:false,
+			aniShow: "slide-in-right",
+		},
+		extras: {
+			subject: subject,
+			bigClass: 1
+		}
 	});
 })
-
 
 /*页面数据初始化*/
 getOnePase();
@@ -45,9 +55,9 @@ getOnePase();
 mui.init({
 	pullRefresh: {
 		container: '#pullrefresh',
-        down: {
-				callback: pulldownRefresh
-			  },
+		down: {
+			callback: pulldownRefresh
+		},
 		up: {
 			contentrefresh: '正在加载...',
 			//auto:true,
@@ -94,7 +104,7 @@ function getaData() {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
-			async:false,
+			async: false,
 			success: function(data) {
 				if(data.success) {
 					//console.log("成功");
@@ -133,9 +143,9 @@ function getOnePase() {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
-			async:false, 
+			async: false,
 			success: function(data) {
-				table.innerHTML="";
+				table.innerHTML = "";
 				if(data.success) {
 					plus.nativeUI.closeWaiting();
 					var datalist = data.data.data;
@@ -152,7 +162,7 @@ function getOnePase() {
 /*数据遍历*/
 function datalistEach(datalist) {
 	mui.each(datalist, function(index, item) {
-		
+
 		/*获取头像*/
 		if(item.hasHeadImage == 1) {
 			var img = baseUrl + "/images/head/" + item.id + "_l.jpg";
@@ -175,7 +185,7 @@ function datalistEach(datalist) {
 			//console.log(resources[m].caption);
 			zlist = '<span>' + resources[m].resourceName + '</span>';
 		}
-		
+
 		var title = item.title || "";
 		var office = item.office || "";
 		var orgName = item.orgName || "";
@@ -196,32 +206,32 @@ function datalistEach(datalist) {
 
 		var typeTname = '';
 		if(item.authType) {
-			typeTname='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
+			typeTname = '<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
 			if(item.authStatus) {
 				if(item.authentication == 1) {
-					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
+					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.authentication == 2) {
-					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
+					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
 				} else {
-					typeTname='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
+					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
 				}
 			}
 		}
-		
+
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';
-
-		li.innerHTML = '<a class="proinfor" data-id="'+item.id+'"' +
+		li.setAttribute("professorId", item.id);
+		li.innerHTML = '<a class="proinfor" data-id="' + item.id + '"' +
 			'<p><img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '"></p>' +
 			'<div class="mui-media-body">' +
-			'<span class="listtit">' + item.name + typeTname +'</span>' +
+			'<span class="listtit">' + item.name + typeTname + '</span>' +
 			'<p class="listtit2"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
 			'<p class="mui-ellipsis listtit3">' + rlist + '</p>' +
 			'<p class="mui-ellipsis listtit3">' + zlist + '</p>' +
 			'</div></a></li>';
 
 		table.appendChild(li, table.firstChild);
-		
+
 	});
 }

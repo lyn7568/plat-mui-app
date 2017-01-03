@@ -35,8 +35,6 @@
 			if(checkedindex == 0) {
 				libtn_arr[0].classList.add("liactive");
 				libtn_arr[1].classList.remove("liactive");
-				var list1 = plus.webview.getWebviewById('attentions-list2.html');
-				list1.close();
 				mui.openWindow({
 					url: 'attentions-list.html',
 					id: 'attentions-list.html',
@@ -49,11 +47,12 @@
 						bottom: '0px',
 					}
 				});
+				var list1 = plus.webview.getWebviewById('attentions-list2.html');
+				list1.close();
 			} else {
 				libtn_arr[1].classList.add("liactive");
 				libtn_arr[0].classList.remove("liactive");
-				var list2 = plus.webview.getWebviewById('attentions-list.html');
-				list2.close();
+			
 				mui.openWindow({
 					url: 'attentions-list2.html',
 					id: 'attentions-list2.html',
@@ -66,6 +65,8 @@
 						bottom: '0px',
 					}
 				});
+				var list2 = plus.webview.getWebviewById('attentions-list.html');
+				list2.close();
 			}
 		})
 	    mui.init({

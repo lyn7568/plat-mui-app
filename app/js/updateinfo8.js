@@ -23,10 +23,14 @@ mui.ready(function() {
 							oDt[1].innerText = ""
 						}
 						if($info.startMonth) {
-							oDt[2].innerText = $info.startMonth.substr(0, 4) + "-" + $info.startMonth.substr(4, 6)
-						} else {
-							oDt[2].innerText = ""
-						}						 
+							if($info.stopMonth) {
+								oDt[2].innerText = $info.stopMonth.substr(0, 4) + "-" + $info.stopMonth.substr(4, 6)
+							} else {
+								document.getElementsByClassName("mui-switch")[0].classList.add("mui-active")
+								document.getElementsByClassName("btt")[0].classList.remove("btn");
+								oDt[2].innerText = "至今"
+							}
+						}											 
 						if(!$info.descp) 
 							$info.descp="";
 							document.getElementsByClassName("textareabox")[0].innerText=$info.descp;
@@ -73,7 +77,9 @@ mui.ready(function() {
 			$data.professorId = userid;
 			$data.name =oDt[0].value;
 			$data.startMonth = oDt[1].innerText.substr(0, 4) + oDt[1].innerText.substr(5, 7);
-			$data.stopMonth = oDt[2].innerText.substr(0, 4) + oDt[2].innerText.substr(5, 7);			
+			if(oDt[2].innerText!="至今"){
+				$data.stopMonth = oDt[2].innerText.substr(0, 4) + oDt[2].innerText.substr(5, 7);
+			}					
 			$data.descp = document.getElementsByClassName("textareabox")[0].innerText;		
 			if(ws.edu) {
 				$data.id=ws.edu;
@@ -101,10 +107,25 @@ mui.ready(function() {
 				}
 			});			
 		}
-    	
+    	mui('#aa .mui-switch').each(function() { //循环所有toggle				
+			this.addEventListener('toggle', function(event) {
+				if(this.classList.length == 4) {
+					document.getElementsByClassName("btt")[0].classList.remove("btn");
+					oDt[2].innerText = "至今"
+				} else {
+					document.getElementsByClassName("btt")[0].classList.add("btn");
+				}
+			});
+		});
     	document.getElementsByClassName("topsave")[0].addEventListener("click",function(){
     		var length1=trim(oDt[0].value);    		
-    		  		
+    		 var length2=trim(oDt[1].innerText);
+    		 var length3=trim(oDt[2].innerText);
+    		 if(!length2&&length3){
+    		 	plus.nativeUI.toast("请选开始时间");
+    		 }else if(!length2&&length3){
+    		 	plus.nativeUI.toast("请选结束时间");
+    		 }
     		if(length1) {    			
     			savePro();
     		}else {

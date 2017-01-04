@@ -1,9 +1,9 @@
-mui.ready(function() {		
-	mui.plusReady(function(){
-		var userid = plus.storage.getItem('userid');	
+mui.ready(function() {
+	mui.plusReady(function() {
+		var userid = plus.storage.getItem('userid');
 		console.log(userid);
-		var ws=plus.webview.currentWebview();		
-		var str = JSON.stringify(ws);	
+		var ws = plus.webview.currentWebview();
+		var str = JSON.stringify(ws);
 		console.log(str);
 		var oDt = document.getElementsByClassName("frmtype");
 		var oDegree;
@@ -20,7 +20,7 @@ mui.ready(function() {
 						oDt[0].value = $info.company;
 						if($info.department) {
 							oDt[1].value = $info.department;
-						}						
+						}
 						oDt[2].value = $info.title;
 						if($info.startMonth) {
 							oDt[3].innerText = $info.startMonth.substr(0, 4) + "-" + $info.startMonth.substr(4, 6)
@@ -28,9 +28,13 @@ mui.ready(function() {
 							oDt[3].innerText = ""
 						}
 						if($info.startMonth) {
-							oDt[4].innerText = $info.startMonth.substr(0, 4) + "-" + $info.startMonth.substr(4, 6)
-						} else {
-							oDt[4].innerText = ""
+							if($info.stopMonth) {
+								oDt[4].innerText = $info.stopMonth.substr(0, 4) + "-" + $info.stopMonth.substr(4, 6)
+							} else {
+								document.getElementsByClassName("mui-switch")[0].classList.add("mui-active")
+								document.getElementsByClassName("btt")[0].classList.remove("btn");
+								oDt[4].innerText = "至今"
+							}
 						}
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
@@ -84,65 +88,81 @@ mui.ready(function() {
 			$data.department = oDt[1].value;
 			$data.title = oDt[2].value;
 			$data.startMonth = oDt[3].innerText.substr(0, 4) + oDt[3].innerText.substr(5, 7);
-			$data.stopMonth = oDt[4].innerText.substr(0, 4) + oDt[4].innerText.substr(5, 7);
+			if(oDt[4].innerText != "至今") {
+				$data.stopMonth = oDt[4].innerText.substr(0, 4) + oDt[4].innerText.substr(5, 7);
+			}
 			if(ws.edu) {
-				$data.id=ws.edu;
-			}			
-    		$.ajax({
-				"url" :baseUrl+"/ajax/job",
-				"type" : ws.edu?"put" :"post",
-				"async":true,
-				"data" :ws.edu?JSON.stringify($data):$data,
-				"contentType" : ws.edu ? "application/json"
-						: "application/x-www-form-urlencoded",
-				"success" : function(data) {
-					var y=JSON.stringify(data)					
-					if (data.success) 
-					{
-						 plus.nativeUI.showWaiting();
-						var web=plus.webview.getWebviewById("proinforupdate-more.html");
-						mui.fire(web,"newId");						
+				$data.id = ws.edu;
+			}
+			$.ajax({
+				"url": baseUrl + "/ajax/job",
+				"type": ws.edu ? "put" : "post",
+				"async": true,
+				"data": ws.edu ? JSON.stringify($data) : $data,
+				"contentType": ws.edu ? "application/json" :
+					"application/x-www-form-urlencoded",
+				"success": function(data) {
+					var y = JSON.stringify(data)
+					if(data.success) {
+						plus.nativeUI.showWaiting();
+						var web = plus.webview.getWebviewById("proinforupdate-more.html");
+						mui.fire(web, "newId");
 						mui.back();
-					} 
-					else
-					{
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
+					} else {
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
+						return;
 					}
 				}
-			});			
+			});
 		}
-    	
-    	document.getElementsByClassName("topsave")[0].addEventListener("click",function(){
-    		var length1=trim(oDt[0].value);    		
-    		var length2=trim(oDt[2].value);   		
-    		if(length1&&length2) {    			
-    			savePro();
-    		}else if(!length1&&length2) {
-    			plus.nativeUI.toast("机构名称不能为空");
-    		}else if(length1&&!length2) {
-    			plus.nativeUI.toast("职位不能为空");
-    		}else if(!length1&&!length2) {
-    			plus.nativeUI.toast("机构名称不能为空&&职位不能为空");
-    		}  		
-    	});
-    	if(ws.edu) 
-    	document.getElementsByClassName("exitbtn")[0].addEventListener("click",function(){
-    		$.ajax({
-					"url" : baseUrl+"/ajax/job/" + ws.edu,
-					"type" : "DELETE",
-					"success" : function($data) {
-						if ($data.success) {
-							 plus.nativeUI.showWaiting();
-							var web=plus.webview.getWebviewById("proinforupdate-more.html");
-							mui.fire(web,"newId");						
+		mui('#aa .mui-switch').each(function() { //循环所有toggle				
+			this.addEventListener('toggle', function(event) {
+				if(this.classList.length == 4) {
+					document.getElementsByClassName("btt")[0].classList.remove("btn");
+					oDt[4].innerText = "至今"
+				} else {
+					document.getElementsByClassName("btt")[0].classList.add("btn");
+				}
+			});
+		});
+		document.getElementsByClassName("topsave")[0].addEventListener("click", function() {
+			var length1 = trim(oDt[0].value);
+			var length2 = trim(oDt[2].value);
+			var length3 = trim(oDt[3].innerText);
+			var length4 = trim(oDt[4].innerText);
+			if(!length3 && length4) {
+				plus.nativeUI.toast("请选开始时间");
+				return;
+			} else if(length3 && !length4) {
+				plus.nativeUI.toast("请选结束时间");
+				return;
+			}
+			if(length1 && length2) {
+				savePro();
+			} else if(!length1 && length2) {
+				plus.nativeUI.toast("机构名称不能为空");
+			} else if(length1 && !length2) {
+				plus.nativeUI.toast("职位不能为空");
+			} else if(!length1 && !length2) {
+				plus.nativeUI.toast("机构名称不能为空&&职位不能为空");
+			}
+		});
+		if(ws.edu)
+			document.getElementsByClassName("exitbtn")[0].addEventListener("click", function() {
+				$.ajax({
+					"url": baseUrl + "/ajax/job/" + ws.edu,
+					"type": "DELETE",
+					"success": function($data) {
+						if($data.success) {
+							plus.nativeUI.showWaiting();
+							var web = plus.webview.getWebviewById("proinforupdate-more.html");
+							mui.fire(web, "newId");
 							mui.back();
-						}
-						else {
+						} else {
 							alert($data.msg);
 						}
 					}
 				});
-    	});
+			});
 	});
-})          
+})

@@ -1,58 +1,58 @@
-mui.ready(function() {		
+mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
-		window.addEventListener("newId",function(){			
-			personalMessage();						
-		})
-		//查询教育背景
-var eduBgShow = function(data) {	    
-				if(data.length>0){					
-					var html=[];
-					for (var i = 0; i < data.length; i++) {						
-							var string='<li class="mui-table-view-cell mui-media listitem">'
-				               	   string+='<a>'
-				               	   string+='<div class="mui-media-object mui-pull-left iconposition " >'
-				                   string+='<img class="" src="../images/icon-edu.png">'
-				                   string+='</div>'
-				                   string+='<div class="mui-media-body">'
-				                   if(data[i].school) {
+		window.addEventListener("newId", function() {
+				personalMessage();
+			})
+			//查询教育背景
+		var eduBgShow = function(data) {
+				if(data.length > 0) {
+					var html = [];
+					for(var i = 0; i < data.length; i++) {
+						var string = '<li class="mui-table-view-cell mui-media listitem">'
+						string += '<a>'
+						string += '<div class="mui-media-object mui-pull-left iconposition " >'
+						string += '<img class="" src="../images/icon-edu.png">'
+						string += '</div>'
+						string += '<div class="mui-media-body">'
+						if(data[i].school) {
 							string += '<div class="listtit2 mutlinebox mutlinebox">' + data[i].school + '<div class="updatebox updatebox2 edu" title=' + data[i].id + '><em class="mui-icon mui-icon-compose updatebtn"></em></div></div>'
-				                   }				                       
-				                   string+='<p class="listtit3 mutlinebox">'
-				                    if(data[i].college) {
-				                       	string+=data[i].college+"，";
-				                       }
-				                    if(data[i].major) {
-				                       	string+=data[i].major+"，";
-				                       }
-				                    if(data[i].degree) {
-				                       	string+=data[i].degree;
-				                       }				                       
-				                    string+='</p>'
-				                    if(data[i].year) {
-				                       	 string+='<p class="listtit3">毕业于'+data[i].year+'年</p>'
-				                       }									   
-				                    string+='</div></a></li>'
-								html.push(string);
+						}
+						string += '<p class="listtit3 mutlinebox">'
+						if(data[i].college) {
+							string += data[i].college + "，";
+						}
+						if(data[i].major) {
+							string += data[i].major + "，";
+						}
+						if(data[i].degree) {
+							string += data[i].degree;
+						}
+						string += '</p>'
+						if(data[i].year) {
+							string += '<p class="listtit3">毕业于' + data[i].year + '年</p>'
+						}
+						string += '</div></a></li>'
+						html.push(string);
 					}
-					document.getElementById("education").innerHTML=html.join('');
+					document.getElementById("education").innerHTML = html.join('');
 				}
 			}
-	//查询工作经历
-	var timeJobShow = function(data) {
+			//查询工作经历
+		var timeJobShow = function(data) {
 
-				if(data.length>0){
-					var html=[];
-					for (var i = 0; i < data.length; i++) {   
-						var string='<li class="mui-table-view-cell mui-media listitem">'
-				               string+='<a >'
-				               	   string+='<div class="mui-media-object mui-pull-left iconposition">'
-				                   string+='<img class="" src="../images/icon-work.png"></div>'				                   
-				                   string+='<div class="mui-media-body">'
-				                       string+='<div class="listtit2 mutlinebox mutlinebox">'
-				                       if(data[i].company) {
-				                       		string+=data[i].company;
-				                       }
+				if(data.length > 0) {
+					var html = [];
+					for(var i = 0; i < data.length; i++) {
+						var string = '<li class="mui-table-view-cell mui-media listitem">'
+						string += '<a >'
+						string += '<div class="mui-media-object mui-pull-left iconposition">'
+						string += '<img class="" src="../images/icon-work.png"></div>'
+						string += '<div class="mui-media-body">'
+						string += '<div class="listtit2 mutlinebox mutlinebox">'
+						if(data[i].company) {
+							string += data[i].company;
+						}
 						string += '<div class="updatebox updatebox2 job" title=' + data[i].id + '><em class="mui-icon mui-icon-compose updatebtn"></em></div></div>'
 						string += '<p class="listtit3">'
 						if(data[i].title) {
@@ -66,9 +66,14 @@ var eduBgShow = function(data) {
 						if(data[i].startMonth) {
 							string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(4, 6) + "月" + "-";
 						}
-						if(data[i].stopMonth) {
-							string += data[i].stopMonth.substr(0, 4) + "年" + data[i].stopMonth.substr(4, 6) + "月";
+						if(data[i].startMonth) {
+							if(data[i].stopMonth) {
+								string += data[i].stopMonth.substr(0, 4) + "年" + data[i].stopMonth.substr(4, 6) + "月";
+							} else {
+								string += "至今";
+							}
 						}
+
 						string += '</p>'
 						string += '</div></a></li>'
 						html.push(string);
@@ -96,10 +101,14 @@ var eduBgShow = function(data) {
 						if(data[i].startMonth) {
 							string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(4, 6) + "月" + "-";
 						}
-						if(data[i].stopMonth) {
-							string += data[i].stopMonth.substr(0, 4) + "年" + data[i].stopMonth.substr(4, 6) + "月";
+						if(data[i].startMonth) {
+							if(data[i].stopMonth) {
+								string += data[i].stopMonth.substr(0, 4) + "年" + data[i].stopMonth.substr(4, 6) + "月";
+							} else {
+								string += "至今";
+							}
 						}
-						'</p>'
+						string += '</p>'
 						string += '<p class="listtit3 mutlinebox">'
 						if(data[i].descp) {
 							string += data[i].descp;
@@ -216,33 +225,33 @@ var eduBgShow = function(data) {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					var str = JSON.stringify(data.data);
-					var $data=data.data;					
-					var web=plus.webview.currentWebview()
-					 plus.nativeUI.closeWaiting();			
-        			web.show("slide-in-right",150); 					
+					var $data = data.data;
+					var web = plus.webview.currentWebview()
+					plus.nativeUI.closeWaiting();
+					web.show("slide-in-right", 150);
 					//教育背景					
 					if($data.edus.length) {
-								eduBgShow($data.edus);
+						eduBgShow($data.edus);
 					}
 					//工作经历
-					if ($data.jobs.length) {
-								timeJobShow($data.jobs);
-							}
+					if($data.jobs.length) {
+						timeJobShow($data.jobs);
+					}
 					//项目经历
-					if ($data.projects.length) {
-								projectShow($data.projects);
-							}
+					if($data.projects.length) {
+						projectShow($data.projects);
+					}
 					//著作 论文 文章
-					if ($data.papers.length) {
-								paperShow($data.papers);
-							}
+					if($data.papers.length) {
+						paperShow($data.papers);
+					}
 					//专利
-					if ($data.patents.length) {
-								patentShow($data.patents);
-							}
-				    if ($data.honors.length) {
-								honorShow($data.honors);
-							}
+					if($data.patents.length) {
+						patentShow($data.patents);
+					}
+					if($data.honors.length) {
+						honorShow($data.honors);
+					}
 				},
 				error: function() {
 					plus.nativeUI.toast("服务器链接超时", toastStyle);
@@ -375,4 +384,4 @@ var eduBgShow = function(data) {
 
 		personalMessage();
 	})
-	})
+})

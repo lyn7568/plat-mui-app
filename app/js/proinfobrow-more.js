@@ -63,30 +63,26 @@ mui.ready(function() {
 						}
 						string += '</p>'
 						string += '<p class="listtit3">'
-						if(data[i].startMonth) {
-							if(data[i].stopMonth) {
+						if(data[i].startMonth) {							
 								if(data[i].startMonth.substr(4, 1) == 0) {
 									string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(5, 1) + "月" + " - ";
 								} else {
 									string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(4, 2) + "月" + " - ";
 								}
-							} else {
-								if(data[i].startMonth.substr(4, 1) == 0) {
-									string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(5, 1) + "月";
-								} else {
-									string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(4, 2) + "月";
-								}
-							}
-
 						}
-						if(data[i].stopMonth) {
+						if(data[i].startMonth) {
+							if(data[i].stopMonth) {
 							if(data[i].stopMonth.substr(4, 1) == 0) {
 								string += data[i].stopMonth.substr(0, 4) + "年" + data[i].stopMonth.substr(5, 1) + "月";
 							} else {
 								string += data[i].stopMonth.substr(0, 4) + "年" + data[i].stopMonth.substr(4, 2) + "月";
 							}
 
+						}else{
+							string += "至今";
 						}
+						}
+						
 						string += '</p>'
 						string += '</div></a></li>'
 						html.push(string);
@@ -111,29 +107,24 @@ mui.ready(function() {
 						}
 						string += '</div>'
 						string += '<p class="listtit3">'
-						if(data[i].startMonth) {
-							if(data[i].stopMonth) {
+						if(data[i].startMonth) {							
 								if(data[i].startMonth.substr(4, 1) == 0) {
 									string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(5, 1) + "月" + " - ";
 								} else {
 									string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(4, 2) + "月" + " - ";
 								}
-							} else {
-								if(data[i].startMonth.substr(4, 1) == 0) {
-									string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(5, 1) + "月";
-								} else {
-									string += data[i].startMonth.substr(0, 4) + "年" + data[i].startMonth.substr(4, 2) + "月";
-								}
-							}
-
 						}
-						if(data[i].stopMonth) {
+						if(data[i].startMonth) {
+							if(data[i].stopMonth) {
 							if(data[i].stopMonth.substr(4, 1) == 0) {
 								string += data[i].stopMonth.substr(0, 4) + "年" + data[i].stopMonth.substr(5, 1) + "月";
 							} else {
 								string += data[i].stopMonth.substr(0, 4) + "年" + data[i].stopMonth.substr(4, 2) + "月";
 							}
 
+						}else{
+							string += "至今";
+						}
 						}
 						string += '</p>'
 						string += '<p class="listtit3 mutlinebox">'

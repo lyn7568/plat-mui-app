@@ -90,10 +90,10 @@ mui.plusReady(function(){
 	}
 	if(self.subject==undefined){
 		self.subject="学术领域";
-		
 	}else{
 		subject=self.subject;
 		subjectid.innerText = self.subject;
+		searchVal.setAttribute("placeholder","输入专家姓名、研究方向等关键字");
 	}
 	
     bigClass=self.bigClass;

@@ -32,8 +32,8 @@
 		</header>
 		<div class="filterbox" style=" position: fixed; z-index:1; top:45px; width:100%">
 			<ul class="filterblock" style="width:100%">
-				<li class="mui-col-xs-4">
-					<a href="#middlePopovercity" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="addressid">全国</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+				<li class="mui-col-xs-4" id="middlePopovercity">
+					<a href="#" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="addressid">全国</span><em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
 				<li class="mui-col-xs-4">
 					<a href="#middlePopoveracad" class="mui-btn mui-btn-block mui-btn-outlined filterlist2 mui-ellipsis"><span id="subjectid">学术领域</span><em class="mui-icon mui-icon-arrowdown"></em></a>
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 		<!--城市-->
-		<div id="middlePopovercity" class="mui-popover menuposition">
+		<!--<div id="middlePopovercity" class="mui-popover menuposition">
 			<div class="mui-pull-left" style=" width: 30%;border-right:1px solid #CFCFCF;">
 				<ul class="mui-table-view provinceval" id="provinceval">
 				</ul>
@@ -73,7 +73,7 @@
 				<ul class="mui-table-view" id="addressval">
 				</ul>
 			</div>
-		</div>
+		</div>-->
 		<!--应用行业-->
 		<div id="middlePopoveruse" class="mui-popover popoverbox2">
 			<ul class="mui-table-view yyhy" id="yyhy">
@@ -99,6 +99,16 @@
 				box.style.top="90px";
 				box.style.paddingTop="0px";
 			}
+			document.getElementById("middlePopovercity").addEventListener('tap', function() {
+				mui.openWindow({
+					url: '../html/address-screes.html',
+					id: 'address-screes.html',
+					show:{
+					  autoShow:false,
+				    }
+				});
+			});
+		   
 		</script>
 	</body>
 

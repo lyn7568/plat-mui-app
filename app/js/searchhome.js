@@ -16,8 +16,8 @@ var searchVal = document.getElementById("searchval");
 var table = document.body.querySelector('.list');
 var yyhy = document.getElementById("yyhy");
 var xsly = document.getElementById("xsly");
-var provinceVal = document.getElementById("provinceval");
-var addressVal = document.getElementById("addressval");
+//var provinceVal = document.getElementById("provinceval");
+//var addressVal = document.getElementById("addressval");
 var subjectid = document.getElementById("subjectid");
 var industryid = document.getElementById("industryid");
 var nodatabox = document.getElementById("nodatabox");
@@ -43,12 +43,36 @@ function pullupRefresh() {
 	mui('#pullrefresh3').pullRefresh().refresh(true);
 }
 
+
+/*地区搜索*/
+window.addEventListener('closesearch', function(event) {
+	province = event.detail.province;
+	address = event.detail.address;
+	if(address == "全省") {
+		address = "";
+		document.getElementById("addressid").innerText = province;
+	}else{
+		document.getElementById("addressid").innerText = address;
+	}
+	if(province == "全国") {
+		province = "";
+		address = "";
+		document.getElementById("addressid").innerText = "全国";
+	}
+	/*console.log(key);
+	console.log(subject);
+	console.log(industry);
+	console.log(address);
+	console.log(province);
+	console.log(authentication);*/
+	expert(key, subject, industry, province, address, authentication, 10, 1);
+})
+
 mui.plusReady(function(){
 	
 	/*点击专家和资源列表*/
 	mui('.list').on('tap','a',function(){
 		var id=this.getAttribute("data-id");
-		//console.log(id);
 		plus.nativeUI.showWaiting();//显示原生等待框
 		if(bigClass==1){
 			plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:id});
@@ -109,20 +133,13 @@ searchval.addEventListener("keyup", function() {
 	if(e.keyCode == 13) {
 		pageNo = 1
 		key = searchVal.value;
-	/*	console.log(key);
-	console.log(subject);
-	console.log(industry);
-	console.log(address);
-	console.log(province);
-	console.log(authentication);*/
 		plus.nativeUI.showWaiting();
-        
 		expert(key, subject, industry, province, address, authentication, 10, 1);
 	}
 })
 
 /*省会*/
-mui(".provinceval").on('tap', 'a', function() {
+/*mui(".provinceval").on('tap', 'a', function() {
 	key = searchVal.value;
 	province = this.innerText;
 	document.querySelector('#provinceval li a.active').classList.remove('active');
@@ -166,10 +183,10 @@ mui(".provinceval").on('tap', 'a', function() {
 			}
 		});
 	}
-});
+});*/
 
 /*市检索*/
-mui("#addressval").on('tap', 'a', function() {
+/*mui("#addressval").on('tap', 'a', function() {
 	key = searchVal.value;
 	address = this.innerText;
 	document.getElementById("addressid").innerText = address;
@@ -184,7 +201,7 @@ mui("#addressval").on('tap', 'a', function() {
 	plus.nativeUI.showWaiting();
 	mui('.mui-popover').popover('hide');
 	expert(key, subject, industry, province, address, authentication, 10, 1);
-})
+})*/
 
 /*应用行业*/
 mui(".yyhy").on('tap', 'a', function() {
@@ -581,7 +598,7 @@ function resourcesEach(datalist) {
 
 mui.plusReady(function(){
 //省
-mui.ajax(baseUrl + '/ajax/dataDict/qaCity', {
+/*mui.ajax(baseUrl + '/ajax/dataDict/qaCity', {
 	data: {
 		"dictCode": "PROVINCE"
 	},
@@ -603,7 +620,7 @@ mui.ajax(baseUrl + '/ajax/dataDict/qaCity', {
 	error: function() {
 		plus.nativeUI.toast("服务器链接超时", toastStyle);
 	}
-});
+});*/
 //应用行业
 mui.ajax(baseUrl + '/ajax/dataDict/qaDictCode', {
 	data: {

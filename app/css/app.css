@@ -37,6 +37,7 @@ a{text-decoration:none;color:#007aff}a:active{color:#0062cc}
 body{ color: #666666; font-size:14px;line-height:20px;}
 .floatL{ float: left;}
 .floatR{ float: right;}
+.alignCenter{ text-align: center;}
 .displayNone {display: none;}
 .displayBlock {display: block;}
 /*圆角*/

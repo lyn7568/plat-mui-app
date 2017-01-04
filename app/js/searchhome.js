@@ -16,8 +16,6 @@ var searchVal = document.getElementById("searchval");
 var table = document.body.querySelector('.list');
 var yyhy = document.getElementById("yyhy");
 var xsly = document.getElementById("xsly");
-//var provinceVal = document.getElementById("provinceval");
-//var addressVal = document.getElementById("addressval");
 var subjectid = document.getElementById("subjectid");
 var industryid = document.getElementById("industryid");
 var nodatabox = document.getElementById("nodatabox");
@@ -65,6 +63,7 @@ window.addEventListener('closesearch', function(event) {
 	console.log(address);
 	console.log(province);
 	console.log(authentication);*/
+	plus.nativeUI.showWaiting();
 	expert(key, subject, industry, province, address, authentication, 10, 1);
 })
 
@@ -137,71 +136,6 @@ searchval.addEventListener("keyup", function() {
 		expert(key, subject, industry, province, address, authentication, 10, 1);
 	}
 })
-
-/*省会*/
-/*mui(".provinceval").on('tap', 'a', function() {
-	key = searchVal.value;
-	province = this.innerText;
-	document.querySelector('#provinceval li a.active').classList.remove('active');
-	this.classList.add("active");
-	if(province == "全国") {
-		province = "";
-		address = "";
-		document.getElementById("addressid").innerText = "全国";
-		addressVal.innerHTML = "";
-		plus.nativeUI.showWaiting();
-		mui('.mui-popover').popover('hide');
-		expert(key, subject, industry, province, address, authentication, 10, 1);
-	} else {
-		mui.ajax(baseUrl + '/ajax/dataDict/qaCity', {
-			data: {
-				"dictCode": "ADDRESS",
-				province: province
-			},
-			dataType: 'json', //数据格式类型
-			type: 'GET', //http请求类型
-			timeout: 10000,
-			success: function(data) {
-				if(province == "北京市" || province == "上海市" || province == "天津市" || province == "重庆市" ){
-					var finallist = '';
-				}else{
-					var finallist = '<li class="mui-table-view-cell"><a class="active">全省</a></li>';
-				}
-				console.log(data.success)
-				console.log(JSON.stringify(data.data))
-				if(data.success && data.data != "") {
-					mui.each(data.data, function(i, n) {
-						finallist += '<li class="mui-table-view-cell"><a >' + n.caption + '</a></li>';
-					});
-					addressVal.innerHTML = finallist;
-					addressVal.firstChild.childNodes.item(0).classList.add('active');
-				}
-
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-	}
-});*/
-
-/*市检索*/
-/*mui("#addressval").on('tap', 'a', function() {
-	key = searchVal.value;
-	address = this.innerText;
-	document.getElementById("addressid").innerText = address;
-	document.querySelector('#addressval li a.active').classList.remove('active');
-	this.classList.add("active");
-	if(address == "全省") {
-		address = "";
-		document.getElementById("addressid").innerText = province;
-	}
-	//console.log(province);
-	//console.log(address);
-	plus.nativeUI.showWaiting();
-	mui('.mui-popover').popover('hide');
-	expert(key, subject, industry, province, address, authentication, 10, 1);
-})*/
 
 /*应用行业*/
 mui(".yyhy").on('tap', 'a', function() {
@@ -285,7 +219,9 @@ function expert(key, subject, industry, province, address, authentication, pageS
 					mui('#pullrefresh3').pullRefresh().refresh(true);
 	                mui('#pullrefresh3').pullRefresh().scrollTo(0,0);
 	                if(data.data.total<data.data.pageSize){
-	                	mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
+	                	mui('#pullrefresh3').pullRefresh().endPullupToRefresh(true);//不能上拉
+	                }else{
+	                	mui('#pullrefresh3').pullRefresh().endPullupToRefresh(false); //能上拉
 	                }
 				} else {
 					//plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
@@ -331,7 +267,9 @@ function expert(key, subject, industry, province, address, authentication, pageS
 					mui('#pullrefresh3').pullRefresh().refresh(true);
 	                mui('#pullrefresh3').pullRefresh().scrollTo(0,0,0);
 	                if(data.data.total<data.data.pageSize){
-	                	mui('#pullrefresh3').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
+	                	mui('#pullrefresh3').pullRefresh().endPullupToRefresh(true);//不能上拉
+	                }else{
+	                	mui('#pullrefresh3').pullRefresh().endPullupToRefresh(false); //能上拉
 	                }
 				} else {
 					//plus.nativeUI.toast("抱歉，没有找到对应的搜索", toastStyle);
@@ -597,30 +535,6 @@ function resourcesEach(datalist) {
 }
 
 mui.plusReady(function(){
-//省
-/*mui.ajax(baseUrl + '/ajax/dataDict/qaCity', {
-	data: {
-		"dictCode": "PROVINCE"
-	},
-	dataType: 'json', //数据格式类型
-	type: 'GET', //http请求类型
-	timeout: 10000,
-	success: function(data) {
-		var finallist = '<li class="mui-table-view-cell"><a class="active">全国</a></li>';
-		console.log(data.success)
-		console.log(JSON.stringify(data.data))
-		if(data.success && data.data != "") {
-			mui.each(data.data, function(i, n) {
-				finallist += '<li class="mui-table-view-cell"><a >' + n.caption + '</a></li>';
-			});
-			provinceVal.innerHTML = finallist;
-		}
-
-	},
-	error: function() {
-		plus.nativeUI.toast("服务器链接超时", toastStyle);
-	}
-});*/
 //应用行业
 mui.ajax(baseUrl + '/ajax/dataDict/qaDictCode', {
 	data: {

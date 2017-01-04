@@ -212,7 +212,7 @@ function expert(key, subject, industry, province, address, authentication, pageS
 				   }, 1000);
 				}
 				if(data.success && data.data.data != '') {
-					mui('#pullup-container').pullRefresh().enablePullupToRefresh();//启用上拉刷新
+					//mui('#pullup-container').pullRefresh().enablePullupToRefresh();//启用上拉刷新
 					nodatabox.style.display = 'none';
 					var datalist = data.data.data;
 					console.log(data.data.total)
@@ -261,7 +261,7 @@ function expert(key, subject, industry, province, address, authentication, pageS
 				   }, 1000);
 				}
 				if(data.success && data.data.data != '') {
-					mui('#pullup-container').pullRefresh().enablePullupToRefresh();//启用上拉刷新
+					//mui('#pullup-container').pullRefresh().enablePullupToRefresh();//启用上拉刷新
 					console.log(data.data.total)
 					nodatabox.style.display = 'none';
 					var datalist = data.data.data;

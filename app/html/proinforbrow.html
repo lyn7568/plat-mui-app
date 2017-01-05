@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -12,12 +13,12 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>		   		    
-		     <h1 class="mui-title toptit" id="professorName"></h1>	
-		     <a class="mui-icon iconfont icon-share mui-pull-right button topmore" onclick="shareShow()" id="shareBtn"></a>
-		    	
-		    <!--<a class="mui-icon iconfont icon-moreandroid mui-pull-right topmore" id="professorName"></a>-->
-		    <!--<a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit" id="professorName"></h1>
+			<a class="mui-icon iconfont icon-share mui-pull-right button topmore" id="shareBtn"></a>
+
+			<!--<a class="mui-icon iconfont icon-moreandroid mui-pull-right topmore" id="professorName"></a>-->
+			<!--<a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
 		    	<ul class="sharebox" id="shareBox" style="display:none; color: #000000;">
 		    		<li>
 		    			<span class="mui-icon mui-icon-weixin"></span>
@@ -32,63 +33,64 @@
 		    	</ul>
 		    </a>-->
 		</header>
-		
+
 		<!--主页面底部菜单-->
-	    <nav class="mui-bar mui-bar-tab mui-clearfix footbox">
-		    <div class="dialogbtn mui-pull-left btnactive" style="background:#FF9900; color: #FFFFFF;" id="zixun">
-		    	<div>
-			    	<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
+		<nav class="mui-bar mui-bar-tab mui-clearfix footbox">
+			<div class="dialogbtn mui-pull-left btnactive" style="background:#FF9900; color: #FFFFFF;" id="zixun">
+				<div>
+					<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
 					<span class="mui-pull-left" id="consultBtn">咨询</span>
 				</div>
 			</div>
-			<div class="attentbtn mui-pull-left" >
+			<div class="attentbtn mui-pull-left">
 				<em class="mui-iocn iconfont icon-favor" id="yesExpert"></em>
-				<em class="mui-iocn iconfont icon-favorfill" style="display:none;" id="noExpert"></em>	
+				<em class="mui-iocn iconfont icon-favorfill" style="display:none;" id="noExpert"></em>
 				<!--已经关注icon-favorfill-->
 			</div>
 		</nav>
 		<!-- 主页面内容容器 -->
-    	<div class="mui-content">
-    		<!-- 主界面具体展示内容 -->
-    		<div class="mui-input-group mainbox">
+		<div class="mui-content">
+			<!-- 主界面具体展示内容 -->
+			<div class="mui-input-group mainbox">
 				<div class="maincon personinfo">
 					<div class="headbox">
-				        <a href="javascript:;">
-				        	<img class="headimg headRadius" src="" />
-				        	<div class="listtit"><span class="personalMaterial"></span><em class="mui-icon iconfont" style="margin-top:5px;" id="nameli"></em></div>	
-		                    <p class="listtit3"><span class="personalMaterial"></span><span class="personalMaterial"></span></p>
-		                    <p class="listtit3"><span class="personalMaterial"></span><span class="personalMaterial"></span> <span class="personalMaterial"></span></p>
-				        </a>
-			        </div>
-		        </div>
-		        <ul class="mui-table-view">
-				    <li class="mui-table-view-cell">
-				        <a class="mui-navigate-right mui-clearfix peolevelbox " id="accessHistory">
-				        	<div class="mui-pull-left peocountbox">
-				        		<div class="peocount mui-clearfix">
-				        			<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
-				        			<span class="mui-pull-left">已完成咨询<em class="consultCount"></em>次</span>
-				        		</div>
-				        	</div>
-				        	<div class="rightword levelbox ">
-				        		<span class="mui-icon iconfont icon-favor start"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-				        		<span class="mui-icon iconfont icon-favor start"></span>
-				        		<span class="mui-icon iconfont icon-favor start"></span>
-				        		<span class="mui-icon iconfont icon-favor start"></span>
-				        		<span class="mui-icon iconfont icon-favor start"></span>
-				        	</div>
-				        	
-				        </a>
-				    </li>
+						<a href="javascript:;">
+							<img class="headimg headRadius" src="" />
+							<div class="listtit"><span class="personalMaterial"></span><em class="mui-icon iconfont" style="margin-top:5px;" id="nameli"></em></div>
+							<p class="listtit3"><span class="personalMaterial"></span><span class="personalMaterial"></span></p>
+							<p class="listtit3"><span class="personalMaterial"></span><span class="personalMaterial"></span> <span class="personalMaterial"></span></p>
+						</a>
+					</div>
+				</div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right mui-clearfix peolevelbox " id="accessHistory">
+							<div class="mui-pull-left peocountbox">
+								<div class="peocount mui-clearfix">
+									<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
+									<span class="mui-pull-left">已完成咨询<em class="consultCount"></em>次</span>
+								</div>
+							</div>
+							<div class="rightword levelbox ">
+								<span class="mui-icon iconfont icon-favor start"></span>
+								<!--无色星星icon-favor  黄色星icon-favorfill-->
+								<span class="mui-icon iconfont icon-favor start"></span>
+								<span class="mui-icon iconfont icon-favor start"></span>
+								<span class="mui-icon iconfont icon-favor start"></span>
+								<span class="mui-icon iconfont icon-favor start"></span>
+							</div>
+
+						</a>
+					</li>
 				</ul>
-		        
-		    </div>
-		    <div class="mui-input-group mainbox" id="professorresourceList">
+
+			</div>
+			<div class="mui-input-group mainbox" id="professorresourceList">
 				<div class="maincon">
-			       <div class="infocontit">合作资源</div> 
-			       <div class="infocon" style="padding:10px 0;">
-				       <ul class="mui-table-view listitembox resinfo" id="resourceList">
-				            <!--<li class="mui-table-view-cell mui-media listitem">
+					<div class="infocontit">合作资源</div>
+					<div class="infocon" style="padding:10px 0;">
+						<ul class="mui-table-view listitembox resinfo" id="resourceList">
+							<!--<li class="mui-table-view-cell mui-media listitem">
 				                <a class="proinfor" href="resinforbrow.html">
 				                    <img class="mui-media-object mui-pull-left resimg" src="../images/default-resource.jpg">
 				                    <div class="mui-media-body">
@@ -114,256 +116,76 @@
 				                    </div>
 				                </a>
 				            </li>	-->
-		                </ul>    
-		              
-			       </div>
-		       </div>
-		    </div>
-		    <div class="mui-input-group mainbox" id="professorBreifinfo">
+						</ul>
+
+					</div>
+				</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorBreifinfo">
 				<div class="maincon">
-			       <div class="infocontit">个人简介</div> 
-			       <div class="infocon">
-				       	<span class="breifinfo">
+					<div class="infocontit">个人简介</div>
+					<div class="infocon">
+						<span class="breifinfo">
 				       		 
 				        </span>
-			       </div>
-		       </div>
-		    </div>
-		    <div class="mui-input-group mainbox" id="professorInfosubject">
+					</div>
+				</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorInfosubject">
 				<div class="maincon">
-			       <div class="infocontit">学术领域</div> 
-			       <div class="infocon">
-				       	<ul class="infosubject">
-				       		<!--<li>领域1</li>
+					<div class="infocontit">学术领域</div>
+					<div class="infocon">
+						<ul class="infosubject">
+							<!--<li>领域1</li>
 				       		<li>领域领域领域2</li>
 				       		<li>领域领域领域领域3</li>
 				       		<li>领域4</li>
 				       		<li>领域领1</li>
 				       		<li>领域1</li>
 				       		<li>领域1</li>-->
-				       	</ul>
-			       </div>
-		       </div>
-		    </div>
-		    <div class="mui-input-group mainbox" id="professorReserachMess">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorReserachMess">
 				<div class="maincon">
-			       <div class="infocontit">研究方向</div> 
-			       <div class="infocon reserachMess">
-				        
-			       </div>
-		       </div>
-		    </div>
-		    <div class="mui-input-group mainbox" id="professorinfoapply">
+					<div class="infocontit">研究方向</div>
+					<div class="infocon reserachMess">
+
+					</div>
+				</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorinfoapply">
 				<div class="maincon">
-			       <div class="infocontit">应用行业</div> 
-			       <div class="infocon">
-				       	<ul class="infoapply" id="industry1">
-				       		<!--<li class="mui-ellipsis">应用行业1</li>
+					<div class="infocontit">应用行业</div>
+					<div class="infocon">
+						<ul class="infoapply" id="industry1">
+							<!--<li class="mui-ellipsis">应用行业1</li>
 				       		<li class="mui-ellipsis">领域领域领域域领域领域域领域领域域领域领域2</li>
 				       		<li class="mui-ellipsis">领域领域3</li>
 				       		<li class="mui-ellipsis">领域4</li>
 				       		<li class="mui-ellipsis">领域领1</li>
 				       		<li class="mui-ellipsis">领域1</li>
 				       		<li class="mui-ellipsis">领域1</li>-->
-				       	</ul>
-			       </div>
-		       </div>
-		    </div>
-		    <div class="mui-input-group mainbox"id="detailProfessor">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="mui-input-group mainbox" id="detailProfessor">
 				<div class="maincon">
-					<a >
+					<a>
 						<div class="gotonext">
 							<span class="mui-pull-left">查看专家详细信息</span>
-				       		<em class="mui-iocn iconfont icon-pullright mui-pull-left"></em>
+							<em class="mui-iocn iconfont icon-pullright mui-pull-left"></em>
 						</div>
 					</a>
-		       </div>
-		    </div>
-        </div>
-		
-		
+				</div>
+			</div>
+		</div>
+
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/proinfobrow.js"></script>
-		<script type="text/javascript">
-			var shareBtn=document.getElementById("shareBtn");
-//			shareBtn.addEventListener('tap', function() {
-//				mui.openWindow({
-//					url: '../html/shareProinfor.html',
-//					id: 'html/shareProinfor.html',
-//					
-//				});
-//			});
-			var shares=null;
-			var Intent=null,File=null,Uri=null,main=null;
-			// H5 plus事件处理
-			function plusReady(){
-				updateSerivces();
-				if(plus.os.name=="Android"){
-					main = plus.android.runtimeMainActivity();
-					Intent = plus.android.importClass("android.content.Intent");
-					File = plus.android.importClass("java.io.File");
-					Uri = plus.android.importClass("android.net.Uri");
-				}
-			}
-			if(window.plus){
-				plusReady();
-			}else{
-				document.addEventListener("plusready",plusReady,false);
-			}
-			/**
-			 * 更新分享服务
-			 */
-			function updateSerivces(){
-				plus.share.getServices( function(s){
-					shares={};
-					for(var i in s){
-						var t=s[i];
-						shares[t.id]=t;
-					}
-				}, function(e){
-					outSet( "获取分享服务列表失败："+e.message );
-				} );
-			}
-			/**
-			 * 调用系统分享
-			 * 调用
-			 */
-			function shareSystem() {
-				if(plus.os.name!=="Android"){
-					plus.nativeUI.alert("此平台暂不支持系统分享功能!");
-					return;
-				}
-				var intent=new Intent(Intent.ACTION_SEND);
-				var p = "";
-				if(pic&&pic.realUrl){
-					p = pic.realUrl;
-					if(p.substr(0,7)==="file://"){
-						p=p.substr(7);
-					}else if(p.sub(0)!=="/"){
-						p=plus.io.convertLocalFileSystemURL(p);
-					}
-				}
-				var f = new File(p);
-				var uri = Uri.fromFile(f);
-				if(f.exists()&&f.isFile()){
-					console.log("image/*");
-					intent.setType("image/*");
-					intent.putExtra(Intent.EXTRA_STREAM,uri);
-				}else{
-					console.log("text/plain");
-					intent.setType("text/plain");
-				}
-				intent.putExtra(Intent.EXTRA_SUBJECT,"HBuilder");
-				intent.putExtra(Intent.EXTRA_TEXT,sharecontent.value);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				main.startActivity(Intent.createChooser(intent,"系统分享"));
-			}
-			/**
-			   * 分享操作
-			   * @param {JSON} sb 分享操作对象s.s为分享通道对象(plus.share.ShareService)
-			   * @param {Boolean} bh 是否分享链接
-			   */
-			function shareAction(sb,bh) {
-				outSet( "分享操作：" );
-				if(!sb||!sb.s){
-					outLine( "无效的分享服务！" );
-					return;
-				}
-				var msg={content:sharecontent.value,extra:{scene:sb.x}};
-				if(bh){
-					msg.href=sharehref.value;
-					if(sharehrefTitle&&sharehrefTitle.value!=""){
-						msg.title=sharehrefTitle.value;
-					}
-					if(sharehrefDes&&sharehrefDes.value!=""){
-						msg.content=sharehrefDes.value;
-					}
-					msg.thumbs=["_www/logo.png"];
-					msg.pictures=["_www/logo.png"];
-				}else{
-					if(pic&&pic.realUrl){
-						msg.pictures=[pic.realUrl];
-					}
-				}
-				// 发送分享
-				if ( sb.s.authenticated ) {
-					outLine( "---已授权---" );
-					shareMessage(msg,sb.s);
-				} else {
-					outLine( "---未授权---" );
-					sb.s.authorize( function(){
-							shareMessage(msg,sb.s);
-						},function(e){
-						outLine( "认证授权失败："+e.code+" - "+e.message );
-					});
-				}
-			}
-			/**
-			   * 发送分享消息
-			   * @param {JSON} msg
-			   * @param {plus.share.ShareService} s
-			   */
-			function shareMessage(msg,s){
-				outLine(JSON.stringify(msg));
-				s.send( msg, function(){
-					outLine( "分享到\""+s.description+"\"成功！ " );
-				}, function(e){
-					outLine( "分享到\""+s.description+"\"失败: "+JSON.stringify(e) );
-				} );
-			}
-			/**
-			 * 解除所有分享服务的授权
-			 */
-			function cancelAuth(){try{
-				outSet( "解除授权：" );
-				for ( var i in shares ) {
-					var s = shares[i];
-					if ( s.authenticated ) {
-						outLine( "取消\""+s.description+"\"");
-					}
-					s.forbid();
-				}
-				// 取消授权后需要更新服务列表
-				updateSerivces();
-				outLine( "操作成功！" );}catch(e){alert(e);}
-			}
-			
-			// 打开分享
-			function shareShow(){
-				var shareBts=[];
-				// 更新分享列表
-				var ss=shares['weixin'];
-				if(navigator.userAgent.indexOf('StreamApp')<0&&navigator.userAgent.indexOf('qihoo')<0){  //在360流应用中微信不支持分享图片
-					ss&&ss.nativeClient&&(shareBts.push({title:'微信朋友圈',s:ss,x:'WXSceneTimeline'}),
-					shareBts.push({title:'微信好友',s:ss,x:'WXSceneSession'}));
-				}
-//				ss=shares['sinaweibo'];
-//				ss&&shareBts.push({title:'新浪微博',s:ss});
-//				ss=shares['qq'];
-//				ss&&ss.nativeClient&&shareBts.push({title:'QQ',s:ss});
-				// 弹出分享列表
-				shareBts.length>0?plus.nativeUI.actionSheet({title:'分享',cancel:'取消',buttons:shareBts},function(e){
-					(e.index>0)&&shareAction(shareBts[e.index-1],false);
-				}):plus.nativeUI.alert('当前环境无法支持分享操作!');
-				
-				
-			}
-			// 分析链接
-			function shareHref(){
-				var shareBts=[];
-				// 更新分享列表
-				var ss=shares['weixin'];
-				ss&&ss.nativeClient&&(shareBts.push({title:'微信朋友圈',s:ss,x:'WXSceneTimeline'}),
-				shareBts.push({title:'微信好友',s:ss,x:'WXSceneSession'}));
-//				ss=shares['qq'];
-//				ss&&ss.nativeClient&&shareBts.push({title:'QQ',s:ss});
-				// 弹出分享列表
-				shareBts.length>0?plus.nativeUI.actionSheet({title:'分享链接',cancel:'取消',buttons:shareBts},function(e){
-					(e.index>0)&&shareAction(shareBts[e.index-1],true);
-				}):plus.nativeUI.alert('当前环境无法支持分享链接操作!');
-			}
-		</script>
 	</body>
 
 </html>

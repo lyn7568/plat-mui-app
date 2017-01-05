@@ -3,19 +3,19 @@ var yesExpert = document.getElementById("yesExpert");
 var noExpert = document.getElementById("noExpert");
 var personalMaterial = document.getElementsByClassName('personalMaterial');
 var personSummary = document.getElementsByClassName("breifinfo")[0];
-
+var professorName;
+var title;
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var proId = self.proid;
-	console.log(userid); 
 	/*点击咨询*/
 	//判断是否登录，登录才可咨询，否则登录
-	function isLogin(){
+	function isLogin() {
 		var userid = plus.storage.getItem('userid');
-	
-		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined'){
-			
+
+		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
+
 			var flag = 'professor';
 			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
 			webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
@@ -26,21 +26,19 @@ mui.plusReady(function() {
 			webviewShow.addEventListener("loaded", function() {
 
 			}, false);
-			
-		}else {
+
+		} else {
 			mui.openWindow({
-			    url:'../html/login.html',
-			    id:'login.html'
+				url: '../html/login.html',
+				id: 'login.html'
 			})
-				
+
 		}
 	}
-	
+
 	ozixun.addEventListener('tap', function() {
 		isLogin();
 	});
-	
-
 
 	//查询学术领域
 	var subjectShow = function(data) {
@@ -75,6 +73,7 @@ mui.plusReady(function() {
 		}
 		return ret;
 	}
+	var resear = "";
 	var researchAreaShow = function($datas, $datarecords) {
 			if($datas != undefined && $datas.length != 0) {
 				var html = [];
@@ -115,6 +114,7 @@ mui.plusReady(function() {
 					}
 					showDiv += "</div></div></div>";
 					html.push(showDiv);
+					resear += (i + 1) + "." + $data.caption + " ";
 				}
 				document.getElementsByClassName("reserachMess")[0].innerHTML = html.join('')
 			}
@@ -174,12 +174,13 @@ mui.plusReady(function() {
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				var $data = data.data;
 				personalMaterial[0].innerText = $data.name;
-				document.getElementById("professorName").innerText=$data.name;
+				professorName = $data.name;
+				document.getElementById("professorName").innerText = $data.name;
 				//基本信息
-				if($data.consultCount){
+				if($data.consultCount) {
 					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
-				}else{
-					document.getElementById("accessHistory").style.display="none";
+				} else {
+					document.getElementById("accessHistory").style.display = "none";
 				}
 				var startLeval = parseInt($data.starLevel);
 				var start = document.getElementsByClassName("start");
@@ -193,25 +194,22 @@ mui.plusReady(function() {
 					document.getElementsByClassName("headimg")[0].src = "../images/default-photo.jpg";
 				}
 				if($data.authType) {
-							nameli.classList.add('icon-vip');
-							nameli.classList.add('authicon-cu');
+					nameli.classList.add('icon-vip');
+					nameli.classList.add('authicon-cu');
+				} else {
+					if($data.authStatus) {
+						if($data.authentication == 1) {
+							nameli.classList.add('icon-renzheng');
+							nameli.classList.add('authicon-mana');
+						} else if($data.authentication == 2) {
+							nameli.classList.add('icon-renzheng');
+							nameli.classList.add('authicon-staff');
 						} else {
-							if($data.authStatus){
-								if($data.authentication==1){
-									nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-mana');
-									//nameli.innerHTML="<span>科研</span>";
-							   }else if($data.authentication==2){
-							    	nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-staff');
-									//nameli.innerHTML="<span>企业</span>";
-							    }else{
-							    	nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-stu');
-									//nameli.innerHTML="<span>学生</span>";
-							    }
-							}
-						}	
+							nameli.classList.add('icon-renzheng');
+							nameli.classList.add('authicon-stu');
+						}
+					}
+				}
 				if($data.office) {
 					if($data.title) {
 						personalMaterial[1].innerText = $data.office + "，";
@@ -221,16 +219,17 @@ mui.plusReady(function() {
 				}
 				if($data.title) {
 					personalMaterial[2].innerText = $data.title;
+					title = $data.title;
 				}
 				if($data.orgName) {
 					if($data.department) {
 						personalMaterial[3].innerText = $data.orgName + " , ";
 					} else {
 						if($data.address) {
-							personalMaterial[3].innerText = $data.orgName+ " | ";
+							personalMaterial[3].innerText = $data.orgName + " | ";
 						} else {
 							personalMaterial[3].innerText = $data.orgName;
-						}						
+						}
 					}
 
 				}
@@ -350,7 +349,7 @@ mui.plusReady(function() {
 				}
 			})
 		} else {
-//			plus.nativeUI.toast("请先登录");
+			//			plus.nativeUI.toast("请先登录");
 			isLogin();
 		}
 
@@ -379,7 +378,7 @@ mui.plusReady(function() {
 		if(userid && userid != null && userid != "null") {
 			collectionExpert($this);
 		} else {
-//			plus.nativeUI.toast("请先登录");
+			//			plus.nativeUI.toast("请先登录");
 			isLogin();
 		}
 	});
@@ -474,15 +473,141 @@ mui.plusReady(function() {
 	}
 	/*专家的历史和评价*/
 	document.getElementById("accessHistory").addEventListener('tap', function() {
-		mui.openWindow({
-			url: '../html/coophistory-other.html',
-			id: 'html/coophistory-other.html',
-			show: {
-				autoShow: false,
-			},
-			extras: {
-				professorId: proId
+			mui.openWindow({
+				url: '../html/coophistory-other.html',
+				id: 'html/coophistory-other.html',
+				show: {
+					autoShow: false,
+				},
+				extras: {
+					professorId: proId
+				}
+			});
+		})
+		/*微信及微信朋友圈分享专家*/
+	var auths, shares;
+	document.getElementById("shareBtn").addEventListener("tap", function() {
+		shareShow()
+	})
+	plus.oauth.getServices(function(services) {
+		auths = {};
+		for(var i in services) {
+			var t = services[i];
+			auths[t.id] = t;
+
+		}
+	}, function(e) {
+		alert("获取登录服务列表失败：" + e.message + " - " + e.code);
+	});
+	plus.share.getServices(function(services) {
+
+		shares = {};
+		for(var i in services) {
+
+			var t = services[i];
+
+			shares[t.id] = t;
+
+		}
+	}, function(e) {
+		alert("获取分享服务列表失败：" + e.message + " - " + e.code);
+	})
+
+	function shareShow() {
+		var shareBts = [];
+		// 更新分享列表
+		var ss = shares['weixin'];
+		if(navigator.userAgent.indexOf('StreamApp') < 0 && navigator.userAgent.indexOf('qihoo') < 0) { //在360流应用中微信不支持分享图片
+			ss && ss.nativeClient && (shareBts.push({
+					title: '微信朋友圈',
+					s: ss,
+					x: 'WXSceneTimeline'
+				}),
+				shareBts.push({
+					title: '微信好友',
+					s: ss,
+					x: 'WXSceneSession'
+				}));
+		}
+		//				// 弹出分享列表
+		shareBts.length > 0 ? plus.nativeUI.actionSheet({
+			title: '分享',
+			cancel: '取消',
+			buttons: shareBts
+		}, function(e) {
+			var str;
+			if(resear) {
+				str = "研究方向：" + resear
+			}
+			if(e.index == 2) {
+				var share = buildShareService();
+				if(share) {
+					shareMessage(share, "WXSceneSession", {
+						content: str,
+						title: "【科袖名片】" + professorName + " " + title + "",
+						href: "http://192.168.3.233/shareProinfor.html?professorId=" + proId,
+						thumbs: ["http://www.ekexiu.com/images/head/" + proId + "_l.jpg"]
+					});
+				}
+			} else if(e.index == 1) {
+				var share = buildShareService();
+				if(share) {
+					shareMessage(share, "WXSceneTimeline", {
+						content: str,
+						title: "【科袖名片】" + professorName + " " + title + "",
+						href: "http://192.168.3.233/shareProinfor.html?professorId=" + proId,
+						thumbs: ["http://www.ekexiu.com/images/head/" + proId + "_l.jpg"]
+					});
+				}
+			}
+
+		}) : plus.nativeUI.alert('当前环境无法支持分享操作!');
+
+	}
+
+	function buildShareService() {
+		var share = shares["weixin"];
+		if(share) {
+			if(share.authenticated) {
+				console.log("---已授权---");
+			} else {
+				console.log("---未授权---");
+				share.authorize(function() {
+					console.log('授权成功...')
+				}, function(e) {
+					alert("认证授权失败：" + e.code + " - " + e.message);
+					return null;
+				});
+			}
+			return share;
+		} else {
+			alert("没有获取微信分享服务");
+			return null;
+		}
+
+	}
+
+	function shareMessage(share, ex, msg) {
+		plus.nativeUI.showWaiting();
+		msg.extra = {
+			scene: ex
+		};
+		share.send(msg, function() {
+			plus.nativeUI.closeWaiting();
+			var strtmp = "分享到\"" + share.description + "\"成功！ ";
+			console.log(strtmp);
+			plus.nativeUI.toast(strtmp, {
+				verticalAlign: 'center'
+			});
+		}, function(e) {
+			plus.nativeUI.closeWaiting();
+			if(e.code == -2) {
+				plus.nativeUI.toast('已取消分享', {
+					verticalAlign: 'center'
+				});
+			} else {
+				alert("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
 			}
 		});
-	})
+	}
 });

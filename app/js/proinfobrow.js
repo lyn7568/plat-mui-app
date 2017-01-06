@@ -593,7 +593,7 @@ mui.plusReady(function() {
 		}
 
 	}
-
+	
 	function shareMessage(share, ex, msg) {
 		plus.nativeUI.showWaiting();
 		msg.extra = {
@@ -617,4 +617,6 @@ mui.plusReady(function() {
 			}
 		});
 	}
+	/*图像预览*/
+	mui.previewImage();
 });

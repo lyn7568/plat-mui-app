@@ -313,4 +313,6 @@ mui.plusReady(function() {
 			}
 		});
 	})
+	/*图像预览*/
+	mui.previewImage();
 });

@@ -562,7 +562,7 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: "http://192.168.3.233/shareProinfor.html?professorId=" + proId,
+						href: "http://www.ekexiu.com/shareProinfor.html?professorId=" + proId,
 						thumbs: ["http://www.ekexiu.com/images/head/" + proId + "_l.jpg"]
 					});
 				}
@@ -595,7 +595,6 @@ mui.plusReady(function() {
 	}
 	
 	function shareMessage(share, ex, msg) {
-		plus.nativeUI.showWaiting();
 		msg.extra = {
 			scene: ex
 		};

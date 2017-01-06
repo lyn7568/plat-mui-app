@@ -522,7 +522,7 @@ ul.boxnav li.set span:before{
 /*********************** 资源信息浏览*******************/
 .restopblock{ overflow: hidden; padding:14px 10px; background: #FFFFFF;}
 .resouimgbox{text-align:center;margin:10px;}
-.resouimgbox img{ width: 100%;margin: auto;}
+.resouimgbox img{ /*width: 100%;*/margin: auto;}
 .personblock{ position:absolute;top:50%; margin-top:-88px ;left:56%; padding:8px 2px; text-align: center; width:40%;}
 .personblock p{ margin-bottom: 4px;}
 .personblock .headimg{ width:40%;overflow: hidden;}

@@ -1,19 +1,21 @@
 <!doctype html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	<link href="../css/mui.min.css" rel="stylesheet" />
-	<link href="../css/iconfont.css" rel="stylesheet" />
-	<link href="../css/app.css" rel="stylesheet" />
-</head>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/previewImage.css"/>
+	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit" id="resorcename">资源名称</h1>
-		    <!--<a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit" id="resorcename">资源名称</h1>
+			<!--<a class="mui-icon iconfont icon-share mui-pull-right topmore" id="shareBtn">
 		    	<ul class="sharebox" id="shareBox" style="display:none; color: #000000;">
 		    		<li>
 		    			<span class="mui-icon mui-icon-weixin"></span>
@@ -28,45 +30,50 @@
 		    	</ul>
 		    </a>-->
 		</header>
-		
+
 		<!--主页面底部菜单-->
-	     <nav class="mui-bar mui-bar-tab mui-clearfix footbox">
-		    <div class="dialogbtn mui-pull-left btnactive" style="background:#FF9900; color: #FFFFFF;" id="consult">
-		    	<div>
-			    	<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
+		<nav class="mui-bar mui-bar-tab mui-clearfix footbox">
+			<div class="dialogbtn mui-pull-left btnactive" style="background:#FF9900; color: #FFFFFF;" id="consult">
+				<div>
+					<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
 					<span class="mui-pull-left" id="consultBtn">咨询</span>
 				</div>
 			</div>
 			<div class="attentbtn mui-pull-left">
 				<em class="mui-iocn iconfont icon-favor" id="yesExpert"></em>
-				<em class="mui-iocn iconfont icon-favorfill" style="display:none;" id="noExpert"></em><!--已经关注icon-favorfill-->
+				<em class="mui-iocn iconfont icon-favorfill" style="display:none;" id="noExpert"></em>
+				<!--已经关注icon-favorfill-->
 			</div>
 		</nav>
 		<!-- 主页面内容容器 -->
-    	<div class="mui-content">
-    		<!-- 主界面具体展示内容 -->
-    		<div class="mui-input-group mainbox restopblock">
-    			<div class="ResImgBox resouimgbox mui-pull-left" style="height:180px;width:180px;max-width:180px;margin:0 6px 0 2px;">
-					<img class="resImg headRadius" src="../images/default-resource.jpg"/ id="ziyuanimg">
+		<div class="mui-content">
+			<!-- 主界面具体展示内容 -->
+			<div class="mui-input-group mainbox restopblock">
+				<div class="mui-content-padded">
+					<p>
+						<div class="ResImgBox resouimgbox mui-pull-left" style="height:180px;width:180px;max-width:180px;margin:0 6px 0 2px;">
+							<img class="resImg headRadius" src="../images/default-resource.jpg" id="ziyuanimg" data-preview-src data-preview-group="1" />
+						</div>
+					</p>
 				</div>
 				<div class="personblock mui-pull-left" id="fess">
-                    <img class="headimg headRadius" src="" id="proimg">
-                    <p class="listtit" id="proname"><em class="mui-icon iconfont icon-vip " style="font-size:16px;" id="promodify"></em></p>	
-                    <p class="listtit2" ><span id="protitle"></span><span id="prooffice"></span></p>
-                    <p class="listtit3"><span id="proorgName"></span></p>
-                    <p class="listtit3"><span id="proadress"></span></p>
-                </div>
-    		</div>
-    		<!--<div class="resomenubox">
+					<img class="headimg headRadius" src="" id="proimg">
+					<p class="listtit" id="proname"><em class="mui-icon iconfont icon-vip " style="font-size:16px;" id="promodify"></em></p>
+					<p class="listtit2"><span id="protitle"></span><span id="prooffice"></span></p>
+					<p class="listtit3"><span id="proorgName"></span></p>
+					<p class="listtit3"><span id="proadress"></span></p>
+				</div>
+			</div>
+			<!--<div class="resomenubox">
     			<ul class="resomenu">
     				<li>基本信息</li>
     			</ul>
     		</div>-->
-    		<div class="mui-input-group mainbox resouinfoword marginbox">
-            	<ul class="resouinfobox">
-            		<li>
-            			<div class="infocontit">基本信息</div>
-            		</li>
+			<div class="mui-input-group mainbox resouinfoword marginbox">
+				<ul class="resouinfobox">
+					<li>
+						<div class="infocontit">基本信息</div>
+					</li>
 					<li>
 						<div class="infocon">
 							<p style="color:#666666;">
@@ -82,76 +89,77 @@
 				</ul>
 			</div>
 			<div class="mui-input-group mainbox resouinfoword marginbox" id="fielddiv">
-            	<ul class="resouinfobox">
+				<ul class="resouinfobox">
 					<li>
 						<div class="infocontit">学术领域</div>
 						<div class="infocon">
-					       	<ul class="infosubject" id="field">
-					       		<!--<li>领域1</li>
+							<ul class="infosubject" id="field">
+								<!--<li>领域1</li>
 					       		<li>领域领域领域2</li>
 					       		<li>领域领域领域领域3</li>
 					       		<li>领域4</li>
 					       		<li>领域领1</li>
 					       		<li>领域1</li>
 					       		<li>领域1</li>-->
-					       	</ul>
-				       </div>
+							</ul>
+						</div>
 					</li>
 				</ul>
 			</div>
 			<div class="mui-input-group mainbox resouinfoword marginbox " id="applydiv">
-            	<ul class="resouinfobox">
+				<ul class="resouinfobox">
 					<li>
-						<div class="infocontit">应用行业</div> 
-				        <div class="infocon">
-					       	<ul class="infoapply" id="apply">
-					       		<!--<li class="mui-ellipsis">应用行业1</li>
+						<div class="infocontit">应用行业</div>
+						<div class="infocon">
+							<ul class="infoapply" id="apply">
+								<!--<li class="mui-ellipsis">应用行业1</li>
 					       		<li class="mui-ellipsis">领域领域领域域领域领域域领域领域域领域领域2</li>
 					       		<li class="mui-ellipsis">领域领域3</li>
 					       		<li class="mui-ellipsis">领域4</li>
 					       		<li class="mui-ellipsis">领域领1</li>
 					       		<li class="mui-ellipsis">领域1</li>
 					       		<li class="mui-ellipsis">领域1</li>-->
-					       	</ul>
-				        </div>
+							</ul>
+						</div>
 					</li>
 				</ul>
 			</div>
 			<div class="mui-input-group mainbox resouinfoword marginbox " id="detaildiv">
-            	<ul class="resouinfobox">
+				<ul class="resouinfobox">
 					<li>
-				       <div class="infocontit">详细描述</div> 
-				       <div class="infocon">
-				       		<p class="listtit3 mutlinebox" id="detail"></p>
-				       </div>
+						<div class="infocontit">详细描述</div>
+						<div class="infocon">
+							<p class="listtit3 mutlinebox" id="detail"></p>
+						</div>
 					</li>
 				</ul>
 			</div>
 			<div class="mui-input-group mainbox resouinfoword marginbox " id="hezuodiv">
-            	<ul class="resouinfobox">
-		            <li>
-				       <div class="infocontit">合作备注</div> 
-				       <div class="infocon">
-				       		<p class="listtit3 mutlinebox" id="hezuo"></p>
-				       </div>
-				    </li>
+				<ul class="resouinfobox">
+					<li>
+						<div class="infocontit">合作备注</div>
+						<div class="infocon">
+							<p class="listtit3 mutlinebox" id="hezuo"></p>
+						</div>
+					</li>
 				</ul>
-             </div>
+			</div>
 
-        </div>
-		
+		</div>
+
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/resinforbrow.js"></script>
 		<script type="text/javascript">
 			/*mui.init();
-			var shareBtn = document.getElementById("shareBtn");
-			var shareBox = document.getElementById("shareBox");
-			
-			shareBtn.addEventListener("tap",function(){
-				shareBox.style.display = 'block';
-			});*/
-			
+						var shareBtn = document.getElementById("shareBtn");
+						var shareBox = document.getElementById("shareBox");
+						
+						shareBtn.addEventListener("tap",function(){
+							shareBox.style.display = 'block';
+						});*/
 		</script>
 	</body>
 

@@ -526,14 +526,14 @@ mui.plusReady(function() {
 		var ss = shares['weixin'];
 		if(navigator.userAgent.indexOf('StreamApp') < 0 && navigator.userAgent.indexOf('qihoo') < 0) { //在360流应用中微信不支持分享图片
 			ss && ss.nativeClient && (shareBts.push({
-					title: '微信朋友圈',
-					s: ss,
-					x: 'WXSceneTimeline'
-				}),
-				shareBts.push({
 					title: '微信好友',
 					s: ss,
 					x: 'WXSceneSession'
+				}),
+				shareBts.push({
+					title: '微信朋友圈',
+					s: ss,
+					x: 'WXSceneTimeline'
 				}));
 		}
 		//				// 弹出分享列表
@@ -546,17 +546,17 @@ mui.plusReady(function() {
 			if(resear) {
 				str = "研究方向：" + resear
 			}
-			if(e.index == 2) {
+			if(e.index == 1) {
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: "http://192.168.3.233/shareProinfor.html?professorId=" + proId,
+						href: "http://www.ekexiu.com/shareProinfor.html?professorId=" + proId,
 						thumbs: ["http://www.ekexiu.com/images/head/" + proId + "_l.jpg"]
 					});
 				}
-			} else if(e.index == 1) {
+			} else if(e.index == 2) {
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {

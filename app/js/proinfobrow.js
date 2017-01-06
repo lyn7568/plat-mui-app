@@ -552,8 +552,8 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: "http://www.ekexiu.com/shareProinfor.html?professorId=" + proId,
-						thumbs: ["http://www.ekexiu.com/images/head/" + proId + "_l.jpg"]
+						href: baseUrl+"/shareProinfor.html?professorId=" + proId,
+						thumbs: [baseUrl+"/images/head/" + proId + "_l.jpg"]
 					});
 				}
 			} else if(e.index == 2) {
@@ -562,8 +562,8 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: "http://www.ekexiu.com/shareProinfor.html?professorId=" + proId,
-						thumbs: ["http://www.ekexiu.com/images/head/" + proId + "_l.jpg"]
+						href: baseUrl+"/shareProinfor.html?professorId=" + proId,
+						thumbs: [baseUrl+"/images/head/" + proId + "_l.jpg"]
 					});
 				}
 			}
@@ -611,8 +611,6 @@ mui.plusReady(function() {
 				plus.nativeUI.toast('已取消分享', {
 					verticalAlign: 'center'
 				});
-			} else {
-				alert("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
 			}
 		});
 	}

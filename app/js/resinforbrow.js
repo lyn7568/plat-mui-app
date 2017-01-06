@@ -43,6 +43,10 @@ function ziyuaninfo(resourceId) {
 					var mydata = data.data;
 					//资源名称
 					professorId = mydata['professor']['id'];
+					var userid = plus.storage.getItem('userid');
+					if(professorId==userid){
+						document.getElementsByClassName("footbox")[0].style.display="none";
+					}
 					(mydata['resourceName']) ? oresorcename.innerHTML = mydata['resourceName']: oresorcename.innerHTML = '';
 					(mydata['resourceName']) ? oresourceName.innerHTML = mydata['resourceName']: oresourceName.innerHTML = '';
 

@@ -7,6 +7,7 @@ mui.ready(function() {
 	var obtainCode = document.getElementById("obtain-code");
 	var reg = document.getElementById("reg");
 	var login = document.getElementById("login");
+	var protocollink = document.getElementById("protocollink");
 	var phoneCode = false;
 	var state = 0;
 	
@@ -31,7 +32,18 @@ mui.ready(function() {
 		reg.addEventListener('tap', function() {
 			codeVal();
 		})
-
+		
+		/*用户协议*/
+		protocollink.addEventListener('tap',function(){
+			mui.openWindow({
+				url: '../html/privacy.html',
+				id: '../html/privacy.html',
+				show: {
+					aniShow: "slide-in-right"
+				}
+			});
+		});
+	
 		/*校验手机号*/
 		function phoneVal() {
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;

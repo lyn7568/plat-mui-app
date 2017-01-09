@@ -25,13 +25,15 @@ var oconsult = document.getElementById("consult"); //咨询
 var oconsultBtn = document.getElementById("consultBtn"); //咨询按钮
 var professorId;
 var proId;
+var resourceName;
+var supportedServices;
 
 function ziyuaninfo(resourceId) {
 	mui.plusReady(function() {
 
 		mui.ajax(baseUrl + '/ajax/resource/resourceInfo', {
 			data: {
-				'resourceId': resourceId
+				'resourceId': resourceId,
 			},
 			dataType: 'json', //服务器返回json格式数据
 			type: 'get', //HTTP请求类型
@@ -47,6 +49,7 @@ function ziyuaninfo(resourceId) {
 					if(professorId==userid){
 						document.getElementsByClassName("footbox")[0].style.display="none";
 					}
+					resourceName=mydata['resourceName'];
 					(mydata['resourceName']) ? oresorcename.innerHTML = mydata['resourceName']: oresorcename.innerHTML = '';
 					(mydata['resourceName']) ? oresourceName.innerHTML = mydata['resourceName']: oresourceName.innerHTML = '';
 
@@ -83,6 +86,7 @@ function ziyuaninfo(resourceId) {
 					} else {
 						oziyuanimg.setAttribute('src', '../images/default-resource.jpg')
 					}
+					supportedServices = mydata['supportedServices'];
 					(mydata['supportedServices']) ? oyongtu.innerHTML = mydata['supportedServices']: oyongtu.innerHTML = ''; //应用用途
 
 					//学术领域
@@ -216,7 +220,7 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	console.log("资源id==" + resourceId);
+	//console.log("资源id==" + resourceId);
 	//资源信息
 	ziyuaninfo(resourceId);
 	/*点击咨询*/
@@ -356,6 +360,132 @@ mui.plusReady(function() {
 		});
 
 	}
+	
+	/*微信及微信朋友圈分享专家*/
+	var auths, shares;
+	document.getElementById("shareBtn").addEventListener("tap", function() {
+		shareShow()
+	})
+	plus.oauth.getServices(function(services) {
+		auths = {};
+		for(var i in services) {
+			var t = services[i];
+			auths[t.id] = t;
+
+		}
+	}, function(e) {
+		alert("获取登录服务列表失败：" + e.message + " - " + e.code);
+	});
+	plus.share.getServices(function(services) {
+
+		shares = {};
+		for(var i in services) {
+
+			var t = services[i];
+
+			shares[t.id] = t;
+
+		}
+	}, function(e) {
+		alert("获取分享服务列表失败：" + e.message + " - " + e.code);
+	})
+
+	function shareShow() {
+		var shareBts = [];
+		// 更新分享列表
+		var ss = shares['weixin'];
+		if(navigator.userAgent.indexOf('StreamApp') < 0 && navigator.userAgent.indexOf('qihoo') < 0) { //在360流应用中微信不支持分享图片
+			ss && ss.nativeClient && (shareBts.push({
+					title: '微信好友',
+					s: ss,
+					x: 'WXSceneSession'
+				}),
+				shareBts.push({
+					title: '微信朋友圈',
+					s: ss,
+					x: 'WXSceneTimeline'
+				}));
+		}
+		
+		//// 弹出分享列表
+		shareBts.length > 0 ? plus.nativeUI.actionSheet({
+			title: '分享',
+			cancel: '取消',
+			buttons: shareBts
+		}, function(e) {
+			var str;
+			if(supportedServices) {
+				str = "应用用途：" + supportedServices
+			}
+			if(e.index == 1) {
+				var share = buildShareService();
+				if(share) {
+					shareMessage(share, "WXSceneSession", {
+						content: str,
+						title: "【科袖资源】" + resourceName + "" ,
+						href: baseUrl+"/shareResinfor.html?resourceId=" + resourceId,
+						thumbs: [baseUrl+"/images/resource/" + resourceId + ".jpg"]
+					});
+				}
+			} else if(e.index == 2) {
+				var share = buildShareService();
+				if(share) {
+					shareMessage(share, "WXSceneTimeline", {
+						content: str,
+						title: "【科袖资源】" + resourceName + " " ,
+						href: baseUrl+"/shareResinfor.html?resourceId=" + resourceId,
+						thumbs: [baseUrl+"/images/resource/" + resourceId + ".jpg"]
+					});
+				}
+			}
+
+		}) : plus.nativeUI.alert('当前环境无法支持分享操作!');
+
+	}
+
+	function buildShareService() {
+		var share = shares["weixin"];
+		if(share) {
+			if(share.authenticated) {
+				console.log("---已授权---");
+			} else {
+				console.log("---未授权---");
+				share.authorize(function() {
+					console.log('授权成功...')
+				}, function(e) {
+					alert("认证授权失败：" + e.code + " - " + e.message);
+					return null;
+				});
+			}
+			return share;
+		} else {
+			alert("没有获取微信分享服务");
+			return null;
+		}
+
+	}
+	
+	function shareMessage(share, ex, msg) {
+		msg.extra = {
+			scene: ex
+		};
+		share.send(msg, function() {
+			plus.nativeUI.closeWaiting();
+			var strtmp = "分享到\"" + share.description + "\"成功！ ";
+			console.log(strtmp);
+			plus.nativeUI.toast(strtmp, {
+				verticalAlign: 'center'
+			});
+		}, function(e) {
+			plus.nativeUI.closeWaiting();
+			if(e.code == -2) {
+				plus.nativeUI.toast('已取消分享', {
+					verticalAlign: 'center'
+				});
+			}
+		});
+	}
+	
 /*图像预览*/
 	mui.previewImage();
 });

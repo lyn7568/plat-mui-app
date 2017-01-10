@@ -92,7 +92,7 @@ mui.ready(function() {
 					if($photos.length > 0) {
 						for(var j = 0; j < $photos.length; ++j) {
 							if($photos[j].hasHeadImage) {
-								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/head/" + $photos[j] + "_s.jpg'></span>";
+								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/head/" + $photos[j] + "_m.jpg'></span>";
 							} else {
 								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
 							}

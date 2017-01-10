@@ -73,7 +73,24 @@ function ziyuaninfo(resourceId) {
 					//所在地
 					(mydata['professor']["address"]) ? oproadress.innerHTML = mydata['professor']["address"]: oproadress.innerHTML = '';
 					/*是否认证*/
-					(mydata['professor']["authentication"] == true) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon');
+					//(mydata['professor']["authentication"] == true) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon');
+					if(mydata['professor']["authType"]) {
+						opromodify.classList.add('icon-vip');
+						opromodify.classList.add('authicon-cu');
+					} else {
+						if(mydata['professor']["authStatus"]) {
+							if(mydata['professor']["authentication"]  == 1) {
+								opromodify.classList.add('icon-renzheng');
+								opromodify.classList.add('authicon-mana');
+							} else if(mydata['professor']["authentication"]  == 2) {
+								opromodify.classList.add('icon-renzheng');
+								opromodify.classList.add('authicon-staff');
+							} else {
+								opromodify.classList.add('icon-renzheng');
+								opromodify.classList.add('authicon-stu');
+							}
+						}
+					}
 					/*专家头像*/
 					(mydata['professor']["hasHeadImage"] == 0) ? oproimg.setAttribute('src', '../images/default-photo.jpg'): oproimg.setAttribute('src', baseUrl + '/images/head/' + mydata['professor']['id'] + '_m.jpg');
 

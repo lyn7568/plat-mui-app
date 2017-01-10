@@ -104,7 +104,7 @@ mui.plusReady(function() {
 					if($photos.length < 4) {
 						for(var j = 0; j < $photos.length; ++j) {
 							if($photos[j].img) {
-								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_s.jpg'></span>";
+								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_m.jpg'></span>";
 							} else {
 								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
 							}
@@ -112,7 +112,7 @@ mui.plusReady(function() {
 					} else {
 						for(var j = $photos.length - 2; j < $photos.length; ++j) {
 							if($photos[j].img) {
-								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_s.jpg'></span>";
+								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_m.jpg'></span>";
 							} else {
 								showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
 							}

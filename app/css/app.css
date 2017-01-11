@@ -110,7 +110,7 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 /*企业和专家认证标识 icon-vip*/
 .unauthicon{color:#C0C0C0; }/*未认证*/
 .authicon{color:#FF9900;}
-.icon-vip.iconfont{float:left;margin-left:3px;font-size:14px;}
+.icon-vip.iconfont{margin-left:3px;font-size:14px;}
 .authicon-cu{color:#FF9900;}/*认证科研型专家*/
 .authicon-com{/*color:#00aaee;*/ color:#2082fb;}/*认证企业型专家*/
 /*普通用户认证标识 icon-renzheng*/

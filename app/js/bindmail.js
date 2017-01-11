@@ -13,7 +13,8 @@ mui.ready(function() {
 
 		/*校验用户账号*/
 		function userEmail() {
-			var gunf = /^\w+@\w+\.((cn)|(com)|(com\.cn))$/;
+			//var gunf = /^\w+@\w+\.((cn)|(com)|(com\.cn))$/;
+			var gunf= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
 			if(gunf.test(inputEmail.value)) {
 				isReg();
 			} else {

@@ -487,17 +487,17 @@ function resourcesEach(datalist) {
 		}
 
 		/*判断用户是否认证*/
-		var icon = '';
-		if(item.authType) {
+		var icon = '';		
+		if(item.professor.authType) {			
 			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.authStatus) {
-				if(item.authentication == 1) {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"><span>科研</span></em>';
-				} else if(item.authentication == 2) {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"><span>企业</span></em>';
+			if(item.professor.authStatus) {
+				if(item.professor.authentication == 1) {					
+					icon='<em class="mui-icon iconfont "></em>';
+				} else if(item.professor.authentication == 2) {					
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
 				} else {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"><span>学生</span></em>';
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
 				}
 			}
 		}
@@ -519,7 +519,6 @@ function resourcesEach(datalist) {
 		if(address != "") {
 			address = " | " + address;
 		}
-
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';
 

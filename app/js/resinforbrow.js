@@ -46,10 +46,10 @@ function ziyuaninfo(resourceId) {
 					//资源名称
 					professorId = mydata['professor']['id'];
 					var userid = plus.storage.getItem('userid');
-					if(professorId==userid){
-						document.getElementsByClassName("footbox")[0].style.display="none";
+					if(professorId == userid) {
+						document.getElementsByClassName("footbox")[0].style.display = "none";
 					}
-					resourceName=mydata['resourceName'];
+					resourceName = mydata['resourceName'];
 					(mydata['resourceName']) ? oresorcename.innerHTML = mydata['resourceName']: oresorcename.innerHTML = '';
 					(mydata['resourceName']) ? oresourceName.innerHTML = mydata['resourceName']: oresourceName.innerHTML = '';
 
@@ -77,20 +77,28 @@ function ziyuaninfo(resourceId) {
 					if(mydata['professor']["authType"]) {
 						opromodify.classList.add('icon-vip');
 						opromodify.classList.add('authicon-cu');
+						opromodify.style.float = "left";
 					} else {
 						if(mydata['professor']["authStatus"]) {
-							if(mydata['professor']["authentication"]  == 1) {
+							if(mydata['professor']["authentication"] == 1) {
 								opromodify.classList.add('icon-renzheng');
 								opromodify.classList.add('authicon-mana');
-							} else if(mydata['professor']["authentication"]  == 2) {
+								opromodify.style.position = "static";
+								opromodify.style.margin = "3px 0 0 0";
+							} else if(mydata['professor']["authentication"] == 2) {
 								opromodify.classList.add('icon-renzheng');
 								opromodify.classList.add('authicon-staff');
+								opromodify.style.position = "static";
+								opromodify.style.margin = "3px 0 0 0";
 							} else {
 								opromodify.classList.add('icon-renzheng');
 								opromodify.classList.add('authicon-stu');
+								opromodify.style.position = "static";
+								opromodify.style.margin = "3px 0 0 0";
 							}
 						}
 					}
+
 					/*专家头像*/
 					(mydata['professor']["hasHeadImage"] == 0) ? oproimg.setAttribute('src', '../images/default-photo.jpg'): oproimg.setAttribute('src', baseUrl + '/images/head/' + mydata['professor']['id'] + '_m.jpg');
 
@@ -111,7 +119,7 @@ function ziyuaninfo(resourceId) {
 						if(mydata['subject'].indexOf(',') != -1) { //字符串是否包含,
 							var fieldlist = mydata['subject'].split(",");
 							console.log(fieldlist.length);
-							for(var i = 0; i < fieldlist; i++) {
+							for(var i = 0; i < fieldlist.length; i++) {
 								var oli = document.createElement('li');
 								oli.innerText = fieldlist[i];
 								ofield.appendChild(oli);
@@ -131,7 +139,7 @@ function ziyuaninfo(resourceId) {
 						if(mydata['industry'].indexOf(',') != -1) { //字符串是否包含,
 							var applylist = mydata['industry'].split(",");
 							console.log(applylist.length);
-							for(var i = 0; i < applylist; i++) {
+							for(var i = 0; i < applylist.length; i++) {
 								var oli = document.createElement('li');
 								oli.innerText = fieldlist[i];
 								oapply.appendChild(oli);
@@ -147,7 +155,14 @@ function ziyuaninfo(resourceId) {
 
 					//详细描述
 					if(mydata['descp']) {
-						odetail.innerHTML = mydata['descp']
+						odetail.innerHTML = mydata['descp'];
+						var oImg = document.getElementById("detail").getElementsByTagName("img");
+						for(var i = 0; i < oImg.length; i++) {
+							(function(n) {
+								var att = oImg[n].src.substr(7);
+								oImg[n].setAttribute("src", baseUrl + att);
+							})(i);
+						}
 					} else {
 						odetaildiv.style.display = 'none';
 					}
@@ -181,72 +196,72 @@ mui.plusReady(function() {
 		judge()
 	})
 	var judge = function() {
-		mui.ajax(baseUrl + "/ajax/professor/editBaseInfo/" + professorId, {
-			dataType: 'json', //数据格式类型
-			type: 'GET', //http请求类型
-			timeout: 10000, //超时设置
-			async: false,
-			success: function(data) {
+			mui.ajax(baseUrl + "/ajax/professor/editBaseInfo/" + professorId, {
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				timeout: 10000, //超时设置
+				async: false,
+				success: function(data) {
 
-				var $info = data.data || {}
+					var $info = data.data || {}
 
-				if(data.success && data.data) {
-					if($info.authentication == 1) {
-						mui.openWindow({
-							url: '../html/proinforbrow.html',
-							id: 'html/proinforbrow.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
-							extras: {
-								proid: professorId
-							},
-						});
-					} else if($info.authentication == 2) {
-						mui.openWindow({
-							url: '../html/companybrowse.html',
-							id: 'html/companybrowse.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
-							extras: {
-								proid: professorId
-							},
-						});
-					} else if($info.authentication == 3) {
-						mui.openWindow({
-							url: '../html/studentbrowse.html',
-							id: 'html/studentbrowse.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
-							extras: {
-								proid: professorId
-							},
-						});
+					if(data.success && data.data) {
+						if($info.authentication == 1) {
+							mui.openWindow({
+								url: '../html/proinforbrow.html',
+								id: 'html/proinforbrow.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: professorId
+								},
+							});
+						} else if($info.authentication == 2) {
+							mui.openWindow({
+								url: '../html/companybrowse.html',
+								id: 'html/companybrowse.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: professorId
+								},
+							});
+						} else if($info.authentication == 3) {
+							mui.openWindow({
+								url: '../html/studentbrowse.html',
+								id: 'html/studentbrowse.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: professorId
+								},
+							});
+						}
+
 					}
-
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
-			}
-		});
-	}
-	//console.log("资源id==" + resourceId);
-	//资源信息
+			});
+		}
+		//console.log("资源id==" + resourceId);
+		//资源信息
 	ziyuaninfo(resourceId);
 	/*点击咨询*/
 	//判断是否登录，登录才可咨询，否则登录
-	function isLogin(){
+	function isLogin() {
 		var userid = plus.storage.getItem('userid');
-	
-		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined'){
-			
+
+		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
+
 			var flag = 'ziyuan';
 			var consulttitle = oresorcename.innerHTML;
 			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
@@ -259,20 +274,19 @@ mui.plusReady(function() {
 			webviewShow.addEventListener("loaded", function() {
 
 			}, false);
-			
-		}else {
+
+		} else {
 			mui.openWindow({
-			    url:'../html/login.html',
-			    id:'login.html'
+				url: '../html/login.html',
+				id: 'login.html'
 			})
-				
+
 		}
 	};
 	oconsult.addEventListener('tap', function() {
 		isLogin();
 	});
-	
- 
+
 	/*咨询成功,返回资源信息*/
 	window.addEventListener('backziyuaninfo', function(event) {
 
@@ -285,7 +299,7 @@ mui.plusReady(function() {
 		if(userid && userid != null && userid != "null") {
 			collectionExpert($this);
 		} else {
-//			plus.nativeUI.toast("请先登录");
+			//			plus.nativeUI.toast("请先登录");
 			isLogin();
 		}
 	});
@@ -377,7 +391,7 @@ mui.plusReady(function() {
 		});
 
 	}
-	
+
 	/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	document.getElementById("shareBtn").addEventListener("tap", function() {
@@ -423,7 +437,7 @@ mui.plusReady(function() {
 					x: 'WXSceneTimeline'
 				}));
 		}
-		
+
 		//// 弹出分享列表
 		shareBts.length > 0 ? plus.nativeUI.actionSheet({
 			title: '分享',
@@ -439,9 +453,9 @@ mui.plusReady(function() {
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
-						title: "【科袖资源】" + resourceName + "" ,
-						href: baseUrl+"/shareResinfor.html?resourceId=" + resourceId,
-						thumbs: [baseUrl+"/images/resource/" + resourceId + ".jpg"]
+						title: "【科袖资源】" + resourceName + "",
+						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
+						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
 					});
 				}
 			} else if(e.index == 2) {
@@ -449,9 +463,9 @@ mui.plusReady(function() {
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {
 						content: str,
-						title: "【科袖资源】" + resourceName + " " ,
-						href: baseUrl+"/shareResinfor.html?resourceId=" + resourceId,
-						thumbs: [baseUrl+"/images/resource/" + resourceId + ".jpg"]
+						title: "【科袖资源】" + resourceName + " ",
+						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
+						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
 					});
 				}
 			}
@@ -481,7 +495,7 @@ mui.plusReady(function() {
 		}
 
 	}
-	
+
 	function shareMessage(share, ex, msg) {
 		msg.extra = {
 			scene: ex
@@ -502,7 +516,7 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	
-/*图像预览*/
+
+	/*图像预览*/
 	mui.previewImage();
 });

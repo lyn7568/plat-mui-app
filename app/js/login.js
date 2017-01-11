@@ -40,7 +40,8 @@ mui.ready(function() {
 		
 		/*校验用户账号*/
 		function userVal() {
-			var gunf = /^\w+@\w+\.((cn)|(com)|(com\.cn))$/;
+			//var gunf = /^\w+@\w+\.((cn)|(com)|(com\.cn))$/;
+			var gunf= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/; 
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
 			if(hunPhone.test(userName.value)) {
 				userRegisterOk();

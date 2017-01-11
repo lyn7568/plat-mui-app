@@ -13,18 +13,6 @@ mui('.list').on('tap', 'a', function() {
 	var userid = plus.storage.getItem('userid');
 	console.log(id);
 	plus.nativeUI.showWaiting(); //显示原生等待框
-	if(userid == id) {
-		mui.openWindow({
-			url: '../html/proinforupdate.html',
-			id: 'html/proinforupdate.html',
-			show: {
-				autoShow: false,
-				aniShow: "slide-in-left"
-			},
-
-		});
-		return;
-	}
 	webviewShow = plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
 		proid: id
 	}); //后台创建webview并打开show.html

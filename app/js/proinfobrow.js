@@ -296,7 +296,7 @@ mui.plusReady(function() {
 		});
 	}
 	//修改详细页面
-	document.getElementsByClassName("gotonext")[0].addEventListener("tap", function() {
+	document.getElementById("detailProfessor").addEventListener("tap", function() {
 		var nwaiting = plus.nativeUI.showWaiting();
 		var web = plus.webview.create("../html/proinforbrow-more.html", "proinforbrow-more.html", {}, {
 			pro: proId

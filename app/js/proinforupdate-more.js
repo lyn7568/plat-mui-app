@@ -191,7 +191,7 @@ mui.ready(function() {
 				var html = [];
 				for(var i = 0; i < data.length; i++) {
 					var string = '<li class="mui-table-view-cell mui-media listitem">'
-					string += '<a class="addinfobox mui-clearfix">'
+					string += '<a class="mui-clearfix">'
 					string += '<div class="mui-media-object mui-pull-left iconposition">'
 					string += '<img class="" src="../images/icon-honor.png">'
 					string += '</div>'

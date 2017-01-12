@@ -294,7 +294,7 @@ mui.ready(function() {
 				}, false);
 			})
 			//修改详细页面
-		document.getElementsByClassName("gotonext2")[0].addEventListener("tap", function() {
+		document.getElementById("updateDetailProfessor").addEventListener("tap", function() {
 			var nwaiting = plus.nativeUI.showWaiting();
 			var web = plus.webview.create("../html/proinforupdate-more.html", "proinforupdate-more.html"); //后台创建webview并打开show.html   	    	
 			web.addEventListener("loaded", function() {}, false);

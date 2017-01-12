@@ -63,10 +63,11 @@ function ziyuaninfo(resourceId) {
 					if(mydata['professor']["office"] == null || mydata['professor']["office"] == undefined) {
 						oprooffice.innerHTML = '';
 					} else {
-						if(mydata['professor']["title"]) {
+						alert(1)
+						if(mydata['professor']["title"]) {	
+							alert(2)
 							oprooffice.innerHTML = '，' + mydata['professor']["office"]; //职位
-						}
-						oprooffice.innerHTML = mydata['professor']["office"]; //职位
+						}						
 					};
 					//所在机构
 					(mydata['professor']["orgName"]) ? oproorgName.innerHTML = mydata['professor']["orgName"]: oproorgName.innerHTML = '';

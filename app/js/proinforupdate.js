@@ -210,11 +210,12 @@ mui.ready(function() {
 					string += '</div><div class="mui-media-body" style="width:60%">'
 					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox updatebox2" style="top:24px;"><em class="mui-icon mui-icon-compose updatebtn" style="display:none;"></em></div></span>'
 					string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
-					string += '<p class="listtit3 resbrief">'
-					if($data[i].descp) {
-						string += $data[i].descp;
-					}
-					string += '</p></div></a></li>'
+//					string += '<p class="listtit3 resbrief">'
+//					if($data[i].descp) {
+//						string += $data[i].descp;
+//					}
+//					string += '</p>'
+					string += '</div></a></li>'
 					html.push(string);
 				}
 				document.getElementById("resourceList").innerHTML = html.join('');

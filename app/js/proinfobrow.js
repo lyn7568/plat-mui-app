@@ -160,11 +160,12 @@ mui.plusReady(function() {
 				string += '</div><div class="mui-media-body">'
 				string += '<span class="listtit">' + $data[i].resourceName + '</span>'
 				string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
-				string += '<p class="listtit3 resbrief">'
-				if($data[i].descp) {
-					string += $data[i].descp;
-				}
-				string += '</p></div></a></li>'
+//				string += '<p class="listtit3 resbrief">'
+//				if($data[i].descp) {
+//					string += $data[i].descp;
+//				}
+//				string += '</p>'
+				string+='</div></a></li>'
 				html.push(string);
 			}
 			document.getElementById("resourceList").innerHTML = html.join('');

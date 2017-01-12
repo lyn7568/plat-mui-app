@@ -90,12 +90,12 @@ mui.ready(function() {
 					}
 				});
 			}
-			//我的所有资源、
+		//我的所有资源、
 		function resource(oDa, n) {
 			var $data = oDa;
 			var html = [];
 			for(var i = 0; i < n; i++) {
-				var string = '<li class="mui-table-view-cell mui-media" resouId=' + $data[i].resourceId + '>'
+				var string = '<li class="mui-table-view-cell mui-media listitem" resouId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor" href="resinforupdate.html"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
 				if($data[i].images.length) {
 					string += '<img class="resImg headRadius" src="'+baseUrl+'/images/resource/' + $data[i].resourceId + '.jpg">'					
@@ -103,14 +103,15 @@ mui.ready(function() {
 
 						string += '<img class="resImg headRadius" src="../images/default-resource.jpg">'
 					}
-					string += '<div class="mui-media-body" style="width:60%">'
-					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox updatebox2" style="top:24px;"><em class="mui-icon mui-icon-compose updatebtn"></em></div></span>'
+					string += '</div><div class="mui-media-body" style="width:60%">'
+					string += '<span class="listtit">' + $data[i].resourceName + '<div class="updatebox updatebox2" style="top:24px;"><em class="mui-icon mui-icon-compose updatebtn" style="display:none;"></em></div></span>'
 					string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
-					string += '<p class="listtit3 resbrief">'
-					if($data[i].descp) {
-						string += $data[i].descp;
-					}
-					string += '</p></div></a></li>'
+//					string += '<p class="listtit3 resbrief">'
+//					if($data[i].descp) {
+//						string += $data[i].descp;
+//					}
+//					string += '</p>'
+					string += '</div></a></li>'
 					html.push(string);
 				}
 				document.getElementById("resourceList").innerHTML = html.join('');
@@ -149,7 +150,7 @@ mui.ready(function() {
 		//添加我的资源
 		document.getElementsByClassName("addinfobox")[0].addEventListener("tap", function() {
 			var nwaiting = plus.nativeUI.showWaiting();
-			var web = plus.webview.create("../html/updateinfo-res01.html", "updateinfo-res01.html",{},{reFlag:1}); //后台创建webview并打开show.html   	    	
+			 web = plus.webview.create("../html/updateinfo-res01.html", "updateinfo-res01.html",{},{reFlag:1}); //后台创建webview并打开show.html   	    	
 			web.addEventListener("loaded", function() {
 				plus.nativeUI.closeWaiting();
 				web.show("slide-in-right", 150);
@@ -159,10 +160,11 @@ mui.ready(function() {
 		mui("#resourceList").on("tap", "li", function() {
 				var resouId = this.getAttribute("resouId");
 				var nwaiting = plus.nativeUI.showWaiting();
-				var web = plus.webview.create("../html/resinforupdate.html", "resinforupdate.html", {}, {
-					resourceId: resouId,
-					reFlag:1
-				}); //后台创建webview并打开show.html   	    	
+				var web = plus.webview.create("../html/resinforbrow.html",'resinforbrow.html',{},{resourceId:resouId})
+//				var web = plus.webview.create("../html/resinforupdate.html", "resinforupdate.html", {}, {
+//					resourceId: resouId,
+//					reFlag:1
+//				}); //后台创建webview并打开show.html   	    	
 				web.addEventListener("loaded", function() {
 
 				}, false);

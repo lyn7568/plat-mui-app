@@ -62,10 +62,8 @@ function ziyuaninfo(resourceId) {
 					//职位
 					if(mydata['professor']["office"] == null || mydata['professor']["office"] == undefined) {
 						oprooffice.innerHTML = '';
-					} else {
-						alert(1)
-						if(mydata['professor']["title"]) {	
-							alert(2)
+					} else {						
+						if(mydata['professor']["title"]) {								
 							oprooffice.innerHTML = '，' + mydata['professor']["office"]; //职位
 						}						
 					};

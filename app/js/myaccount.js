@@ -11,7 +11,7 @@ mui.ready(function() {
 	var goFollow = document.getElementById("goFollow");
 	var userImg = document.getElementById("userImg");
 	var nameli = document.getElementById("nameli");
-	var infobasic = document.getElementsByClassName("infobasic")[0];
+	var infobasic = document.getElementsByClassName("amend")[0];
 	var oFlag;
 	mui.plusReady(function() {
 
@@ -113,41 +113,41 @@ mui.ready(function() {
 						});
 					}
 				})
-				oEdit.addEventListener('tap', function() {
-					if(oFlag == 1) {
-						mui.openWindow({
-							url: '../html/proinforupdate.html',
-							id: 'html/proinforupdate.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
-
-						});
-					} else if(oFlag == 2) {
-						/*我的修改企业工作者*/
-						mui.openWindow({
-							url: '../html/companyUpdata.html',
-							id: 'html/companyUpdata.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
-
-						});
-					} else if(oFlag == 3) {
-						/*我的修改学生*/
-						mui.openWindow({
-							url: '../html/studentUpdata.html',
-							id: 'html/studentUpdata.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
-
-						});
-					}
-				})
+//				oEdit.addEventListener('tap', function() {
+//
+//						mui.openWindow({
+//							url: '../html/proinforupdate.html',
+//							id: 'html/proinforupdate.html',
+//							show: {
+//								autoShow: false,
+//								aniShow: "slide-in-left"
+//							},
+//
+//						});
+//					} else if(oFlag == 2) {
+//						/*我的修改企业工作者*/
+//						mui.openWindow({
+//							url: '../html/companyUpdata.html',
+//							id: 'html/companyUpdata.html',
+//							show: {
+//								autoShow: false,
+//								aniShow: "slide-in-left"
+//							},
+//
+//						});
+//					} else if(oFlag == 3) {
+//						/*我的修改学生*/
+//						mui.openWindow({
+//							url: '../html/studentUpdata.html',
+//							id: 'html/studentUpdata.html',
+//							show: {
+//								autoShow: false,
+//								aniShow: "slide-in-left"
+//							},
+//
+//						});
+//					}
+//				})
 
 				/*我的历史和评价*/
 				goZixun.addEventListener('tap', function() {

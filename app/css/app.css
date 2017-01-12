@@ -574,3 +574,13 @@ ul.boxnav li.set span:before{
 .versionbox{position:absolute;width:20%;margin: auto; bottom:10%;left:50%; color:#999999;font-size:12px;margin-left:-10%;text-align: center;}
 /***********************科袖用户协议*******************/
 .identity-wen{font-size:13px; color: #888; padding-left:15px;} 
+/***********************首页轮播*******************/
+.art_topicBox{position: relative;display: block;}
+.art_topicBox img{width:100%;}
+.art_topicbox{ position:absolute;top:0;width:100%;height:100%;
+	background: -webkit-linear-gradient( rgba(0,0,0,0), rgba(0,0,0,0.2)); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient( rgba(0,0,0,0), rgba(0,0,0,0.2)); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient( rgba(0,0,0,0), rgba(0,0,0,0.2)); /* Firefox 3.6 - 15 */
+	background: linear-gradient( rgba(0,0,0,0), rgba(0,0,0,0.2)); /* 标准的语法 */
+}
+#artical_topic{position: absolute;bottom:0;padding:6px 10px;font-size:18px;line-height:24px;color:#FFFFFF}

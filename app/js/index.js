@@ -17,6 +17,17 @@ mui('.list').on('tap', 'a', function() {
 		proid: id
 	}); //后台创建webview并打开show.html
 })
+/*点击轮播图*/
+mui('.artical-scroll').on('tap', 'a', function() {
+	var articalNum = this.getAttribute("data-title");
+	mui.openWindow({
+		url: '../html/artical_'+ articalNum +'.html',
+		id: '../html/artical_'+ articalNum +'.html',
+		show: {
+			aniShow: "slide-in-right",
+		}
+	});
+})
 
 /*点击热门领域*/
 mui('.gridbg').on('tap', 'li', function() {

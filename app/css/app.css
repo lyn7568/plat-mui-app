@@ -97,6 +97,8 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 .listtit{ font-size: 14px; color: #333333;}/*中标题*/
 .listtit2{font-size: 13px; color: #666666;}/*较小标题*/
 .listtit3{font-size: 12px; color: #888888;}/*小标题*/
+.littip{font-size:12px;color:#BBBBBB;line-height: 26px;}
+.identity-wen{padding-left:14px;} 
 /*/////专家身份认证状态///////*/
 /*已认证*/
 .authword{ padding:2px 6px; margin-left:6px;border-radius:4px; color: #FFFFFF; font-size: 12px;}
@@ -211,7 +213,7 @@ ul.boxnav li.set span:before{
   font-size:12px; 
   margin-right: 4%;}
 /*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
-.maincon ul li.basicfrm{list-style: none; position: relative; overflow: hidden; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin-left: 2%;padding-left:0; }
+.maincon ul li.basicfrm{list-style: none; position: relative; overflow: hidden; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin:-4px 0 14px 2%;padding-left:0; }
 .maincon ul li.basicfrm .frmtype{ height: 26px; padding:0; padding-right:2%;line-height:20px;font-size: 14px; }
 .maincon ul li.basicfrm .authu{position:absolute;left:80%;color:burlywood}
 .maincon ul li label{ position: relative; color: #888888; line-height:30px;}
@@ -242,7 +244,7 @@ ul.boxnav li.set span:before{
 .mui-grid-view.gridbg .mui-table-view-cell .mui-media-body{ font-size: 12px;}
 .mui-table-view.gridbg:after{height:0;}
 /*热门领域*/
-.fieldicon{ overflow: hidden;width:40px; height:40px;margin: auto;}
+.fieldicon{ overflow: hidden;width:24px; height:24px;margin: auto;}
 .fieldicon img{width: 100%;}
 /*热门专家*/
 .mui-table-view-cell.prolist:after{/*background:#C0C0C0*//*#c8c7cc;*/}
@@ -573,7 +575,7 @@ ul.boxnav li.set span:before{
 
 .versionbox{position:absolute;width:20%;margin: auto; bottom:10%;left:50%; color:#999999;font-size:12px;margin-left:-10%;text-align: center;}
 /***********************科袖用户协议*******************/
-.identity-wen{font-size:13px; color: #888; padding-left:15px;} 
+
 /***********************首页轮播*******************/
 .art_topicBox{position: relative;display: block;}
 .art_topicBox img{width:100%;}

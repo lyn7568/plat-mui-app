@@ -44,7 +44,7 @@ function ziyuaninfo(resourceId) {
 
 					var mydata = data.data;
 					//资源名称
-					professorId = mydata['professor']['id'];
+					professorId = mydata['editProfessor']['id'];
 					var userid = plus.storage.getItem('userid');
 					if(professorId == userid) {
 						document.getElementsByClassName("footbox")[0].style.display = "none";
@@ -54,37 +54,37 @@ function ziyuaninfo(resourceId) {
 					(mydata['resourceName']) ? oresourceName.innerHTML = mydata['resourceName']: oresourceName.innerHTML = '';
 
 					//专家信息
-					proId = mydata['professor']['id']; //专家id
+					proId = mydata['editProfessor']['id']; //专家id 
 					//专家名字
-					(mydata['professor']["name"]) ? oproname.innerText = mydata['professor']["name"]: oproname.innerText = '';
+					(mydata['editProfessor']["name"]) ? oproname.innerText = mydata['editProfessor']["name"]: oproname.innerText = '';
 					//职称
-					(mydata['professor']["title"]) ? oprotitle.innerHTML = mydata['professor']["title"]: oprotitle.innerHTML = '';
+					(mydata['editProfessor']["title"]) ? oprotitle.innerHTML = mydata['editProfessor']["title"]: oprotitle.innerHTML = '';
 					//职位
-					if(mydata['professor']["office"] == null || mydata['professor']["office"] == undefined) {
+					if(mydata['editProfessor']["office"] == null || mydata['editProfessor']["office"] == undefined) {
 						oprooffice.innerHTML = '';
 					} else {						
-						if(mydata['professor']["title"]) {								
-							oprooffice.innerHTML = '，' + mydata['professor']["office"]; //职位
+						if(mydata['editProfessor']["title"]) {								
+							oprooffice.innerHTML = '，' + mydata['editProfessor']["office"]; //职位
 						}						
 					};
 					//所在机构
-					(mydata['professor']["orgName"]) ? oproorgName.innerHTML = mydata['professor']["orgName"]: oproorgName.innerHTML = '';
+					(mydata['editProfessor']["orgName"]) ? oproorgName.innerHTML = mydata['editProfessor']["orgName"]: oproorgName.innerHTML = '';
 					//所在地
-					(mydata['professor']["address"]) ? oproadress.innerHTML = mydata['professor']["address"]: oproadress.innerHTML = '';
+					(mydata['editProfessor']["address"]) ? oproadress.innerHTML = mydata['editProfessor']["address"]: oproadress.innerHTML = '';
 					/*是否认证*/
-					//(mydata['professor']["authentication"] == true) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon');
-					if(mydata['professor']["authType"]) {
+					//(mydata['editProfessor']["authentication"] == true) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon');
+					if(mydata['editProfessor']["authType"]) {
 						opromodify.classList.add('icon-vip');
 						opromodify.classList.add('authicon-cu');
 						opromodify.style.float = "left";
 					} else {
-						if(mydata['professor']["authStatus"]) {
-							if(mydata['professor']["authentication"] == 1) {
+						if(mydata['editProfessor']["authStatus"]) {
+							if(mydata['editProfessor']["authentication"] == 1) {
 								opromodify.classList.add('icon-renzheng');
 								opromodify.classList.add('authicon-mana');
 								opromodify.style.position = "static";
 								opromodify.style.margin = "3px 0 0 0";
-							} else if(mydata['professor']["authentication"] == 2) {
+							} else if(mydata['editProfessor']["authentication"] == 2) {
 								opromodify.classList.add('icon-renzheng');
 								opromodify.classList.add('authicon-staff');
 								opromodify.style.position = "static";
@@ -99,8 +99,9 @@ function ziyuaninfo(resourceId) {
 					}
 
 					/*专家头像*/
-					(mydata['professor']["hasHeadImage"] == 0) ? oproimg.setAttribute('src', '../images/default-photo.jpg'): oproimg.setAttribute('src', baseUrl + '/images/head/' + mydata['professor']['id'] + '_m.jpg');
-
+					
+					(mydata['editProfessor']["hasHeadImage"] == 0) ? oproimg.setAttribute('src', '../images/default-photo.jpg'): oproimg.setAttribute('src', baseUrl + '/images/head/' + mydata['editProfessor']['id'] + '_m.jpg');
+					console.log(mydata['editProfessor']["hasHeadImage"])
 					//资源基本信息
 					//(mydata['images']['imageSrc']) ? oziyuanimg.setAttribute('src', mydata['images']['imageSrc']): oziyuanimg.setAttribute('src', '../images/default-resource.jpg'); //资源图片
 
@@ -140,7 +141,7 @@ function ziyuaninfo(resourceId) {
 							console.log(applylist.length);
 							for(var i = 0; i < applylist.length; i++) {
 								var oli = document.createElement('li');
-								oli.innerText = fieldlist[i];
+								oli.innerText = applylist[i];
 								oapply.appendChild(oli);
 							}
 						} else {

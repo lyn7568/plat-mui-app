@@ -233,20 +233,18 @@ mui.ready(function() {
 						if($info.authType) {
 							nameli.classList.add('icon-vip');
 							nameli.classList.add('authicon-cu');
+							nameli.style.margin="-4px 0 0 -2px";
 						} else {
 							if($info.authStatus) {
 								if($info.authentication == 1) {
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-mana');
-									//nameli.innerHTML = "<span>科研</span>";
 								} else if($info.authentication == 2) {
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-staff');
-									//nameli.innerHTML = "<span>企业</span>";
 								} else {
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-stu');
-									//nameli.innerHTML = "<span>学生</span>";
 								}
 							}
 						}

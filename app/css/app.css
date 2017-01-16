@@ -112,14 +112,13 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 /*企业和专家认证标识 icon-vip*/
 .unauthicon{color:#C0C0C0; }/*未认证*/
 .authicon{color:#FF9900;}
-.icon-vip.iconfont{margin-left:3px;font-size:14px;}
+.icon-vip.iconfont{margin-left:2px;font-size:14px;}
 .authicon-cu{color:#FF9900;}/*认证科研型专家*/
 .authicon-com{/*color:#00aaee;*/ color:#2082fb;}/*认证企业型专家*/
 /*普通用户认证标识 icon-renzheng*/
 em.icon-renzheng{position:absolute;float:left;font-size: 0;width:48px;height:16px;background-image:url(../images/authicon.png);background-repeat:no-repeat; }
-em.icon-renzheng span{position:relative;top:0px;font-size:8px;line-height:8px;margin-right:6px;vertical-align:middle;}
-.authicon-mana{background-position: 0 0px;background-size:100% auto;color:#ff9900;}/*认证在企高管*/
-.authicon-staff{background-position: 0 -16px;background-size:100% auto;color:#007AFF;}/*认证在企职员*/
+.authicon-mana{background-position: 0 -1px;background-size:100% auto;color:#ff9900;}/*认证科研*/
+.authicon-staff{background-position: 0 -16px;background-size:100% auto;color:#007AFF;}/*认证企业*/
 .authicon-stu{background-position: 0 -32px;background-size:100% auto;color:#0ee032;}/*认证在读学生*/
 
 /*****表单公共样式********/

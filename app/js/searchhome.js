@@ -493,7 +493,7 @@ function resourcesEach(datalist) {
 		} else {
 			if(item.professor.authStatus) {
 				if(item.professor.authentication == 1) {					
-					icon='<em class="mui-icon iconfont "></em>';
+					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.professor.authentication == 2) {					
 					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
 				} else {

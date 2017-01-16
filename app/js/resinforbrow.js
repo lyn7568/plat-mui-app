@@ -450,12 +450,13 @@ mui.plusReady(function() {
 			}
 			if(e.index == 1) {
 				var share = buildShareService();
+				
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
 						title: "【科袖资源】" + resourceName + "",
 						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
-						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
+//						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
 					});
 				}
 			} else if(e.index == 2) {
@@ -465,7 +466,7 @@ mui.plusReady(function() {
 						content: str,
 						title: "【科袖资源】" + resourceName + " ",
 						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
-						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
+//						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
 					});
 				}
 			}

@@ -456,7 +456,7 @@ mui.plusReady(function() {
 						content: str,
 						title: "【科袖资源】" + resourceName + "",
 						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
-//						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
+						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
 			} else if(e.index == 2) {
@@ -466,7 +466,7 @@ mui.plusReady(function() {
 						content: str,
 						title: "【科袖资源】" + resourceName + " ",
 						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
-//						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
+						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
 			}

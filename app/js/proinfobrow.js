@@ -190,7 +190,7 @@ mui.plusReady(function() {
 				if($data.consultCount) {
 					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
 					if(!startLeval){
-						clickFlag=false;
+						clickFlag=false; 
 						document.getElementById("NoActive").classList.add("NoActive");
 						document.getElementsByClassName("levelbox")[0].style.display = "none";
 						document.getElementById("accessHistory").classList.remove("mui-navigate-right");

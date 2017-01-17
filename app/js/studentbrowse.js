@@ -8,6 +8,9 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var proId = self.proid;
+	if(userid == proId) {
+		document.getElementsByClassName('footbox')[0].style.display = "none";
+	}
 	console.log(userid);
 	/*点击咨询*/
 	if(userid) {

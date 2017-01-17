@@ -5,6 +5,7 @@ var personalMaterial = document.getElementsByClassName('personalMaterial');
 var personSummary = document.getElementsByClassName("breifinfo")[0];
 var professorName;
 var title;
+var clickFlag=true;
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
@@ -185,12 +186,19 @@ mui.plusReady(function() {
 				professorName = $data.name;
 				document.getElementById("professorName").innerText = $data.name;
 				//基本信息
+				var startLeval = parseInt($data.starLevel);
 				if($data.consultCount) {
 					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
+					if(!startLeval){
+						clickFlag=false;
+						document.getElementById("NoActive").classList.add("NoActive");
+						document.getElementsByClassName("levelbox")[0].style.display = "none";
+						document.getElementById("accessHistory").classList.remove("mui-navigate-right");
+					}
 				} else {
 					document.getElementById("accessHistory").style.display = "none";
 				}
-				var startLeval = parseInt($data.starLevel);
+				
 				var start = document.getElementsByClassName("start");
 				for(var i = 0; i < startLeval; i++) {
 					start[i].classList.add("icon-favorfill");
@@ -481,6 +489,7 @@ mui.plusReady(function() {
 	}
 	/*专家的历史和评价*/
 	document.getElementById("accessHistory").addEventListener('tap', function() {
+		if(!clickFlag) return;
 			mui.openWindow({
 				url: '../html/coophistory-other.html',
 				id: 'html/coophistory-other.html',

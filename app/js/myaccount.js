@@ -151,6 +151,7 @@ mui.ready(function() {
 
 				/*我的历史和评价*/
 				goZixun.addEventListener('tap', function() {
+					if(!clickFlag) return;
 					mui.openWindow({
 						url: '../html/coophistory.html',
 						id: 'html/coophistory.html',
@@ -220,6 +221,17 @@ mui.ready(function() {
 						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount: zixunOk.innerText = '0';
 
 						var startLeval = parseInt($info.starLevel);
+						if($info.consultCount){
+							 zixunOk.innerText = $info.consultCount;
+							 if(!startLeval){
+							 	clickFlag=false;
+						document.getElementById("NoActive").classList.add("NoActive");
+						document.getElementsByClassName("levelbox")[0].style.display = "none";
+						document.getElementById("goZixun").classList.remove("mui-navigate-right");
+							 }
+						}else{
+							goZixun.style.display="none";
+						}
 						var start = document.getElementsByClassName("star");
 						for(var i = 0; i < startLeval; i++) {
 							start[i].classList.add("icon-favorfill");

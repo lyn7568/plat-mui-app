@@ -16,7 +16,7 @@
  	var ostarContainer = document.getElementById("starContainer");//星级容器
  	var ofinished = document.getElementById("finished");//点击完成咨询，进入合作历史评价
  	var nameli = document.getElementById("nameli");//认证
- 	
+ 	var clickFlag=true;
  	
  	var osaveconsultBtn = document.getElementById("saveconsultBtn");//保存咨询，发送按钮
  	
@@ -96,11 +96,17 @@
 	 				if(myData["address"]){
 	 					oproadress.innerHTML = ' | '+myData["address"];//所在地
 	 				}
-	 				
+	 				var starLevel = myData['starLevel'];
 	 				if(myData["consultCount"] == null || myData["consultCount"] == undefined ) {
-	 					myData["consultCount"] = 0;
+	 					ofinished.style.display="none";
 	 				}else {
 	 					oconsultcount.innerHTML =  myData["consultCount"];//咨询次数
+	 					if(!starLevel){
+	 						clickFlag=false;
+						document.getElementById("NoActive").classList.add("NoActive");
+						document.getElementsByClassName("levelbox")[0].style.display = "none";
+						document.getElementById("accessHistory").classList.remove("mui-navigate-right");
+	 					}
 	 				};
 	 				
 	 				/*是否认证*/
@@ -133,7 +139,7 @@
 					}
 	 				
 	 				/*星级*/
-	 				var starLevel = myData['starLevel'];
+	 				
 	 				var starlist = ostarContainer.children;
 	 				for(var i = 0; i < starLevel; i++) {
 						starlist[i].classList.remove('icon-favor');
@@ -218,7 +224,7 @@
 		
 		/*专家的历史和评价*/
 		ofinished.addEventListener('tap', function() {
-			
+			if(!clickFlag) return;
 			mui.openWindow({
 				url: '../html/coophistory-other.html',
 				id: 'html/coophistory-other.html',

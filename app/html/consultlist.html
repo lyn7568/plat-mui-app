@@ -19,6 +19,7 @@
     	/*筛选div*/
     	.filterbox2.filterdiv {
     		z-index: 9;
+    		position: fixed;
     		/*margin-bottom:44px;*/
     	}
     	
@@ -74,9 +75,9 @@
     	/*#zixunpullrefresh .mui-pull-top-pocket {
     		top: 90px;
     	}*/
-    	.mui-bar-nav ~ .mui-content .mui-pull-top-pocket{
+       .mui-content .mui-pull-top-pocket{
 		  top: 90px !important;
-	}
+	   }
     	
     	
     	
@@ -316,7 +317,7 @@
         </div>-->
        	
        	
-		<div id="zixunpullrefresh" class="mui-content mui-scroll-wrapper" style="top: 44px;">
+		<div id="zixunpullrefresh" class="mui-content mui-scroll-wrapper" >
 			
 		  	<div class="mui-scroll">
 		  	
@@ -390,21 +391,21 @@
 	<script src="../js/mui.pullToRefresh.material.js"></script>
 	<script src="../js/public/base.js"></script>
 	<script src="../js/consult.js"></script>
-   	<script type="text/javascript">
-	 /*  	var box = document.getElementById("zixunpullrefresh");
+
+   <script type="text/javascript">
+		var box = document.getElementById("zixunpullrefresh");
 		var u = navigator.userAgent;
 		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 		if(isAndroid){
-			
-			box.style.marginTop="44px";
+			box.style.paddingTop="40px";
 		}
 		if(isiOS){
-			
-			box.style.marginTop=0;
-		}*/
-	   	
-	   	
-    </script>
+			box.style.top="40px";
+			box.style.paddingTop="0px";
+		}
+		
+	</script> 	
+   
 </body>
 </html>

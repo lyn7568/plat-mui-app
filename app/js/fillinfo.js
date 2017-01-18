@@ -149,9 +149,17 @@ mui.ready(function() {
 					console.log(data.success);
 						console.log(data.data);
 					if(data.success) {
-						goHome();
+						var indexClose = plus.webview.getWebviewById("html/index_home.html");
 						var myaccountClose = plus.webview.getWebviewById("html/myaccount.html");
+						var consultClose = plus.webview.getWebviewById("html/consult_home.html");
+						var centenClose = plus.webview.getWebviewById("index_centen.html");
+						var consultlistClose = plus.webview.getWebviewById("consultlist.html");
+						plus.webview.close(indexClose);
+						plus.webview.close(centenClose);
 						plus.webview.close(myaccountClose);
+						plus.webview.close(consultlistClose);
+						plus.webview.close(consultClose);
+						goHome();
 					} else {
 						plus.nativeUI.toast("提交失败，用户ID失效", toastStyle);
 					}

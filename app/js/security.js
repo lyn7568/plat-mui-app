@@ -66,9 +66,9 @@ mui.plusReady(function() {
 	identity.addEventListener('tap', function() {
 			
 			console.log(authStatus)
-			console.log(typenum)
+			//console.log(typenum)
 			
-			if(authStatus==0 && authStatus==4 && authStatus==5){
+			if(authStatus==0 || authStatus==4 || authStatus==5){
 				mui.openWindow({
 					url: '../html/identity.html',
 					id: '../html/identity.html',

@@ -124,8 +124,8 @@ em.icon-renzheng{position:absolute;float:left;font-size: 0;width:48px;height:16p
 /*****表单公共样式********/
 /*input输入相关*/
 .frmbox{ width: 100%; margin:2% auto; border-radius: 6px; }
-.frmtype{ width: 100%; margin: auto;line-height: 30px;padding: 1% 2%;font-size: 14px;line-height:20px;}
-.frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;}
+.frmtype{ width: 100%; margin: auto;line-height: 30px;padding: 1% 2%;font-size: 14px;line-height:20px;vertical-align: middle;}
+.frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;vertical-align: middle;}
 /*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
 .frmbox{ border:none; width: 90%;height: 100%; } 
 /*未激活按钮状态*/

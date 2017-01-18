@@ -13,6 +13,8 @@ mui.ready(function() {
 	var nameli = document.getElementById("nameli");
 	var infobasic = document.getElementsByClassName("amend")[0];
 	var oFlag;
+	var oFlag1;
+	var clickFlag=true;
 	mui.plusReady(function() {
 
 		var userId = plus.storage.getItem('userid');
@@ -42,9 +44,9 @@ mui.ready(function() {
 		});
 		//在修改上传图片触发的事件
 		window.addEventListener('photoUser', function(event) {
-					nameli.classList.remove(nameli.classList[2])
-					nameli.classList.remove(nameli.classList[2]);
-			nameli.innerHTML = ""			
+			nameli.classList.remove(nameli.classList[2])
+			nameli.classList.remove(nameli.classList[2]);
+			nameli.innerHTML = ""
 			userInformation();
 		});
 
@@ -79,75 +81,75 @@ mui.ready(function() {
 
 				/*我的修改专家*/
 				infobasic.addEventListener('tap', function() {
-					if(oFlag == 1) {
-						mui.openWindow({
-							url: '../html/proinforupdate.html',
-							id: 'html/proinforupdate.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
+						if(oFlag1||oFlag == 1) {
+							mui.openWindow({
+								url: '../html/proinforupdate.html',
+								id: 'html/proinforupdate.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
 
-						});
-					} else if(oFlag == 2) {
-						/*我的修改企业工作者*/
-						mui.openWindow({
-							url: '../html/companyUpdata.html',
-							id: 'html/companyUpdata.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
+							});
+						} else if(!oFlag1&&oFlag == 2) {
+							/*我的修改企业工作者*/
+							mui.openWindow({
+								url: '../html/companyUpdata.html',
+								id: 'html/companyUpdata.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
 
-						});
-					} else if(oFlag == 3) {
-						/*我的修改学生*/
-						mui.openWindow({
-							url: '../html/studentUpdata.html',
-							id: 'html/studentUpdata.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-left"
-							},
+							});
+						} else if(!oFlag1&&oFlag == 3) {
+							/*我的修改学生*/
+							mui.openWindow({
+								url: '../html/studentUpdata.html',
+								id: 'html/studentUpdata.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
 
-						});
-					}
-				})
-//				oEdit.addEventListener('tap', function() {
-//
-//						mui.openWindow({
-//							url: '../html/proinforupdate.html',
-//							id: 'html/proinforupdate.html',
-//							show: {
-//								autoShow: false,
-//								aniShow: "slide-in-left"
-//							},
-//
-//						});
-//					} else if(oFlag == 2) {
-//						/*我的修改企业工作者*/
-//						mui.openWindow({
-//							url: '../html/companyUpdata.html',
-//							id: 'html/companyUpdata.html',
-//							show: {
-//								autoShow: false,
-//								aniShow: "slide-in-left"
-//							},
-//
-//						});
-//					} else if(oFlag == 3) {
-//						/*我的修改学生*/
-//						mui.openWindow({
-//							url: '../html/studentUpdata.html',
-//							id: 'html/studentUpdata.html',
-//							show: {
-//								autoShow: false,
-//								aniShow: "slide-in-left"
-//							},
-//
-//						});
-//					}
-//				})
+							});
+						}
+					})
+					//				oEdit.addEventListener('tap', function() {
+					//
+					//						mui.openWindow({
+					//							url: '../html/proinforupdate.html',
+					//							id: 'html/proinforupdate.html',
+					//							show: {
+					//								autoShow: false,
+					//								aniShow: "slide-in-left"
+					//							},
+					//
+					//						});
+					//					} else if(oFlag == 2) {
+					//						/*我的修改企业工作者*/
+					//						mui.openWindow({
+					//							url: '../html/companyUpdata.html',
+					//							id: 'html/companyUpdata.html',
+					//							show: {
+					//								autoShow: false,
+					//								aniShow: "slide-in-left"
+					//							},
+					//
+					//						});
+					//					} else if(oFlag == 3) {
+					//						/*我的修改学生*/
+					//						mui.openWindow({
+					//							url: '../html/studentUpdata.html',
+					//							id: 'html/studentUpdata.html',
+					//							show: {
+					//								autoShow: false,
+					//								aniShow: "slide-in-left"
+					//							},
+					//
+					//						});
+					//					}
+					//				})
 
 				/*我的历史和评价*/
 				goZixun.addEventListener('tap', function() {
@@ -181,6 +183,7 @@ mui.ready(function() {
 				success: function(data) {
 					var $info = data.data || {};
 					oFlag = $info.authentication;
+					oFlag1=$info.authType
 					console.log(oFlag)
 					if(data.success && data.data) {
 						document.getElementById("userName").innerText = $info.name || '';
@@ -198,40 +201,42 @@ mui.ready(function() {
 							}
 
 						}
-						($info.office) ? userPosition.innerText =$info.office: userPosition.innerText = '';
+						($info.office) ? userPosition.innerText = $info.office: userPosition.innerText = '';
 						if($info.department) {
 							if($info.orgName) {
-								userDepartment.innerText=$info.department+"，"
-							}else{
-								if($info.address){
-									userDepartment.innerText=$info.department+" | "
-								}else{
-									userDepartment.innerText=$info.department;
+								userDepartment.innerText = $info.department + "，"
+							} else {
+								if($info.address) {
+									userDepartment.innerText = $info.department + " | "
+								} else {
+									userDepartment.innerText = $info.department;
 								}
 							}
 						}
 						if($info.orgName) {
-							if($info.address){
-									userMechanism.innerText=$info.orgName+" | "
-								}else{
-									userMechanism.innerText=$info.orgName;
-								}
+							if($info.address) {
+								userMechanism.innerText = $info.orgName + " | "
+							} else {
+								userMechanism.innerText = $info.orgName;
+							}
 						}
-						($info.address != '') ? userCity.innerText =$info.address: userCity.innerText = '';
+						($info.address != '') ? userCity.innerText = $info.address: userCity.innerText = '';
 						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount: zixunOk.innerText = '0';
-
-						var startLeval = parseInt($info.starLevel);
-						if($info.consultCount){
-							 zixunOk.innerText = $info.consultCount;
-							 if(!startLeval){
-							 	clickFlag=false;
-						document.getElementById("NoActive").classList.add("NoActive");
-						document.getElementsByClassName("levelbox")[0].style.display = "none";
-						document.getElementById("goZixun").classList.remove("mui-navigate-right");
-							 }
-						}else{
-							goZixun.style.display="none";
+						var startLeval = parseInt($info.starLevel);						
+						if($info.consultCount) {							
+							zixunOk.innerText = $info.consultCount;
+							if(!startLeval) {								
+								clickFlag = false;
+								document.getElementById("NoActive").classList.add("NoActive");
+								document.getElementsByClassName("levelbox")[0].style.display = "none";
+								document.getElementById("goZixun").classList.remove("mui-navigate-right");
+							}
+						} else {
+							goZixun.style.display = "none";
 						}
+						if(!$info.authType&&($info.authentication == 2||$info.authentication == 3)){
+							goZixun.style.display="none"; 
+							}	 					
 						var start = document.getElementsByClassName("star");
 						for(var i = 0; i < startLeval; i++) {
 							start[i].classList.add("icon-favorfill");
@@ -245,7 +250,7 @@ mui.ready(function() {
 						if($info.authType) {
 							nameli.classList.add('icon-vip');
 							nameli.classList.add('authicon-cu');
-							nameli.style.margin="-4px 0 0 -2px";
+							nameli.style.margin = "-4px 0 0 -2px";
 						} else {
 							if($info.authStatus) {
 								if($info.authentication == 1) {

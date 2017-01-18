@@ -97,9 +97,7 @@
 	 					oproadress.innerHTML = ' | '+myData["address"];//所在地
 	 				}
 	 				var starLevel = myData['starLevel'];
-	 				if(myData["consultCount"] == null || myData["consultCount"] == undefined ) {
-	 					ofinished.style.display="none";
-	 				}else {
+	 				if(myData["consultCount"]) {
 	 					oconsultcount.innerHTML =  myData["consultCount"];//咨询次数
 	 					if(!starLevel){
 	 						clickFlag=false;
@@ -107,8 +105,12 @@
 						document.getElementsByClassName("levelbox")[0].style.display = "none";
 						document.getElementById("accessHistory").classList.remove("mui-navigate-right");
 	 					}
+	 				}else {
+	 					ofinished.style.display="none"; 
 	 				};
-	 				
+	 				if(!myData.authType&&(myData.authentication == 2||myData.authentication == 3)){
+	 					ofinished.style.display="none"; 
+	 				}
 	 				/*是否认证*/
 					if(myData.authType) {
 						nameli.classList.add('icon-vip');

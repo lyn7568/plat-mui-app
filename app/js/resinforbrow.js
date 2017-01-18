@@ -206,7 +206,7 @@ mui.plusReady(function() {
 					var $info = data.data || {}
 
 					if(data.success && data.data) {
-						if($info.authentication == 1) {
+						if($info.authType||$info.authentication == 1) {
 							mui.openWindow({
 								url: '../html/proinforbrow.html',
 								id: 'html/proinforbrow.html',
@@ -218,7 +218,7 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
-						} else if($info.authentication == 2) {
+						} else if(!$info.authType&&$info.authentication == 2) {
 							mui.openWindow({
 								url: '../html/companybrowse.html',
 								id: 'html/companybrowse.html',
@@ -230,7 +230,7 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
-						} else if($info.authentication == 3) {
+						} else if(!$info.authType&&$info.authentication == 3) {
 							mui.openWindow({
 								url: '../html/studentbrowse.html',
 								id: 'html/studentbrowse.html',

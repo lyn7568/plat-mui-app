@@ -93,18 +93,37 @@ mui.plusReady(function() {
 
 });
 
-//父子页面，下拉刷新
-mui.init({
-	pullRefresh: {
-		container: '#zixunpullrefresh',
-		down: {
-			//height:90,
-			//auto: true,
-			callback: pulldownRefresh
-			
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+if(isAndroid){
+	//父子页面，下拉刷新
+	mui.init({
+		pullRefresh: {
+			container: '#zixunpullrefresh',
+			down: {
+				height:190,
+				callback: pulldownRefresh
+				
+			}
 		}
-	}
-});
+	});
+}
+if(isiOS){
+	//父子页面，下拉刷新
+	mui.init({
+		pullRefresh: {
+			container: '#zixunpullrefresh',
+			down: {
+				//height:190,
+				callback: pulldownRefresh
+				
+			}
+		}
+	});
+}
+
+
  /* 父子页面，下拉刷新函数*/
 function pulldownRefresh() {
     pageIndex = 1;

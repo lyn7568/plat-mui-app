@@ -26,14 +26,14 @@ mui.ready(function() {
 		userInformation();
 
 		/*登录按钮*/
-		goLogin.addEventListener('tap', function() {
+		loginNo.addEventListener('tap', function() {
 			goLoginFun();
 		})
 
 		/*注册按钮*/
-		goReg.addEventListener('tap', function() {
+		/*goReg.addEventListener('tap', function() {
 			goRegFun();
-		})
+		})*/
 
 		/*退出登录刷新页面*/
 		window.addEventListener('closeUser', function(event) {

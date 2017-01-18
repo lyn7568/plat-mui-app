@@ -98,7 +98,7 @@ mui.init({
 	pullRefresh: {
 		container: '#zixunpullrefresh',
 		down: {
-			height:200,
+			//height:90,
 			//auto: true,
 			callback: pulldownRefresh
 			

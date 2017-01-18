@@ -71,11 +71,7 @@
     		line-height: 30px;
     	}
     	
-    	/*写有下拉刷新,正在刷新的div*/
-    	/*#zixunpullrefresh .mui-pull-top-pocket {
-    		top: 90px;
-    	}*/
-       
+    
     
     	
     	/*图片div*/
@@ -91,83 +87,6 @@
     		height: 100%;
     	}
 
-
-
-    	
-    	html,
-			body {
-				background-color: #efeff4;
-			}
-			.mui-bar~.mui-content .mui-fullscreen {
-				top: 44px;
-				height: auto;
-			}
-			.mui-pull-top-tips {
-				position: absolute;
-				top: 20px;
-				left: 50%;
-				margin-left: -25px;
-				width: 40px;
-				height: 40px;
-				border-radius: 100%;
-				z-index: 1;
-			}
-			.mui-bar~.mui-pull-top-tips {
-				top: 64px;
-			}
-			.mui-pull-top-wrapper {
-				width: 42px;
-				height: 42px;
-				display: block;
-				text-align: center;
-				background-color: #efeff4;
-				border: 1px solid #ddd;
-				border-radius: 25px;
-				background-clip: padding-box;
-				box-shadow: 0 4px 10px #bbb;
-				overflow: hidden;
-			}
-			.mui-pull-top-tips.mui-transitioning {
-				-webkit-transition-duration: 500ms;
-				transition-duration: 500ms;
-			}
-			.mui-pull-top-tips .mui-pull-loading {
-				/*-webkit-backface-visibility: hidden;
-				-webkit-transition-duration: 400ms;
-				transition-duration: 400ms;*/
-				
-				margin: 0;
-			}
-			.mui-pull-top-wrapper .mui-icon,
-			.mui-pull-top-wrapper .mui-spinner {
-				margin-top: 7px;
-			}
-			.mui-pull-top-wrapper .mui-icon.mui-reverse {
-				/*-webkit-transform: rotate(180deg) translateZ(0);*/
-			}
-			.mui-pull-bottom-tips {
-				text-align: center;
-				background-color: #efeff4;
-				font-size: 15px;
-				line-height: 40px;
-				color: #777;
-			}
-			.mui-pull-top-canvas {
-				overflow: hidden;
-				background-color: #fafafa;
-				border-radius: 40px;
-				box-shadow: 0 4px 10px #bbb;
-				width: 40px;
-				height: 40px;
-				margin: 0 auto;
-			}
-			.mui-pull-top-canvas canvas {
-				width: 40px;
-			}
-			.mui-slider-indicator.mui-segmented-control {
-				background-color: #fff;
-			}
-    	
     </style>
     
  
@@ -189,7 +108,7 @@
     	<input type="text" id="sortval" value="1" />
 	</div>
     <!-- 主页面内容容器 -->
-    <div class="mui-content" id="logined">
+    <div id="logined">
     	<!-- 主界面具体展示内容 -->
     	
 		<!--<div id="slider" class="mui-slider mui-fullscreen">
@@ -384,8 +303,6 @@
 	
 	
 	<script src="../js/public/mui.min.js"></script>
-	<script src="../js/mui.pullToRefresh.js"></script>
-	<script src="../js/mui.pullToRefresh.material.js"></script>
 	<script src="../js/public/base.js"></script>
 	<script src="../js/consult.js"></script>
 

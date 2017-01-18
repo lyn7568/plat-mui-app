@@ -455,7 +455,7 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
 						title: "【科袖资源】" + resourceName + "",
-						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
+						href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
 						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
@@ -465,7 +465,7 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: str,
 						title: "【科袖资源】" + resourceName + " ",
-						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
+						href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
 						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}

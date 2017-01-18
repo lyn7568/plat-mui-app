@@ -562,7 +562,7 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: baseUrl+"/shareProinfor.html?professorId=" + proId,
+						href: baseUrl+"/ekexiu/shareProinfor.html?professorId=" + proId,
 						thumbs: [baseUrl+"/images/head/" + proId + "_l.jpg"]
 					});
 				}
@@ -572,7 +572,7 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: baseUrl+"/shareProinfor.html?professorId=" + proId,
+						href: baseUrl+"/ekexiu/shareProinfor.html?professorId=" + proId,
 						thumbs: [baseUrl+"/images/head/" + proId + "_l.jpg"]
 					});
 				}

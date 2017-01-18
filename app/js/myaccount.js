@@ -115,42 +115,6 @@ mui.ready(function() {
 							});
 						}
 					})
-					//				oEdit.addEventListener('tap', function() {
-					//
-					//						mui.openWindow({
-					//							url: '../html/proinforupdate.html',
-					//							id: 'html/proinforupdate.html',
-					//							show: {
-					//								autoShow: false,
-					//								aniShow: "slide-in-left"
-					//							},
-					//
-					//						});
-					//					} else if(oFlag == 2) {
-					//						/*我的修改企业工作者*/
-					//						mui.openWindow({
-					//							url: '../html/companyUpdata.html',
-					//							id: 'html/companyUpdata.html',
-					//							show: {
-					//								autoShow: false,
-					//								aniShow: "slide-in-left"
-					//							},
-					//
-					//						});
-					//					} else if(oFlag == 3) {
-					//						/*我的修改学生*/
-					//						mui.openWindow({
-					//							url: '../html/studentUpdata.html',
-					//							id: 'html/studentUpdata.html',
-					//							show: {
-					//								autoShow: false,
-					//								aniShow: "slide-in-left"
-					//							},
-					//
-					//						});
-					//					}
-					//				})
-
 				/*我的历史和评价*/
 				goZixun.addEventListener('tap', function() {
 					if(!clickFlag) return;
@@ -220,7 +184,7 @@ mui.ready(function() {
 								userMechanism.innerText = $info.orgName;
 							}
 						}
-						($info.address != '') ? userCity.innerText = $info.address: userCity.innerText = '';
+						($info.address) ? userCity.innerText = $info.address: userCity.innerText = '';
 						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount: zixunOk.innerText = '0';
 						var startLeval = parseInt($info.starLevel);						
 						if($info.consultCount) {							

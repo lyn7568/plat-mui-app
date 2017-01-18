@@ -98,7 +98,8 @@ mui.init({
 	pullRefresh: {
 		container: '#zixunpullrefresh',
 		down: {
-			height:50,
+			height:200,
+			//auto: true,
 			callback: pulldownRefresh
 			
 		}
@@ -127,17 +128,17 @@ function pulldownRefresh() {
 
 
 //上拉加载
-function pullupRefresh() {
+/*function pullupRefresh() {
 	pageIndex = ++pageIndex;
 	
 	setTimeout(function() {
 		getaData();
 	}, 1000);
 }
-
+*/
 
 //初始化数据
-function initData(){
+function initData(){ 
 	mui.plusReady(function() { 
 		var userid = plus.storage.getItem('userid');
 		plus.nativeUI.showWaiting('加载中...');//显示原生等待框

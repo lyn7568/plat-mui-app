@@ -563,7 +563,7 @@ mui.plusReady(function() {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
 						href: baseUrl+"/ekexiu/shareProinfor.html?professorId=" + proId,
-						thumbs: [baseUrl+"/images/head/" + proId + "_l.jpg"]
+						thumbs: [baseUrl+"/images/head/" + proId + "_m.jpg"]
 					});
 				}
 			} else if(e.index == 2) {
@@ -573,7 +573,7 @@ mui.plusReady(function() {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
 						href: baseUrl+"/ekexiu/shareProinfor.html?professorId=" + proId,
-						thumbs: [baseUrl+"/images/head/" + proId + "_l.jpg"]
+						thumbs: [baseUrl+"/images/head/" + proId + "_m.jpg"]
 					});
 				}
 			}

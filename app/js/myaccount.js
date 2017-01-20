@@ -241,7 +241,7 @@ mui.ready(function() {
 			});
 		}
 /*微信及微信朋友圈分享专家*/
-	var auths, shares;
+	/*var auths, shares;
 	document.getElementById("goNewuser").addEventListener("tap", function() {
 		shareShow()
 	})
@@ -360,7 +360,7 @@ mui.ready(function() {
 				});
 			}
 		});
-	}
+	}*/
 	});
 
 });

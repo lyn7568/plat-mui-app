@@ -75,9 +75,9 @@ mui.ready(function() {
 	});
 	
 	/*检查新版本*/
-	checkNewVersion.addEventListener('tap',function(){
+	/*checkNewVersion.addEventListener('tap',function(){
 		checkVersion();	
-	});
+	});*/
 	
 	function checkVersion(){
 		mui.plusReady(function(){

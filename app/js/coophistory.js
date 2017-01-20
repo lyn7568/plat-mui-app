@@ -1,36 +1,40 @@
-mui.ready(function() {		
+mui.ready(function() {
 	mui.plusReady(function() {
-var userId = plus.storage.getItem('userid');
-function userInformation() {
+		var userId = plus.storage.getItem('userid');
+
+		function userInformation() {
 			mui.ajax(baseUrl + "/ajax/consult/pqAssessHis", {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
-				data:{"professorId":userId},
+				data: {
+					"professorId": userId
+				},
 				timeout: 10000, //超时设置
 				success: function(data) {
-					var str = JSON.stringify(data);	
+					var str = JSON.stringify(data);
 					console.log(str);
 					var $info = data.data.data || {}
 					if(data.success) {
 						plus.nativeUI.closeWaiting();
-					plus.webview.currentWebview().show("slide-in-right",150);
-					var html=[];
-			for(var i=0;i<data.data.data.length;i++) {
-				  var assessTime=$info[i]["assessTime"].substr(0,4) + "年" +  $info[i].assessTime.substr(4,2) + "月" +  $info[i].assessTime.substr(6,2) + "日"
-				+  $info[i].assessTime.substr(8,2)+ ":" + $info[i].assessTime.substr(10,2);
-						var string = '<li class="mui-table-view-cell mui-media NoActive">'
-							string += '<a class="proinfor" >'
+						plus.webview.currentWebview().show("slide-in-right", 150);
+						for(var i = 0; i < data.data.data.length; i++) {
+							var assessTime = $info[i]["assessTime"].substr(0, 4) + "年" + $info[i].assessTime.substr(4, 2) + "月" + $info[i].assessTime.substr(6, 2) + "日" +
+								$info[i].assessTime.substr(8, 2) + ":" + $info[i].assessTime.substr(10, 2);
+							var li = document.createElement('li');
+							li.className = 'mui-table-view-cell mui-media NoActive'
+
+							var string = '<a class="proinfor" >'
 							string += '<div class="mui-pull-left lefthead">'
 							if($info[i].professor.hasHeadImage) {
-								string += '<img class="mui-media-object headimg headRadius" src="'+baseUrl+'/images/head/' + $info[i].professor.id + '_l.jpg">'
+								string += '<img class="mui-media-object headimg headRadius" src="' + baseUrl + '/images/head/' + $info[i].professor.id + '_l.jpg">'
 							} else {
 								string += '<img class="mui-media-object headimg headRadius" src="../images/default-photo.jpg">'
 							}
-							
+
 							string += '<p class="listtit0">' + $info[i].professor.name + '</p>'
 							string += '</div>'
 							string += '<div class="mui-media-body">'
-							string+='<p class="listtit0"><span class="mui-ellipsis listtit">'+$info[i].consultTitle+'</span></p>'
+							string += '<p class="listtit0"><span class="mui-ellipsis listtit">' + $info[i].consultTitle + '</span></p>'
 							string += '<div class="contit">'
 							string += '<span class="mui-ellipsis listtit">' + assessTime + '</span>'
 							string += '<div class="conresoult">'
@@ -46,18 +50,17 @@ function userInformation() {
 							string += '<p class="listtit2 conbrief">'
 							if($info[i].assessContant) string += $info[i].assessContant;
 							string += '</p>'
-							string += '</div></a></li>'
+							string += '</div></a>'
+							li.innerHTML = string;
+							document.getElementsByClassName(" protable")[0].appendChild(li);
+							var startLeval = parseInt($info[i].assessStar);
+							var start = document.getElementsByClassName("NoActive")[i].getElementsByClassName("star");
+							for(var j = 0; j < startLeval; j++) {
+								start[j].classList.remove("icon-favor");
+								start[j].classList.add("icon-favorfill");
+							}
 
-	                    html.push(string);
-	                    var startLeval=parseInt($info[i].assessStar);  
-	                 document.getElementsByClassName(" protable")[0].innerHTML=html.join('');
-	                var start=document.getElementsByClassName("star");	                
-					    for(var j=0;j<startLeval;j++) {
-					    	start[j].classList.remove("icon-favor");
-							start[j].classList.add("icon-favorfill");
 						}
-	           			
-	             }
 					}
 				},
 				error: function() {
@@ -66,7 +69,7 @@ function userInformation() {
 				}
 			});
 		}
-userInformation();
-});
+		userInformation();
+	});
 
 });

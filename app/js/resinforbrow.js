@@ -206,7 +206,7 @@ mui.plusReady(function() {
 					var $info = data.data || {}
 
 					if(data.success && data.data) {
-						if($info.authentication == 1) {
+						if($info.authType||$info.authentication == 1) {
 							mui.openWindow({
 								url: '../html/proinforbrow.html',
 								id: 'html/proinforbrow.html',
@@ -218,7 +218,7 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
-						} else if($info.authentication == 2) {
+						} else if(!$info.authType&&$info.authentication == 2) {
 							mui.openWindow({
 								url: '../html/companybrowse.html',
 								id: 'html/companybrowse.html',
@@ -230,7 +230,7 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
-						} else if($info.authentication == 3) {
+						} else if(!$info.authType&&$info.authentication == 3) {
 							mui.openWindow({
 								url: '../html/studentbrowse.html',
 								id: 'html/studentbrowse.html',
@@ -455,8 +455,8 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
 						title: "【科袖资源】" + resourceName + "",
-						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
-//						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
+						href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
+						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
 			} else if(e.index == 2) {
@@ -465,8 +465,8 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: str,
 						title: "【科袖资源】" + resourceName + " ",
-						href: baseUrl + "/shareResinfor.html?resourceId=" + resourceId,
-//						thumbs: [baseUrl + "/images/resource/" + resourceId + ".jpg"]
+						href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
+						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
 			}

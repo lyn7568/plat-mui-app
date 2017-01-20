@@ -7,7 +7,7 @@ mui.ready(function() {
 	var userAgreement = document.getElementById("userAgreement");
 	var about = document.getElementById("about");
 	var kefu = document.getElementById("kefu");
-	
+	var checkNewVersion = document.getElementById("checkNewVersion");
 	
 	/*账户与安全*/
 	security.addEventListener('tap',function(){
@@ -74,6 +74,66 @@ mui.ready(function() {
 		
 	});
 	
+	/*检查新版本*/
+	checkNewVersion.addEventListener('tap',function(){
+		checkVersion();	
+	});
+	
+	function checkVersion(){
+		mui.plusReady(function(){
+			// 获取本地应用资源版本号
+		    plus.runtime.getProperty(plus.runtime.appid,function(inf){
+			    wgtVer=inf.version;
+			    console.log("当前应用版本："+wgtVer);
+			    mui.ajax(baseUrl + "/data/manager/version.json", {
+					dataType: 'json', //数据格式类型
+					type: 'GET', //http请求类型
+					timeout: 10000, //超时设置
+					async: false,
+					success: function(data) {
+						console.log(JSON.stringify(data));
+						if (data.version > wgtVer) {
+							var btn = ["确定更新", "取消更新"];
+							mui.confirm("检测到新版本，是否更新？", "提示", btn, function(e) {
+								if(e.index == 0) {
+								try {
+									     plus.nativeUI.showWaiting("检测更新...");
+									     //var d="http://192.168.3.233/download/app1.0.6.apk";
+										 plus.downloader.createDownload( data.wgt, {filename:"_doc/update/"}, function(d,status){
+									        if ( status == 200 ) { 
+									            plus.runtime.install(d.filename, {}, function() {
+													console.log("安装新版本文件成功！");
+													/*plus.nativeUI.alert("应用资源更新完成,程序需要立即重启", function() {
+														plus.runtime.restart();
+													});*/
+												}, function(e) {
+													console.log("安装新版文件失败[" + e.code + "]：" + e.message);
+													plus.nativeUI.toast("安装新版文件失败[" + e.code + "]：" + e.message);
+												});
+									            
+									        } else {
+									            console.log("下载新版本失败！");
+									            plus.nativeUI.toast("下载新版本失败！");
+									        }
+							       			plus.nativeUI.closeWaiting();
+							    		}).start();
+						    		} catch (e) {
+										console.log(e.message);
+									}	
+								}
+							});
+						}else{
+							plus.nativeUI.toast("您使用的是最新版本，请放心使用！", toastStyle);
+						}
+					},
+					error: function() {
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
+						return;
+					}
+				});
+			});
+		})
+	}
 	
 	
 });

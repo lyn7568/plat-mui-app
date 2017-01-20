@@ -93,17 +93,37 @@ mui.plusReady(function() {
 
 });
 
-//父子页面，下拉刷新
-mui.init({
-	pullRefresh: {
-		container: '#zixunpullrefresh',
-		down: {
-			height:50,
-			callback: pulldownRefresh
-			
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+if(isAndroid){
+	//父子页面，下拉刷新
+	mui.init({
+		pullRefresh: {
+			container: '#zixunpullrefresh',
+			down: {
+				height:190,
+				callback: pulldownRefresh
+				
+			}
 		}
-	}
-});
+	});
+}
+if(isiOS){
+	//父子页面，下拉刷新
+	mui.init({
+		pullRefresh: {
+			container: '#zixunpullrefresh',
+			down: {
+				//height:190,
+				callback: pulldownRefresh
+				
+			}
+		}
+	});
+}
+
+
  /* 父子页面，下拉刷新函数*/
 function pulldownRefresh() {
     pageIndex = 1;
@@ -127,17 +147,17 @@ function pulldownRefresh() {
 
 
 //上拉加载
-function pullupRefresh() {
+/*function pullupRefresh() {
 	pageIndex = ++pageIndex;
 	
 	setTimeout(function() {
 		getaData();
 	}, 1000);
 }
-
+*/
 
 //初始化数据
-function initData(){
+function initData(){ 
 	mui.plusReady(function() { 
 		var userid = plus.storage.getItem('userid');
 		plus.nativeUI.showWaiting('加载中...');//显示原生等待框

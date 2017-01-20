@@ -8,6 +8,9 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var proId = self.proid;
+	if(userid == proId) {
+		document.getElementsByClassName('footbox')[0].style.display = "none";
+	}
 	console.log(userid);
 	/*点击咨询*/
 	if(userid) {
@@ -78,11 +81,11 @@ mui.plusReady(function() {
 				personalMaterial[0].innerText = $data.name;
 				document.getElementById("professorName").innerText=$data.name;
 				//基本信息
-				if($data.consultCount) {
-					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
-				} else {
-					document.getElementById("accessHistory").style.display = "none";
-				}
+//				if($data.consultCount) {
+//					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
+//				} else {
+//					document.getElementById("accessHistory").style.display = "none";
+//				}
 				var startLeval = parseInt($data.starLevel);
 				var start = document.getElementsByClassName("start");
 				for(var i = 0; i < startLeval; i++) {
@@ -301,19 +304,19 @@ mui.plusReady(function() {
 		});
 
 	}
-	/*专家的历史和评价*/
-	document.getElementById("accessHistory").addEventListener('tap', function() {
-		mui.openWindow({
-			url: '../html/coophistory-other.html',
-			id: 'html/coophistory-other.html',
-			show: {
-				autoShow: false,
-			},
-			extras: {
-				professorId: proId
-			}
-		});
-	})
+//	/*专家的历史和评价*/
+//	document.getElementById("accessHistory").addEventListener('tap', function() {
+//		mui.openWindow({
+//			url: '../html/coophistory-other.html',
+//			id: 'html/coophistory-other.html',
+//			show: {
+//				autoShow: false,
+//			},
+//			extras: {
+//				professorId: proId
+//			}
+//		});
+//	})
 	/*图像预览*/
 	mui.previewImage();
 });

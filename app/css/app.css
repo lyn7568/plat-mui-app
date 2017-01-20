@@ -16,7 +16,7 @@ img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:b
 .mui-poppicker-body .mui-picker{background:#fff;}/*城市选择器*/
 /*无点击效果*/
 .mui-table-view .mui-table-view-cell.NoActive>a:not(.mui-btn).mui-active{background:none;}
-
+.mui-table-view .mui-table-view-cell.NoActive.mui-active{background:none;}
 /*图片轮播按钮圆点*/
 .mui-slider-indicator .mui-indicator{ background: rgba(130,130,130,.4);-webkit-box-shadow:none;box-shadow: none;}
 .mui-slider-indicator .mui-active.mui-indicator{background: rgba(256, 256, 256, 0.6);}
@@ -112,21 +112,20 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 /*企业和专家认证标识 icon-vip*/
 .unauthicon{color:#C0C0C0; }/*未认证*/
 .authicon{color:#FF9900;}
-.icon-vip.iconfont{margin-left:3px;font-size:14px;}
+.icon-vip.iconfont{margin-left:2px;font-size:14px;}
 .authicon-cu{color:#FF9900;}/*认证科研型专家*/
 .authicon-com{/*color:#00aaee;*/ color:#2082fb;}/*认证企业型专家*/
 /*普通用户认证标识 icon-renzheng*/
 em.icon-renzheng{position:absolute;float:left;font-size: 0;width:48px;height:16px;background-image:url(../images/authicon.png);background-repeat:no-repeat; }
-em.icon-renzheng span{position:relative;top:0px;font-size:8px;line-height:8px;margin-right:6px;vertical-align:middle;}
-.authicon-mana{background-position: 0 0px;background-size:100% auto;color:#ff9900;}/*认证在企高管*/
-.authicon-staff{background-position: 0 -16px;background-size:100% auto;color:#007AFF;}/*认证在企职员*/
+.authicon-mana{background-position: 0 -1px;background-size:100% auto;color:#ff9900;}/*认证科研*/
+.authicon-staff{background-position: 0 -16px;background-size:100% auto;color:#007AFF;}/*认证企业*/
 .authicon-stu{background-position: 0 -32px;background-size:100% auto;color:#0ee032;}/*认证在读学生*/
 
 /*****表单公共样式********/
 /*input输入相关*/
 .frmbox{ width: 100%; margin:2% auto; border-radius: 6px; }
-.frmtype{ width: 100%; margin: auto;line-height: 30px;padding: 1% 2%;font-size: 14px;line-height:20px;}
-.frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;}
+.frmtype{ width: 100%; margin: auto;line-height: 30px;padding: 1% 2%;font-size: 14px;line-height:20px;vertical-align: middle;}
+.frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;vertical-align: middle;}
 /*.frmbtn:hover{border:1px solid #FF9900; color:#FFFFFF;background-color:#FF9900;}*/
 .frmbox{ border:none; width: 90%;height: 100%; } 
 /*未激活按钮状态*/

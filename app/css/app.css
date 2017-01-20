@@ -237,6 +237,8 @@ ul.boxnav li.set span:before{
 .mui-search .mui-placeholder{ font-size: 14px; top:2px }
 
 .maintitbox .maintit{ line-height: 40px; font-size: 16px; text-align: center; color: #FF9900; border-bottom: 1px solid #F0F0F0;}
+.maintitbox .maintit2{ text-align: left;color:#888888;padding:2px 10px;}
+.maintitbox .maintit2 span{color: #FF9900;}
 .conblock{ background: #FFFFFF; margin:10px 0;}
 .mui-grid-view.gridbg{ background: #FFFFFF; border: none;}
 .mui-grid-view.gridbg .mui-table-view-cell{ border:none; padding: 10px 4px;}
@@ -361,6 +363,10 @@ ul.boxnav li.set span:before{
 .conbrief{ max-height: 46px; overflow: hidden;}
 .conresoult{ position: absolute; right:0;top:50%; margin-top:-12px; width:38%; height:18px;text-align: right;}
 .conresoult .levelbox .mui-icon{font-size: 12px;}
+/*邀请新用户*/
+.inviteBox{position:relative;height:200px;background: url(../images/yqbg.jpg) center center no-repeat #f5f5f7;}
+.inviteBtn{position: absolute;bottom:20px; left:50%;margin-left: -60px;padding:4px 30px;background: #ff9900;color:#FFFFFF;}
+
 /***********************我的账户*******************/
 
 /***********************专家信息修改*******************/

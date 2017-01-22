@@ -14,7 +14,7 @@ mui.ready(function() {
 	var infobasic = document.getElementsByClassName("amend")[0];
 	var oFlag;
 	var oFlag1;
-	var clickFlag=true;
+	var clickFlag = true;
 	var professorName;
 	mui.plusReady(function() {
 
@@ -82,7 +82,7 @@ mui.ready(function() {
 
 				/*我的修改专家*/
 				infobasic.addEventListener('tap', function() {
-						if(oFlag1||oFlag == 1) {
+						if(oFlag1 || oFlag == 1) {
 							mui.openWindow({
 								url: '../html/proinforupdate.html',
 								id: 'html/proinforupdate.html',
@@ -92,7 +92,7 @@ mui.ready(function() {
 								},
 
 							});
-						} else if(!oFlag1&&oFlag == 2) {
+						} else if(!oFlag1 && oFlag == 2) {
 							/*我的修改企业工作者*/
 							mui.openWindow({
 								url: '../html/companyUpdata.html',
@@ -103,7 +103,7 @@ mui.ready(function() {
 								},
 
 							});
-						} else if(!oFlag1&&oFlag == 3) {
+						} else if(!oFlag1 && oFlag == 3) {
 							/*我的修改学生*/
 							mui.openWindow({
 								url: '../html/studentUpdata.html',
@@ -116,7 +116,7 @@ mui.ready(function() {
 							});
 						}
 					})
-				/*我的历史和评价*/
+					/*我的历史和评价*/
 				goZixun.addEventListener('tap', function() {
 					if(!clickFlag) return;
 					mui.openWindow({
@@ -148,11 +148,11 @@ mui.ready(function() {
 				success: function(data) {
 					var $info = data.data || {};
 					oFlag = $info.authentication;
-					oFlag1=$info.authType
+					oFlag1 = $info.authType
 					console.log(oFlag)
 					if(data.success && data.data) {
 						document.getElementById("userName").innerText = $info.name || '';
-						professorName=$info.name;
+						professorName = $info.name;
 						var userTitle = document.getElementById("userTitle");
 						var userPosition = document.getElementById("userPosition");
 						var userDepartment = document.getElementById("userDepartment");
@@ -188,10 +188,10 @@ mui.ready(function() {
 						}
 						($info.address) ? userCity.innerText = $info.address: userCity.innerText = '';
 						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount: zixunOk.innerText = '0';
-						var startLeval = parseInt($info.starLevel);						
-						if($info.consultCount) {							
+						var startLeval = parseInt($info.starLevel);
+						if($info.consultCount) {
 							zixunOk.innerText = $info.consultCount;
-							if(!startLeval) {								
+							if(!startLeval) {
 								clickFlag = false;
 								document.getElementById("NoActive").classList.add("NoActive");
 								document.getElementsByClassName("levelbox")[0].style.display = "none";
@@ -200,9 +200,9 @@ mui.ready(function() {
 						} else {
 							goZixun.style.display = "none";
 						}
-						if(!$info.authType&&($info.authentication == 2||$info.authentication == 3)){
-							goZixun.style.display="none"; 
-							}	 					
+						if(!$info.authType && ($info.authentication == 2 || $info.authentication == 3)) {
+							goZixun.style.display = "none";
+						}
 						var start = document.getElementsByClassName("star");
 						for(var i = 0; i < startLeval; i++) {
 							start[i].classList.add("icon-favorfill");
@@ -240,127 +240,20 @@ mui.ready(function() {
 				}
 			});
 		}
-/*微信及微信朋友圈分享专家*/
-	var auths, shares;
-	document.getElementById("goNewuser").addEventListener("tap", function() {
-		shareShow()
-	})
-	plus.oauth.getServices(function(services) {
-		auths = {};
-		for(var i in services) {
-			var t = services[i];
-			auths[t.id] = t;
-
-		}
-	}, function(e) {
-		alert("获取登录服务列表失败：" + e.message + " - " + e.code);
-	});
-	plus.share.getServices(function(services) {
-
-		shares = {};
-		for(var i in services) {
-
-			var t = services[i];
-
-			shares[t.id] = t;
-
-		}
-	}, function(e) {
-		alert("获取分享服务列表失败：" + e.message + " - " + e.code);
-	})
-
-	function shareShow() {
-		var shareBts = [];
-		// 更新分享列表
-		var ss = shares['weixin'];
-		if(navigator.userAgent.indexOf('StreamApp') < 0 && navigator.userAgent.indexOf('qihoo') < 0) { //在360流应用中微信不支持分享图片
-			ss && ss.nativeClient && (shareBts.push({
-					title: '微信好友',
-					s: ss,
-					x: 'WXSceneSession'
-				}),
-				shareBts.push({
-					title: '微信朋友圈',
-					s: ss,
-					x: 'WXSceneTimeline'
-				}));
-		}
-		//				// 弹出分享列表
-		shareBts.length > 0 ? plus.nativeUI.actionSheet({
-			title: '分享',
-			cancel: '取消',
-			buttons: shareBts
-		}, function(e) {
-			var str = "研究方向"			
-			if(e.index == 1) {				
-				alert(userId);
-				var share = buildShareService();
-				if(share) {
-					shareMessage(share, "WXSceneSession", {
-						content: professorName,
-						title: "【科袖名片】",
-						href: baseUrl+"/ekexiu/Invitation.html?professorId="+userId+"&professorName="+encodeURI(professorName),
-						thumbs: [baseUrl + "/images/logo180.png"]
-					});
+		document.getElementById("goNewuser").addEventListener("tap", function() {			
+			mui.openWindow({
+				url: '../html/invite_new.html',
+				id: 'invite_new.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-left"
+				},
+				extras: {
+					proName:professorName
 				}
-			} else if(e.index == 2) {				
-				var share = buildShareService();
-				if(share) {
-					shareMessage(share, "WXSceneTimeline", {
-						content: professorName,
-						title: "【科袖名片",
-						href: baseUrl+"/ekexiu/Invitation.html?professorId="+userId+"&professorName="+encodeURI(professorName),
-						thumbs: [baseUrl + "/images/logo180.png"]
-					});
-				}
-			}
-
-		}) : plus.nativeUI.alert('当前环境无法支持分享操作!');
-
-	}
-
-	function buildShareService() {
-		var share = shares["weixin"];
-		if(share) {
-			if(share.authenticated) {
-				console.log("---已授权---");
-			} else {
-				console.log("---未授权---");
-				share.authorize(function() {
-					console.log('授权成功...')
-				}, function(e) {
-					alert("认证授权失败：" + e.code + " - " + e.message);
-					return null;
-				});
-			}
-			return share;
-		} else {
-			alert("没有获取微信分享服务");
-			return null;
-		}
-
-	}
-	
-	function shareMessage(share, ex, msg) {
-		msg.extra = {
-			scene: ex
-		};
-		share.send(msg, function() {
-			plus.nativeUI.closeWaiting();
-			var strtmp = "分享到\"" + share.description + "\"成功！ ";
-			console.log(strtmp);
-			plus.nativeUI.toast(strtmp, {
-				verticalAlign: 'center'
 			});
-		}, function(e) {
-			plus.nativeUI.closeWaiting();
-			if(e.code == -2) {
-				plus.nativeUI.toast('已取消分享', {
-					verticalAlign: 'center'
-				});
-			}
-		});
-	}
+		})
+		
 	});
 
 });

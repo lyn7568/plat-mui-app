@@ -17,16 +17,16 @@
         <!--登陆状态-->
 		<div class="mui-content">
 			<!-- 主界面具体展示内容 -->
-			<div class="inviteBox">
+			<div class="inviteBox" id="invite">
 				<button class="mui-btn frmbtn inviteBtn">立即邀请</button>
 			</div>
 			<div class="mui-card-content conblock">
-				<div class="maintitbox" style="padding:10px 4px;">
-					<div class="maintit maintit2">您已成功邀请 <span>X</span> 位好友加入</div>
+				<div class="maintitbox" style="padding:10px 4px;"id="inblock">
+					<div class="maintit maintit2">您已成功邀请 <span id="inviteNumber"></span> 位好友加入</div>
 				</div>
 				<!--数据列表-->
 				<ul class="mui-table-view mui-table-view-chevron list">
-					<li class="mui-table-view-cell mui-media">
+					<!--<li class="mui-table-view-cell mui-media">
 		                <a class="proinfor">
 		                    <img class="mui-media-object mui-pull-left headimg" src="../images/default-photo.jpg">
 		                    <div class="mui-media-body">
@@ -47,13 +47,22 @@
 		                    	<p class="mui-ellipsis listtit3"><span>设备资源名称A</span>、<span>设备资源名称B</span>、<span>设备资源名称B</span></p>
 		                    </div>
 		                </a>
-		            </li>
+		            </li>-->
 				</ul>
+				<div class="nodatabox" style="display:none;background: #efeff4;margin: 0; " id="nodatabox1">
+			        <div class="nodata">
+			            <div class="picbox"><span class="defpic" style="background-position: -230px -1120px;"></span></div>
+			            <div class="txtbox">
+			            	<p class="currword">抱歉！您还未邀请过任何用户</p>
+			            </div>
+			        </div>
+			    </div>
 			</div>
 		</div>
 
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/invite_new.js"></script>
 	</body>
 
 </html>

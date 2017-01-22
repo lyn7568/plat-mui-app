@@ -5,7 +5,7 @@ var personalMaterial = document.getElementsByClassName('personalMaterial');
 var personSummary = document.getElementsByClassName("breifinfo")[0];
 var professorName;
 var title;
-var clickFlag=true;
+var clickFlag = true;
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
@@ -161,12 +161,12 @@ mui.plusReady(function() {
 				string += '</div><div class="mui-media-body">'
 				string += '<span class="listtit">' + $data[i].resourceName + '</span>'
 				string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
-//				string += '<p class="listtit3 resbrief">'
-//				if($data[i].descp) {
-//					string += $data[i].descp;
-//				}
-//				string += '</p>'
-				string+='</div></a></li>'
+					//				string += '<p class="listtit3 resbrief">'
+					//				if($data[i].descp) {
+					//					string += $data[i].descp;
+					//				}
+					//				string += '</p>'
+				string += '</div></a></li>'
 				html.push(string);
 			}
 			document.getElementById("resourceList").innerHTML = html.join('');
@@ -189,8 +189,8 @@ mui.plusReady(function() {
 				var startLeval = parseInt($data.starLevel);
 				if($data.consultCount) {
 					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
-					if(!startLeval){
-						clickFlag=false; 
+					if(!startLeval) {
+						clickFlag = false;
 						document.getElementById("NoActive").classList.add("NoActive");
 						document.getElementsByClassName("levelbox")[0].style.display = "none";
 						document.getElementById("accessHistory").classList.remove("mui-navigate-right");
@@ -198,7 +198,7 @@ mui.plusReady(function() {
 				} else {
 					document.getElementById("accessHistory").style.display = "none";
 				}
-				
+
 				var start = document.getElementsByClassName("start");
 				for(var i = 0; i < startLeval; i++) {
 					start[i].classList.add("icon-favorfill");
@@ -372,6 +372,52 @@ mui.plusReady(function() {
 	})
 
 	personalMessage();
+	/*专家文章*/
+	mui.ajax(baseUrl + "/ajax/article/qaPro", {
+		dataType: 'json', //数据格式类型
+		type: 'GET', //http请求类型
+		data: {
+			"professorId": proId
+		},
+		timeout: 10000, //超时设置
+		success: function(data) {
+			console.log(JSON.stringify(data))
+			if(data.success) {
+				var $data = data.data;
+				if($data.length==0){
+					document.getElementById("professorArticleList").style.display="none";
+					return;
+				}
+				var html = [];
+				for(var i = 0; i < $data.length; i++) {					
+					var string = '<li class="mui-table-view-cell mui-media listitem" articleId=' + $data[i].articleId + '>'
+					string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
+					if($data[i].articleImg){
+						string += '<img class="resImg headRadius" src="'+baseUrl+'/data/article/'+$data[i].articleImg+'">'
+					}else{
+						string += '<img class="resImg headRadius" src="../images/default-artical.jpg">'
+					}
+					string += '</div><div class="mui-media-body">'
+					string += '<span class="listtit">' + $data[i].articleTitle + '</span>'
+					string += '</div></a></li>'
+					html.push(string);
+				}
+				document.getElementById("articleList").innerHTML = html.join('');
+			}
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+			return;
+		}
+	});
+	/*进入文章详细页面*/
+	mui("#professorArticleList").on('tap', 'li', function() {
+		var artId = this.getAttribute("articleId");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
+			articleId: artId
+		});
+	});
 	/*进入资源详细页面*/
 	mui("#resourceList").on('tap', 'li', function() {
 		var resouId = this.getAttribute("resouseId");
@@ -489,7 +535,7 @@ mui.plusReady(function() {
 	}
 	/*专家的历史和评价*/
 	document.getElementById("accessHistory").addEventListener('tap', function() {
-		if(!clickFlag) return;
+			if(!clickFlag) return;
 			mui.openWindow({
 				url: '../html/coophistory-other.html',
 				id: 'html/coophistory-other.html',
@@ -562,8 +608,8 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: baseUrl+"/ekexiu/shareProinfor.html?professorId=" + proId,
-						thumbs: [baseUrl+"/images/head/" + proId + "_m.jpg"]
+						href: baseUrl + "/ekexiu/shareProinfor.html?professorId=" + proId,
+						thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
 					});
 				}
 			} else if(e.index == 2) {
@@ -572,8 +618,8 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: baseUrl+"/ekexiu/shareProinfor.html?professorId=" + proId,
-						thumbs: [baseUrl+"/images/head/" + proId + "_m.jpg"]
+						href: baseUrl + "/ekexiu/shareProinfor.html?professorId=" + proId,
+						thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
 					});
 				}
 			}
@@ -603,7 +649,7 @@ mui.plusReady(function() {
 		}
 
 	}
-	
+
 	function shareMessage(share, ex, msg) {
 		msg.extra = {
 			scene: ex

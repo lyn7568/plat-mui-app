@@ -14,6 +14,10 @@
 			.mui-content {
 				background: #FFFFFF;
 			}
+			p{padding:0; margin: 0;text-indent: 0;}
+			#main_content img{
+				width:100%;
+			}
 		</style>
 	</head>
 
@@ -26,7 +30,7 @@
 			<div class="dialogbtn mui-pull-left btnactive" style="background:#FF9900; color: #FFFFFF;width:100%;" id="zixun">
 				<div>
 					<em class="mui-iocn iconfont icon-community mui-pull-left"></em>
-					<span class="mui-pull-left" id="consultBtn">留言</span>
+					<span class="mui-pull-left" id="leaveWord">留言</span>
 				</div> 
 			</div>
 			<!--<div class="attentbtn mui-pull-left">
@@ -37,18 +41,12 @@
 		</nav>
 		<div class="mui-content">
 			<div class="art_topicBox">
-				<img src="../images/banner/artical_01.jpg">
+				<div class="art_img" id="articleImg"></div>
 				<div class="art_topicbox">
-					<h4 id="artical_topic"><!--title-->李光福：为核电安全发展护航  腐蚀防护任重道远<!--title--></h4>
+					<h4 id="artical_topic"></h4>
 				</div>
 			</div>
 			<div class="articalBox">
-				<div id="artical">
-					<div id="artical_sth" class="mui-clearfix" style="font-size:18px;font-weight:800;color:black;">
-						专家文章标题
-					</div>
-				</div>
-				<div class="line01"></div>
 				<ul class="mui-table-view mui-table-view-chevron" id="proInfor">
 					<li class="mui-table-view-cell mui-media" style="padding:8px 20px 8px 10px;">
 						<a class="proinfor">
@@ -65,17 +63,7 @@
 				<div class="line01" style="margin:4px 0 10px 0;"></div>								
 				<div id="artical_real">
 					<!--body-->
-					<div id="main_content">
-						非法拘禁军军军军打开看看扩扩扩扩扩扩扩
-						扩扩扩扩扩扩扩扩扩扩扩扩
-						扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩
-						扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩
-						扩扩扩扩扩扩
-						非法拘禁军军军军打开看看扩扩扩扩扩扩扩
-						扩扩扩扩扩扩扩扩扩扩扩扩
-						扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩
-						扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩扩
-						扩扩扩扩扩扩
+					<div id="main_content" style="width:100%;">
 					</div>
 					<!--body-->
 				</div>
@@ -83,6 +71,7 @@
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/professorArticle.js"></script>
 	</body>
 
 </html>

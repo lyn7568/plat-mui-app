@@ -44,7 +44,8 @@
 			
 			var nextStep = document.getElementById("nextStep");
 			nextStep.addEventListener('tap', function() {
-				var typetext = document.querySelector(".boxnav li.set");
+				var typetext = document.querySelector(".boxnav li.set span").getAttribute("typenum");
+				//alert(typetext);
 				mui.openWindow({
 					url: '../html/identity-up.html',
 					id: '../html/identity-up.html',
@@ -52,7 +53,7 @@
 						aniShow: "slide-in-right"
 					},
 					extras:{
-						usertype:typetext.innerText,
+						usertype:typetext,
 					}
 				});
 			})

@@ -44,7 +44,9 @@ mui.ready(function() {
 					if($data.office) {
 						oDt[4].value = $data.office;
 					}
-					oAddress.innerText = $data.province + " " + $data.address;
+					if($data.address){
+						oAddress.innerText = $data.province + " " + $data.address;
+					}					
 					dataProvince.value = $data.province;
 					dataAddress.value = $data.address;
 					if($data.email) {

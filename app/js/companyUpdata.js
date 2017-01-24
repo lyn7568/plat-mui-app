@@ -82,6 +82,8 @@ mui.ready(function() {
 						//我的资源
 						if($data.resources.length) {
 						resource($data.resources, $data.resources.length);
+						}else{
+							document.getElementById("resouse").style.display="none";
 						}
 					},
 					error: function() {
@@ -175,7 +177,53 @@ mui.ready(function() {
 			var web = plus.webview.create("../html/proinforupdate-more.html", "proinforupdate-more.html"); //后台创建webview并打开show.html   	    	
 			web.addEventListener("loaded", function() {}, false);
 		});
-		personalMessage();		
+		personalMessage();
+		/*专家文章*/
+	mui.ajax(baseUrl + "/ajax/article/qaPro", {
+		dataType: 'json', //数据格式类型
+		type: 'GET', //http请求类型
+		data: {
+			"professorId": userid
+		},
+		timeout: 10000, //超时设置
+		success: function(data) {
+			console.log(JSON.stringify(data))
+			if(data.success) {
+				var $data = data.data;
+				if($data.length==0){
+					document.getElementById("professorArticleList").style.display="none";
+					return;
+				}
+				var html = [];
+				for(var i = 0; i < $data.length; i++) {					
+					var string = '<li class="mui-table-view-cell mui-media listitem" articleId=' + $data[i].articleId + '>'
+					string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
+					if($data[i].articleImg){
+						string += '<img class="resImg headRadius" src="'+baseUrl+'/data/article/'+$data[i].articleImg+'">'
+					}else{
+						string += '<img class="resImg headRadius" src="../images/default-artical.jpg">'
+					}
+					string += '</div><div class="mui-media-body">'
+					string += '<span class="listtit">' + $data[i].articleTitle + '</span>'
+					string += '</div></a></li>'
+					html.push(string);
+				}
+				document.getElementById("articleList").innerHTML = html.join('');
+			}
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+			return;
+		}
+	});
+	/*进入文章详细页面*/
+	mui("#professorArticleList").on('tap', 'li', function() {
+		var artId = this.getAttribute("articleId");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
+			articleId: artId
+		});
+	});
 	});
 });
 

@@ -134,7 +134,7 @@ mui.ready(function() {
 				}
 
 				var li = document.createElement('li');
-				li.className = 'mui-table-view-cell mui-media';
+				li.className = 'mui-table-view-cell mui-media NoActive mui-active';
 				li.setAttribute("professorId", item.id);
 				li.innerHTML = '<a class="proinfor" data-id="' + item.id + '"' +
 					'<p><img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '"></p>' +

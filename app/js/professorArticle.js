@@ -97,7 +97,7 @@ mui.plusReady(function() {
 						articleImg.style.backgroundImage = 'url(' + baseUrl + '/data/article/' + $info.articleImg + ')';
 					}
 					if($info.professor.hasHeadImage) {
-						document.getElementById('proHead').src = baseUrl + "/images/head/" + item.id + "_l.jpg";
+						document.getElementById('proHead').src = baseUrl + "/images/head/" + $info.professorId + "_l.jpg";
 					}
 					artical_topic.innerText = $info.articleTitle;
 					if($info.articleContent) {

@@ -110,6 +110,22 @@ mui.ready(function() {
 		}
 	}
 
+	window.addEventListener('showimg', function(event) {
+		showuserimg();
+	});
+	
+	function showuserimg(){
+		var userId = plus.storage.getItem('userid');
+		var filPage = plus.webview.getWebviewById('../html/fillinfo.html');
+		var dyPage = plus.webview.currentWebview();
+		if(dyPage == filPage) {
+			var imgvar = '<img src="'+ baseUrl + "/images/head/" + userId + '_l.jpg" style="width:100%"/>';
+			//console.log(imgvar) 
+			document.getElementById('imgshow').innerHTML = imgvar;
+		}
+	}
+	
+
 	mui.plusReady(function() {
 		var self = plus.webview.currentWebview();
 	

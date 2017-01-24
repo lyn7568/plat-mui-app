@@ -47,6 +47,8 @@ mui.ready(function() {
 				console.log('点击退出时id=='+plus.storage.getItem('userid'));
 				//plus.cache.clear();
 				//plus.storage.clear();
+				var loginClose = plus.webview.getWebviewById("../html/login.html");
+				plus.webview.close(loginClose);
 				var userId = "null";
 				mui.currentWebview.close();
 				mui.back();

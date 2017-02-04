@@ -70,7 +70,7 @@
 						ochatFooter.classList.remove('displayNone');
 						oconfirm.classList.remove('displayNone');//我的需求，进行中
 						ostatus.setAttribute('status','consultStatus='+myData["consultStatus"]);					
-						clickConfirm(consultId);
+						//clickConfirm(consultId);
 
 					}else {
 //						ochatFooter.style.display = 'none';;//对话底部隐藏
@@ -79,7 +79,7 @@
 						if(myData["assessStatus"] == 0){
 							oassessBtn.classList.remove('displayNone');//我的需求，未评价
 							ostatus.setAttribute('status','');
-							clickweiassess(consultId);
+							//clickweiassess(consultId);
 							ostatus.setAttribute('status','myNeedAssessStatus='+myData["assessStatus"]);
 						}else {
 							oassessed.classList.remove('displayNone');//我的需求，已评价
@@ -157,24 +157,10 @@
 		};
 	};
 	
-	
 	/*点击确认完成*/
-	function clickConfirm(consultId) {
-		oconfirmBtn.addEventListener('tap', function() {
-			setState(consultId);//点击确认,更新咨询状态
-			var btnArray = ['确定','取消'];
-			mui.confirm('确认此次咨询已完成？', '', btnArray, function(e) {
-				
-				if (e.index == 0) {//确定
-					goassessFun(consultId);//进入评价页面
-				} else {//取消
-					oconfirm.classList.add('displayNone');
-					ochatFooter.classList.add('displayNone');
-					getHeadInfo('myNeed',consultId);
-				}
-			})
-		});
-	};
+	//function clickConfirm(consultId) {
+		
+	//};
 	
 	/*打开评价详情函数*/
 	function goassessDetail(consultId,manFlag) {
@@ -191,12 +177,7 @@
 		});
 	}
 	
-	/*点击未评价,进入评价页面*/
-	function clickweiassess(consultId){
-		oassessBtn.addEventListener('tap',function(){
-			goassessFun(consultId);
-		});
-	};
+	
 	/*打开评价页面*/
 	function goassessFun(consultId) {
 		mui.openWindow({
@@ -219,6 +200,9 @@
 			success:function(data){
 				/*console.log("更新咨询状态")
 				console.log(data.data)*/
+				if(data.success){
+					goassessFun(consultId);//进入评价页面
+				}
 			},
 			error:function(xhr,type,errorThrown){
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
@@ -236,6 +220,7 @@
 		var consultId = self.consultId;
 		oconfirm.classList.add('displayNone');
 		ochatFooter.classList.add('displayNone');
+		oassessBtn.style.display="none";
 		oassessBtn.classList.add('displayNone');
 		getHeadInfo('myNeed',consultId);
 	});
@@ -251,6 +236,28 @@
 		var self = plus.webview.currentWebview();
 		var consultId = self.consultId;
 		var consultantId = self.consultantId;
+		oconfirmBtn.addEventListener('tap', function() {
+			
+			var btnArray = ['确定','取消'];
+			mui.confirm('确认此次咨询已完成？', '', btnArray, function(e) {
+				
+				if (e.index == 0) {//确定
+					oconfirmBtn.style.display="none";
+					oassessBtn.style.display="block";
+					setState(consultId);//点击确认,更新咨询状态	
+				} else {//取消
+					oconfirm.classList.add('displayNone');
+					ochatFooter.classList.add('displayNone');
+					getHeadInfo('myNeed',consultId);
+				}
+			})
+		});
+		/*点击未评价,进入评价页面*/
+	//function clickweiassess(consultId){
+		oassessBtn.addEventListener('tap',function(){
+			goassessFun(consultId);
+		});
+	//};
 		/*返回咨询列表页*/
 		obackBtn.addEventListener('tap',function() {
 			/*返回咨询列表*/

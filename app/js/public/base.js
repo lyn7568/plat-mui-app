@@ -1,8 +1,10 @@
 //公共文件
 mui.init();
-var baseUrl = "http://www.ekexiu.com:81",    
+//var baseUrl = "http://www.ekexiu.com",
+var baseUrl = "http://192.168.3.233",
+//var baseUrl = "http:192.168.3.8:80",    
 	toastStyle = {
-		'verticalAlign': 'top'
+		'verticalAlign': 'top',
 	}
 
 function goHome() {
@@ -56,3 +58,13 @@ function hideButtn2(oneName,twoName,threeName,fourName,fiveName) {
 		threeName.disabled = "";
 	}
 }
+
+//设置系统状态栏背景
+plusReady();
+function plusReady(){
+	mui.plusReady(function(){
+		plus.navigator.setStatusBarBackground( "#FF9900" );
+	})
+}
+
+

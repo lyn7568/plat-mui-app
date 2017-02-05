@@ -26,7 +26,7 @@
  	function saveconsult(proId,userid) {
  		var consultType = oconsulttype_ul.querySelector('.liactive').innerText;
 // 		var consultcon = oconsultcon.innerText;
-		var consultcon = oconsultcon.value;
+		var consultcon = oconsultcon.innerText;
  		var consultTitle = oconsulttitle.value;
  		console.log(consultType);
  		console.log(consultTitle);
@@ -159,19 +159,18 @@
  			}
  		});
  	}
- 	
- 	
+
  	/*咨询申请字数限制*/
 	function checkLen(obj) {  
 
 		var maxChars = 300;//最多字符数  
 		
-		if (obj.value.length > maxChars) {
+		if (obj.innerText.length > maxChars) {
 			
-			obj.value = obj.value.substring(0,maxChars); 
+			obj.innerText = obj.innerText.substring(0,maxChars); 
 		}
 		
-		var curr = maxChars - obj.value.length;  
+		var curr = maxChars - obj.innerText.length;  
 		
 		document.getElementById("count").innerHTML = curr.toString(); 	
 	};
@@ -194,7 +193,7 @@
    	 	/*专家信息数据*/
    	    proinfo(proId);
    	    if(flag == 'ziyuan') {
-   	    	oconsulttitle.value = '关于'+consulttitle+'的咨询';
+   	    	oconsulttitle.innerText='关于'+consulttitle+'的咨询' ;
    	    	var lilist = oconsulttype_ul.querySelectorAll('li');
    	    	var oziyuanspan = document.getElementById("ziyuanspan");
    	    	var emele = document.createElement('em');

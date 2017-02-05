@@ -13,28 +13,28 @@ mui.ready(function() {
 	});
 	//评价字数限制
 	//字数限制函数
-	function limitTextCountFn() {
-		//		var curLength = oassesscontent.innerHTML.length;
-		var curLength = oassesscontent.value.length;
-		if(curLength > 300) {
-			var num = oassesscontent.innerHTML.substr(0, 300);
-		} else {
-			otextNum.innerHTML = parseInt(curLength);
-
-		}
-	};
+//	function limitTextCountFn() {
+//		//		var curLength = oassesscontent.innerHTML.length;
+//		var curLength = oassesscontent.innerText.length;
+//		if(curLength > 300) {
+//			var num = oassesscontent.innerHTML.substr(0, 300);
+//		} else {
+//			otextNum.innerHTML = parseInt(curLength);
+//
+//		}
+//	};
 
 	/*字数限制*/
 	function checkLen(obj) {
 
 		var maxChars = 300; //最多字符数  
 
-		if(obj.value.length > maxChars) {
+		if(obj.innerText.length > maxChars) {
 
-			obj.value = obj.value.substring(0, maxChars);
+			obj.innerText = obj.innerText.substring(0, maxChars);
 		}
 
-		var curr = maxChars - obj.value.length;
+		var curr = maxChars - obj.innerText.length;
 
 		document.getElementById("text-count").innerHTML = curr.toString();
 	};

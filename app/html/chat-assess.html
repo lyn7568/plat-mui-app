@@ -12,16 +12,14 @@
 				position: relative; 
 			}
 			.text_count {
-				position: absolute;
-				right: 0;
-				bottom: 0;
+				text-align: right;
 				font-size: 12px;
+				margin-right:9px;
+				color:#AAAAAA;
 			}
 			#textbox #question {
-				padding: 0;
-				border: none;
-				height: 40px;
-				border-bottom:1px solid #F0F0F0
+				padding:0 3px;
+				margin:0 8px;
 			}
 			
 		</style>
@@ -51,12 +49,8 @@
 					<div class="mui-inline">评价留言</div>
 				</div>
 				<div class="row mui-input-row" id="textbox">
-					<!--<div id='question' class="mui-input-clear question textareabox" contenteditable="true" style="-webkit-user-select:text;"></div>-->
-					
-					<textarea id="question"class="mui-input-clear question textareabox"> </textarea>
-					
+					<div id='question' class="mui-input-clear question textareabox" contenteditable="true"></div>
 					<div class="text_count"><span><span id="text-count">300</span>字</span></div>
-					
 				</div>
 				
 			</div>

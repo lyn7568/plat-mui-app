@@ -4,7 +4,7 @@ var noExpert = document.getElementById("noExpert");
 var personalMaterial = document.getElementsByClassName('personalMaterial');
 var personSummary = document.getElementsByClassName("breifinfo")[0];
 var professorName;
-var title;
+var title="";
 var clickFlag = true;
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');

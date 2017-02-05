@@ -48,7 +48,7 @@ mui.ready(function() {
 		osendBtn.addEventListener('tap', function() {
 			//saveassess(consultId);
 			var assessStar = ostarContainer.querySelectorAll('.icon-favorfill').length;
-			var assessContant = oassesscontent.value;
+			var assessContant = oassesscontent.innerText;
 			if(!assessStar && assessContant != " ") {
 				mui.toast('未点击整体评价');
 				return;

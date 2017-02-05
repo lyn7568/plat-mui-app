@@ -360,7 +360,7 @@ ul.boxnav li.set span:before{
 .lefthead{ margin-right: 10px; text-align:center;}
 .contit{ position:relative;}
 .contit .listtit{ display: block; width: 62%; }
-.conbrief{ max-height: 46px; overflow: hidden;}
+.conbrief{overflow: hidden;}
 .conresoult{ position: absolute; right:0;top:50%; margin-top:-12px; width:38%; height:18px;text-align: right;}
 .conresoult .levelbox .mui-icon{font-size: 12px;}
 /*邀请新用户*/
@@ -544,7 +544,13 @@ ul.boxnav li.set span:before{
 .resouinfoword{ padding:6px 0; background: #FFFFFF;}
 .resouinfobox{ padding:0;margin: 0;}
 .resouinfobox>li{ list-style: none; margin:10px 4px; padding-left: 10px; font-size: 14px; line-height: 20px; word-break: break-all;}
-
+/*研究方向详细展示*/
+.researchAreaBox .headimg{width: 40px;height: 40px;max-height: 40px;}
+.researchAreaBox .mui-table-view .mui-table-view-cell.mui-active{background: none;}
+.researchAreaBox .mui-table-view-cell:after{left:62px;}
+.researchAreaBox .littip{font-size:13px;margin: 2% 0 1% 2%;}
+.researchAreaBox .mui-media-body{padding-top:5px;}
+.researchAreaBox .researchArea{padding:20px 10px;background: #FFFFFF;}
 /*********************** 资源信息浏览*******************/
 
 /***********************评价*******************/
@@ -559,7 +565,7 @@ ul.boxnav li.set span:before{
 
 /***********************缺省页面*******************/
 .nodatabox{width:100%;height: 100%; margin:50px auto;text-align: center;}
-.nodatabox .picbox{width: 40%;margin:20% auto 20px;}
+.nodatabox .picbox{margin:20% auto 30px;}
 .nodatabox .picbox .defpic{display:block;margin:auto;width:160px; height: 160px;background: url(../images/nodata.png) -6px 0 no-repeat;}
 .nodatabox .picbox .defpic.consult-pic{background-position: -232px -1320px;}/*咨询页面未登录*/
 

@@ -49,13 +49,14 @@ mui.ready(function() {
 			//saveassess(consultId);
 			var assessStar = ostarContainer.querySelectorAll('.icon-favorfill').length;
 			var assessContant = oassesscontent.innerText;
-			if(!assessStar && assessContant != " ") {
+			console.log(assessContant)
+			if(!assessStar && assessContant != "") {
 				mui.toast('未点击整体评价');
 				return;
-			} else if(assessStar && assessContant == " ") {
+			} else if(assessStar && assessContant == "") {
 				mui.toast('请评价留言');
 				return;
-			} else if(!assessStar && assessContant == " ") {
+			} else if(!assessStar && assessContant == "") {
 				mui.toast('请评价留言和整体评价');
 				return;
 			}

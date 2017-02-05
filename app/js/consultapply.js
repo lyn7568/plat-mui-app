@@ -32,14 +32,18 @@
  		console.log(consultTitle);
  		console.log(consultcon);
  		if(consultType == '' || consultType == null) {
- 			mui.alert('请选择咨询类型', '');
+ 			mui.toast('请选择咨询类型', '');
+ 			return 0;
  		};
- 		if(consultTitle == '' || consultTitle == null) {
- 			mui.alert('请填写咨询主题', '');
+ 		if(consultTitle == '' || consultTitle == null ) {
+ 			mui.toast('请填写咨询主题', '');
+ 			return 0;
  		};
- 		if(consultcon == '' || consultcon == null) {
- 			mui.alert('请填写咨询内容', '');
+ 		if(consultcon == '' || consultcon == null || consultcon=='请详细描述您遇到的问题') {
+ 			mui.toast('请填写咨询内容', '');
+ 			return 0;
  		};
+ 		
  		var params = {
  			"consultType":consultType, //咨询类型
 			"consultTitle":consultTitle, //咨询主题
@@ -53,7 +57,7 @@
  			type:'post',//HTTP请求类型
  			timeout:10000,//超时时间设置为10秒；
  			success:function(data){
- 				console.log('咨询申请返回值=='+data.data);
+ 				//console.log('咨询申请返回值=='+data.data);
  				if(data.success) {
  					mui.toast('咨询成功');
  				}else {
@@ -61,7 +65,6 @@
  				}
  			},
  			error:function(xhr,type,errorThrown){
- 				
  			}
  		});
  	};  	
@@ -209,18 +212,22 @@
    	    
    	    /*发送保存咨询*/
    	   	osaveconsultBtn.addEventListener('tap',function() {
-   	   		saveconsult(proId,userid);
-   	   		if(flag == 'ziyuan'){
-   	   			/*返回资源信息*/
-				var ziyuaninfo = plus.webview.getWebviewById('resinforbrow.html');
-				ziyuaninfo.show();
-				mui.fire(ziyuaninfo,'backziyuaninfo'); 
-   	   		}else if(flag == 'professor'){
-   	   			/*返回专家信息*/
-				var proinfo = plus.webview.getWebviewById('proinforbrow.html');
-				proinfo.show();
-				mui.fire(proinfo,'backproinfo',{proId:proId}); 
+   	   		var oSflag=saveconsult(proId,userid);
+   	   		if(oSflag!=0) {
+// 	   			return;
+   	   			if(flag == 'ziyuan'){
+	   	   			/*返回资源信息*/
+					var ziyuaninfo = plus.webview.getWebviewById('resinforbrow.html');
+					ziyuaninfo.show();
+					mui.fire(ziyuaninfo,'backziyuaninfo'); 
+	   	   		}else if(flag == 'professor'){
+	   	   			/*返回专家信息*/
+					var proinfo = plus.webview.getWebviewById('proinforbrow.html');
+					proinfo.show();
+					mui.fire(proinfo,'backproinfo',{proId:proId}); 
+	   	   		}
    	   		}
+   	   		
 		});
 		
 		/*专家的历史和评价*/

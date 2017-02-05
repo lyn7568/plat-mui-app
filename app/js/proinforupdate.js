@@ -123,8 +123,9 @@ mui.ready(function() {
 					var $data = data.data;
 					personalMaterial[0].innerText = $data.name;
 					//头像					
-					if($data.hasHeadImage) {						
-						oImg.src = baseUrl + "/images/head/" + $data.id + "_l.jpg";						
+					if($data.hasHeadImage) {	
+						var mun = Math.round(Math.random()*99+1);
+						oImg.src = baseUrl + "/images/head/" + $data.id + "_l.jpg?" + mun;						
 					}
 					//基本信息
 //					if(!$data.authType) {						

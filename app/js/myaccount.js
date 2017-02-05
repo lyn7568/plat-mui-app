@@ -144,7 +144,7 @@ mui.ready(function() {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
-				async: false,
+				//async: false,
 				success: function(data) {
 					var $info = data.data || {};
 					oFlag = $info.authentication;
@@ -209,7 +209,8 @@ mui.ready(function() {
 							start[i].classList.remove("icon-favor");
 						}
 						if($info.hasHeadImage == 1) {
-							userImg.setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg");
+							var mun = Math.round(Math.random()*99+1);
+							userImg.setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg?"+mun);
 						} else {
 							userImg.setAttribute("src", baseUrl + "/images/default-photo.jpg");
 						}

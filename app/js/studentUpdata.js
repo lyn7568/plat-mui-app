@@ -5,8 +5,9 @@ mui.ready(function() {
 		var personalMaterial=document.getElementsByClassName('personalMaterial');
 		var personSummary=document.getElementsByClassName("breifinfo")[0];
 		var fl;
-		window.addEventListener("newId",function(event){
+		window.addEventListener("newId1",function(event){
 			fl=event.detail.rd;
+			alert("ddd");
 			personalMaterial[1].parentNode.style.display = "block";
 			personalMaterial[2].parentNode.style.display = "block";
 			personalMaterial[3].parentNode.style.display = "block";	
@@ -28,8 +29,9 @@ mui.ready(function() {
 					var $data = data.data;
 					personalMaterial[0].innerText = $data.name;
 					//头像					
-					if($data.hasHeadImage) {						
-						oImg.src = baseUrl + "/images/head/" + $data.id + "_l.jpg";						
+					if($data.hasHeadImage) {	
+						var mun = Math.round(Math.random()*99+1);
+						oImg.src = baseUrl + "/images/head/" + $data.id + "_l.jpg?" + mun;						
 					}
 					//基本信息
 //					if(!$data.authentication) {

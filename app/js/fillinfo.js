@@ -116,11 +116,13 @@ mui.ready(function() {
 	
 	function showuserimg(){
 		var userId = plus.storage.getItem('userid');
+		console.log(userId)
 		var filPage = plus.webview.getWebviewById('../html/fillinfo.html');
 		var dyPage = plus.webview.currentWebview();
 		if(dyPage == filPage) {
-			var imgvar = '<img src="'+ baseUrl + "/images/head/" + userId + '_l.jpg" style="width:100%"/>';
-			//console.log(imgvar) 
+			var mun = Math.round(Math.random()*99+1);
+			var imgvar = '<img src="'+ baseUrl + '/images/head/' + userId + '_l.jpg?'+mun+'" style="width:100%"/>';
+			console.log(imgvar) 
 			document.getElementById('imgshow').innerHTML = imgvar;
 		}
 	}

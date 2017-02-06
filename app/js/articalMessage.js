@@ -19,7 +19,7 @@ mui.plusReady(function() {
 					plus.webview.currentWebview().show("slide-in-right", 150);
 					var $info = data.data;
 					for(var i = 0; i < $info.length; i++) {
-						var time = $info[i].createTime.substring(0, 4) + "." + $info[i].createTime.substring(4, 6) + "." + $info[i].createTime.substring(6, 8) + " " + $info[i].createTime.substring(8, 10) + ":" + $info[i].createTime.substring(10, 12);
+						var time = $info[i].createTime.substring(0, 4) + "年" + $info[i].createTime.substring(4, 6) + "月" + $info[i].createTime.substring(6, 8) + "日 " + $info[i].createTime.substring(8, 10) + ":" + $info[i].createTime.substring(10, 12);
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell mui-media';
 						var string = '<div class="proinfor">'

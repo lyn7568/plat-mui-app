@@ -69,9 +69,10 @@ mui.plusReady(function() {
 		var length = trim(valueLength);
 		if(length) {
 			document.getElementById("send").classList.add("add");
-			document.getElementById("msg-type").style.color = "red";
+			document.getElementById("msg-type").classList.add("addColor");
 		} else {
 			document.getElementById("send").classList.remove("add");
+			document.getElementById("msg-type").classList.remove("addColor");
 		}
 	});
 	mui("#chatFooter").on('tap', '.add', function() {
@@ -92,6 +93,7 @@ mui.plusReady(function() {
 				var $info = data.data || {};
 				if(data.success && data.data) {
 					document.getElementsByTagName("textarea")[0].value = "";
+					document.getElementById("msg-type").classList.remove("addColor");
 					proInfoMain();
 				}
 			},

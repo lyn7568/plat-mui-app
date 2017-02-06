@@ -35,7 +35,7 @@ mui.ready(function() {
 							string += '</div>'
 							string += '<div class="mui-media-body">'
 							string += '<div class="contit">'
-							string += '<span class="mui-ellipsis listtit2">' + assessTime + '</span>'
+							string += '<span class="mui-ellipsis listtit3">' + assessTime + '</span>'
 							string += '<div class="conresoult">'
 							string += '<div class="levelbox">'
 							string += '<span class="mui-icon iconfont icon-favor star"></span>'
@@ -46,7 +46,7 @@ mui.ready(function() {
 							string += '</div>'
 							string += '</div>'
 							string += '</div>'
-							string += '<p class="listtit conbrief">'
+							string += '<p class="listtit2 conbrief">'
 							if($info[i].assessContant) string += $info[i].assessContant;
 							string += '</p>'
 							string += '</div></a>'

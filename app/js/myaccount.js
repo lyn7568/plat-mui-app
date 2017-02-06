@@ -7,6 +7,7 @@ mui.ready(function() {
 	var goReg = document.getElementById("goreg");
 	var goSetup = document.getElementById("goSetup");
 	var goZixun = document.getElementById("goZixun");
+	var goZixunbox = document.getElementById("goZixunbox");
 	var oEdit = document.getElementById("editbox");
 	var goFollow = document.getElementById("goFollow");
 	var userImg = document.getElementById("userImg");
@@ -190,6 +191,7 @@ mui.ready(function() {
 						($info.consultCount != '') ? zixunOk.innerText = $info.consultCount: zixunOk.innerText = '0';
 						var startLeval = parseInt($info.starLevel);
 						if($info.consultCount) {
+							goZixunbox.style.display = "block";
 							zixunOk.innerText = $info.consultCount;
 							if(!startLeval) {
 								clickFlag = false;
@@ -198,10 +200,10 @@ mui.ready(function() {
 								document.getElementById("goZixun").classList.remove("mui-navigate-right");
 							}
 						} else {
-							goZixun.style.display = "none";
+							goZixunbox.style.display = "none";
 						}
 						if(!$info.authType && ($info.authentication == 2 || $info.authentication == 3)) {
-							goZixun.style.display = "none";
+							goZixunbox.style.display = "none";
 						}
 						var start = document.getElementsByClassName("star");
 						for(var i = 0; i < startLeval; i++) {

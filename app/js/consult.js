@@ -377,10 +377,6 @@ window.addEventListener('backlist', function(event) {
 				this.classList.remove('status-1');
 				this.classList.add('status-2');
 				this.innerHTML = '待评价';
-			}else if(status == 'consultStatus=0') {				
-				this.classList.remove('status-1');
-				this.classList.add('status-2');
-				this.innerHTML = '待评价';
 			}else if(status == 'myNeedAssessStatus=1') {				
 				this.classList.remove('status-1');
 				this.classList.add('status-3');

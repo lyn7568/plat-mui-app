@@ -69,6 +69,7 @@
 					if(myData["consultStatus"] == 0){
 						ochatFooter.classList.remove('displayNone');
 						oconfirm.classList.remove('displayNone');//我的需求，进行中
+						console.log(myData["consultStatus"]);
 						ostatus.setAttribute('status','consultStatus='+myData["consultStatus"]);					
 						//clickConfirm(consultId);
 
@@ -201,6 +202,7 @@
 				/*console.log("更新咨询状态")
 				console.log(data.data)*/
 				if(data.success){
+					ostatus.setAttribute('status','myNeedAssessStatus=0');
 					goassessFun(consultId);//进入评价页面
 				}
 			},
@@ -262,7 +264,7 @@
 		obackBtn.addEventListener('tap',function() {
 			/*返回咨询列表*/
 			var status = ostatus.getAttribute('status');
-			
+			console.log(status)
 			var consultList = plus.webview.getWebviewById('consultlist.html');
 //			console.log(consultId)
 //			consultList.show();
@@ -390,7 +392,7 @@
 			h: document.querySelector('#h'),
 			content: document.querySelector('.mui-content')
 		};
-		ui.h.style.width = ui.boxMsgText.offsetWidth+'px';
+		//ui.h.style.width = ui.boxMsgText.offsetWidth+'px';
 		//alert(ui.boxMsgText.offsetWidth );
 		var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
 		var msgItemTap = function(msgItem, event) {
@@ -532,6 +534,9 @@
 		ui.footerRight.addEventListener('release', function(event) {
 			if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {//发送
 				//showKeyboard();
+				if(ui.boxMsgText.value == ''){
+				return
+			}
 				ui.boxMsgText.focus();
 				setTimeout(function() {
 					ui.boxMsgText.focus();//获取焦点
@@ -693,8 +698,11 @@
 			e.preventDefault();
 		});
 		ui.boxMsgText.addEventListener('input', function(event) {
-			ui.btnMsgType.classList[ui.boxMsgText.value == '' ? 'remove' : 'add']('mui-icon-paperplane');
-						ui.btnMsgType.setAttribute("for", ui.boxMsgText.value == '' ? '' : 'msg-text');
+			//console.log("----"+ui.boxMsgText.value+"$$")
+			//ui.boxMsgText.style.backgroundColor='red'
+			ui.btnMsgType.classList[ui.boxMsgText.value == '' ? 'remove' : 'add']('addColor');
+						ui.btnMsgType.setAttribute("for", ui.boxMsgText.value == '' ? '' : 'msg-text');						
+						ui.h.style.width=ui.boxMsgText.offsetWidth+  'px';
 						ui.h.innerText = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '\n-') || '-';
 						ui.footer.style.height = (ui.h.offsetHeight +  footerPadding) +  'px';
 						ui.content.style.paddingBottom = ui.footer.style.height;

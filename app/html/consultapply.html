@@ -28,8 +28,8 @@
 				border-bottom:1px solid rgba(0,0,0,.2);
 				background:#fff;
 			}
-			.content{color:#AAAAAA}
-			.question{color:#666666}
+			/*.content{color:#AAAAAA}
+			.question{color:#666666}*/
 			#count {
 				text-align: right;
 				color:#AAAAAA;
@@ -103,9 +103,7 @@
 							<li class="basicfrm"><input type="text" name="comname" placeholder="请用一句话概括您的需求" class="mui-input-clear frmtype" id="consulttitle"></li>
 							<li><label>咨询内容<em class="requiredcon" ></em></label></li>
 							<li style="height:auto">
-								<div class="textareabox content" id="consultcon" contenteditable="true" onfocus="if(this.innerText=='请详细描述您遇到的问题')this.innerText='';this.style.color='#555555';" onblur="if(this.innerText=='')this.innerText='请详细描述您遇到的问题';this.style.color='#AAAAAA';">
-									请详细描述您遇到的问题
-								</div>
+								<div class="textareabox content" id="consultcon" contenteditable="true" placeholder="请详细描述您遇到的问题"></div>
 								<div id="count">300</div>
 							</li>
 						</ul>

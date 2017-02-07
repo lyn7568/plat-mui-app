@@ -66,5 +66,10 @@ function plusReady(){
 		plus.navigator.setStatusBarBackground( "#FF9900" );
 	})
 }
-
+//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+function iosheader(){
+	mui.plusReady(function(){ 
+		plus.webview.currentWebview().setStyle({ softinputMode:"adjustResize" });
+	})
+}
 

@@ -424,18 +424,29 @@ function datalistEach(datalist) {
 				}
 			}
 		}
+		
 		/*获取研究方向信息*/
 		var researchAreas = item.researchAreas;
-		var rlist = ''
+		var rlist = '';
 		for(var n = 0; n < researchAreas.length; n++) {
-			rlist = '<span>' + researchAreas[n].caption + '</span>';
+			//console.log(researchAreas[n].caption);
+			rlist += '<span>' + researchAreas[n].caption 
+			if(n < researchAreas.length-1){
+				rlist += " , "	
+			}
+			rlist += '</span>';
 		}
 
 		/*获取资源信息*/
 		var resources = item.resources;
-		var zlist = ''
+		var zlist = '';
 		for(var m = 0; m < resources.length; m++) {
-			zlist = '<span>' + resources[m].resourceName + '</span>';
+			//console.log(resources[m].caption);
+			zlist += '<span>' + resources[m].resourceName 
+			if(m < resources.length-1){
+				zlist += " , "	
+			}
+			zlist += '</span>';
 		}
 		
 		//var title;
@@ -481,20 +492,20 @@ function resourcesEach(datalist) {
 
 		/*获取头像*/
 		if(item.images.length) {
-			var img = baseUrl + "/images/resource/" + item.resourceId + ".jpg";
+			var img = baseUrl + "/images/resource/" + item.resourceId + "_s.jpg";
 		} else {
 			var img = "../images/default-resource.jpg";
 		}
 
 		/*判断用户是否认证*/
 		var icon = '';		
-		if(item.professor.authType) {			
+		if(item.editProfessor.authType) {			
 			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.professor.authStatus) {
-				if(item.professor.authentication == 1) {					
+			if(item.editProfessor.authStatus) {
+				if(item.editProfessor.authentication == 1) {					
 					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
-				} else if(item.professor.authentication == 2) {					
+				} else if(item.editProfessor.authentication == 2) {					
 					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
 				} else {
 					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
@@ -502,11 +513,11 @@ function resourcesEach(datalist) {
 			}
 		}
 
-		var title = item.professor.title || "";
-		var office = item.professor.office || "";
-		var orgName = item.professor.orgName || "";
-		var address = item.professor.address || "";
-
+		var title = item.editProfessor.title || "";
+		var office = item.editProfessor.office || "";
+		var orgName = item.editProfessor.orgName || "";
+		var address = item.editProfessor.address || "";
+        
 		if(title != "") {
 			title = title + " , ";
 		}
@@ -527,7 +538,7 @@ function resourcesEach(datalist) {
 			'<div class="mui-media-body">' +
 			'<span class="listtit">' + item.resourceName + '</span>' +
 			'<p class="mui-ellipsis listtit2">' + item.supportedServices + '</p>' +
-			'<span class="listtit">' + item.professor.name + icon + '</span>' +
+			'<span class="listtit">' + item.editProfessor.name + icon + '</span>' +
 			'<p class="listtit3"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
 			'</div></a></li>';
 

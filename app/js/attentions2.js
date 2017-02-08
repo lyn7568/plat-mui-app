@@ -140,20 +140,20 @@ function datalistEach(datalistd) {
        
 		/*获取头像*/
 		if(item.resource.images.length) {
-			var img = baseUrl + "/images/resource/" + item.resource.resourceId + ".jpg";
+			var img = baseUrl + "/images/resource/" + item.resource.resourceId + "_s.jpg";
 		} else {
 			var img = "../images/default-resource.jpg";
 		}
 		
 		/*判断用户是否认证*/
 		var icont = '';
-		if(item.resource.professor.authType) {
+		if(item.resource.editProfessor.authType) {
 			icont='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.resource.professor.authStatus) {
-				if(item.resource.professor.authentication == 1) {
+			if(item.resource.editProfessor.authStatus) {
+				if(item.resource.editProfessor.authentication == 1) {
 					icont='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
-				} else if(item.resource.professor.authentication == 2) {
+				} else if(item.resource.editProfessor.authentication == 2) {
 					icont='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
 				} else {
 					icont='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
@@ -161,10 +161,10 @@ function datalistEach(datalistd) {
 			}
 		}
 
-		var title = item.resource.professor.title || "";
-		var office = item.resource.professor.office || "";
-		var orgName = item.resource.professor.orgName || "";
-		var address = item.resource.professor.address || "";
+		var title = item.resource.editProfessor.title || "";
+		var office = item.resource.editProfessor.office || "";
+		var orgName = item.resource.editProfessor.orgName || "";
+		var address = item.resource.editProfessor.address || "";
 
 		if(title != "") {
 			title = title + " , ";
@@ -187,7 +187,7 @@ function datalistEach(datalistd) {
 			'<div class="mui-media-body">' +
 			'<span class="listtit">' + item.resource.resourceName + '</span>' +
 			'<p class="mui-ellipsis listtit2">' + item.resource.supportedServices + '</p>' +
-			'<span class="listtit">' + item.resource.professor.name + icont + '</span>' +
+			'<span class="listtit">' + item.resource.editProfessor.name + icont + '</span>' +
 			'<p class="listtit3"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
 			'</div></a></li>';
 		table.appendChild(li, table.firstChild);

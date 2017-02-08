@@ -171,18 +171,26 @@ function datalistEach(datalist) {
 
 		/*获取研究方向信息*/
 		var researchAreas = item.researchAreas;
-		var rlist = ''
+		var rlist = '';
 		for(var n = 0; n < researchAreas.length; n++) {
 			//console.log(researchAreas[n].caption);
-			rlist = '<span>' + researchAreas[n].caption + '</span>';
+			rlist += '<span>' + researchAreas[n].caption 
+			if(n < researchAreas.length-1){
+				rlist += " , "	
+			}
+			rlist += '</span>';
 		}
 
 		/*获取资源信息*/
 		var resources = item.resources;
-		var zlist = ''
+		var zlist = '';
 		for(var m = 0; m < resources.length; m++) {
 			//console.log(resources[m].caption);
-			zlist = '<span>' + resources[m].resourceName + '</span>';
+			zlist += '<span>' + resources[m].resourceName 
+			if(m < resources.length-1){
+				zlist += " , "	
+			}
+			zlist += '</span>';
 		}
 
 		var title = item.title || "";

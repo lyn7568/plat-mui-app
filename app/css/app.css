@@ -380,14 +380,14 @@ ul.boxnav li.set span:before{
 .generalinfo span{letter-spacing:normal;}
 .generalinfo .letspace{font-style:normal;letter-spacing: 2em;}
 
-.updatebox{ position: absolute; right:1%;font-size: 13px; line-height:16px;color: #FF9900;}
+.updatebox{ position: absolute; height:21px;right:1%;font-size: 13px;line-height:21px;color: #FF9900;}
 .updatebox2{right:7%; top:20px; }
 .updatebox:hover,.updatebox:active,.updatebox:link{ color: #FF9900;}
-.updatebox .updatebtn{font-size:20px; position: absolute;top:50%; margin-top:-11px;left:-18px; /*margin-top:-4px;*/}
+.updatebox .updatebtn{font-size:20px;position: absolute;top:0;left:-18px;}
 
-.addinfobox{ position: absolute;right: 10px;/* top: 0; */ font-size: 13px; line-height:16px;color: #FF9900;}
+.addinfobox{ position: absolute;right: 10px; font-size: 13px;line-height:21px;color: #FF9900;}
 .addinfobox:hover,.addinfobox:active,.addinfobox:link{ color: #FF9900;}
-.addinfobox .addinfobtn{font-size:16px;position: absolute;top:50%; margin-top:-9px;left:-16px;}
+.addinfobox .addinfobtn{font-size:15px;line-height:17px;position: absolute;top:50%; margin-top:-8px;left:-15px;}
 
 .addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 78%; height: 30px;}
 .addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px;  width: 18%; height: 30px;/*padding-left:20px; padding-right:20px;*/}

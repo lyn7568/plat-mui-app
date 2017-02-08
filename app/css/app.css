@@ -32,6 +32,9 @@ img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:b
 .mui-popup-button:hover{background: #FF9900;color:#FFFFFF;}
 
 a{text-decoration:none;color:#007aff}a:active{color:#0062cc}
+.mui-btn{font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;}
 .mui-btn.mui-active:enabled,.mui-btn:enabled:active,button.mui-active:enabled,button:enabled:active,input[type=button].mui-active:enabled,input[type=button]:enabled:active,input[type=reset].mui-active:enabled,input[type=reset]:enabled:active,input[type=submit].mui-active:enabled,input[type=submit]:enabled:active{color:#fff;background-color:#FF9900;border:1px solid #ff9900;}
 /*///////////////common公共样式///////////////////////*/
 body{ color: #666666; font-size:14px;line-height:20px;}
@@ -51,9 +54,9 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 .mainbox{width: 96%; margin:2% auto;}
 .mainbox:before{ position:static;}
 /*div模拟textarea多行文本框*/
-div.textareabox{font-size:13px;padding:2px;-webkit-user-select:text;border-bottom: 1px solid #F0F0F0;-webkit-user-modify: read-write-plaintext-only;}
-div.textareabox:empty:before {content: attr(placeholder);display: block;color: #AAAAAA;}
-.borderarea{/*border-bottom: 1px solid #F0F0F0;*/}
+div.textareabox{font-size:13px;padding:2px;-webkit-user-select:text;-webkit-user-modify: read-write-plaintext-only;}
+div.textareaboxEmp:empty:before {content: attr(placeholder);display: block;color: #AAAAAA;}
+.borderarea{border-bottom: 1px solid #F0F0F0;}
 
 /*必填项样式*/
 .requiredcon{ position: absolute; top:0; margin-left:4px; width: 8px; height:8px; background: url(../images/requiredicon.png) center center no-repeat; background-size: 100% 100%;}
@@ -124,6 +127,7 @@ em.icon-renzheng{position:absolute;float:left;font-size: 0;width:48px;height:16p
 
 /*****表单公共样式********/
 /*input输入相关*/
+button:disabled,input.frmtype[type='button']:disabled{ opacity: 1;}
 .frmbox{ width: 100%; margin:2% auto; border-radius: 6px; }
 .frmtype{ width: 100%; margin: auto;line-height: 30px;padding: 1% 2%;font-size: 14px;line-height:20px;vertical-align: middle;}
 .frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;vertical-align: middle;}
@@ -379,11 +383,11 @@ ul.boxnav li.set span:before{
 .updatebox{ position: absolute; right:1%;font-size: 13px; line-height:16px;color: #FF9900;}
 .updatebox2{right:7%; top:20px; }
 .updatebox:hover,.updatebox:active,.updatebox:link{ color: #FF9900;}
-.updatebox .updatebtn{font-size:20px;margin-top:-4px;}
+.updatebox .updatebtn{font-size:20px; position: absolute;top:50%; margin-top:-11px;left:-18px; /*margin-top:-4px;*/}
 
 .addinfobox{ position: absolute;right: 10px;/* top: 0; */ font-size: 13px; line-height:16px;color: #FF9900;}
 .addinfobox:hover,.addinfobox:active,.addinfobox:link{ color: #FF9900;}
-.addinfobox .addinfobtn{font-size:16px;}
+.addinfobox .addinfobtn{font-size:16px;position: absolute;top:50%; margin-top:-9px;left:-16px;}
 
 .addlabel .frmtype{border:1px solid #CCCCCC; border-radius: 6px; margin-right:2%; width: 78%; height: 30px;}
 .addlabel .addlabelbtn{ border-color:#FF9900; color: #FF9900; border-radius: 6px;  width: 18%; height: 30px;/*padding-left:20px; padding-right:20px;*/}
@@ -485,7 +489,7 @@ ul.boxnav li.set span:before{
 .themespan{ width: 54%;}
 .operatebtnbox{width:44%;position:absolute; top:50%; right:1%;margin-top:-13px;}
 /*已评价*/.operated{width:30%; margin-top:-18px;}
-.operatebtn{padding:2% 4%; margin: 0; position: absolute;right:0; font-size: 13px; line-height: 20px;}
+.operatebtn{padding:2px 6px 0 6px; margin: 0; position: absolute;right:0; font-size: 13px; line-height: 25px;}
 
 
 .filterbox2{ position: fixed; z-index:2; width: 100%;}
@@ -525,6 +529,22 @@ ul.boxnav li.set span:before{
 .popoverbox .mui-table-view-cell>a:not(.mui-btn){ margin-right:-12%;position: relative;}
 .popoverbox .mui-table-view-cell .mui-navigate-right:after { position:absolute;right: 0; color:#FF9900;font-size: 24px;}
 .mui-popover4{ width: 130px;  }
+/*chat对话块*/
+footer.chatFooter {position: fixed;width: 100%;height: 50px;min-height: 50px;border-top: solid 1px #bbb;left: 0px;bottom: 0px;overflow: hidden;padding: 0px 50px;background-color: #fafafa;padding-left: 5px;}
+.footer-left {position: absolute;width: 50px;height: 50px;left: 0px;bottom: 0px;text-align: center;vertical-align: middle;line-height: 100%;padding: 12px 4px;}
+.footer-right {position: absolute;width: 50px;height: 50px;right: 0px;bottom: 0px;text-align: center;vertical-align: middle;line-height: 100%;padding: 12px 5px;display: inline-block;}
+.footer-center {height: 100%;padding: 5px 0px;}
+.footer-center [class*=input] {width: 100%;height: 100%;border-radius: 5px;}
+.footer-center .input-text {background: #fff;border: solid 1px #ddd;padding: 10px !important;font-size: 16px !important;line-height: 18px !important;font-family: verdana !important;overflow: hidden;}
+.footer-center .input-sound {background-color: #eee;}
+footer.chatFooter .mui-icon {color: #999999;}
+footer.chatFooter .mui-icon:active {color: #FF9900 !important;}
+footer.chatFooter .mui-icon-paperplane:before {content: "发送";color:lightgray;}
+footer.chatFooter .mui-icon-paperplane.addColor:before {content: "发送";color:#ff9900;}
+footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;line-height: 100%;padding-top: 6px;color: rgba(0, 135, 250, 1);}
+.protable .mui-table-view-cell.mui-active{background: none;}
+.timenow.thistime{right: 3%;}
+
 /*********************** 咨询*******************/
 
 /*********************** 资源信息浏览*******************/

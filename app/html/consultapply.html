@@ -9,6 +9,8 @@
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<style type="text/css">
+			html,body{height: 100%;margin:1px 0 0 0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
 			#consultcon {
 				/*min-height: 40px !important;*/
 				font-size: 14px;
@@ -118,6 +120,10 @@
 		<script src=" ../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/consultapply.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
 	</body>
 
 </html>

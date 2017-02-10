@@ -7,6 +7,10 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin:1px 0 0 0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
+		</style>
 	</head>
 
 	<body>
@@ -27,6 +31,10 @@
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script type="text/javascript" src="../js/updateinfo-res05.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
 	</body>
 
 </html>

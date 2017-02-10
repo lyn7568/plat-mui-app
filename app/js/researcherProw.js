@@ -12,7 +12,25 @@ mui.plusReady(function() {
 		document.getElementsByClassName('footbox')[0].style.display = "none";
 	}
 	console.log(userid);
-	/*点击咨询*/
+	//查询学术领域
+	var subjectShow = function(data) {
+			if(data != undefined && data.length != 0) {
+				var subs = new Array();
+				if(data.indexOf(',')) {
+					subs = data.split(',');
+				} else {
+					subs[0] = data;
+				}
+				if(subs.length > 0) {
+					var html = [];
+					for(var i = 0; i < subs.length; i++) {
+						html.push("<li>" + subs[i] + "</li>");
+					};
+					document.getElementsByClassName("infosubject")[0].innerHTML = html.join('');
+				}
+			}
+		}
+		/*点击咨询*/
 	if(userid) {
 		ozixun.addEventListener('tap', function() {
 			var flag = 'professor';
@@ -54,10 +72,10 @@ mui.plusReady(function() {
 				personalMaterial[0].innerText = $data.name;
 				document.getElementById("professorName").innerText = $data.name;
 				//基本信息
-				//				if($data.consultCount){
+				//				if($data.consultCount) {
 				//					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
-				//				}else{
-				//					document.getElementById("accessHistory").style.display="none";
+				//				} else {
+				//					document.getElementById("accessHistory").style.display = "none";
 				//				}
 				var startLeval = parseInt($data.starLevel);
 				var start = document.getElementsByClassName("start");
@@ -90,27 +108,40 @@ mui.plusReady(function() {
 						}
 					}
 				}
+				if($data.office) {
+					if($data.title) {
+						personalMaterial[1].innerText = $data.office + "，";
+					} else {
+						personalMaterial[1].innerText = $data.office;
+					}
+				}
+				if($data.title) {
+					personalMaterial[2].innerText = $data.title;
+				}
 				if($data.orgName) {
 					if($data.department) {
-						personalMaterial[1].innerText = $data.orgName + "，";
+						personalMaterial[3].innerText = $data.orgName + "，";
 					} else {
 						if($data.address) {
-							personalMaterial[1].innerText = $data.orgName + " | ";
+							personalMaterial[3].innerText = $data.orgName + " | ";
 						} else {
-							personalMaterial[1].innerText = $data.orgName
+							personalMaterial[3].innerText = $data.orgName
 						}
+
 					}
 
 				}
 				if($data.department) {
+
 					if($data.address) {
-						personalMaterial[2].innerText = $data.department + " | ";
+						personalMaterial[4].innerText = $data.department + " | ";
 					} else {
-						personalMaterial[2].innerText = $data.department;
+						personalMaterial[4].innerText = $data.department;
 					}
+
 				}
 				if($data.address) {
-					personalMaterial[3].innerText = $data.address;
+					personalMaterial[5].innerText = $data.address;
 				}
 				//个人简介
 
@@ -119,6 +150,13 @@ mui.plusReady(function() {
 				} else {
 					document.getElementById("professorBreifinfo").style.display = "none";
 				}
+				//学术领域
+				if($data.subject) {
+					subjectShow($data.subject);
+				} else {
+					document.getElementById("professorInfosubject").style.display = "none";
+				}
+				
 				//如无详细内容数据，隐藏详细点击的按钮
 				if(!$data.edus.length && !$data.jobs.length && !$data.projects.length && !$data.papers.length && !$data.patents.length && !$data.honors.length) {
 					document.getElementById("detailProfessor").style.display = "none";
@@ -138,9 +176,8 @@ mui.plusReady(function() {
 		}); //后台创建webview并打开show.html   	    	
 		web.addEventListener("loaded", function() {}, false);
 	});
-
 	personalMessage();
-
+	
 	/*咨询成功,返回专家信息*/
 	window.addEventListener('backproinfo', function(event) {
 		var proid = event.detail.proId;

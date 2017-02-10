@@ -7,20 +7,18 @@
 <link href="../css/mui.min.css" rel="stylesheet" />
 <link href="../css/iconfont.css" rel="stylesheet" />
 <link href="../css/app.css" rel="stylesheet" />
-<style type="text/css">
-
+<style type="text/css"> 
+	#table li.mui-table-view-cell:after{position: absolute;bottom: 0;right: 0;left:64px;height: 1px;content: '';background-color: #c8c7cc;}
+	#table li.mui-table-view-cell:last-child:after{background: none;}
 </style>
 </head>
 <body>
-<header class="mui-bar mui-bar-nav toptitbox">
-	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-	<h1 class="mui-title toptit">研究方向</h1>
-</header>
-<div class="mui-content researchAreaBox">
-	<div class="researchArea">研究方向文字很长，之前页面显示不下，在这里就能显示完整，全部都显示出来</div>
+<div class="mui-content researchAreaBox mui-scroll-wrapper" id="pullrefresh" >
+	<div class="mui-scroll">
+	<div class="researchArea" id="researchArea"></div>
 	<p class="littip">以下用户认可了他的研究</p>
-	<ul class="mui-table-view protable">
-        <li class="mui-table-view-cell mui-media">
+	<ul class="mui-table-view protable" id="table">
+        <!--<li class="mui-table-view-cell mui-media">
             <div class="proinfor">
                 <img class="mui-media-object mui-pull-left headimg headRadius" src="../images/default-photo.jpg">
                 <div class="mui-media-body">
@@ -28,30 +26,12 @@
                 	<p class="listtit2"><span>职称</span><span>，职位</span><span>，所在机构</span><span> | 所在城市</span></p>
                 </div>
             </div>
-        </li>
-        <li class="mui-table-view-cell mui-media">
-            <div class="proinfor">
-                <img class="mui-media-object mui-pull-left headimg headRadius" src="../images/default-photo.jpg">
-                <div class="mui-media-body">
-                    <div><span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon-cu"></em></span></div>
-                	<p class="listtit2"><span>职称</span><span>，职位</span><span>，所在机构</span><span> | 所在城市</span></p>
-                </div>
-            </div>
-        </li>
-        <li class="mui-table-view-cell mui-media">
-            <div class="proinfor">
-                <img class="mui-media-object mui-pull-left headimg headRadius" src="../images/default-photo.jpg">
-                <div class="mui-media-body">
-                    <div><span class="listtit">专家姓名<em class="mui-icon iconfont icon-vip authicon-cu"></em></span></div>
-                	<p class="listtit2"><span>职称</span><span>，职位</span><span>，所在机构</span><span> | 所在城市</span></p>
-                </div>
-            </div>
-        </li>
-
-        
+        </li>-->
     </ul>
+	</div>
 </div>
 <script src="../js/public/mui.min.js"></script>
 <script src="../js/public/base.js"></script>
+<script src="../js/researchArea.js"></script>
 </body>
 </html>

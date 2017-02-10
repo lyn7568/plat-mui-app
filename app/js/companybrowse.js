@@ -12,7 +12,25 @@ mui.plusReady(function() {
 		document.getElementsByClassName('footbox')[0].style.display = "none";
 	}
 	console.log(userid);
-	/*点击咨询*/
+	//查询应用行业		
+	var industryShow = function(data) {
+			if(data != undefined && data.length != 0) {
+				var subs = new Array();
+				if(data.indexOf(',')) {
+					subs = data.split(',');
+				} else {
+					subs[0] = data;
+				}
+				if(subs.length > 0) {
+					var html = [];
+					for(var i = 0; i < subs.length; i++) {
+						html.push("<li>" + subs[i] + "</li>");
+					};
+					document.getElementsByClassName("infoapply")[0].innerHTML = html.join('');
+				}
+			}
+		}
+		/*点击咨询*/
 	if(userid) {
 		ozixun.addEventListener('tap', function() {
 			var flag = 'professor';
@@ -41,34 +59,7 @@ mui.plusReady(function() {
 		});
 	}
 
-	var professorResource = function(odata) {
-			var $data = odata;
-			var html = [];
-			for(var i = 0; i < odata.length; i++) {
-				var string = '<li class="mui-table-view-cell mui-media" resouseId=' + $data[i].resourceId + '>'
-				string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
-				if($data[i].images.length) {
-					string += '<img class="resImg headRadius" src="' + baseUrl + '/images/resource/' + $data[i].resourceId + '.jpg">'
-
-				} else {
-
-					string += '<img class="resImg headRadius" src="../images/default-resource.jpg">'
-				}
-				string += '</div><div class="mui-media-body">'
-				string += '<span class="listtit">' + $data[i].resourceName + '</span>'
-				string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
-//				string += '<p class="listtit3 resbrief">'
-//				if($data[i].descp) {
-//					string += $data[i].descp;
-//				}
-//				string += '</p>'
-				string += '</div></a></li>'
-				html.push(string);
-			}
-			document.getElementById("resourceList").innerHTML = html.join('');
-
-		}
-		/*获取个人信息*/
+	/*获取个人信息*/
 	function personalMessage() {
 		mui.ajax(baseUrl + "/ajax/professor/info/" + proId, {
 			dataType: 'json', //数据格式类型
@@ -79,13 +70,13 @@ mui.plusReady(function() {
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				var $data = data.data;
 				personalMaterial[0].innerText = $data.name;
-				document.getElementById("professorName").innerText=$data.name;
+				document.getElementById("professorName").innerText = $data.name;
 				//基本信息
-//				if($data.consultCount) {
-//					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
-//				} else {
-//					document.getElementById("accessHistory").style.display = "none";
-//				}
+				//				if($data.consultCount) {
+				//					document.getElementsByClassName("consultCount")[0].innerText = $data.consultCount;
+				//				} else {
+				//					document.getElementById("accessHistory").style.display = "none";
+				//				}
 				var startLeval = parseInt($data.starLevel);
 				var start = document.getElementsByClassName("start");
 				for(var i = 0; i < startLeval; i++) {
@@ -117,10 +108,6 @@ mui.plusReady(function() {
 						}
 					}
 				}
-				console.log($data.title);
-				console.log($data.office);
-				console.log($data.department);
-				console.log($data.orgName);
 				if($data.office) {
 					if($data.title) {
 						personalMaterial[1].innerText = $data.office + "，";
@@ -136,11 +123,11 @@ mui.plusReady(function() {
 						personalMaterial[3].innerText = $data.orgName + "，";
 					} else {
 						if($data.address) {
-							personalMaterial[3].innerText = $data.orgName+ " | ";
+							personalMaterial[3].innerText = $data.orgName + " | ";
 						} else {
 							personalMaterial[3].innerText = $data.orgName
 						}
-						
+
 					}
 
 				}
@@ -163,11 +150,11 @@ mui.plusReady(function() {
 				} else {
 					document.getElementById("professorBreifinfo").style.display = "none";
 				}
-				//专家资源
-				if($data.resources.length) {
-					professorResource($data.resources);
+				//应用行业
+				if($data.industry) {
+					industryShow($data.industry);
 				} else {
-					document.getElementById("professorresourceList").style.display = "none";
+					document.getElementById("professorinfoapply").style.display = "none";
 				}
 				//如无详细内容数据，隐藏详细点击的按钮
 				if(!$data.edus.length && !$data.jobs.length && !$data.projects.length && !$data.papers.length && !$data.patents.length && !$data.honors.length) {
@@ -188,16 +175,8 @@ mui.plusReady(function() {
 		}); //后台创建webview并打开show.html   	    	
 		web.addEventListener("loaded", function() {}, false);
 	});
-
 	personalMessage();
-	/*进入资源详细页面*/
-	mui("#resourceList").on('tap', 'li', function() {
-		var resouId = this.getAttribute("resouseId");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
-			resourceId: resouId
-		});
-	});
+	
 	/*咨询成功,返回专家信息*/
 	window.addEventListener('backproinfo', function(event) {
 		var proid = event.detail.proId;
@@ -304,19 +283,19 @@ mui.plusReady(function() {
 		});
 
 	}
-//	/*专家的历史和评价*/
-//	document.getElementById("accessHistory").addEventListener('tap', function() {
-//		mui.openWindow({
-//			url: '../html/coophistory-other.html',
-//			id: 'html/coophistory-other.html',
-//			show: {
-//				autoShow: false,
-//			},
-//			extras: {
-//				professorId: proId
-//			}
-//		});
-//	})
+	//	/*专家的历史和评价*/
+	//	document.getElementById("accessHistory").addEventListener('tap', function() {
+	//		mui.openWindow({
+	//			url: '../html/coophistory-other.html',
+	//			id: 'html/coophistory-other.html',
+	//			show: {
+	//				autoShow: false,
+	//			},
+	//			extras: {
+	//				professorId: proId
+	//			}
+	//		});
+	//	})
 	/*图像预览*/
 	mui.previewImage();
 });

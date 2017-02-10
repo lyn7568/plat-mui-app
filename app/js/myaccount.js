@@ -83,10 +83,21 @@ mui.ready(function() {
 
 				/*我的修改专家*/
 				infobasic.addEventListener('tap', function() {
-						if(oFlag1 || oFlag == 1) {
+						if(oFlag1) {
 							mui.openWindow({
 								url: '../html/proinforupdate.html',
 								id: 'html/proinforupdate.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+
+							});
+						} else if(!oFlag1 && oFlag == 1) {
+							/*我的修改企业工作者*/
+							mui.openWindow({
+								url: '../html/researcher.html',
+								id: 'html/researcher.html',
 								show: {
 									autoShow: false,
 									aniShow: "slide-in-left"
@@ -211,8 +222,8 @@ mui.ready(function() {
 							start[i].classList.remove("icon-favor");
 						}
 						if($info.hasHeadImage == 1) {
-							var mun = Math.round(Math.random()*99+1);
-							userImg.setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg?"+mun);
+							var mun = Math.round(Math.random() * 99 + 1);
+							userImg.setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg?" + mun);
 						} else {
 							userImg.setAttribute("src", baseUrl + "/images/default-photo.jpg");
 						}
@@ -243,7 +254,7 @@ mui.ready(function() {
 				}
 			});
 		}
-		document.getElementById("goNewuser").addEventListener("tap", function() {			
+		document.getElementById("goNewuser").addEventListener("tap", function() {
 			mui.openWindow({
 				url: '../html/invite_new.html',
 				id: 'invite_new.html',
@@ -252,11 +263,11 @@ mui.ready(function() {
 					aniShow: "slide-in-left"
 				},
 				extras: {
-					proName:professorName
+					proName: professorName
 				}
 			});
 		})
-		
+
 	});
 
 });

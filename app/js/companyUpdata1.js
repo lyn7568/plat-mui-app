@@ -45,8 +45,12 @@ mui.ready(function() {
 					if($data.address) {
 						oAddress.innerText = $data.province + " " + $data.address;
 					}
-					dataProvince.value = $data.province;
-					dataAddress.value = $data.address;
+					if($data.province){
+						dataProvince.value = $data.province;
+					}
+					if($data.address){
+						dataAddress.value = $data.address;
+					}
 					if($data.email) {
 						mail.value = $data.email
 					}
@@ -124,8 +128,12 @@ mui.ready(function() {
 			mess.department = oDt[2].value;
 			mess.office =oDt[3].value ;
 			mess.title = oDt[4].value;
-			mess.province = dataProvince.value;
-			mess.address = dataAddress.value;
+			if(dataProvince.value){
+				mess.province = dataProvince.value;
+			}
+			if(dataAddress.value){
+				mess.address = dataAddress.value;
+			}			
 			mess.email = trim(mail.value);
 			mess.phone = trim(telePhone.value);
 			mess.id = userid;
@@ -140,8 +148,12 @@ mui.ready(function() {
 					if(data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById('html/companyUpdata.html');
-						mui.fire(web, "newId");
-						mui.back();
+						
+						mui.fire(web, "newId",{
+									rd: 1
+								});
+						var web1 = plus.webview.getWebviewById('../html/companyUpdata1.html');
+						plus.webview.close(web1);
 						var web3 = plus.webview.getWebviewById("html/myaccount.html");
 						mui.fire(web3, "photoUser");
 					} else {
@@ -213,5 +225,9 @@ mui.ready(function() {
 
 		});
 		personalMessage();
+		document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
+			var web1 = plus.webview.getWebviewById('../html/companyUpdata1.html');
+						plus.webview.close(web1);
+		})
 	});
 })

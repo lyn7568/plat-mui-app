@@ -2,6 +2,7 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
+		console.log(ws.flag);
 		var str = JSON.stringify(ws);
 		var oDt = document.getElementsByClassName("frmtype");
 		var dataProvince = document.getElementById("data-province");
@@ -28,7 +29,7 @@ mui.ready(function() {
 						authu[0].innerText = "未认证"
 					} else if($data.authStatus == 1) {
 						authu[0].innerText = "已认证"
-					} 
+					}
 					authStatus = $data.authStatus;
 					name = $data.name;
 					org = $data.orgName;
@@ -44,11 +45,15 @@ mui.ready(function() {
 					if($data.office) {
 						oDt[4].value = $data.office;
 					}
-					if($data.address){
+					if($data.address) {
 						oAddress.innerText = $data.province + " " + $data.address;
-					}					
-					dataProvince.value = $data.province;
-					dataAddress.value = $data.address;
+					}
+					if($data.province) {
+						dataProvince.value = $data.province;
+					}
+					if($data.address) {
+						dataAddress.value = $data.address;
+					}
 					if($data.email) {
 						mail.value = $data.email
 					}
@@ -102,7 +107,7 @@ mui.ready(function() {
 			});
 		}, false);
 		//更新认证状态函数
-		var upStatus = function() {		
+		var upStatus = function() {
 			mui.ajax(baseUrl + "/ajax/professor/authStatus", {
 				dataType: 'json', //数据格式类型
 				type: 'post', //http请求类型
@@ -112,9 +117,8 @@ mui.ready(function() {
 				},
 				timeout: 10000, //超时设置				
 				success: function(data) {
-					if(data.success) {						
-					}else{
-						
+					if(data.success) {} else {
+
 					}
 				}
 			})
@@ -127,8 +131,12 @@ mui.ready(function() {
 			mess.department = oDt[2].value;
 			mess.title = oDt[3].value;
 			mess.office = oDt[4].value;
-			mess.province = dataProvince.value;
-			mess.address = dataAddress.value;
+			if(dataProvince.value) {
+				mess.province = dataProvince.value;
+			}
+			if(dataAddress.value) {
+				mess.address = dataAddress.value;
+			}
 			mess.email = trim(mail.value);
 			mess.phone = trim(telePhone.value);
 			mess.id = userid;
@@ -142,11 +150,26 @@ mui.ready(function() {
 				"success": function(data) {
 					if(data.success) {
 						plus.nativeUI.showWaiting();
-						var web = plus.webview.getWebviewById("html/proinforupdate.html");
-						mui.fire(web, "newId");
-						mui.back();
-						var web3 = plus.webview.getWebviewById("html/myaccount.html");
-						mui.fire(web3, "photoUser");						
+						if(ws.flag == 0) {
+							var web = plus.webview.getWebviewById("html/proinforupdate.html");
+							mui.fire(web, "newId", {
+								rd: 1
+							});
+							var web1 = plus.webview.getWebviewById('../html/updateinfo1.html');
+							plus.webview.close(web1);
+							var web3 = plus.webview.getWebviewById("html/myaccount.html");
+							mui.fire(web3, "photoUser");
+						} else {
+							var web = plus.webview.getWebviewById("html/researcher.html");
+							mui.fire(web, "newId", {
+								rd: 1
+							});
+							var web1 = plus.webview.getWebviewById('../html/updateinfo1.html');
+							plus.webview.close(web1);
+							var web3 = plus.webview.getWebviewById("html/myaccount.html");
+							mui.fire(web3, "photoUser");
+						}
+
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 						return;
@@ -216,5 +239,9 @@ mui.ready(function() {
 
 		});
 		personalMessage();
+		document.getElementsByClassName("topback")[0].addEventListener("tap", function() {
+			var web1 = plus.webview.getWebviewById('../html/updateinfo1.html');
+			plus.webview.close(web1);
+		})
 	});
 })

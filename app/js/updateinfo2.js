@@ -21,17 +21,30 @@ mui.ready(function() {
 						if(ws.flag == 1) {
 							plus.nativeUI.showWaiting();
 							var web = plus.webview.getWebviewById("html/companyUpdata.html");
-							mui.fire(web, "newId");
+							mui.fire(web, "newId",{
+									rd: 1
+								});
 							mui.back();
-						} else if(ws.flag == 2) {
+						} else if(ws.flag == 2) {						
 							plus.nativeUI.showWaiting();
 							var web = plus.webview.getWebviewById("html/proinforupdate.html");
-							mui.fire(web, "newId");
+							mui.fire(web, "newId",{
+									rd: 1
+								});
 							mui.back();
 						} else if(ws.flag == 0) {
 							plus.nativeUI.showWaiting();
 							var web = plus.webview.getWebviewById("html/studentUpdata.html");
-							mui.fire(web, "newId");
+							mui.fire(web, "newId",{
+									rd: 1
+								});
+							mui.back();
+						}else if(ws.flag == 4) {
+							plus.nativeUI.showWaiting();
+							var web = plus.webview.getWebviewById("html/researcher.html");
+							mui.fire(web, "newId",{
+									rd: 1
+								});
 							mui.back();
 						}
 

@@ -95,12 +95,12 @@ mui.plusReady(function() {
 					}
 					if(userid != proId) {
 						if(isAgree) {
-							var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn  icon-appreciate' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
+							var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis' dataCaption="+$data.caption+"><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn  icon-appreciate' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'dataCaption="+$data.caption+">";
 						} else {
-							var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn icon-appreciatefill' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'>";
+							var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis' dataCaption="+$data.caption+"><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><span class=' mui-icon iconfont plusbtn icon-appreciatefill' data-pid='" + $data.professorId + "' data-caption='" + $data.caption + "' data-isagree='" + isAgree + "' ></span><div class='likenum'dataCaption="+$data.caption+">";
 						}
 					} else {
-						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><div class='likenum'>"
+						var showDiv = "<div class='listbox'><div class='listbrowse mui-ellipsis'dataCaption="+$data.caption+"><span class='like'>" + $data.count + "</span>" + $data.caption + "</div><div class='likenum' dataCaption="+$data.caption+">"
 					}
 					if($photos.length < 4) {
 						for(var j = 0; j < $photos.length; ++j) {
@@ -424,6 +424,16 @@ mui.plusReady(function() {
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
 			resourceId: resouId
+		});
+	});
+	/*进入研究方向点赞页面*/
+	mui("#professorReserachMess").on('tap', '.listbrowse,.likenum', function() {
+		
+		var dataCap = this.getAttribute("dataCaption");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/researchAreaHead.html", 'researchAreaHead.html', {}, {
+			dataCaption: dataCap,
+			professorId:proId
 		});
 	});
 	/*咨询成功,返回专家信息*/

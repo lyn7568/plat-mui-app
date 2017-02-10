@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			#table li.mui-table-view-cell:after {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				left: 64px;
+				height: 1px;
+				content: '';
+				background-color: #c8c7cc;
+			}
+			
+			#table li.mui-table-view-cell:last-child:after {
+				background: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit">研究方向</h1>
+		</header>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script>
+			mui.init({
+				subpages: [{
+					url: 'researchArea.html',
+					id: 'researchArea.html',
+					styles: {
+						top: '44px',
+						bottom: '0px',
+					}
+				}]
+			});
+		</script>
+	</body>
+
+</html>

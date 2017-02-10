@@ -51,7 +51,7 @@ mui.ready(function() {
 						};
 						document.getElementsByClassName("infoapply")[0].innerHTML = html.join('');
 					}
-				}
+				}				
 			}
 			//查询研究方向
 		var getRecords = function($researchAreaLogs, caption) {
@@ -181,14 +181,20 @@ mui.ready(function() {
 						//学术领域
 						if($data.subject) {
 							subjectShow($data.subject);
+						}else{
+							document.getElementsByClassName("infosubject")[0].innerHTML =" ";
 						}
 						//研究方向
 						if($data.researchAreas.length) {
 							researchAreaShow($data.researchAreas, $data.editResearchAreaLogs);
+						}else{
+							document.getElementsByClassName("reserachMess")[0].innerHTML =" "
 						}
 						//应用行业
 						if($data.industry) {
 							industryShow($data.industry);
+						}else{
+							document.getElementsByClassName("infoapply")[0].innerHTML=" "
 						}
 						//我的资源
 						if($data.resources.length) {
@@ -254,15 +260,15 @@ mui.ready(function() {
 		});
 		var page = mui.preload({
 			url: "../html/updateinfo3.html",
-			id: "updateinfo3.html"
+			id: "updateinfo3.html",
+			extras:{flag:0}
 		})
 		document.getElementsByClassName("updatebox")[2].addEventListener("tap", function() {
 			page.show("slide-in-right", 150);
 		});
 		var page1 = mui.preload({
 			url: "../html/updateinfo4.html",
-			id: "updateinfo4.html",
-			extras:{flag:0}
+			id: "updateinfo4.html"
 		})
 		document.getElementsByClassName("updatebox")[3].addEventListener("tap", function() {
 			page1.show("slide-in-right", 150);

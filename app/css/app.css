@@ -1,4 +1,7 @@
+html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+.mui-content{height:100%;overflow: auto;}
 img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:bicubic;border:0;padding:0; margin:0;}
+
 /*清除mui部分原有样式*/
 .mui-input-group:before{background: none;}
 .mui-input-group:after{background: none;}

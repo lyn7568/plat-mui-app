@@ -60,10 +60,37 @@ window.addEventListener('exited', function(event) {
 	document.getElementById('unlogin').style.display = 'block';
 });
 
+function userInformation() {
+	var userId = plus.storage.getItem('userid');
+	mui.ajax(baseUrl + "/ajax/professor/editBaseInfo/" + userId, {
+		dataType: 'json', //数据格式类型
+		type: 'GET', //http请求类型
+		timeout: 10000, //超时设置
+		//async: false,
+		success: function(data) {
+			var $info = data.data || {};
+			oFlag = $info.authentication;
+			oFlag1 = $info.authType
+			console.log(oFlag)
+			if(data.success && data.data) {
+				if(!$info.authType) {
+					document.getElementById("needs").style.display = "none";
+				}
+			}
+
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+			return;
+		}
+	});
+}
 //显示登录,登陆或者注册
 mui.plusReady(function() {
 	var regBtn = document.getElementById("regBtn");
 	var logBtn = document.getElementById("logBtn");
+	userInformation()
+
 	//	注册
 	regBtn.addEventListener('tap', function() {
 		mui.openWindow({
@@ -202,6 +229,8 @@ function initData() {
 //加载第一页数据
 function getOnePage() {
 	mui.plusReady(function() {
+		document.getElementById("needs").style.display = "block";
+		userInformation()
 		var userid = plus.storage.getItem('userid');
 		var pageIndex = 1;
 		mui.ajax(baseUrl + '/ajax/consult/pq', {
@@ -373,11 +402,11 @@ window.addEventListener('backlist', function(event) {
 	mui('.status').each(function(index, item) {
 		if(this.getAttribute('consultId') == consultId) {
 			console.log(status)
-			if(status == 'myNeedAssessStatus=0') {			
+			if(status == 'myNeedAssessStatus=0') {
 				this.classList.remove('status-1');
 				this.classList.add('status-2');
 				this.innerHTML = '待评价';
-			}else if(status == 'myNeedAssessStatus=1') {				
+			} else if(status == 'myNeedAssessStatus=1') {
 				this.classList.remove('status-1');
 				this.classList.add('status-3');
 				this.innerHTML = '已完成';

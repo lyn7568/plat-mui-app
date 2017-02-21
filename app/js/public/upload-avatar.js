@@ -69,7 +69,7 @@ mui.plusReady(function() {
 		}, function(s) {
 			console.log("error" + s);
 		}, {
-			filename: "_doc/head.jpg"
+			filename: ""
 		})
 	}
 

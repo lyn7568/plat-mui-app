@@ -13,6 +13,7 @@ mui.ready(function() {
 	var ifosad =ifiosAmdandroid();
 	if(ifosad==1){
 		document.getElementById("ifios").style.display="none";
+		document.getElementById("noborder").classList.add("noborder");
 	}
 	/*账户与安全*/
 	security.addEventListener('tap',function(){

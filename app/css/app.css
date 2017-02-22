@@ -372,7 +372,7 @@ ul.boxnav li.set span:before{
 /*邀请新用户*/
 .inviteBox{position:relative;height:200px;background: url(../images/yqbg.jpg) center center no-repeat #f5f5f7;}
 .inviteBtn{position: absolute;bottom:20px; left:50%;margin-left: -60px;padding:4px 30px;background: #ff9900;color:#FFFFFF;}
-
+.noborder:after{height: 0;}
 /***********************我的账户*******************/
 
 /***********************专家信息修改*******************/

@@ -9,6 +9,11 @@ mui.ready(function() {
 	var kefu = document.getElementById("kefu");
 	var checkNewVersion = document.getElementById("checkNewVersion");
 	
+	/*判断系统类型，显示隐藏检查新版本*/
+	var ifosad =ifiosAmdandroid();
+	if(ifosad==1){
+		document.getElementById("ifios").style.display="none";
+	}
 	/*账户与安全*/
 	security.addEventListener('tap',function(){
 		plus.nativeUI.showWaiting();//显示原生等待框

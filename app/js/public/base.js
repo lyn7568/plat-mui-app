@@ -1,7 +1,7 @@
 //公共文件
 mui.init();
-//var baseUrl = "http://www.ekexiu.com",
-var baseUrl = "http://192.168.3.233",
+var baseUrl = "http://www.ekexiu.com",
+//var baseUrl = "http://192.168.3.233",
 //var baseUrl = "http:192.168.3.8:80",    
 	toastStyle = {
 		'verticalAlign': 'top',
@@ -71,5 +71,17 @@ function iosheader(){
 	mui.plusReady(function(){ 
 		plus.webview.currentWebview().setStyle({ softinputMode:"adjustResize" });
 	})
+}
+//判断设备是iOS或者Android系统
+function ifiosAmdandroid(test){
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	if(isAndroid){
+		 return '0';
+	}
+	if(isiOS){
+		 return '1';
+	}
 }
 

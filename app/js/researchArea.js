@@ -19,6 +19,34 @@ mui.plusReady(function() {
 	var wd = plus.webview.getWebviewById("researchAreaHead.html");
 	document.getElementById("researchArea").innerText = wd.dataCaption;
 	personalMessage();
+	/*进入为学术领域点赞人的浏览页面*/
+	mui("#table").on('tap', 'li', function() {
+		var professId = this.getAttribute("professorId");
+		var authentication = this.getAttribute("authentication");
+		var authType = this.getAttribute("authType");
+		console.log(authentication)
+		plus.nativeUI.showWaiting();
+		if(authType == 1) {
+			plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+				proid: professId
+			});
+		} else {
+			if(authentication == 1) {
+				plus.webview.create("../html/researcherProw.html", 'researcherProw.html', {}, {
+					proid: professId
+				});
+			} else if(authentication == 2) {
+				plus.webview.create("../html/companybrowse.html", 'companybrowse.html', {}, {
+					proid: professId
+				});
+			} else if(authentication == 3) {
+				plus.webview.create("../html/studentbrowse.html", 'studentbrowse.html', {}, {
+					proid: professId
+				});
+			}
+		}
+
+	});
 });
 
 function personalMessage(a) {
@@ -38,13 +66,20 @@ function personalMessage(a) {
 			timeout: 10000, //超时设置
 			data: c,
 			success: function(data) {
-				if(data.success) {
+				if(data.success) {					
 					plus.nativeUI.closeWaiting();
 					ws.show("slide-in-right", 150);
-					if(data.data.length == 0) {
-						document.getElementsByClassName("littip")[0].style.display = "none";
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-						return;
+					if(!a) {
+						if(data.data.length == 0) {
+							document.getElementsByClassName("littip")[0].style.display = "none";
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+							return;
+						}
+					} else {
+						if(data.data.length == 0) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+							return;
+						}
 					}
 					var table = document.getElementById("table");
 					var datalist = data.data;
@@ -80,7 +115,6 @@ function datalistEach(datalist) {
 		var office = "";
 		var orgName = "";
 		var address = "";
-		console.log(JSON.stringify(item))
 		if(item.title && item.office && item.orgName && item.address) {
 			title = item.title + "，";
 			office = item.office + "，";
@@ -145,8 +179,10 @@ function datalistEach(datalist) {
 		}
 
 		var li = document.createElement('li');
-		li.className = 'mui-table-view-cell mui-media NoActive mui-active';
+		li.className = 'mui-table-view-cell mui-media';
 		li.setAttribute("professorId", item.id);
+		li.setAttribute("authentication", item.authentication);
+		li.setAttribute("authType", item.authType);
 		li.innerHTML = '<a class="proinfor" data-id="' + item.id + '"' +
 			'<p><img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '"></p>' +
 			'<div class="mui-media-body">' +

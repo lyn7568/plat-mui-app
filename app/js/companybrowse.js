@@ -8,6 +8,7 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var proId = self.proid;
+	document.getElementsByClassName("footbox")[0].style.display="none";
 	if(userid == proId) {
 		document.getElementsByClassName('footbox')[0].style.display = "none";
 	}
@@ -66,6 +67,7 @@ mui.plusReady(function() {
 			type: 'GET', //http请求类型
 			timeout: 10000, //超时设置
 			success: function(data) {
+				console.log(JSON.stringify(data))
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				var $data = data.data;
@@ -77,12 +79,12 @@ mui.plusReady(function() {
 				//				} else {
 				//					document.getElementById("accessHistory").style.display = "none";
 				//				}
-				var startLeval = parseInt($data.starLevel);
-				var start = document.getElementsByClassName("start");
-				for(var i = 0; i < startLeval; i++) {
-					start[i].classList.add("icon-favorfill");
-					start[i].classList.remove("icon-favor");
-				}
+//				var startLeval = parseInt($data.starLevel);
+//				var start = document.getElementsByClassName("start");
+//				for(var i = 0; i < startLeval; i++) {
+//					start[i].classList.add("icon-favorfill");
+//					start[i].classList.remove("icon-favor");
+//				}
 				if($data.hasHeadImage) {
 					document.getElementsByClassName("headimg")[0].src = baseUrl + "/images/head/" + $data.id + "_l.jpg";
 				} else {

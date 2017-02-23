@@ -65,7 +65,7 @@ mui.ready(function() {
 							personalMaterial[5].parentNode.style.display = "none";
 						}
 						//个人简介
-
+						personSummary.innerHTML=""
 						if($data.descp) {
 							personSummary.innerHTML = $data.descp;
 						}

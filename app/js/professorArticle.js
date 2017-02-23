@@ -94,7 +94,6 @@ mui.plusReady(function() {
 							zlist += '，';
 						}
 					}
-					oImgShare=baseUrl + '/data/article/' + $info.articleImg;
 					//console.log(oImg)
 					//alert(oImg)
 					($info.professor.resources) ? proZlist.innerHTML = zlist: proZlist.innerText = '';
@@ -108,6 +107,7 @@ mui.plusReady(function() {
 					proticleName= $info.articleTitle;
 					if($info.articleContent) {
 						main_content.innerHTML = $info.articleContent;
+						oImgShare=main_content.innerText;
 						var oImg = main_content.getElementsByTagName("img");
 						for(var i = 0; i < oImg.length; i++) {
 							(function(n) {
@@ -192,20 +192,20 @@ mui.plusReady(function() {
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
-						content: "",
-						title: proticleName,
+						content: oImgShare,
+						title: "【科袖文章】"+proticleName,
 						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId="+proId ,
-						thumbs: [oImgShare]
+						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
 			} else if(e.index == 2) {
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {
-						content: "",
-						title: proticleName,
+						content: oImgShare,
+						title: "【科袖文章】"+proticleName,
 						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId="+proId ,
-						thumbs: [oImgShare]
+						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
 			}

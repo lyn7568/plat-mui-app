@@ -256,7 +256,6 @@ ul.boxnav li.set span:before{
 /*热门专家*/
 .mui-table-view-cell.prolist:after{/*background:#C0C0C0*//*#c8c7cc;*/}
 .protable:before{ background-color:transparent;}
-#table .mui-table-view-cell:after{right: 0;bottom: 0;left:0;background: none;}
 
 .mui-media .headimg{max-width:60px; height:60px; margin: 1% 0;overflow:hidden;}
 .mui-media .resimg{border-radius:2px; max-width:60px; height:60px; margin: 1% 0;}
@@ -506,10 +505,6 @@ ul.boxnav li.set span:before{
 .coutopicbox{ position: relative;z-index: 1;border-bottom: 1px solid #EFEFEF;background: #FFFFFF; margin-bottom: 10px; width:110%; margin-left:-16px; padding:10px 10px 8px 10px; overflow: hidden;}
 
 .coutopicbox .coutheme{ max-width: 60%;}
-#table {background: #EFEFEF;}
-#table li .proinfor{background:#FFFFFF;}
-#table li:first-child{margin-top:0;}
-
 .coutopicbox .coustatus span{ font-size: 12px; padding:4px 10px; margin: 0 2px; color: #FFFFFF; border-radius: 6px;}
 .coutopicbox .aimlabel{background:#6CA8FF;}
 .coutopicbox .status-1{background:#FF9900;}/*进行中*//*咨询状态*/
@@ -545,7 +540,6 @@ footer.chatFooter .mui-icon:active {color: #FF9900 !important;}
 footer.chatFooter .mui-icon-paperplane:before {content: "发送";color:lightgray;}
 footer.chatFooter .mui-icon-paperplane.addColor:before {content: "发送";color:#ff9900;}
 footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;line-height: 100%;padding-top: 6px;color: rgba(0, 135, 250, 1);}
-.protable .mui-table-view-cell.mui-active{background: none;}
 .timenow.thistime{right: 3%;}
 
 /*********************** 咨询*******************/
@@ -570,7 +564,6 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .resouinfobox>li{ list-style: none; margin:10px 4px; padding-left: 10px; font-size: 14px; line-height: 20px; word-break: break-all;}
 /*研究方向详细展示*/
 .researchAreaBox .headimg{width: 40px;height: 40px;max-height: 40px;}
-.researchAreaBox .mui-table-view .mui-table-view-cell.mui-active{background: none;}
 .researchAreaBox .mui-table-view-cell:after{left:62px;}
 .researchAreaBox .littip{font-size:13px;margin: 2% 0 1% 2%;}
 .researchAreaBox .mui-media-body{padding-top:5px;}

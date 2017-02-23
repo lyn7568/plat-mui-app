@@ -74,7 +74,8 @@ function userInformation() {
 			console.log(oFlag)
 			if(data.success && data.data) {
 				if(!$info.authType) {
-					document.getElementById("needs").style.display = "none";
+					document.getElementById("consuitSta").innerHTML = "我的需求";
+					document.getElementById("consuitSta").removeAttribute("href");
 				}
 			}
 

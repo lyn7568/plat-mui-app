@@ -20,7 +20,7 @@ mui.plusReady(function() {
 	document.getElementById("researchArea").innerText = wd.dataCaption;
 	personalMessage();
 	/*进入为学术领域点赞人的浏览页面*/
-	mui("#table").on('tap', 'li', function() {
+	/*mui("#table").on('tap', 'li', function() {
 		var professId = this.getAttribute("professorId");
 		var authentication = this.getAttribute("authentication");
 		var authType = this.getAttribute("authType");
@@ -47,6 +47,7 @@ mui.plusReady(function() {
 		}
 
 	});
+*/
 });
 
 function personalMessage(a) {

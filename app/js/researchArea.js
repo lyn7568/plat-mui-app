@@ -20,13 +20,14 @@ mui.plusReady(function() {
 	document.getElementById("researchArea").innerText = wd.dataCaption;
 	personalMessage();
 	/*进入为学术领域点赞人的浏览页面*/
-	/*mui("#table").on('tap', 'li', function() {
+	mui("#table").on('tap', 'li', function() {
 		var professId = this.getAttribute("professorId");
 		var authentication = this.getAttribute("authentication");
 		var authType = this.getAttribute("authType");
 		console.log(authentication)
 		plus.nativeUI.showWaiting();
 		if(authType == 1) {
+			//plus.webview.close("proinforbrow.html");
 			plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
 				proid: professId
 			});
@@ -47,7 +48,6 @@ mui.plusReady(function() {
 		}
 
 	});
-*/
 });
 
 function personalMessage(a) {

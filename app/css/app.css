@@ -479,6 +479,11 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .consultinfo tr td.sendbox{text-align: right;position: relative;}
 .consultinfo tr td .sendbtn{width: 20%;font-size: 13px; padding: 4px 10px;margin:0;position:absolute;right:0; top:0; }
 
+.tableList .mui-table-view-cell:after{right: 0;bottom: 0;left:0;background: none;}
+.tableList {background: #EFEFEF;}	
+.tableList li .proinfor{background:#FFFFFF;}	
+.tableList li:first-child{margin-top:0;}
+
 .operatebox{ width:100%;background: #FFFFFF;overflow: hidden;min-height: 60px;padding:10px;position: relative;}
 .themespan{ width: 54%;}
 .operatebtnbox{width:44%;position:absolute; top:50%; right:1%;margin-top:-13px;}
@@ -504,6 +509,8 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .coutopicbox .status-1{background:#FF9900;}/*进行中*//*咨询状态*/
 .coutopicbox .status-2{background:#dd524d;}/*待评价*/
 .coutopicbox .status-3{background:#0ee032;}/*已完成*/
+.coutopicbox .status-4{background:#6CA8FF;}/*待回复/新咨询*/
+.coutopicbox .status-5{background:#d3d3d3;}/*已拒绝/被拒绝*/
 
 .thistime{ position: absolute; right:6px; font-size: 12px; color: #999999;}
 
@@ -653,4 +660,5 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .demandBtn .frmactive2{background: none;border:none;color:#999999;}
 .demandBtn .frmactive2.mui-btn:enabled:active{background: none;border:none;color:#999999}
 
-
+/*新加实名认证*/
+.submutbut{float:right; padding:0 10px; line-height:45px ; font-size:14px; color: #fff;}

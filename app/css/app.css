@@ -55,10 +55,10 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 .mainbox{width: 96%; margin:2% auto;}
 .mainbox:before{ position:static;}
 /*div模拟textarea多行文本框*/
-div.textareabox{font-size:13px;padding:2px;-webkit-user-select:text;-webkit-user-modify: read-write-plaintext-only;}
-div.textareaboxEmp:empty:before {content: attr(placeholder);display: block;color: #AAAAAA;}
+div.textareabox{font-size:14px;padding:2px;-webkit-user-select:text;-webkit-user-modify: read-write-plaintext-only;}
+div.textareaboxEmp:empty:before {content: attr(placeholder);font-size:14px;display: block;color: #AAAAAA;}
 .borderarea{border-bottom: 1px solid #F0F0F0;}
-
+.limitNum{font-size:13px;text-align: right;color:#BBBBBB;}
 /*必填项样式*/
 .requiredcon{ position: absolute; top:0; margin-left:4px; width: 8px; height:8px; background: url(../images/requiredicon.png) center center no-repeat; background-size: 100% 100%;}
 /*功能icon样式*/
@@ -121,7 +121,7 @@ div.textareaboxEmp:empty:before {content: attr(placeholder);display: block;color
 .authicon-cu{color:#FF9900;}/*认证科研型专家*/
 .authicon-com{/*color:#00aaee;*/ color:#2082fb;}/*认证企业型专家*/
 /*普通用户认证标识 icon-renzheng*/
-em.icon-renzheng{position:absolute;float:left;font-size: 0;width:48px;height:16px;background-image:url(../images/authicon.png);background-repeat:no-repeat; }
+em.mui-icon.iconfont.icon-renzheng{position:absolute;float:left;font-size: 0;width:48px;height:16px;background-image:url(../images/authicon.png);background-repeat:no-repeat; }
 .authicon-mana{background-position: 0 -1px;background-size:100% auto;color:#ff9900;}/*认证科研*/
 .authicon-staff{background-position: 0 -16px;background-size:100% auto;color:#007AFF;}/*认证企业*/
 .authicon-stu{background-position: 0 -32px;background-size:100% auto;color:#0ee032;}/*认证在读学生*/
@@ -196,27 +196,20 @@ button:disabled,input.frmtype[type='button']:disabled{ opacity: 1;}
 .maincon ul li{ list-style: none;padding-left: 2%;font-size: 14px;line-height: 20px; overflow: hidden;}
 .boxnav-title{font-size: 14px; color:#888; font-weight: normal;position:relative;padding-left:6%;}
 ul.boxnav{ overflow: hidden;width:100%; padding: 0 3%;}
-ul.boxnav li{list-style: none;width:33.333%;float:left; padding:0 10px;    -webkit-box-sizing: border-box;}
+ul.boxnav li{list-style: none;width:50%;float:left; padding:5px 10px;    -webkit-box-sizing: border-box;}
 ul.boxnav li span{width:100%; font-size:12px;height:28px; line-height:26px; text-align: center; display: block; background: #fff;  border-radius: 5px;}
 ul.boxnav li:nth-child(1) span{border:1px solid #ff9900; color: #ff9900;}
 ul.boxnav li:nth-child(2) span{border:1px solid #6699ff; color: #6699ff;}
 ul.boxnav li:nth-child(3) span{border:1px solid #66cc00; color: #66cc00;}
+ul.boxnav li:nth-child(4) span{border:1px solid #666; color: #666;}
 ul.boxnav li.liactive{}
 ul.boxnav li .icon-check {border: 1px solid;border-radius: 50%;font-size: 12px;margin-right: 3%;}
 ul.boxnav li.set:nth-child(1) span{border:1px solid #ff9900; color: #fff; background: #ff9900; }
 ul.boxnav li.set:nth-child(2) span{border:1px solid #6699ff; color: #fff; background: #6699ff; }
 ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; background: #66cc00; }
-ul.boxnav li.set span:before{
-  font-family:"iconfont" !important;
-  font-style:normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke-width: 0.2px;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\e645";
-  border:1px solid;
-  border-radius: 50%;
-  font-size:12px; 
-  margin-right: 4%;}
+ul.boxnav li.set:nth-child(4) span{border:1px solid #666; color: #fff; background: #666; }
+ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px solid;border-radius: 50%;font-size:12px; margin-right: 4%;}
+
 /*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
 .maincon ul li.basicfrm{list-style: none; position: relative; overflow: hidden; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin:-4px 0 14px 2%;padding-left:0; }
 .maincon ul li.basicfrm .frmtype{ height: 26px; padding:0; padding-right:2%;line-height:20px;font-size: 14px; }
@@ -624,3 +617,35 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .articalBox .indentNone img{width:98%; margin: 6px 0;}
 .articalBox .indentNone .imgTit{ font-size: 12px;line-height: 20px;}
 .articalBox .artSTit{text-indent: 0.2em;font-size:16px; color:#069E21;}
+/*需求相关*/
+
+.maincon ul .divideSpace{margin:4px auto 8px;}
+.maincon ul.chooseBox{padding:0;margin: 0;}
+.hotsearch.chooseBox li{border-color: #D3D3D3;color:#999999;padding-left:18px;}
+.addlabel .lineInput{border:none;border-bottom:1px solid #F0F0F0;border-radius: 0;padding-left:2px}
+.divideSpace .labelshow li{color:#ff9900;}
+.hotsearch.chooseBox li{padding:0;}
+.hotsearch.chooseBox li span{line-height:26px;padding:4px 20px;}
+.hotsearch.chooseBox li:active{background: none;}
+.hotsearch.chooseBox li.checkedLi{background: #ff9900;color:#FFFFFF;border-color:#ff9900}
+.hotsearch.chooseBox li.checkedLi span:before{font-family:"iconfont";content: "\e645";border:1px solid;
+  border-radius: 50%;font-size:12px;line-height: 24px; margin-right:3%;} 
+.divideSpace .littipCh{padding-left:10px;}
+.divideSpace .littipCh .littip p{color:#BBBBBB;line-height: 20px;font-size: 12px;text-indent: 2.1em;}
+.divideSpace .littipCh .littip{display: none;}
+.divideSpace .littipCh .littip:first-child{display: block;}
+
+.demandBox ul.boxnav li{width:33.333%;}
+.demandBox ul.boxnav.boxnavTo li:nth-child(2){width:66%}
+.demandBox ul.boxnav.boxnavTo li span{border-color:#ff9900;color:#FF9900;}
+.demandBox ul.boxnav.boxnavTo li .checkNow{background:#ff9900; color:#FFFFFF}
+.demandBox ul.boxnav.boxnavTo li .checkNow:before{font-family:"iconfont";content: "\e645";border:1px solid;
+  border-radius: 50%;font-size:12px; margin-right:3%;}
+.demandBox ul.boxnav.boxnavTo li .checkNo{border-color:#D3D3D3;background:#D3D3D3;color:#FFFFFF;}
+
+.demandBasic{padding:4px 0;}
+.demandBasic h5{line-height: 26px;}
+.demandBasic h5 span{margin-right:2%;}
+.demandBasic h5 em{font-style: normal;display: inline-block;padding:0 3%;background:#6699ff;margin:0 4px;border-radius:6px;color: #FFFFFF;font-size:12px;line-height: 22px;}
+.demandCon{position:relative;}
+.demandBtn{position: absolute;bottom:4%;right:0; left:0;}

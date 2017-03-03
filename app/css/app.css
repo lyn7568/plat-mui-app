@@ -57,6 +57,7 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 /*div模拟textarea多行文本框*/
 div.textareabox{font-size:14px;padding:2px;-webkit-user-select:text;-webkit-user-modify: read-write-plaintext-only;}
 div.textareaboxEmp:empty:before {content: attr(placeholder);font-size:14px;display: block;color: #AAAAAA;}
+div.textareaboxEmp:focus{content:none;}
 .borderarea{border-bottom: 1px solid #F0F0F0;}
 .limitNum{font-size:13px;text-align: right;color:#BBBBBB;}
 /*必填项样式*/
@@ -435,7 +436,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .filterblock li em{ font-size:18px; margin:0 2px;}
 .filterlist{ padding:0; margin: 0; border:none; border-radius:0;padding:6px 6px 6px 12px;font-size: 13px;}
 /*筛选条件*/
-.popoverbox2 {border-radius:4px;width:0;height:0;width:100%;min-height:300px;font-size: 13px; }
+.popoverbox2 {border-radius:4px;width:0;height:0;width:98%;min-height:300px;font-size: 13px; }
 .popoverbox2 .mui-popover-arrow{left:50%; margin-left:-12px;}
 .popoverbox2 .mui-table-view{padding:4px;border-radius: 0; overflow: hidden;}
 .popoverbox2 .mui-table-view-cell{text-align: center;float: left; margin:4px 4%;border-radius:4px;}
@@ -493,7 +494,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .filterblock2 li select{  margin:0 2px;}
 .filterlist2{ padding:0; margin: 0; border:none; border-radius:0;padding:6px;font-size: 13px;}
 .filterlist3 span{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;display:inline-block;max-width:84%;text-align: left;}
-.filterlist3 em{position: absolute;top:32%;}
+.filterlist3 em{position: absolute;top:38%;}
 
 .coutopicbox{ position: relative;z-index: 1;border-bottom: 1px solid #EFEFEF;background: #FFFFFF; margin-bottom: 10px; width:110%; margin-left:-16px; padding:10px 10px 8px 10px; overflow: hidden;}
 
@@ -519,7 +520,6 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .popoverbox .mui-table-view-cell{padding:8px 14px;/* text-align: center;*/}
 .popoverbox .mui-table-view-cell>a:not(.mui-btn){ margin-right:-12%;position: relative;}
 .popoverbox .mui-table-view-cell .mui-navigate-right:after { position:absolute;right: 0; color:#FF9900;font-size: 24px;}
-.mui-popover4{ width: 130px;  }
 /*chat对话块*/
 footer.chatFooter {position: fixed;width: 100%;height: 50px;min-height: 50px;border-top: solid 1px #bbb;left: 0px;bottom: 0px;overflow: hidden;padding: 0px 50px;background-color: #fafafa;padding-left: 5px;}
 .footer-left {position: absolute;width: 50px;height: 50px;left: 0px;bottom: 0px;text-align: center;vertical-align: middle;line-height: 100%;padding: 12px 4px;}
@@ -618,7 +618,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .articalBox .indentNone .imgTit{ font-size: 12px;line-height: 20px;}
 .articalBox .artSTit{text-indent: 0.2em;font-size:16px; color:#069E21;}
 /*需求相关*/
-
+.contentInner{width:90%;margin:4% auto;}
 .maincon ul .divideSpace{margin:4px auto 8px;}
 .maincon ul.chooseBox{padding:0;margin: 0;}
 .hotsearch.chooseBox li{border-color: #D3D3D3;color:#999999;padding-left:18px;}
@@ -644,8 +644,13 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .demandBox ul.boxnav.boxnavTo li .checkNo{border-color:#D3D3D3;background:#D3D3D3;color:#FFFFFF;}
 
 .demandBasic{padding:4px 0;}
+.demandBasic h3{}
 .demandBasic h5{line-height: 26px;}
 .demandBasic h5 span{margin-right:2%;}
 .demandBasic h5 em{font-style: normal;display: inline-block;padding:0 3%;background:#6699ff;margin:0 4px;border-radius:6px;color: #FFFFFF;font-size:12px;line-height: 22px;}
-.demandCon{position:relative;}
-.demandBtn{position: absolute;bottom:4%;right:0; left:0;}
+.conBody{position: relative; min-height: 100%;padding-bottom:20%;}
+.demandBtn{position: absolute;bottom:2%;right:0; left:0;}
+.demandBtn .frmactive2{background: none;border:none;color:#999999;}
+.demandBtn .frmactive2.mui-btn:enabled:active{background: none;border:none;color:#999999}
+
+

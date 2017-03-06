@@ -47,23 +47,23 @@
 							<div class="littip"></div>
 						</li>
 						<li><label>需求主题<em class="requiredcon"></em></label></li>
-						<li class="basicfrm"><input type="text" name="comname" placeholder="请用一句话概括您的需求" class="mui-input-clear frmtype"></li>
+						<li class="basicfrm"><input type="text" name="comname" placeholder="请用一句话概括您的需求" class="mui-input-clear frmtype" id="demandContent"></li>
 						<li><label>需求内容<em class="requiredcon" ></em></label></li>
 						<li class="divideSpace" style="height:auto">
 							<div class="textareabox textareaboxEmp borderarea" contenteditable="true" placeholder="请详细描述您遇到的问题，以便为您找到最合适的专家"></div>
-							<div class="limitNum">您还能输入<span class="countNum">300</span> 字</div>
+							<div class="limitNum">您还能输入<span id="countNum">300</span> 字</div>
 						</li>
 						<li><label>请选择需求涉及的行业或领域（可多选）</label></li>
 						<li class="divideSpace">
 							<ul class="hotsearch chooseBox">
-					       		<li><span>材料检测</span></li>
+					       		<!--<li><span>材料检测</span></li>
 					       		<li><span>防腐蚀</span></li>
 					       		<li class="checkedLi"><span>金属基复合材料</span></li>
 					       		<li class="checkedLi"><span>金属基复合材料</span></li>
 					       		<li><span>微晶金属材料</span></li>
 					       		<li class="checkedLi"><span>金属基复合材料</span></li>
 					       		<li><span>微晶金属材料</span></li>
-					       		<li><span>微晶金属材料</span></li>
+					       		<li><span>微晶金属材料</span></li>-->
 					       </ul>
 						</li>
 						<li class="divideSpace">
@@ -72,9 +72,9 @@
 								<button class="mui-btn mui-pull-left addlabelbtn">添加</button>
 							</div>
 							<div class="labelarea">
-	                        	<ul class="labelshow chooseBox">
-						       		<li>4565566<em class='mui-icon mui-icon-closeempty'></em></li>
-						       		<li>4565566<em class='mui-icon mui-icon-closeempty'></em></li>
+	                        	<ul class="labelshow chooseBox" id="labelshow">
+						       		<!--<li>4565566<em class='mui-icon mui-icon-closeempty'></em></li>
+						       		<li>4565566<em class='mui-icon mui-icon-closeempty'></em></li>-->
 						       	</ul>
 	                        </div>
 						</li>
@@ -84,26 +84,7 @@
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
-		<script type="text/javascript"> 
-			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
-		    iosheader();
-		     mui.plusReady(function(){
-		    	var self = plus.webview.currentWebview();
-		    })
-			tab("navsub");//身份切换
-			function tab(name) { 
-				var oDome = document.getElementById(name);
-				var oSpan = oDome.getElementsByTagName('ul')[0].childNodes;
-				for(var i = 0; i < oSpan.length; i++) {
-					oSpan[i].onclick = function() {
-						for(var i = 0; i < oSpan.length; i++) {
-							oSpan[i].className = '';
-						}
-						this.className = 'set';
-					}
-				}
-			}
-		</script>
+		<script type="text/javascript" src="../js/needIssue.js"></script>
 	</body>
 
 </html>

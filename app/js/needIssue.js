@@ -78,9 +78,7 @@ mui.ready(function() {
 				var content = trim(addContent);
 				if(content) {
 					var node = document.createElement("li");
-					node.innerHTML 
-					
-					= content + '<em class="mui-icon mui-icon-closeempty"></em>';
+					node.innerHTML = content + '<em class="mui-icon mui-icon-closeempty"></em>';
 					document.getElementsByClassName("labelshow")[0].appendChild(node);
 					document.getElementsByClassName('lineInput')[0].value = ''
 				} else {

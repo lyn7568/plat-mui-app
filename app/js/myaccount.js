@@ -8,6 +8,7 @@ mui.ready(function() {
 	var goSetup = document.getElementById("goSetup");
 	var goZixun = document.getElementById("goZixun");
 	var goZixunbox = document.getElementById("goZixunbox");
+	var gonXuqiu=document.getElementById("demand");
 	var oEdit = document.getElementById("editbox");
 	var goFollow = document.getElementById("goFollow");
 	var userImg = document.getElementById("userImg");
@@ -68,7 +69,17 @@ mui.ready(function() {
 						}
 					});
 				})
-
+				/*我的需求*/
+				gonXuqiu.addEventListener('tap', function() {
+					mui.openWindow({
+						url: '../html/needList.html',
+						id: '../html/needList.html',
+						show: {
+							autoShow: false,
+							aniShow: "slide-in-right"
+						}
+					});
+				})
 				/*我的关注*/
 				goFollow.addEventListener('tap', function() {
 					mui.openWindow({

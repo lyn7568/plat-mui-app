@@ -18,12 +18,12 @@ mui.ready(function() {
 						oSpan[i].className = '';
 					}
 					this.className = 'set';
-					if(this.getElementsByTagName("span")[0].innerText=="咨询技术难题"){
-						consun=1;
-					}else if(this.getElementsByTagName("span")[0].innerText=="寻求研发资源"){
-						consun=2;
-					}else{
-						consun=3;
+					if(this.getElementsByTagName("span")[0].innerText == "咨询技术难题") {
+						consun = 1;
+					} else if(this.getElementsByTagName("span")[0].innerText == "寻求研发资源") {
+						consun = 2;
+					} else {
+						consun = 3;
 					}
 				}
 			}
@@ -47,7 +47,7 @@ mui.ready(function() {
 		});
 		/*需求题目*/
 		demandContent.addEventListener('keyup', function() {
-			if(demandContent.value.length > 30){
+			if(demandContent.value.length > 30) {
 				demandContent.value = demandContent.value.substring(0, 30);
 			}
 		});
@@ -134,36 +134,46 @@ mui.ready(function() {
 			})
 			/*发布需求函数*/
 		function publish() {
-			var arr=[];
-			var arr1=[0,1,2]
-			var oSuin=document.getElementsByClassName("checkedLi");
-			var oin= document.getElementById("labelshow").getElementsByTagName("li");
-			for(var i=0;i<oSuin.length;i++){
-				arr[i]=oSuin[i].innerText;
+			var arr = [];
+			var oSuin = document.getElementsByClassName("checkedLi");
+			var oin = document.getElementById("labelshow").getElementsByTagName("li");
+			for(var i = 0; i < oSuin.length; i++) {
+				arr[i] = oSuin[i].innerText;
 			}
-			for(var j=0;j<oin.length;j++,i++){
-				arr[i]=oin[j].innerText;
+			for(var j = 0; j < oin.length; j++, i++) {
+				arr[i] = oin[j].innerText;
 			}
-			
+
 			mui.ajax(baseUrl + '/ajax/demand', {
 				dataType: 'json', //数据格式类型
 				type: 'post', //http请求类型
 				timeout: 10000, //超时设置
-				traditional:true,
+				traditional: true,
 				data: {
 					"demander": userid,
-					"demandAim":consun, 
+					"demandAim": consun,
 					"demandType": 1,
 					"demandTitle": demandContent.value,
 					"demandContent": oconsultcon.innerText,
-					"args":arr
+					"args": arr
 				},
 				success: function(data) {
 					console.log(JSON.stringify(data))
 					if(data.success) {
-						
+
 						plus.nativeUI.toast("需求发布成功！很快会有专家与您联系，您可以在咨询列表中查看专家回复的信息", toastStyle);
-						mui.back();
+						var curr = plus.webview.currentWebview();
+						var wvs = plus.webview.all();
+						for(var i = 0, len = wvs.length; i < len; i++) {
+							//关闭除setting页面外的其他页面
+							if(wvs[i].getURL() == curr.getURL())
+								continue;
+							plus.webview.close(wvs[i]);
+						}
+						//打开login页面后再关闭setting页面
+						plus.webview.open('../index.html');
+						curr.close();
+
 					}
 				},
 				error: function() {

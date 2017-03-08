@@ -342,6 +342,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 
 .wallteicon{ color:#FAD000;}
 .addicon{ color:#00AAEF;}
+.toProicon{ color:#ff00ba;}
 .seticon{color:#ACACB4;}
 .attenticon{ color:#FF9900;}
 .rightword{ position: absolute; right:40px; font-size:13px; color: #999999;}
@@ -607,6 +608,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 /***********************科袖用户协议*******************/
 
 /***********************首页轮播*******************/
+.bannerA{/*height:200px;*/background: url(../images/banner/banner0307.png) center center no-repeat;background-size: cover;}
 .art_topicBox{position: relative;display: block;height: 180px;}
 .art_topicBox img{width:100%;}
 .art_topicbox{ position:absolute;top:0;width:100%;height:100%;

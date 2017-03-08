@@ -59,7 +59,7 @@
  			success:function(data){
  				//console.log('咨询申请返回值=='+data.data);
  				if(data.success) {
- 					mui.toast('咨询成功');
+ 					plus.nativeUI.toast("咨询申请成功！专家会很快与您联系，请在咨询列表中查看专家回复的信息", toastStyle);
  				}else {
  					/*mui.alert('咨询失败', '');*/
  				}
@@ -165,21 +165,14 @@
 
  	/*咨询申请字数限制*/
 	function checkLen(obj) {  
-
 		var maxChars = 300;//最多字符数  
-		
 		if (obj.innerText.length > maxChars) {
-			
 			obj.innerText = obj.innerText.substring(0,maxChars); 
 		}
-		
 		var curr = maxChars - obj.innerText.length;  
-		
 		document.getElementById("count").innerHTML = curr.toString(); 	
 	};
- 	
  	oconsultcon.addEventListener('keyup',function(){
-		
 		checkLen(oconsultcon);
 	});
  	
@@ -196,16 +189,14 @@
    	 	/*专家信息数据*/
    	    proinfo(proId);
    	    if(flag == 'ziyuan') {
-   	    	oconsulttitle.innerText='关于'+consulttitle+'的咨询' ;
+   	    	oconsulttitle.value='关于'+consulttitle+'的咨询' ;
    	    	var lilist = oconsulttype_ul.querySelectorAll('li');
    	    	var oziyuanspan = document.getElementById("ziyuanspan");
-   	    	var emele = document.createElement('em');
-   	    	emele.className = "mui-icon iconfont icon-check";
    	    	for(var i = 0 ; i < lilist.length; i++){
    	    		lilist[i].classList.remove('liactive');
-   	    		lilist[i].querySelector("em").remove();
+   	    		lilist[i].querySelector("em").classList.remove('icon-check'); 
    	    		lilist[1].classList.add('liactive');
-   	    		lilist[1].insertBefore(emele,oziyuanspan);
+   	    		lilist[1].querySelector("em").classList.add('icon-check');;
    	    	}
    	    	
    	    }

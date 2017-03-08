@@ -11,6 +11,7 @@ var ostateval = document.getElementById("stateval"); //咨询状态
 var osortval = document.getElementById("sortval"); //时间排序
 
 var ozixunpullrefresh = document.getElementById("zixunpullrefresh"); //刷新容器，控制安卓和iOS容器到header距离不一样
+var oFlag1;
 
 //判断是否登录，显示数据或登录页面
 function islogin() {
@@ -44,9 +45,15 @@ window.addEventListener('logined', function(event) {
 
 });
 
+/*咨询确认页面自定义事件*/
+window.addEventListener('consid', function(event) {
+	initData();
+});
+
 mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
 	console.log('当前咨询列表页id===' + self.id);
+	
 })
 
 /*退出*/
@@ -66,19 +73,36 @@ function userInformation() {
 		dataType: 'json', //数据格式类型
 		type: 'GET', //http请求类型
 		timeout: 10000, //超时设置
-		//async: false,
+		async: false, 
 		success: function(data) {
 			var $info = data.data || {};
 			oFlag = $info.authentication;
 			oFlag1 = $info.authType
-			console.log(oFlag)
 			if(data.success && data.data) {
 				if(!$info.authType) {
 					document.getElementById("consuitSta").innerHTML = "我的需求";
 					document.getElementById("consuitSta").removeAttribute("href");
+					document.getElementById("newszixun").innerHTML="待回复";
+					document.getElementById("newsok").innerHTML="被谢绝";
+					document.getElementById("newwc").innerHTML="待评价";
+					document.getElementById("newwc").setAttribute("ck3","5")
+				}else{
+					if(oneedval.value==2){
+						document.getElementById("newszixun").innerHTML="待回复";
+						document.getElementById("newsok").innerHTML="被谢绝";
+						document.getElementById("newwc").innerHTML="待评价";
+						document.getElementById("newwc").setAttribute("ck3","5")
+					}else{
+						document.getElementById("newszixun").innerHTML="新咨询";
+						document.getElementById("newsok").innerHTML="已谢绝";
+						document.getElementById("newwc").innerHTML="已完成";
+						document.getElementById("newwc").setAttribute("ck3","4")
+						/*mui("#removedatdt a.set").each(function () {
+						   alert(this.innerHTML);
+						});*/
+					}	
 				}
 			}
-
 		},
 		error: function() {
 			plus.nativeUI.toast("服务器链接超时", toastStyle);
@@ -86,6 +110,8 @@ function userInformation() {
 		}
 	});
 }
+
+
 //显示登录,登陆或者注册
 mui.plusReady(function() {
 	var regBtn = document.getElementById("regBtn");
@@ -181,9 +207,13 @@ function pulldownRefresh() {
 
 //初始化数据
 function initData() {
-	mui.plusReady(function() {
+	mui.plusReady(function() { 
+		userInformation();
 		var userid = plus.storage.getItem('userid');
-		plus.nativeUI.showWaiting('加载中...'); //显示原生等待框
+		plus.nativeUI.showWaiting(); //显示原生等待框
+		if(oFlag1!=1){
+			oneedval.value = "2";
+		}
 		mui.ajax(baseUrl + '/ajax/consult/pq', {
 			data: {
 				"professorId": userid,
@@ -191,13 +221,15 @@ function initData() {
 				"consultType": otypeval.value,
 				"status": ostateval.value,
 				"timeType": osortval.value,
-				"pageSize": 200,
+				"pageSize": 1000,
 				"pageNo": 1
 			},
 			dataType: 'json',
 			type: 'get',
 			timeout: 10000,
+			async:false,
 			success: function(data) {
+				console.log(JSON.stringify(data))
 				if(data.success) {
 					table.innerHTML = ''; //下拉刷新，清空数据
 					var datalist = data.data.data;
@@ -230,10 +262,14 @@ function initData() {
 //加载第一页数据
 function getOnePage() {
 	mui.plusReady(function() {
-		document.getElementById("needs").style.display = "block";
-		userInformation()
+		//document.getElementById("needs").style.display = "block"; 
+		userInformation();
 		var userid = plus.storage.getItem('userid');
 		var pageIndex = 1;
+		if(oFlag1!=1){
+			oneedval.value = "2";
+		}
+		
 		mui.ajax(baseUrl + '/ajax/consult/pq', {
 			data: {
 				"professorId": userid,
@@ -241,13 +277,13 @@ function getOnePage() {
 				"consultType": otypeval.value,
 				"status": ostateval.value,
 				"timeType": osortval.value,
-				"pageSize": 200,
+				"pageSize": 1000,
 				"pageNo": pageIndex
 			},
 			dataType: 'json',
 			type: 'get',
 			timeout: 10000,
-
+			async: false,
 			success: function(data) {
 				if(data.success) {
 					if(pageIndex == 1) {
@@ -281,6 +317,10 @@ function getOnePage() {
 function getaData() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
+		if(oFlag1!=1){
+			oneedval.value = "2";
+		}
+		
 		mui.ajax(baseUrl + '/ajax/consult/pq', {
 			data: {
 				"professorId": userid,
@@ -288,7 +328,7 @@ function getaData() {
 				"consultType": otypeval.value,
 				"status": ostateval.value,
 				"timeType": osortval.value,
-				"pageSize": 200,
+				"pageSize": 1000,
 				"pageNo": pageIndex
 			},
 			async: false,
@@ -374,21 +414,35 @@ function setReadState(consultId) {
 //打开子页面
 mui(".mui-table-view").on('tap', '.itemBtn', function() {
 	var o_this = this;
-
+	var consultStatusval = o_this.getAttribute("consultStatus");
+	console.log(consultStatusval)
 	mui.plusReady(function() {
 
 		var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
 		//更新读取状态
 		setReadState(o_this.getAttribute("consultId"));
-		webviewShow = plus.webview.create("../html/chats.html", 'chats.html', {}, {
-			'consultId': o_this.getAttribute("consultId"),
-			'consultantId': o_this.getAttribute("consultantId"),
-			'readState': 1
-		});
+	
+		if(oneedval.value==1){
+			if(consultStatusval==2){
+				webviewShow = plus.webview.create("../html/consultSure.html", 'consultSure.html', {}, {
+					'consultId': o_this.getAttribute("consultId"),
+					'consultantId': o_this.getAttribute("consultantId"),
+				});
+			}else{
+				webviewShow = plus.webview.create("../html/chats.html", 'chats.html', {}, {
+					'consultId': o_this.getAttribute("consultId"),
+					'consultantId': o_this.getAttribute("consultantId"),
+					'readState': 1
+				});
+			}		
+		}else{
+			webviewShow = plus.webview.create("../html/chats.html", 'chats.html', {}, {
+				'consultId': o_this.getAttribute("consultId"),
+				'consultantId': o_this.getAttribute("consultantId")
+			});
+		}
 		//当聊天页面加载完再打开
-		webviewShow.addEventListener("loaded", function() {
-
-		}, false);
+		webviewShow.addEventListener("loaded", function() {	}, false);
 
 	});
 
@@ -449,10 +503,31 @@ function eachData(userid, datalist) {
 			}
 			//		console.log(title)
 			//咨询类型和状态
+			//alert(item["professorId"] );
+			//alert(item["consultStatus"] ); 
+			
 			if(item["consultStatus"] == 0) { //进行中，我的需求和收到咨询
 				status = "进行中";
 				statusStyle = 'status-1';
-			} else if(item["consultStatus"] == 1) {
+			}else if(item["consultStatus"] == 2){
+				if(oneedval.value==2){
+					status = "待回复";
+					statusStyle = 'status-4';	
+				}
+				if(oneedval.value==1){
+					status = "新咨询";
+					statusStyle = 'status-2';	
+				}
+			}else if(item["consultStatus"] == 3){
+				if(oneedval.value==2){
+					status = "被谢绝";
+					statusStyle = 'status-5';	
+				}
+				if(oneedval.value==1){
+					status = "已谢绝";
+					statusStyle = 'status-5';	
+				}
+			}else if(item["consultStatus"] == 1) {
 				if(item['consultantId'] != userid) { //收到咨询
 					status = "已完成";
 					statusStyle = 'status-3';
@@ -517,7 +592,7 @@ function eachData(userid, datalist) {
 			str += '<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">' + title + '</span>' +
 				'<div class="coustatus mui-pull-right"><span class="aimlabel">' + consultType + '</span>' +
 				'<span class="' + statusStyle + ' status" consultId="' + item["consultId"] + '">' + status + '</span></div></div>' +
-				'<a class="proinfor itemBtn" consultId="' + item["consultId"] + '" consultantId="' + item["consultantId"] + '" >' +
+				'<a class="proinfor itemBtn" consultId="' + item["consultId"] + '" consultantId="' + item["consultantId"] + '" consultStatus="'+item["consultStatus"]+'" >' +
 				'<span class="mui-badge mui-badge-danger readstate ' + unreadStyle + '" consultId="' + item["consultId"] + '">' + unreadCount + '</span>' +
 				'<img class="mui-media-object mui-pull-left headimg headRadius" src="' + photoUrl + '">' +
 				'<div class="mui-media-body">' +
@@ -540,7 +615,7 @@ function eachData(userid, datalist) {
 				str += '<span>  | ' + item["professor"]["address"] + '</span>';
 			};
 
-			str += '</p><p class="listtit3 onlyone">' + lastReplyCon + '</p></div></a>';
+			str += '</p><p class="listtit3 mui-ellipsis">' + lastReplyCon + '</p></div></a>';
 
 			li.innerHTML = str;
 			table.appendChild(li, table.firstChild);
@@ -620,26 +695,66 @@ function checkedFun(i) {
 		mui("#middlePopover" + i).on('tap', '.mui-navigate-right', function(e) {
 			allPages = 1;
 			pageIndex = 1;
+			
+			if(i==1){
+				var value = this.getAttribute("ck1");
+				//alert(value)
+				if(value==2){
+					document.getElementById("headck1").innerHTML = this.innerHTML;
+					document.getElementById("headck1").setAttribute('headck', value);
+					this.innerHTML="收到咨询";
+					this.setAttribute("ck1","1");
+					oneedval.value = '2';
+				}else{
+					document.getElementById("headck1").innerHTML = this.innerHTML;
+					document.getElementById("headck1").setAttribute('headck', value);
+					this.innerHTML="我的需求";
+					this.setAttribute("ck1","2");
+					oneedval.value = '1';
+				}
+				otypeval.value = '0';
+				ostateval.value = '0';
+				osortval.value = '1'; 
+				document.getElementById("headck2").innerHTML = "咨询类型";
+				document.getElementById("headck3").innerHTML = "咨询状态";
+				document.getElementById("headck4").innerHTML = "按最后回复排序";
+			    var aSpan=document.getElementById("logined").querySelectorAll("li");
+			    for(var m = 0 ; m < aSpan.length;m++){
+					aSpan[m].classList.remove('mui-selected');
+				}
+			}else{
+				document.getElementById("headck" + i).innerHTML = this.innerHTML;
+				var value = this.getAttribute("ck" + i);
+				document.getElementById("headck" + i).setAttribute('headck', value); 
+				//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务 
+				otypeval.value = document.getElementById("headck2").getAttribute('headck');
+				if(otypeval.value == 0) {
+					otypeval.value = '';
+				} else {
+					otypeval.value = document.getElementById("headck2").innerHTML;
+				}
+				
+				if(oFlag1==1){
+					oneedval.value = document.getElementById("headck1").getAttribute('headck');
+				}
+				ostateval.value = document.getElementById("headck3").getAttribute('headck');
+				osortval.value = document.getElementById("headck4").getAttribute('headck');	
+				
+			}
+			/*if(i==3){
+				//document.querySelector("#removedatdt a").classList.remove("set"); 
+				var aimlist = document.querySelector('.aimclass').querySelectorAll("a");
+					aimlist.classList.remove("set")
+				this.classList.add("set");
+			}*/
 			plus.nativeUI.showWaiting(); //显示等待框
-			document.getElementById("headck" + i).innerHTML = this.innerHTML;
-			var value = this.getAttribute("ck" + i);
-			document.getElementById("headck" + i).setAttribute('headck', value);
 			document.querySelector('.mui-backdrop').style.display = 'none';
 			document.getElementById("middlePopover" + i).style.display = 'none';
-
+			
 			//去掉样式类mui-active,要不然会多点击一次
 			document.getElementById("middlePopover" + i).classList.remove('mui-active');
 
-			//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务
-			otypeval.value = document.getElementById("headck2").getAttribute('headck');
-			if(otypeval.value == 0) {
-				otypeval.value = '';
-			} else {
-				otypeval.value = document.getElementById("headck2").innerHTML;
-			}
-			oneedval.value = document.getElementById("headck1").getAttribute('headck');
-			ostateval.value = document.getElementById("headck3").getAttribute('headck');
-			osortval.value = document.getElementById("headck4").getAttribute('headck');
+			
 
 			initData();
 

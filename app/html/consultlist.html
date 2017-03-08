@@ -90,7 +90,7 @@
     		width: 100%;
     		height: 100%;
     	}
-
+		#middlePopover1 .mui-table-view-cell .mui-navigate-right:after {font-size: 0;}
  
     </style>
     
@@ -104,7 +104,7 @@
 	</header>-->
 	<div class="displayNone">
 		<!--咨询/需求-->
-    	<input type="text" id="needval" value="0" />
+    	<input type="text" id="needval" value="1" />
     	<!--咨询类型-->
     	<input type="text" id="typeval" value="0" />
     	<!--咨询状态-->
@@ -157,16 +157,16 @@
 		
 	
        	
-       	<div id="middlePopover1" class="mui-popover popoverbox mui-popover1" style="height: 110px;">
+       	<div id="middlePopover1" class="mui-popover popoverbox mui-popover1" style="height:45px;">
 			<div class="mui-popover-arrow"></div>
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<ul class="mui-table-view mui-table-view-radio">
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck1="0">不限</a></li>
-						<li class="mui-table-view-cell" id="needs"><a class="mui-navigate-right" href="#" ck1="1">收到咨询 </a></li>
-						<li class="mui-table-view-cell" ><a class="mui-navigate-right" href="#" ck1="2">我的需求</a></li>
+						<!--<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck1="0">不限</a></li>-->
+					    <!--<li class="mui-table-view-cell" id="needs" style="display: none;"><a class="mui-navigate-right" href="#" ck1="1">收到咨询 </a></li>-->
+						<li class="mui-table-view-cell" id="needs" ><a class="mui-navigate-right" href="#" ck1="2">我的需求</a></li>
 					</ul>
-				</div>
+				</div> 
 			</div>
 		</div>
 		<div id="middlePopover2" class="mui-popover popoverbox mui-popover2">
@@ -186,12 +186,13 @@
 			<div class="mui-popover-arrow"></div>
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
-					<ul class="mui-table-view mui-table-view-radio">
+					<ul class="mui-table-view mui-table-view-radio" id="removedatdt">
 						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="0">不限</a></li>
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="1">进行中</a></li>
-						<!--<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="2">待感谢</a></li>-->
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="3">待评价</a></li>
-						<!--<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="3">已完成</a></li>-->
+						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="1"  id="newszixun">新咨询</a></li>
+						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="2" >进行中</a></li>
+						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="3"  id="newsok">已谢绝</a></li>
+						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck3="4"  id="newwc">已完成</a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -216,7 +217,7 @@
        	<div class="filterbox2 filterdiv" style="top:0 ;left: 0;">
 			<ul class="filterblock2">
 				<li style="width:22%;">
-					<a href="#middlePopover1"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2" id="consuitSta"><span id="headck1" headck='0'>咨询/需求</span><em class="mui-icon mui-icon-arrowdown"></em></a>
+					<a href="#middlePopover1"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2" id="consuitSta"><span id="headck1" headck='1'>收到咨询</span><em class="mui-icon mui-icon-arrowdown"></em></a>
 				</li>
 				<li style="width:22%;">
 					<a href="#middlePopover2"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck2" headck='0'>咨询类型</span><em class="mui-icon mui-icon-arrowdown"></em></a>

@@ -13,6 +13,7 @@ mui.ready(function() {
 	var goFollow = document.getElementById("goFollow");
 	var userImg = document.getElementById("userImg");
 	var nameli = document.getElementById("nameli");
+	var goBecomeExpert = document.getElementById("goBecomeExpert");
 	var infobasic = document.getElementsByClassName("amend")[0];
 	var oFlag;
 	var oFlag1;
@@ -85,6 +86,18 @@ mui.ready(function() {
 					mui.openWindow({
 						url: '../html/attentions.html',
 						id: '../html/attentions.html',
+						show: {
+							//autoShow: false,
+							aniShow: "slide-in-right"
+						}
+					});
+				})
+				
+				/*成为专家*/
+				goBecomeExpert.addEventListener('tap', function() {
+					mui.openWindow({
+						url: '../html/expert-authentication.html',
+						id: 'expert-authentication.html',
 						show: {
 							//autoShow: false,
 							aniShow: "slide-in-right"

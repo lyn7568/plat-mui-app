@@ -24,10 +24,10 @@
 		<div class="mui-content">
 			<div class="conBody">
 				<div class="contentInner demandBasic">
-					<h3>XXXXXXXXXXXXXX(需求主题)</h3>
+					<h3 id='demandTitle'></h3>
 					<h5>
-						发布时间：<span>2月13日</span>
-						<em>个人需求</em><em>技术咨询</em>
+						发布时间：<span id="poTime"></span>
+						<em id='oDemandType'></em><em id="oDemandAim"></em>
 					</h5>
 				</div>
 				<ul class="mui-table-view mui-table-view-chevron" id="proInfor">
@@ -44,25 +44,16 @@
 						</a>
 					</li>
 				</ul>
-				<div class="demandCon contentInner">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				 Aenean euismod bibendum laoreet. Proin gravida dolor sit 
-				 amet lacus accumsan et viverra justo commodo. Proin sodales
-				  pulvinar tempor. Cum sociis natoque penatibus et magnis dis
-				   parturient montes, nascetur ridiculus mus. Nam fermentum, 
-				   nulla luctus pharetra vulputate, felis tellus mollis orci, 
-				   sed rhoncus sapien nunc eget odio. montes, nascetur ridiculus mus. 
-				   Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, 
-				   sed rhoncus sapien nunc eget odio. （需求内容）
-	
+				<div class="demandCon contentInner" id="demandContent">
 				</div>
-				<div class="contentInner demandBtn">
-					<button class="mui-btn mui-btn-block frmbtn">确认回复</button>
+				<div class="contentInner demandBtn" id="repaly">
+					<button class="mui-btn mui-btn-block frmbtn" >确认回复</button>
 				</div>
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/needSure.js"></script>
 	</body>
 
 </html>

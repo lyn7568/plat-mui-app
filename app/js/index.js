@@ -7,7 +7,25 @@ var search = document.getElementById("search");
 mui.plusReady(function() {
 	plus.nativeUI.showWaiting();
 })
-
+document.getElementById("demandP").addEventListener("tap",function() {
+	mui.openWindow({
+		url: '../html/needIssue.html',
+		id: '../html/needIssue.html',
+		show: {
+			aniShow: "slide-in-right",
+		}
+	});
+})
+document.getElementById("improfessor").addEventListener("tap",function() {
+	mui.openWindow({
+		url: '../html/needSearch.html',
+		id: '../html/needSearch.html',
+		show: { 
+			autoShow:false,
+			aniShow: "slide-in-right",
+		}
+	});
+})
 mui('.list').on('tap', 'a', function() {
 	var id = this.getAttribute("data-id");
 	var userid = plus.storage.getItem('userid');

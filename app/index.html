@@ -11,14 +11,17 @@
 <body>
     <!--主页面底部菜单-->
     <nav class="mui-bar mui-bar-tab footbox">
-	    <a class="mui-tab-item mui-active" href="html/index_home.html">
+	    <a class="mui-tab-item mui-active" href="html/index_home.html" dataid="1">
 	        <span class="mui-icon iconfont icon-home"></span>
+	        <span class="mui-tab-label">首页</span>
 	    </a>
-	    <a class="mui-tab-item" href="html/consult_home.html">
+	    <a class="mui-tab-item" href="html/consult_home.html" dataid="2">
 	        <span class="mui-icon iconfont icon-community"></span>
+	         <span class="mui-tab-label">咨询</span>
 	    </a>
-	    <a class="mui-tab-item" id="isLogin" href="html/myaccount.html">
+	    <a class="mui-tab-item" id="isLogin" href="html/myaccount.html" dataid="3">
 	        <span class="mui-icon iconfont icon-people"></span>
+	         <span class="mui-tab-label">我</span>
 	    </a>
 	</nav>
     <script src="js/public/mui.min.js"></script>
@@ -52,6 +55,11 @@
 	//选项卡点击事件
 	mui('.mui-bar-tab').on('tap', 'a', function(e) {
 		var targetTab = this.getAttribute('href');
+		var num = this.getAttribute('dataid');
+		if(num==3){
+			var myPage = plus.webview.getWebviewById('html/myaccount.html');
+				mui.fire(myPage,'mPage', {});	
+		}
 		if(targetTab == activeTab) {
 			return;
 		}

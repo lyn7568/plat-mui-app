@@ -98,6 +98,10 @@ document.getElementById("improfessor").addEventListener("tap", function() {
 							aniShow: "slide-in-right",
 						}
 					});
+					}else if($data.authStatus == 2){
+						plus.nativeUI.toast("我们正在对您的信息进行认证，请稍等片刻", {'verticalAlign':'center'});
+					}else if($data.authStatus == 1){
+						plus.nativeUI.toast("我们将尽快对您的信息进行认证", {'verticalAlign':'center'});
 					}else{
 						mui.openWindow({
 						url: '../html/realname-authentication2.html',

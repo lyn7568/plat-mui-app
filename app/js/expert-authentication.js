@@ -40,7 +40,7 @@ function showImgDetail(file, cacheKey) {
 	html += '    </span>';
 	html += '</div>';
 	var imglen = $(".image-item img").length;
-	if(imglen>=5){ 
+	if(imglen>5){ 
 		plus.nativeUI.toast("最多上传5张照片", toastStyle);		
 	}else{
 		$("#F_CKJLBS").append(html);

@@ -99,7 +99,7 @@ mui.ready(function() {
 										}
 									});
 								}
-							}else{
+							}else if(authStatus == -1 || authStatus == 0){
 								if(authStatusExpert == -1 || authStatusExpert == 0) {
 									mui.openWindow({
 										url: '../html/realname-authentication2.html',
@@ -109,6 +109,8 @@ mui.ready(function() {
 										}
 									});
 								}
+							}else if(authStatus == 1 || authStatus == 2){
+								plus.nativeUI.toast("正在进行实名认证，请稍等片刻。", toastStyle);
 							}
 						})
 					}

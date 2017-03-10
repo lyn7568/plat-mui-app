@@ -35,7 +35,7 @@ function showImgDetail(file, cacheKey) {
 	html += '    </span>';
 	html += '</div>';
 	var imglen = $(".image-item img").length;
-	if(imglen>=3){ 
+	if(imglen>3){ 
 		plus.nativeUI.toast("最多上传3张照片", toastStyle);		
 	}else{
 		$("#F_CKJLBS").append(html);

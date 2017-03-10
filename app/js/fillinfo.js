@@ -112,7 +112,7 @@ mui.ready(function() {
 		afalse = false;
 	})
 
-	boxnav4.addEventListener("tap", function() {
+	/*boxnav4.addEventListener("tap", function() {
 		document.querySelector(".maincon").style.display = "block";
 		var label1 = '<label>所在机构</label>';
 		var label2 = '<label>所属部门</label>';
@@ -137,7 +137,7 @@ mui.ready(function() {
 		goIndex.classList.remove("frmactiveok");
 		goIndex.disabled = "disabled";
 		afalse = true;
-	})
+	})*/
 
 	function tab(name) {
 		var oDome = document.getElementById(name);

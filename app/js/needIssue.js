@@ -105,6 +105,8 @@ mui.ready(function() {
 							node.innerHTML = '<span>' + $data[i].caption + '</span>';
 							document.getElementsByClassName('hotsearch')[0].appendChild(node);
 						}
+						plus.nativeUI.closeWaiting();
+						plus.webview.currentWebview().show("slide-in-right", 150);
 					}
 				},
 				error: function() {

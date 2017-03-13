@@ -221,7 +221,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .maincon ul li small{ color:#AAAAAA;}
 .maincon ul.set2{ display: block;}
 .fillbox{margin-top:15px;padding:4% 0;}
-.headbox3{width:100px; height: 100px; margin:0 auto; margin-top:15px;border:2px #FFFFFF solid;box-shadow: 1px 1px 2px 1px #F0F0F0; overflow: hidden;background: url(../images/default-photo-up.jpg); background-size:100% 100%;}
+.headbox3{ position: relative;width:100px; height: 100px; margin:0 auto; margin-top:15px;border:2px #FFFFFF solid;box-shadow: 1px 1px 2px 1px #F0F0F0; overflow: hidden;background: url(../images/default-photo-up.jpg); background-size:100% 100%;}
 .headbox3 .headimg3{width:100px; height: 100px;}
 .headbox3 .headimglink{position: absolute;line-height:100px;color:#FFFFFF; font-size:20px;padding:0 38px;display: block; background:rgba(0,0,0,.4);width: 100px; height:100px;z-index: 4;}
 

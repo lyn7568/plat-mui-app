@@ -119,7 +119,7 @@
 						nameli.classList.add('icon-vip');
 						nameli.classList.add('authicon-cu');
 					} else {
-						if(myData.authStatus) {
+						if(myData.authStatus==3) {
 							if(myData.authentication == 1) {
 								nameli.classList.add('icon-renzheng');
 								nameli.classList.add('authicon-mana');

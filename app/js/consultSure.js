@@ -76,7 +76,7 @@ mui.plusReady(function(){
 					nameli.classList.add('authicon-cu');
 					nameli.style.margin = "-4px 0 0 -2px";
 				} else {
-					if($info.authStatus) {
+					if($info.authStatus==3) {
 						if($info.authentication == 1) {
 							nameli.classList.add('icon-renzheng');
 							nameli.classList.add('authicon-mana');
@@ -87,7 +87,7 @@ mui.plusReady(function(){
 							nameli.classList.add('icon-renzheng');
 							nameli.classList.add('authicon-stu');
 						}
-					}
+					}	
 				}
 			}
 			if($info.department) {

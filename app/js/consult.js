@@ -546,7 +546,7 @@ function eachData(userid, datalist) {
 			if(item["professor"].authType) {
 				proModify = 'icon-vip authicon-cu';
 			} else {
-				if(item["professor"].authStatus) {
+				if(item["professor"].authStatus==3) {
 					if(item["professor"].authentication == 1) {
 						proModify = 'icon-renzheng authicon-mana';
 						//						modifyaddEle = "<span >科研</span>";

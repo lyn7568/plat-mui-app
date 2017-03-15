@@ -33,7 +33,7 @@ mui.plusReady(function() {
 						if($info[i].professor.authType) {
 							string += '<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 						} else {
-							if($info[i].professor.authStatus) {
+							if($info[i].professor.authStatus==3) {
 								if($info[i].professor.authentication == 1) {
 									string += '<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 								} else if($info[i].professor.authentication == 2) {

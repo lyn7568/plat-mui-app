@@ -168,7 +168,7 @@ function datalistEach(datalist) {
 		if(item.authType) {
 			typeTname = '<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.authStatus) {
+			if(item.authStatus==3) {
 				if(item.authentication == 1) {
 					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.authentication == 2) {

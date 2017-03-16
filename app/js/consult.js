@@ -42,7 +42,7 @@ window.addEventListener('logined', function(event) {
 	console.log('点击登录ID==' + userId)
 	table.innerHTML = '';
 	initData();
-
+	userInformation();
 });
 
 /*咨询确认页面自定义事件*/
@@ -79,14 +79,17 @@ function userInformation() {
 			oFlag = $info.authentication;
 			oFlag1 = $info.authType
 			if(data.success && data.data) {
-				if(!$info.authType) {
-					document.getElementById("consuitSta").innerHTML = "我的需求";
-					document.getElementById("consuitSta").removeAttribute("href");
+				//alert(oFlag1)
+				if($info.authType==0) {
+					document.getElementById("consuitSta").style.display="block";
+					document.getElementById("consuitSta2").style.display="none";
 					document.getElementById("newszixun").innerHTML="待回复";
 					document.getElementById("newsok").innerHTML="被谢绝";
 					document.getElementById("newwc").innerHTML="待评价";
 					document.getElementById("newwc").setAttribute("ck3","5")
 				}else{
+					document.getElementById("consuitSta").style.display="none";
+					document.getElementById("consuitSta2").style.display="block";
 					if(oneedval.value==2){
 						document.getElementById("newszixun").innerHTML="待回复";
 						document.getElementById("newsok").innerHTML="被谢绝";
@@ -180,7 +183,7 @@ function pulldownRefresh() {
 	console.log('下拉刷新');
 	setTimeout(function() {
 		getOnePage();
-
+		
 	}, 1000);
 };
 //if(mui.os.plus) {

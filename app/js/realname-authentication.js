@@ -1,5 +1,6 @@
 //实名认证
 mui.plusReady(function() {
+	var self = plus.webview.currentWebview();
 	var userid = plus.storage.getItem('userid');
 	$('#submit').on("click", function() {
 		plus.nativeUI.showWaiting();
@@ -22,6 +23,8 @@ mui.plusReady(function() {
 			
 		}
 	})
+	plus.nativeUI.closeWaiting();
+	self.show("slide-in-right", 150);
 })
 
 //拼接图片样式

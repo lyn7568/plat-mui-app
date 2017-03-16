@@ -107,6 +107,7 @@ mui.plusReady(function() {
 								url: '../html/realname-authentication.html',
 								id: 'realname-authentication.html',
 								show: {
+									autoShow: false,
 									aniShow: "slide-in-right"
 								}
 							});

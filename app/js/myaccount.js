@@ -95,6 +95,7 @@ mui.ready(function() {
 										url: '../html/expert-authentication.html',
 										id: 'expert-authentication.html',
 										show: {
+											autoShow: false,
 											aniShow: "slide-in-right"
 										}
 									});
@@ -105,6 +106,7 @@ mui.ready(function() {
 										url: '../html/realname-authentication2.html',
 										id: 'realname-authentication2.html',
 										show: {
+											autoShow: false,
 											aniShow: "slide-in-right"
 										}
 									});
@@ -134,6 +136,7 @@ mui.ready(function() {
 						url: '../html/setup.html',
 						id: '../html/setup.html',
 						show: {
+							//autoShow: false,
 							aniShow: "slide-in-right"
 						}
 					});
@@ -155,7 +158,7 @@ mui.ready(function() {
 						url: '../html/attentions.html',
 						id: '../html/attentions.html',
 						show: {
-							//autoShow: false,
+							autoShow: false,
 							aniShow: "slide-in-right"
 						}
 					});

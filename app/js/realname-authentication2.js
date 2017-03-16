@@ -1,5 +1,6 @@
 //实名认证
 mui.plusReady(function() {
+	var self = plus.webview.currentWebview();
 	var userid = plus.storage.getItem('userid');
 	$('#submit').on("click", function() {
 		var arr = $(".image-item img");
@@ -14,6 +15,7 @@ mui.plusReady(function() {
 				url: '../html/expert-authentication.html',
 				id: 'expert-authentication.html',
 				show: {
+					autoShow: false,
 					aniShow: "slide-in-right"
 				},
 				extras:{
@@ -23,6 +25,8 @@ mui.plusReady(function() {
 			});
 		}
 	})
+	plus.nativeUI.closeWaiting();
+	self.show("slide-in-right", 150);
 })
 
 //拼接图片样式

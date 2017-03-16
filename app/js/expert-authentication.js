@@ -28,6 +28,8 @@ mui.plusReady(function() {
 			}, "提示", bts);	
 		}
 	})
+	plus.nativeUI.closeWaiting();
+	self.show("slide-in-right", 150);
 })
 
 //拼接图片样式

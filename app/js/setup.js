@@ -27,6 +27,7 @@ mui.ready(function() {
 			url: '../html/aboutus.html',
 			id: '../html/aboutus.html',
 			show: {
+				autoShow: false,
 				aniShow: "slide-in-right"
 			}
 		});
@@ -39,6 +40,7 @@ mui.ready(function() {
 			url: '../html/privacy.html',
 			id: '../html/privacy.html',
 			show: {
+				autoShow: false,
 				aniShow: "slide-in-right"
 			}
 		});

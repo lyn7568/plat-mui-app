@@ -44,6 +44,7 @@ document.getElementById("demandP").addEventListener("tap", function() {
 						url: '../html/realname-authentication.html',
 						id: 'realname-authentication.html',
 						show: {
+							autoShow: false,
 							aniShow: "slide-in-right",
 						}
 					});
@@ -95,6 +96,7 @@ document.getElementById("improfessor").addEventListener("tap", function() {
 						url: '../html/expert-authentication.html',
 						id: 'expert-authentication.html',
 						show: {
+							autoShow: false,
 							aniShow: "slide-in-right",
 						}
 					});
@@ -107,6 +109,7 @@ document.getElementById("improfessor").addEventListener("tap", function() {
 						url: '../html/realname-authentication2.html',
 						id: 'realname-authentication2.html',
 						show: {
+							autoShow: false,
 							aniShow: "slide-in-right",
 						}
 					});

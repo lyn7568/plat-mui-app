@@ -2,7 +2,7 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var ws = plus.webview.currentWebview();
 		var userid = plus.storage.getItem('userid');
-		var conId, denmandTitle, demandContent, demandType,data3;
+		var conId, denmandTitle, demandContent, demandType;
 		console.log(ws.deman);
 		/*单个需求查询*/
 		function demandAngle() {
@@ -109,9 +109,7 @@ mui.ready(function() {
 					},
 					success: function(data) {
 						if(data.success) {
-							console.log(JSON.stringify(data));
-							data3=data.data
-							if(data == null) {
+							if(data.data == null) {	
 									 newConsuit();
 							} else {
 								webviewShow = plus.webview.create("../html/chats.html", 'chats.html', {}, {
@@ -130,18 +128,20 @@ mui.ready(function() {
 				type: 'POST', //http请求类型
 				timeout: 10000, //超时设置
 				data: {
-					consultType: denmandTitle,
-					consultTitle: demandContent,
-					consultContant: demandType,
+					consultType: demandType,
+					consultTitle: denmandTitle,
+					consultContant: demandContent,
 					professorId: userid,
 					consultantId: conId,
 					demandId: ws.deman
 				},
-				success: function(data) {
+				success: function($ifno) {
+					if($ifno.success){
 					webviewShow = plus.webview.create("../html/chats.html", 'chats.html', {}, {
-						'consultId': data3,
+						'consultId': $ifno.data,
 						'consultantId': conId
 					});
+				}
 				}
 			})
 		}

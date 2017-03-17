@@ -76,6 +76,10 @@ mui.ready(function() {
 				}
 				var addContent = document.getElementsByClassName('lineInput')[0].value;
 				var content = trim(addContent);
+				if(content.length>10){
+					plus.nativeUI.toast("添加内容不能超过10个字", toastStyle);
+					return;
+				}
 				if(content) {
 					var node = document.createElement("li");
 					node.innerHTML = content + '<em class="mui-icon mui-icon-closeempty"></em>';

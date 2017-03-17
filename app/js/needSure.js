@@ -2,7 +2,7 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var ws = plus.webview.currentWebview();
 		var userid = plus.storage.getItem('userid');
-		var conId, denmandTitle, demandContent, demandType;
+		var conId, denmandTitle, demandContent, demandType,authType,authentication;
 		console.log(ws.deman);
 		/*单个需求查询*/
 		function demandAngle() {
@@ -29,16 +29,35 @@ mui.ready(function() {
 						var proOffice = document.getElementById("proOffice");
 						var proOrg = document.getElementById("proOrg");
 						var proAddress = document.getElementById("proAddress");
+						var nameli=document.getElementById("aClass");
+						if($info.professor.authType) {
+							nameli.classList.add('icon-vip');
+							nameli.classList.add('authicon-cu');
+						} else {
+							if($info.professor.authStatus==3) {
+								if($info.authentication == 1) {
+									nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-mana');
+								} else if($info.professor.authentication == 2) {
+									nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-staff');
+								} else {
+									nameli.classList.add('icon-renzheng');
+									nameli.classList.add('authicon-stu');
+								}
+							}
+						}
 						conId = $info.professor.id;
+						authType=$info.professor.authType;
+						authentication=$info.professor.authentication;
 						denmandTitle = $info.demandTitle;
 						demandContent = $info.demandContent;
-						demandType = $info.demandAim
 						proName.innerText = $info.professor.name;
 						oCreateTime.innerText = $info.createTime.substr(0, 4) + "-" + $info.createTime.substr(4, 2) + "-" + $info.createTime.substr(6, 2) + " " + $info.createTime.substr(8, 2) + ":" + $info.createTime.substr(10, 2);
 						oDemandTitle.innerText = $info.demandTitle;
 						oDemandContent.innerText = $info.demandContent;
 						($info.demandType == 1) ? oDemandType.innerText = "个人需求": oDemandType.innerText = "企业需求";
-						($info.demandAim == 1) ? oDemandAim.innerText = "技术咨询": ($info.demandAim == 2) ? oDemandAim.innerText = "资源合作" : oDemandAim.innerText = "其他事务";
+						($info.demandAim == 1) ? (oDemandAim.innerText = "技术咨询",demandType="技术咨询" ): ($info.demandAim == 2) ? (oDemandAim.innerText = "资源合作", demandType="资源合作"): (oDemandAim.innerText = "其他事务", demandType="其他事务");
 						if($info.professor.title && $info.professor.office && $info.professor.orgName && $info.professor.address) {
 							proTitle.innerText = $info.professor.title + "，";
 							proOffice.innerText = $info.professor.office + "，";
@@ -145,6 +164,29 @@ mui.ready(function() {
 				}
 			})
 		}
-
+		document.getElementById("person").addEventListener("tap",function(){
+			plus.nativeUI.showWaiting();
+				if(authType == 1) {
+			//plus.webview.close("proinforbrow.html");
+			plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+				proid: conId
+			});
+		} else {
+			if(authentication == 1) {
+				plus.webview.create("../html/researcherProw.html", 'researcherProw.html', {}, {
+					proid: professId
+				});
+			} else if(authentication == 2) {
+				plus.webview.create("../html/companybrowse.html", 'companybrowse.html', {}, {
+					proid: conId
+				});
+			} else if(authentication == 3) {
+				plus.webview.create("../html/studentbrowse.html", 'studentbrowse.html', {}, {
+					proid: conId
+				});
+			}
+		}	
+		})
+		
 	})
 })

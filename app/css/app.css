@@ -676,3 +676,4 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 
 /*新加实名认证*/
 .submutbut{float:right; padding:0 10px; line-height:45px ; font-size:14px; color: #fff;}
+#yyhy li:last-child , #xsly li:last-child{display: none;}

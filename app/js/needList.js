@@ -29,7 +29,7 @@ mui.ready(function() {
 				oString += '<span class="listtit">'
 				oString += '<span class="thistime" style="top:20px">' + oCreateTime + '</span>'
 				oString += '</span>'
-				oString += '<p class="listtit3 mui-ellipsis-2 rightChevron">' + data[i].demandContent + '</p></div></a>'
+				oString += '<p class="listtit3 mui-ellipsis-2 rightChevron" style="width:90%;">' + data[i].demandContent + '</p></div></a>'
 				li.innerHTML = oString;
 				oUlist.appendChild(li);
 			}

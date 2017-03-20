@@ -8,10 +8,12 @@ mui.ready(function() {
 	var goSetup = document.getElementById("goSetup");
 	var goZixun = document.getElementById("goZixun");
 	var goZixunbox = document.getElementById("goZixunbox");
+	var gonXuqiu=document.getElementById("demand");
 	var oEdit = document.getElementById("editbox");
 	var goFollow = document.getElementById("goFollow");
 	var userImg = document.getElementById("userImg");
 	var nameli = document.getElementById("nameli");
+	var goBecomeExpert = document.getElementById("goBecomeExpert");
 	var infobasic = document.getElementsByClassName("amend")[0];
 	var oFlag;
 	var oFlag1;
@@ -21,21 +23,25 @@ mui.ready(function() {
 
 		var userId = plus.storage.getItem('userid');
 		console.log(userId);
+		
 		/*判断登录是否成功*/
 		loginStatus();
 
 		/*用户信息初始化*/
 		userInformation();
-
+		
+		/*专家认证*/
+		isexpert();
+		
 		/*登录按钮*/
 		loginNo.addEventListener('tap', function() {
 			goLoginFun();
 		})
 
-		/*注册按钮*/
-		/*goReg.addEventListener('tap', function() {
-			goRegFun();
-		})*/
+		/*专家认证刷新页面*/
+		window.addEventListener('mPage', function(event) {
+			isexpert();
+		})
 
 		/*退出登录刷新页面*/
 		window.addEventListener('closeUser', function(event) {
@@ -51,36 +57,113 @@ mui.ready(function() {
 			nameli.innerHTML = ""
 			userInformation();
 		});
+		
+		/*专家认证*/
+		function isexpert() {
+			var userId = plus.storage.getItem('userid');
+			var expertAuth = document.getElementById("expertAuth");
+			mui.ajax(baseUrl + "/ajax/professor/auth", {
+				data: {
+					"id": userId
+				},
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				timeout: 10000, //超时设置
+				async: false,
+				success: function(data) {
+					console.log(JSON.stringify(data));
+					var $info = data.data || {};
+					if(data.success && data.data) {
+						authStatusExpert = $info.authStatusExpert;
+						authStatus = $info.authStatus;
+						console.log(authStatusExpert)
+						if(authStatusExpert == -1) {
+							expertAuth.innerHTML = "认证失败";
+						} else if(authStatusExpert == 0) {
+							expertAuth.innerHTML = "未认证";
+						} else if(authStatusExpert == 1) {
+							expertAuth.innerHTML = "待认证";
+						} else if(authStatusExpert == 2) {
+							expertAuth.innerHTML = "认证中";
+						} else if(authStatusExpert == 3) {
+							expertAuth.innerHTML = "已认证";
+						}
+						goBecomeExpert.addEventListener('tap', function() {
+							if(authStatus == 3){
+								if(authStatusExpert == -1 || authStatusExpert == 0) {
+									mui.openWindow({
+										url: '../html/expert-authentication.html',
+										id: 'expert-authentication.html',
+										show: {
+											autoShow: false,
+											aniShow: "slide-in-right"
+										}
+									});
+								}
+							}else if(authStatus == -1 || authStatus == 0){
+								if(authStatusExpert == -1 || authStatusExpert == 0) {
+									mui.openWindow({
+										url: '../html/realname-authentication2.html',
+										id: 'realname-authentication2.html',
+										show: {
+											autoShow: false,
+											aniShow: "slide-in-right"
+										}
+									});
+								}
+							}else if(authStatus == 1 || authStatus == 2){
+								plus.nativeUI.toast("正在进行实名认证，请稍等片刻。", toastStyle);
+							}
+						})
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
+
 
 		function loginStatus() {
 			console.log(userId);
 			if(userId && userId != "null" && userId != null) {
 				loginNo.style.display = "none";
 				loginYes.style.display = "block";
-				//alert('dd')
 				/*设置*/
 				goSetup.addEventListener('tap', function() {
 					mui.openWindow({
 						url: '../html/setup.html',
 						id: '../html/setup.html',
 						show: {
+							//autoShow: false,
 							aniShow: "slide-in-right"
 						}
 					});
 				})
-
+				/*我的需求*/
+				gonXuqiu.addEventListener('tap', function() {
+					mui.openWindow({
+						url: '../html/needList.html',
+						id: '../html/needList.html',
+						show: {
+							autoShow: false,
+							aniShow: "slide-in-right"
+						}
+					});
+				})
 				/*我的关注*/
 				goFollow.addEventListener('tap', function() {
 					mui.openWindow({
 						url: '../html/attentions.html',
 						id: '../html/attentions.html',
 						show: {
-							//autoShow: false,
+							autoShow: false,
 							aniShow: "slide-in-right"
 						}
 					});
 				})
-
+				
 				/*我的修改专家*/
 				infobasic.addEventListener('tap', function() {
 						if(oFlag1) {
@@ -232,7 +315,7 @@ mui.ready(function() {
 							nameli.classList.add('authicon-cu');
 							nameli.style.margin = "-4px 0 0 -2px";
 						} else {
-							if($info.authStatus) {
+							if($info.authStatus==3) {
 								if($info.authentication == 1) {
 									nameli.classList.add('icon-renzheng');
 									nameli.classList.add('authicon-mana');
@@ -254,6 +337,7 @@ mui.ready(function() {
 				}
 			});
 		}
+		
 		document.getElementById("goNewuser").addEventListener("tap", function() {
 			mui.openWindow({
 				url: '../html/invite_new.html',

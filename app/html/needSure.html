@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>需求确认</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #fff;}
+			.mui-content{background: #fff;height:100%;overflow: auto;}
+			.mui-table-view:before,.mui-table-view:after{background:#E6E6E6;}
+			.proinfor .mui-media-body{padding-right:50px;}
+			.mui-btn.mui-btn-warning{color:#FF9900;border-color:#FF9900;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">需求确认</h1>
+		</header>
+		<div class="mui-content">
+			<div class="conBody">
+				<div class="contentInner demandBasic">
+					<h3 id='demandTitle'></h3>
+					<h5>
+						发布时间：<span id="poTime"></span>
+						<em id='oDemandType'></em><em id="oDemandAim"></em>
+					</h5>
+				</div>
+				<ul class="mui-table-view mui-table-view-chevron" id="proInfor">
+					<li class="contentInner mui-table-view-cell mui-media" style="padding:8px 20px 8px 10px;" id="person">		
+						<a class="proinfor">
+							<div><img id="proHead" class="mui-media-object mui-pull-left headimg headRadius" src="../images/default-photo.jpg"></div>
+							<div class="mui-media-body">
+								<span class="listtit" ><span id="proName"></span><em class="mui-icon iconfont" id="aClass"> </em></span>
+								<div class="listtit2"><span id="proTitle"></span><span id="proOffice"></span><span id="proOrg"></span><span id="proAddress"></span></div>
+								<div class="mui-ellipsis listtit3" id="proRlist"></div>
+								<div class="mui-ellipsis listtit3" id="proZlist"></div>
+							</div>
+							<button type="button" class="mui-btn mui-btn-warning mui-btn-outlined">查看</button>
+						</a>
+					</li>
+				</ul>
+				<div class="demandCon contentInner" id="demandContent">
+				</div>
+				<div class="contentInner demandBtn" id="repaly">
+					<button class="mui-btn mui-btn-block frmbtn" >确认回复</button>
+				</div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/needSure.js"></script>
+	</body>
+
+</html>

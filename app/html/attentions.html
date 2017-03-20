@@ -29,6 +29,7 @@
 	<script src="../js/public/base.js"></script>
 	<script>
 	   var checkedindex = 0;
+	  
 		mui("#fixbtn").on("tap", "li", function() {
 			checkedindex = this.getAttribute("index");
 			var libtn_arr = document.getElementById("fixbtn").getElementsByTagName("li");
@@ -80,7 +81,8 @@
 			}]
 		});
 		mui.plusReady(function(){
-			plus.nativeUI.showWaiting();
+			 plus.nativeUI.closeWaiting();
+			 plus.webview.currentWebview().show("slide-in-right", 150);
 		})
 		
 

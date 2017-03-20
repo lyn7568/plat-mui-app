@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>谢绝理由</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #fff;}
+			.mui-content{background: #fff;height:100%;overflow: auto;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">谢绝理由</h1>
+		    <span class="mui-pull-right topsave" id="xjsubmt">提交</span>
+		</header>
+		<div class="mui-content">
+			<div class="maincon demandBox">
+				<ul class="basicinfo" style="padding:0;">
+					<li><label>请告知对方您谢绝的缘由（可多选）</label></li>
+					<li class="divideSpace">
+						<ul class="hotsearch chooseBox" id="xjlist">
+				       		<li><span>咨询内容与本人研究方向不相符</span></li>
+				       		<li><span>最近工作安排比较繁忙</span></li>
+				       		<li><span>设备资源暂时不可用</span></li>
+				       		<li><span>对咨询内容表达不够清楚</span></li>
+				       		<li><span>希望对方认证身份后再开始合作</span></li>
+				       </ul>
+					</li>
+					<li><label>其他补充</label></li>
+					<li class="divideSpace" style="height:auto">
+						<div class="textareabox textareaboxEmp borderarea" contenteditable="true" placeholder="请输入其他谢绝的缘由" id="lyinput"></div>
+						<div class="limitNum">您还能输入<span class="countNum" id="countNum">300</span> 字</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/rejectReason.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
+	</body>
+
+</html>

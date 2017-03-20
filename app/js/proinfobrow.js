@@ -213,7 +213,7 @@ mui.plusReady(function() {
 					nameli.classList.add('icon-vip');
 					nameli.classList.add('authicon-cu');
 				} else {
-					if($data.authStatus) {
+					if($data.authStatus==3) {
 						if($data.authentication == 1) {
 							nameli.classList.add('icon-renzheng');
 							nameli.classList.add('authicon-mana');

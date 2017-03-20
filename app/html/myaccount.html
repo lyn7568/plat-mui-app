@@ -2,11 +2,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>个人页面</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			em.icon-renzheng{top: 3px;}
+		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
@@ -23,10 +26,10 @@
 		                    	<img class="headimg2 headRadius" src="" id="userImg">
 		                    </div>
 		                    <div class="mui-pull-left infobasic" style="padding-right:5%">
-		                        <span class="listtit">
-		                        	<span id="userName" style="line-height: 22px;"></span>
+		                        <p class="listtit mui-clearfix" style="position: relative;">
+		                        	<span class="mui-pull-left" id="userName" style="line-height: 22px;display: inline-block;margin-right:4px;"></span>
 		                        	<em id="nameli" class="mui-icon iconfont"></em>
-		                        </span>	
+		                        </p>	
 		                        <p class="listtit2"><span id="userTitle"></span><span id="userPosition"></span></p>
 		                    	<p class="listtit3" style="line-height:16px;"><span id="userDepartment"></span><span id="userMechanism"></span><span id="userCity"></span></p>
 		                    </div>
@@ -81,14 +84,27 @@
 				        </a>
 				    </li>-->
 				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right"  id="demand">
+				        	<em class="mui-icon mui-icon-help actionicon mui-pull-left" style="color:#0ee032"></em>
+				        	<span class="mui-pull-left">我的需求</span>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell">
 				        <a class="mui-navigate-right"  id="goFollow">
-				        	<em class="mui-icon iconfont icon-favor actionicon attenticon mui-pull-left"></em>
+				        	<em class="mui-icon  iconfont icon-favor actionicon attenticon mui-pull-left"></em>
 				        	<span class="mui-pull-left">我的关注</span>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell" id="goBecomeExpert">
+				        <a class="mui-navigate-right">
+				        	<em class="mui-icon iconfont icon-profile actionicon toProicon mui-pull-left"></em>
+				        	<span class="mui-pull-left">成为专家</span>
+				        	<span class="rightword verified" id="expertAuth">已认证</span>
 				        </a>
 				    </li>
 				    <li class="mui-table-view-cell" id="goNewuser">
 				        <a class="mui-navigate-right">
-				        	<em class="mui-icon iconfont icon-friendfavor actionicon addicon mui-pull-left"></em>
+				        	<em class="mui-icon iconfont icon-friend actionicon addicon mui-pull-left"></em>
 				        	<span class="mui-pull-left">邀请好友</span>
 				        	<!--<span class="mui-pull-right" style="margin-right:24px;">邀请好友得积分</span>-->
 				        </a>

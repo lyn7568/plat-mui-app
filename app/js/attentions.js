@@ -161,7 +161,7 @@ function datalistEach(datalist) {
 		if(item.professor.authType) {
 			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.professor.authStatus) {
+			if(item.professor.authStatus==3) {
 				if(item.professor.authentication == 1) {
 					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.professor.authentication == 2) {

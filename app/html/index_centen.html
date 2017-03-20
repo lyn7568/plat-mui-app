@@ -8,6 +8,9 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
+		<style type="text/css">
+			.art_topicBox img{height: 100%;}
+		</style>
 	</head>
 
 	<body>
@@ -16,44 +19,40 @@
 		<div class="mui-content mui-scroll-wrapper" id="pullrefresh" >
 			<div class="mui-scroll">
 				<!-- 主界面具体展示内容 -->
-				<!--<div class="artical-scroll" style="width: 100%;">
-					<a class="art_topicBox" data-title="01">
-						<img src="../images/banner/artical_01.jpg">
-						<div class="art_topicbox">
-							<h4 id="artical_topic" >李光福：为核电安全发展护航  腐蚀防护任重道远</h4>
-						</div>
-					</a>
-				</div>-->
+				<div class="bannerA">
+					<img src="../images/banner/banner0307.png" width="100%"/>
+				</div>
+					
 				<!--图片轮播-->
-				<div id="slider" class="mui-slider">
-					<div class="mui-slider-group mui-slider-loop">
+				<!--<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">-->
 						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate artical-scroll">
+						<!--<div class="mui-slider-item mui-slider-item-duplicate artical-scroll">
 							<a class="art_topicBox" data-title="02">
 								<img src="../images/banner/artical_02.jpg">
 								<div class="art_topicbox">
 									<h4 id="artical_topic" >杜敏：走向深海大势趋 材料防腐须先行</h4>
 								</div>
 							</a>
-						</div>
+						</div>-->
 						<!-- 第一张 -->
-						<div class="mui-slider-item artical-scroll">
+						<!--<div class="mui-slider-item artical-scroll">
 							<a class="art_topicBox" data-title="01">
 								<img src="../images/banner/artical_01.jpg">
 								<div class="art_topicbox">
 									<h4 id="artical_topic" >李光福：为核电安全发展护航  腐蚀防护任重道远</h4>
 								</div>
 							</a>
-						</div>
+						</div>-->
 						<!-- 第二张 -->
-						<div class="mui-slider-item artical-scroll">
+						<!--<div class="mui-slider-item artical-scroll">
 							<a class="art_topicBox" data-title="02">
 								<img src="../images/banner/artical_02.jpg">
 								<div class="art_topicbox">
 									<h4 id="artical_topic" >杜敏：走向深海大势趋 材料防腐须先行</h4>
 								</div>
 							</a>
-						</div>
+						</div>-->
 						<!-- 第三张 -->
 						<!--<div class="mui-slider-item">
 							<a data-title="03">
@@ -67,7 +66,7 @@
 							</a>
 						</div>-->
 						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate">
+						<!--<div class="mui-slider-item mui-slider-item-duplicate">
 							<a class="art_topicBox" data-title="01">
 								<img src="../images/banner/artical_01.jpg">
 								<div class="art_topicbox">
@@ -78,10 +77,37 @@
 					</div>
 					<div class="mui-slider-indicator">
 						<div class="mui-indicator mui-active"></div>
-						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>-->
 						<!--<div class="mui-indicator"></div>
 						<div class="mui-indicator"></div>-->
-					</div>
+					<!--</div>
+				</div>-->
+				<!--按钮-->
+				<div class="conblock btnLinkBox">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media" id="demandP">
+							<a href="javascript:;">
+								<div class="mui-media-object mui-pull-left btnLinkIcon fabuBtn">
+									<em class="mui-icon iconfont icon-fabu"></em>
+								</div>
+								<div class="mui-media-body btnLink">
+									<h4>发布需求</h4>
+									<p class='mui-ellipsis'>获得专家回复，专业快速便捷，解决研发问题</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media" id="improfessor">
+							<a href="javascript:;">
+								<div class="mui-media-object mui-pull-left btnLinkIcon proBtn">
+									<em class="mui-icon iconfont icon-profilefill"></em>
+								</div>
+								<div class="mui-media-body btnLink">
+									<h4>我是专家</h4>
+									<p class='mui-ellipsis'>提升学术声誉，寻找企业合作，科研价值变现</p>
+								</div>
+							</a>
+						</li>
+					</ul>
 				</div>
 				<!-- 九宫格排版-->
 				<div class="mui-card-content conblock">

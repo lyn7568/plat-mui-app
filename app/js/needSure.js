@@ -47,6 +47,9 @@ mui.ready(function() {
 								}
 							}
 						}
+						if(userid==$info.professor.id){
+							document.getElementById("repaly").style.display="none";
+						}
 						conId = $info.professor.id;
 						authType=$info.professor.authType;
 						authentication=$info.professor.authentication;

@@ -1,268 +1,980 @@
 {
-  "index.html": {
-    "resources": [
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "libs/mui.min.js",
-      "html/login.html",
-      "css/app.css",
-      "images/field18.png",
-      "images/qq.png",
-      "images/weixin.png",
-      "images/authicon.png",
-      "images/default-photo.jpg",
-      "images/field-icon8.png",
-      "html/proinforbrow.html",
-      "html/fillinfo.html",
-      "js/public/base.js",
-      "html/index_home.html",
-      "css/iconfont.css",
-      "js/public/mui.min.js",
-      "fonts/iconfont.ttf",
-      "fonts/iconfont.woff"
-    ],
-    "refer": [
-      "html/login.html",
-      "html/reg.html",
-      "html/setpass.html",
-      "html/fillinfo.html",
-      "html/proinforbrow.html",
-      "html/consultlist.html",
-      "html/index_home.html",
-      "html/myaccount.html"
-    ]
-  },
-  "html/login.html": {
-    "resources": [
-      "images/logo.png",
-      "css/app.css",
-      "images/workclose.png",
-      "libs/mui.js",
-      "css/reset.css",
-      "images/sinaweibo.png",
-      "images/weixin.png",
-      "images/qq.png",
-      "index.html",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "js/public/base.js",
-      "js/login.js",
-      "js/public/mui.min.js"
-    ],
-    "refer": [
-      "index.html",
-      "html/fillinfo.html"
-    ]
-  },
-  "html/reg.html": {
-    "resources": [
-      "images/logo.png",
-      "css/app.css",
-      "images/workclose.png",
-      "libs/mui.js",
-      "images/sinaweibo.png",
-      "images/weixin.png",
-      "images/qq.png",
-      "css/reset.css",
-      "images/agreenicon.png",
-      "css/mui.min.css",
-      "js/register.js"
-    ],
-    "refer": [
-      "html/setpass.html"
-    ]
-  },
-  "html/fillinfo.html": {
-    "resources": [
-      "css/app.css",
-      "css/mui.min.css",
-      "libs/mui.min.js",
-      "images/default-photo.jpg",
-      "index.html",
-      "images/requiredicon.png",
-      "js/public/mui.picker.min.js",
-      "js/public/upload-avatar.js",
-      "js/public/city.data.js",
-      "js/fillinfo.js",
-      "css/mui.picker.min.css",
-      "images/default-photo-up.jpg",
-      "js/public/base.js",
-      "fonts/mui.ttf",
-      "fonts/iconfont.woff",
-      "css/iconfont.css",
-      "js/public/mui.min.js"
-    ],
-    "refer": [
-      "index.html",
-      "html/picture-upload.html"
-    ]
-  },
-  "html/proinforbrow.html": {
-    "resources": [
-      "images/dialogue.png",
-      "css/app.css",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "images/authicon.png",
-      "libs/mui.min.js",
-      "images/default-photo.jpg",
-      "index.html",
-      "images/zan.png",
-      "images/goto.png",
-      "html/proinforbrow-more.html",
-      "js/public/base.js",
-      "css/iconfont.css",
-      "js/public/mui.min.js",
-      "js/proinfobrow.js",
-      "fonts/iconfont.woff"
-    ],
-    "refer": [
-      "index.html",
-      "html/proinforbrow-more.html"
-    ]
-  },
-  "html/proinforbrow-more.html": {
-    "resources": [
-      "images/icon-acad.png",
-      "images/icon-honor.png",
-      "images/icon-project.png",
-      "images/icon-work.png",
-      "images/icon-edu.png",
-      "images/icon-mono.png",
-      "html/proinforbrow.html"
-    ],
-    "refer": [
-      "html/proinforbrow.html"
-    ]
-  },
-  "html/consultlist.html": {
-    "resources": [
-      "js/consult.js",
-      "css/app.css",
-      "fonts/mui.ttf",
-      "css/iconfont.css",
-      "css/mui.min.css",
-      "js/public/mui.min.js"
-    ],
-    "refer": []
-  },
-  "html/index_home.html": {
-    "resources": [
-      "images/field05.png",
-      "images/2.jpg",
-      "images/field02.png",
-      "images/field16.png",
-      "images/field18.png",
-      "fonts/mui.ttf",
-      "images/1.jpg",
-      "images/field07.png",
-      "images/3.jpg",
-      "js/index.js",
-      "images/field04.png",
-      "images/4.jpg",
-      "js/public/base.js",
-      "images/default-photo.jpg",
-      "css/app.css",
-      "css/iconfont.css",
-      "css/mui.min.css",
-      "js/public/mui.min.js",
-      "fonts/iconfont.ttf",
-      "html/fillinfo.html"
-    ],
-    "refer": [
-      "html/fillinfo.html",
-      "html/proinforbrow.html",
-      "html/search-home.html",
-      "html/search.html"
-    ]
-  },
-  "html/myaccount.html": {
-    "resources": [
-      "images/default-photo.jpg",
-      "js/myaccount.js",
-      "css/app.css",
-      "fonts/mui.ttf",
-      "css/iconfont.css",
-      "css/mui.min.css",
-      "js/public/mui.min.js",
-      "fonts/iconfont.ttf",
-      "js/public/base.js",
-      "fonts/iconfont.woff"
-    ],
-    "refer": [
-      "html/setup.html",
-      "html/login.html",
-      "html/reg.html",
-      "html/attentions.html"
-    ]
-  },
-  "html/setup.html": {
-    "resources": [
-      "js/setup.js"
-    ],
-    "refer": []
-  },
-  "html/picture-upload.html": {
-    "resources": [
-      "js/picture-upload.js",
-      "js/public/base.js",
-      "css/mui.min.css",
-      "js/public/mui.min.js"
-    ],
-    "refer": []
-  },
-  "html/setpass.html": {
-    "resources": [
-      "images/forget.png",
-      "js/register-setpass.js"
-    ],
-    "refer": [
-      "html/fillinfo.html"
-    ]
-  },
-  "html/attentions.html": {
-    "resources": [
-      "js/public/base.js",
-      "css/app.css",
-      "fonts/mui.ttf",
-      "css/iconfont.css",
-      "css/mui.min.css",
-      "js/public/mui.min.js",
-      "js/attentions.js",
-      "images/default-photo.jpg",
-      "images/default-resource.jpg",
-      "fonts/iconfont.woff"
-    ],
-    "refer": []
-  },
-  "html/search-home.html": {
-    "resources": [
-      "js/public/base.js",
-      "css/app.css",
-      "fonts/mui.ttf",
-      "css/iconfont.css",
-      "css/mui.min.css",
-      "js/public/mui.min.js"
-    ],
-    "refer": [
-      "html/search.html"
-    ]
-  },
-  "html/search.html": {
-    "resources": [
-      "js/searchhome.js",
-      "images/default-photo.jpg",
-      "fonts/iconfont.woff",
-      "images/default-resource.jpg",
-      "js/public/base.js",
-      "css/app.css",
-      "fonts/mui.ttf",
-      "css/iconfont.css",
-      "css/mui.min.css",
-      "js/public/mui.min.js"
-    ],
-    "refer": [
-      "html/proinforbrow.html"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"libs/mui.min.js",
+			"html/login.html",
+			"css/app.css",
+			"images/field18.png",
+			"images/qq.png",
+			"images/weixin.png",
+			"images/authicon.png",
+			"images/default-photo.jpg",
+			"images/field-icon8.png",
+			"html/proinforbrow.html",
+			"html/fillinfo.html",
+			"js/public/base.js",
+			"html/index_home.html",
+			"css/iconfont.css",
+			"js/public/mui.min.js",
+			"fonts/iconfont.ttf",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/login.html",
+			"html/reg.html",
+			"html/setpass.html",
+			"html/fillinfo.html",
+			"html/proinforbrow.html",
+			"html/consultlist.html",
+			"html/index_home.html",
+			"html/myaccount.html",
+			"html/consult_home.html"
+		]
+	},
+	"html/login.html": {
+		"resources": [
+			"images/logo.png",
+			"css/app.css",
+			"images/workclose.png",
+			"libs/mui.js",
+			"css/reset.css",
+			"images/sinaweibo.png",
+			"images/weixin.png",
+			"images/qq.png",
+			"index.html",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/base.js",
+			"js/login.js",
+			"js/public/mui.min.js"
+		],
+		"refer": [
+			"index.html",
+			"html/fillinfo.html",
+			"html/reg.html"
+		]
+	},
+	"html/reg.html": {
+		"resources": [
+			"images/logo.png",
+			"css/app.css",
+			"images/workclose.png",
+			"libs/mui.js",
+			"images/sinaweibo.png",
+			"images/weixin.png",
+			"images/qq.png",
+			"css/reset.css",
+			"images/agreenicon.png",
+			"css/mui.min.css",
+			"js/register.js",
+			"js/public/base.js",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"js/public/mui.min.js",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/setpass.html",
+			"html/login.html",
+			"html/privacy.html"
+		]
+	},
+	"html/fillinfo.html": {
+		"resources": [
+			"css/app.css",
+			"css/mui.min.css",
+			"libs/mui.min.js",
+			"images/default-photo.jpg",
+			"index.html",
+			"images/requiredicon.png",
+			"js/public/mui.picker.min.js",
+			"js/public/upload-avatar.js",
+			"js/public/city.data.js",
+			"js/fillinfo.js",
+			"css/mui.picker.min.css",
+			"images/default-photo-up.jpg",
+			"js/public/base.js",
+			"fonts/mui.ttf",
+			"fonts/iconfont.woff",
+			"css/iconfont.css",
+			"js/public/mui.min.js"
+		],
+		"refer": [
+			"index.html",
+			"html/picture-upload.html"
+		]
+	},
+	"html/proinforbrow.html": {
+		"resources": [
+			"images/dialogue.png",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/authicon.png",
+			"libs/mui.min.js",
+			"images/default-photo.jpg",
+			"index.html",
+			"images/zan.png",
+			"images/goto.png",
+			"html/proinforbrow-more.html",
+			"js/public/base.js",
+			"css/iconfont.css",
+			"js/public/mui.min.js",
+			"js/proinfobrow.js",
+			"fonts/iconfont.woff",
+			"css/previewImage.css",
+			"js/public/mui.zoom.js",
+			"js/public/mui.previewimage.js",
+			"images/default-resource.jpg",
+			"fonts/iconfont.ttf",
+			"images/default-artical.jpg"
+		],
+		"refer": [
+			"index.html",
+			"html/proinforbrow-more.html",
+			"html/consultapply.html",
+			"html/professorArticle.html",
+			"html/coophistory-other.html",
+			"html/login.html",
+			"html/researchAreaHead.html",
+			"html/resinforbrow.html"
+		]
+	},
+	"html/proinforbrow-more.html": {
+		"resources": [
+			"images/icon-acad.png",
+			"images/icon-honor.png",
+			"images/icon-project.png",
+			"images/icon-work.png",
+			"images/icon-edu.png",
+			"images/icon-mono.png",
+			"html/proinforbrow.html",
+			"js/proinfobrow-more.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		],
+		"refer": [
+			"html/proinforbrow.html"
+		]
+	},
+	"html/consultlist.html": {
+		"resources": [
+			"js/consult.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/nodata.png",
+			"images/authicon.png",
+			"fonts/iconfont.ttf",
+			"images/default-photo.jpg",
+			"js/public/base.js",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/chats.html",
+			"html/login.html"
+		]
+	},
+	"html/index_home.html": {
+		"resources": [
+			"images/field05.png",
+			"images/2.jpg",
+			"images/field02.png",
+			"images/field16.png",
+			"images/field18.png",
+			"fonts/mui.ttf",
+			"images/1.jpg",
+			"images/field07.png",
+			"images/3.jpg",
+			"js/index.js",
+			"images/field04.png",
+			"images/4.jpg",
+			"js/public/base.js",
+			"images/default-photo.jpg",
+			"css/app.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"fonts/iconfont.ttf",
+			"html/fillinfo.html",
+			"html/index_centen.html"
+		],
+		"refer": [
+			"html/fillinfo.html",
+			"html/proinforbrow.html",
+			"html/search-home.html",
+			"html/search.html",
+			"html/index_centen.html"
+		]
+	},
+	"html/myaccount.html": {
+		"resources": [
+			"images/default-photo.jpg",
+			"js/myaccount.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"fonts/iconfont.ttf",
+			"js/public/base.js",
+			"fonts/iconfont.woff",
+			"images/authicon.png",
+			"images/default-photo-up.jpg"
+		],
+		"refer": [
+			"html/setup.html",
+			"html/login.html",
+			"html/reg.html",
+			"html/attentions.html",
+			"html/proinforupdate.html",
+			"html/studentUpdata.html",
+			"html/coophistory.html",
+			"html/companyUpdata.html",
+			"html/invite_new.html"
+		]
+	},
+	"html/setup.html": {
+		"resources": [
+			"js/setup.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		],
+		"refer": [
+			"html/security.html",
+			"html/kefuhelp.html",
+			"html/privacy.html",
+			"html/aboutus.html"
+		]
+	},
+	"html/picture-upload.html": {
+		"resources": [
+			"js/picture-upload.js",
+			"js/public/base.js",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/public/exif.js"
+		],
+		"refer": []
+	},
+	"html/setpass.html": {
+		"resources": [
+			"images/forget.png",
+			"js/register-setpass.js"
+		],
+		"refer": [
+			"html/fillinfo.html"
+		]
+	},
+	"html/attentions.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/attentions.js",
+			"images/default-photo.jpg",
+			"images/default-resource.jpg",
+			"fonts/iconfont.woff",
+			"html/attentions-list.html"
+		],
+		"refer": [
+			"html/attentions-list2.html",
+			"html/attentions-list.html"
+		]
+	},
+	"html/search-home.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"html/search-home.html"
+		],
+		"refer": [
+			"html/search.html",
+			"html/search-home.html"
+		]
+	},
+	"html/search.html": {
+		"resources": [
+			"js/searchhome.js",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff",
+			"images/default-resource.jpg",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"fonts/iconfont.ttf",
+			"images/authicon.png",
+			"images/nodata.png",
+			"html/search.html"
+		],
+		"refer": [
+			"html/proinforbrow.html",
+			"html/resinforbrow.html",
+			"html/address-screes.html",
+			"html/search.html"
+		]
+	},
+	"html/index_centen.html": {
+		"resources": [
+			"images/banner/4.jpg",
+			"images/banner/2.jpg",
+			"images/field_icon/field04.png",
+			"images/field_icon/field02.png",
+			"images/field_icon/field05.png",
+			"images/field_icon/field16.png",
+			"images/field_icon/field18.png",
+			"images/banner/1.jpg",
+			"images/banner/3.jpg",
+			"js/index.js",
+			"images/field_icon/field07.png",
+			"css/app.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/default-photo.jpg",
+			"js/public/base.js",
+			"fonts/iconfont.ttf",
+			"images/banner/artical_01.jpg",
+			"fonts/mui.ttf",
+			"fonts/iconfont.woff",
+			"images/banner/artical_02.jpg",
+			"images/banner/banner0307.png"
+		],
+		"refer": [
+			"html/proinforupdate.html",
+			"html/proinforbrow.html",
+			"html/artical_01.html",
+			"html/search.html",
+			"html/articalMessage.html",
+			"html/artical_02.html"
+		]
+	},
+	"html/consult_home.html": {
+		"resources": [
+			"html/consultlist.html",
+			"css/app.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/public/base.js"
+		],
+		"refer": [
+			"html/consultlist.html"
+		]
+	},
+	"html/proinforupdate.html": {
+		"resources": [
+			"js/proinforupdate.js",
+			"js/public/upload-avatar.js",
+			"images/default-resource.jpg",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"fonts/iconfont.woff",
+			"images/default-photo.jpg",
+			"images/default-artical.jpg",
+			"fonts/iconfont.ttf"
+		],
+		"refer": [
+			"html/updateinfo4.html",
+			"html/updateinfo5.html",
+			"html/updateinfo3.html",
+			"html/proinforupdate-more.html",
+			"html/updateinfo1.html",
+			"html/professorArticle.html",
+			"html/resinforbrow.html"
+		]
+	},
+	"html/updateinfo4.html": {
+		"resources": [
+			"js/public/zepto.min.js",
+			"js/updateinfo4.js",
+			"css/app.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"fonts/mui.ttf"
+		]
+	},
+	"html/updateinfo5.html": {
+		"resources": [
+			"js/updateinfo5.js",
+			"fonts/mui.ttf",
+			"css/app.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/public/base.js"
+		]
+	},
+	"html/updateinfo3.html": {
+		"resources": [
+			"js/updateinfo3.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/resinforbrow.html": {
+		"resources": [
+			"js/resinforbrow.js",
+			"css/previewImage.css",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/public/mui.zoom.js",
+			"js/public/mui.previewimage.js",
+			"images/default-resource.jpg",
+			"fonts/iconfont.woff",
+			"images/authicon.png",
+			"images/default-photo.jpg",
+			"fonts/iconfont.ttf"
+		],
+		"refer": [
+			"html/companybrowse.html",
+			"html/studentbrowse.html",
+			"html/proinforbrow.html",
+			"html/consultapply.html"
+		]
+	},
+	"html/companybrowse.html": {
+		"resources": [
+			"js/companybrowse.js"
+		],
+		"refer": [
+			"html/resinforbrow.html"
+		]
+	},
+	"html/artical_01.html": {
+		"resources": [
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"fonts/iconfont.ttf",
+			"images/banner/artical_01.jpg",
+			"images/default-photo.jpg",
+			"js/public/mui.min.js",
+			"fonts/iconfont.woff",
+			"js/public/base.js",
+			"js/index.js",
+			"images/articalImg/liguanfu_01.jpg",
+			"images/articalImg/liguanfu_03.png",
+			"images/articalImg/liguanfu_02.png",
+			"images/articalImg/liguanfu_04.png"
+		],
+		"refer": [
+			"html/proinforbrow.html"
+		]
+	},
+	"html/proinforupdate-more.html": {
+		"resources": [
+			"images/icon-acad.png",
+			"js/proinforupdate-more.js",
+			"images/icon-honor.png",
+			"images/icon-project.png",
+			"images/icon-work.png",
+			"images/icon-edu.png",
+			"images/icon-mono.png",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		],
+		"refer": [
+			"html/updateinfo6.html",
+			"html/updateinfo8.html",
+			"html/updateinfo7.html",
+			"html/updateinfo11.html",
+			"html/updateinfo10.html"
+		]
+	},
+	"html/studentUpdata.html": {
+		"resources": [
+			"js/studentUpdata.js",
+			"js/public/upload-avatar.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/default-resource.jpg",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/proinforupdate-more.html"
+		]
+	},
+	"html/studentbrowse.html": {
+		"resources": [
+			"js/studentbrowse.js",
+			"images/default-resource.jpg"
+		],
+		"refer": [
+			"html/proinforbrow-more.html"
+		]
+	},
+	"html/coophistory.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/coophistory.js",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff"
+		]
+	},
+	"html/attentions-list2.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/authicon.png",
+			"js/attentions2.js",
+			"images/default-resource.jpg",
+			"fonts/iconfont.woff",
+			"images/nodata.png"
+		]
+	},
+	"html/attentions-list.html": {
+		"resources": [
+			"js/attentions.js",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff",
+			"images/nodata.png",
+			"js/public/base.js",
+			"css/app.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		],
+		"refer": [
+			"html/proinforbrow.html"
+		]
+	},
+	"html/security.html": {
+		"resources": [
+			"js/security.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		],
+		"refer": [
+			"html/changepass.html",
+			"html/bindmail.html",
+			"html/bindphone.html"
+		]
+	},
+	"html/kefuhelp.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/kefuhelp.js"
+		],
+		"refer": [
+			"html/feedback.html",
+			"html/claims.html",
+			"html/contactservice.html"
+		]
+	},
+	"html/feedback.html": {
+		"resources": [
+			"js/feedback.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/claims.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/claims.js"
+		]
+	},
+	"html/contactservice.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"js/contactservice.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/privacy.html": {
+		"resources": [
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/aboutus.html": {
+		"resources": [
+			"images/logo.png",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/changepass.html": {
+		"resources": [
+			"js/changepass.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/bindmail.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/bindmail.js"
+		]
+	},
+	"html/bindphone.html": {
+		"resources": [
+			"js/bindphone.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/consultapply.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"js/consultapply.js",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/default-photo.jpg",
+			"images/requiredicon.png",
+			"fonts/iconfont.woff"
+		]
+	},
+	"html/chats.html": {
+		"resources": [
+			"js/public/mui.imageViewer.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"js/public/arttmpl.js",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"css/mui.imageviewer.css",
+			"js/chats.js",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff",
+			"fonts/iconfont.ttf"
+		],
+		"refer": [
+			"html/chat-assess.html",
+			"html/chat-assess-detail.html",
+			"html/rejectReason-details.html"
+		]
+	},
+	"html/companyUpdata.html": {
+		"resources": [
+			"js/public/upload-avatar.js",
+			"js/companyUpdata.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff",
+			"fonts/iconfont.ttf"
+		],
+		"refer": [
+			"html/picture-upload.html",
+			"html/updateinfo2.html",
+			"html/proinforupdate-more.html",
+			"html/updateinfo5.html"
+		]
+	},
+	"html/updateinfo2.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"js/updateinfo2.js"
+		]
+	},
+	"html/address-screes.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/articalMessage.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff",
+			"js/articalMessage.js"
+		]
+	},
+	"html/professorArticle.html": {
+		"resources": [
+			"images/default-art_top.jpg",
+			"js/professorArticle.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/articalMessage.html"
+		]
+	},
+	"html/coophistory-other.html": {
+		"resources": [
+			"js/coophistory-other.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"fonts/iconfont.ttf",
+			"images/default-photo.jpg"
+		]
+	},
+	"html/invite_new.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"images/yqbg.jpg",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"images/default-photo.jpg",
+			"js/invite_new.js",
+			"images/nodata.png"
+		]
+	},
+	"html/chat-assess.html": {
+		"resources": [
+			"js/chat-assess.js",
+			"fonts/iconfont.woff",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/chat-assess-detail.html": {
+		"resources": [
+			"js/chat-assess-detail.js"
+		]
+	},
+	"html/updateinfo1.html": {
+		"resources": [
+			"js/public/mui.picker.min.js",
+			"js/updateinfo1.js",
+			"js/public/city.data.js",
+			"css/mui.picker.min.css",
+			"images/requiredicon.png"
+		]
+	},
+	"html/updateinfo6.html": {
+		"resources": [
+			"js/public/mui.picker.all.js",
+			"js/updateinfo6.js",
+			"css/mui.picker.min.css",
+			"images/requiredicon.png",
+			"js/public/zepto.min.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/updateinfo8.html": {
+		"resources": [
+			"js/public/mui.picker.min.js",
+			"js/public/zepto.min.js",
+			"css/mui.picker.min.css",
+			"js/updateinfo8.js",
+			"images/requiredicon.png",
+			"js/public/base.js",
+			"css/app.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"fonts/mui.ttf"
+		]
+	},
+	"html/updateinfo7.html": {
+		"resources": [
+			"js/updateinfo7.js",
+			"js/public/mui.picker.min.js",
+			"css/mui.picker.min.css",
+			"images/requiredicon.png",
+			"js/public/base.js",
+			"css/app.css",
+			"js/public/zepto.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/updateinfo11.html": {
+		"resources": [
+			"js/public/mui.picker.all.js",
+			"js/updateinfo11.js",
+			"css/mui.picker.min.css",
+			"images/requiredicon.png",
+			"js/public/base.js",
+			"css/app.css",
+			"js/public/zepto.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	},
+	"html/updateinfo10.html": {
+		"resources": [
+			"js/updateinfo10.js",
+			"js/public/mui.picker.all.js",
+			"js/public/zepto.min.js",
+			"css/mui.picker.min.css",
+			"images/requiredicon.png"
+		]
+	},
+	"html/artical_02.html": {
+		"resources": [
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"images/banner/artical_02.jpg",
+			"js/public/mui.min.js",
+			"images/articalImg/dumin_01.jpg",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/proinforbrow.html"
+		]
+	},
+	"html/researchArea.html": {
+		"resources": [
+			"js/researchArea.js",
+			"images/authicon.png",
+			"js/public/base.js",
+			"css/app.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js",
+			"fonts/iconfont.ttf",
+			"images/default-photo.jpg",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/companybrowse.html"
+		]
+	},
+	"html/researchAreaHead.html": {
+		"resources": [
+			"html/researchArea.html",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		],
+		"refer": [
+			"html/researchArea.html"
+		]
+	},
+	"html/rejectReason-details.html": {
+		"resources": [
+			"js/rejectReason-details.js",
+			"js/public/base.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"js/public/mui.min.js"
+		]
+	}
 }

@@ -1,26 +1,29 @@
 //注册完成个人信息
 mui.ready(function() {
-	
-    /*定义全局变量*/
+
+	/*定义全局变量*/
 	var userName = document.getElementById("userName");
 	var userMechanism = document.getElementById("userMechanism");
 	var userDepartment = document.getElementById("userDepartment");
 	var goIndex = document.getElementById("goIndex");
 	var dataProvince = document.getElementById("data-province");
 	var dataAddress = document.getElementById("data-address");
-	var boxnav1=document.getElementById("boxnav1");
-	var boxnav2=document.getElementById("boxnav2");
-	var boxnav3=document.getElementById("boxnav3");
-	var li1=document.getElementById("li1");
-	var li2=document.getElementById("li2");
-	var li3=document.getElementById("li3");
-	var li4=document.getElementById("li4");
-	var li5=document.getElementById("li5");
-	var li6=document.getElementById("li6");
+	var boxnav1 = document.getElementById("boxnav1");
+	var boxnav2 = document.getElementById("boxnav2");
+	var boxnav3 = document.getElementById("boxnav3");
+	var boxnav4 = document.getElementById("boxnav4");
+	var li1 = document.getElementById("li1");
+	var li2 = document.getElementById("li2");
+	var li3 = document.getElementById("li3");
+	var li4 = document.getElementById("li4");
+	var li5 = document.getElementById("li5");
+	var li6 = document.getElementById("li6");
 	var applyType;
-	
+	var afalse = false;
 	/*选择地址*/
-	var cityPicker = new mui.PopPicker({layer: 2});
+	var cityPicker = new mui.PopPicker({
+		layer: 2
+	});
 	cityPicker.setData(cityData);
 	var showCityPickerButton = document.getElementById('showCityPicker');
 	showCityPickerButton.addEventListener('tap', function(event) {
@@ -32,72 +35,111 @@ mui.ready(function() {
 			//return false;
 		});
 	}, false);
-	
+
 	tab('box');
-	
-	boxnav1.addEventListener("tap",function(){
-		document.querySelector(".maincon").style.display="block";
-		var label1='<label>所在机构<small> ( 高校/科研机构/企业名称 )</small><em class="requiredcon"></em></label>';
-		var label2='<label>所属部门<small> ( 院系/科研室/部门名称 )</small></label>';
-		var label3='<label>职称</label>';
-		var label4='<input type="text" class="mui-input-clear frmtype" id="userTitle">';
-		var label5='<label>职位</label>';
-		var label6='<input type="text" class="mui-input-clear frmtype" id="userPosition">';
+
+	boxnav1.addEventListener("tap", function() {
+		document.querySelector(".maincon").style.display = "block";
+		var label1 = '<label>所在机构<small> ( 高校/研究机构 )</small><em class="requiredcon"></em></label>';
+		var label2 = '<label>所属部门<small> ( 院/系/实验室 )</small></label>';
+		var label3 = '<label>职称</label>';
+		var label4 = '<input type="text" class="mui-input-clear frmtype" id="userTitle">';
+		var label5 = '<label>职位</label>';
+		var label6 = '<input type="text" class="mui-input-clear frmtype" id="userPosition">';
 		li1.innerHTML = label1;
 		li2.innerHTML = label2;
 		li3.innerHTML = label3;
 		li4.innerHTML = label4;
 		li5.innerHTML = label5;
 		li6.innerHTML = label6;
-		li3.style.display="block";
-		li4.style.display="block";
-		li5.style.display="block";
-		li6.style.display="block";
-		document.querySelector(".frmtype").value="";
-		userMechanism.value="";
-		userDepartment.value="";
+		li3.style.display = "block";
+		li4.style.display = "block";
+		li5.style.display = "block";
+		li6.style.display = "block";
+		document.querySelector(".frmtype").value = "";
+		userMechanism.value = "";
+		userDepartment.value = "";
+		goIndex.classList.add("frmactive2");
+		goIndex.classList.remove("frmactiveok");
+		goIndex.disabled = "disabled";
+		afalse = false;
 	})
-			
-	boxnav2.addEventListener("tap",function(){
-		document.querySelector(".maincon").style.display="block";
-		var label1='<label>所在企业<small></small><em class="requiredcon"></em></label>';
-		var label2='<label>所属部门</label>';
-		var label3='<label>职位</label>';
-		var label4='<input type="text" class="mui-input-clear frmtype" id="userPosition">';
-		var label5='<label>职称</label>';
-		var label6='<input type="text" class="mui-input-clear frmtype" id="userTitle">';
+
+	boxnav2.addEventListener("tap", function() {
+		document.querySelector(".maincon").style.display = "block";
+		var label1 = '<label>所在企业<small></small><em class="requiredcon"></em></label>';
+		var label2 = '<label>所属部门</label>';
+		var label3 = '<label>职位</label>';
+		var label4 = '<input type="text" class="mui-input-clear frmtype" id="userPosition">';
+		var label5 = '<label>职称</label>';
+		var label6 = '<input type="text" class="mui-input-clear frmtype" id="userTitle">';
 		li1.innerHTML = label1;
 		li2.innerHTML = label2;
 		li3.innerHTML = label3;
 		li4.innerHTML = label4;
 		li5.innerHTML = label5;
 		li6.innerHTML = label6;
-		li3.style.display="block";
-		li4.style.display="block";
-		li5.style.display="block";
-		li6.style.display="block";
-		document.querySelector(".frmtype").value="";
-		userMechanism.value="";
-		userDepartment.value="";
+		li3.style.display = "block";
+		li4.style.display = "block";
+		li5.style.display = "block";
+		li6.style.display = "block";
+		document.querySelector(".frmtype").value = "";
+		userMechanism.value = "";
+		userDepartment.value = "";
+		goIndex.classList.add("frmactive2");
+		goIndex.classList.remove("frmactiveok");
+		goIndex.disabled = "disabled";
+		afalse = false;
 	})
-			
-	boxnav3.addEventListener("tap",function(){
-		document.querySelector(".maincon").style.display="block";
-		li3.style.display="none";
-		li4.style.display="none";
-		li5.style.display="none";
-		li6.style.display="none";
-		li4.getElementsByTagName('input').value="";
-		var label1='<label>所在高校<em class="requiredcon"></em></label>';
-		var label2='<label>所属学院</label>';
+
+	boxnav3.addEventListener("tap", function() {
+		document.querySelector(".maincon").style.display = "block";
+		li3.style.display = "none";
+		li4.style.display = "none";
+		li5.style.display = "none";
+		li6.style.display = "none";
+		li4.getElementsByTagName('input').value = "";
+		var label1 = '<label>就读高校<em class="requiredcon"></em></label>';
+		var label2 = '<label>就读院系</label>';
 		li1.innerHTML = label1;
 		li2.innerHTML = label2;
-		document.querySelector(".frmtype").value="";
-		userMechanism.value="";
-		userDepartment.value="";
+		document.querySelector(".frmtype").value = "";
+		userMechanism.value = "";
+		userDepartment.value = "";
+		goIndex.classList.add("frmactive2");
+		goIndex.classList.remove("frmactiveok");
+		goIndex.disabled = "disabled";
+		afalse = false;
 	})
-	
-	function tab(name) { 
+
+	/*boxnav4.addEventListener("tap", function() {
+		document.querySelector(".maincon").style.display = "block";
+		var label1 = '<label>所在机构</label>';
+		var label2 = '<label>所属部门</label>';
+		var label3 = '<label>职位</label>';
+		var label4 = '<input type="text" class="mui-input-clear frmtype" id="userPosition">';
+		var label5 = '<label>职称</label>';
+		var label6 = '<input type="text" class="mui-input-clear frmtype" id="userTitle">';
+		li1.innerHTML = label1;
+		li2.innerHTML = label2;
+		li3.innerHTML = label3;
+		li4.innerHTML = label4;
+		li5.innerHTML = label5;
+		li6.innerHTML = label6;
+		li3.style.display = "block";
+		li4.style.display = "block";
+		li5.style.display = "block";
+		li6.style.display = "block";
+		document.querySelector(".frmtype").value = "";
+		userMechanism.value = "";
+		userDepartment.value = "";
+		goIndex.classList.add("frmactive2");
+		goIndex.classList.remove("frmactiveok");
+		goIndex.disabled = "disabled";
+		afalse = true;
+	})*/
+
+	function tab(name) {
 		var oDome = document.getElementById(name);
 		var oSpan = oDome.getElementsByTagName('ul')[0].childNodes;
 		for(var i = 0; i < oSpan.length; i++) {
@@ -113,27 +155,36 @@ mui.ready(function() {
 	window.addEventListener('showimg', function(event) {
 		showuserimg();
 	});
-	
-	function showuserimg(){
+
+	function showuserimg() {
 		var userId = plus.storage.getItem('userid');
 		console.log(userId)
 		var filPage = plus.webview.getWebviewById('../html/fillinfo.html');
 		var dyPage = plus.webview.currentWebview();
 		if(dyPage == filPage) {
-			var mun = Math.round(Math.random()*99+1);
-			var imgvar = '<img src="'+ baseUrl + '/images/head/' + userId + '_l.jpg?'+mun+'" style="width:100%"/>';
-			console.log(imgvar) 
+			var mun = Math.round(Math.random() * 99 + 1);
+			var imgvar = '<img src="' + baseUrl + '/images/head/' + userId + '_l.jpg?' + mun + '" style="width:100%"/>';
+			console.log(imgvar)
 			document.getElementById('imgshow').innerHTML = imgvar;
 		}
 	}
-	
 
 	mui.plusReady(function() {
 		var self = plus.webview.currentWebview();
-	
+
 		/*校验提交按钮显示状态*/
 		mui('.basicinfo').on('keyup', "#userName,#userMechanism", function() {
-			hideButtn(userName,userMechanism,goIndex,"frmactiveok");
+			if(afalse) {
+				if(userName.value == "") {
+					goIndex.classList.remove("frmactiveok");
+					goIndex.disabled = "disabled";
+				} else {
+					goIndex.classList.add("frmactiveok");
+					goIndex.disabled = "";
+				}
+			} else {
+				hideButtn(userName, userMechanism, goIndex, "frmactiveok");
+			}
 		});
 
 		/*提交个人信息*/
@@ -165,7 +216,7 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					console.log(data.success);
-						console.log(data.data);
+					console.log(data.data);
 					if(data.success) {
 						var indexClose = plus.webview.getWebviewById("html/index_home.html");
 						var myaccountClose = plus.webview.getWebviewById("html/myaccount.html");

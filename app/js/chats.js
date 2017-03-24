@@ -12,11 +12,14 @@
 	var oassessBtn = document.getElementById("assessBtn");//我的需求，去评价按钮
 	var oassessed = document.getElementById("assessed");//我的需求，已评价(评价星级和评价内容)
 	var omy_starContainer = document.getElementById("my_starContainer");//我的需求，星级容器
+	var obxiejue = document.getElementById("bxiejue");//我的需求，被谢绝
+	var odhuifu = document.getElementById("dhuifu");//我的需求，待回复
 	
 	var othat_weiassess = document.getElementById("that_weiassess");//收到咨询，未评价状态
 	var owaying = document.getElementById("waying");//收到咨询，进行中状态
 	var othat_assessed = document.getElementById("that_assessed");//收到咨询，对方已评价
 	var ozixunstarContainer = document.getElementById("consult_starContainer");//收到咨询星级容器
+	var yxiejue = document.getElementById("yxiejue");//收到咨询，已谢绝
 	
 	var omyNeeAss = document.getElementById("myNeeAss");//我的需求已评价，点击跳转评价详情
 	var ogetConAss = document.getElementById("getConAss");//收到咨询对方已评价，点击跳转评价详情
@@ -29,12 +32,15 @@
 	var omsg_type = document.getElementById("msg-type");
 	var ochatFooter = document.getElementById("chatFooter");
 	
+	
 	mui.plusReady(function() {
 		var self = plus.webview.currentWebview();
+		if(self.num == 1){
+			var consultSureid = plus.webview.getWebviewById('consultSure.html');
+		    consultSureid.close();	
+		}
 		console.log('当前聊天页面id==='+self.id);
 	})
-	
-	
 	
 	//查看咨询内容
 	(function lookContultCon(){
@@ -72,11 +78,12 @@
 						console.log(myData["consultStatus"]);
 						ostatus.setAttribute('status','consultStatus='+myData["consultStatus"]);					
 						//clickConfirm(consultId);
-
+					}else if(myData["consultStatus"] == 2){
+						odhuifu.classList.remove('displayNone');//我的需求，待回复
+					}else if(myData["consultStatus"] == 3){
+						obxiejue.classList.remove('displayNone');//我的需求，被谢绝
 					}else {
 //						ochatFooter.style.display = 'none';;//对话底部隐藏
-						
-						
 						if(myData["assessStatus"] == 0){
 							oassessBtn.classList.remove('displayNone');//我的需求，未评价
 							ostatus.setAttribute('status','');
@@ -123,6 +130,8 @@
 					if(myData["consultStatus"] == 0){
 						owaying.classList.remove('displayNone');
 						ochatFooter.classList.remove('displayNone');
+					}else if(myData["consultStatus"] == 3){
+						yxiejue.classList.remove('displayNone');//收到咨询，已谢绝
 					}else {//收到咨询已完成
 						
 //						ochatFooter.style.display = 'none';//对话底部隐藏
@@ -226,9 +235,7 @@
 		oassessBtn.classList.add('displayNone');
 		getHeadInfo('myNeed',consultId);
 	});
-	
-	
-		
+
 	var MIN_SOUND_TIME = 800;
 	template.config('escape', false);
 	//mui.plusReady=function(fn){fn();};
@@ -254,6 +261,13 @@
 				}
 			})
 		});
+		
+		/*点击进入谢绝理由*/
+		mui(".operatebox").on("tap",".yxiejue",function(){
+			plus.nativeUI.showWaiting();//显示原生等待框
+			plus.webview.create("../html/rejectReason-details.html", 'rejectReason-details.html',{},{'consultId': consultId});
+		})
+		
 		/*点击未评价,进入评价页面*/
 	//function clickweiassess(consultId){
 		oassessBtn.addEventListener('tap',function(){

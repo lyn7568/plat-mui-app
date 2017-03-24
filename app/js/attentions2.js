@@ -150,7 +150,7 @@ function datalistEach(datalistd) {
 		if(item.resource.editProfessor.authType) {
 			icont='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.resource.editProfessor.authStatus) {
+			if(item.resource.editProfessor.authStatus==3) {
 				if(item.resource.editProfessor.authentication == 1) {
 					icont='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.resource.editProfessor.authentication == 2) {

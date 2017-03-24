@@ -78,7 +78,7 @@ function ziyuaninfo(resourceId) {
 						opromodify.classList.add('authicon-cu');
 						opromodify.style.float = "left";
 					} else {
-						if(mydata['editProfessor']["authStatus"]) {
+						if(mydata['editProfessor']["authStatus"]==3) {
 							if(mydata['editProfessor']["authentication"] == 1) {
 								opromodify.classList.add('icon-renzheng');
 								opromodify.classList.add('authicon-mana');

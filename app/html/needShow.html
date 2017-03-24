@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的需求</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #fff;}
+			.mui-content{background: #fff;height:100%;overflow: auto;}
+			.mui-table-view:before,.mui-table-view:after{background:#E6E6E6;}
+			.coutopicbox{border-bottom:none;margin:0;padding:0;width:100%}
+			.demandBtn .frmactive2{color:#FF0000}
+			.demandBtn .frmactive2.mui-btn:enabled:active{color:#FF0000}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">我的需求</h1>
+		</header>
+		<div class="mui-content">
+			<div class="conBody">
+				<div class="contentInner demandBasic">
+					<h3 id="demandTitle"></h3>
+					<h5 class="coutopicbox">
+						发布时间：<span id="poTime"></span>
+						<em class="aimlabel" id="oDemandType"></em>
+						<em class="aimlabel" id="oDemandAim"></em>
+						<em class="status-1" id="oDemandStatus"></em>
+						<!--<em class="status-5">已关闭</em>-->
+					</h5>
+				</div>
+				<div class="demandCon contentInner" id="demandContent" style="word-wrap:break-word;">
+	
+				</div>
+				<div class="contentInner demandBtn" id="closedDemand">
+					<button class="mui-btn mui-btn-block frmbtn frmactive2">关闭该需求</button>
+				</div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/needShow.js"></script>
+	</body>
+
+</html>

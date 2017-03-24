@@ -414,7 +414,7 @@ function datalistEach(datalist) {
 		if(item.authType) {
 			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.authStatus) {
+			if(item.authStatus==3) {
 				if(item.authentication == 1) {
 					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.authentication == 2) {
@@ -502,7 +502,7 @@ function resourcesEach(datalist) {
 		if(item.editProfessor.authType) {			
 			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
 		} else {
-			if(item.editProfessor.authStatus) {
+			if(item.editProfessor.authStatus==3) {
 				if(item.editProfessor.authentication == 1) {					
 					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
 				} else if(item.editProfessor.authentication == 2) {					

@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>需求发布</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #fff;}
+			.mui-content{background: #fff;height:100%;overflow: auto;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">需求发布</h1>
+		    <span class="mui-pull-right topsave">发布</span>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group mainbox">
+				<div class="maincon demandBox">
+					<ul class="basicinfo" style="padding:0;">
+						<li><label>请选择您发布需求的目的<em class="requiredcon"></em></label></li>
+						<li class="divideSpace" id="navsub" style="padding-left:0">
+							<ul class="boxnav chooseBox">
+								<li><span>咨询技术难题</span></li>
+								<li><span>寻求研发资源</span></li>
+								<li><span>其他</span></li>
+							</ul>
+						</li>
+						<li><label>请选择您的需求类型<em class="requiredcon"></em></label></li>
+						<li class="divideSpace" id="navsubTo" style="padding-left:0">
+							<ul class="boxnav boxnavTo chooseBox">
+								<li><span class='checkNow'>个人需求</span></li><!--选中状态checkNow-->
+								<li><span class='checkNo'>企业需求</span></li><!--不可用状态checkNo-->
+							</ul>
+							<div class="littipCh">
+								<div class="littip">注：当企业入驻科袖后，企业的关联用户将可以发布企业需求</div>
+								<div class="littip">注：1、当完成实名认证后，您将可以发布个人需求。
+									<p>2、当您不再是当前企业的认证用户时，您的企业需求将自动关闭。</p></div>
+							</div>
+						</li>
+						<li class="divideSpace">
+							<div class="littip"></div>
+						</li>
+						<li><label>需求主题<em class="requiredcon"></em></label></li>
+						<li class="basicfrm"><input type="text" name="comname" placeholder="请用一句话概括您的需求" class="mui-input-clear frmtype" id="demandContent"></li>
+						<li><label>需求内容<em class="requiredcon" ></em></label></li>
+						<li class="divideSpace" style="height:auto">
+							<div class="textareabox textareaboxEmp borderarea" contenteditable="true" placeholder="请详细描述您遇到的问题，以便为您找到最合适的专家"></div>
+							<div class="limitNum">您还能输入<span id="countNum">300</span> 字</div>
+						</li>
+						<li><label>请选择需求涉及的行业或领域（可多选）</label></li>
+						<li class="divideSpace">
+							<ul class="hotsearch chooseBox">
+					       		<!--<li><span>材料检测</span></li>
+					       		<li><span>防腐蚀</span></li>
+					       		<li class="checkedLi"><span>金属基复合材料</span></li>
+					       		<li class="checkedLi"><span>金属基复合材料</span></li>
+					       		<li><span>微晶金属材料</span></li>
+					       		<li class="checkedLi"><span>金属基复合材料</span></li>
+					       		<li><span>微晶金属材料</span></li>
+					       		<li><span>微晶金属材料</span></li>-->
+					       </ul>
+						</li>
+						<li class="divideSpace">
+							<div class="addlabel mui-clearfix">
+								<input type="text" placeholder="您可以输入更多需求所涉及的行业或领域" class="mui-input-clear mui-pull-left frmtype lineInput">
+								<button class="mui-btn mui-pull-left addlabelbtn">添加</button>
+							</div>
+							<div class="labelarea">
+	                        	<ul class="labelshow chooseBox" id="labelshow">
+						       		<!--<li>4565566<em class='mui-icon mui-icon-closeempty'></em></li>
+						       		<li>4565566<em class='mui-icon mui-icon-closeempty'></em></li>-->
+						       	</ul>
+	                        </div>
+						</li>
+					</ul>
+				</div>					
+		   </div>    
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/needIssue.js"></script>
+	</body>
+
+</html>

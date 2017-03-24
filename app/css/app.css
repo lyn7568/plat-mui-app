@@ -318,6 +318,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .listitembox .listitem>a .mutlinebox{ white-space:normal; overflow: auto;word-break:break-word; }
 .listitembox .listitem.mui-table-view-cell:after{right: 0;bottom: 0;left:46px;background:#F0F0F0;}
 .listitembox .listitem.mui-table-view-cell>a:not(.mui-btn).mui-active{background:none;}
+.centerTit{position: absolute;top:50%;margin-top:-18px;left:86px;}
 /*合作资源*/
 .resinfo{padding:10px 0;}
 .resinfo li{margin:4px 4px;padding:10px 0;}

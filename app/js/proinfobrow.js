@@ -159,8 +159,8 @@ mui.plusReady(function() {
 					string += '<img class="resImg headRadius" src="../images/default-resource.jpg">'
 				}
 				string += '</div><div class="mui-media-body">'
-				string += '<span class="listtit">' + $data[i].resourceName + '</span>'
-				string += '<p class="listtit2">' + $data[i].supportedServices + '</p>'
+				string += '<span class="listtit mui-ellipsis-2">' + $data[i].resourceName + '</span>'
+				string += '<p class="listtit2 mui-ellipsis-2">' + $data[i].supportedServices + '</p>'
 					//				string += '<p class="listtit3 resbrief">'
 					//				if($data[i].descp) {
 					//					string += $data[i].descp;
@@ -391,14 +391,14 @@ mui.plusReady(function() {
 				var html = [];
 				for(var i = 0; i < $data.length; i++) {					
 					var string = '<li class="mui-table-view-cell mui-media listitem" articleId=' + $data[i].articleId + '>'
-					string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
+					string += '<a class="proinfor" style="position:relative;"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
 					if($data[i].articleImg){
 						string += '<img class="resImg headRadius" src="'+baseUrl+'/data/article/'+$data[i].articleImg+'">'
 					}else{
 						string += '<img class="resImg headRadius" src="../images/default-artical.jpg">'
 					}
-					string += '</div><div class="mui-media-body">'
-					string += '<span class="listtit">' + $data[i].articleTitle + '</span>'
+					string += '</div><div class="mui-media-body centerTit">'
+					string += '<span class="listtit mui-ellipsis-2" >' + $data[i].articleTitle + '</span>'
 					string += '</div></a></li>'
 					html.push(string);
 				}

@@ -206,11 +206,18 @@
 					"images/default-photo.jpg",
 					"images/field-icon8.png",
 					"html/proinforbrow.html",
-					"html/fillinfo.html"
+					"html/fillinfo.html",
+					"js/public/base.js",
+					"css/iconfont.css",
+					"js/public/mui.min.js",
+					"fonts/iconfont.ttf",
+					"html/index_home.html"
 				],
 				"refer": [
 					"html/reg.html",
-					"html/setpass.html"
+					"html/setpass.html",
+					"html/consult_home.html",
+					"html/myaccount.html"
 				],
 				"priority": 0
 			},
@@ -226,7 +233,10 @@
 					"images/qq.png",
 					"index.html",
 					"fonts/mui.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/public/base.js",
+					"js/login.js",
+					"js/public/mui.min.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -285,6 +295,103 @@
 					"images/icon-edu.png",
 					"images/icon-mono.png",
 					"html/proinforbrow.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/needSearch.html": {
+				"resources": [
+					"js/needSearch.js",
+					"js/public/base.js",
+					"css/app.css",
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"js/public/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/index_centen.html": {
+				"resources": [
+					"images/field_icon/field16.png",
+					"images/field_icon/field04.png",
+					"css/app.css",
+					"images/banner/banner0307.png",
+					"images/field_icon/field02.png",
+					"css/iconfont.css",
+					"images/field_icon/field05.png",
+					"css/mui.min.css",
+					"js/public/mui.min.js",
+					"fonts/iconfont.ttf",
+					"images/field_icon/field18.png",
+					"js/index.js",
+					"images/field_icon/field07.png",
+					"js/public/base.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/consultlist.html": {
+				"resources": [
+					"js/consult.js",
+					"css/app.css",
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"js/public/mui.min.js",
+					"images/nodata.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/index_home.html": {
+				"resources": [
+					"css/app.css",
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"js/public/mui.min.js",
+					"js/public/base.js",
+					"html/index_centen.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/consult_home.html": {
+				"resources": [
+					"css/app.css",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"js/public/mui.min.js",
+					"html/consultlist.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/myaccount.html": {
+				"resources": [
+					"css/app.css",
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"js/public/mui.min.js",
+					"fonts/iconfont.ttf",
+					"images/default-photo.jpg",
+					"js/myaccount.js",
+					"js/public/base.js"
+				],
+				"refer": [
+					"html/setup.html",
+					"html/login.html"
+				],
+				"priority": 0
+			},
+			"html/setup.html": {
+				"resources": [
+					"js/public/base.js",
+					"js/setup.js",
+					"js/public/mui.min.js"
 				],
 				"refer": [],
 				"priority": 0

@@ -402,11 +402,28 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .inviteBtn{position: absolute;bottom:20px; left:50%;margin-left: -60px;padding:4px 30px;background: #ff9900;color:#FFFFFF;}
 .noborder:after{height: 0;}
 .inviteBoxNew{position:relative;}
-.inviteBtnNew{position: absolute;width:80%;height:50%;bottom:-25%; left:10%;padding:8% 6%;background: #FFFFFF;
+.inviteBtnNew{position: absolute;width:80%;height:50%;bottom:-25%; left:10%;background: #FFFFFF;
+			padding:0 6%;
+		    display: -webkit-box;
+			display: -webkit-flex; 
+			display:         flex; 
+	        -webkit-align-items: center;
+	                align-items: center;
 	box-shadow: 0px 1px 10px #CCCCCC;
 	-webkit-box-shadow: 0px 1px 10px #CCCCCC;z-index: 10;}
 .inviteBtnLink{max-width: 200px;}
-.inviteInfor{padding:20% 10% 4% 10%;}
+.inviteFont p{font-size:18px;}
+.inviteFont p.inviteNum{font-size:30px;line-height:30px;color:#FF9900;}
+.inviteInfor{padding:20% 0 4% 0;}
+.inviteInfor .mui-col-xs-6:first-child{border-right: 4px solid #f4f6f8;}
+.inviteInfor .inviteFont{width: 120px;margin: auto;}
+.inviteInfor .mui-col-xs-6:first-child .inviteFont{margin-left:80px;}
+.inviteInfor .mui-col-xs-6:last-child .inviteFont{margin-left:30px;}
+.inviteInfor p.inviteNum{font-size: 24px;text-align:left;color:#666;}
+
+.maintitbox{padding:10px}
+.maintitNow{background:url(../images/home_line_nor.png) center center no-repeat;/*background-size: 20% auto; */text-align: center;}
+
 /***********************我的账户*******************/
 
 /***********************专家信息修改*******************/
@@ -716,6 +733,31 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .submutbut{float:right; padding:0 10px; line-height:45px ; font-size:14px; color: #fff;}
 #yyhy li:last-child , #xsly li:last-child{display: none;}
 
+/*发现*/
+.bodyBg{background: #f4f6f8;}
+.table-item{/*padding:10px;*/}
+.table-item.mui-table-view{background: none;}
+.table-item .mui-table-view-cell{padding:15px 20px 20px 20px;background:#FFFFFF;margin-top:12px}
+.table-item .mui-table-view-cell.mui-active{background: #EEEEEE;}
+.table-item .mui-table-view-cell:first-child{margin-top:0;}
+.table-item.mui-table-view .mui-table-view-cell:after{background: none;}
+.table-item-cell{border:1px solid #f2f3f4;background:#e5e5e5;min-height: 76px;margin:14px 0 12px 0;}
+.table-item-cell .table-item-img{position:absolute;width: 110px;height: 74px;top:50%;left:0;margin-top:-37px;}
+.table-item-cell .table-item-img.artical-default{background:url(../images/default-artical.jpg) center center;background-size:cover;}
+.table-item-cell .table-item-img.resource-default{background:url(../images/default-resource.jpg) center center;background-size:cover;}
+.table-item-cell .table-item-body{padding-left:120px;padding-right: 10px;}
+.table-item-media{line-height: 32px;height: 32px;}
+.table-item-media .table-item-logo{position:absolute;display: inline-block;border:1px solid #E5E5E5;width: 32px; height:32px;margin-right:8px;}
+.table-item-media .table-item-name{width:90%;position: relative;padding-left:40px;}
+.table-item-media .table-item-name span{float:left;display:block;max-width:96%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.table-item-media .authicon{bottom:9px;}
+
+.cmplogo{ background: url(../images/default-icon.jpg);background-size: cover;border-radius:4px;}
+.userhead{ background: url(../images/default-photo.jpg);background-size: cover;border-radius:4px;}
+.cmpLable{border:1px solid;border-radius:3px;padding:2px 6px;font-style: normal;font-size: 12px; line-height: 14px; vertical-align: middle;margin-right: 15px;}
+.cmpLable.articalLabel{border-color:#ff6b57;color:#ff6b57;}
+.cmpLable.resourceLabel{border-color:#28b8fa;color:#28b8fa;}
+.timeLabel{position: relative;}
 
 /*企业浏览*/
 .cmpLogoBox .authicon{width: 20px;height: 20px;bottom:4px;}
@@ -726,24 +768,10 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .cmpClassNum li:last-child{border-right:1px solid #E6E6E6;}
 .cmpClassNum li.nowClass{border-bottom: 1px solid #ff9900;color:#ff9900}
 
-.cmpLable{border:1px solid;border-radius: 4px;padding:2px 10px;font-style: normal;font-size: 12px; line-height: 14px; vertical-align: middle;margin-right: 4px;}
-.cmpLable.articalLabel{border-color:#ff6b57;color:#ff6b57;}
-.cmpLable.resourceLabel{border-color:#28b8fa;color:#28b8fa;}
-.timeLabel{position: relative;}
-.timeLabel:before{content:"";display: inline-block; width: 0; height: 0;border:2px #999 solid;margin: 2px 6px; border-radius:100%;}
-
-.cmpTrends ul{padding-left: 4px;}
-.cmpTrends .mui-table-view .mui-table-view-cell{padding-bottom:14px;}
-.cmpTrends .mui-table-view .mui-table-view-cell:after{left:0}
-.cmpTrends .boxBlock{width:60px; height: 60px;}
-.cmpTrends .cmplogo{display: inline-block;width: 24px; height:24px;margin-right:8px; background: url(../images/default-icon.jpg);background-size: cover;}
-.cmpTrends .prologo{background: url(../images/default-photo.jpg);background-size: cover;}
-.cmpTrends .mui-table-view .mui-media-object {line-height: 60px;max-width: 60px;}
-.cmpTrends .mui-content-padded{position: relative;margin:4px 0;}
-.cmpTrends .authicon{height: 14px;bottom:4px;}
-.cmpTrends .cmpTit{font-size:16px;padding:0 0 8px 6px;border-bottom: 1px solid #E6E6E6;}
+.cmpTrends{width: 96%;margin: 2% auto;}
+.cmpStaff ul{padding-left: 4px;}
+.cmpStaff .mui-table-view .mui-table-view-cell{padding-bottom:14px;}
+.cmpStaff .mui-table-view .mui-table-view-cell:after{left:0}
+.cmpStaff .cmpTit{font-size:16px;padding:0 0 8px 6px;border-bottom: 1px solid #E6E6E6;}
 .cmpStaff .flexImg{left:10px}
-.discoverBox .mui-content-padded{position: relative;margin:4px 0;background: #f2f3f4;border:1px solid #e5e5e5;}
-.discoverBox .flexCenter{min-height: 60px;}
-.discoverBox .flexImg{left:0}
-.discoverBox .mui-media-body{padding-right: 10px;}
+.cmpStaff .authicon{bottom:4px;}

@@ -11,12 +11,6 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav toptitbox">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-			<h1 class="mui-title toptit">企业名称</h1>
-			<!--<a class="mui-icon iconfont icon-share mui-pull-right button topmore" id="shareBtn"></a>-->
-		</header>
-
 		<!-- 主页面内容容器 -->
 		<div class="mui-content">
 			<!-- 主界面具体展示内容 -->
@@ -25,12 +19,12 @@
 					<div class="headbox cmpLogoBox">
 						<div class="mui-content-padded">
 							<div class="companyLogo">
-								<div class="boxBlock headRadius"><img class="boxBlockimg headRadius" src="../images/default-icon.jpg" /></div>
+								<div class="boxBlock headRadius"><img class="boxBlockimg headRadius" src="" id="oimg"/></div>
 						
 							</div>
 						</div>
-						<div class="listtit cmpBasic positionR"><span>企业名称应该还挺长的</span><em class="authicon authicon-com-ok"></em></div>
-	            		<div class="listtit2 cmpBasic"><span>企业类型 </span><span>所在城市（总部）</span></div>
+						<div class="listtit cmpBasic positionR"><span id="companyName">企业名称应该还挺长的</span><em class="authicon authicon-com-ok"></em></div>
+	            		<div class="listtit2 cmpBasic"><span id="orgType">企业类型 </span><span id="ocity">所在城市（总部）</span></div>
 					</div>
 				</div>
 				<ul class="mui-row mui-clearfix alignCenter cmpClassNum">
@@ -47,11 +41,11 @@
 				       <ul class="generalinfo">
 				       		<li class="ginfolist">
 				       			<span class="infotype">创立时间 ：</span>
-				       			<span class="personalMaterial">2016</span>
+				       			<span class="personalMaterial" id="createTime">2016</span>
 				       		</li>
 				       		<li class="ginfolist">
 				       			<span class="infotype">企业类型 ：</span>
-				       			<span class="personalMaterial">上市公司</span>
+				       			<span class="personalMaterial" id="comType">上市公司</span>
 				       		</li>
 				       		<li class="ginfolist">
 				       			<span class="infotype">企业规模 ：</span>
@@ -129,6 +123,7 @@
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/cmpinfor-basic.js"></script>
 	</body>
 
 </html>

@@ -12,17 +12,18 @@
 
 	<body>
 		<!-- 主界面具体展示内容 -->
-		<div class="mui-content">
+		<div class="mui-content" id="pullrefresh">
+		 <div class='mui-scroll'>
 			<div class="mui-input-group mainbox">
 				<div class="maincon personinfo" style="padding-bottom: 0;">
 					<div class="headbox cmpLogoBox">
 						<div class="mui-content-padded">
 							<div class="companyLogo">
-								<div class="boxBlock headRadius"><img class="boxBlockimg headRadius" src="../images/default-icon.jpg" /></div>
+								<div class="boxBlock headRadius"><img class="boxBlockimg headRadius" src="" id="oimg"/></div>
 							</div>
 						</div>
-						<div class="listtit cmpBasic positionR"><span>企业名称应该还挺长的</span><em class="authicon authicon-com-ok"></em></div>
-	            		<div class="listtit2 cmpBasic"><span>企业类型 </span><span>所在城市（总部）</span></div>
+						<div class="listtit cmpBasic positionR"><span id="companyName"></span><em class="authicon" id="authFlag"></em></div>
+	            		<div class="listtit2 cmpBasic"><span id="orgType"> </span><span id="ocity"></span></div>
 					</div>
 				</div>
 				<ul class="mui-row mui-clearfix alignCenter cmpClassNum">
@@ -32,11 +33,11 @@
 				</ul>
 			</div>
 			<div class="cmpTrends">
-				<ul class="mui-table-view table-item">
+				<ul class="mui-table-view table-item mui-table-view-chevron" id="trend">
 					<li class="mui-table-view-cell">
 				        <div class="table-item-media mui-clearfix">
-				        	<div class="table-item-logo userhead"></div><!--企业cmplogo--><!--企业标志authicon-com-ok-->
-				        	<div class="table-item-name mui-clearfix positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></div>
+				        	<div class="table-item-logo cmplogo"></div><!--企业cmplogo--><!--企业标志authicon-com-ok-->
+				        	<div class="table-item-name mui-clearfix positionR"><span>用户姓名</span><em class="authicon authicon-com-ok"></em></div>
 				        </div>
 				        <div class="flexCenter table-item-cell">
 				        	<div class="table-item-img artical-default"></div><!--资源 resource-default-->
@@ -49,40 +50,10 @@
 				        	<span class="timeLabel">3月22日</span>
 				        </div>
 			        </li>
-			        <li class="mui-table-view-cell">
-				        <div class="table-item-media mui-clearfix">
-				        	<div class="table-item-logo cmplogo"></div>
-				        	<div class="table-item-name mui-clearfix positionR"><span>企业名称企业名称企业名称企业名称企业名称</span><em class="authicon authicon-com-ok"></em></div>
-				        </div>
-				        <div class="flexCenter table-item-cell">
-				        	<div class="table-item-img resource-default"></div>
-							<div class="table-item-body">
-								<p class="listtit mui-ellipsis-2">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？能和心爱的人一起睡觉</p>
-							</div>
-				        </div>
-				        <div>
-				        	<em class="cmpLable resourceLabel">资源</em>
-				        	<span class="timeLabel">3月22日</span>
-				        </div>
-			        </li>
-			        <li class="mui-table-view-cell">
-				        <div class="table-item-media mui-clearfix">
-				        	<div class="table-item-logo userhead"></div>
-				        	<div class="table-item-name mui-clearfix positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></div>
-				        </div>
-				        <div class="flexCenter table-item-cell">
-				        	<div class="table-item-img resource-default"></div>
-							<div class="table-item-body">
-								<p class="listtit mui-ellipsis-2">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？能和心爱的人一起睡觉</p>
-							</div>
-				        </div>
-				        <div>
-				        	<em class="cmpLable resourceLabel">资源</em>
-				        	<span class="timeLabel">3月22日</span>
-				        </div>
-			        </li>
+			        
 			    </ul>
-			</div>	
+			</div>
+		 </div>	
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>

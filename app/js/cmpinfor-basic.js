@@ -34,9 +34,9 @@ mui.ready(function() {
 							document.getElementById("oimg").src = "../images/default-icon.jpg";
 						}
 						/*企业标识*/
-						if($data.authStatus==3){
+						if($data.authStatus == 3) {
 							document.getElementById("authFlag").classList.add("authicon-com-ok");
-						}else{
+						} else {
 							document.getElementById("authFlag").classList.add("authicon-com-no");
 						}
 						/*企业类型*/
@@ -69,10 +69,10 @@ mui.ready(function() {
 						/*所在城市*/
 						if($data.city) {
 							document.getElementById("ocity").innerText = $data.city;
-							document.getElementById("city").innerText= $data.city;
+							document.getElementById("city").innerText = $data.city;
 						} else {
 							document.getElementById("ocity").parentNode.removeChild(document.getElementById("ocity"));
-							document.getElementById("city").parentNode.style.display="none";
+							document.getElementById("city").parentNode.style.display = "none";
 						}
 						/*时间*/
 						if($data.foundTime) {
@@ -104,39 +104,39 @@ mui.ready(function() {
 									break;
 							}
 							document.getElementById("orgSize").innerText = orgSize;
+						} else {
+							document.getElementById("orgSize").parentNode.style.display = "none";
 						}
-					} else {
-						document.getElementById("orgSize").parentNode.style.display = "none";
-					}
-					/*企业官网*/
-					if($data.orgUrl) {
-						document.getElementById("shotAddress").innerText=$data.orgUrl;
-					} else {
-						document.getElementById("shotAddress").parentNode.style.display="block";
-					}
-					/*企业简介*/
-					if($data.descp) {
-						document.getElementById("breifinfo").innerText=$data.descp;
-					}else{
-						document.getElementById("breifinfolist").style.display='none';
-					}
-					/*应用行业*/
-					if($data.industry) {
-						indu($data.industry, 'industryShow')
-					}else{
-						document.getElementById("industry").style.display="none";
-					}
-					/*专注领域*/
-					if($data.subject) {
-						indu($data.subject, 'subjectShow')
-					}else{
-						document.getElementById("subject").style.display="none";
-					}
-					/*企业资质*/
-					if($data.qualification) {
-						indu($data.qualification, 'qiye')
-					}else{
-						document.getElementById("qiyelist").style.display="none";
+						/*企业官网*/
+						if($data.orgUrl) {
+							document.getElementById("shotAddress").innerText = $data.orgUrl;
+						} else {
+							document.getElementById("shotAddress").parentNode.style.display = "block";
+						}
+						/*企业简介*/
+						if($data.descp) {
+							document.getElementById("breifinfo").innerText = $data.descp;
+						} else {
+							document.getElementById("breifinfolist").style.display = 'none';
+						}
+						/*应用行业*/
+						if($data.industry) {
+							indu($data.industry, 'industryShow')
+						} else {
+							document.getElementById("industry").style.display = "none";
+						}
+						/*专注领域*/
+						if($data.subject) {
+							indu($data.subject, 'subjectShow')
+						} else {
+							document.getElementById("subject").style.display = "none";
+						}
+						/*企业资质*/
+						if($data.qualification) {
+							indu($data.qualification, 'qiye')
+						} else {
+							document.getElementById("qiyelist").style.display = "none";
+						}
 					}
 				},
 				error: function() {
@@ -151,15 +151,15 @@ mui.ready(function() {
 			return otme;
 		}
 		/*应用行业及领域及企业纸质*/
-	function indu(oString, oSelector) {
-		var arr = oString.split(",");
-		var oArr = new Array();
-		var i;
-		for(i in arr) {
+		function indu(oString, oSelector) {
+			var arr = oString.split(",");
+			var oArr = new Array();
+			var i;
+			for(i in arr) {
 				oArr.push('<li>' + arr[i] + '</li>');
+			}
+			document.getElementById(oSelector).innerHTML = oArr.join("");
 		}
-		document.getElementById(oSelector).innerHTML=oArr.join("");
-	}
 		companyMessage();
 	});
 })

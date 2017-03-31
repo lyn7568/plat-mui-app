@@ -144,6 +144,9 @@ function dUserHtml(obj) {
 		(obj[i].hasHeadImage == 1) ? img = baseUrl + "/images/head/" + obj[i].id + "_l.jpg": img = "../images/default-photo.jpg";
 		var li = document.createElement("li");
 		li.className = "mui-table-view-cell mui-media flexCenter"
+		if(obj[i].authType==1){
+			li.setAttribute("professorId",obj[i].id);
+		}
 		var oString = '<p class="flexImg"><img class="mui-media-object headimg headRadius" src="' + img + '"></p>'
 		oString += '<div class="mui-media-body flexTit">'
 		oString += '<p class="listtit positionR"><span>' + obj[i].name + '</span><em class="authicon ' + oSty.sty + '"></em></p>'
@@ -212,3 +215,11 @@ function research(ob) {
 	}
 	return oArry.join("、");
 }
+/*专家跳转页面*/
+mui("#stflist").on("tap","li[professorId]",function(){
+	var proId=this.getAttribute("professorId");
+		plus.nativeUI.showWaiting(); //显示原生等待框
+		plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+			proid: proId
+		});
+})

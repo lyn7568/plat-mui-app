@@ -1,5 +1,13 @@
 mui.ready(function() {
 	mui.plusReady(function() {
+		var self = plus.webview.currentWebview();
+		var id = self.orgId;
+		if(self.flag==0){
+		document.getElementsByClassName("aa")[0].style.width="50%";
+		document.getElementsByClassName("aa")[1].style.width="50%";
+		document.getElementsByClassName("aa")[2].style.display="none";
+		}
+		
 		/*按钮点击切换*/
 		mui(".cmpClassNum").on("tap", "li", function() {
 			var oStringText = this.innerText;
@@ -15,7 +23,6 @@ mui.ready(function() {
 				arr[2].show();
 			}
 		})
-		var id = "1B17DF270F0B4AAB8E1633267E4E2F5E";
 
 		function companyMessage() {
 			mui.ajax(baseUrl + "/ajax/org/" + id, {
@@ -24,7 +31,15 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
-						//console.log(JSON.stringify(data));
+						console.log(JSON.stringify(data));
+						plus.nativeUI.closeWaiting();
+						if(self.flag==0){
+							plus.webview.getWebviewById("cmpinfor-Unindex.html").show("slide-in-right", 150);
+						}else{
+							plus.webview.getWebviewById("cmpinfor-index.html").show("slide-in-right", 150);
+						}
+						
+							
 						var $data = data.data;
 						var orgType, orgSize;
 						document.getElementById("companyName").innerText = $data.name;

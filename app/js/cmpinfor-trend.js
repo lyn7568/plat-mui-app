@@ -1,4 +1,3 @@
-var id = "C77464E135424983A9918A75E7391DE3";
 var createTime = "";
 var n = 1;
 var comName, comImg, comAuth;
@@ -20,6 +19,13 @@ function pullupRefresh() {
 }
 mui.ready(function() {
 		mui.plusReady(function() {
+			var self = plus.webview.currentWebview();
+			var id = self.orgId;
+			if(self.flag==0){
+			document.getElementsByClassName("aa")[0].style.width="50%";
+			document.getElementsByClassName("aa")[1].style.width="50%";
+			document.getElementsByClassName("aa")[2].style.display="none";
+			}
 			/*按钮点击切换*/
 			mui(".cmpClassNum").on("tap", "li", function() {
 				var oStringText = this.innerText;
@@ -113,6 +119,8 @@ mui.ready(function() {
 	/*获取企业文章*/
 function companyArticle(oj) {
 	mui.plusReady(function() {
+		var self = plus.webview.currentWebview();
+		var id = self.orgId;
 		var obj = new Object();
 		obj.orgId = id;
 		obj.rows = 20;

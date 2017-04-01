@@ -7,7 +7,8 @@ var discoverBox = document.body.querySelector('#discoverBox');
 $('#discoverBox').on('click', '.newsurl', function() {
 	var id = $(this).attr("data-id");
 	var datatype = $(this).attr("data-type");
-	if(datatype == 1 || datatype == 2) {
+	var ownerid = $(this).attr("owner-id");
+	if(datatype == 1) {
 		mui.openWindow({
 			url: '../html/professorArticle.html',
 			id: 'html/professorArticle.html',
@@ -17,6 +18,21 @@ $('#discoverBox').on('click', '.newsurl', function() {
 			},
 			extras: {
 				articleId: id,
+				ownerid: id,
+			}
+		});
+	}else if(datatype == 2){
+		mui.openWindow({
+			url: '../html/professorArticle.html',
+			id: 'html/professorArticle.html',
+			show: {
+				autoShow: false,
+				aniShow: "slide-in-right",
+			},
+			extras: {
+				articleId: id,
+				ownerid: id,
+				oFlag:1
 			}
 		});
 	} else if(datatype == 3) {
@@ -58,7 +74,7 @@ $('#discoverBox').on('click', '.gouserurl', function() {
 				url: '../html/cmpinfor-index.html',
 				id: 'cmpinfor-index.html',
 				show: {
-					//autoShow: false,
+					autoShow: false,
 					aniShow: "slide-in-right",
 				},
 				extras: {
@@ -199,6 +215,7 @@ function datalistEach(datalist) {
 		$itemlist.find("#time").text(Time(item.createTime));
 		$itemlist.find(".newsurl").attr("data-id", item.id);
 		$itemlist.find(".newsurl").attr("data-type", item.type);
+		$itemlist.find(".newsurl").attr("owner-id", item.owner);
 		if(item.image) {
 			$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
 		}
@@ -269,9 +286,11 @@ function cmpFun(id, $itemlist) {
 				}
 				$itemlist.find(".userurl").attr("data-id", data.data.id);
 				$itemlist.find(".userurl").attr("data-iftauth", data.data.authStatus);
-				var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
-				$itemlist.find(".authicon").attr("title", userType.title);
-				$itemlist.find(".authicon").addClass(userType.sty);
+				if(data.data.authStatus==3){
+					$itemlist.find(".authicon").addClass("authicon-com-ok").attr("title", "认证企业");;	
+				}else{
+					$itemlist.find(".authicon").addClass("authicon-com-no").attr("title", "未认证企业");;
+				}
 			}
 		},
 		"error": function() {

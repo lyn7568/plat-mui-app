@@ -415,7 +415,8 @@ mui.plusReady(function() {
 		var artId = this.getAttribute("articleId");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
-			articleId: artId
+			articleId: artId,
+			ownerid:proId
 		});
 	});
 	/*进入资源详细页面*/

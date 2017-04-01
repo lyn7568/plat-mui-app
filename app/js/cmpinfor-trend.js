@@ -216,9 +216,21 @@ function timeGeshi(otm) {
 }
 /*进入文章详细页面*/
 	mui("#trend").on('tap', '.articl', function() {
+		var dd=plus.webview.getWebviewById("cmpinfor-Unindex.html");
+		var dd1=plus.webview.getWebviewById("cmpinfor-index.html");
+		if(dd==null){
+			var id = dd1.orgId;
+			var oflag=dd1.flag;
+		}
+		if(dd1==null){
+			var id = dd.orgId;
+			var oflag=dd.flag;
+		}
 		var artId = this.getAttribute("articleId");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
-			articleId: artId
+			articleId: artId,
+			ownerid:id,
+			oFlag:1
 		});
 	});

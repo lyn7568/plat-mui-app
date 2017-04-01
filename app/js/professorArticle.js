@@ -6,14 +6,63 @@ mui.plusReady(function() {
 	var oFlag = self.oFlag;
 	var proticleName = "";
 	var oImgShare = ""
-	console.log(ownerid);
-	console.log(proId);
-	console.log(oFlag)
 	if(oFlag == 1) {
 		comBro();
+		mui.ajax(baseUrl + "/ajax/org/authStatus", {
+			dataType: 'json', //数据格式类型
+			type: 'GET', //http请求类型
+			timeout: 10000, //超时设置
+			data: {
+				"id": ownerid
+			},
+			success: function(data) {
+				if(data.success) {
+					if(data.data == 3) {
+						document.getElementById("proInfor").addEventListener("tap", function() {
+						mui.openWindow({
+							url: '../html/cmpinfor-index.html',
+							id: 'cmpinfor-index.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-right",
+							},
+							extras: {
+								orgId: ownerid,
+							}
+						})
+						})
+					} else {
+						document.getElementById("proInfor").addEventListener("tap", function() {
+						mui.openWindow({
+							url: '../html/cmpinfor-Unindex.html',
+							id: 'cmpinfor-Unindex.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-right",
+							},
+							extras: {
+								orgId: ownerid,
+								flag: 0
+							}
+						})
+						})
+					}
+				}
+			},
+			error: function(XMLHttpRequest) {
+				console.log(XMLHttpRequest)
+			}
+		});
 	} else {
 		personMess();
+		document.getElementById("proInfor").addEventListener("tap", function() {
+			plus.nativeUI.showWaiting(); //显示原生等待框
+			webviewShow = plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+				proid: ownerid
+			}); //后台创建webview并打开show.html
+		})
 	}
+
 	function proInfoMain() {
 		mui.ajax(baseUrl + "/ajax/article/query", {
 			dataType: 'json', //数据格式类型
@@ -23,7 +72,6 @@ mui.plusReady(function() {
 			},
 			timeout: 10000, //超时设置
 			success: function(data) {
-				console.log(JSON.stringify(data))
 				var $info = data.data || {};
 				if(data.success && data.data) {
 					plus.nativeUI.closeWaiting();
@@ -66,7 +114,6 @@ mui.plusReady(function() {
 			type: 'GET', //http请求类型
 			timeout: 10000, //超时设置
 			success: function(data) {
-				console.log(data); //
 				if(data.success && data.data) {
 					var $profesor = data.data;
 					if($profesor.hasHeadImage) {
@@ -91,9 +138,7 @@ mui.plusReady(function() {
 			dataType: "json",
 			beforeSend: function() {},
 			success: function(data, textState) {
-				console.log(JSON.stringify(data))
 				if(data.success) {
-					
 					var $data = data.data;
 					var proName = document.getElementById("proName");
 					proName.innerText = $data.name;
@@ -108,8 +153,7 @@ mui.plusReady(function() {
 						document.getElementById('proHead').src = "images/default-icon.jpg";
 					}
 
-				}else{
-				}
+				} else {}
 			},
 			error: function(XMLHttpRequest, textStats, errorThrown) {
 				console.log(JSON.stringify(data));

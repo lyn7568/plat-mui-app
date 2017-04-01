@@ -1,8 +1,16 @@
 mui.ready(function() {
 	mui.plusReady(function() {
-		var self = plus.webview.currentWebview();
-		var id = self.orgId;
-		if(self.flag==0){
+		var dd=plus.webview.getWebviewById("cmpinfor-Unindex.html");
+		var dd1=plus.webview.getWebviewById("cmpinfor-index.html");
+		if(dd==null){
+			var id = dd1.orgId;
+			var oflag=dd1.flag;
+		}
+		if(dd1==null){
+			var id = dd.orgId;
+			var oflag=dd.flag;
+		}
+		if(oflag==0){
 		document.getElementsByClassName("aa")[0].style.width="50%";
 		document.getElementsByClassName("aa")[1].style.width="50%";
 		document.getElementsByClassName("aa")[2].style.display="none";
@@ -31,9 +39,9 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
-						console.log(JSON.stringify(data));
+						//console.log(JSON.stringify(data));
 						plus.nativeUI.closeWaiting();
-						if(self.flag==0){
+						if(oflag==0){
 							plus.webview.getWebviewById("cmpinfor-Unindex.html").show("slide-in-right", 150);
 						}else{
 							plus.webview.getWebviewById("cmpinfor-index.html").show("slide-in-right", 150);
@@ -94,7 +102,7 @@ mui.ready(function() {
 							var oTime = timeGeshi($data.foundTime);
 							document.getElementById("createTime").innerText = oTime;
 						} else {
-							document.getElementById("createTime").parentNode.style = "none";
+							document.getElementById("createTime").parentNode.style.display = "none";
 						}
 						/*企业规模*/
 						if($data.orgSize) {
@@ -126,7 +134,7 @@ mui.ready(function() {
 						if($data.orgUrl) {
 							document.getElementById("shotAddress").innerText = $data.orgUrl;
 						} else {
-							document.getElementById("shotAddress").parentNode.style.display = "block";
+							document.getElementById("shotAddress").parentNode.style.display = "none";
 						}
 						/*企业简介*/
 						if($data.descp) {

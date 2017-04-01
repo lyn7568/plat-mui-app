@@ -19,13 +19,21 @@ function pullupRefresh() {
 }
 mui.ready(function() {
 		mui.plusReady(function() {
-			var self = plus.webview.currentWebview();
-			var id = self.orgId;
-			if(self.flag==0){
-			document.getElementsByClassName("aa")[0].style.width="50%";
-			document.getElementsByClassName("aa")[1].style.width="50%";
-			document.getElementsByClassName("aa")[2].style.display="none";
-			}
+		var dd=plus.webview.getWebviewById("cmpinfor-Unindex.html");
+		var dd1=plus.webview.getWebviewById("cmpinfor-index.html");
+		if(dd==null){
+			var id = dd1.orgId;
+			var oflag=dd1.flag;
+		}
+		if(dd1==null){
+			var id = dd.orgId;
+			var oflag=dd.flag;
+		}
+		if(oflag==0){
+		document.getElementsByClassName("aa")[0].style.width="50%";
+		document.getElementsByClassName("aa")[1].style.width="50%";
+		document.getElementsByClassName("aa")[2].style.display="none";
+		}
 			/*按钮点击切换*/
 			mui(".cmpClassNum").on("tap", "li", function() {
 				var oStringText = this.innerText;
@@ -119,8 +127,16 @@ mui.ready(function() {
 	/*获取企业文章*/
 function companyArticle(oj) {
 	mui.plusReady(function() {
-		var self = plus.webview.currentWebview();
-		var id = self.orgId;
+		var dd=plus.webview.getWebviewById("cmpinfor-Unindex.html");
+		var dd1=plus.webview.getWebviewById("cmpinfor-index.html");
+		if(dd==null){
+			var id = dd1.orgId;
+			var oflag=dd1.flag;
+		}
+		if(dd1==null){
+			var id = dd.orgId;
+			var oflag=dd.flag;
+		}
 		var obj = new Object();
 		obj.orgId = id;
 		obj.rows = 20;
@@ -135,7 +151,7 @@ function companyArticle(oj) {
 			success: function(data, textState) {
 				if(data.success) {
 					var $data = data.data;
-					console.log(JSON.stringify(data));
+					//console.log(JSON.stringify(data));
 					if(n == 1) {
 						if($data.length < 20 && $data.length > 0) {
 							mui('#pullrefresh').pullRefresh().disablePullupToRefresh();

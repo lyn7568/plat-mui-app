@@ -1,4 +1,3 @@
-var id = "A93B9348F2094D12A6DC9A23F16E1246";
 var num=1;
 mui.init({
 	pullRefresh: {
@@ -19,6 +18,8 @@ function pullupRefresh() {
 }
 mui.ready(function() {
 		mui.plusReady(function() {
+			var dd1=plus.webview.getWebviewById("cmpinfor-index.html");
+			var id = dd1.orgId;			
 			/*企业基本信息*/
 			function companyMessage() {
 				mui.ajax(baseUrl + "/ajax/org/" + id, {
@@ -103,6 +104,8 @@ mui.ready(function() {
 	/*获取企业认证的用户*/
 function UnauthorizedUser(pageSize,pageNum) {
 	mui.plusReady(function() {
+		var dd1=plus.webview.getWebviewById("cmpinfor-index.html");			
+		var id = dd1.orgId;				
 		mui.ajax(baseUrl + "/ajax/professor/pqOrgAuth", {
 			type: "GET",
 			timeout: 10000,

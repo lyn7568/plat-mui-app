@@ -18,7 +18,7 @@ $('#discoverBox').on('click', '.newsurl', function() {
 			},
 			extras: {
 				articleId: id,
-				ownerid: id,
+				ownerid: ownerid,
 			}
 		});
 	}else if(datatype == 2){
@@ -31,7 +31,7 @@ $('#discoverBox').on('click', '.newsurl', function() {
 			},
 			extras: {
 				articleId: id,
-				ownerid: id,
+				ownerid: ownerid,
 				oFlag:1
 			}
 		});

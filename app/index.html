@@ -32,7 +32,7 @@
 	<script src="js/public/base.js"></script>
 	
 <script type="text/javascript" charset="utf-8">
-	var subpages = ['html/index_home.html', 'html/consult_home.html', 'html/myaccount.html'];
+	var subpages = ['html/index_home.html', 'html/discover.html', 'html/consult_home.html', 'html/myaccount.html'];
 	var subpage_style = {
 		top: '0px',
 		bottom: '51px'
@@ -41,7 +41,7 @@
 	//创建子页面，首个选项卡页面显示，其它均隐藏；
 	mui.plusReady(function() {
 		var self = plus.webview.currentWebview();
-		for(var i = 0; i < 3; i++) {
+		for(var i = 0; i < 4; i++) {
 			var temp = {};
 			var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
 			if(i > 0) {

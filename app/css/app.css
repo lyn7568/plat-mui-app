@@ -1,3 +1,25 @@
+/*图标icon定义*/
+.iconfontnew{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  *margin-right: .3em;
+  line-height: 18px;
+  vertical-align: text-top;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 4px auto;
+  background-size: cover;
+}
+.icon-homenew{background-image: url("../images/tab_icon_shouye_nor@3x.png");}
+.mui-tab-item.mui-active .icon-homenew{background-image: url("../images/tab_icon_shouye_hig@3x.png");}
+.icon-messagenew{background-image: url("../images/tab_icon_xiaoxi_nor@3x.png");}
+.mui-tab-item.mui-active .icon-messagenew{background-image: url("../images/tab_icon_xiaoxi_hig@3x.png");}
+.icon-faxiannew{background-image: url("../images/tab_icon_faxian_nor@3x.png");}
+.mui-tab-item.mui-active .icon-faxiannew{background-image: url("../images/tab_icon_faxian_hig@3x.png");}
+.icon-wonew{background-image: url("../images/tab_icon_wo_nor@3x.png");}
+.mui-tab-item.mui-active .icon-wonew{background-image: url("../images/tab_icon_wo_hig@3x.png");}
+
 img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:bicubic;border:0;padding:0; margin:0;}
 
 /*清除mui部分原有样式*/
@@ -415,15 +437,16 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px 
 .inviteFont p{font-size:18px;}
 .inviteFont p.inviteNum{font-size:30px;line-height:30px;color:#FF9900;}
 .inviteInfor{padding:20% 0 4% 0;}
-.inviteInfor .mui-col-xs-6:first-child{border-right: 4px solid #f4f6f8;}
+.inviteInfor .mui-col-xs-6:first-child{border-right: 2px solid #f4f6f8;}
 .inviteInfor .inviteFont{width: 120px;margin: auto;}
 .inviteInfor .mui-col-xs-6:first-child .inviteFont{margin-left:80px;}
 .inviteInfor .mui-col-xs-6:last-child .inviteFont{margin-left:30px;}
 .inviteInfor p.inviteNum{font-size: 24px;text-align:left;color:#666;}
 
-.maintitbox{padding:10px}
-.maintitNow{background:url(../images/home_line_nor.png) center center no-repeat;/*background-size: 20% auto; */text-align: center;}
-
+.maintitbox{padding:15px 0;border-bottom: 1px solid #E5E5E5;}
+.maintitNow{width: 100%;}
+.maincontent .mui-table-view .mui-table-view-cell:after{left:15px;}
+.maincontent .mui-table-view .mui-table-view-cell{padding:12px 15px;}
 /***********************我的账户*******************/
 
 /***********************专家信息修改*******************/

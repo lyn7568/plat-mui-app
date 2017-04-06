@@ -45,6 +45,9 @@ mui.plusReady(function() {
 						}
 						string += '</span><span class="thistime timenow">' + time + '</span></div>'
 						string += '<p class="listtit3">' + $info[i].content + '</p>'
+						if(userid==$info[i].professor.id){
+							string += '<p class="listtit3" style="text-align:right;"><span data-id="'+ $info[i].id+'">删除</span></p>'
+						}
 						string += '</div> </div>'
 						li.innerHTML = string;
 						document.getElementsByClassName(" protable")[0].appendChild(li);
@@ -103,4 +106,26 @@ mui.plusReady(function() {
 			}
 		});
 	}
+	/*删除留言*/
+	mui(".protable").on('tap', '.listtit3 span', function() {
+		var oId=this.getAttribute("data-id");
+		var oRemo=this;
+		mui.ajax(baseUrl + "/ajax/leaveWord/delete", {
+			dataType: 'json', //数据格式类型
+			type: 'POST', //http请求类型
+			data: {
+				"id": oId,
+			},
+			timeout: 10000, //超时设置
+			success: function(data) {
+				if(data.success) {
+					document.getElementsByClassName(" protable")[0].removeChild(oRemo.parentNode.parentNode.parentNode.parentNode);
+				}
+			},
+			error: function() {
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				return;
+			}
+		});
+	});
 });

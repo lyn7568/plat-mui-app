@@ -180,7 +180,6 @@ mui.plusReady(function() {
 			type: 'GET', //http请求类型
 			timeout: 10000, //超时设置
 			success: function(data) {
-				console.log(JSON.stringify(data));
 				orgAuth=data.data.orgAuth;
 				orgId=data.data.orgId;
 				plus.nativeUI.closeWaiting();
@@ -385,7 +384,6 @@ mui.plusReady(function() {
 		},
 		timeout: 10000, //超时设置
 		success: function(data) {
-			console.log(JSON.stringify(data))
 			if(data.success) {
 				var $data = data.data;
 				if($data.length==0){

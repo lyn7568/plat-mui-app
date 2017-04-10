@@ -2,10 +2,23 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
+		console.log()
 		var oconsultcon = document.getElementsByClassName("borderarea")[0];
 		var demandContent = document.getElementById("demandContent");
 		var oNavsub = document.getElementById("navsub");
 		var consun;
+		var demandType;
+		if(ws.flag==0){
+			demanTy(); 
+		}else if(ws.flag==1){
+			document.getElementById("oGe").className="checkNow";
+			document.getElementById("oQi").className="checkNo";
+			demandType=1;
+		}else{
+			document.getElementById("oQi").className="checkNow";
+			document.getElementById("oGe").className="checkNo";
+			demandType=2;
+		}
 		//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		iosheader();
 		tab("navsub"); //身份切换
@@ -28,6 +41,27 @@ mui.ready(function() {
 				}
 			}
 		}
+		/*切换需求类型*/
+function demanTy() {
+	var deTy = document.getElementById("navsubTo");
+	var deTyChild = deTy.getElementsByTagName("span");
+	if(deTyChild[0].className != "checkNo" && deTyChild[1].className != "checkNo") {
+		for(var n = 0; n < deTyChild.length; n++) {
+			(function(m) {
+				deTyChild[m].onclick = function() {
+					this.className = "checkNow";
+					if(m == 0) {
+						demandType=1;
+						deTyChild[1].className = "";
+					} else if(m == 1) {
+						demandType=2;
+						deTyChild[0].className = "";
+					}
+				}
+			})(n);
+		}
+	}
+}
 		/*需求内容*/
 		function checkLen(obj) {
 
@@ -158,7 +192,7 @@ mui.ready(function() {
 				data: {
 					"demander": userid,
 					"demandAim": consun,
-					"demandType": 1,
+					"demandType": demandType,
 					"demandTitle": demandContent.value,
 					"demandContent": oconsultcon.innerText,
 					"args": arr

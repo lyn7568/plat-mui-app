@@ -288,9 +288,9 @@ function cmpFun(id, $itemlist) {
 				$itemlist.find(".userurl").attr("data-iftauth", data.data.authStatus);
 				if(data.data.authStatus==3){
 					$itemlist.find(".authicon").addClass("authicon-com-ok").attr("title", "认证企业");;	
-				}else{
+				}/*else{
 					$itemlist.find(".authicon").addClass("authicon-com-no").attr("title", "未认证企业");;
-				}
+				}*/
 			}
 		},
 		"error": function() {

@@ -8,6 +8,7 @@ mui.ready(function() {
 		var oNavsub = document.getElementById("navsub");
 		var consun;
 		var demandType;
+		var orgId;
 		if(ws.flag==0){
 			demanTy(); 
 		}else if(ws.flag==1){
@@ -155,11 +156,34 @@ function demanTy() {
 		}
 		industry("INDUSTRY");
 		industry("SUBJECT");
+		getOrgId();
+		function getOrgId(){
+			mui.ajax(baseUrl + "/ajax/professor/baseInfo/"+userid, {
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				timeout: 10000, //超时设置
+				success: function(data) {
+					if(data.success) {
+					var $rta = data.data;
+					orgId = $rta.orgId
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
 		/*发布新需求*/
 		document.getElementsByClassName("topsave")[0].addEventListener("tap", function() {
 				var dd = oNavsub.getElementsByClassName("set");
+				var cc=document.getElementById("navsubTo").getElementsByClassName("checkNow")
 				if(dd.length == 0) {
 					plus.nativeUI.toast("请选择您发布需求的目的", toastStyle);
+					return;
+				}
+				if(cc.length == 0) {
+					plus.nativeUI.toast("请选择您的需求类型", toastStyle);
 					return;
 				}
 				if(!trim(demandContent.value)) {
@@ -195,7 +219,8 @@ function demanTy() {
 					"demandType": demandType,
 					"demandTitle": demandContent.value,
 					"demandContent": oconsultcon.innerText,
-					"args": arr
+					"args": arr,
+					"orgId": (demandType == 2) ? orgId : "",
 				},
 				success: function(data) {
 					console.log(JSON.stringify(data))

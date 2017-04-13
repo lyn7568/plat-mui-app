@@ -78,8 +78,8 @@ mui.ready(function() {
 								document.getElementById("authFlag").classList.add("authicon-com-ok");
 								comAuth = 'authicon-com-ok';
 							} else {
-								document.getElementById("authFlag").classList.add("authicon-com-no");
-								comAuth = "authicon-com-no";
+								//document.getElementById("authFlag").classList.add("authicon-com-no");
+								comAuth = "";
 							}
 							/*企业类型*/
 							if($data.orgType) {

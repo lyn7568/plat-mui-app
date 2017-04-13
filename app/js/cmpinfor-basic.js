@@ -59,8 +59,6 @@ mui.ready(function() {
 						/*企业标识*/
 						if($data.authStatus == 3) {
 							document.getElementById("authFlag").classList.add("authicon-com-ok");
-						} else {
-							document.getElementById("authFlag").classList.add("authicon-com-no");
 						}
 						/*企业类型*/
 						if($data.orgType) {

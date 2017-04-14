@@ -21,7 +21,7 @@ mui('#discoverBox').on('tap', '.newsurl', function() {
 				ownerid: ownerid,
 			}
 		});
-	}else if(datatype == 2){
+	} else if(datatype == 2) {
 		mui.openWindow({
 			url: '../html/professorArticle.html',
 			id: 'html/professorArticle.html',
@@ -32,7 +32,7 @@ mui('#discoverBox').on('tap', '.newsurl', function() {
 			extras: {
 				articleId: id,
 				ownerid: ownerid,
-				oFlag:1
+				oFlag: 1
 			}
 		});
 	} else if(datatype == 3) {
@@ -198,127 +198,144 @@ function getOnePase() {
 /*数据遍历*/
 function datalistEach(datalist) {
 	mui.each(datalist, function(index, item) {
-		var itemlist = '';
-		var itemlist = '<li class="mui-table-view-cell">';
-		itemlist += '<div class="table-item-media mui-clearfix userurl" >';
-		itemlist += '<div class="table-item-logo gouserurl" id="userimg"></div>';
-		itemlist += '<div class="table-item-name mui-clearfix positionR"><span id="nameSpan" class="gouserurl"></span><em class="authicon"></em></div>';
-		itemlist += '</div><div class="flexCenter table-item-cell newsurl">';
-		itemlist += '<div class="table-item-img artical-default" id="newsimg"></div>';
-		itemlist += '<div class="table-item-body"><p class="listtit mui-ellipsis-2" id="centent"></p></div>';
-		itemlist += '</div><div><em class="cmpLable" id="newstype"></em>';
-		itemlist += '<span class="timeLabel" id="time"></span></div></li>';
-		$itemlist = $(itemlist);
-		$("#discoverBox").append($itemlist);
-		var type = item.type;
-		$itemlist.find("#centent").text(item.name);
-		$itemlist.find("#time").text(Time(item.createTime));
-		$itemlist.find(".newsurl").attr("data-id", item.id);
-		$itemlist.find(".newsurl").attr("data-type", item.type);
-		$itemlist.find(".newsurl").attr("owner-id", item.owner);
-		if(item.image) {
-			$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
-		}
-		if(type == 1) { //专家文章
-			$itemlist.find("#newstype").text("文章");
-			$itemlist.find("#newstype").addClass("articalLabel");
-			$itemlist.find("#newsimg").addClass("artical-default");
-			$itemlist.find("#userimg").addClass("userhead");
-			userFun(item.owner, $itemlist);
-		} else if(type == 2) { //企业文章
-			$itemlist.find("#newstype").text("文章");
-			$itemlist.find("#newstype").addClass("articalLabel");
-			$itemlist.find("#newsimg").addClass("artical-default");
-			$itemlist.find("#userimg").addClass("cmplogo");
-			cmpFun(item.owner, $itemlist)
-		} else if(type == 3) { //专家资源
-			$itemlist.find("#newstype").text("资源");
-			$itemlist.find("#newstype").addClass("resourceLabel");
-			$itemlist.find("#newsimg").addClass("resource-default");
-			$itemlist.find("#userimg").addClass("userhead");
-			userFun(item.owner, $itemlist);
-		}
-
-	});
-
-}
-
-/*用户信息*/
-function userFun(id, $itemlist) {
-	mui.ajax(baseUrl + '/ajax/professor/baseInfo/' + id, {
-		"type": "get",
-		"async": true,
-		"success": function(data) {
-			console.log(data);
-			if(data.success && data.data) {
-				$itemlist.find("#nameSpan").text(data.data.name);
-				if(data.data.hasHeadImage == 1) {
-					$itemlist.find("#userimg").attr("style", "background-image: url(" + baseUrl + "/images/head/" + data.data.id + "_m.jpg);");
+				var itemlist = '';
+				var itemlist = '<li class="mui-table-view-cell">';
+				itemlist += '<div class="table-item-media mui-clearfix userurl" >';
+				itemlist += '<div class="table-item-logo gouserurl" id="userimg"></div>';
+				itemlist += '<div class="table-item-name mui-clearfix positionR"><span id="nameSpan" class="gouserurl"></span><em class="authicon"></em></div>';
+				itemlist += '</div><div class="flexCenter table-item-cell newsurl">';
+				itemlist += '<div class="table-item-img artical-default" id="newsimg"></div>';
+				itemlist += '<div class="table-item-body"><p class="listtit mui-ellipsis-2" id="centent"></p></div>';
+				itemlist += '</div><div><em class="cmpLable" id="newstype"></em>';
+				itemlist += '<span class="timeLabel" id="time"></span></div></li>';
+				$itemlist = $(itemlist);
+				$("#discoverBox").append($itemlist);
+				var type = item.type;
+				$itemlist.find("#centent").text(item.name);
+				$itemlist.find("#time").text(Time(item.createTime));
+				$itemlist.find(".newsurl").attr("data-id", item.id);
+				$itemlist.find(".newsurl").attr("data-type", item.type);
+				$itemlist.find(".newsurl").attr("owner-id", item.owner);
+				if(item.image) {
+					$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
 				}
-				$itemlist.find(".userurl").attr("data-id", data.data.id);
-				var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
-				$itemlist.find(".authicon").attr("title", userType.title);
-				$itemlist.find(".authicon").addClass(userType.sty);
-
-			}
-		},
-		"error": function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-		}
-	});
-}
-
-/*企业用户信息*/
-function cmpFun(id, $itemlist) {
-	mui.ajax(baseUrl + '/ajax/org/' + id, {
-		"type": "get",
-		"async": true,
-		"success": function(data) {
-			console.log(data);
-			if(data.success && data.data) {
-				if(data.data.forShort) {
-					$itemlist.find("#nameSpan").text(data.data.forShort);
-				} else {
-					$itemlist.find("#nameSpan").text(data.data.name);
+				if(type == 1) { //专家文章
+					$itemlist.find("#newstype").text("文章");
+					$itemlist.find("#newstype").addClass("articalLabel");
+					$itemlist.find("#newsimg").addClass("artical-default");
+					$itemlist.find("#userimg").addClass("userhead");
+					userFun(item.owner, $itemlist);
+				} else if(type == 2) { //企业文章
+					$itemlist.find("#newstype").text("文章");
+					$itemlist.find("#newstype").addClass("articalLabel");
+					$itemlist.find("#newsimg").addClass("artical-default");
+					$itemlist.find("#userimg").addClass("cmplogo");
+					cmpFun(item.owner, $itemlist)
+				} else if(type == 3) { //专家资源
+					$itemlist.find("#newstype").text("资源");
+					$itemlist.find("#newstype").addClass("resourceLabel");
+					$itemlist.find("#newsimg").addClass("resource-default").addClass("hand-resource-img").attr("hand-id", item.id);
+					$itemlist.find("#userimg").addClass("userhead");
+					userFun(item.owner, $itemlist);
+					$(".hand-resource-img").each(function() {
+						var $this = $(this),
+							rid = $this.attr("hand-id");
+						mui.ajax(baseUrl + "/ajax/resource/resourceInfo", {
+							data: {
+								'resourceId': rid
+							},
+							"type": "get",
+							"async": true,
+							"success": function(info) {
+								if(info.success) {
+									var $info = info.data;
+									if($info.images.length) {
+										$this.attr("style", "background-image: url(/images/resource/" + rid + ".jpg);");
+									}
+								}
+							},
+							"error": function() {}
+						});
+					});
 				}
-				if(data.data.hasOrgLogo) {
-					$itemlist.find("#userimg").attr("style", "background-image: url(" + baseUrl + "/images/org/" + data.data.id + ".jpg);");
-				}
-				$itemlist.find(".userurl").attr("data-id", data.data.id);
-				$itemlist.find(".userurl").attr("data-iftauth", data.data.authStatus);
-				if(data.data.authStatus==3){
-					$itemlist.find(".authicon").addClass("authicon-com-ok").attr("title", "认证企业");;	
-				}/*else{
-					$itemlist.find(".authicon").addClass("authicon-com-no").attr("title", "未认证企业");;
-				}*/
-			}
-		},
-		"error": function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-		}
-	});
-}
 
-/*标志*/
-function autho() {
-	if(arguments[0] == 1) {
-		return {
-			"sty": "authicon-pro",
-			"title": "科袖认证专家"
-		}
-	} else {
-		if(arguments[1] == 1) {
-			return {
-				"sty": "authicon-staff-ok",
-				"title": "企业认证员工"
-			}
-		} else {
-			if(arguments[2] == 3) {
-				return {
-					"sty": "authicon-real",
-					"title": "实名认证用户"
+				/*用户信息*/
+				function userFun(id, $itemlist) {
+					mui.ajax(baseUrl + '/ajax/professor/baseInfo/' + id, {
+						"type": "get",
+						"async": true,
+						"success": function(data) {
+							console.log(data);
+							if(data.success && data.data) {
+								$itemlist.find("#nameSpan").text(data.data.name);
+								if(data.data.hasHeadImage == 1) {
+									$itemlist.find("#userimg").attr("style", "background-image: url(" + baseUrl + "/images/head/" + data.data.id + "_m.jpg);");
+								}
+								$itemlist.find(".userurl").attr("data-id", data.data.id);
+								var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
+								$itemlist.find(".authicon").attr("title", userType.title);
+								$itemlist.find(".authicon").addClass(userType.sty);
+
+							}
+						},
+						"error": function() {
+							plus.nativeUI.toast("服务器链接超时", toastStyle);
+						}
+					});
 				}
-			}
-		}
-	}
-}
+
+				/*企业用户信息*/
+				function cmpFun(id, $itemlist) {
+					mui.ajax(baseUrl + '/ajax/org/' + id, {
+						"type": "get",
+						"async": true,
+						"success": function(data) {
+							console.log(data);
+							if(data.success && data.data) {
+								if(data.data.forShort) {
+									$itemlist.find("#nameSpan").text(data.data.forShort);
+								} else {
+									$itemlist.find("#nameSpan").text(data.data.name);
+								}
+								if(data.data.hasOrgLogo) {
+									$itemlist.find("#userimg").attr("style", "background-image: url(" + baseUrl + "/images/org/" + data.data.id + ".jpg);");
+								}
+								$itemlist.find(".userurl").attr("data-id", data.data.id);
+								$itemlist.find(".userurl").attr("data-iftauth", data.data.authStatus);
+								if(data.data.authStatus == 3) {
+									$itemlist.find(".authicon").addClass("authicon-com-ok").attr("title", "认证企业");;
+								}
+								/*else{
+													$itemlist.find(".authicon").addClass("authicon-com-no").attr("title", "未认证企业");;
+												}*/
+							}
+						},
+						"error": function() {
+							plus.nativeUI.toast("服务器链接超时", toastStyle);
+						}
+					});
+				}
+
+				/*标志*/
+				function autho() {
+					if(arguments[0] == 1) {
+						return {
+							"sty": "authicon-pro",
+							"title": "科袖认证专家"
+						}
+					} else {
+						if(arguments[1] == 1) {
+							return {
+								"sty": "authicon-staff-ok",
+								"title": "企业认证员工"
+							}
+						} else {
+							if(arguments[2] == 3) {
+								return {
+									"sty": "authicon-real",
+									"title": "实名认证用户"
+								}
+							}
+						}
+					}
+				}

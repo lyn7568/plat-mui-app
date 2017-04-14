@@ -4,7 +4,7 @@ var allPages = 1; // 总页数
 var discoverBox = document.body.querySelector('#discoverBox');
 
 /*点击列表*/
-$('#discoverBox').on('tap', '.newsurl', function() {
+mui('#discoverBox').on('tap', '.newsurl', function() {
 	var id = $(this).attr("data-id");
 	var datatype = $(this).attr("data-type");
 	var ownerid = $(this).attr("owner-id");
@@ -51,7 +51,7 @@ $('#discoverBox').on('tap', '.newsurl', function() {
 });
 
 /*点击头像*/
-$('#discoverBox').on('tap', '.gouserurl', function() {
+mui('#discoverBox').on('tap', '.gouserurl', function() {
 	var id = $(this).parents(".mui-table-view-cell").find(".userurl").attr("data-id");
 	var datatype = $(this).parents(".mui-table-view-cell").find(".newsurl").attr("data-type");
 	var iftauth = $(this).parents(".mui-table-view-cell").find(".userurl").attr("data-iftauth");

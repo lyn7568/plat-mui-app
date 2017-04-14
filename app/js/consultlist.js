@@ -227,7 +227,7 @@ mui.ready(function() {
 				htmlStr += '<span class="mui-badge mui-badge-danger" style="'+unreadStyle+'">'+unreadCount+'</span>';
 		        htmlStr += '<img class="mui-media-object mui-pull-left headimg headRadius" src="'+photoUrl+'">';
 	            htmlStr += '<div class="mui-media-body">';
-	            htmlStr += '<span class="listtit">'+data[i]["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></span>';	
+	            htmlStr += '<p class="listtit">'+data[i]["professor"]["name"]+'<em class="mui-icon iconfont icon-vip '+proModify+'"></em><span class="thistime">'+lastReplyTime+'</span></p>';
 	            htmlStr += '<p class="listtit2"><span>'+zhicehng+'</span><span>'+zhiwei+'</span><span>'+data[i]["professor"]["orgName"]+'</span><span>'+address+'</span></p>';
 	            htmlStr += '<p class="listtit3">'+lastReplyCon+'</p>';
 	            htmlStr += '</div></a></li>';

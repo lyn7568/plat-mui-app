@@ -227,15 +227,15 @@ function datalistEach(datalist) {
 		}
 		var typeTname = '';
 		if(item.authType) {
-			typeTname = '<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
+			typeTname = '<em class="mui-icon iconfont icon-vip authicon-cu" style="top:3px"> </em>';
 		} else {
 			if(item.authStatus==3) {
 				if(item.authentication == 1) {
-					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
+					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-mana" style="top:1px"></em>';
 				} else if(item.authentication == 2) {
-					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
+					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-staff" style="top:1px"></em>';
 				} else {
-					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
+					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-stu" style="top:1px"></em>';
 				}
 			}
 		}
@@ -253,8 +253,8 @@ function datalistEach(datalist) {
 		oString += '<a class="proinfor itemBtn">' <!-- displayNone-->
 		oString += '<img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '">'
 		oString += '<div class="mui-media-body">'
-		oString += '<span class="listtit">' + item.name + ' ' + typeTname + ''
-		oString += '<span class="thistime">' + oCreateTime + '</span></span>'
+		oString += '<p class="listtit">' + item.name + ' ' + typeTname + ''
+		oString += '<span class="thistime">' + oCreateTime + '</span></p>'
 		oString += '<p class="listtit2">'
 		oString += '<span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>'
 		oString += '<p class="listtit3 mui-ellipsis">' + ite.demandContent + '</p></div></a>'

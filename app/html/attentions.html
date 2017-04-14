@@ -34,6 +34,11 @@
 			checkedindex = this.getAttribute("index");
 			var libtn_arr = document.getElementById("fixbtn").getElementsByTagName("li");
 			if(checkedindex == 0) {
+				var list1 = plus.webview.getWebviewById('attentions-list2.html');
+				console.log(list1)
+				if(list1==null){
+					return;
+				}
 				libtn_arr[0].classList.add("liactive");
 				libtn_arr[1].classList.remove("liactive");
 				mui.openWindow({
@@ -48,9 +53,13 @@
 						bottom: '0px',
 					}
 				});
-				var list1 = plus.webview.getWebviewById('attentions-list2.html');
+				
 				list1.close();
 			} else {
+				var list2 = plus.webview.getWebviewById('attentions-list.html');
+				if(list2==null){
+					return;
+				}
 				libtn_arr[1].classList.add("liactive");
 				libtn_arr[0].classList.remove("liactive");
 			
@@ -66,7 +75,7 @@
 						bottom: '0px',
 					}
 				});
-				var list2 = plus.webview.getWebviewById('attentions-list.html');
+				
 				list2.close();
 			}
 		})

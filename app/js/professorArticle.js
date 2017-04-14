@@ -2,9 +2,67 @@ mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var proId = self.articleId;
-	var proticleName="";
-	var oImgShare=""
-	console.log(userid)
+	var ownerid = self.ownerid;
+	var oFlag = self.oFlag;
+	var proticleName = "";
+	var oImgShare = ""
+	if(oFlag == 1) {
+		comBro();
+		mui.ajax(baseUrl + "/ajax/org/authStatus", {
+			dataType: 'json', //数据格式类型
+			type: 'GET', //http请求类型
+			timeout: 10000, //超时设置
+			data: {
+				"id": ownerid
+			},
+			success: function(data) {
+				if(data.success) {
+					if(data.data == 3) {
+						document.getElementById("proInfor").addEventListener("tap", function() {
+						mui.openWindow({
+							url: '../html/cmpinfor-index.html',
+							id: 'cmpinfor-index.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-right",
+							},
+							extras: {
+								orgId: ownerid,
+							}
+						})
+						})
+					} else {
+						document.getElementById("proInfor").addEventListener("tap", function() {
+						mui.openWindow({
+							url: '../html/cmpinfor-Unindex.html',
+							id: 'cmpinfor-Unindex.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-right",
+							},
+							extras: {
+								orgId: ownerid,
+								flag: 0
+							}
+						})
+						})
+					}
+				}
+			},
+			error: function(XMLHttpRequest) {
+				console.log(XMLHttpRequest)
+			}
+		});
+	} else {
+		personMess();
+		document.getElementById("proInfor").addEventListener("tap", function() {
+			plus.nativeUI.showWaiting(); //显示原生等待框
+			webviewShow = plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+				proid: ownerid
+			}); //后台创建webview并打开show.html
+		})
+	}
+
 	function proInfoMain() {
 		mui.ajax(baseUrl + "/ajax/article/query", {
 			dataType: 'json', //数据格式类型
@@ -14,100 +72,25 @@ mui.plusReady(function() {
 			},
 			timeout: 10000, //超时设置
 			success: function(data) {
-				console.log(JSON.stringify(data))
 				var $info = data.data || {};
 				if(data.success && data.data) {
 					plus.nativeUI.closeWaiting();
 					plus.webview.currentWebview().show("slide-in-right", 150);
-					var nameli = document.getElementById("nameli");
-					var proZlist = document.getElementById("proZlist"); //专家资源
-					var proRlist = document.getElementById("proRlist"); //专家资源
-					var proName = document.getElementById("proName");
-					var proTitle = document.getElementById("proTitle");
-					var proOffice = document.getElementById("proOffice");
-					var proOrg = document.getElementById("proOrg");
-					var proAddress = document.getElementById("proAddress");
 					var articleImg = document.getElementById("articleImg");
 					var artical_topic = document.getElementById("artical_topic");
 					var main_content = document.getElementById("main_content");
-					proName.innerText = $info.professor.name;
-					if($info.professor.title && $info.professor.office && $info.professor.orgName && $info.professor.address) {
-						proTitle.innerText = $info.professor.title + "，";
-						proOffice.innerText = $info.professor.office + "，";
-						proOrg.innerText = $info.professor.orgName + " | ";
-						proAddress.innerText = $info.professor.address;
-					} else if(!$info.professor.title && $info.professor.office && $info.professor.orgName && $info.professor.address) {
-						proOffice.innerText = $info.professor.office + "，";
-						proOrg.innerText = $info.professor.orgName + " | ";
-						proAddress.innerText = $info.professor.address;
-					} else if($info.professor.title && !$info.professor.office && $info.professor.orgName && $info.professor.address) {
-						proTitle.innerText = $info.professor.title + "，";
-						proOrg.innerText = $info.professor.orgName + " | ";
-						proAddress.innerText = $info.professor.address;
-					} else if($info.professor.title && $info.professor.office && !$info.professor.orgName && $info.professor.address) {
-						proTitle.innerText = $info.professor.title + "，";
-						proOffice.innerText = $info.professor.office + " | ";
-						proAddress.innerText = $info.professor.address;
-					} else if($info.professor.title && $info.professor.office && $info.professor.orgName && !$info.professor.address) {
-						proTitle.innerText = $info.professor.title + "，";
-						proOffice.innerText = $info.professor.office + "，";
-						proOrg.innerText = $info.professor.orgName;
-					} else if(!$info.professor.title && !$info.professor.office && $info.professor.orgName && $info.professor.address) {
-						proOrg.innerText = $info.professor.orgName + " | ";
-						proAddress.innerText = $info.professor.address;
-					} else if(!$info.professor.title && $info.professor.office && !$info.professor.orgName && $info.professor.address) {
-						proOffice.innerText = $info.professor.office + " | ";
-						proAddress.innerText = $info.professor.address;
-					} else if(!$info.professor.title && $info.professor.office && $info.professor.orgName && !$info.professor.address) {
-						proOffice.innerText = $info.professor.office + "，";
-						proOrg.innerText = $info.professor.orgName;
-					} else if($info.professor.title && !$info.professor.office && !$info.professor.orgName && $info.professor.address) {
-						proTitle.innerText = $info.professor.title + " | ";
-						proAddress.innerText = $info.professor.address;
-					} else if($info.professor.title && !$info.professor.office && $info.professor.orgName && !$info.professor.address) {
-						proOffice.innerText = $info.professor.title + "，";
-						proAddress.innerText = $info.professor.orgName;
-					} else if($info.professor.title && $info.professor.office && !$info.professor.orgName && !$info.professor.address) {
-						proTitle.innerText = $info.professor.title + "，";
-						proOffice.innerText = $info.professor.office;
-					} else if(!$info.professor.title && !$info.professor.office && !$info.professor.orgName && $info.professor.address) {
-						proAddress.innerText = $info.professor.address;
-					} else if(!$info.professor.title && !$info.professor.office && $info.professor.orgName && !$info.professor.address) {
-						proOrg.innerText = $info.professor.orgName;
-					} else if(!$info.professor.title && $info.professor.office && !$info.professor.orgName && !$info.professor.address) {
-						proOffice.innerText = $info.professor.office;
-					} else if($info.professor.title && !$info.professor.office && !$info.professor.orgName && !$info.professor.address) {
-						proTitle.innerText = $info.professor.title;
+					if(data.data.createTime) {
+						var oTime = timeGeshi(data.data.createTime);
+						document.getElementById("proRlist").innerText = oTime;
 					}
-					var rlist = ''
-					for(var n = 0; n < $info.professor.researchAreas.length; n++) {
-						rlist += '<span>' + $info.professor.researchAreas[n].caption + '</span>';
-						if(n != $info.professor.researchAreas.length - 1) {
-							rlist += '，';
-						}
-					}
-					($info.professor.researchAreas) ? proRlist.innerHTML = rlist: proRlist.innerText = '';
-					var zlist = "";
-					for(var n = 0; n < $info.professor.resources.length; n++) {
-						zlist += '<span>' + $info.professor.resources[n].resourceName + '</span>';
-						if(n != $info.professor.resources.length - 1) {
-							zlist += '，';
-						}
-					}
-					//console.log(oImg)
-					//alert(oImg)
-					($info.professor.resources) ? proZlist.innerHTML = zlist: proZlist.innerText = '';
 					if($info.articleImg) {
 						articleImg.style.backgroundImage = 'url(' + baseUrl + '/data/article/' + $info.articleImg + ')';
 					}
-					if($info.professor.hasHeadImage) {
-						document.getElementById('proHead').src = baseUrl + "/images/head/" + $info.professorId + "_l.jpg";
-					}
 					artical_topic.innerText = $info.articleTitle;
-					proticleName= $info.articleTitle;
+					proticleName = $info.articleTitle;
 					if($info.articleContent) {
 						main_content.innerHTML = $info.articleContent;
-						oImgShare=main_content.innerText;
+						oImgShare = main_content.innerText;
 						var oImg = main_content.getElementsByTagName("img");
 						for(var i = 0; i < oImg.length; i++) {
 							(function(n) {
@@ -124,20 +107,79 @@ mui.plusReady(function() {
 			}
 		});
 	}
+	/*个人信息*/
+	function personMess() {
+		mui.ajax(baseUrl + "/ajax/professor/editBaseInfo/" + ownerid, {
+			dataType: 'json', //数据格式类型
+			type: 'GET', //http请求类型
+			timeout: 10000, //超时设置
+			success: function(data) {
+				if(data.success && data.data) {
+					var $profesor = data.data;
+					if($profesor.hasHeadImage) {
+						document.getElementById('proHead').src = baseUrl + "/images/head/" + $profesor.id + "_l.jpg";
+					} else {
+						document.getElementById('proHead').src = "images/default-photo.jpg";
+					}
+					var proName = document.getElementById("proName");
+					proName.innerText = $profesor.name;
+				}
+			},
+			error: function(XMLHttpRequest) {
+				console.log(XMLHttpRequest)
+			}
+		});
+	}
+	/*企业信息*/
+	function comBro() {
+		mui.ajax(baseUrl + "/ajax/org/" + ownerid, {
+			type: "GET",
+			timeout: 10000,
+			dataType: "json",
+			beforeSend: function() {},
+			success: function(data, textState) {
+				if(data.success) {
+					var $data = data.data;
+					var proName = document.getElementById("proName");
+					proName.innerText = $data.name;
+					if($data.authStatus == 3) {
+						document.getElementById("flSta").className = "mui-icon iconfont authicon authicon-com-ok"; //authiconNew
+					} else {
+						document.getElementById("flSta").className = "mui-icon iconfont authicon";
+					}
+					if($data.hasOrgLogo) {
+						document.getElementById('proHead').src = baseUrl + "/images/org/" + $data.id + ".jpg";
+					} else {
+						document.getElementById('proHead').src = "images/default-icon.jpg";
+					}
+
+				} else {}
+			},
+			error: function(XMLHttpRequest, textStats, errorThrown) {
+				console.log(JSON.stringify(data));
+			}
+		})
+	}
 	proInfoMain();
+	/*时间格式*/
+	/*时间格式转换*/
+	function timeGeshi(otm) {
+		var otme = otm.substring(0, 4) + "年" + otm.substring(4, 6) + "月" + otm.substring(6, 8) + "日";
+		return otme;
+	}
 	/*进入留言*/
 	document.getElementById("leaveWord").addEventListener("tap", function() {
-		var userid = plus.storage.getItem('userid');
-		if(!userid) {
-			goLoginFun();
-			return;
-		}
-		var nwaiting = plus.nativeUI.showWaiting();
-		var web = plus.webview.create("../html/articalMessage.html", "articalMessage.html", {}, {
-			articleId: proId
-		}); //后台创建webview并打开show.html   	    	
-	})
-	/*微信及微信朋友圈分享专家*/
+			var userid = plus.storage.getItem('userid');
+			if(!userid) {
+				goLoginFun();
+				return;
+			}
+			var nwaiting = plus.nativeUI.showWaiting();
+			var web = plus.webview.create("../html/articalMessage.html", "articalMessage.html", {}, {
+				articleId: proId
+			}); //后台创建webview并打开show.html   	    	
+		})
+		/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	document.getElementById("shareBtn").addEventListener("tap", function() {
 		shareShow()
@@ -193,8 +235,8 @@ mui.plusReady(function() {
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
 						content: oImgShare,
-						title: "【科袖文章】"+proticleName,
-						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId="+proId ,
+						title: "【科袖文章】" + proticleName,
+						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
 						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
@@ -203,8 +245,8 @@ mui.plusReady(function() {
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {
 						content: oImgShare,
-						title: "【科袖文章】"+proticleName,
-						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId="+proId ,
+						title: "【科袖文章】" + proticleName,
+						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
 						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}

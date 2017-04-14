@@ -6,6 +6,7 @@ var personSummary = document.getElementsByClassName("breifinfo")[0];
 var professorName;
 var title="";
 var clickFlag = true;
+var orgAuth,orgId;
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
@@ -179,6 +180,8 @@ mui.plusReady(function() {
 			type: 'GET', //http请求类型
 			timeout: 10000, //超时设置
 			success: function(data) {
+				orgAuth=data.data.orgAuth;
+				orgId=data.data.orgId;
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				var $data = data.data;
@@ -381,7 +384,6 @@ mui.plusReady(function() {
 		},
 		timeout: 10000, //超时设置
 		success: function(data) {
-			console.log(JSON.stringify(data))
 			if(data.success) {
 				var $data = data.data;
 				if($data.length==0){
@@ -415,7 +417,8 @@ mui.plusReady(function() {
 		var artId = this.getAttribute("articleId");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
-			articleId: artId
+			articleId: artId,
+			ownerid:proId
 		});
 	});
 	/*进入资源详细页面*/
@@ -559,6 +562,23 @@ mui.plusReady(function() {
 				}
 			});
 		})
+	/*进入机构浏览页面*/
+	document.getElementById("department").addEventListener("tap",function(){
+		if(orgAuth==1){
+			mui.openWindow({
+				url: '../html/cmpinfor-index.html',
+				id: 'cmpinfor-index.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					orgId: orgId,
+				}
+			});
+		}
+		
+	})
 		/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	document.getElementById("shareBtn").addEventListener("tap", function() {

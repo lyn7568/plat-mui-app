@@ -599,7 +599,7 @@ function eachData(userid, datalist) {
 				'<span class="mui-badge mui-badge-danger readstate ' + unreadStyle + '" consultId="' + item["consultId"] + '">' + unreadCount + '</span>' +
 				'<img class="mui-media-object mui-pull-left headimg headRadius" src="' + photoUrl + '">' +
 				'<div class="mui-media-body">' +
-				'<span class="listtit">' + item["professor"]["name"] + '<em id="nameli" class="mui-icon iconfont ' + proModify + '">' + modifyaddEle + '</em><span class="thistime">' + lastReplyTime + '</span></span>';
+				'<p class="listtit">' + item["professor"]["name"] + '<em id="nameli" style="top:3px" class="mui-icon iconfont ' + proModify + '">' + modifyaddEle + '</em><span class="thistime">' + lastReplyTime + '</span></p>';
 			str += '<p class="listtit2">';
 			if(item["professor"]["title"]) {
 				str += '<span>' + item["professor"]["title"] + '</span>, ';

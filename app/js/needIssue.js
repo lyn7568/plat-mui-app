@@ -2,10 +2,24 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
+		console.log()
 		var oconsultcon = document.getElementsByClassName("borderarea")[0];
 		var demandContent = document.getElementById("demandContent");
 		var oNavsub = document.getElementById("navsub");
 		var consun;
+		var demandType;
+		var orgId;
+		if(ws.flag==0){
+			demanTy(); 
+		}else if(ws.flag==1){
+			document.getElementById("oGe").className="checkNow";
+			document.getElementById("oQi").className="checkNo";
+			demandType=1;
+		}else{
+			document.getElementById("oQi").className="checkNow";
+			document.getElementById("oGe").className="checkNo";
+			demandType=2;
+		}
 		//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		iosheader();
 		tab("navsub"); //身份切换
@@ -28,6 +42,27 @@ mui.ready(function() {
 				}
 			}
 		}
+		/*切换需求类型*/
+function demanTy() {
+	var deTy = document.getElementById("navsubTo");
+	var deTyChild = deTy.getElementsByTagName("span");
+	if(deTyChild[0].className != "checkNo" && deTyChild[1].className != "checkNo") {
+		for(var n = 0; n < deTyChild.length; n++) {
+			(function(m) {
+				deTyChild[m].onclick = function() {
+					this.className = "checkNow";
+					if(m == 0) {
+						demandType=1;
+						deTyChild[1].className = "";
+					} else if(m == 1) {
+						demandType=2;
+						deTyChild[0].className = "";
+					}
+				}
+			})(n);
+		}
+	}
+}
 		/*需求内容*/
 		function checkLen(obj) {
 
@@ -121,11 +156,34 @@ mui.ready(function() {
 		}
 		industry("INDUSTRY");
 		industry("SUBJECT");
+		getOrgId();
+		function getOrgId(){
+			mui.ajax(baseUrl + "/ajax/professor/baseInfo/"+userid, {
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				timeout: 10000, //超时设置
+				success: function(data) {
+					if(data.success) {
+					var $rta = data.data;
+					orgId = $rta.orgId
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
 		/*发布新需求*/
 		document.getElementsByClassName("topsave")[0].addEventListener("tap", function() {
 				var dd = oNavsub.getElementsByClassName("set");
+				var cc=document.getElementById("navsubTo").getElementsByClassName("checkNow")
 				if(dd.length == 0) {
 					plus.nativeUI.toast("请选择您发布需求的目的", toastStyle);
+					return;
+				}
+				if(cc.length == 0) {
+					plus.nativeUI.toast("请选择您的需求类型", toastStyle);
 					return;
 				}
 				if(!trim(demandContent.value)) {
@@ -158,10 +216,11 @@ mui.ready(function() {
 				data: {
 					"demander": userid,
 					"demandAim": consun,
-					"demandType": 1,
+					"demandType": demandType,
 					"demandTitle": demandContent.value,
 					"demandContent": oconsultcon.innerText,
-					"args": arr
+					"args": arr,
+					"orgId": (demandType == 2) ? orgId : "",
 				},
 				success: function(data) {
 					console.log(JSON.stringify(data))

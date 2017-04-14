@@ -31,6 +31,7 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #c0
 /*清除mui部分原有样式*/
 html{-webkit-text-size-adjust: none;}
 body,.mui-content{background:#f4f6f8;}
+.mui-bar-nav{box-shadow: none;-webkit-box-shadow: none;}
 .mui-input-group:before{background: none;}
 .mui-input-group:after{background: none;}
 .mui-table-view:before{ background: none;}

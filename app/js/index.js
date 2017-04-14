@@ -27,31 +27,47 @@ document.getElementById("demandP").addEventListener("tap", function() {
 			if(data.success) {
 				var $data = data.data;
 				if($data.authStatus == 3) {
+					var oDa = {};
+					oDa.flag = ($data.orgAuth == 0) ? 1 : 0;
 					mui.openWindow({
 						url: '../html/needIssue.html',
 						id: '../html/needIssue.html',
 						show: {
 							autoShow: false,
 							aniShow: "slide-in-right",
+						},
+						extras: oDa
+					});
+				} else {
+					if($data.orgAuth == 1) {
+						mui.openWindow({
+							url: '../html/needIssue.html',
+							id: '../html/needIssue.html',
+							show: {
+								autoShow: false,
+								aniShow: "slide-in-right",
+							}
+						});
+					} else {
+						if($data.authStatus == 2) {
+							plus.nativeUI.toast("我们正在对您的信息进行认证，请稍等片刻", {
+								'verticalAlign': 'center'
+							});
+						} else if($data.authStatus == 1) {
+							plus.nativeUI.toast("我们将尽快对您的信息进行认证", {
+								'verticalAlign': 'center'
+							});
+						} else if($data.authStatus <= 0) {
+							mui.openWindow({
+								url: '../html/realname-authentication.html',
+								id: 'realname-authentication.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-right",
+								}
+							});
 						}
-					});
-				} else if($data.authStatus == 2) {
-					plus.nativeUI.toast("我们正在对您的信息进行认证，请稍等片刻", {
-						'verticalAlign': 'center'
-					});
-				} else if($data.authStatus == 1) {
-					plus.nativeUI.toast("我们将尽快对您的信息进行认证", {
-						'verticalAlign': 'center'
-					});
-				} else if($data.authStatus <= 0) {
-					mui.openWindow({
-						url: '../html/realname-authentication.html',
-						id: 'realname-authentication.html',
-						show: {
-							autoShow: false,
-							aniShow: "slide-in-right",
-						}
-					});
+					}
 				}
 			}
 		},

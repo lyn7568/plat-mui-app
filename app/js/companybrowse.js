@@ -3,7 +3,7 @@ var yesExpert = document.getElementById("yesExpert");
 var noExpert = document.getElementById("noExpert");
 var personalMaterial = document.getElementsByClassName('personalMaterial');
 var personSummary = document.getElementsByClassName("breifinfo")[0];
-
+var orgAuth,orgId;
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
@@ -70,6 +70,8 @@ mui.plusReady(function() {
 				console.log(JSON.stringify(data))
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
+				orgAuth=data.data.orgAuth;
+				orgId=data.data.orgId;
 				var $data = data.data;
 				personalMaterial[0].innerText = $data.name;
 				document.getElementById("professorName").innerText = $data.name;
@@ -285,6 +287,23 @@ mui.plusReady(function() {
 		});
 
 	}
+	/*进入机构浏览页面*/
+	document.getElementById("department").addEventListener("tap",function(){
+		if(orgAuth==1){
+			mui.openWindow({
+				url: '../html/cmpinfor-index.html',
+				id: 'cmpinfor-index.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					orgId: orgId,
+				}
+			});
+		}
+		
+	})
 	//	/*专家的历史和评价*/
 	//	document.getElementById("accessHistory").addEventListener('tap', function() {
 	//		mui.openWindow({

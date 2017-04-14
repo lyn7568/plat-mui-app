@@ -118,6 +118,7 @@
 					if(myData.authType) {
 						nameli.classList.add('icon-vip');
 						nameli.classList.add('authicon-cu');
+						nameli.style.top = "4px";
 					} else {
 						if(myData.authStatus==3) {
 							if(myData.authentication == 1) {

@@ -314,6 +314,7 @@ mui.ready(function() {
 							nameli.classList.add('icon-vip');
 							nameli.classList.add('authicon-cu');
 							nameli.style.margin = "-4px 0 0 -2px";
+							nameli.style.top = "8px";
 						} else {
 							if($info.authStatus==3) {
 								if($info.authentication == 1) {

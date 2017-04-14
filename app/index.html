@@ -12,15 +12,19 @@
     <!--主页面底部菜单-->
     <nav class="mui-bar mui-bar-tab footbox">
 	    <a class="mui-tab-item mui-active" href="html/index_home.html" dataid="1">
-	        <span class="mui-icon iconfont icon-home"></span>
+	        <span class="mui-icon iconfontnew icon-homenew"></span>
 	        <span class="mui-tab-label">首页</span>
 	    </a>
+	    <a class="mui-tab-item" href="html/discover.html" dataid="4">
+	        <span class="mui-icon iconfontnew icon-faxiannew"></span>
+	         <span class="mui-tab-label">发现</span>
+	    </a>
 	    <a class="mui-tab-item" href="html/consult_home.html" dataid="2">
-	        <span class="mui-icon iconfont icon-community"></span>
+	        <span class="mui-icon iconfontnew icon-messagenew"></span>
 	         <span class="mui-tab-label">咨询</span>
 	    </a>
 	    <a class="mui-tab-item" id="isLogin" href="html/myaccount.html" dataid="3">
-	        <span class="mui-icon iconfont icon-people"></span>
+	        <span class="mui-icon iconfontnew icon-wonew"></span>
 	         <span class="mui-tab-label">我</span>
 	    </a>
 	</nav>
@@ -28,7 +32,7 @@
 	<script src="js/public/base.js"></script>
 	
 <script type="text/javascript" charset="utf-8">
-	var subpages = ['html/index_home.html', 'html/consult_home.html', 'html/myaccount.html'];
+	var subpages = ['html/index_home.html', 'html/discover.html', 'html/consult_home.html', 'html/myaccount.html'];
 	var subpage_style = {
 		top: '0px',
 		bottom: '51px'
@@ -37,7 +41,7 @@
 	//创建子页面，首个选项卡页面显示，其它均隐藏；
 	mui.plusReady(function() {
 		var self = plus.webview.currentWebview();
-		for(var i = 0; i < 3; i++) {
+		for(var i = 0; i < 4; i++) {
 			var temp = {};
 			var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
 			if(i > 0) {

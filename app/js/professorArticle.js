@@ -145,7 +145,7 @@ mui.plusReady(function() {
 					if($data.authStatus == 3) {
 						document.getElementById("flSta").className = "mui-icon iconfont authicon authicon-com-ok"; //authiconNew
 					} else {
-						document.getElementById("flSta").className = "mui-icon iconfont authicon authicon-com-no";
+						document.getElementById("flSta").className = "mui-icon iconfont authicon";
 					}
 					if($data.hasOrgLogo) {
 						document.getElementById('proHead').src = baseUrl + "/images/org/" + $data.id + ".jpg";

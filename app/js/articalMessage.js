@@ -50,7 +50,7 @@ mui.plusReady(function() {
 						}
 						string += '</div> </div>'
 						li.innerHTML = string;
-						document.getElementsByClassName(" protable")[0].appendChild(li);
+						document.getElementsByClassName("protable")[0].appendChild(li);
 					}
 				}
 			},

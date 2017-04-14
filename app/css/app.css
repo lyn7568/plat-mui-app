@@ -29,6 +29,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {color: #c0c0c6;}
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #c0c0c6;}
 
 /*清除mui部分原有样式*/
+html{-webkit-text-size-adjust: none;}
 body,.mui-content{background:#f4f6f8;}
 .mui-input-group:before{background: none;}
 .mui-input-group:after{background: none;}
@@ -130,10 +131,10 @@ div.textareaboxEmp:focus{content:none;}
 .footbox{ background: #FFFFFF;border-top:1px solid #DDDDDD;-webkit-box-shadow: 0px 6px 6px 2px #CCCCCC;box-shadow: 0px 6px 6px 2px #CCCCCC;}
 .footbox .mui-tab-item.mui-active{ color: #FF9900;}
 
-.listtit0{font-size: 13px; color: #222222;}
-.listtit{ font-size: 14px; color: #333333;position: relative;}/*中标题*/
-.listtit2{font-size: 13px; color: #666666;}/*较小标题*/
-.listtit3{font-size: 12px; color: #888888;}/*小标题*/
+.listtit0{font-size: 14px; color: #222222;}
+.listtit{ font-size: 15px; color: #333333;position: relative;}/*中标题*/
+.listtit2{font-size: 14px; color: #666666;}/*较小标题*/
+.listtit3{font-size: 13px; color: #888888;}/*小标题*/
 .littip{font-size:12px;color:#BBBBBB;line-height: 26px;}
 .identity-wen{padding-left:14px;} 
 /*/////专家身份认证状态///////*/
@@ -751,23 +752,23 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .table-item.mui-table-view .mui-table-view-cell.mui-active{background:#FFFFFF;}
 .table-item .mui-table-view-cell:first-child{margin-top:0;}
 .table-item.mui-table-view .mui-table-view-cell:after{background: none;}
-.table-item-cell{border:1px solid #e5e5e5;background:#f2f3f4;min-height: 76px;margin:14px 0 12px 0;}
+.table-item-cell{background:#f2f3f4;min-height: 76px;margin:14px 0 12px 0;}
 .table-item-cell .table-item-img{position:absolute;width: 110px;height: 74px;top:50%;left:0;margin-top:-37px;}
 .table-item-cell .table-item-img.artical-default{background:url(../images/default-artical.jpg) center center;background-size:cover;}
 .table-item-cell .table-item-img.resource-default{background:url(../images/default-resource.jpg) center center;background-size:cover;}
 .table-item-cell .table-item-body{width:100%;padding-left:120px;padding-right: 10px;}
 .table-item-media{line-height: 32px;height: 32px;}
 .table-item-media .table-item-logo{position:absolute;display: inline-block;border:1px solid #E5E5E5;width: 32px; height:32px;margin-right:8px; z-index:2;}
-.table-item-media .table-item-name{width:90%;position: relative;padding-left:40px;}
+.table-item-media .table-item-name{width:90%;position: relative;padding-left:40px;font-size:15px;}
 .table-item-media .table-item-name span{float:left;display:block;max-width:96%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .table-item-media .authicon{bottom:9px;}
 
 .cmplogo{ background: url(../images/default-icon.jpg);background-size: cover;border-radius:4px;}
 .userhead{ background: url(../images/default-photo.jpg);background-size: cover;border-radius:4px;}
-.cmpLable{border:1px solid;border-radius:3px;padding:2px 6px;font-style: normal;font-size: 12px; line-height: 14px; vertical-align: middle;margin-right: 15px;}
+.cmpLable{border:1px solid;border-radius:3px;padding:2px 6px;font-style: normal;font-size: 10px; line-height: 14px; vertical-align: middle;margin-right: 15px;}
 .cmpLable.articalLabel{border-color:#ff6b57;color:#ff6b57;}
 .cmpLable.resourceLabel{border-color:#28b8fa;color:#28b8fa;}
-.timeLabel{position: relative;}
+.timeLabel{position: relative;color:#999999;font-size:12px;}
 /*企业浏览*/
 .cmpLogoBox .authicon{width: 20px;height: 20px;bottom:4px;}
 .cmpLogoBox .listtit{padding:0 20px;}

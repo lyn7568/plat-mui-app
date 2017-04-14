@@ -748,7 +748,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .table-item{/*padding:10px;*/}
 .table-item.mui-table-view{background: none;}
 .table-item .mui-table-view-cell{padding:15px 20px 20px 20px;background:#FFFFFF;margin-top:12px}
-.table-item .mui-table-view-cell.mui-active{background: #EEEEEE;}
+.table-item.mui-table-view .mui-table-view-cell.mui-active{background:#FFFFFF;}
 .table-item .mui-table-view-cell:first-child{margin-top:0;}
 .table-item.mui-table-view .mui-table-view-cell:after{background: none;}
 .table-item-cell{border:1px solid #e5e5e5;background:#f2f3f4;min-height: 76px;margin:14px 0 12px 0;}

@@ -435,10 +435,13 @@ mui.plusReady(function() {
 		var dataCap = this.getAttribute("dataCaption");
 		plus.nativeUI.showWaiting();
 		plus.webview.close("researchAreaHead.html");
-		plus.webview.create("../html/researchAreaHead.html", 'researchAreaHead.html', {}, {
+		setTimeout(function(){
+			plus.webview.create("../html/researchAreaHead.html", 'researchAreaHead.html', {}, {
 			dataCaption: dataCap,
 			professorId:proId
 		});
+		},500);
+		
 		
 	});
 	/*咨询成功,返回专家信息*/

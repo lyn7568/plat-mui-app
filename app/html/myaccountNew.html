@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+	<body>
+        <!--登陆状态-->
+		<div class="mui-content bodyBg" >
+			<!-- 主界面具体展示内容 -->
+			<div class="inviteBoxNew">
+				<div class="userLogin">
+					<ul class="mui-table-view loginStatus">
+						<!--登录状态-->
+						<li class="mui-table-view-cell">
+							<div class="flexCenter">
+								<div class="userImg userRadius">
+					        		<img src="../images/default-photo.jpg"/>
+					        	</div>
+								<div class="userInfo">
+									<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></p>
+									<p class="h2Font">北京科技大学</p>
+									<span class="exitSpan"></span>
+								</div>
+							</div>
+						</li>
+						<!--未登录状态-->
+						<li class="mui-table-view-cell displayNone">
+							<div class="flexCenter">
+								<div class="userImg userRadius">
+					        		<img src="../images/default-photo.jpg"/>
+					        	</div>
+								<div class="userInfo">
+									<p class="h1Font positionR">未登录 / 立即登录</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-row commonBtn">
+					<div class="mui-col-xs-6" id="myCard">
+						<div class="commonBtnitem">
+							<img src="../images/me_button_mingpian_nor@3x.png" />
+							<p class="h3Font">我的名片</p>
+						</div>
+					</div>
+					<div class="mui-col-xs-6" id="signed">
+						<div class="commonBtnitem">
+							<img src="../images/me_button_qiandao_nor@3x.png" />
+							<p class="h3Font">立即签到</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="maincontent setItemblock">
+				<div class="setItem itemTwo">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconFocus"></em>
+					        	<span class="mui-pull-left">关注与收藏</span>
+					        </a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconDemand"></em>
+					        	<span class="mui-pull-left">我发布的需求</span>
+					        </a>
+						</li>
+						<!--身份为专家时显示，并且将父级模块类改为itemThree-->
+						<li class="mui-table-view-cell displayNone">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconAssess"></em>
+					        	<span class="mui-pull-left">我收到的评价</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemTwo">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconReward"></em>
+					        	<span class="mui-pull-left">我的积分</span>
+					        </a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconInvite"></em>
+					        	<span class="mui-pull-left">邀请好友</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemOne">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconAuth"></em>
+					        	<span class="mui-pull-left">专家认证</span>
+					        	<span class="rightword">已认证</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemOne">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconSet"></em>
+					        	<span class="mui-pull-left">设置</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+    	</div>	
+		
+		<!--分享名片弹出提示框-->
+		<div class="promptBlock shareCardBlock" id="mycardshow">
+			<div class="userImg userRadius">
+        		<img src="../images/default-photo.jpg"/>
+        	</div>
+        	<div class="userBasic">
+	        	<p class="h1Font">张大大</p>
+	        	<p class="h2Font mui-ellipsis">教授级高工，董事长兼CEO</p>
+	        	<p class="h2Font mui-ellipsis">北京科袖科技有限公司</p>
+			</div>
+			<div class="myCard">
+				<img class="mycode" src="../images/mycard-code.png" />
+				<p><span>扫描二维码，查看我的信息</span><br /><span>也可以直接分享给好友</span></p>
+				<ul class="shareWays">
+					<li><img src="../images/me_icon_weixin_nor@3x.png" /><p>微信</p></li>
+					<li><img src="../images/me_icon_pengyquan_nor@3x.png" /><p>微信朋友圈</p></li>
+				</ul>
+			</div>
+			<span class="mui-icon mui-icon-close promptClose"></span>
+		</div>
+		<!--签到成功弹出提示框-->
+		<div class="promptBlock signInBlock" id="signedshow">
+			<img class="signInImg" src="../images/me_bg_img_qiandao_nor@3x.png" />
+			<div class="qiaodao">
+				<p style="font-size:20px;">获得<span>+10</span>积分</p>
+				<p>明天连续签到可获得<span>N</span>个积分</p>
+			</div>
+			<div class="promptBtn"><button class="mui-btn mui-btn-mini">朕知道了</button></div>
+		</div>
+
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<!--<script src="../js/myaccount.js"></script>-->
+		<script type="text/javascript">
+			mui.init();
+			
+			var myCard=document.getElementById("myCard");
+		    var signed=document.getElementById("signed");
+		    var mycardshow=document.getElementById("mycardshow");
+			var signedshow=document.getElementById("signedshow");
+			var promptBtn=document.getElementsByClassName("promptBtn");
+			var promptClose=document.getElementsByClassName("promptClose");
+			
+			myCard.addEventListener("tap", function() {
+				mycardshow.setAttribute("style","display:block");
+				model.show();//显示遮罩
+			})
+			signed.addEventListener("tap", function() {
+				signedshow.setAttribute("style","display:block");
+				model.show();//显示遮罩
+			})
+			promptBtn[0].addEventListener("tap", function() {
+				model.close();//关闭遮罩
+			})
+			promptClose[0].addEventListener("tap", function() {
+				model.close();//关闭遮罩
+			})
+				
+			
+		</script>
+	</body>
+
+</html>

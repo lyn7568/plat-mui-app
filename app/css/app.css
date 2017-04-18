@@ -786,3 +786,190 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .cmpStaff .cmpTit{font-size:16px;padding:0 0 8px 6px;border-bottom: 1px solid #E6E6E6;}
 .cmpStaff .flexImg{left:10px}
 .cmpStaff .authicon{bottom:4px;}
+
+/***************************************2017.04新版样式******************************/
+/*--------邀请好友------------*/
+.inviteBoxNew{position:relative;}
+.inviteBtnNew{position: absolute;width:86%;height:50%;bottom:-25%; left:7%;background: #FFFFFF;
+			padding:0 6%;
+		    display: -webkit-box;
+			display: -webkit-flex; 
+			display:         flex; 
+	        -webkit-align-items: center;
+	                align-items: center;
+	box-shadow: 0px 1px 4px rgba(204, 204, 204, 0.8);;
+	-webkit-box-shadow: 0px 1px 4px rgba(204, 204, 204, 0.8);;z-index: 10;}
+.inviteBtnLink{max-width: 200px;}
+.inviteFont p{font-size:15px;margin-bottom:4px}
+.inviteFont p.inviteNum{font-size:22px;line-height:30px;color:#FF9900;}
+.inviteInfor{padding:20% 0 4% 0;}
+.inviteInfor .mui-col-xs-6:first-child{border-right: 2px solid #f4f6f8;}
+.inviteInfor .inviteFont{width: 120px;margin: auto;}
+.inviteInfor .mui-col-xs-6:first-child .inviteFont{margin-left:76px;}
+.inviteInfor .mui-col-xs-6:last-child .inviteFont{margin-left:32px;}
+.inviteInfor p.inviteNum{font-size: 18px;text-align:left;color:#666;}
+/*-邀请新用户用户信息相关-*/
+.h1Font{font-size:15px;line-height:24px;color:#333333;}
+.h2Font{font-size:14px;line-height:22px;color:#999999;}
+.h3Font{font-size:13px;line-height:22px;color:#666666;}
+
+.userImg{position:absolute; width: 48px; height: 48px; top:50%; left:1px; margin-top:-24px;overflow: hidden;}
+.userImg img{width: 100%;}
+.userInfo{padding-left: 58px;width: 100%;}
+.userInfo .authicon{bottom:4px;}
+.userInfo .h1Font{font-size:15px;line-height:20px;margin-bottom:3px;color:#333333;}
+.userInfo .h2Font{font-size:14px;line-height:24px;color:#999999;}
+.userInfo .h3Font{font-size:13px;line-height:22px;color:#666666;}
+
+.maintitboxNow{padding:15px 0;border-bottom: 1px solid #E5E5E5;}
+.maintitNow{width: 100%;}
+.maincontent .mui-table-view .mui-table-view-cell:after{left:16px;}
+.maincontent .mui-table-view .mui-table-view-cell{padding:12px 15px;}
+.maincontent .flexCenter{min-height: 60px;}
+.maincontent .mui-table-view.faqBox .mui-table-view-cell{padding:6px 15px;}
+.maincontent .faqBox{min-height:220px;padding-bottom:20px;}
+.maincontent .faqBox p{margin-top:2px; margin-bottom:3px;}
+.faqItem .h1Font:before{content:"";border-left:3px solid #ff9900;padding-left:6px;}
+/*-------------提示框---------------*/
+/*邀请好友提示*/
+.promptBlock{text-align:center;width: 84%;height:auto;padding:8% 4%;position:absolute;left:50%;margin-left:-42%;top:50%;margin-top:-242px;background: #FFFFFF;border-radius:6px;
+			z-index: 999;display: none;
+ -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+       box-shadow: 0 0 15px rgba(0, 0, 0, .3);}
+.promptBlock .promptImg{width:200px; height:180px;margin: 4% auto 6%;background: url(../images/In-friends_bg_img_nor.png) center center no-repeat;background-size:100%;}
+.promptBlock .h1Font{margin:4%; line-height: 32px;}
+.promptBlock .promptBtn{margin:8% auto 2%;}
+.promptBlock .promptBtn .mui-btn{padding:8px 24px;border-radius: 6px;background: #ff9900;color:#FFFFFF;border-color:#FF9900;}
+.promptClose{position:absolute;bottom:-72px;display:inline-block;width:48px;height:48px;font-size:48px;color:#FFFFFF;left:50%;margin-left:-24px;}
+/*签到成功提示*/
+.promptBlock.signInBlock{margin-top:-132px;}
+.signInBlock .qiaodao{margin:45px 0 36px}
+.signInBlock .qiaodao p{color:#333333;line-height:30px;font-size:14px;}
+.signInBlock .signInImg{width:80%;position:absolute;margin-top:-20%;left:50%;margin-left:-40%;}
+/*分享名片*/
+.promptBlock.shareCardBlock{}
+.shareCardBlock .userImg{position:absolute;top:-6px;left:50%; margin-left:-33px;width: 66px;height: 66px;border: 3px solid #FFFFFF;}
+.shareCardBlock .h1Font{font-size:16px;margin:0; line-height: 32px;}
+.shareCardBlock .userBasic p{margin-bottom: 0;}
+.shareCardBlock .userBasic{padding: 10px 20px 0;}
+.shareCardBlock .myCard .mycode{width:62%;margin:14px auto;}
+.shareCardBlock .shareWays{width:60%;margin:auto;overflow: hidden;padding: 0;}
+.shareCardBlock .shareWays li{width: 50%;list-style:none;float:left;line-height: 30px;}
+.shareCardBlock .shareWays li img{width: 40px;}
+/*-----------------我的积分---------------*/
+.rewardBox{width:42%;height:91%;position:absolute;top:50%;left:50%;margin-top:-20%;margin-left:-21%;background: url(../images/points_bg_img_nor@3x.png) center center no-repeat;background-size: cover;}
+.rewardNow{width:82%;position:absolute;top:50%;left:50%;margin-left:-41%;margin-top:-38px;text-align: center;}
+.rewardNow p{color:#FFFFFF;font-size:15px;margin-bottom:8px}
+.rewardNow p:nth-child(2){font-size:24px;font-weight:bold;}
+.rewardNow p em{font-style: normal;}
+.rewardCNum{background:#FFFFFF;padding:0;margin:0;list-style: none;border-width:0 0 1px 0;border-style:solid; border-color:#E6E6E6;}
+.rewardCNum li{padding:10px;border-right: 1px solid #E6E6E6;}
+.rewardCNum li:last-child{border-right:1px solid #E6E6E6;}
+.rewardCNum li.nowClass{border-bottom: 2px solid #ff9900;}
+.rewardCNum .h1Font{font-size:16px;line-height:32px;color:#000000}
+.rewardWhy{padding-right:40px;}
+.maincontent .mui-table-view.myreward .mui-table-view-cell{padding:8px 15px;}
+.maincontent .mui-table-view.myreward .mui-table-view-cell.mui-active{background: none;}
+.maincontent .flexCenter.rewardWhy{min-height: 50px;}
+.rewardCount{position: absolute;right:15px; top:50%;margin-top:-10px;font-size:16px;color:#ff9900;}
+/*积分规则*/
+.maincontent .mui-table-view.rewardRule .mui-table-view-cell:after{left:0}
+.rewardRule .userImg{top:0;margin-top:0}
+.rewardRule .userInfo{margin-top:3px;}
+.rewardRule .rewardCount{right: 0;color:#333;font-size:15px;}
+.rewardRule .h2Font{font-size: 13px;line-height: 28px;}
+/*--------------我(个人中心)-------------*/
+.userLogin{height: 180px;overflow: hidden;
+  background: linear-gradient(#ff9900,#ff7200);
+  background: -moz-linear-gradient(#ff9900,#ff7200);
+	background: -webkit-linear-gradient(#ff9900,#ff7200);
+	background: -ms-linear-gradient(#ff9900,#ff7200);}
+.loginStatus.mui-table-view{background: none;margin:36px 0 26px;}
+.loginStatus.mui-table-view .mui-table-view-cell{padding:0 15px;}
+.loginStatus.mui-table-view .mui-table-view-cell.mui-active{background: none;}
+.loginStatus.mui-table-view .mui-table-view-cell:after{height: 0;}
+.loginStatus .userImg{width: 68px; height: 68px;margin-top:-34px;border:3px solid #FFFFFF;}
+.loginStatus .userInfo{padding-left:76px;padding-right:32px;position: relative;}
+.loginStatus .userInfo .exitSpan{display: inline-block;width:18px;height:18px;position: absolute;top:50%;margin-top:-9px;right:10px;background: url(../images/me_button_xiugai_nor@3x.png) 0 0 no-repeat;background-size: auto 100%;}
+.loginStatus .userInfo .h1Font{font-size:16px;line-height:30px;color:#FFFFFF;}
+.loginStatus .userInfo .h2Font{font-size:13px;line-height:20px;color:#FFFFFF;}
+.loginStatus .userInfo .authicon{bottom:8px;}
+.commonBtn{position: absolute;width: 94%;height: 80px;bottom: -40px;left: 3%;background: #FFFFFF;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    box-shadow: 0px 1px 3px #dedede;
+    -webkit-box-shadow: 0px 1px 3px #dedede;
+    z-index: 10;border-radius: 10px;}
+.commonBtn .mui-col-xs-6{height: 100%;}
+.commonBtn .mui-col-xs-6:first-child{border-right:2px dashed #E5E5E5;}
+.commonBtn .commonBtnitem{text-align: center;padding-top:12px;}
+.commonBtn .mui-col-xs-6 img{width: 32px;}
+.commonBtn .mui-col-xs-6 .h3Font{color:#333333;line-height: 30px;margin:0;}
+.setItemblock{padding-top:44px;padding-bottom:20px;}
+.setItemblock .rightword{position: absolute;right: 32px;font-size: 13px;color: #999999;}
+.setItem{width:96%;font-size:14px;color:#333;margin:6px auto;background-repeat: no-repeat;background-position:0 0;background-size: 100%;}
+.setItem .mui-navigate-right:after{right:10px;font-size:18px;}
+.setItem .mui-table-view{border-radius: 10px;overflow: hidden;padding-top: 2px;padding-bottom: 3px;}
+.setItem .mui-table-view .mui-table-view-cell{width: 90%;margin: auto;padding:4% 0 4% 8px;border-top: 2px dashed #E5E5E5;}
+.setItem .mui-table-view .mui-table-view-cell:first-child{border-color:transparent;}
+.setItem .mui-table-view .mui-table-view-cell:after{height: 0;}
+.setItem .mui-table-view .mui-table-view-cell>a:not(.mui-btn).mui-active{background: none;}
+.setItem.itemOne{background-image: url(../images/me_bg_img_1_nor@3x.png);}
+.setItem.itemTwo{background-image: url(../images/me_bg_img_2_nor@3x.png);}
+.setItem.itemThree{background-image: url(../images/me_bg_img_3_nor@3x.png);}
+.itemIcon{display:inline-block;float:left;margin-right:8px;width:20px;height: 20px;background-repeat:no-repeat;background-position:0 0;background-size:100%;}
+.itemIcon.iconFocus{background-image: url(../images/me_button_guanzhushoucang_nor@3x.png);}
+.itemIcon.iconDemand{background-image: url(../images/me_button_xuqiu_nor@3x.png);}
+.itemIcon.iconReward{background-image: url(../images/me_button_jifen_nor@3x.png);}
+.itemIcon.iconInvite{background-image: url(../images/me_button_yaoqing_nor@3x.png);}
+.itemIcon.iconAuth{background-image: url(../images/me_button_renzheng_nor@3x.png);}
+.itemIcon.iconAssess{background-image: url(../images/me_button_pingjia_nor@3x.png);}
+.itemIcon.iconSet{background-image: url(../images/me_button_shezhi_nor@3x.png);}
+/*--------------搜索-------------*/
+.searchboxNew{width:100%;padding-left:18px;margin:2px 0;}
+.searchboxNew input.searchtxtNew[type='search']{border:1px solid #E5E5E5;background:#f6f6f6;vertical-align:middle;text-align: left;width:100%;height: 30px; border-radius:4px; font-size:12px; line-height:16px;}
+.hotsearchboxNew{ padding:14px;background: #FFFFFF;}
+.hotsearchboxNew h5{color:#999;font-size:14px; margin:0 0 10px 6px;}
+.hotsearchboxNew ul{ padding:0;margin:6px 0;margin-right: -10px; overflow: hidden;}
+.hotsearchNew li{ list-style: none; padding:8px 12px; margin:0 10px 10px 0;font-size:12px; background: #F6F6F6; color: #333; border-radius: 4px; float: left;}
+.hotsearchNew li:active{background: #FF9900;color:#FFFFFF;}
+
+.searchboxNewT{padding-right:34px;}
+.mui-bar .leftnav{position:absolute;left:0;color:#666;}
+.mui-bar .rightnav{position:absolute;right:0;top:50%;margin-top:-15px;padding:0 10px;text-align: center;font-size:12px;line-height: 12px;color:#666;}
+.mui-bar .rightnav .mui-icon{font-size:20px;padding-bottom: 0;padding-top:0;color:#666}
+.mui-bar .rightnav .mui-badge{position:absolute;top:-2px;padding:1px 4px;z-index: 32;display: none;}
+.mui-bar .rightnav:active{opacity:.3;}
+.mui-bar .rightnav.filtered{color:#ff9900;}
+.mui-bar .rightnav.filtered .mui-icon{color:#ff9900;}
+.mui-bar .rightnav.filtered .mui-badge{display:inline-block;background: #ff9900;color:#FFFFFF;}
+
+.fixboxNew{background: #FFFFFF; position:fixed;top:45px;left:0;width:100%; z-index:4;}
+.fixboxNew .fixbtnNew{ padding:0; margin: 0; overflow: hidden;}
+.fixboxNew .fixbtnNew li{ list-style: none; float: left;height:40px;line-height:40px; padding:0 10px;border-top:1px solid #F0F0F0; border-bottom:2px solid #F0F0F0;text-align: center;font-size: 14px;}
+.fixboxNew .fixbtnNew li.liactive{ color: #FF9900; border-bottom:3px solid #FF9900;}
+
+.searchManTab.mui-table-view .mui-table-view-cell:after{left:70px;}
+.searchOtherTab .flexCenter{min-height: 74px;}
+.searchOtherTab .table-item-cell{background: none;border:none;margin:2px 0;}
+.searchOtherTab .table-item-cell .table-item-img{right:0;left:auto;}
+.searchOtherTab .table-item-cell .table-item-body{padding-left:2px;padding-right:120px;}
+.searchOtherTab .table-item-cell .table-item-body .otherTopic{font-size:16px;line-height: 22px;color:#000000;}
+.searchOtherTab .table-item-cell .positionR{margin-top:6px;}
+.searchOtherTab .table-item-cell .positionR .authicon{bottom:6px;}
+/*筛选条件*/
+.filterListNew{ padding:14px 14px 8px;}
+.filterUl{height: 86px;padding:0;margin:14px 0 0;margin-right: -2%; overflow: hidden;}
+.filterUl.filterUlactive{height: auto;}
+.filterUl li{list-style: none; float: left;text-align: center;padding:8px 10px; margin:0 2% 8px 0;font-size:12px; background: #F6F6F6; color: #333; border-radius: 4px;
+    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.filterUl li.filterCurrent{background: #ff9900;color:#FFFFFF;}
+.filterUl.fourUl li{width:23%;}
+.filterUl.threeUl li{width:31.3333%;}
+.filterClass{position: relative;}
+.filterClass .orangeColor{margin-left: 8px;}
+.filterClass .mui-navigate-right:after{right:4px;content: '\e581';font-size:16px;}
+.filterClass.filterActive .mui-navigate-right:after{content: '\e580'}

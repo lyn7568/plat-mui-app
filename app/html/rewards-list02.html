@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的积分</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox" style="background: #1fc4f9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">我的积分</h1>
+		    <span class="mui-pull-right topsave">规则</span>
+		</header>
+        <!--登陆状态-->
+		<div class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">	
+				<!-- 主界面具体展示内容 -->
+				<div class="inviteBoxNew">
+					<img src="../images/points_banner_img_nor@3x.png" width="100%"/>
+					<div class="rewardBox">
+						<div class="rewardNow">
+							<p>当前积分</p>
+							<p><span>1000</span>分</p>
+						    <p>超过了<em>100%</em>的用户</p>
+						</div>
+					</div>
+				</div>
+				<div class="rewardCon">
+					<ul class="mui-row mui-clearfix alignCenter rewardCNum">
+						<li class="mui-col-xs-6 h1Font">获得积分 <span>1080分</span></li>
+						<li class="mui-col-xs-6 h1Font nowClass">奖励积分 <span class="orangeColor">3400分</span></li>
+					</ul>
+					<!--无奖励积分-->
+					<div class="nodatabox displayNone">
+				        <div class="nodata">
+				            <div class="picbox">
+				            	<img src="../images/points_icon_ku_nor@3x.png" width="28%" />
+				            </div>
+				            <div class="txtbox">
+				            	<p class="noContip">您还木有奖励积分<br />快去邀请好友获得奖励积分吧！</p>
+				            </div>
+				        </div>
+				    </div>
+					<!--有奖励积分-->
+					<div class="maincontent">
+						<ul class="mui-table-view myreward">
+					         <li class="mui-table-view-cell">
+						        <div class="flexCenter rewardWhy">
+						        	<div class="userImg userRadius">
+						        		<img src="../images/default-photo.jpg"/>
+						        	</div>
+									<div class="userInfo">
+										<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></p>
+									</div>
+						        </div>
+						        <span class="rewardCount">+ 10分</span>
+					        </li>
+					        <li class="mui-table-view-cell">
+						        <div class="flexCenter rewardWhy">
+						        	<div class="userImg userRadius">
+						        		<img src="../images/default-photo.jpg"/>
+						        	</div>
+									<div class="userInfo">
+										<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></p>
+									</div>
+						        </div>
+						        <span class="rewardCount">+ 10分</span>
+					        </li>
+					        <li class="mui-table-view-cell">
+						        <div class="flexCenter rewardWhy">
+						        	<div class="userImg userRadius">
+						        		<img src="../images/default-photo.jpg"/>
+						        	</div>
+									<div class="userInfo">
+										<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></p>
+									</div>
+						        </div>
+						        <span class="rewardCount">+ 10分</span>
+					        </li>
+					    </ul>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+	</body>
+
+</html>

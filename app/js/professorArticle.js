@@ -344,7 +344,7 @@ mui.plusReady(function() {
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
-						content: oImgShare,
+						content: oImgShare.substring(0,70),
 						title: "【科袖文章】" + proticleName,
 						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
 						thumbs: [baseUrl + "/images/logo180.png"]
@@ -354,7 +354,7 @@ mui.plusReady(function() {
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {
-						content: oImgShare,
+						content: oImgShare.substring(0,70),
 						title: "【科袖文章】" + proticleName,
 						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
 						thumbs: [baseUrl + "/images/logo180.png"]

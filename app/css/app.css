@@ -81,7 +81,7 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 /*头像、资源圆角*/
 .headRadius{border-radius: 4px;}
 .userRadius{ border-radius: 50%;border:1px solid #E5E5E5;overflow: hidden;}
-.cmpRadius{border-radius:4;border:1px solid #E5E5E5;}
+.cmpRadius{border-radius:4px;border:1px solid #E5E5E5;}
 /*底板背景圆角*/
 .bgRadius{border-radius: 6px;}
 /*大块右侧缩进*/
@@ -866,6 +866,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .rewardCNum li{padding:10px;border-right: 1px solid #E6E6E6;}
 .rewardCNum li:last-child{border-right:1px solid #E6E6E6;}
 .rewardCNum li.nowClass{border-bottom: 2px solid #ff9900;}
+.rewardCNum li.nowClass span{ color:#ff9900;}
 .rewardCNum .h1Font{font-size:16px;line-height:32px;color:#000000}
 .rewardWhy{padding-right:40px;}
 .maincontent .mui-table-view.myreward .mui-table-view-cell{padding:8px 15px;}

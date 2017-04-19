@@ -89,6 +89,12 @@
 		
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script type="text/javascript">
+		    mui.plusReady(function(){
+			    plus.nativeUI.closeWaiting();
+				plus.webview.currentWebview().show("slide-in-right", 150);	
+		    })
+		</script>
 	</body>
 
 </html>

@@ -216,26 +216,32 @@ function datalistEach(datalist) {
 		$itemlist.find(".newsurl").attr("data-id", item.id);
 		$itemlist.find(".newsurl").attr("data-type", item.type);
 		$itemlist.find(".newsurl").attr("owner-id", item.owner);
-		if(item.image) {
-			$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
-		}
 		if(type == 1) { //专家文章
 			$itemlist.find("#newstype").text("文章");
 			$itemlist.find("#newstype").addClass("articalLabel");
 			$itemlist.find("#newsimg").addClass("artical-default");
 			$itemlist.find("#userimg").addClass("userhead");
+			if(item.image) {
+				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
+			}
 			userFun(item.owner, $itemlist);
 		} else if(type == 2) { //企业文章
 			$itemlist.find("#newstype").text("文章");
 			$itemlist.find("#newstype").addClass("articalLabel");
 			$itemlist.find("#newsimg").addClass("artical-default");
 			$itemlist.find("#userimg").addClass("cmplogo");
+			if(item.image) {
+				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
+			}
 			cmpFun(item.owner, $itemlist)
 		} else if(type == 3) { //专家资源
 			$itemlist.find("#newstype").text("资源");
 			$itemlist.find("#newstype").addClass("resourceLabel");
 			$itemlist.find("#newsimg").addClass("resource-default");
 			$itemlist.find("#userimg").addClass("userhead");
+			if(item.image) {
+				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/images/resource/" + item.image + ");");
+			}
 			userFun(item.owner, $itemlist);
 		}
 
@@ -297,28 +303,4 @@ function cmpFun(id, $itemlist) {
 			plus.nativeUI.toast("服务器链接超时", toastStyle);
 		}
 	});
-}
-
-/*标志*/
-function autho() {
-	if(arguments[0] == 1) {
-		return {
-			"sty": "authicon-pro",
-			"title": "科袖认证专家"
-		}
-	} else {
-		if(arguments[1] == 1) {
-			return {
-				"sty": "authicon-staff-ok",
-				"title": "企业认证员工"
-			}
-		} else {
-			if(arguments[2] == 3) {
-				return {
-					"sty": "authicon-real",
-					"title": "实名认证用户"
-				}
-			}
-		}
-	}
 }

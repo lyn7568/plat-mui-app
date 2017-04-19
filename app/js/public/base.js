@@ -94,3 +94,28 @@ function modelClose(){
 	}
 }
 
+/*标志*/
+function autho() {
+	if(arguments[0] == 1) {
+		return {
+			"sty": "authicon-pro",
+			"title": "科袖认证专家"
+		}
+	} else {
+		if(arguments[1] == 1) {
+			return {
+				"sty": "authicon-staff-ok",
+				"title": "企业认证员工"
+			}
+		} else {
+			if(arguments[2] == 3) {
+				return {
+					"sty": "authicon-real",
+					"title": "实名认证用户"
+				}
+			}
+		}
+	}
+}
+	
+

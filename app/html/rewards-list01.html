@@ -8,15 +8,9 @@
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 	</head>
-	
 	<body>
-		<header class="mui-bar mui-bar-nav toptitbox" style="background: #1fc4f9;">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">我的积分</h1>
-		    <span class="mui-pull-right topsave">规则</span>
-		</header>
         <!--登陆状态-->
-		<div class="mui-content bodyBg mui-scroll-wrapper">
+		<div class="mui-content bodyBg mui-scroll-wrapper" id="rawardsSet">
 			<div class="mui-scroll">	
 				<!-- 主界面具体展示内容 -->
 				<div class="inviteBoxNew">
@@ -24,59 +18,40 @@
 					<div class="rewardBox">
 						<div class="rewardNow">
 							<p>当前积分</p>
-							<p><span>1000</span>分</p>
+							<p><span id="totalFraction"></span>分</p>
 						    <p>超过了<em>100%</em>的用户</p>
 						</div>
 					</div>
 				</div>
 				<div class="conblock" style="margin:0">
-					<ul class="mui-row mui-clearfix alignCenter rewardCNum">
-						<li class="mui-col-xs-6 h1Font nowClass">获得积分 <span class="orangeColor">1080分</span></li>
-						<li class="mui-col-xs-6 h1Font">奖励积分 <span>3400分</span></li>
+					<ul class="mui-row mui-clearfix alignCenter rewardCNum" id="listnav">
+						<li class="mui-col-xs-6 h1Font nowClass">获得积分 <span id="setFraction"></span></li>
+						<li class="mui-col-xs-6 h1Font" data-id="2">奖励积分 <span id="rewardFraction"></span></li>
 					</ul>
-					<!--无获得积分-->
-					<div class="nodatabox displayNone">
-				        <div class="nodata">
-				            <div class="picbox">
-				            	<img src="../images/points_icon_ku_nor@3x.png" width="28%" />
-				            </div>
-				            <div class="txtbox">
-				            	<p class="noContip">您还木有获得积分<br />快去邀请好友获得积分吧！</p>
-				            </div>
-				        </div>
-				    </div>
 					<!--有获得积分-->
 					<div class="maincontent">
-						<ul class="mui-table-view myreward">
-					        <li class="mui-table-view-cell">
-						        <div class="rewardWhy">
-						        	<p class="h1Font">分享专家给好友</p>
-						        	<p class="h2Font">04-05 16:23</p>
-						        </div>
-						        <span class="rewardCount">+ 10分</span>
-					        </li>
-					        <li class="mui-table-view-cell">
-						        <div class="rewardWhy">
-						        	<p class="h1Font">分享专家给好友</p>
-						        	<p class="h2Font">04-05 16:23</p>
-						        </div>
-						        <span class="rewardCount">+ 10分</span>
-					        </li>
-					        <li class="mui-table-view-cell">
-						        <div class="rewardWhy">
-						        	<p class="h1Font">分享专家给好友</p>
-						        	<p class="h2Font">04-05 16:23</p>
-						        </div>
-						        <span class="rewardCount">+ 10分</span>
-					        </li>
-					    </ul>
+						<ul class="mui-table-view myreward" id="table1">
+								      
+						</ul>
+						<!--无获得积分-->
+						<div class="nodatabox displayNone" id="noset">
+					        <div class="nodata">
+					            <div class="picbox">
+					            	<img src="../images/points_icon_ku_nor@3x.png" width="28%" />
+					            </div>
+					            <div class="txtbox">
+					            	<p class="noContip">您还木有获得积分<br />快去邀请好友获得积分吧！</p>
+					            </div>
+					        </div>
+					    </div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/rawards-list.js"></script>
+		<script src="../js/rawards-set.js"></script>
 	</body>
 
 </html>

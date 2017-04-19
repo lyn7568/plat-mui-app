@@ -179,6 +179,116 @@ mui.plusReady(function() {
 				articleId: proId
 			}); //后台创建webview并打开show.html   	    	
 		})
+		/*点赞文章*/
+		/*企业信息*/
+		var oThumsflag;
+	function thums(dataUrl) {
+		var userid = plus.storage.getItem('userid');
+		mui.ajax(baseUrl + dataUrl, {
+			type: "POST",
+			timeout: 10000,
+			dataType: "json",
+			data:{
+				operateId:userid,
+				articleId:proId,
+			},
+			beforeSend: function() {},
+			success: function(data, textState) {
+				if(data.success) {
+					console.log(JSON.stringify(data));
+					var oNumber=document.getElementById("thumbsUp").getElementsByTagName("span")[0];
+					if(oThumsflag==0){
+						document.getElementById("appreciate").style.display="none";
+						document.getElementById("appreciatefill").style.display="block";
+						oNumber.innerHTML=Number(oNumber.innerHTML)+1;
+						document.getElementById("thumbsUp").setAttribute("oThumsflag","1");
+					}else if(oThumsflag==1){
+						document.getElementById("appreciate").style.display="block";
+						document.getElementById("appreciatefill").style.display="none";
+						oNumber.innerHTML=Number(oNumber.innerHTML)-1;
+						document.getElementById("thumbsUp").setAttribute("oThumsflag","0");
+					}
+					
+				}
+			},
+			error: function(XMLHttpRequest, textStats, errorThrown) {
+				console.log(JSON.stringify(XMLHttpRequest));
+			}
+		})
+	}
+		document.getElementById("thumbsUp").addEventListener("tap",function(){
+			var userid = plus.storage.getItem('userid');
+			var oUrl;
+			oThumsflag=this.getAttribute("oThumsflag");
+			console.log(oThumsflag)
+			if(!userid) {
+				goLoginFun();
+				return;
+			}
+			(oThumsflag==0)?oUrl="/ajax/article/agree":oUrl="/ajax/article/unAgree";
+			console.log(oUrl);
+			thums(oUrl);
+		})
+		/*收藏文章*/
+		var oCollectFlag;
+
+	function collect() {
+		var userid = plus.storage.getItem('userid');
+		if(oCollectFlag == 0) {
+			mui.ajax(baseUrl + "/ajax/watch", {
+				type: "POST",
+				timeout: 10000,
+				dataType: "json",
+				data: {
+					"professorId": userid,
+					"watchObject": proId,
+					"watchType": 3
+				},
+				beforeSend: function() {},
+				success: function(data, textState) {
+					if(data.success) {
+						document.getElementById("collect").setAttribute("collectFlag","1");
+						document.getElementById("yesExpert").style.display="none";
+						document.getElementById("noExpert").style.display="block";
+					}
+				},
+				error: function(XMLHttpRequest, textStats, errorThrown) {
+					console.log(JSON.stringify(XMLHttpRequest));
+				}
+			})
+		} else {
+			mui.ajax(baseUrl + "/ajax/watch/delete", {
+				"type": "POST",
+				"data": {
+					"professorId": userid,
+					"watchObject": proId,
+				},
+				"success": function(data) {
+					if(data.success) {
+						if(data.success) {
+							plus.nativeUI.toast("已取消收藏", toastStyle);
+							document.getElementById("collect").setAttribute("collectFlag","0");
+							document.getElementById("yesExpert").style.display="block";
+							document.getElementById("noExpert").style.display="none";
+						} 
+					}
+				},
+				"error": function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
+	}
+		document.getElementById("collect").addEventListener("click",function(){
+			var userid = plus.storage.getItem('userid');
+			oCollectFlag=this.getAttribute("collectFlag");
+			if(!userid) {
+				goLoginFun();
+				return;
+			}
+			collect();
+		})
 		/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	document.getElementById("shareBtn").addEventListener("tap", function() {

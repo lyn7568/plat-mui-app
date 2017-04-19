@@ -247,6 +247,7 @@ mui.plusReady(function() {
 				beforeSend: function() {},
 				success: function(data, textState) {
 					if(data.success) {
+						plus.nativeUI.toast("收藏成功", toastStyle);
 						document.getElementById("collect").setAttribute("collectFlag","1");
 						document.getElementById("yesExpert").style.display="none";
 						document.getElementById("noExpert").style.display="block";
@@ -289,6 +290,38 @@ mui.plusReady(function() {
 			}
 			collect();
 		})
+		/*进入文章浏览页面判断是否收藏文章*/
+		attentionArticle();
+		function attentionArticle(){
+			if(!userid){
+				return;
+			}
+			mui.ajax(baseUrl + "/ajax/watch/hasWatch", {
+				type: "GET",
+				timeout: 10000,
+				dataType: "json",
+				data: {
+					"professorId": userid,
+					"watchObject": proId
+				},
+				success: function(data) {
+					if(data.success) {
+						if(data.data==null){
+							document.getElementById("collect").setAttribute("collectFlag","0");
+							document.getElementById("yesExpert").style.display="block";
+							document.getElementById("noExpert").style.display="none";
+						}else{
+						document.getElementById("collect").setAttribute("collectFlag","1");
+						document.getElementById("yesExpert").style.display="none";
+						document.getElementById("noExpert").style.display="block";
+						}
+					}
+				},
+				error: function(XMLHttpRequest, textStats, errorThrown) {
+					console.log(JSON.stringify(XMLHttpRequest));
+				}
+			})
+		}
 		/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	document.getElementById("shareBtn").addEventListener("tap", function() {

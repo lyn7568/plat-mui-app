@@ -116,11 +116,8 @@ function expert2(pageNo, pageSize) {
 						var datalist = data.data.data;
 						datalistEach(datalist);
 						mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
-						if(pageNo < allPages) {
+						if(pageNo >= allPages) {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //能上拉
-						} else {
-							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
-							
 						}
 
 					}

@@ -40,14 +40,15 @@ function setFractionFun(userId) {
 		data: {
 			"professorId": userId,
 			"offset": offset,
-			"rows": 1
+			"rows": 20
 		},
 		success: function(data) {
 			if(aflas2 == true) {
 				if(data.success && data.data != '') {
 					var datalist = data.data;
 					datalistEach(datalist);
-					if(data.data.length < 2) {
+					//alert(data.data.length)
+					if(data.data.length < 20) {
 						mui('#rawardsSet2').pullRefresh().endPullupToRefresh(false);
 					} else {
 						mui('#rawardsSet2').pullRefresh().endPullupToRefresh(true);

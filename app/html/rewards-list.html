@@ -26,12 +26,12 @@
 	//创建子页面，首个选项卡页面显示，其它均隐藏；
 	mui.plusReady(function() {
 		var self = plus.webview.currentWebview();
+		var score = self.score;
 		for(var i = 0; i < 2; i++) {
 			var temp = {};
-			var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+			var sub = plus.webview.create(subpages[i], subpages[i], subpage_style,{score:self.score});
 			if(i > 0) {
 				sub.hide();
-
 			} else {
 				temp[subpages[i]] = "true";
 				mui.extend(aniShow, temp);

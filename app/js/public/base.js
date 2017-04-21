@@ -86,13 +86,13 @@ function ifiosAmdandroid(test){
 }
 
 //遮罩模态框
-var promptBlock = document.getElementsByClassName("promptBlock");
+/*var promptBlock = document.getElementsByClassName("promptBlock");
 var model = mui.createMask(modelClose);//创建遮罩
 function modelClose(){
 	for(var i=0;i<promptBlock.length;i++){
 		promptBlock[i].setAttribute("style","display:none");
 	}
-}
+}*/
 
 /*标志*/
 function autho() {
@@ -117,5 +117,30 @@ function autho() {
 		}
 	}
 }
-	
+
+//用户分享专家到微信后增加积分
+function shareAddIntegral() {
+	var userId = plus.storage.getItem('userid');
+	mui.ajax(baseUrl + "/ajax/growth/sharePro", {
+		dataType: 'json', //数据格式类型
+		type: 'POST', //http请求类型
+		timeout: 10000, //超时设置
+		data: {
+			"professorId": userId
+		},
+		//async: false,
+		success: function(data) {
+			console.log(data)
+			if(data.success && data.data) {
+				plus.nativeUI.toast("成功分享专家信息到微信", toastStyle);
+			} else {
+				plus.nativeUI.toast("分享超过5次，不能再获得积分和成长值", toastStyle);
+			}
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+			return;
+		}
+	});
+}
 

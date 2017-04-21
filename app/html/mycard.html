@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+	<body>
+    <div style="position: fixed; left:0; top:0; height: 100%;width:100%; background: #000;" id="bodybg">  
+    </div>	
+	<!--分享名片弹出提示框-->
+	<div class="promptBlock shareCardBlock" id="mycardshow">
+		<div class="userImg userRadius">
+    		<img src="../images/default-photo.jpg" id="userImg2"/>
+    	</div>
+    	<div class="userBasic">
+        	<p class="h1Font" id="userName2">张大大</p>
+        	<p class="h2Font mui-ellipsis" id="office">教授级高工，董事长兼CEO</p>
+        	<p class="h2Font mui-ellipsis" id="orgName2"></p>
+		</div>
+		<div class="myCard">
+			<div id="qrcode" class="mycode"></div>
+			<!--<img class="mycode" src="../images/mycard-code.png" />-->
+			<p><span>扫描二维码，查看我的信息</span><br /><span>也可以直接分享给好友</span></p>
+			<ul class="shareWays">
+				<li id="weixin"><img src="../images/me_icon_weixin_nor@3x.png" /><p>微信</p></li>
+				<li id="weixinp"><img src="../images/me_icon_pengyquan_nor@3x.png" /><p>微信朋友圈</p></li>
+			</ul>
+		</div>
+		<span class="mui-icon mui-icon-close promptClose" id="promptClose"></span>
+	</div>
+	
+	<!--签到成功弹出提示框-->
+	<div class="promptBlock signInBlock" id="signedshow">
+		<img class="signInImg" src="../images/me_bg_img_qiandao_nor@3x.png" />
+		<div class="qiaodao">
+			<p style="font-size:20px;">获得<span id="getIntegral"></span>积分</p>
+			<p>明天连续签到可获得<span id="TomorrowIntegral"></span>个积分</p>
+		</div>
+		<div class="promptBtn" id="promptBtn"><button class="mui-btn mui-btn-mini">朕知道了</button></div>
+	</div>
+	<script src="../js/public/mui.min.js"></script>
+	<script src="../js/public/base.js"></script>
+	<script src="../js/mycard.js"></script>
+	<script src="../js/public/qrcode.min.js"></script>
+	
+	</body>
+</html>

@@ -135,10 +135,14 @@
 							<p class="h3Font">我的名片</p>
 						</div>
 					</div>
-					<div class="mui-col-xs-6" id="signed">
-						<div class="commonBtnitem">
+					<div class="mui-col-xs-6">
+						<div class="commonBtnitem displayNone" id="nosign">
 							<img src="../images/me_button_qiandao_nor@3x.png" />
 							<p class="h3Font">立即签到</p>
+						</div>
+						<div class="commonBtnitem displayNone" id="yessign">
+							<img src="../images/me_button_qiandao_nor@3x.png" />
+							<p class="h3Font">今日已签到</p>
 						</div>
 					</div>
 				</div>
@@ -207,65 +211,8 @@
 			</div>
     	
 		</div>	
-		
-		<!--分享名片弹出提示框-->
-		<div class="promptBlock shareCardBlock" id="mycardshow">
-			<div class="userImg userRadius">
-        		<img src="../images/default-photo.jpg"/>
-        	</div>
-        	<div class="userBasic">
-	        	<p class="h1Font">张大大</p>
-	        	<p class="h2Font mui-ellipsis">教授级高工，董事长兼CEO</p>
-	        	<p class="h2Font mui-ellipsis">北京科袖科技有限公司</p>
-			</div>
-			<div class="myCard">
-				<img class="mycode" src="../images/mycard-code.png" />
-				<p><span>扫描二维码，查看我的信息</span><br /><span>也可以直接分享给好友</span></p>
-				<ul class="shareWays">
-					<li><img src="../images/me_icon_weixin_nor@3x.png" /><p>微信</p></li>
-					<li><img src="../images/me_icon_pengyquan_nor@3x.png" /><p>微信朋友圈</p></li>
-				</ul>
-			</div>
-			<span class="mui-icon mui-icon-close promptClose"></span>
-		</div>
-		<!--签到成功弹出提示框-->
-		<div class="promptBlock signInBlock" id="signedshow">
-			<img class="signInImg" src="../images/me_bg_img_qiandao_nor@3x.png" />
-			<div class="qiaodao">
-				<p style="font-size:20px;">获得<span>+10</span>积分</p>
-				<p>明天连续签到可获得<span>N</span>个积分</p>
-			</div>
-			<div class="promptBtn"><button class="mui-btn mui-btn-mini">朕知道了</button></div>
-		</div>
-
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/myaccount.js"></script>
-		<script type="text/javascript">
-			var myCard=document.getElementById("myCard");
-		    var signed=document.getElementById("signed");
-		    var mycardshow=document.getElementById("mycardshow");
-			var signedshow=document.getElementById("signedshow");
-			var promptBtn=document.getElementsByClassName("promptBtn");
-			var promptClose=document.getElementsByClassName("promptClose");
-			
-			myCard.addEventListener("tap", function() {
-				mycardshow.setAttribute("style","display:block");
-				model.show();//显示遮罩
-			})
-			signed.addEventListener("tap", function() {
-				signedshow.setAttribute("style","display:block");
-				model.show();//显示遮罩
-			})
-			promptBtn[0].addEventListener("tap", function() {
-				model.close();//关闭遮罩
-			})
-			promptClose[0].addEventListener("tap", function() {
-				model.close();//关闭遮罩
-			})
-				
-			
-		</script>
 	</body>
-
 </html>

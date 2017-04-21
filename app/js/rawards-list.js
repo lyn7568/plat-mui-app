@@ -3,6 +3,7 @@ mui.plusReady(function() {
 	myFraction();
 	plus.nativeUI.closeWaiting();
 	plus.webview.getWebviewById("html/rewards-list.html").show("slide-in-right", 150);
+	plus.navigator.setStatusBarBackground( "#1fc4f9" );
 	/*当前积分*/
 	function myFraction() {
 		mui.ajax(baseUrl + "/ajax/growth/queryScore", {
@@ -13,11 +14,17 @@ mui.plusReady(function() {
 				"professorId": userId
 			},
 			success: function(data) {
-				console.log(data)
+				var self = plus.webview.currentWebview();
 				if(data.success && data.data) {
 					document.getElementById("totalFraction").innerText = parseInt(data.data.inviteScore + data.data.myScore);
 					document.getElementById("setFraction").innerText = data.data.myScore;
 					document.getElementById("rewardFraction").innerText = data.data.inviteScore;
+					var scornum = self.score.replace(/%/, "");
+					if(scornum > 5){
+						document.getElementById("scorePercent").innerText=self.score;
+					}else{
+						document.getElementById("scorePercenthtml").innerHTML="请再接再厉";
+					}
 				}
 			},
 			error: function() {

@@ -85,15 +85,6 @@ function ifiosAmdandroid(test){
 	}
 }
 
-/*//遮罩模态框
-var promptBlock = document.getElementsByClassName("promptBlock");
-var model = mui.createMask(modelClose);//创建遮罩
-function modelClose(){
-	for(var i=0;i<promptBlock.length;i++){
-		promptBlock[i].setAttribute("style","display:none");
-	}
-}*/
-
 /*标志*/
 function autho() {
 	if(arguments[0] == 1) {

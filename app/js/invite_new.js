@@ -1,3 +1,13 @@
+
+//遮罩模态框
+var promptBlock = document.getElementsByClassName("promptBlock");
+var model = mui.createMask(modelClose);//创建遮罩
+function modelClose(){
+	for(var i=0;i<promptBlock.length;i++){
+		promptBlock[i].setAttribute("style","display:none");
+	}
+}
+
 var orderKey, professorName; //加载数据的传给后台的值
 mui.init({
 	pullRefresh: {
@@ -85,7 +95,7 @@ var person = {
 						var $info = data.data,
 							i = 0;
 						if(!pro) {
-							var ws = plus.webview.getWebviewById("invite_new.html");
+							var ws = plus.webview.currentWebview();
 							plus.nativeUI.closeWaiting(); //新webview的载入完毕后关闭等待框
 							ws.show("slide-in-right", 150);
 							professorName = ws.proName;

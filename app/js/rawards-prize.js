@@ -48,7 +48,7 @@ function setFractionFun(userId) {
 					var datalist = data.data;
 					datalistEach(datalist);
 					//alert(data.data.length)
-					if(data.data.length < 20) {
+					if(data.data.length <= 20) {
 						mui('#rawardsSet2').pullRefresh().endPullupToRefresh(false);
 					} else {
 						mui('#rawardsSet2').pullRefresh().endPullupToRefresh(true);
@@ -61,7 +61,7 @@ function setFractionFun(userId) {
 					console.log(JSON.stringify(data))
 					var datalist = data.data;
 					datalistEach(datalist);
-					if(data.data.length < 2) {
+					if(data.data.length <= 20) {
 						mui('#rawardsSet2').pullRefresh().endPullupToRefresh(false);
 					} else {
 						mui('#rawardsSet2').pullRefresh().endPullupToRefresh(true);

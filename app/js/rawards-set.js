@@ -47,7 +47,7 @@ function setFractionFun(userId) {
 				if(data.success && data.data != '') {
 					var datalist = data.data;
 					datalistEach(datalist);
-					if(data.data.length < 20) {
+					if(data.data.length <= 20) {
 						mui('#rawardsSet').pullRefresh().endPullupToRefresh(false);
 					} else {
 						mui('#rawardsSet').pullRefresh().endPullupToRefresh(true);
@@ -59,7 +59,7 @@ function setFractionFun(userId) {
 				if(data.success && data.data != '') {
 					var datalist = data.data;
 					datalistEach(datalist);
-					if(data.data.length < 20) {
+					if(data.data.length <= 20) {
 						mui('#rawardsSet').pullRefresh().endPullupToRefresh(false);
 					} else {
 						mui('#rawardsSet').pullRefresh().endPullupToRefresh(true);

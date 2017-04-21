@@ -165,19 +165,9 @@ function datalistEach(datalist) {
 			title = item.title;
 		}
 		var typeTname = '';
-		if(item.authType) {
-			typeTname = '<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
-		} else {
-			if(item.authStatus==3) {
-				if(item.authentication == 1) {
-					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
-				} else if(item.authentication == 2) {
-					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
-				} else {
-					typeTname = '<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
-				}
-			}
-		}
+		var oSty = autho(item.authType, item.orgAuth, item.authStatus);
+		typeTname='<em class="authicon ' + oSty.sty + '"></em>'
+		
 
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';

@@ -73,30 +73,33 @@ function ziyuaninfo(resourceId) {
 					(mydata['editProfessor']["address"]) ? oproadress.innerHTML = mydata['editProfessor']["address"]: oproadress.innerHTML = '';
 					/*是否认证*/
 					//(mydata['editProfessor']["authentication"] == true) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon');
-					if(mydata['editProfessor']["authType"]) {
-						opromodify.classList.add('icon-vip');
-						opromodify.classList.add('authicon-cu');
-						opromodify.style.float = "left";
-					} else {
-						if(mydata['editProfessor']["authStatus"]==3) {
-							if(mydata['editProfessor']["authentication"] == 1) {
-								opromodify.classList.add('icon-renzheng');
-								opromodify.classList.add('authicon-mana');
-								opromodify.style.position = "static";
-								opromodify.style.margin = "3px 0 0 0";
-							} else if(mydata['editProfessor']["authentication"] == 2) {
-								opromodify.classList.add('icon-renzheng');
-								opromodify.classList.add('authicon-staff');
-								opromodify.style.position = "static";
-								opromodify.style.margin = "3px 0 0 0";
-							} else {
-								opromodify.classList.add('icon-renzheng');
-								opromodify.classList.add('authicon-stu');
-								opromodify.style.position = "static";
-								opromodify.style.margin = "3px 0 0 0";
-							}
-						}
-					}
+					var oSty = autho(mydata['editProfessor']["authType"], mydata['editProfessor']["orgAuth"], mydata['editProfessor']["authStatus"]);
+					opromodify.classList.add(oSty.sty);
+
+//					if(mydata['editProfessor']["authType"]) {
+//						opromodify.classList.add('icon-vip');
+//						opromodify.classList.add('authicon-cu');
+//						opromodify.style.float = "left";
+//					} else {
+//						if(mydata['editProfessor']["authStatus"]==3) {
+//							if(mydata['editProfessor']["authentication"] == 1) {
+//								opromodify.classList.add('icon-renzheng');
+//								opromodify.classList.add('authicon-mana');
+//								opromodify.style.position = "static";
+//								opromodify.style.margin = "3px 0 0 0";
+//							} else if(mydata['editProfessor']["authentication"] == 2) {
+//								opromodify.classList.add('icon-renzheng');
+//								opromodify.classList.add('authicon-staff');
+//								opromodify.style.position = "static";
+//								opromodify.style.margin = "3px 0 0 0";
+//							} else {
+//								opromodify.classList.add('icon-renzheng');
+//								opromodify.classList.add('authicon-stu');
+//								opromodify.style.position = "static";
+//								opromodify.style.margin = "3px 0 0 0";
+//							}
+//						}
+//					}
 
 					/*专家头像*/
 					

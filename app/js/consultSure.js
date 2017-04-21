@@ -71,24 +71,9 @@ mui.plusReady(function(){
 				} else {
 					proHead.setAttribute("src", baseUrl + "/images/default-photo.jpg");
 				}
-				if($info.authType) {
-					nameli.classList.add('icon-vip');
-					nameli.classList.add('authicon-cu');
-					nameli.style.margin = "-4px 0 0 -2px";
-				} else {
-					if($info.authStatus==3) {
-						if($info.authentication == 1) {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-mana');
-						} else if($info.authentication == 2) {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-staff');
-						} else {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-stu');
-						}
-					}	
-				}
+				var oSty = autho($info.authType, $info.orgAuth, $info.authStatus);
+				nameli.classList.add(oSty.sty);
+
 			}
 			if($info.department) {
 				if($info.orgName) {

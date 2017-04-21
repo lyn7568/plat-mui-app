@@ -30,19 +30,8 @@ mui.plusReady(function() {
 						}
 						string += '<div class="mui-media-body">'
 						string += '<div><span class="listtit">' + $info[i].professor.name
-						if($info[i].professor.authType) {
-							string += '<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
-						} else {
-							if($info[i].professor.authStatus==3) {
-								if($info[i].professor.authentication == 1) {
-									string += '<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
-								} else if($info[i].professor.authentication == 2) {
-									string += '<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
-								} else {
-									string += '<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
-								}
-							}
-						}
+						var oSty = autho($info[i].professor.authType, $info[i].professor.orgAuth, $info[i].professor.authStatus);
+						string +='<em class="authicon ' + oSty.sty + '"></em>'
 						string += '</span><span class="thistime timenow">' + time + '</span></div>'
 						string += '<p class="listtit3">' + $info[i].content + '</p>'
 						if(userid==$info[i].professor.id){

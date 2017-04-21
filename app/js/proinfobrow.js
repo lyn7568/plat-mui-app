@@ -212,23 +212,10 @@ mui.plusReady(function() {
 				} else {
 					document.getElementsByClassName("headimg")[0].src = "../images/default-photo.jpg";
 				}
-				if($data.authType) {
-					nameli.classList.add('icon-vip');
-					nameli.classList.add('authicon-cu');
-				} else {
-					if($data.authStatus==3) {
-						if($data.authentication == 1) {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-mana');
-						} else if($data.authentication == 2) {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-staff');
-						} else {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-stu');
-						}
-					}
-				}
+				
+				var oSty = autho($data.authType, $data.orgAuth, $data.authStatus);
+				nameli.classList.add(oSty.sty);
+
 				if($data.office) {
 					if($data.title) {
 						personalMaterial[1].innerText = $data.office + "，";

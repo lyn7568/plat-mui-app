@@ -115,27 +115,8 @@
 	 					ofinished.style.display="none"; 
 	 				}
 	 				/*是否认证*/
-					if(myData.authType) {
-						nameli.classList.add('icon-vip');
-						nameli.classList.add('authicon-cu');
-						nameli.style.top = "4px";
-					} else {
-						if(myData.authStatus==3) {
-							if(myData.authentication == 1) {
-								nameli.classList.add('icon-renzheng');
-								nameli.classList.add('authicon-mana');
-//								nameli.innerHTML = "<span>科研</span>";
-							} else if(myData.authentication == 2) {
-								nameli.classList.add('icon-renzheng');
-								nameli.classList.add('authicon-staff');
-//								nameli.innerHTML = "<span>企业</span>";
-							} else {
-								nameli.classList.add('icon-renzheng');
-								nameli.classList.add('authicon-stu');
-//								nameli.innerHTML = "<span>学生</span>";
-							}
-						}
-					}
+	 				var oSty = autho(myData.authType, myData.orgAuth, myData.authStatus);
+					nameli.classList.add(oSty.sty);
 					
 					/*专家头像*/
 					if(myData["hasHeadImage"] == 0) {

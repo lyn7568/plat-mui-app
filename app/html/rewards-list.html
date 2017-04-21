@@ -9,7 +9,7 @@
 <link href="../css/app.css" rel="stylesheet" />
 </head>
 <body>
-<header class="mui-bar mui-bar-nav toptitbox" style="background: #1fc4f9;">
+<header class="mui-bar mui-bar-nav toptitbox" style="background: #1fc4f9;" id="goback">
 	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
 	<h1 class="mui-title toptit">我的积分</h1>
 	<span class="mui-pull-right topsave" id="topsave">规则</span>
@@ -38,6 +38,10 @@
 			}
 			self.append(sub);
 		}
+		document.getElementById("goback").addEventListener('tap', function() {
+			var myaccountPage = plus.webview.getWebviewById('html/rewards-list.html');
+			mui.fire(myaccountPage, 'rewards', {});	
+		})
 	});
 	
 	document.getElementById("topsave").addEventListener('tap', function() {

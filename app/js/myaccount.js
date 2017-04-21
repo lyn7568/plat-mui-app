@@ -48,6 +48,11 @@ mui.ready(function() {
 		})
 
 		/*退出登录刷新页面*/
+		window.addEventListener('rewards', function(event) {
+			plus.navigator.setStatusBarBackground( "#FF9900" );
+		});
+		
+		/*退出登录刷新页面*/
 		window.addEventListener('closeUser', function(event) {
 			userId = event.detail.id;
 			console.log(userId);

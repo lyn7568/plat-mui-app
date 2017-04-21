@@ -150,11 +150,12 @@ mui.ready(function() {
 						} else {
 							userImg2.setAttribute("src", baseUrl + "/images/default-photo.jpg");
 						}
-
-						if($info.title) {
-							document.getElementById("office").innerText = $info.office + " , " + $info.title;
+						var title = $info.title|| "";
+	  					var office = $info.office || "";
+						if(title) {
+							document.getElementById("office").innerText = office + " , " + title;
 						} else {
-							document.getElementById("office").innerText = $info.office;
+							document.getElementById("office").innerText = office;
 						}
 						var researchAreas = $info.researchAreas;
 						for(var n = 0; n < researchAreas.length; n++) {

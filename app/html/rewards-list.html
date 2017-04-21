@@ -39,9 +39,14 @@
 			self.append(sub);
 		}
 		document.getElementById("goback").addEventListener('tap', function() {
-			var myaccountPage = plus.webview.getWebviewById('html/rewards-list.html');
+			var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
 			mui.fire(myaccountPage, 'rewards', {});	
 		})
+		/*退出积分规则*/
+		window.addEventListener('rewardbg', function(event) {
+			plus.navigator.setStatusBarBackground( "#1fc4f9" );
+		});
+		
 	});
 	
 	document.getElementById("topsave").addEventListener('tap', function() {
@@ -49,7 +54,6 @@
 			url: '../html/rewardsRule.html',
 			id: 'html/rewardsRule.html',
 			show: {
-				autoShow: false,
 				aniShow: "slide-in-right"
 			}
 		});

@@ -47,7 +47,7 @@ mui.ready(function() {
 			isexpert();
 		})
 
-		/*退出登录刷新页面*/
+		/*退出我的积分*/
 		window.addEventListener('rewards', function(event) {
 			plus.navigator.setStatusBarBackground( "#FF9900" );
 		});

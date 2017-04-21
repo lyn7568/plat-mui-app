@@ -85,8 +85,8 @@ function ifiosAmdandroid(test){
 	}
 }
 
-//遮罩模态框
-/*var promptBlock = document.getElementsByClassName("promptBlock");
+/*//遮罩模态框
+var promptBlock = document.getElementsByClassName("promptBlock");
 var model = mui.createMask(modelClose);//创建遮罩
 function modelClose(){
 	for(var i=0;i<promptBlock.length;i++){
@@ -119,9 +119,20 @@ function autho() {
 }
 
 //用户分享专家到微信后增加积分
-function shareAddIntegral() {
+function shareAddIntegral(num) {
 	var userId = plus.storage.getItem('userid');
-	mui.ajax(baseUrl + "/ajax/growth/sharePro", {
+	var burl,title;
+	if(num==1){
+		burl = "/ajax/growth/sharePro";
+		title = "成功分享专家信息到微信";
+	}else if(num==2){
+		burl = "/ajax/growth/shareRes";
+		title = "成功分享资源信息到微信";
+	}else if(num==3){
+		burl = "/ajax/growth/shareArticle";
+		title = "成功分享文章信息到微信";
+	}
+	mui.ajax(baseUrl + burl, {
 		dataType: 'json', //数据格式类型
 		type: 'POST', //http请求类型
 		timeout: 10000, //超时设置
@@ -132,9 +143,9 @@ function shareAddIntegral() {
 		success: function(data) {
 			console.log(data)
 			if(data.success && data.data) {
-				plus.nativeUI.toast("成功分享专家信息到微信", toastStyle);
+				plus.nativeUI.toast(title, toastStyle);
 			} else {
-				plus.nativeUI.toast("分享超过5次，不能再获得积分和成长值", toastStyle);
+				plus.nativeUI.toast("分享超过10次，不能再获得积分和成长值", toastStyle);
 			}
 		},
 		error: function() {

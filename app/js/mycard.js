@@ -112,7 +112,7 @@ mui.ready(function() {
 				share.send(msg, function() {
 					plus.nativeUI.closeWaiting();
 					//var strtmp = "分享到\"" + share.description + "\"成功！ ";
-					shareAddIntegral();
+					shareAddIntegral(1);
 					/*plus.nativeUI.toast(strtmp, {
 						verticalAlign: 'center'
 					});*/

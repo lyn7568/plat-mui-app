@@ -503,11 +503,12 @@ mui.plusReady(function() {
 		};
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
-			var strtmp = "分享到\"" + share.description + "\"成功！ ";
+			/*var strtmp = "分享到\"" + share.description + "\"成功！ ";
 			console.log(strtmp);
 			plus.nativeUI.toast(strtmp, {
 				verticalAlign: 'center'
-			});
+			});*/
+			shareAddIntegral(2);
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {

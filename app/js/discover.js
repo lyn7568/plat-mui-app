@@ -100,13 +100,17 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 
 /*页面数据初始化*/
 getOnePase();
-
+if(mui.os.plus) {
+	var height = 190;
+} else {
+	var height = 0;
+}
 mui.init({
 	pullRefresh: {
 		container: '#pullrefresh2',
 		down: {
 			callback: pulldownRefresh,
-			height:190
+			height:height
 		},
 		up: {
 			contentrefresh: '正在加载...',

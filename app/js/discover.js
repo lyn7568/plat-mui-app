@@ -129,6 +129,18 @@ function pulldownRefresh() {
 		mui('#pullrefresh2').pullRefresh().endPulldownToRefresh();
 	}, 1000);
 }
+
+if(mui.os.plus) {
+	mui.plusReady(function() {
+		setTimeout(function() {
+			mui('#pullrefresh2').pullRefresh().pulldownLoading();
+		}, 500);
+	});
+} else {
+	mui.ready(function() {
+		mui('#pullrefresh2').pullRefresh().pulldownLoading();
+	});
+}
 /*时间转换*/
 function Time(dealtime) {
 	var s = dealtime;

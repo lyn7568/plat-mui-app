@@ -100,26 +100,43 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 
 /*页面数据初始化*/
 getOnePase();
-if(mui.os.plus) {
-	var height = 190;
-} else {
-	var height = 0;
-}
-mui.init({
-	pullRefresh: {
-		container: '#pullrefresh2',
-		down: {
-			callback: pulldownRefresh,
-			height:height
-		},
-		up: {
-			contentrefresh: '正在加载...',
-			//auto:true,
-			//height:100, 
-			callback: pullupRefresh
+
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+if(isAndroid) {
+	//父子页面，下拉刷新
+	mui.init({
+		pullRefresh: {
+			container: '#pullrefresh2',
+			down: {
+				callback: pulldownRefresh,
+				height:190
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
 		}
-	}
-});
+	});
+}
+if(isiOS) {
+	//父子页面，下拉刷新
+	mui.init({
+		pullRefresh: {
+			container: '#pullrefresh2',
+			down: {
+				callback: pulldownRefresh,
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				//auto:true,
+				//height:100, 
+				callback: pullupRefresh
+			}
+		}
+	});
+}
 
 function pullupRefresh() {
 	pageIndex = ++pageIndex;
@@ -134,17 +151,7 @@ function pulldownRefresh() {
 	}, 1000);
 }
 
-if(mui.os.plus) {
-	mui.plusReady(function() {
-		setTimeout(function() {
-			mui('#pullrefresh2').pullRefresh().pulldownLoading();
-		}, 500);
-	});
-} else {
-	mui.ready(function() {
-		mui('#pullrefresh2').pullRefresh().pulldownLoading();
-	});
-}
+
 /*时间转换*/
 function Time(dealtime) {
 	var s = dealtime;

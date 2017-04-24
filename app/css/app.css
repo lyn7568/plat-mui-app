@@ -269,7 +269,7 @@ ul.boxnav li.set:nth-child(1) span{border:1px solid #ff9900; color: #fff; backgr
 ul.boxnav li.set:nth-child(2) span{border:1px solid #6699ff; color: #fff; background: #6699ff; }
 ul.boxnav li.set:nth-child(3) span{border:1px solid #66cc00; color: #fff; background: #66cc00; }
 ul.boxnav li.set:nth-child(4) span{border:1px solid #666; color: #fff; background: #666; }
-ul.boxnav li.set span:before{font-family:"iconfont";content: "\e645";border:1px solid;border-radius: 50%;font-size:12px; margin-right: 4%;}
+ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";;font-size:12px; margin-right: 4%;}
 
 /*.maincon .basicinfo>li:not(.basicfrm){ font-size: 13px; line-height: 42px;}*/
 .maincon ul li.basicfrm{list-style: none; position: relative; overflow: hidden; line-height: 20px;border-bottom:1px #F0F0F0 solid;margin:-4px 0 14px 2%;padding-left:0; }
@@ -712,8 +712,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .hotsearch.chooseBox li span{line-height:26px;padding:4px 20px;}
 .hotsearch.chooseBox li:active{background: none;}
 .hotsearch.chooseBox li.checkedLi{background: #ff9900;color:#FFFFFF;border-color:#ff9900}
-.hotsearch.chooseBox li.checkedLi span:before{font-family:"iconfont";content: "\e645";border:1px solid;
-  border-radius: 50%;font-size:12px;line-height: 24px; margin-right:3%;} 
+.hotsearch.chooseBox li.checkedLi span:before{font-family:"iconfont";content: "\e733";font-size:12px;line-height: 24px; margin-right:3%;} 
 .divideSpace .littipCh{padding-left:10px;}
 .divideSpace .littipCh .littip p{color:#BBBBBB;line-height: 20px;font-size: 12px;text-indent: 2.1em;}
 .divideSpace .littipCh .littip{display: none;}
@@ -723,8 +722,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .demandBox ul.boxnav.boxnavTo li:nth-child(2){width:66%}
 .demandBox ul.boxnav.boxnavTo li span{border-color:#ff9900;color:#FF9900;}
 .demandBox ul.boxnav.boxnavTo li .checkNow{background:#ff9900; color:#FFFFFF}
-.demandBox ul.boxnav.boxnavTo li .checkNow:before{font-family:"iconfont";content: "\e645";border:1px solid;
-  border-radius: 50%;font-size:12px; margin-right:3%;}
+.demandBox ul.boxnav.boxnavTo li .checkNow:before{font-family:"iconfont";content: "\e733";font-size:12px; margin-right:3%;}
 .demandBox ul.boxnav.boxnavTo li .checkNo{border-color:#D3D3D3;background:#D3D3D3;color:#FFFFFF;}
 
 .demandBasic{padding:4px 0;}

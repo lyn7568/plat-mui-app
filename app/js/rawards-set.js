@@ -83,25 +83,33 @@ function datalistEach(datalist) {
 		var operate;
 		switch(item.operate) {
 			case "1":
-				operate = "成功邀请一位好友";
+				operate = "成功邀请好友";
 				break;
 			case "2":
-				operate = "成功分享专家信息到微信";
+				operate = "分享专家给好友";
 				break;
 			case "3":
-				operate = "成功分享文章到微信";
+				operate = "分享文章给好友";
 				break;
 			case "4":
-				operate = "成功分享资源到微信";
+				operate = "分享资源给好友";
 				break;
 			case "5":
 				if(item.signInDays == 1) {
 					operate = "每日签到";
-				} else {
+				}else if(item.signInDays == 2){
+					operate = "连续签到2天";
+				}else if(item.signInDays == 3){
+					operate = "连续签到3天";
+				}else if(item.signInDays == 4){
+					operate = "连续签到4天";
+				}else if(item.signInDays == 5){
+					operate = "连续签到5天";
+				}else{
 					operate = "连续签到" + item.signInDays + "天";
 				}
 				break;
-			case "6":
+			/*case "6":
 				operate = "添加一个研究方向";
 				break;
 			case "7":
@@ -127,7 +135,7 @@ function datalistEach(datalist) {
 				break;
 			case "-12":
 				operate = "删除资源";
-				break;
+				break;*/
 			case "13":
 				operate = "通过实名认证";
 				break;
@@ -135,9 +143,9 @@ function datalistEach(datalist) {
 				operate = "成为科袖认证专家";
 				break;
 			case "15":
-				operate = "成为企业认证用户";
+				operate = "成为企业认证员工";
 				break;
-			case "16":
+			/*case "16":
 				operate = "接受一次咨询";
 				break;
 			case "17":
@@ -157,20 +165,17 @@ function datalistEach(datalist) {
 				break;
 			case "22":
 				operate = "确认一次需求";
-				break;
+				break;*/
 			case "23":
-				operate = "首次绑定手机(包括注册)";
+				operate = "绑定手机";
 				break;
 			case "24":
-				operate = "首次绑定手机(包括注册)";
-				break;
-			case "25":
-				operate = "首次绑定邮箱(包括注册)";
+				operate = "绑定邮箱";
 				break;
 			case "101":
-				operate = "成功邀请好友后邀请人获得积分";
+				operate = "成功邀请好友";
 				break;
-			case "102":
+			/*case "102":
 				operate = "添加研究方向给邀请人加分";
 				break;
 			case "103":
@@ -181,7 +186,7 @@ function datalistEach(datalist) {
 				break;
 			case "-104":
 				operate = "删除资源给邀请人减分";
-				break;
+				break;*/
 			case "105":
 				operate = "通过实名认证给邀请人加分";
 				break;
@@ -191,7 +196,7 @@ function datalistEach(datalist) {
 			case "107":
 				operate = "成为企业认证用户给邀请人加分";
 				break;
-			case "108":
+			/*case "108":
 				operate = "接受咨询给邀请人加分";
 				break;
 			case "109":
@@ -211,7 +216,7 @@ function datalistEach(datalist) {
 				break;
 			case "114":
 				operate = "确认一次需求给邀请人加分";
-				break;
+				break;*/
 		}
 
 		var li = document.createElement('li');

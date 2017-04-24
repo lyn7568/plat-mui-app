@@ -104,6 +104,10 @@ getOnePase();
 mui.init({
 	pullRefresh: {
 		container: '#pullrefresh2',
+		down: {
+			callback: pulldownRefresh,
+			height:190
+		},
 		up: {
 			contentrefresh: '正在加载...',
 			//auto:true,
@@ -117,6 +121,12 @@ function pullupRefresh() {
 	pageIndex = ++pageIndex;
 	setTimeout(function() {
 		getaData()
+	}, 1000);
+}
+function pulldownRefresh() {
+	setTimeout(function() {
+		getOnePase();
+		mui('#pullrefresh2').pullRefresh().endPulldownToRefresh();
 	}, 1000);
 }
 /*时间转换*/
@@ -139,7 +149,7 @@ function getaData() {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
-			async: true,
+			async: false,
 			success: function(data) {
 				if(data.success) {
 					//console.log("成功");
@@ -178,7 +188,7 @@ function getOnePase() {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
-			async: true,
+			async: false,
 			success: function(data) {
 				console.log(data)
 				discoverBox.innerHTML = "";

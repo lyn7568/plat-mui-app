@@ -23,10 +23,10 @@
 img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:bicubic;border:0;padding:0; margin:0;}
 
 /*更改placeholder的颜色*/
-:-moz-placeholder {color: #c0c0c6;}
-::-moz-placeholder {color: #c0c0c6;}
-input:-ms-input-placeholder,textarea:-ms-input-placeholder {color: #c0c0c6;}
-input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #c0c0c6;}
+:-moz-placeholder {color: #999;}
+::-moz-placeholder {color: #999;}
+input:-ms-input-placeholder,textarea:-ms-input-placeholder {color: #999;}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #999;}
 
 /*清除mui部分原有样式*/
 html{-webkit-text-size-adjust: none;}
@@ -197,7 +197,7 @@ button:disabled,input.frmtype[type='button']:disabled{ opacity: 1;}
 .frmbox{ border:none; width: 90%;height: 100%; } 
 /*未激活按钮状态*/
 .frmactive2{color:#f0f0f0;background-color:#d6d6d6; border:1px solid #d6d6d6;}
-.frmactive2.mui-btn.mui-active:active,.frmactive2.mui-btn:enabled:active{color:#f0f0f0;background-color:#d6d6d6; border:1px solid #d6d6d6;}
+.frmactive2.mui-btn.mui-active:active,.frmactive2.mui-btn:enabled:active{color:#f0f0f0;background-color:#d6d8de; border:1px solid #d6d8de;}
 
 .frmactive{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
 .frmactiveok{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
@@ -976,3 +976,16 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .filterClass .orangeColor{margin-left: 8px;}
 .filterClass .mui-navigate-right:after{right:4px;content: '\e581';font-size:16px;}
 .filterClass.filterActive .mui-navigate-right:after{content: '\e580'}
+
+/*****************************2017.04新版登录表单样式************************/
+.frmboxNew{margin:12px;border-radius: 6px;overflow: hidden;}
+.frmboxNew .frmbtn{margin:0;font-size: 14px;line-height: 24px;vertical-align: middle;}
+.frmboxNew .frm-input .frmtype{height:48px;}
+.mui-input-group.frmboxNew .mui-input-row{height:48px;}
+.mui-input-group.frmboxNew .mui-input-row:after{left: 0;}
+.mui-content-padded.frmboxNew{margin-top:18px;}
+.frmboxNew .frmbtn{height:40px;} 
+.otherWordNew{overflow:hidden;padding:8px 4px;line-height: 21px; font-size: 13px;color: #666;}
+.frmboxNew .getCode{background: #ff9900;color:#FFFFFF;}
+.frmboxNew .mui-row.mui-input-row:after{display: block;}
+.protocolbox .icon-yuanxingxuanzhongfill{color:#ff9900;font-size:16px;}

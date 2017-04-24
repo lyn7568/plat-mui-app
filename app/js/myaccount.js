@@ -257,8 +257,8 @@ mui.ready(function() {
 					/*邀请好友*/
 					document.getElementById("goNewuser").addEventListener("tap", function() {
 						mui.openWindow({
-							url: '../html/invite_new.html',
-							id: 'invite_new.html',
+							url: '../html/inviteFriends.html',
+							id: 'inviteFriends.html',
 							show: {
 								autoShow: false,
 								aniShow: "slide-in-left"

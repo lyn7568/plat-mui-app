@@ -148,20 +148,8 @@ div.textareaboxEmp:focus{content:none;}
 .unauth{background: #efefef;color: #CCCCCC;}
 
 /*/////////认证身份标识///////////*/
-/*企业和专家认证标识 icon-vip*/
-/*.unauthicon{color:#C0C0C0; }*//*未认证*/
-/*.authicon{color:#FF9900;}*/
-.icon-vip.iconfont{position:absolute;top:1px;font-size:0;line-height: 0;display: inline-block;width:14px;height:14px;margin-left:4px;background-position: center;background-repeat: no-repeat;background-size: cover;}
-.authicon-cu{background-image:url(../images/porfile_icon_zhuanjia_nor.png);}/*认证科研型专家*/
-.authicon-com{/*color:#00aaee;*/ color:#2082fb;}/*认证企业型专家*/
-/*普通用户认证标识 icon-renzheng*/
-em.mui-icon.iconfont.icon-renzheng{position:absolute;float:left;font-size: 0;width:48px;height:16px;background-image:url(../images/authicon.png);background-repeat:no-repeat; }
-.authicon-mana{background-position: 0 -1px;background-size:100% auto;color:#ff9900;}/*认证科研*/
-.authicon-staff{background-position: 0 -16px;background-size:100% auto;color:#007AFF;}/*认证企业*/
-.authicon-stu{background-position: 0 -32px;background-size:100% auto;color:#0ee032;}/*认证在读学生*/
-
 /*认证标识相关*/
-.authicon{position:absolute; bottom:1px;display: inline-block;width:14px;height:14px;margin-left:4px;background-position: center;background-repeat: no-repeat;}
+.authicon{position:absolute; bottom:3px;display: inline-block;width:14px;height:14px;margin-left:4px;background-position: center;background-repeat: no-repeat;}
 .authicon-pro{background-image:url(../images/porfile_icon_zhuanjia_nor.png);background-size: cover;}/*科袖认证专家*/
 .authicon-com-ok{background-image:url(../images/porfile_icon_qiye_hig.png);background-size: cover;}/*认证企业*/
 .authicon-com-no{background-image:url(../images/porfile_icon_qiye_nor.png);background-size: cover;}/*未认证企业*/
@@ -279,7 +267,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .maincon ul li small{ color:#AAAAAA;}
 .maincon ul.set2{ display: block;}
 .fillbox{margin-top:15px;padding:4% 0;}
-.headbox3{ position: relative;width:100px; height: 100px; margin:0 auto; margin-top:15px;border:2px #FFFFFF solid;box-shadow: 1px 1px 2px 1px #F0F0F0; overflow: hidden;background: url(../images/default-photo-up.jpg); background-size:100% 100%;}
+.headbox3{ position: relative;width:100px; height: 100px; margin:0 auto; margin-top:15px;border:2px #FFFFFF solid;box-shadow: 1px 1px 2px 1px #F0F0F0; overflow: hidden;background: url(../images/default-photo.jpg); background-size:100% 100%;}
 .headbox3 .headimg3{width:100px; height: 100px;}
 .headbox3 .headimglink{position: absolute;line-height:100px;color:#FFFFFF; font-size:20px;padding:0 38px;display: block; background:rgba(0,0,0,.4);width: 100px; height:100px;z-index: 4;}
 
@@ -531,9 +519,8 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .consultaim{ text-align: center; margin: auto;position:relative;width:100%; }
 .consultaim ul{padding: 0; margin: 0;padding: 2% 5%;/* width:70%; position:relative; left:50%;margin-left:-34%;*/ overflow: hidden;}
 .consultaim ul li{ list-style: none;float: left; width:31%; padding:2px 8px;border:#CCCCCC 1px solid;border-radius: 6px; margin:1%; font-size: 12px;line-height: 24px;vertical-align: middle;}
-.consultaim ul li .icon-check{border:1px solid #6CA8FF;color:#6CA8FF;border-radius: 50%;font-size:12px; margin-right: 3%;}
-.consultaim ul .liactive{ border:1px solid #6CA8FF;color: #6CA8FF;/*padding-left:28px; position: relative;*/}
-/*.consultaim ul .liactive em{ display:block;position: absolute; left:10px; top:50%;margin-top: -8px; width:16px; height:16px;background: url(../images/selected.png) center center no-repeat; background-size:100% 100% ;}*/
+.consultaim ul .liactive{ border:1px solid #6CA8FF;color: #6CA8FF;}
+.consultaim ul .liactive span:before{font-family:"iconfont";content: "\e733";font-size:14px;} 
 .divline{border-top:1px solid #F0F0F0; width: 100%; height: 1px;} 
 
 .consultinfo{ width: 96%; margin: auto; margin-top:6px;}

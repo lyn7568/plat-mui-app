@@ -85,13 +85,13 @@
 	 					oproname.innerText = myData["name"];//专家名字
 	 				};
 	 				if(myData["title"]){
-	 					oprotitle.innerHTML = myData["title"]+', ';//职称
+	 					oprotitle.innerHTML =  myData["title"];//职称
 	 				}
 	 				if(myData["office"]){
-	 					oprooffice.innerHTML = myData["office"]+', ';//职位
+	 					oprooffice.innerHTML = ', '+ myData["office"];//职位
 	 				}
 	 				if(myData["department"]){
-	 					oprodepart.innerHTML = myData["department"]+', ';//所在部门
+	 					oprodepart.innerHTML =', '+  myData["department"];//所在部门
 	 				}
 	 				if(myData["orgName"]){
 	 					oproorgName.innerHTML = myData["orgName"];//所在机构
@@ -226,9 +226,7 @@
 		var aimlist = document.querySelector('.aimclass').querySelectorAll("li");
 		for(var i = 0 ; i < aimlist.length;i++){
 			aimlist[i].classList.remove('liactive');
-			aimlist[i].querySelector('em').classList.remove('icon-check');
 		}
 		this.classList.add('liactive');
-		this.querySelector("em").classList.add("icon-check");
 	});
 })

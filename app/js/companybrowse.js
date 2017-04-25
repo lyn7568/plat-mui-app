@@ -93,7 +93,7 @@ mui.plusReady(function() {
 					document.getElementsByClassName("headimg")[0].src = "../images/default-photo.jpg";
 				}
 				
-				var oSty = autho(item.authType, item.orgAuth, item.authStatus);
+				var oSty = autho($data.authType, $data.orgAuth, $data.authStatus);
 				nameli.classList.add(oSty.sty);
 
 				if($data.office) {

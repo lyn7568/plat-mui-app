@@ -171,12 +171,12 @@ function datalistEach(datalistd) {
 		if(item.article.articleType==1){
 			puId=item.article.professorId;
 			oName=item.article.professor.name;
-			icont='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
+			icont='<em class="authicon authicon-pro"> </em>';
 		}else{
 			puId=item.article.orgId;
 			oName=item.article.organization.name;
 			if(item.article.organization.authStatus==3){
-				icont='<em class="mui-icon iconfont authicon authicon-com-ok"></em>';
+				icont='<em class="authicon authicon-com-ok"></em>';
 			}
 		}
 		var li = document.createElement('li');

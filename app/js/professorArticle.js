@@ -121,10 +121,13 @@ mui.plusReady(function() {
 					if($profesor.hasHeadImage) {
 						document.getElementById('proHead').src = baseUrl + "/images/head/" + $profesor.id + "_l.jpg";
 					} else {
-						document.getElementById('proHead').src = "images/default-photo.jpg";
+						document.getElementById('proHead').src = "../images/default-photo.jpg";
 					}
 					var proName = document.getElementById("proName");
 					proName.innerText = $profesor.name;
+					
+					var oSty = autho($profesor.authType, $profesor.orgAuth, $profesor.authStatus);
+				    document.getElementById("flSta").classList.add(oSty.sty);
 				}
 			},
 			error: function(XMLHttpRequest) {
@@ -144,10 +147,11 @@ mui.plusReady(function() {
 					var $data = data.data;
 					var proName = document.getElementById("proName");
 					proName.innerText = $data.name;
+					
 					if($data.authStatus == 3) {
-						document.getElementById("flSta").className = "mui-icon iconfont authicon authicon-com-ok"; //authiconNew
+						document.getElementById("flSta").className = "authicon authicon-com-ok";
 					} else {
-						document.getElementById("flSta").className = "mui-icon iconfont authicon";
+						document.getElementById("flSta").className = "authicon";
 					}
 					if($data.hasOrgLogo) {
 						document.getElementById('proHead').src = baseUrl + "/images/org/" + $data.id + ".jpg";

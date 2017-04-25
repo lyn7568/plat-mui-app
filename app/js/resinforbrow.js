@@ -72,42 +72,14 @@ function ziyuaninfo(resourceId) {
 					//所在地
 					(mydata['editProfessor']["address"]) ? oproadress.innerHTML = mydata['editProfessor']["address"]: oproadress.innerHTML = '';
 					/*是否认证*/
-					//(mydata['editProfessor']["authentication"] == true) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon');
 					var oSty = autho(mydata['editProfessor']["authType"], mydata['editProfessor']["orgAuth"], mydata['editProfessor']["authStatus"]);
 					opromodify.classList.add(oSty.sty);
-
-//					if(mydata['editProfessor']["authType"]) {
-//						opromodify.classList.add('icon-vip');
-//						opromodify.classList.add('authicon-cu');
-//						opromodify.style.float = "left";
-//					} else {
-//						if(mydata['editProfessor']["authStatus"]==3) {
-//							if(mydata['editProfessor']["authentication"] == 1) {
-//								opromodify.classList.add('icon-renzheng');
-//								opromodify.classList.add('authicon-mana');
-//								opromodify.style.position = "static";
-//								opromodify.style.margin = "3px 0 0 0";
-//							} else if(mydata['editProfessor']["authentication"] == 2) {
-//								opromodify.classList.add('icon-renzheng');
-//								opromodify.classList.add('authicon-staff');
-//								opromodify.style.position = "static";
-//								opromodify.style.margin = "3px 0 0 0";
-//							} else {
-//								opromodify.classList.add('icon-renzheng');
-//								opromodify.classList.add('authicon-stu');
-//								opromodify.style.position = "static";
-//								opromodify.style.margin = "3px 0 0 0";
-//							}
-//						}
-//					}
 
 					/*专家头像*/
 					
 					(mydata['editProfessor']["hasHeadImage"] == 0) ? oproimg.setAttribute('src', '../images/default-photo.jpg'): oproimg.setAttribute('src', baseUrl + '/images/head/' + mydata['editProfessor']['id'] + '_m.jpg');
 					console.log(mydata['editProfessor']["hasHeadImage"])
 					//资源基本信息
-					//(mydata['images']['imageSrc']) ? oziyuanimg.setAttribute('src', mydata['images']['imageSrc']): oziyuanimg.setAttribute('src', '../images/default-resource.jpg'); //资源图片
-
 					var imgRes = baseUrl + "/images/resource/" + mydata.resourceId + ".jpg";
 					if(mydata['images'].length) {
 						oziyuanimg.setAttribute('src', imgRes)

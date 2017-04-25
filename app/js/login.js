@@ -100,6 +100,11 @@ mui.ready(function() {
 					if(data.data != "null" && data.data != null) {
 						var userId = data.data.id;
 						plus.storage.setItem('userid', userId);
+						var article = plus.webview.currentWebview();
+						if(article.flag==1){
+							var proAiticle =plus.webview.getWebviewById('professorArticle.html')
+							mui.fire(proAiticle, "newId");
+						}
 						firstLogin();
 						
 						var consultPage = plus.webview.getWebviewById('consultlist.html');

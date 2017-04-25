@@ -177,7 +177,16 @@ mui.plusReady(function() {
 	document.getElementById("leaveWord").addEventListener("tap", function() {
 			var userid = plus.storage.getItem('userid');
 			if(!userid) {
-				goLoginFun();
+				mui.openWindow({
+			url: '../html/login.html',
+			id: '../html/login.html',
+			show: {
+				aniShow: "slide-in-bottom"
+			},
+			extras: {
+				flag: 1
+			}
+		});
 				return;
 			}
 			var nwaiting = plus.nativeUI.showWaiting();
@@ -222,22 +231,32 @@ mui.plusReady(function() {
 			}
 		})
 	}
-		document.getElementById("thumbsUp").addEventListener("tap",function(){
-			var userid = plus.storage.getItem('userid');
-			var oUrl;
-			oThumsflag=this.getAttribute("oThumsflag");
-			console.log(oThumsflag)
-			if(!userid) {
-				goLoginFun();
-				return;
+		document.getElementById("thumbsUp").addEventListener("tap", function() {
+	var userid = plus.storage.getItem('userid');
+	var oUrl;
+	oThumsflag = this.getAttribute("oThumsflag");
+	console.log(oThumsflag)
+	if(!userid) {
+		mui.openWindow({
+			url: '../html/login.html',
+			id: '../html/login.html',
+			show: {
+				aniShow: "slide-in-bottom"
+			},
+			extra: {
+				flag: 1
 			}
-			(oThumsflag==0)?oUrl="/ajax/article/agree":oUrl="/ajax/article/unAgree";
-			console.log(oUrl);
-			thums(oUrl);
-		})
+		});
+		return;
+	}
+	(oThumsflag == 0) ? oUrl = "/ajax/article/agree": oUrl = "/ajax/article/unAgree";
+	console.log(oUrl);
+	thums(oUrl);
+})
 		isAgreeArticle();
 		/*查询登录者是否为这篇文章点过赞*/
 		function isAgreeArticle(){
+			var userid = plus.storage.getItem('userid');
 			if(!userid){
 				return;
 			}
@@ -319,18 +338,28 @@ mui.plusReady(function() {
 			});
 		}
 	}
-		document.getElementById("collect").addEventListener("click",function(){
-			var userid = plus.storage.getItem('userid');
-			oCollectFlag=this.getAttribute("collectFlag");
-			if(!userid) {
-				goLoginFun();
-				return;
+		document.getElementById("collect").addEventListener("click", function() {
+	var userid = plus.storage.getItem('userid');
+	oCollectFlag = this.getAttribute("collectFlag");
+	if(!userid) {
+		mui.openWindow({
+			url: '../html/login.html',
+			id: '../html/login.html',
+			show: {
+				aniShow: "slide-in-bottom"
+			},
+			extras: {
+				flag: 1
 			}
-			collect();
-		})
+		});
+		return;
+	}
+	collect();
+})
 		/*进入文章浏览页面判断是否收藏文章*/
 		attentionArticle();
 		function attentionArticle(){
+			var userid = plus.storage.getItem('userid');
 			if(!userid){
 				return;
 			}
@@ -360,6 +389,10 @@ mui.plusReady(function() {
 				}
 			})
 		}
+		window.addEventListener("newId", function(event) {
+			attentionArticle();
+			isAgreeArticle();
+		})
 		/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	document.getElementById("shareBtn").addEventListener("tap", function() {

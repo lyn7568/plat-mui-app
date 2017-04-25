@@ -131,6 +131,7 @@ div.textareaboxEmp:focus{content:none;}
 /*底部导航栏*/
 .footbox{ background: #FFFFFF;border-top:1px solid #DDDDDD;-webkit-box-shadow: 0px 6px 6px 2px #CCCCCC;box-shadow: 0px 6px 6px 2px #CCCCCC;}
 .footbox .mui-tab-item.mui-active{ color: #FF9900;}
+.footbox .iconfont{line-height: 24px;}
 
 .listtit0{font-size: 14px; color: #222222;}
 .listtit{ font-size: 15px; color: #333333;position: relative;}/*中标题*/
@@ -349,13 +350,14 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .gotonext{ width:140px; margin: auto; font-size: 14px; color: #FF9900; overflow: hidden;}
 .gotonext2{ width: 110px;}
 
-.dialogbtn{ overflow: hidden; width:80%; line-height:50px; color: #FF9900;}
+.dialogbtn{ overflow: hidden; width:80%;padding: 13px;color: #FF9900;}
 .dialogbtn div{ width: 70px;overflow: hidden;margin: auto;}
 .dialogbtn span{font-size: 14px; padding: 0 3px; font-weight: 600;}
 .dialogbtn em{font-size: 20px;}
 
-.attentbtn{margin: auto; overflow: hidden; width:20%;padding: 12px;text-align: center; border-left:1px solid #F0F0F0;}
+.attentbtn{margin: auto; overflow: hidden; width:20%;padding: 13px;text-align: center; border-left:1px solid #F0F0F0;}
 .attentbtn em{font-size: 20px;line-height: 24px;color:#F6DC00;}
+.attentbtn.attentbtn2 em{color:#ff9900;}
 /*更多详细信息*/
 .maincon2{padding-right:0;}
 .infocon2{padding:0;}

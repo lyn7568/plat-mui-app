@@ -172,10 +172,10 @@ function datalistEach(datalist) {
 			case "24":
 				operate = "绑定邮箱";
 				break;
-			case "101":
+			/*case "101":
 				operate = "成功邀请好友";
 				break;
-			/*case "102":
+			case "102":
 				operate = "添加研究方向给邀请人加分";
 				break;
 			case "103":
@@ -187,7 +187,7 @@ function datalistEach(datalist) {
 			case "-104":
 				operate = "删除资源给邀请人减分";
 				break;*/
-			case "105":
+			/*case "105":
 				operate = "通过实名认证给邀请人加分";
 				break;
 			case "106":
@@ -195,7 +195,7 @@ function datalistEach(datalist) {
 				break;
 			case "107":
 				operate = "成为企业认证用户给邀请人加分";
-				break;
+				break;*/
 			/*case "108":
 				operate = "接受咨询给邀请人加分";
 				break;

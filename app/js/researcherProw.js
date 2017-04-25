@@ -3,6 +3,9 @@ var yesExpert = document.getElementById("yesExpert");
 var noExpert = document.getElementById("noExpert");
 var personalMaterial = document.getElementsByClassName('personalMaterial');
 var personSummary = document.getElementsByClassName("breifinfo")[0];
+var professorName;
+var resear = "";
+var title="";
 var orgAuth,orgId;
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
@@ -73,6 +76,7 @@ mui.plusReady(function() {
 				orgId=data.data.orgId;
 				var $data = data.data;
 				personalMaterial[0].innerText = $data.name;
+				professorName = $data.name;
 				document.getElementById("professorName").innerText = $data.name;
 				//基本信息
 				//				if($data.consultCount) {
@@ -103,6 +107,7 @@ mui.plusReady(function() {
 				}
 				if($data.title) {
 					personalMaterial[2].innerText = $data.title;
+					title = $data.title;
 				}
 				if($data.orgName) {
 					if($data.department) {
@@ -299,6 +304,130 @@ mui.plusReady(function() {
 	//			}
 	//		});
 	//	})
+		/*微信及微信朋友圈分享专家*/
+	var auths, shares;
+	document.getElementById("shareBtn").addEventListener("tap", function() {
+		shareShow()
+	})
+	plus.oauth.getServices(function(services) {
+		auths = {};
+		for(var i in services) {
+			var t = services[i];
+			auths[t.id] = t;
+
+		}
+	}, function(e) {
+		alert("获取登录服务列表失败：" + e.message + " - " + e.code);
+	});
+	plus.share.getServices(function(services) {
+
+		shares = {};
+		for(var i in services) {
+
+			var t = services[i];
+
+			shares[t.id] = t;
+
+		}
+	}, function(e) {
+		alert("获取分享服务列表失败：" + e.message + " - " + e.code);
+	})
+
+	function shareShow() {
+		var shareBts = [];
+		// 更新分享列表
+		var ss = shares['weixin'];
+		if(navigator.userAgent.indexOf('StreamApp') < 0 && navigator.userAgent.indexOf('qihoo') < 0) { //在360流应用中微信不支持分享图片
+			ss && ss.nativeClient && (shareBts.push({
+					title: '微信好友',
+					s: ss,
+					x: 'WXSceneSession'
+				}),
+				shareBts.push({
+					title: '微信朋友圈',
+					s: ss,
+					x: 'WXSceneTimeline'
+				}));
+		}
+		//				// 弹出分享列表
+		shareBts.length > 0 ? plus.nativeUI.actionSheet({
+			title: '分享',
+			cancel: '取消',
+			buttons: shareBts
+		}, function(e) {
+			var str;
+			if(resear) {
+				str = "研究方向：" + resear
+			}
+			if(e.index == 1) {
+				var share = buildShareService();
+				if(share) {
+					shareMessage(share, "WXSceneSession", {
+						content: str,
+						title: "【科袖名片】" + professorName + " " + title + "",
+						href: baseUrl + "/ekexiu/shareProinfor.html?professorId=" + proId,
+						thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
+					});
+				}
+			} else if(e.index == 2) {
+				var share = buildShareService();
+				if(share) {
+					shareMessage(share, "WXSceneTimeline", {
+						content: str,
+						title: "【科袖名片】" + professorName + " " + title + "",
+						href: baseUrl + "/ekexiu/shareProinfor.html?professorId=" + proId,
+						thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
+					});
+				}
+			}
+
+		}) : plus.nativeUI.alert('当前环境无法支持分享操作!');
+
+	}
+
+	function buildShareService() {
+		var share = shares["weixin"];
+		if(share) {
+			if(share.authenticated) {
+				console.log("---已授权---");
+			} else {
+				console.log("---未授权---");
+				share.authorize(function() {
+					console.log('授权成功...')
+				}, function(e) {
+					alert("认证授权失败：" + e.code + " - " + e.message);
+					return null;
+				});
+			}
+			return share;
+		} else {
+			alert("没有获取微信分享服务");
+			return null;
+		}
+
+	}
+
+	function shareMessage(share, ex, msg) {
+		msg.extra = {
+			scene: ex
+		};
+		share.send(msg, function() {
+			plus.nativeUI.closeWaiting();
+			/*var strtmp = "分享到\"" + share.description + "\"成功！ ";
+			console.log(strtmp);
+			plus.nativeUI.toast(strtmp, {
+				verticalAlign: 'center'
+			});*/
+			shareAddIntegral(1);
+		}, function(e) {
+			plus.nativeUI.closeWaiting();
+			if(e.code == -2) {
+				plus.nativeUI.toast('已取消分享', {
+					verticalAlign: 'center'
+				});
+			}
+		});
+	}
 	/*图像预览*/
 	mui.previewImage();
 });

@@ -151,13 +151,13 @@ div.textareaboxEmp:focus{content:none;}
 
 /*/////////认证身份标识///////////*/
 /*认证标识相关*/
-.authicon{position:absolute; bottom:3px;display: inline-block;width:14px;height:14px;margin-left:4px;background-position: center;background-repeat: no-repeat;}
+.authicon{position:absolute; bottom:3px;display: inline-block;width:16px;height:16px;margin-left:4px;background-position: center;background-repeat: no-repeat;}
 .authicon-pro{background-image:url(../images/porfile_icon_zhuanjia_nor.png);background-size: cover;}/*科袖认证专家*/
 .authicon-com-ok{background-image:url(../images/porfile_icon_qiye_hig.png);background-size: cover;}/*认证企业*/
 .authicon-com-no{background-image:url(../images/porfile_icon_qiye_nor.png);background-size: cover;}/*未认证企业*/
-.authicon-staff-ok{width:40px;background-image:url(../images/porfile_icon_yuangong_hig.png);background-size: cover;}/*企业认证员工*/
-.authicon-staff-no{width:40px;background-image:url(../images/porfile_icon_yuangong_nor.png);background-size: cover;}/*企业未认证员工*/
-.authicon-real{width: 21px;background-image:url(../images/porfile_icon_shimin_nor.png);background-size: cover;}/*实名认证用户*/
+.authicon-staff-ok{width:44px;background-image:url(../images/porfile_icon_yuangong_hig.png);background-size: cover;}/*企业认证员工*/
+.authicon-staff-no{width:44px;background-image:url(../images/porfile_icon_yuangong_nor.png);background-size: cover;}/*企业未认证员工*/
+.authicon-real{width: 24px;background-image:url(../images/porfile_icon_shimin_nor.png);background-size: cover;}/*实名认证用户*/
 
 /*图片在容器中无变形居中显示*/
 .boxBlock{width:160px; height:160px;display: table-cell;vertical-align:middle; text-align:center;overflow: hidden;}
@@ -870,7 +870,11 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .rewardRule .rewardCount{right: 0;color:#333;font-size:15px;}
 .rewardRule .h2Font{font-size: 13px;line-height: 28px;}
 /*--------------我(个人中心)-------------*/
-.userLogin{height: 180px;overflow: hidden;background:#3c3e51;}
+.userLogin{height: 180px;overflow: hidden;
+  background: linear-gradient(#ff9900,#ff7200);
+  background: -moz-linear-gradient(#ff9900,#ff7200);
+	background: -webkit-linear-gradient(#ff9900,#ff7200);
+	background: -ms-linear-gradient(#ff9900,#ff7200);}
 .loginStatus.mui-table-view{background: none;margin:36px 0 26px;}
 .loginStatus.mui-table-view .mui-table-view-cell{padding:0 15px;}
 .loginStatus.mui-table-view .mui-table-view-cell.mui-active{background: none;}

@@ -106,8 +106,8 @@ function autho() {
 				}
 			}else{
 					return {
-						"sty": "",
-						"title": ""
+						"sty": "e",
+						"title": " "
 						}
 				}
 		}

@@ -21,7 +21,6 @@ mui.ready(function() {
 	var oFlag1;
 	var professorName,scorePercent;
 	mui.plusReady(function() {
-		plus.navigator.setStatusBarBackground( "#3c3e51" );
 		var userId = plus.storage.getItem('userid');
 		console.log(userId);
 		
@@ -217,7 +216,7 @@ mui.ready(function() {
 								},
 
 							});
-						} else if(!oFlag1 && oFlag == 2) {
+						} else if(!oFlag1 && (oFlag == 2||oFlag==0)) {
 							/*我的修改企业工作者*/
 							mui.openWindow({
 								url: '../html/companyUpdata.html',

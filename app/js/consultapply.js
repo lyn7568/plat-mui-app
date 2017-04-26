@@ -86,19 +86,41 @@
 	 				};
 	 				if(myData["title"]){
 	 					oprotitle.innerHTML =  myData["title"];//职称
-	 				}
-	 				if(myData["office"]){
+	 					if(myData["office"]){
 	 					oprooffice.innerHTML = ', '+ myData["office"];//职位
+	 					}
+	 				}else{
+	 					if(myData["office"]){
+	 					oprooffice.innerHTML =  myData["office"];//职位
+	 					}
 	 				}
+	 				
 	 				if(myData["department"]){
-	 					oprodepart.innerHTML =', '+  myData["department"];//所在部门
+	 					oprodepart.innerHTML =myData["department"];//所在部门
+	 					if(myData["orgName"]){
+	 						oproorgName.innerHTML = ', '+myData["orgName"];//所在机构
+	 						if(myData["address"]){
+	 							oproadress.innerHTML = ' | '+myData["address"];//所在地
+	 						}
+	 					}else{
+	 						if(myData["address"]){
+	 							oproadress.innerHTML = ' | '+myData["address"];//所在地
+	 						}
+	 					}
+	 				}else{
+	 					if(myData["orgName"]){
+	 						oproorgName.innerHTML = myData["orgName"];//所在机构
+	 						if(myData["address"]){
+	 							oproadress.innerHTML = ' | '+myData["address"];//所在地
+	 						}
+	 					}else{
+	 						if(myData["address"]){
+	 							oproadress.innerHTML = myData["address"];//所在地
+	 						}
+	 					}
 	 				}
-	 				if(myData["orgName"]){
-	 					oproorgName.innerHTML = myData["orgName"];//所在机构
-	 				}
-	 				if(myData["address"]){
-	 					oproadress.innerHTML = ' | '+myData["address"];//所在地
-	 				}
+	 				
+	 				
 	 				var starLevel = myData['starLevel'];
 	 				if(myData["consultCount"]) {
 	 					oconsultcount.innerHTML =  myData["consultCount"];//咨询次数
@@ -144,7 +166,30 @@
  			}
  		});
  	}
+	/*职位职称所在机构，部门，地址等等*/
+function personalInformation($person) {
+	var arr1 = [$person.title, $person.office, $person.department, $person.orgName, $person.address];
+	var arr = new Array();
+	var arr2 = new Array();
+	var n = 0;
+	for(var i = 0; i < arr1.length; i++) {
+		if(arr1[i]) {
+			arr.push(arr1[i]);
+			if(arr1[i] == arr1[arr1.length - 1]) {
+				n = 1;
+			}
+		}
+	}
+	if(n == 1) {
+		for(var i = 0; i < arr.length - 1; i++) {
+			arr2.push(arr[i]);
+		}
+		return arr2.join() + " | " + arr[arr.length - 1];
+	} else {
+		return arr.join();
+	}
 
+}
  	/*咨询申请字数限制*/
 	function checkLen(obj) {  
 		var maxChars = 300;//最多字符数  

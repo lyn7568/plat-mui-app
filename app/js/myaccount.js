@@ -21,7 +21,7 @@ mui.ready(function() {
 	var oFlag1;
 	var professorName,scorePercent;
 	mui.plusReady(function() {
-
+		plus.navigator.setStatusBarBackground( "#3c3e51" );
 		var userId = plus.storage.getItem('userid');
 		console.log(userId);
 		

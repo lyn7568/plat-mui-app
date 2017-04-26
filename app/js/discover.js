@@ -101,7 +101,7 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 /*页面数据初始化*/
 getOnePase();
 
-var u = navigator.userAgent;
+/*var u = navigator.userAgent;
 var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 if(isAndroid) {
@@ -111,7 +111,7 @@ if(isAndroid) {
 			container: '#pullrefresh2',
 			down: {
 				callback: pulldownRefresh,
-				height:190
+				height:50
 			},
 			up: {
 				contentrefresh: '正在加载...',
@@ -136,7 +136,21 @@ if(isiOS) {
 			}
 		}
 	});
-}
+}*/
+
+mui.init({
+	pullRefresh: {
+		container: '#pullrefresh2',
+		down: {
+			callback: pulldownRefresh,
+			//height:50
+		},
+		up: {
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+		}
+	}
+});
 
 function pullupRefresh() {
 	pageIndex = ++pageIndex;

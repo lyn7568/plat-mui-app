@@ -33,11 +33,7 @@ mui.plusReady(function() {
 			}, false);
 
 		} else {
-			mui.openWindow({
-				url: '../html/login.html',
-				id: 'login.html'
-			})
-
+			goLoginFun();
 		}
 	}
 
@@ -441,18 +437,23 @@ mui.plusReady(function() {
 	ifCollection();
 
 	yesExpert.addEventListener('tap', function() {
+		var userid = plus.storage.getItem('userid');
 		var $this = this;
-		if(userid && userid != null && userid != "null") {
+		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
 			collectionExpert($this);
 		} else {
-			//			plus.nativeUI.toast("请先登录");
-			isLogin();
+			goLoginFun();
 		}
 	});
 
 	noExpert.addEventListener('tap', function() {
+		var userid = plus.storage.getItem('userid');
 		var $this = this;
-		cancelCollectionExpert($this);
+		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
+			cancelCollectionExpert($this);
+		} else {
+			goLoginFun();
+		}
 	});
 
 	/*判断是非收藏专家*/

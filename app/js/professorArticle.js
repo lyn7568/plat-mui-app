@@ -210,16 +210,19 @@ mui.plusReady(function() {
 			beforeSend: function() {},
 			success: function(data, textState) {
 				if(data.success) {
+					diFlag=1;
 					console.log(JSON.stringify(data));
-					var oNumber=document.getElementById("thumbsUp").getElementsByTagName("span")[0];
+					var oNumber=document.getElementById("numerCount");
 					if(oThumsflag==0){
-						document.getElementById("appreciate").style.display="none";
-						document.getElementById("appreciatefill").style.display="block";
+						document.getElementById("appreciate").classList.remove("icon-appreciate");
+						document.getElementById("appreciate").classList.add("icon-appreciatefill");
+						document.getElementById("thumbsUp").style.color="#ff9900";
 						oNumber.innerHTML=Number(oNumber.innerHTML)+1;
 						document.getElementById("thumbsUp").setAttribute("oThumsflag","1");
 					}else if(oThumsflag==1){
-						document.getElementById("appreciate").style.display="block";
-						document.getElementById("appreciatefill").style.display="none";
+						document.getElementById("appreciate").classList.add("icon-appreciate");
+						document.getElementById("appreciate").classList.remove("icon-appreciatefill");
+						document.getElementById("thumbsUp").style.color="#929292";
 						oNumber.innerHTML=Number(oNumber.innerHTML)-1;
 						document.getElementById("thumbsUp").setAttribute("oThumsflag","0");
 					}
@@ -231,9 +234,9 @@ mui.plusReady(function() {
 			}
 		})
 	}
-		document.getElementById("thumbsUp").addEventListener("tap", function() {
+	document.getElementById("thumbsUp").addEventListener("tap", function() {
 	var userid = plus.storage.getItem('userid');
-	var oUrl;
+	var oUrl,diFlag=1;
 	oThumsflag = this.getAttribute("oThumsflag");
 	console.log(oThumsflag)
 	if(!userid) {
@@ -247,6 +250,11 @@ mui.plusReady(function() {
 				flag: 1
 			}
 		});
+		return;
+	}
+	if(diFlag==1){
+		diFlag=0;
+	}else{
 		return;
 	}
 	(oThumsflag == 0) ? oUrl = "/ajax/article/agree": oUrl = "/ajax/article/unAgree";
@@ -271,13 +279,15 @@ mui.plusReady(function() {
 				success: function(data) {oThumsflag="1"
 					if(data.success) {
 						if(data.data==null){
-						document.getElementById("appreciate").style.display="block";
-						document.getElementById("appreciatefill").style.display="none";
-						document.getElementById("thumbsUp").setAttribute("oThumsflag","0");
+							document.getElementById("appreciate").classList.add("icon-appreciate");
+							document.getElementById("appreciate").classList.remove("icon-appreciatefill");
+							document.getElementById("thumbsUp").style.color="#929292";
+							document.getElementById("thumbsUp").setAttribute("oThumsflag","0");
 						}else{
-						document.getElementById("appreciate").style.display="none";
-						document.getElementById("appreciatefill").style.display="block";
-						document.getElementById("thumbsUp").setAttribute("oThumsflag","1");
+						document.getElementById("appreciate").classList.remove("icon-appreciate");
+							document.getElementById("appreciate").classList.add("icon-appreciatefill");
+							document.getElementById("thumbsUp").style.color="#ff9900";
+							document.getElementById("thumbsUp").setAttribute("oThumsflag","1");
 						}
 					}
 				},
@@ -306,8 +316,9 @@ mui.plusReady(function() {
 					if(data.success) {
 						plus.nativeUI.toast("收藏成功", toastStyle);
 						document.getElementById("collect").setAttribute("collectFlag","1");
-						document.getElementById("yesExpert").style.display="none";
-						document.getElementById("noExpert").style.display="block";
+						document.getElementById("collect").style.color="#F6DC00";
+						document.getElementById("yesExpert").classList.remove("icon-favor");
+						document.getElementById("yesExpert").classList.add("icon-favorfill");
 					}
 				},
 				error: function(XMLHttpRequest, textStats, errorThrown) {
@@ -326,8 +337,9 @@ mui.plusReady(function() {
 						if(data.success) {
 							plus.nativeUI.toast("已取消收藏", toastStyle);
 							document.getElementById("collect").setAttribute("collectFlag","0");
-							document.getElementById("yesExpert").style.display="block";
-							document.getElementById("noExpert").style.display="none";
+							document.getElementById("collect").style.color="#929292";
+							document.getElementById("yesExpert").classList.add("icon-favor");
+						    document.getElementById("yesExpert").classList.remove("icon-favorfill");
 						} 
 					}
 				},
@@ -375,12 +387,14 @@ mui.plusReady(function() {
 					if(data.success) {
 						if(data.data==null){
 							document.getElementById("collect").setAttribute("collectFlag","0");
-							document.getElementById("yesExpert").style.display="block";
-							document.getElementById("noExpert").style.display="none";
+							document.getElementById("collect").style.color="#929292";
+							document.getElementById("yesExpert").classList.add("icon-favor");
+							document.getElementById("yesExpert").classList.remove("icon-favorfill");
 						}else{
 						document.getElementById("collect").setAttribute("collectFlag","1");
-						document.getElementById("yesExpert").style.display="none";
-						document.getElementById("noExpert").style.display="block";
+						document.getElementById("collect").style.color="#F6DC00";
+						document.getElementById("yesExpert").classList.remove("icon-favor");
+						document.getElementById("yesExpert").classList.add("icon-favorfill");
 						}
 					}
 				},

@@ -210,7 +210,6 @@ mui.plusReady(function() {
 			beforeSend: function() {},
 			success: function(data, textState) {
 				if(data.success) {
-					diFlag=1;
 					console.log(JSON.stringify(data));
 					var oNumber=document.getElementById("numerCount");
 					if(oThumsflag==0){
@@ -236,7 +235,7 @@ mui.plusReady(function() {
 	}
 	document.getElementById("thumbsUp").addEventListener("tap", function() {
 	var userid = plus.storage.getItem('userid');
-	var oUrl,diFlag=1;
+	var oUrl;
 	oThumsflag = this.getAttribute("oThumsflag");
 	console.log(oThumsflag)
 	if(!userid) {
@@ -250,11 +249,6 @@ mui.plusReady(function() {
 				flag: 1
 			}
 		});
-		return;
-	}
-	if(diFlag==1){
-		diFlag=0;
-	}else{
 		return;
 	}
 	(oThumsflag == 0) ? oUrl = "/ajax/article/agree": oUrl = "/ajax/article/unAgree";

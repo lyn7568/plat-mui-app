@@ -140,7 +140,7 @@ mui.ready(function() {
 					if(data.success && data.data) {
 						var $info = data.data || {};
 						professorName = $info.name;
-						professortitle = $info.title;
+						professortitle = $info.title|| "";
 						professorid = $info.id;
 						document.getElementById("userName2").innerText = $info.name;
 						document.getElementById("orgName2").innerText = $info.orgName;

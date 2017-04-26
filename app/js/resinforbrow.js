@@ -181,7 +181,7 @@ mui.plusReady(function() {
 					var $info = data.data || {}
 
 					if(data.success && data.data) {
-						if($info.authType||$info.authentication == 1) {
+						if($info.authType==1){
 							mui.openWindow({
 								url: '../html/proinforbrow.html',
 								id: 'html/proinforbrow.html',
@@ -193,7 +193,20 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
-						} else if(!$info.authType&&$info.authentication == 2) {
+						}else{
+						if($info.authentication == 1) {
+							mui.openWindow({
+								url: '../html/researcherProw.html',
+								id: 'researcherProw.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: professorId
+								},
+							});
+						} else if($info.authentication == 2 ||$info.authentication == 0) {
 							mui.openWindow({
 								url: '../html/companybrowse.html',
 								id: 'html/companybrowse.html',
@@ -205,7 +218,7 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
-						} else if(!$info.authType&&$info.authentication == 3) {
+						} else if($info.authentication == 3) {
 							mui.openWindow({
 								url: '../html/studentbrowse.html',
 								id: 'html/studentbrowse.html',
@@ -217,6 +230,7 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
+						}
 						}
 
 					}
@@ -251,7 +265,11 @@ mui.plusReady(function() {
 			}, false);
 
 		} else {
-			goLoginFun();
+			mui.openWindow({
+				url: '../html/login.html',
+				id: 'login.html'
+			})
+
 		}
 	};
 	oconsult.addEventListener('tap', function() {
@@ -266,23 +284,18 @@ mui.plusReady(function() {
 	ifCollection();
 
 	yesExpert.addEventListener('tap', function() {
-		var userid = plus.storage.getItem('userid');
 		var $this = this;
-		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
+		if(userid && userid != null && userid != "null") {
 			collectionExpert($this);
 		} else {
-			goLoginFun();
+			//			plus.nativeUI.toast("请先登录");
+			isLogin();
 		}
 	});
 
 	noExpert.addEventListener('tap', function() {
-		var userid = plus.storage.getItem('userid');
 		var $this = this;
-		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
-			cancelCollectionExpert($this);
-		} else {
-			goLoginFun();
-		}
+		cancelCollectionExpert($this);
 	});
 
 	/*判断是否收藏资源*/

@@ -36,7 +36,7 @@ mui.plusReady(function() {
 				plus.webview.create("../html/researcherProw.html", 'researcherProw.html', {}, {
 					proid: professId
 				});
-			} else if(authentication == 2) {
+			} else if(authentication == 2||authentication == 0) {
 				plus.webview.create("../html/companybrowse.html", 'companybrowse.html', {}, {
 					proid: professId
 				});

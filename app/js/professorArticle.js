@@ -245,7 +245,7 @@ mui.plusReady(function() {
 			show: {
 				aniShow: "slide-in-bottom"
 			},
-			extra: {
+			extras: {
 				flag: 1
 			}
 		});
@@ -270,7 +270,7 @@ mui.plusReady(function() {
 					"operateId": userid,
 					"articleId": proId
 				},
-				success: function(data) {oThumsflag="1"
+				success: function(data) {
 					if(data.success) {
 						if(data.data==null){
 							document.getElementById("appreciate").classList.add("icon-appreciate");
@@ -344,7 +344,7 @@ mui.plusReady(function() {
 			});
 		}
 	}
-		document.getElementById("collect").addEventListener("click", function() {
+		document.getElementById("collect").addEventListener("tap", function() {
 	var userid = plus.storage.getItem('userid');
 	oCollectFlag = this.getAttribute("collectFlag");
 	if(!userid) {

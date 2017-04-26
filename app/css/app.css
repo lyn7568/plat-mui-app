@@ -151,7 +151,7 @@ div.textareaboxEmp:focus{content:none;}
 
 /*/////////认证身份标识///////////*/
 /*认证标识相关*/
-.authicon{position:absolute; bottom:3px;display: inline-block;width:16px;height:16px;margin-left:4px;background-position: center;background-repeat: no-repeat;}
+.authicon{position:absolute; bottom:2px;display: inline-block;width:16px;height:16px;margin-left:4px;background-position: center;background-repeat: no-repeat;}
 .authicon-pro{background-image:url(../images/porfile_icon_zhuanjia_nor.png);background-size: cover;}/*科袖认证专家*/
 .authicon-com-ok{background-image:url(../images/porfile_icon_qiye_hig.png);background-size: cover;}/*认证企业*/
 .authicon-com-no{background-image:url(../images/porfile_icon_qiye_nor.png);background-size: cover;}/*未认证企业*/
@@ -884,7 +884,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .loginStatus .userInfo .exitSpan{display: inline-block;width:18px;height:18px;position: absolute;top:50%;margin-top:-9px;right:10px;background: url(../images/me_button_xiugai_nor@3x.png) 0 0 no-repeat;background-size: auto 100%;}
 .loginStatus .userInfo .h1Font{font-size:16px;line-height:30px;color:#FFFFFF;}
 .loginStatus .userInfo .h2Font{font-size:13px;line-height:20px;color:#FFFFFF;}
-.loginStatus .userInfo .authicon{bottom:8px;}
+.loginStatus .userInfo .authicon{bottom:7px;}
 .commonBtn{position: absolute;width: 94%;height: 80px;bottom: -40px;left: 3%;background: #FFFFFF;
     display: -webkit-box;
     display: -webkit-flex;

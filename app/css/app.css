@@ -49,6 +49,7 @@ body,.mui-content{background:#f4f6f8;}
 /*无点击效果*/
 .mui-table-view .mui-table-view-cell.NoActive>a:not(.mui-btn).mui-active{background:none;}
 .mui-table-view .mui-table-view-cell.NoActive.mui-active{background:none;}
+.mui-table-view.noactiveTab .mui-table-view-cell.mui-active{background:none;}
 /*图片轮播按钮圆点*/
 .mui-slider-indicator .mui-indicator{ background: rgba(130,130,130,.4);-webkit-box-shadow:none;box-shadow: none;}
 .mui-slider-indicator .mui-active.mui-indicator{background: rgba(256, 256, 256, 0.6);}
@@ -809,7 +810,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .userInfo .h2Font{font-size:14px;line-height:24px;color:#999999;}
 .userInfo .h3Font{font-size:13px;line-height:22px;color:#666666;}
 
-.maintitboxNow{padding:15px 0;border-bottom: 1px solid #E5E5E5;}
+.maintitboxNow{padding:15px 0;/*border-bottom: 1px solid #E5E5E5;*/}
 .maintitNow{width: 100%;}
 .maincontent .mui-table-view .mui-table-view-cell:after{left:16px;}
 .maincontent .mui-table-view .mui-table-view-cell{padding:12px 15px;}
@@ -821,7 +822,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 /*-------------提示框---------------*/
 .maskBg{position: fixed; left:0; top:0; height: 100%;width:100%; background:url(../images/me_bg_img_tanchu_nor@3x.png);background-size: cover;}
 /*邀请好友提示*/
-.promptBlock{text-align:center;width: 84%;height:auto;padding:8% 4%;position:fixed;left:50%;margin-left:-42%;top:50%;margin-top:-180px;background: #FFFFFF;border-radius:6px;
+.promptBlock{text-align:center;width: 84%;height:auto;padding:8% 4%;position:fixed;left:50%;margin-left:-42%;top:50%;margin-top:-188px;background: #FFFFFF;border-radius:6px;
 			z-index: 999;display: none;
  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .3);
        box-shadow: 0 0 15px rgba(0, 0, 0, .3);}
@@ -837,7 +838,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .signInBlock .signInImg{width:80%;position:absolute;margin-top:-20%;left:50%;margin-left:-40%;}
 /*分享名片*/
 .promptBlock.shareCardBlock{margin-top:-242px;}
-.shareCardBlock .userImg{position:absolute;top:-6px;left:50%; margin-left:-33px;width: 66px;height: 66px;border: 3px solid #FFFFFF;}
+.shareCardBlock .userImg{position:absolute;top:-15px;left:50%; margin-left:-40px;width: 80px;height: 80px;border: 3px solid #FFFFFF;}
 .shareCardBlock .h1Font{font-size:16px;margin:0; line-height: 32px;}
 .shareCardBlock .userBasic p{margin-bottom: 0;}
 .shareCardBlock .userBasic{padding: 10px 20px 0;}
@@ -864,7 +865,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .maincontent .flexCenter.rewardWhy{min-height: 50px;}
 .rewardCount{position: absolute;right:15px; top:50%;margin-top:-10px;font-size:16px;color:#ff9900;}
 /*积分规则*/
-.maincontent .mui-table-view.rewardRule .mui-table-view-cell:after{left:0}
+.maincontent .mui-table-view.rewardRule .mui-table-view-cell:after{left:16px}
 .rewardRule .userImg{top:0;margin-top:0}
 .rewardRule .userInfo{margin-top:3px;}
 .rewardRule .rewardCount{right: 0;color:#333;font-size:15px;}

@@ -821,7 +821,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 /*-------------提示框---------------*/
 .maskBg{position: fixed; left:0; top:0; height: 100%;width:100%; background:url(../images/me_bg_img_tanchu_nor@3x.png);background-size: cover;}
 /*邀请好友提示*/
-.promptBlock{text-align:center;width: 84%;height:auto;padding:8% 4%;position:fixed;left:50%;margin-left:-42%;top:50%;margin-top:-242px;background: #FFFFFF;border-radius:6px;
+.promptBlock{text-align:center;width: 84%;height:auto;padding:8% 4%;position:fixed;left:50%;margin-left:-42%;top:50%;margin-top:-180px;background: #FFFFFF;border-radius:6px;
 			z-index: 999;display: none;
  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .3);
        box-shadow: 0 0 15px rgba(0, 0, 0, .3);}
@@ -836,7 +836,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .signInBlock .qiaodao p{color:#333333;line-height:30px;font-size:14px;}
 .signInBlock .signInImg{width:80%;position:absolute;margin-top:-20%;left:50%;margin-left:-40%;}
 /*分享名片*/
-.promptBlock.shareCardBlock{}
+.promptBlock.shareCardBlock{margin-top:-242px;}
 .shareCardBlock .userImg{position:absolute;top:-6px;left:50%; margin-left:-33px;width: 66px;height: 66px;border: 3px solid #FFFFFF;}
 .shareCardBlock .h1Font{font-size:16px;margin:0; line-height: 32px;}
 .shareCardBlock .userBasic p{margin-bottom: 0;}

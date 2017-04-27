@@ -227,16 +227,12 @@ mui.ready(function() {
 		person.frinedInviteFriends();
 		var inviteBtnLink = document.getElementById("inviteBtnLink");
 		var inviteShow = document.getElementById("inviteShow");
-		var promptClose = document.getElementsByClassName("promptClose");
 		var promptBtn = document.getElementsByClassName("promptBtn");
 		inviteBtnLink.addEventListener("tap", function() {
 			inviteShow.setAttribute("style", "display:block");
 			model.show(); //显示遮罩
 		})
 		promptBtn[0].addEventListener("tap", function() {
-			model.close(); //关闭遮罩
-		})
-		promptClose[0].addEventListener("tap", function() {
 			model.close(); //关闭遮罩
 		})
 		var invite = document.getElementById("invite");

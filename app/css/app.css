@@ -860,7 +860,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .rewardCNum li.nowClass span{ color:#ff9900;}
 .rewardCNum .h1Font{font-size:16px;line-height:32px;color:#000000}
 .rewardWhy{padding-right:40px;}
-.maincontent .mui-table-view.myreward .mui-table-view-cell{padding:8px 15px;}
+.maincontent .mui-table-view.myreward .mui-table-view-cell{padding:8px 15px;background: #FFFFFF;}
 .maincontent .mui-table-view.myreward .mui-table-view-cell.mui-active{background: none;}
 .maincontent .flexCenter.rewardWhy{min-height: 50px;}
 .rewardCount{position: absolute;right:15px; top:50%;margin-top:-10px;font-size:16px;color:#ff9900;}

@@ -40,7 +40,7 @@ var person = {
 				success: function(data) {
 					if(data.success) {
 						var $info = data.data;
-						document.getElementById("inviteFraction").innerHTML = $info.inviteScore + $info.myScore + "分";
+						document.getElementById("inviteFraction").innerHTML = $info.inviteScore + "分";
 					}
 				},
 				error: function() {
@@ -163,6 +163,9 @@ var person = {
 									}
 									($info.hasHeadImage == 1) ? img = baseUrl + "/images/head/" + $info.id + "_l.jpg": img = "../images/default-photo.jpg";
 									var li = document.createElement("li");
+									li.setAttribute("id",$info.id);
+									li.setAttribute("authType",$info.authType);
+									li.setAttribute("authentication",$info.authentication);
 									li.className = "mui-table-view-cell";
 									var oString = '<div class="flexCenter">'
 									oString += '<div class="userImg userRadius">';
@@ -234,6 +237,64 @@ mui.ready(function() {
 		})
 		promptBtn[0].addEventListener("tap", function() {
 			model.close(); //关闭遮罩
+		})
+		/*点击进入浏览页面*/
+		mui("#friendsList").on("tap","li",function(){
+			var oProfessorId=this.getAttribute("id");
+			var  oAuthType=this.getAttribute("authType");
+			var oAuthentication=this.getAttribute("authentication");
+			if(oAuthType==1) {
+						mui.openWindow({
+								url: '../html/proinforbrow.html',
+								id: 'proinforbrow.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: oProfessorId
+								},
+							});
+			
+			}else {
+				if(oAuthentication==1){
+					mui.openWindow({
+								url: '../html/researcherProw.html',
+								id: 'researcherProw.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: oProfessorId
+								},
+							});
+				}else if(oAuthentication==2||oAuthentication==0){
+					mui.openWindow({
+								url: '../html/companybrowse.html',
+								id: 'html/companybrowse.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: oProfessorId
+								},
+							});
+				}else if(oAuthentication==3) {
+					mui.openWindow({
+								url: '../html/studentbrowse.html',
+								id: 'html/studentbrowse.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: oProfessorId
+								},
+							});
+				}
+			}
 		})
 		var invite = document.getElementById("invite");
 		/*微信及微信朋友圈分享专家*/

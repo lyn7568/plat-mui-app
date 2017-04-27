@@ -397,9 +397,36 @@ mui.plusReady(function() {
 				}
 			})
 		}
+		/*文章留言总数*/
+		function leaveWord(){
+			mui.ajax(baseUrl + "/ajax/leaveWord/lwCount", {
+				type: "GET",
+				timeout: 10000,
+				dataType: "json",
+				data: {
+					"articleId": proId,
+				},
+				success: function(data) {
+					if(data.success) {
+						document.getElementById('leaveWord').innerHTML="留言"+"("+data.data+")";
+					}
+				},
+				error: function(XMLHttpRequest, textStats, errorThrown) {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			})
+		}
+		leaveWord();
 		window.addEventListener("newId", function(event) {
+			var fl = event.detail.rd;
+			if(fl==1){
+				leaveWord();
+			}else{
 			attentionArticle();
 			isAgreeArticle();
+			}
+			
 		})
 		/*微信及微信朋友圈分享专家*/
 	var auths, shares;

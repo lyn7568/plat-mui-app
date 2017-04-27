@@ -87,6 +87,10 @@ mui.plusReady(function() {
 					document.getElementsByTagName("textarea")[0].value = "";
 					document.getElementById("msg-type").classList.remove("addColor");
 					proInfoMain();
+					var web = plus.webview.getWebviewById("professorArticle.html");
+							mui.fire(web, "newId", {
+								rd: 1
+							});
 				}
 			},
 			error: function() {
@@ -109,6 +113,10 @@ mui.plusReady(function() {
 			success: function(data) {
 				if(data.success) {
 					document.getElementsByClassName(" protable")[0].removeChild(oRemo.parentNode.parentNode.parentNode.parentNode);
+					var web = plus.webview.getWebviewById("professorArticle.html");
+							mui.fire(web, "newId", {
+								rd: 1
+							});
 				}
 			},
 			error: function() {

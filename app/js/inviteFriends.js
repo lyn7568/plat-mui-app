@@ -157,9 +157,9 @@ var person = {
 									var img;
 									var inviNum
 									if($data == 0) {
-										inviNum = "他还没有邀请好友！"
+										inviNum = "他还没有邀请好友。"
 									} else {
-										inviNum = "他邀请了 <span>" + $data + "</span> 位好友，为您带来了 <span>" + $data * 50 + "</span> 分积分奖励！"
+										inviNum = "他邀请了 <span>" + $data + "</span> 位好友，为您带来了 <span>" + $data * 50 + "</span> 奖励积分。"
 									}
 									($info.hasHeadImage == 1) ? img = baseUrl + "/images/head/" + $info.id + "_l.jpg": img = "../images/default-photo.jpg";
 									var li = document.createElement("li");

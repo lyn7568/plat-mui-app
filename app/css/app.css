@@ -822,7 +822,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 /*-------------提示框---------------*/
 .maskBg{position: fixed; left:0; top:0; height: 100%;width:100%; background:url(../images/me_bg_img_tanchu_nor@3x.png);background-size: cover;}
 /*邀请好友提示*/
-.promptBlock{text-align:center;width: 84%;height:auto;padding:8% 4%;position:fixed;left:50%;margin-left:-42%;top:50%;margin-top:-188px;background: #FFFFFF;border-radius:6px;
+.promptBlock{text-align:center;width: 84%;height:auto;padding:8% 4%;position:fixed;left:50%;margin-left:-42%;top:50%;margin-top:-240px;background: #FFFFFF;border-radius:6px;
 			z-index: 999;display: none;
  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .3);
        box-shadow: 0 0 15px rgba(0, 0, 0, .3);}

@@ -343,7 +343,7 @@ mui.plusReady(function() {
 					noExpert.style.display = "block";
 					//resourceId = data.data;
 					//console.log(resourceId)
-					plus.nativeUI.toast("资源关注成功", toastStyle);
+					plus.nativeUI.toast("收藏成功", toastStyle);
 				}
 			},
 			error: function() {
@@ -371,7 +371,7 @@ mui.plusReady(function() {
 				if(data.success) {
 					$this.style.display = "none";
 					yesExpert.style.display = "block";
-					plus.nativeUI.toast("取消关注资源", toastStyle);
+					plus.nativeUI.toast("已取消收藏", toastStyle);
 				}
 			},
 			error: function(data) {

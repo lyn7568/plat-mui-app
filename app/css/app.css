@@ -348,6 +348,8 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .maincon .infoapply li{position: relative; padding-left:9px;padding-right:2px; width: 50%; float: left;}
 .maincon .infoapply li:before{content:''; background: #AAAAAA;display: block;width: 4px;height: 4px;border-radius: 50%; position: absolute;top:8px;left:0;}
 .maincon .infoapply.infoapplyW li{width: 100%;}
+.resouinfobox .infoapply li{position: relative;list-style: none; padding-left:9px;padding-right:2px; width: 50%; float: left;}
+.resouinfobox .infoapply li:before{content:''; background: #AAAAAA;display: block;width: 4px;height: 4px;border-radius: 50%; position: absolute;top:8px;left:0;}
 
 .gotonext{ width:140px; margin: auto; font-size: 14px; color: #FF9900; overflow: hidden;}
 .gotonext2{ width: 110px;}

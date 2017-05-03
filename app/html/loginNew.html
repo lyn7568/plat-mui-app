@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">登录</h1>
+		    <span class="mui-pull-right topsave" id='reg'>注册</span>
+		</header>
+		<div class="mui-content">
+		    <form class="mui-input-group frmboxNew">
+		        <div class="mui-input-row frm-input">
+		            <input type="text" class="mui-input-clear frmtype" placeholder="请输入账号" id="username">
+		        </div>
+		        <div class="mui-input-row frm-input">
+					<input id='password' type="password" class="frmtype" placeholder="请输入密码">
+				</div>
+		    </form>
+		    
+		    <div class="mui-content-padded frmboxNew">
+				<button id='login' class="mui-btn mui-btn-block frmbtn frmactive2">登&nbsp;录</button>
+				<p class="otherWordNew">
+					<span class="mui-pull-left">短信登录</span>
+					<span id='forgetPassword' class="mui-pull-right">忘记密码?</span>
+				</p>
+			</div>
+			
+			<div class="quickbox">
+				<span class="borderword">直接登录</span>
+				<div class="quickway">
+					<span class="mui-icon mui-icon-weixin quickicon weixinicon" id="weixin"></span>
+					<span class="mui-icon mui-icon-qq quickicon qqicon"></span>	
+				</div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/login.js"></script>
+		<script type="text/javascript">
+			var auths;
+			mui.plusReady(function() {   
+	            plus.oauth.getServices(function(services) { 
+	                auths = services; 
+	            }, function(e) { 
+	                alert("获取登录服务列表失败：" + e.message + " - " + e.code); 
+	            }); 
+	        }) 
+	        
+	        function authLogin(type) { 
+	            var s; 
+	            for (var i = 0; i < auths.length; i++) { 
+	                if (auths[i].id == type) { 
+	                    s = auths[i]; 
+	                    break; 
+	                } 
+	            } 
+	            if (!s.authResult) { 
+	                s.login(function(e) { 
+	                    mui.toast("登录认证成功！"); 
+	                    authUserInfo(type); 
+	                }, function(e) { 
+	                    mui.toast("登录认证失败！"); 
+	                }); 
+	            } else { 
+	                mui.toast("已经登录认证！"); 
+	            } 
+	        } 
+			
+			// 微信登录认证信息 
+	        function authUserInfo(type) { 
+	            var s; 
+	            for (var i = 0; i < auths.length; i++) { 
+	                if (auths[i].id == type) { 
+	                    s = auths[i]; 
+	                    break; 
+	                } 
+	            } 
+	            if (!s.authResult) { 
+	                mui.toast("未授权登录！"); 
+	            } else { 
+	                s.getUserInfo(function(e) { 
+	                    var josnStr = JSON.stringify(s.userInfo); 
+	                    var jsonObj = s.userInfo; 
+	                    console.log("获取用户信息成功：" + josnStr); 
+	                    //showData(type,jsonObj); 
+	                    authLogout(); 
+	                }, function(e) { 
+	                    alert("获取用户信息失败：" + e.message + " - " + e.code); 
+	                }); 
+	            } 
+	        } 
+
+
+		 //注销 
+        function authLogout() { 
+            for (var i in auths) { 
+                var s = auths[i]; 
+                if (s.authResult) { 
+                    s.logout(function(e) { 
+                        console.log("注销登录认证成功！"); 
+                    }, function(e) { 
+                        console.log("注销登录认证失败！"); 
+                    }); 
+                } 
+            } 
+        } 
+
+		</script>
+	</body>
+
+</html>

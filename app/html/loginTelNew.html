@@ -18,7 +18,7 @@
 		<div class="mui-content">
 		    <form class="mui-input-group frmboxNew">
 		        <div class="mui-input-row frm-input">
-		            <input type="tel" class="mui-input-clear frmtype" placeholder="请输入手机号">
+		            <input type="tel" class="mui-input-clear frmtype" placeholder="请输入手机号码">
 		        </div>
 		        <div class="mui-input-row mui-row frm-input">
 		        	<div class="mui-col-xs-8">
@@ -31,13 +31,19 @@
 		    </form>
 		    
 		    <div class="mui-content-padded frmboxNew">
-				<button id='login' class="mui-btn mui-btn-block frmbtn frmactive2">登&nbsp;录</button>
+				<button id='login' class="mui-btn mui-btn-block frmbtn frmactive" disabled>登&nbsp;录</button>
 				<p class="otherWordNew">
 					<span class="mui-pull-left">帐号登录</span>
 					<span id='forgetPassword' class="mui-pull-right">忘记密码?</span>
 				</p>
 			</div>
-			
+			<!--第三方登录-->
+			<div class="quickbox">
+				<div class="quicktit"><span class="borderword">其他登录方式</span></div>
+				<ul class="quickway">
+					<li id="weixin"><img src="../images/me_icon_weixin_nor@3x.png" /><p>微信</p></li>
+				</ul>
+			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>

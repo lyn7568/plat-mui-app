@@ -6,6 +6,7 @@ mui.ready(function() {
 	var userCode = document.getElementById("userCode");
 	var nextPage = document.getElementById("nextPage");
 	var obtainCode = document.getElementById("obtain-code");
+	var gopaer = document.getElementById("gopaer");
 	var phoneCode = false;
 	var state = "";
 	var num;
@@ -13,7 +14,7 @@ mui.ready(function() {
 	mui.plusReady(function(){
 		
 		/*校验提交按钮显示状态*/
-		mui('.frmbox').on('keyup', "#userPhone,#userCode", function() {
+		mui('.frmboxNew').on('keyup', "#userPhone,#userCode", function() {
 			hideButtn(userPhone,userCode,nextPage,"frmactiveok");
 		});
 		
@@ -25,6 +26,11 @@ mui.ready(function() {
 		/*点击获取验证码*/
 		obtainCode.addEventListener('tap', function() {
 			phoneVal();
+		})
+		
+		/*点击又想起来了*/
+		gopaer.addEventListener('tap', function() {
+			mui.back();
 		})
 		
 		/*校验手机号*/
@@ -43,7 +49,7 @@ mui.ready(function() {
 			mui.ajax(baseUrl + '/ajax/isReg?key=' + userPhone.value, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
-				async: false,
+				//async: false,
 				success: function(data) {
 					console.log(data.data);
 					if(data.data == false) {
@@ -52,7 +58,7 @@ mui.ready(function() {
 							sendAuthentication();
 						}
 					} else {
-						plus.nativeUI.toast("该手机号码未注册账户，请先注册", toastStyle);
+						plus.nativeUI.toast("该账号不存在，请检查后重试", toastStyle);
 						return;
 					}
 				},
@@ -70,8 +76,9 @@ mui.ready(function() {
 				},
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
-				async: false,
+				//async: false,
 				success: function(data) {
+					console.log(data)
 					if(data.success) {
 						state = data.data;
 						doClick();
@@ -90,18 +97,18 @@ mui.ready(function() {
 			var getCodeOff = document.getElementById("getcodeoff");
 			obtainCode.style.display = "none";
 			getCodeOff.style.display = "block";
-			getCodeOff.innerHTML = "30s后重新获取";
+			getCodeOff.value = "60s后重新获取";
 			var clickTime = new Date().getTime();
 			var Timer = setInterval(function() {
 				var nowTime = new Date().getTime();
-				var second = Math.ceil(30 - (nowTime - clickTime) / 1000);
+				var second = Math.ceil(60 - (nowTime - clickTime) / 1000);
 				if(second > 0) {
-					getCodeOff.innerHTML = second + "s后重新获取";
+					getCodeOff.value = second + "s后重新获取";
 				} else {
 					clearInterval(Timer);
 					obtainCode.style.display = "block";
 					getCodeOff.style.display = "none";
-					obtainCode.innerHTML = "获取验证码";
+					obtainCode.value = "获取验证码";
 				}
 			}, 1000);
 		}
@@ -132,13 +139,13 @@ mui.ready(function() {
 								}
 							});
 						}else{
-							plus.nativeUI.toast("验证码不正确", toastStyle);
+							plus.nativeUI.toast("验证码错误，请检查后重试", toastStyle);
 							return;
 						}
 					}else{
 						console.log(data.msg);
 					    if(data.msg=="验证超时"){
-							plus.nativeUI.toast("验证码超时", toastStyle);
+							plus.nativeUI.toast("验证码已过期，请重新获取", toastStyle);
 							return;
 						}else{
 							plus.nativeUI.toast("请填写正确的手机号,验证码", toastStyle);

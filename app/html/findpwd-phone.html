@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>找回密码</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
@@ -12,30 +12,34 @@
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">验证手机</h1>
+		    <h1 class="mui-title toptit">找回密码</h1>
 		</header>
 		<div class="mui-content">
-			<div class="setfindbox">
-			    <form class="mui-input-group frmbox" id="ddd">
-			        <div class="mui-input-row frm-input">
-			            <input type="tel" class="mui-input-clear frmtype" placeholder="请输入已验证的手机号" id="userPhone">
-			        </div>
-			        <div class="mui-input-row frm-input" id="frm-input">
-						<input type="number" class="mui-input-clear frmtype" placeholder="请输入验证码" id="userCode">
-						<a class="forgetword forgetword2" id="obtain-code">获取验证码</a>
-					    <a class="forgetword" id="getcodeoff" style="display:none;"></a>
+		    <form class="mui-input-group frmboxNew">
+		        <div class="mui-input-row frm-input">
+		            <input type="tel" class="mui-input-clear frmtype" placeholder="请输入手机号" id="userPhone">
+		        </div>
+		        <div class="mui-input-row mui-row frm-input">
+		        	<div class="mui-col-xs-8">
+		        		<input type="tel" class="frmtype" placeholder="请输入验证码" id="userCode">
+		        	</div>
+					<div class="mui-col-xs-4">
+						<input type="button" class="frmtype getCode" value="获取验证码" id="obtain-code">
+						<input type="button" class="frmtype getCode" value="" id="getcodeoff" style="display:none;">	
 					</div>
-			    </form>
-			    
-			    <div class="mui-content-padded frmbox" >
-					<button class="mui-btn mui-btn-block frmbtn frmactive2" id="nextPage" disabled="disabled">下一步</button>
-					<!--<span class="nextstep">通过邮箱找回密码<em></em></span>-->
 				</div>
+		    </form>
+		    
+		    <div class="mui-content-padded frmboxNew">
+				<button class="mui-btn mui-btn-block frmbtn frmactive2" id="nextPage" disabled >下一步</button>
+				<p class="otherWordNew">
+					<span class="mui-pull-left" id="gopaer">又想起来了</span>
+				</p>
 			</div>
+			
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/findpwd1.js"></script>
 	</body>
-
 </html>

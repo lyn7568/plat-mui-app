@@ -16,26 +16,22 @@
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">设置密码</h1>
+		    <h1 class="mui-title toptit">找回密码</h1>
 		</header>
 		<div class="mui-content">
-			<div class="setfindbox">
-			    <form class="mui-input-group frmbox">
-			    	<div class="mui-input-row frm-input passwordbox">
-						<input id='password' type="password" class="mui-input-clear frmtype frmtypel floatL" placeholder="请设置您的账号密码">
-						<!--<span id='forgetPassword' class="forgetword forgeticon floatL"></span>-->
-					</div>
-			        <div class="mui-input-row frm-input">
-			            <input id='password2' type="password" class="mui-input-clear frmtype" placeholder="请再次确认密码">
-			        </div>
-			    </form>
-			    <div class="mui-content-padded frmbox" style=" margin-bottom:24px;">
-			    	<span class="littip">密码由6-24个字符组成、区分大小写</span>
-			    </div>
-			    <div class="mui-content-padded frmbox">
-					<button class="mui-btn mui-btn-block frmbtn frmactive2" id="registerok">完&nbsp;成</button>
+		    <form class="mui-input-group frmboxNew">
+		        <div class="mui-input-row frm-input">
+					<input id='password' type="password" class="frmtype" placeholder="请设置您的账号密码">
 				</div>
+				<div class="mui-input-row frm-input">
+					<input type="password" id='password2' class="frmtype" placeholder="请再次确认密码">
+				</div>
+		    </form>
+		    
+		    <div class="mui-content-padded frmboxNew">
+				<button class="mui-btn mui-btn-block frmbtn frmactive2" disabled id="registerok">确定</button>
 			</div>
+			
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>

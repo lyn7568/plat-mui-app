@@ -185,6 +185,9 @@ div.textareaboxEmp:focus{content:none;}
 .frmbtn{margin:4% auto;font-size: 14px;line-height: 24px;padding: 1% 2%;border:1px solid #FF9900; border-radius: 6px; color:#FF9900 ;vertical-align: middle;}
 .frmbox{ border:none; width: 90%;height: 100%; } 
 /*未激活按钮状态*/
+.frmactive2{color:#f0f0f0;background-color:#d6d6d6; border:1px solid #d6d6d6;}
+.frmactive2.mui-btn.mui-active:active,.frmactive2.mui-btn:enabled:active{color:#f0f0f0;background-color:#d6d6d6; border:1px solid #d6d6d6;}
+
 .mui-btn:disabled, button:disabled,input.frmtype[type='button']:disabled{opacity:1;color:#f0f0f0;background-color:#d6d6d6; border:1px solid #d6d6d6;}
 .frmactive{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}
 .frmactiveok{color:#fff;background-color:#FF9900; border:1px solid #FF9900;}

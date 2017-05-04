@@ -2,25 +2,27 @@
 mui.ready(function() {
 	
 	/*定义全局变量*/
+	var name = document.getElementById("name");
 	var phoneName = document.getElementById("username");
 	var setCode = document.getElementById("set-code");
 	var obtainCode = document.getElementById("obtain-code");
+	var setpassword = document.getElementById("setpassword");
 	var reg = document.getElementById("reg");
-	var login = document.getElementById("login");
 	var protocollink = document.getElementById("protocollink");
 	var phoneCode = false;
 	var state = 0;
 	
 	mui.plusReady(function() {
 
-		/*点击登录页面*/
-		login.addEventListener('tap', function() {
-			goLoginFun();
-		})
-
 		/*校验提交按钮显示状态*/
-		mui('.frmbox').on('keyup', "#username,#set-code", function() {
-			hideButtn(phoneName,setCode,reg,"frmactiveok");
+		mui('.frmboxNew').on('keyup', "#name,#username,#set-code,#setpassword", function() {
+			if(name.value == "" || phoneName.value == "" || setCode.value == "" || setpassword.value == "") {
+				reg.classList.remove("frmactiveok");
+				reg.disabled = "disabled";
+			} else {
+				reg.classList.add("frmactiveok");
+				reg.disabled = "";
+			}
 		});
 
 		/*点击获取验证码*/
@@ -43,7 +45,21 @@ mui.ready(function() {
 				}
 			});
 		});
-	
+		
+		/*校验真实姓名和密码*/
+		function valOld() {
+			var nameval = /^\w{0,20}$/;
+			if(nameval.test(name.value)) {
+				plus.nativeUI.toast("姓名最长为10个汉字或20个英文字符", toastStyle);
+				return;
+			} else if(setpassword.value.length < 6){
+				plus.nativeUI.toast("密码由6-24个字符组成，区分大小写", toastStyle);
+				return;
+			}else{
+				completeReg();
+			}
+		}
+		
 		/*校验手机号*/
 		function phoneVal() {
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
@@ -63,7 +79,7 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.data == false) {
-						plus.nativeUI.toast("您的手机已被注册", toastStyle);
+						plus.nativeUI.toast("该账号已存在，请直接登录", toastStyle);
 						return;
 					} else {
 						phoneCode = true;
@@ -81,6 +97,7 @@ mui.ready(function() {
 
 		/*手机发送验证码*/
 		function sendAuthentication() {
+			console.log("send code")
 			mui.ajax(baseUrl + '/ajax/regmobilephone', {
 				data: {
 					mobilePhone: phoneName.value
@@ -90,6 +107,7 @@ mui.ready(function() {
 				async: false,
 				timeout: 10000, //超时设置
 				success: function(data) {
+					console.log(JSON.stringify(data))
 					if(data.success) {
 						state = data.data;
 						doClick();
@@ -107,18 +125,18 @@ mui.ready(function() {
 			var getCodeOff = document.getElementById("getcodeoff");
 			obtainCode.style.display = "none";
 			getCodeOff.style.display = "block";
-			getCodeOff.innerHTML = "30s后重新获取";
+			getCodeOff.value = "30s后重新获取";
 			var clickTime = new Date().getTime();
 			var Timer = setInterval(function() {
 				var nowTime = new Date().getTime();
 				var second = Math.ceil(30 - (nowTime - clickTime) / 1000);
 				if(second > 0) {
-					getCodeOff.innerHTML = second + "s后重新获取";
+					getCodeOff.value = second + "s后重新获取";
 				} else {
 					clearInterval(Timer);
 					obtainCode.style.display = "block";
 					getCodeOff.style.display = "none";
-					obtainCode.innerHTML = "获取验证码";
+					obtainCode.value = "获取验证码";
 				}
 			}, 1000);
 		}
@@ -138,23 +156,15 @@ mui.ready(function() {
 					console.log(data.success);
 					if(data.success) {
 						if(data.data) {
-							mui.openWindow({
-								url: 'setpass.html',
-								id: 'setpass.html',
-								extras: {
-									phoneName: phoneName.value,
-									setCode: setCode.value,
-									state: state
-								}
-							});
+							valOld();
 						}else{
-							plus.nativeUI.toast("验证码不正确", toastStyle);
+							plus.nativeUI.toast("验证码错误，请检查后重试", toastStyle);
 							return;
 						}
 					}else{
 						console.log(data.msg);
 						if(data.msg=="验证超时"){
-							plus.nativeUI.toast("验证码超时", toastStyle);
+							plus.nativeUI.toast("验证码已过期，请重新获取", toastStyle);
 							return;
 						}else{
 							plus.nativeUI.toast("请填写正确的手机号,验证码", toastStyle);
@@ -170,5 +180,41 @@ mui.ready(function() {
 			})
 		}
 
+		//注册提交
+		function completeReg() {
+			mui.ajax(baseUrl + '/ajax/mobileReg', {
+				data: {
+					state: state,
+					mobilePhone: phoneName.value,
+					validateCode: setCode.value,
+					password: setpassword.value,
+					name:name.value
+				},
+				dataType: 'json', //数据格式类型
+				type: 'post', //http请求类型
+				//async: false,
+				success: function(data) {
+					if(data.success) {
+						var userId = data.data;
+						plus.storage.setItem('userid', userId);
+						plus.nativeUI.toast("已完成注册，请填写个人信息", toastStyle);
+						mui.openWindow({
+							url: 'fillinfo.html',
+							id: 'fillinfo.html',
+							extras: {
+								userid: userId
+							},
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+				}
+			});
+		}
+		
 	});
 });

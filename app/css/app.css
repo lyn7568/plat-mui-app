@@ -979,6 +979,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .selectSortBox .mui-grid-view.mui-grid-9 .mui-table-view-cell{border-color:transparent;}
 .selectSortBox .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{margin-top:10px}
 .selectSortBox .mui-table-view.mui-grid-view .mui-table-view-cell.selectNow{background: #E5E5E5;}
+.selectSortBox .mui-table-view.mui-grid-view .mui-table-view-cell .iconfont{display:inline-block;position:absolute; bottom:36px;right:28px;color:#ff9900;}
 .selectSort{display: inline-block;width: 74px;height: 74px;background-repeat:no-repeat;background-position: center;background-size: cover;}
 .selectSort.sort-pro{background-image: url(../images/login_icon_keyan_nor@3x.png);}
 .selectSort.sort-mana{background-image: url(../images/login_icon_qiyegaoguan_nor@3x.png);}

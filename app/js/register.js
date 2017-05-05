@@ -125,11 +125,11 @@ mui.ready(function() {
 			var getCodeOff = document.getElementById("getcodeoff");
 			obtainCode.style.display = "none";
 			getCodeOff.style.display = "block";
-			getCodeOff.value = "30s后重新获取";
+			getCodeOff.value = "60s后重新获取";
 			var clickTime = new Date().getTime();
 			var Timer = setInterval(function() {
 				var nowTime = new Date().getTime();
-				var second = Math.ceil(30 - (nowTime - clickTime) / 1000);
+				var second = Math.ceil(60 - (nowTime - clickTime) / 1000);
 				if(second > 0) {
 					getCodeOff.value = second + "s后重新获取";
 				} else {

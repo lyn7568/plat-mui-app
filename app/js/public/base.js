@@ -2,7 +2,7 @@
 mui.init();
 //var baseUrl = "http://www.ekexiu.com",
 var baseUrl = "http://192.168.3.233:81",
-//var baseUrl = "http:192.168.3.8:80",    
+//var baseUrl = "http:192.168.3.85:80",    
 	toastStyle = {
 		'verticalAlign': 'top',
 	}
@@ -22,7 +22,7 @@ function goLoginFun() {
 		url: '../html/login.html',
 		id: '../html/login.html',
 		show: {
-			aniShow: "slide-in-bottom"
+			aniShow: "slide-in-right"
 		}
 	});
 }
@@ -33,7 +33,7 @@ function goRegFun() {
 		url: '../html/reg.html',
 		id: '../html/reg.html',
 		show: {
-			aniShow: "slide-in-bottom"
+			aniShow: "slide-in-right"
 		}
 	});
 }

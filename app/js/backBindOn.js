@@ -75,10 +75,7 @@ mui.plusReady(function() {
 					console.log(data.data)
 					if(data.data != "null" && data.data != null) {
 						var userId = data.data.id;
-						plus.storage.setItem('userid', userId);
-						alert(333)
 						buildingWeiChat(userId);
-						firstLogin();
 					} else {
 						plus.nativeUI.toast("帐号和密码不匹配，请检查后重试", toastStyle);
 						return;
@@ -105,10 +102,12 @@ mui.plusReady(function() {
 				success: function(data) {
 					console.log(JSON.stringify(data));
 					if(data.success) {
-						alert(444);
+						plus.storage.setItem('userid', id);
+						firstLogin();
 					}else{
 						if(data.code==2) {
-							
+							plus.nativeUI.toast("该账号已绑定微信号", toastStyle);
+							return;
 						}
 					}
 				},
@@ -130,7 +129,6 @@ mui.plusReady(function() {
 				success: function(data) {
 					console.log(JSON.stringify(data))
 					if(data.success) {
-						alert(555)
 						if(data.data.authentication < 0){
 							var productView = mui.preload({
 								url: '../html/fillinfo.html',

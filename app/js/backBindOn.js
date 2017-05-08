@@ -148,11 +148,21 @@ mui.plusReady(function() {
 							});
 							productView.show();
 						}else{
-								mui.back();
-					        var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
+							var curr = plus.webview.currentWebview();
+						var wvs = plus.webview.all();
+						for(var i = 0, len = wvs.length; i < len; i++) {
+							//关闭除setting页面外的其他页面
+							if(wvs[i].getURL() == curr.getURL())
+								continue;
+							plus.webview.close(wvs[i]);
+						}
+						//打开login页面后再关闭setting页面
+						plus.webview.open('../index.html');
+						curr.close();
+					      /*  var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
 							mui.fire(myaccountPage, 'closeUser', {
 								id: professorId
-							});
+							});*/
 						}
 					}
 				},

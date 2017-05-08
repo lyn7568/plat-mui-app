@@ -46,20 +46,30 @@ phone.addEventListener("keyup",function(){
 		}
 
 		/*校验用户名是否注册*/
-		function isReg() {
+		function isReg(arg) {
+			var oArg=arg;
 			mui.ajax(baseUrl + '/ajax/isReg?key=' + phone.value, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.data == false) {
-						plus.nativeUI.toast("该账号已存在，请直接登录", toastStyle);
+						if(oArg==1) {
+							plus.nativeUI.toast("该账号已存在", toastStyle);
+						}else{
+							plus.nativeUI.toast("该账号已存在，请直接登录", toastStyle);
+						}
 						return;
 					} else {
+						if(oArg==1){		
+							codeVal();
+						}else{							
 						phoneCode = true;
 						if(phoneCode){
 							sendAuthentication();
 						}
+						}
+						
 					}
 				},
 				error: function() {
@@ -130,7 +140,7 @@ phone.addEventListener("keyup",function(){
 					console.log(JSON.stringify(data));
 					if(data.success) {
 						if(data.data) {
-							valOld();
+							completeReg();
 						}else{
 							plus.nativeUI.toast("验证码错误，请检查后重试", toastStyle);
 							return;
@@ -153,21 +163,27 @@ phone.addEventListener("keyup",function(){
 				}
 			})
 		}
-		/*校验真实姓名和密码*/
-		function valOld() {
+		binding.addEventListener("tap",function(){
 			var nameval = /^\w{0,20}$/;
+			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
+			var oNum=/^\d{4}$/;
 			if(nameval.test(weiChatName.value)) {
 				plus.nativeUI.toast("姓名最长为10个汉字或20个英文字符", toastStyle);
 				return;
-			} else if(setpassword.value.length < 6){
+			} 
+			if(!hunPhone.test(phone.value)) {
+				plus.nativeUI.toast("请输入正确的手机号码", toastStyle);
+				return;
+			}
+			if(!oNum.test(oPhoneCode.value)) {
+				plus.nativeUI.toast("验证码为4位数字", toastStyle);
+				return;
+			}
+			if(setpassword.value.length < 6){
 				plus.nativeUI.toast("密码由6-24个字符组成，区分大小写", toastStyle);
 				return;
-			}else{
-				completeReg();
 			}
-		}
-		binding.addEventListener("tap",function(){
-			codeVal();
+			isReg(1);
 		});
 		//绑定提交
 		function completeReg() {

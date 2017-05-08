@@ -58,6 +58,7 @@ mui.plusReady(function() {
 	}
 
 	function weChat(weiChatId,weixinName) {
+		console.log(weiChatId);
 		mui.ajax(baseUrl + "/ajax/oauth/openidLogin", {
 			dataType: 'json', //数据格式类型
 			type: 'POST', //http请求类型
@@ -68,6 +69,7 @@ mui.plusReady(function() {
 			},
 			success: function(data) {
 				if(data.success) {
+					console.log(JSON.stringify(data));
 					if(data.data == null) {
 						mui.openWindow({
 							url: '../html/backBindUn.html',
@@ -81,6 +83,16 @@ mui.plusReady(function() {
 							 	openid:weiChatId
 							 }
 						});
+					}else{
+						plus.storage.setItem('userid', data.data.id);
+						console.log(data.data.id)
+						firstLogin();
+						var proAiticle =plus.webview.getWebviewById('professorArticle.html')
+							mui.fire(proAiticle, "newId");
+							var consultPage = plus.webview.getWebviewById('consultlist.html');
+						mui.fire(consultPage, 'logined', {
+							id: data.id
+						});	
 					}
 				}
 			},
@@ -91,4 +103,44 @@ mui.plusReady(function() {
 			}
 		});
 	}
+	/*判断用户第一次登录，是否填写了个人信息*/
+		function firstLogin() {
+			var professorId = plus.storage.getItem('userid');
+			mui.ajax(baseUrl + "/ajax/professor/" + professorId, {
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				async: false,
+				timeout: 10000, //超时设置
+				success: function(data) {
+					console.log(JSON.stringify(data))
+					console.log(data.data.authentication)
+					if(data.success) {
+						
+						if(data.data.authentication == undefined || data.data.authentication == null){
+							var productView = mui.preload({
+								url: '../html/fillinfo.html',
+								id: '../html/fillinfo.html',
+								show: {
+									aniShow: "slide-in-right"
+								},
+								extras: {
+									userid: professorId
+								}
+							});
+							productView.show();
+						}else{
+							 mui.back();
+					        var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
+							mui.fire(myaccountPage, 'closeUser', {
+								id: professorId
+							});
+						}
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
 })

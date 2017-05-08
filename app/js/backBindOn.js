@@ -40,7 +40,7 @@ mui.plusReady(function() {
 				success: function(data) {
 					console.log(data.data)
 					if(data.data == true) {
-						plus.nativeUI.toast("用户不存在请注册用户", toastStyle);
+						plus.nativeUI.toast("该账号不存在，请检查后重试", toastStyle);
 						return;
 					} else {
 						passwordVal()
@@ -55,7 +55,7 @@ mui.plusReady(function() {
 		/*校验登录密码*/
 		function passwordVal() {
 			if(oPassword.value.length < 6) {
-				plus.nativeUI.toast("密码不少于6位", toastStyle);
+				plus.nativeUI.toast("密码由6-24个字符组成，区分大小写", toastStyle);
 				return;
 			} else {
 				loginBut();
@@ -103,9 +103,15 @@ mui.plusReady(function() {
 					console.log(JSON.stringify(data));
 					if(data.success) {
 						plus.storage.setItem('userid', id);
+						var proAiticle =plus.webview.getWebviewById('professorArticle.html')
+							mui.fire(proAiticle, "newId");
+						var consultPage = plus.webview.getWebviewById('consultlist.html');
+						mui.fire(consultPage, 'logined', {
+							id: id
+						});	
 						firstLogin();
 					}else{
-						if(data.code==2) {
+						if(data.code==-2) {
 							plus.nativeUI.toast("该账号已绑定微信号", toastStyle);
 							return;
 						}
@@ -129,7 +135,7 @@ mui.plusReady(function() {
 				success: function(data) {
 					console.log(JSON.stringify(data))
 					if(data.success) {
-						if(data.data.authentication < 0){
+						if(data.data.authentication == undefined || data.data.authentication == null){
 							var productView = mui.preload({
 								url: '../html/fillinfo.html',
 								id: '../html/fillinfo.html',
@@ -142,7 +148,11 @@ mui.plusReady(function() {
 							});
 							productView.show();
 						}else{
-							 goHome();
+								mui.back();
+					        var myaccountPage = plus.webview.getWebviewById('html/myaccount.html');
+							mui.fire(myaccountPage, 'closeUser', {
+								id: professorId
+							});
 						}
 					}
 				},

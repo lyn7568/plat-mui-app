@@ -6,75 +6,62 @@
 		<title>完善个人信息</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
+		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
 			<h1 class="mui-title toptit">完善个人信息</h1>
 		</header>
-		<div class="mui-content selectSortBox">
-			<div class="bindtip"><img src="../images/login_bg_tishi_3_nor@3x.png" width="100%" /></div>
-			<ul class="mui-table-view mui-grid-view mui-grid-9">
-				<li class="mui-table-view-cell mui-media mui-col-xs-4">
-			        <span class="selectSort sort-pro"></span>
-			        <div class="mui-media-body">科研工作者</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4">
-				    <span class="selectSort sort-mana"></span>
-				    <div class="mui-media-body">企业高管</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4">
-				    <span class="selectSort sort-stu"></span>
-			        <div class="mui-media-body">在校生</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4">
-				    <span class="selectSort sort-skill"></span>
-			        <div class="mui-media-body">技术人员</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4">
-				    <span class="selectSort sort-hr"></span>
-			        <div class="mui-media-body">HR/猎头</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4">
-				    <span class="selectSort sort-sale"></span>
-			        <div class="mui-media-body">销售人员</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4">
-				    <span class="selectSort sort-invest"></span>
-			        <div class="mui-media-body">投资方</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4">
-				    <span class="selectSort sort-consult"></span>
-			        <div class="mui-media-body">咨询顾问</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 selectNow">
-				    <span class="selectSort sort-user"></span>
-			        <div class="mui-media-body">普通用户</div>
-			        <span class="iconfont icon-yuanxingxuanzhongfill"></span>
-				</li>
-			</ul>
-			<div class="mui-content-padded frmboxNew">
-				<button class="mui-btn mui-btn-block frmbtn frmactive">下一步</button>
+		<div class="mui-content fillMore">
+			<div class="mui-input-group alignCenter fillMoreHead">
+				<div class="fillHead userRadius">
+					<a href="javascript:;" style="width:64px; height: 64px; display: block; position:absolute;top:0; z-index: 1;" id="userimg"></a>
+					<div id="imgshow"></div>
+				</div>
+				<span class="h1Font" id="userName">田鹏飞</span>
 			</div>
+			<div class="mui-input-group fillShow">
+				<ul class="mui-table-view noactiveTab">
+			        <li class="mui-table-view-cell">
+			        	<input type="text" class="mui-input-clear frmtype" placeholder="职称" id="userTitle">
+			        </li>
+			        <li class="mui-table-view-cell">
+			        	<input type="text" class="mui-input-clear frmtype" placeholder="所在机构" id="userMechanism">
+			        </li>
+			        <li class="mui-table-view-cell">
+			        	<input type="text" class="mui-input-clear frmtype" placeholder="所属部门" id="userDepartment">
+			        </li>
+			        <li class="mui-table-view-cell">
+			        	<input type="text" class="mui-input-clear frmtype" placeholder="职位" id="userPosition">
+			        </li>
+			        <li class="mui-table-view-cell">
+			        	<input type="text" class="mui-input-clear frmtype" placeholder="所在城市" id="showCityPicker">
+						<span class="mui-icon mui-icon-arrowdown downarrow"></span>
+			        </li>
+			        <input type="hidden" class="mui-input-clear frmtype" id="data-province">
+					<input type="hidden" class="mui-input-clear frmtype" id="data-address">
+			    </ul>
+			</div>
+			<div class="mui-content-padded" style="margin-top:40px;">
+				<button class="mui-btn mui-btn-block frmbtn frmactive" id="goIndex">进入科袖</button>
+		    </div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/mui.picker.min.js"></script>
+		<script src="../js/public/city.data.js"></script>
 		<script src="../js/public/base.js"></script>
-		<script type="text/javascript">
-			mui(".selectSortBox").on("tap","li",function(){
-				var liAll = document.getElementsByTagName('li');
-				var slescted =document.createElement("span")
-				slescted.className = "iconfont icon-yuanxingxuanzhongfill";
-				for(var i = 0;i <liAll.length;i++){
-					if(liAll[i].classList.contains("selectNow")){
-						liAll[i].classList.remove("selectNow");
-						liAll[i].removeChild(liAll[i].getElementsByTagName("span")[1]);
-					}
-				}
-				this.classList.add("selectNow");
-				this.appendChild(slescted);
-			})
+		<script src="../js/public/upload-avatar.js"></script>
+		<script src="../js/fillinfo.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
 		</script>
 	</body>
 

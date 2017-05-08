@@ -24,6 +24,14 @@ mui.ready(function() {
 				reg.disabled = "";
 			}
 		});
+		
+		phoneName.addEventListener('keyup', function() {
+			if(phoneName.value==""){
+				obtainCode.disabled = "disabled";
+			}else{
+				obtainCode.disabled = "";
+			}
+		})
 
 		/*点击获取验证码*/
 		obtainCode.addEventListener('tap', function() {
@@ -63,7 +71,7 @@ mui.ready(function() {
 		/*校验手机号*/
 		function phoneVal() {
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
-			if(hunPhone.test(phoneName.value)) {
+			if(hunPhone.test(phoneName.value)){
 				isReg();
 			} else {
 				plus.nativeUI.toast("请输入正确的手机号码", toastStyle);

@@ -28,6 +28,14 @@ mui.ready(function() {
 			phoneVal();
 		})
 		
+		userPhone.addEventListener('keyup', function() {
+			if(userPhone.value==""){
+				obtainCode.disabled = "disabled";
+			}else{
+				obtainCode.disabled = "";
+			}
+		})
+		
 		/*点击又想起来了*/
 		gopaer.addEventListener('tap', function() {
 			mui.back();

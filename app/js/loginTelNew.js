@@ -48,6 +48,14 @@ mui.ready(function() {
 			phoneVal();
 		})
 		
+		userName.addEventListener('keyup', function() {
+			if(userName.value==""){
+				obtainCode.disabled = "disabled";
+			}else{
+				obtainCode.disabled = "";
+			}
+		})
+		
 		/*校验手机号*/
 		function phoneVal() {
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;

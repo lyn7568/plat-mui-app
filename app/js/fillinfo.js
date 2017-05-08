@@ -1,215 +1,96 @@
 //注册完成个人信息
 mui.ready(function() {
-
-	/*定义全局变量*/
-	var userName = document.getElementById("userName");
-	var userMechanism = document.getElementById("userMechanism");
-	var userDepartment = document.getElementById("userDepartment");
-	var goIndex = document.getElementById("goIndex");
-	var dataProvince = document.getElementById("data-province");
-	var dataAddress = document.getElementById("data-address");
-	var boxnav1 = document.getElementById("boxnav1");
-	var boxnav2 = document.getElementById("boxnav2");
-	var boxnav3 = document.getElementById("boxnav3");
-	var boxnav4 = document.getElementById("boxnav4");
-	var li1 = document.getElementById("li1");
-	var li2 = document.getElementById("li2");
-	var li3 = document.getElementById("li3");
-	var li4 = document.getElementById("li4");
-	var li5 = document.getElementById("li5");
-	var li6 = document.getElementById("li6");
-	var applyType;
-	var afalse = false;
-	/*选择地址*/
-	var cityPicker = new mui.PopPicker({
-		layer: 2
-	});
-	cityPicker.setData(cityData);
-	var showCityPickerButton = document.getElementById('showCityPicker');
-	showCityPickerButton.addEventListener('tap', function(event) {
-		cityPicker.show(function(items) {
-			showCityPickerButton.value = items[0].text + " " + items[1].text;
-			dataProvince.value = items[0].text;
-			dataAddress.value = items[1].text;
-			//返回 false 可以阻止选择框的关闭
-			//return false;
-		});
-	}, false);
-
-	tab('box');
-
-	boxnav1.addEventListener("tap", function() {
-		document.querySelector(".maincon").style.display = "block";
-		var label1 = '<label>所在机构<small> ( 高校/研究机构 )</small><em class="requiredcon"></em></label>';
-		var label2 = '<label>所属部门<small> ( 院/系/实验室 )</small></label>';
-		var label3 = '<label>职称</label>';
-		var label4 = '<input type="text" class="mui-input-clear frmtype" id="userTitle">';
-		var label5 = '<label>职位</label>';
-		var label6 = '<input type="text" class="mui-input-clear frmtype" id="userPosition">';
-		li1.innerHTML = label1;
-		li2.innerHTML = label2;
-		li3.innerHTML = label3;
-		li4.innerHTML = label4;
-		li5.innerHTML = label5;
-		li6.innerHTML = label6;
-		li3.style.display = "block";
-		li4.style.display = "block";
-		li5.style.display = "block";
-		li6.style.display = "block";
-		document.querySelector(".frmtype").value = "";
-		userMechanism.value = "";
-		userDepartment.value = "";
-		goIndex.classList.add("frmactive2");
-		goIndex.classList.remove("frmactiveok");
-		goIndex.disabled = "disabled";
-		afalse = false;
-	})
-
-	boxnav2.addEventListener("tap", function() {
-		document.querySelector(".maincon").style.display = "block";
-		var label1 = '<label>所在企业<small></small><em class="requiredcon"></em></label>';
-		var label2 = '<label>所属部门</label>';
-		var label3 = '<label>职位</label>';
-		var label4 = '<input type="text" class="mui-input-clear frmtype" id="userPosition">';
-		var label5 = '<label>职称</label>';
-		var label6 = '<input type="text" class="mui-input-clear frmtype" id="userTitle">';
-		li1.innerHTML = label1;
-		li2.innerHTML = label2;
-		li3.innerHTML = label3;
-		li4.innerHTML = label4;
-		li5.innerHTML = label5;
-		li6.innerHTML = label6;
-		li3.style.display = "block";
-		li4.style.display = "block";
-		li5.style.display = "block";
-		li6.style.display = "block";
-		document.querySelector(".frmtype").value = "";
-		userMechanism.value = "";
-		userDepartment.value = "";
-		goIndex.classList.add("frmactive2");
-		goIndex.classList.remove("frmactiveok");
-		goIndex.disabled = "disabled";
-		afalse = false;
-	})
-
-	boxnav3.addEventListener("tap", function() {
-		document.querySelector(".maincon").style.display = "block";
-		li3.style.display = "none";
-		li4.style.display = "none";
-		li5.style.display = "none";
-		li6.style.display = "none";
-		li4.getElementsByTagName('input').value = "";
-		var label1 = '<label>就读高校<em class="requiredcon"></em></label>';
-		var label2 = '<label>就读院系</label>';
-		li1.innerHTML = label1;
-		li2.innerHTML = label2;
-		document.querySelector(".frmtype").value = "";
-		userMechanism.value = "";
-		userDepartment.value = "";
-		goIndex.classList.add("frmactive2");
-		goIndex.classList.remove("frmactiveok");
-		goIndex.disabled = "disabled";
-		afalse = false;
-	})
-
-	/*boxnav4.addEventListener("tap", function() {
-		document.querySelector(".maincon").style.display = "block";
-		var label1 = '<label>所在机构</label>';
-		var label2 = '<label>所属部门</label>';
-		var label3 = '<label>职位</label>';
-		var label4 = '<input type="text" class="mui-input-clear frmtype" id="userPosition">';
-		var label5 = '<label>职称</label>';
-		var label6 = '<input type="text" class="mui-input-clear frmtype" id="userTitle">';
-		li1.innerHTML = label1;
-		li2.innerHTML = label2;
-		li3.innerHTML = label3;
-		li4.innerHTML = label4;
-		li5.innerHTML = label5;
-		li6.innerHTML = label6;
-		li3.style.display = "block";
-		li4.style.display = "block";
-		li5.style.display = "block";
-		li6.style.display = "block";
-		document.querySelector(".frmtype").value = "";
-		userMechanism.value = "";
-		userDepartment.value = "";
-		goIndex.classList.add("frmactive2");
-		goIndex.classList.remove("frmactiveok");
-		goIndex.disabled = "disabled";
-		afalse = true;
-	})*/
-
-	function tab(name) {
-		var oDome = document.getElementById(name);
-		var oSpan = oDome.getElementsByTagName('ul')[0].childNodes;
-		for(var i = 0; i < oSpan.length; i++) {
-			oSpan[i].onclick = function() {
-				for(var i = 0; i < oSpan.length; i++) {
-					oSpan[i].className = '';
-				}
-				this.className = 'set';
-			}
-		}
-	}
-
-	window.addEventListener('showimg', function(event) {
-		showuserimg();
-	});
-
-	function showuserimg() {
-		var userId = plus.storage.getItem('userid');
-		console.log(userId)
-		var filPage = plus.webview.getWebviewById('../html/fillinfo.html');
-		var dyPage = plus.webview.currentWebview();
-		if(dyPage == filPage) {
-			var mun = Math.round(Math.random() * 99 + 1);
-			var imgvar = '<img src="' + baseUrl + '/images/head/' + userId + '_l.jpg?' + mun + '" style="width:100%"/>';
-			console.log(imgvar)
-			document.getElementById('imgshow').innerHTML = imgvar;
-		}
-	}
-
 	mui.plusReady(function() {
-		var self = plus.webview.currentWebview();
+		/*定义全局变量*/
+		var userName = document.getElementById("userName");
+		var userMechanism = document.getElementById("userMechanism");
+		var userDepartment = document.getElementById("userDepartment");
+		var goIndex = document.getElementById("goIndex");
+		var dataProvince = document.getElementById("data-province");
+		var dataAddress = document.getElementById("data-address");
+		var applyType;
+		var userId = plus.storage.getItem('userid');
 
-		/*校验提交按钮显示状态*/
-		mui('.basicinfo').on('keyup', "#userName,#userMechanism", function() {
-			if(afalse) {
-				if(userName.value == "") {
-					goIndex.classList.remove("frmactiveok");
-					goIndex.disabled = "disabled";
-				} else {
-					goIndex.classList.add("frmactiveok");
-					goIndex.disabled = "";
-				}
-			} else {
-				hideButtn(userName, userMechanism, goIndex, "frmactiveok");
-			}
+		/*选择地址*/
+		var cityPicker = new mui.PopPicker({
+			layer: 2
 		});
+		cityPicker.setData(cityData);
+		var showCityPickerButton = document.getElementById('showCityPicker');
+		showCityPickerButton.addEventListener('tap', function(event) {
+			cityPicker.show(function(items) {
+				showCityPickerButton.value = items[0].text + " " + items[1].text;
+				dataProvince.value = items[0].text;
+				dataAddress.value = items[1].text;
+				//返回 false 可以阻止选择框的关闭
+				//return false;
+			});
+		}, false);
+
+		/*头像上传自定义事件*/
+		window.addEventListener('showimg', function(event) {
+			showuserimg();
+		});
+
+		showusername();
+		
+		/*查询用户名*/
+		function showusername() {
+			
+			alert(userId)
+			mui.ajax(baseUrl + '/ajax/professor/baseInfo/' + userId, {
+				dataType: 'json', //数据格式类型
+				type: 'get', //http请求类型
+				timeout: 10000, //超时设置
+				success: function(data) {
+					console.log(JSON.stringify(data))
+					if(data.success) {
+						userName.innerText= data.data.name;
+						plus.webview.currentWebview().show("slide-in-right", 150);
+						plus.nativeUI.closeWaiting();
+					}
+				},
+				error: function(data) {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+				}
+			})
+		}
+
+		function showuserimg() {
+			var userId = plus.storage.getItem('userid');
+			console.log(userId)
+			var filPage = plus.webview.getWebviewById('fillinfo-select.html');
+			var dyPage = plus.webview.currentWebview();
+			if(dyPage == filPage) {
+				var mun = Math.round(Math.random() * 99 + 1);
+				var imgvar = '<img src="' + baseUrl + '/images/head/' + userId + '_l.jpg?' + mun + '" style="width:100%"/>';
+				console.log(imgvar)
+				document.getElementById('imgshow').innerHTML = imgvar;
+			}
+		}
+
+		var self = plus.webview.currentWebview();
 
 		/*提交个人信息*/
 		goIndex.addEventListener('tap', function() {
 			var userTitle = document.getElementById("userTitle");
 			var userPosition = document.getElementById("userPosition");
-			applyType = document.querySelector(".boxnav .set span").getAttribute("data-num");
-			console.log(applyType)
 			goVal();
 		});
 
 		function goVal() {
 			var $data = {};
-			$data.name = userName.value;
+			$data.name = userName.innerText;
 			$data.orgName = userMechanism.value;
 			$data.title = userTitle.value;
 			$data.department = userDepartment.value;
 			$data.office = userPosition.value;
 			$data.province = dataProvince.value;
 			$data.address = dataAddress.value;
-			$data.id = self.userid;
-			console.log(self.userid)
-			$data.authentication = applyType;
+			$data.id = plus.storage.getItem('userid');;
+			$data.authentication = self.num;
 			console.log(JSON.stringify($data))
-			mui.ajax(baseUrl + '/ajax/professor', {
+			mui.ajax(baseUrl + '/ajax/professor/updatePro', {
 				data: $data,
 				dataType: 'json', //数据格式类型
 				type: 'POST', //http请求类型

@@ -33,87 +33,18 @@
 				</p>
 			</div>
 			
+			<!--第三方登录-->
 			<div class="quickbox">
-				<span class="borderword" >直接登录</span>
-				<div class="quickway">
-					<span class="mui-icon mui-icon-weixin quickicon weixinicon" id="weixin"></span>
-					<span class="mui-icon mui-icon-qq quickicon qqicon"></span>	
-				</div>
+				<div class="quicktit"><span class="borderword">其他登录方式</span></div>
+				<ul class="quickway">
+					<li id="weixin"><img src="../images/me_icon_weixin_nor@3x.png" /><p>微信</p></li>
+				</ul>
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/login.js"></script>
-		<script type="text/javascript">
-			var auths;
-			mui.plusReady(function() {   
-	            plus.oauth.getServices(function(services) { 
-	                auths = services; 
-	            }, function(e) { 
-	                alert("获取登录服务列表失败：" + e.message + " - " + e.code); 
-	            }); 
-	        }) 
-	        
-	        function authLogin(type) { 
-	            var s; 
-	            for (var i = 0; i < auths.length; i++) { 
-	                if (auths[i].id == type) { 
-	                    s = auths[i]; 
-	                    break; 
-	                } 
-	            } 
-	            if (!s.authResult) { 
-	                s.login(function(e) { 
-	                    mui.toast("登录认证成功！"); 
-	                    authUserInfo(type); 
-	                }, function(e) { 
-	                    mui.toast("登录认证失败！"); 
-	                }); 
-	            } else { 
-	                mui.toast("已经登录认证！"); 
-	            } 
-	        } 
-			
-			// 微信登录认证信息 
-	        function authUserInfo(type) { 
-	            var s; 
-	            for (var i = 0; i < auths.length; i++) { 
-	                if (auths[i].id == type) { 
-	                    s = auths[i]; 
-	                    break; 
-	                } 
-	            } 
-	            if (!s.authResult) { 
-	                mui.toast("未授权登录！"); 
-	            } else { 
-	                s.getUserInfo(function(e) { 
-	                    var josnStr = JSON.stringify(s.userInfo); 
-	                    var jsonObj = s.userInfo; 
-	                    console.log("获取用户信息成功：" + josnStr); 
-	                    //showData(type,jsonObj); 
-	                    authLogout(); 
-	                }, function(e) { 
-	                    alert("获取用户信息失败：" + e.message + " - " + e.code); 
-	                }); 
-	            } 
-	        } 
-
-
-		 //注销 
-        function authLogout() { 
-            for (var i in auths) { 
-                var s = auths[i]; 
-                if (s.authResult) { 
-                    s.logout(function(e) { 
-                        console.log("注销登录认证成功！"); 
-                    }, function(e) { 
-                        console.log("注销登录认证失败！"); 
-                    }); 
-                } 
-            } 
-        } 
-
-		</script>
+		<script src="../js/weChatlogin.js"></script>
 	</body>
 
 </html>

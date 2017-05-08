@@ -1,4 +1,5 @@
 mui.plusReady(function() {
+	var auths;
 	plus.oauth.getServices(function(services) {
 		auths = {};
 		for(var i in services) {

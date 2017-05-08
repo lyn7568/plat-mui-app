@@ -79,13 +79,27 @@
 			})
 			
 			document.getElementById("fillinfoNext").addEventListener('tap', function() {
+				var userId = plus.storage.getItem('userid');
+				mui.ajax(baseUrl + '/ajax/professor/authen', {
+					data:{"id":userId,"authentication":applyType},
+					dataType: 'json', //数据格式类型
+					type: 'POST', //http请求类型
+					timeout: 10000, //超时设置
+					success: function(data) {
+						console.log(JSON.stringify(data));
+						if(data.success) {
+							mui.openWindow({
+								url: '../html/fillinfo-select.html',
+								id: 'fillinfo-select.html',
+								show: {autoShow: false}
+							});
+						}
+					},
+					error: function(data) {
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
+					}
+				})
 				
-				mui.openWindow({
-					url: '../html/fillinfo-select.html',
-					id: 'fillinfo-select.html',
-					show: {autoShow: false},
-					extras: {num: applyType}
-				});
 			});
 		</script>
 	</body>

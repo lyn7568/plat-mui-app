@@ -8,8 +8,24 @@ mui.ready(function() {
 		var goIndex = document.getElementById("goIndex");
 		var dataProvince = document.getElementById("data-province");
 		var dataAddress = document.getElementById("data-address");
+		var userTitle = document.getElementById("userTitle");
+		var userPosition = document.getElementById("userPosition");
 		var applyType;
 		var userId = plus.storage.getItem('userid');
+
+		/*校验input字数*/
+		mui('.noactiveTab').on('keyup', "#userTitle,#userDepartment,#userPosition", function() {
+			if(this.value.length > 20){
+				plus.nativeUI.toast("最多输入20个字", toastStyle);
+			}
+		});
+		
+		/*校验input字数*/
+		mui('.noactiveTab').on('keyup', "#userMechanism", function() {
+			if(this.value.length > 50){
+				plus.nativeUI.toast("最多输入50个字", toastStyle);
+			}
+		});
 
 		/*选择地址*/
 		var cityPicker = new mui.PopPicker({
@@ -36,8 +52,6 @@ mui.ready(function() {
 		
 		/*查询用户名*/
 		function showusername() {
-			
-			alert(userId)
 			mui.ajax(baseUrl + '/ajax/professor/baseInfo/' + userId, {
 				dataType: 'json', //数据格式类型
 				type: 'get', //http请求类型
@@ -73,8 +87,6 @@ mui.ready(function() {
 
 		/*提交个人信息*/
 		goIndex.addEventListener('tap', function() {
-			var userTitle = document.getElementById("userTitle");
-			var userPosition = document.getElementById("userPosition");
 			goVal();
 		});
 
@@ -88,7 +100,6 @@ mui.ready(function() {
 			$data.province = dataProvince.value;
 			$data.address = dataAddress.value;
 			$data.id = plus.storage.getItem('userid');;
-			$data.authentication = self.num;
 			console.log(JSON.stringify($data))
 			mui.ajax(baseUrl + '/ajax/professor/updatePro', {
 				data: $data,

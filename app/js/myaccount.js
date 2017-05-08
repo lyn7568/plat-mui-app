@@ -306,7 +306,7 @@ mui.ready(function() {
 						professorName = $info.name;
 						scorePercent = $info.scorePercent;
 						document.getElementById("userName").innerText = $info.name;
-						document.getElementById("orgName").innerText = $info.orgName;
+						document.getElementById("orgName").innerText = $info.orgName || "";
 						if($info.hasHeadImage == 1) {
 							var mun = Math.round(Math.random() * 99 + 1);
 							userImg.setAttribute("src", baseUrl + "/images/head/" + $info.id + "_l.jpg?" + mun);

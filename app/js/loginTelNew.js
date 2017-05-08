@@ -171,7 +171,7 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
-						if(data.data.authentication < 0){
+						if(data.data.authentication == undefined || data.data.authentication == null){
 							var productView = mui.preload({
 								url: '../html/fillinfo.html',
 								id: '../html/fillinfo.html',

@@ -137,8 +137,8 @@ mui.ready(function() {
 					if(data.success) {
 						if(data.data) {
 							mui.openWindow({
-								url: 'setpass.html',
-								id: 'setpass.html',
+								url: 'pwdSet.html',
+								id: 'pwdSet.html',
 								extras: {
 									phoneName: userPhone.value,
 									setCode: userCode.value,

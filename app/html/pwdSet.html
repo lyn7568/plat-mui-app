@@ -3,10 +3,14 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>找回密码</title>
+		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin: 0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
+		</style>
 	</head>
 
 	<body>
@@ -17,28 +21,25 @@
 		<div class="mui-content">
 		    <form class="mui-input-group frmboxNew">
 		        <div class="mui-input-row frm-input">
-		            <input type="tel" class="mui-input-clear frmtype" placeholder="请输入手机号" id="userPhone">
-		        </div>
-		        <div class="mui-input-row mui-row frm-input">
-		        	<div class="mui-col-xs-8">
-		        		<input type="password" class="frmtype" placeholder="请输入验证码" id="userCode">
-		        	</div>
-					<div class="mui-col-xs-4">
-						<input type="button" class="frmtype getCode" value="获取验证码" id="obtain-code">
-					</div>
+					<input id='password' type="password" class="frmtype" placeholder="请设置您的账号密码">
+				</div>
+				<div class="mui-input-row frm-input">
+					<input type="password" id='password2' class="frmtype" placeholder="请再次确认密码">
 				</div>
 		    </form>
 		    
 		    <div class="mui-content-padded frmboxNew">
-				<button class="mui-btn mui-btn-block frmbtn frmactive2" id="nextPage" disabled="disabled">下一步</button>
-				<p class="otherWordNew">
-					<span class="mui-pull-left">又想起来了</span>
-				</p>
+				<button class="mui-btn mui-btn-block frmbtn frmactive" disabled id="registerok">确定</button>
 			</div>
 			
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
-		<script src="../js/findpwd1.js"></script>
+		<script src="../js/pwdSet.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
 	</body>
+
 </html>

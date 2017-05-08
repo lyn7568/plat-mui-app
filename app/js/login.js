@@ -30,8 +30,8 @@ mui.ready(function() {
 		/*点击忘记密码按钮*/
 		forgetPassword.addEventListener("tap", function() {
 			mui.openWindow({
-				url: '../html/findpwd-phone.html',
-				id: '../html/findpwd-phone.html',
+				url: '../html/pwdFind.html',
+				id: '../html/pwdFind.html',
 				show: {
 					aniShow: "slide-in-right"
 				}
@@ -147,8 +147,8 @@ mui.ready(function() {
 					if(data.success) {
 						if(data.data.authentication == undefined || data.data.authentication == null){
 							var productView = mui.preload({
-								url: '../html/fillinfo.html',
-								id: '../html/fillinfo.html',
+								url: '../html/fill-select.html',
+								id: '../html/fill-select.html',
 								show: {
 									aniShow: "slide-in-right"
 								},

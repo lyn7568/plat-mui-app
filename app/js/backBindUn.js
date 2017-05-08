@@ -210,8 +210,8 @@ phone.addEventListener("keyup",function(){
 						plus.storage.setItem('userid', userId);
 						plus.nativeUI.toast("已完成注册，请填写个人信息", toastStyle);
 						mui.openWindow({
-							url: 'fillinfo.html',
-							id: 'fillinfo.html',
+							url: 'fill-select.html',
+							id: 'fill-select.html',
 							extras: {
 								userid: userId
 							},

@@ -73,7 +73,7 @@ mui.ready(function() {
 		function showuserimg() {
 			var userId = plus.storage.getItem('userid');
 			console.log(userId)
-			var filPage = plus.webview.getWebviewById('fillinfo-select.html');
+			var filPage = plus.webview.getWebviewById('fill-info.html');
 			var dyPage = plus.webview.currentWebview();
 			if(dyPage == filPage) {
 				var mun = Math.round(Math.random() * 99 + 1);

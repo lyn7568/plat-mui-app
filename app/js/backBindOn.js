@@ -137,8 +137,8 @@ mui.plusReady(function() {
 					if(data.success) {
 						if(data.data.authentication == undefined || data.data.authentication == null){
 							var productView = mui.preload({
-								url: '../html/fillinfo.html',
-								id: '../html/fillinfo.html',
+								url: '../html/fill-select.html',
+								id: '../html/fill-select.html',
 								show: {
 									aniShow: "slide-in-right"
 								},

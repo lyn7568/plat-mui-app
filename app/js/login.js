@@ -89,7 +89,7 @@ mui.ready(function() {
 		/*校验登录密码*/
 		function passwordVal() {
 			if(userPassword.value.length < 6) {
-				plus.nativeUI.toast("密码不少于6位", toastStyle);
+				plus.nativeUI.toast("密码由6-24个字符组成，区分大小写", toastStyle);
 				return;
 			} else {
 				loginBut();

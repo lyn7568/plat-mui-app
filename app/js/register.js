@@ -40,7 +40,26 @@ mui.ready(function() {
 
 		/*注册按钮*/
 		reg.addEventListener('tap', function() {
-			codeVal();
+			var inputval = name.value.replace(/[^\u0000-\u00ff]/g, "aa").length;
+			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
+			var oNum=/^\d{4}$/;
+			if(inputval > 20) {
+				plus.nativeUI.toast("姓名最长为10个汉字或20个英文字符", toastStyle);
+				return;
+			} 
+			if(!hunPhone.test(phoneName.value)) {
+				plus.nativeUI.toast("请输入正确的手机号码", toastStyle);
+				return;
+			}
+			if(!oNum.test(setCode.value)) {
+				plus.nativeUI.toast("验证码为4位数字", toastStyle);
+				return;
+			}
+			if(setpassword.value.length < 6){
+				plus.nativeUI.toast("密码由6-24个字符组成，区分大小写", toastStyle);
+				return;
+			}
+			isReg(1);
 		})
 		
 		/*用户协议*/
@@ -54,20 +73,6 @@ mui.ready(function() {
 			});
 		});
 		
-		/*校验真实姓名和密码*/
-		function valOld() {
-			var nameval = /^\w{0,20}$/;
-			if(nameval.test(name.value)) {
-				plus.nativeUI.toast("姓名最长为10个汉字或20个英文字符", toastStyle);
-				return;
-			} else if(setpassword.value.length < 6){
-				plus.nativeUI.toast("密码由6-24个字符组成，区分大小写", toastStyle);
-				return;
-			}else{
-				completeReg();
-			}
-		}
-		
 		/*校验手机号*/
 		function phoneVal() {
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
@@ -80,7 +85,8 @@ mui.ready(function() {
 		}
 
 		/*校验用户名是否注册*/
-		function isReg() {
+		function isReg(arg) {
+			var oArg=arg;
 			mui.ajax(baseUrl + '/ajax/isReg?key=' + phoneName.value, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
@@ -90,9 +96,13 @@ mui.ready(function() {
 						plus.nativeUI.toast("该账号已存在，请直接登录", toastStyle);
 						return;
 					} else {
-						phoneCode = true;
-						if(phoneCode){
-							sendAuthentication();
+						if(oArg==1){	
+							codeVal();
+						}else{	
+							phoneCode = true;
+							if(phoneCode){
+								sendAuthentication();
+							}
 						}
 					}
 				},
@@ -164,7 +174,7 @@ mui.ready(function() {
 					console.log(data.success);
 					if(data.success) {
 						if(data.data) {
-							valOld();
+							completeReg();
 						}else{
 							plus.nativeUI.toast("验证码错误，请检查后重试", toastStyle);
 							return;

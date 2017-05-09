@@ -20,6 +20,16 @@ mui.ready(function() {
 		
 		/*下一步按钮*/
 		nextPage.addEventListener('tap', function() {
+			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
+			var oNum=/^\d{4}$/;
+			if(!hunPhone.test(userPhone.value)) {
+				plus.nativeUI.toast("请输入正确的手机号码", toastStyle);
+				return;
+			}
+			if(!oNum.test(userCode.value)) {
+				plus.nativeUI.toast("验证码为4位数字", toastStyle);
+				return;
+			}
 			codeVal();
 		})
 		
@@ -86,7 +96,7 @@ mui.ready(function() {
 				type: 'GET', //http请求类型
 				//async: false,
 				success: function(data) {
-					console.log(data)
+					console.log(JSON.stringify(data))
 					if(data.success) {
 						state = data.data;
 						doClick();
@@ -151,12 +161,12 @@ mui.ready(function() {
 							return;
 						}
 					}else{
-						console.log(data.msg);
+						console.log(JSON.stringify(data));
 					    if(data.msg=="验证超时"){
 							plus.nativeUI.toast("验证码已过期，请重新获取", toastStyle);
 							return;
 						}else{
-							plus.nativeUI.toast("请填写正确的手机号,验证码", toastStyle);
+							plus.nativeUI.toast("手机号与验证码不匹配", toastStyle);
 							return;
 						}
 					}

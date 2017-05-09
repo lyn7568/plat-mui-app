@@ -15,14 +15,16 @@ mui.ready(function() {
 
 		/*校验input字数*/
 		mui('.noactiveTab').on('keyup', "#userTitle,#userDepartment,#userPosition", function() {
-			if(this.value.length > 20){
+			var inputval = this.value.replace(/[^\u0000-\u00ff]/g, "aa").length;
+			if(inputval > 40){
 				plus.nativeUI.toast("最多输入20个字", toastStyle);
 			}
 		});
 		
 		/*校验input字数*/
 		mui('.noactiveTab').on('keyup', "#userMechanism", function() {
-			if(this.value.length > 50){
+			var inputval = this.value.replace(/[^\u0000-\u00ff]/g, "aa").length;
+			if(inputval > 100){
 				plus.nativeUI.toast("最多输入50个字", toastStyle);
 			}
 		});

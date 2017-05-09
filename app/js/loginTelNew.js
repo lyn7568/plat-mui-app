@@ -40,6 +40,16 @@ mui.ready(function() {
 		
 		/*登录按钮*/
 		login.addEventListener('tap', function() {
+			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
+			var oNum=/^\d{4}$/;
+			if(!hunPhone.test(username.value)) {
+				plus.nativeUI.toast("请输入正确的手机号码", toastStyle);
+				return;
+			}
+			if(!oNum.test(setCode.value)) {
+				plus.nativeUI.toast("验证码为4位数字", toastStyle);
+				return;
+			}
 			loginBut();
 		})
 		

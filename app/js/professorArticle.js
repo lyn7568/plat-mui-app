@@ -96,8 +96,10 @@ mui.plusReady(function() {
 						var oImg = main_content.getElementsByTagName("img");
 						for(var i = 0; i < oImg.length; i++) {
 							(function(n) {
+								if(oImg[n].src.substring(0,4)=='file') {
 								var att = oImg[n].src.substr(7);
 								oImg[n].setAttribute("src", baseUrl + att);
+								}
 							})(i);
 						}
 					}

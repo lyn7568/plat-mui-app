@@ -118,17 +118,15 @@ function expert2(pageNo, pageSize) {
 						var datalist = data.data.data;
 						datalistEach(datalist);
 						mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
-						if(pageNo < allPages) {
+						if(pageNo >= allPages) {
 							mui('#pullrefresh').pullRefresh().disablePullupToRefresh(); //没有数据禁止上拉刷新	
-						} else {
-							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
-							
-						}
+						} 
 
 					}
 				},
 				error: function() {
 					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					
 				}
 			});
 		});
@@ -147,19 +145,8 @@ function datalistEach(datalistd) {
 		
 		/*判断用户是否认证*/
 		var icont = '';
-		if(item.resource.editProfessor.authType) {
-			icont='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
-		} else {
-			if(item.resource.editProfessor.authStatus==3) {
-				if(item.resource.editProfessor.authentication == 1) {
-					icont='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
-				} else if(item.resource.editProfessor.authentication == 2) {
-					icont='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
-				} else {
-					icont='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
-				}
-			}
-		}
+		var oSty = autho(item.resource.editProfessor.authType, item.resource.editProfessor.orgAuth, item.resource.editProfessor.authStatus);
+		icont='<em class="authicon ' + oSty.sty + '"></em>'
 
 		var title = item.resource.editProfessor.title || "";
 		var office = item.resource.editProfessor.office || "";

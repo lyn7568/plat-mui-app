@@ -2,212 +2,217 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>个人页面</title>
+		<title>我</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
-		<style type="text/css">
-			em.icon-renzheng{top: 3px;}
-		</style>
 	</head>
 	<body>
-		<header class="mui-bar mui-bar-nav toptitbox">
-		    <h1 class="mui-title toptit">我</h1>
-		</header>
-        <!--登陆状态-->
-		<div class="mui-content" id="loginYes">
+        <!--未登陆状态-->
+		<div class="mui-content bodyBg displayNone" id="loginNo">
 			<!-- 主界面具体展示内容 -->
-    		<div class="mui-input-group marginbox setblock">
-				<div class="maincon personinfo2" style="padding:4% 0 0 2%;">
-					<div class="headbox2 mui-navigate-right amend" style="margin-left:2%;margin-bottom:14px;">
-					    <a class="mui-pull-left proinfor">
-		                    <div class="mui-pull-left" style="width:24%;min-height:60px;">
-		                    	<img class="headimg2 headRadius" src="" id="userImg">
-		                    </div>
-		                    <div class="mui-pull-left infobasic" style="padding-right:5%">
-		                        <p class="listtit mui-clearfix" style="position: relative;">
-		                        	<span class="mui-pull-left" id="userName" style="line-height: 22px;display: inline-block;margin-right:4px;"></span>
-		                        	<em id="nameli" class="mui-icon iconfont"></em>
-		                        </p>	
-		                        <p class="listtit2"><span id="userTitle"></span><span id="userPosition"></span></p>
-		                    	<p class="listtit3" style="line-height:16px;"><span id="userDepartment"></span><span id="userMechanism"></span><span id="userCity"></span></p>
-		                    </div>
-		                </a>
-		                <!--<div class="mui-pull-right updatebtn">
-			        		<a class="editbox" id="editbox">
-			        			<img src="../images/edit.png" />
-			        			<span class="mui-icon iconfont icon-edit"></span>
-			        		</a>
-			        	</div>-->
-			        </div>
-		        </div>
-		        <ul class="mui-table-view" id="goZixunbox">
-				    <li class="mui-table-view-cell" id="NoActive" >
-				        <a class="mui-navigate-right peocount" id="goZixun">
-				        	<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
-				        	<span class="mui-pull-left">已完成咨询<em id="zixunOk"></em>人次</span>
-				        	<div class="rightword levelbox">
-				        		<span class="mui-icon iconfont icon-favor star"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-				        		<span class="mui-icon iconfont icon-favor star"></span>
-				        		<span class="mui-icon iconfont icon-favor star"></span>
-				        		<span class="mui-icon iconfont icon-favor star"></span>
-				        		<span class="mui-icon iconfont icon-favor star"></span>
-				        	</div>
-				        </a>
-				    </li>
-				</ul>
-		        <!--<a class="mui-clearfix peolevelbox"  id="goZixun">
-		        	<div class="mui-pull-left peocountbox">
-		        		<div class="peocount mui-clearfix">
-		        			<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
-		        			<span class="mui-pull-left">已完成咨询<em>11</em>人次</span>
-		        		</div>
-		        	</div>
-		        	<div class="mui-pull-right levelbox">
-		        		<span class="mui-icon iconfont icon-favorfill"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-		        		<!--<span class="mui-icon iconfont icon-favorfill"></span>
-		        		<span class="mui-icon iconfont icon-favorfill"></span>
-		        		<span class="mui-icon iconfont icon-favor"></span>
-		        		<span class="mui-icon iconfont icon-favor"></span>
-		        	</div>
-		        </a>-->
-		    </div>
-		    
-	        <div class="mui-input-group marginbox setblock">
-				<ul class="mui-table-view">
-				    <!--<li class="mui-table-view-cell">
-				        <a class="mui-navigate-right walltebox">
-				        	<em class="mui-icon iconfont icon-recharge actionicon wallteicon mui-pull-left"></em>
-				        	<span class="mui-pull-left">我的钱包</span>
-				        	<span class="rightword">￥0.00</span>
-				        </a>
-				    </li>-->
-				    <li class="mui-table-view-cell">
-				        <a class="mui-navigate-right"  id="demand">
-				        	<em class="mui-icon mui-icon-help actionicon mui-pull-left" style="color:#0ee032"></em>
-				        	<span class="mui-pull-left">我的需求</span>
-				        </a>
-				    </li>
-				    <li class="mui-table-view-cell">
-				        <a class="mui-navigate-right"  id="goFollow">
-				        	<em class="mui-icon  iconfont icon-favor actionicon attenticon mui-pull-left"></em>
-				        	<span class="mui-pull-left">我的关注</span>
-				        </a>
-				    </li>
-				    <li class="mui-table-view-cell" id="goBecomeExpert">
-				        <a class="mui-navigate-right">
-				        	<em class="mui-icon iconfont icon-profile actionicon toProicon mui-pull-left"></em>
-				        	<span class="mui-pull-left">成为专家</span>
-				        	<span class="rightword verified" id="expertAuth">已认证</span>
-				        </a>
-				    </li>
-				    <li class="mui-table-view-cell" id="goNewuser">
-				        <a class="mui-navigate-right">
-				        	<em class="mui-icon iconfont icon-friend actionicon addicon mui-pull-left"></em>
-				        	<span class="mui-pull-left">邀请好友</span>
-				        	<!--<span class="mui-pull-right" style="margin-right:24px;">邀请好友得积分</span>-->
-				        </a>
-				    </li>
-				</ul>
-		    </div>
-		    <div class="mui-input-group  marginbox setblock">
-				<ul class="mui-table-view">
-				    <li class="mui-table-view-cell">
-				        <a class="mui-navigate-right goSetup" id="goSetup">
-				        	<em class="mui-icon iconfont icon-settings actionicon seticon mui-pull-left"></em>
-				        	<span class="mui-pull-left">设置</span>
-				        </a>
-				    </li>
-				</ul>
-		    </div>
-		</div>
+			<div class="inviteBoxNew">
+				<div class="userLogin">
+					<ul class="mui-table-view loginStatus">
+						<li class="mui-table-view-cell">
+							<div class="flexCenter">
+								<div class="userImg userRadius">
+					        		<img src="../images/default-photo.jpg"/>
+					        	</div>
+								<div class="userInfo">
+									<p class="h1Font positionR">未登录 / 立即登录</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-row commonBtn">
+					<div class="mui-col-xs-6" >
+						<div class="commonBtnitem">
+							<img src="../images/me_button_mingpian_nor@3x.png" />
+							<p class="h3Font">我的名片</p>
+						</div>
+					</div>
+					<div class="mui-col-xs-6" >
+						<div class="commonBtnitem">
+							<img src="../images/me_button_qiandao_nor@3x.png" />
+							<p class="h3Font">立即签到</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="maincontent setItemblock">
+				<div class="setItem itemTwo">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconFocus"></em>
+					        	<span class="mui-pull-left">关注与收藏</span>
+					        </a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconDemand"></em>
+					        	<span class="mui-pull-left">我发布的需求</span>
+					        </a>
+						</li>
+						<!--身份为专家时显示，并且将父级模块类改为itemThree-->
+						<li class="mui-table-view-cell displayNone">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconAssess"></em>
+					        	<span class="mui-pull-left">我收到的评价</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemTwo">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconReward"></em>
+					        	<span class="mui-pull-left">我的积分</span>
+					        </a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconInvite"></em>
+					        	<span class="mui-pull-left">邀请好友</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemOne">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconAuth"></em>
+					        	<span class="mui-pull-left">专家认证</span>
+					        	<span class="rightword"></span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemOne">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconSet"></em>
+					        	<span class="mui-pull-left">设置</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+    	
+		</div>	
 		
-			
-		<!--未登陆状态-->	
-		<div class="mui-content"  id="loginNo">
+		<!--登陆状态-->
+		<div class="mui-content bodyBg displayNone" id="loginYes">
 			<!-- 主界面具体展示内容 -->
-    		<div class="mui-input-group marginbox setblock">
-				<div class="maincon personinfo2">
-					<div class="headbox2"  style="margin-left:2%;">
-					    <a class="mui-pull-left proinfor">
-					    	<div class="mui-pull-left" style="width:24%;min-height:60px;">
-		                    	<img class="headimg2 headRadius" src="../images/default-photo.jpg">
-		                    </div>
-		                    <div class="mui-pull-left "  style="color:#797979; margin: 10% 5%;"><span id="goreg">注册</span> / <span id="gologin">登录</span> </div>
-		                </a>
-		              
-			        </div>
-		        </div>
-		        <ul class="mui-table-view">
-				    <li class="mui-table-view-cell" style="display:none;">
-				        <a class="mui-navigate-right peocount"  >
-				        	<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
-				        	<span class="mui-pull-left">已完成咨询<em>0</em>人次</span>
-				        	<div class="rightword levelbox">
-				        		<span class="mui-icon iconfont icon-favor star"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-				        		<span class="mui-icon iconfont icon-favor star"></span>
-				        		<span class="mui-icon iconfont icon-favor star"></span>
-				        		<span class="mui-icon iconfont icon-favor star"></span>
-				        		<span class="mui-icon iconfont icon-favor star"></span>
-				        	</div>
-				        </a>
-				    </li>
-				</ul>
-		        <!--<a class="mui-clearfix peolevelbox"  id="goZixun">
-		        	<div class="mui-pull-left peocountbox">
-		        		<div class="peocount mui-clearfix">
-		        			<em class="mui-icon iconfont icon-community actionicon dialogicon mui-pull-left "></em>
-		        			<span class="mui-pull-left">已完成咨询<em>11</em>人次</span>
-		        		</div>
-		        	</div>
-		        	<div class="mui-pull-right levelbox">
-		        		<span class="mui-icon iconfont icon-favorfill"></span> <!--无色星星icon-favor  黄色星icon-favorfill-->
-		        		<!--<span class="mui-icon iconfont icon-favorfill"></span>
-		        		<span class="mui-icon iconfont icon-favorfill"></span>
-		        		<span class="mui-icon iconfont icon-favor"></span>
-		        		<span class="mui-icon iconfont icon-favor"></span>
-		        	</div>
-		        </a>-->
-		    </div>
-		    
-	        <div class="mui-input-group marginbox setblock">
-				<ul class="mui-table-view">
-				    <!--<li class="mui-table-view-cell">
-				        <a class="mui-navigate-right walltebox">
-				        	<em class="mui-icon iconfont icon-recharge actionicon wallteicon mui-pull-left"></em>
-				        	<span class="mui-pull-left">我的钱包</span>
-				        	<span class="rightword">￥0.00</span>
-				        </a>
-				    </li>-->
-				    <li class="mui-table-view-cell">
-				        <a class="mui-navigate-right" >
-				        	<em class="mui-icon iconfont icon-favor actionicon attenticon mui-pull-left"></em>
-				        	<span class="mui-pull-left">我的关注</span>
-				        </a>
-				    </li>
-				   <!-- <li class="mui-table-view-cell">
-				        <a class="mui-navigate-right">
-				        	<em class="mui-icon iconfont icon-friendfavor actionicon addicon mui-pull-left"></em>
-				        	<span class="mui-pull-left">邀请新用户</span>
-				        </a>
-				    </li> -->
-				</ul>
-		    </div>
-		    <div class="mui-input-group  marginbox setblock">
-				<ul class="mui-table-view">
-				    <li class="mui-table-view-cell">
-				        <a class="mui-navigate-right goSetup">
-				        	<em class="mui-icon iconfont icon-settings actionicon seticon mui-pull-left"></em>
-				        	<span class="mui-pull-left">设置</span>
-				        </a>
-				    </li>
-				</ul>
-		    </div>
-		</div>
+			<div class="inviteBoxNew">
+				<div class="userLogin">
+					<ul class="mui-table-view loginStatus">
+						<!--登录状态-->
+						<li class="mui-table-view-cell">
+							<div class="flexCenter">
+								<div class="userImg userRadius">
+					        		<img src="../images/default-photo.jpg" id="userImg"/>
+					        	</div>
+								<div class="userInfo">
+									<p class="h1Font positionR"><span id="userName"></span><em class="authicon" id="authicon"></em></p>
+									<p class="h2Font" id="orgName"></p>
+									<span class="exitSpan" id="exitSpan"></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-row commonBtn">
+					<div class="mui-col-xs-6" id="myCard">
+						<div class="commonBtnitem">
+							<img src="../images/me_button_mingpian_nor@3x.png" />
+							<p class="h3Font">我的名片</p>
+						</div>
+					</div>
+					<div class="mui-col-xs-6">
+						<div class="commonBtnitem displayNone" id="nosign">
+							<img src="../images/me_button_qiandao_nor@3x.png" />
+							<p class="h3Font">立即签到</p>
+						</div>
+						<div class="commonBtnitem displayNone" id="yessign">
+							<img src="../images/me_button_qiandao_nor@3x.png" />
+							<p class="h3Font">今日已签到</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="maincontent setItemblock">
+				<div class="setItem itemTwo" id="setItem">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id="goFollow">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconFocus"></em>
+					        	<span class="mui-pull-left">关注与收藏</span>
+					        </a>
+						</li>
+						<li class="mui-table-view-cell" id="demand">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconDemand"></em>
+					        	<span class="mui-pull-left">我发布的需求</span>
+					        </a>
+						</li>
+						<!--身份为专家时显示，并且将父级模块类改为itemThree-->
+						<li class="mui-table-view-cell displayNone" id="goZixun">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconAssess"></em>
+					        	<span class="mui-pull-left">我收到的评价</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemTwo">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell"  id="myIntegral">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconReward"></em>
+					        	<span class="mui-pull-left">我的积分</span>
+					        </a>
+						</li>
+						<li class="mui-table-view-cell" id="goNewuser">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconInvite"></em>
+					        	<span class="mui-pull-left">邀请好友</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemOne">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id="goBecomeExpert">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconAuth"></em>
+					        	<span class="mui-pull-left">专家认证</span>
+					        	<span class="rightword" id="expertAuth"></span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+				<div class="setItem itemOne">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id="goSetup">
+							<a class="mui-navigate-right">
+					        	<em class="itemIcon iconSet"></em>
+					        	<span class="mui-pull-left">设置</span>
+					        </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+    	
+		</div>	
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/myaccount.js"></script>
 	</body>
-
 </html>

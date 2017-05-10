@@ -33,11 +33,7 @@ mui.plusReady(function() {
 			}, false);
 
 		} else {
-			mui.openWindow({
-				url: '../html/login.html',
-				id: 'login.html'
-			})
-
+			goLoginFun();
 		}
 	}
 
@@ -212,23 +208,10 @@ mui.plusReady(function() {
 				} else {
 					document.getElementsByClassName("headimg")[0].src = "../images/default-photo.jpg";
 				}
-				if($data.authType) {
-					nameli.classList.add('icon-vip');
-					nameli.classList.add('authicon-cu');
-				} else {
-					if($data.authStatus==3) {
-						if($data.authentication == 1) {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-mana');
-						} else if($data.authentication == 2) {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-staff');
-						} else {
-							nameli.classList.add('icon-renzheng');
-							nameli.classList.add('authicon-stu');
-						}
-					}
-				}
+				
+				var oSty = autho($data.authType, $data.orgAuth, $data.authStatus);
+				nameli.classList.add(oSty.sty);
+
 				if($data.office) {
 					if($data.title) {
 						personalMaterial[1].innerText = $data.office + "，";
@@ -435,10 +418,13 @@ mui.plusReady(function() {
 		var dataCap = this.getAttribute("dataCaption");
 		plus.nativeUI.showWaiting();
 		plus.webview.close("researchAreaHead.html");
-		plus.webview.create("../html/researchAreaHead.html", 'researchAreaHead.html', {}, {
+		setTimeout(function(){
+			plus.webview.create("../html/researchAreaHead.html", 'researchAreaHead.html', {}, {
 			dataCaption: dataCap,
 			professorId:proId
 		});
+		},500);
+		
 		
 	});
 	/*咨询成功,返回专家信息*/
@@ -451,18 +437,23 @@ mui.plusReady(function() {
 	ifCollection();
 
 	yesExpert.addEventListener('tap', function() {
+		var userid = plus.storage.getItem('userid');
 		var $this = this;
-		if(userid && userid != null && userid != "null") {
+		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
 			collectionExpert($this);
 		} else {
-			//			plus.nativeUI.toast("请先登录");
-			isLogin();
+			goLoginFun();
 		}
 	});
 
 	noExpert.addEventListener('tap', function() {
+		var userid = plus.storage.getItem('userid');
 		var $this = this;
-		cancelCollectionExpert($this);
+		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
+			cancelCollectionExpert($this);
+		} else {
+			goLoginFun();
+		}
 	});
 
 	/*判断是非收藏专家*/
@@ -688,11 +679,12 @@ mui.plusReady(function() {
 		};
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
-			var strtmp = "分享到\"" + share.description + "\"成功！ ";
+			/*var strtmp = "分享到\"" + share.description + "\"成功！ ";
 			console.log(strtmp);
 			plus.nativeUI.toast(strtmp, {
 				verticalAlign: 'center'
-			});
+			});*/
+			shareAddIntegral(1);
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {

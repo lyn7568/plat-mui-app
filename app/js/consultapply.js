@@ -85,20 +85,42 @@
 	 					oproname.innerText = myData["name"];//专家名字
 	 				};
 	 				if(myData["title"]){
-	 					oprotitle.innerHTML = myData["title"]+', ';//职称
+	 					oprotitle.innerHTML =  myData["title"];//职称
+	 					if(myData["office"]){
+	 					oprooffice.innerHTML = ', '+ myData["office"];//职位
+	 					}
+	 				}else{
+	 					if(myData["office"]){
+	 					oprooffice.innerHTML =  myData["office"];//职位
+	 					}
 	 				}
-	 				if(myData["office"]){
-	 					oprooffice.innerHTML = myData["office"]+', ';//职位
-	 				}
+	 				
 	 				if(myData["department"]){
-	 					oprodepart.innerHTML = myData["department"]+', ';//所在部门
+	 					oprodepart.innerHTML =myData["department"];//所在部门
+	 					if(myData["orgName"]){
+	 						oproorgName.innerHTML = ', '+myData["orgName"];//所在机构
+	 						if(myData["address"]){
+	 							oproadress.innerHTML = ' | '+myData["address"];//所在地
+	 						}
+	 					}else{
+	 						if(myData["address"]){
+	 							oproadress.innerHTML = ' | '+myData["address"];//所在地
+	 						}
+	 					}
+	 				}else{
+	 					if(myData["orgName"]){
+	 						oproorgName.innerHTML = myData["orgName"];//所在机构
+	 						if(myData["address"]){
+	 							oproadress.innerHTML = ' | '+myData["address"];//所在地
+	 						}
+	 					}else{
+	 						if(myData["address"]){
+	 							oproadress.innerHTML = myData["address"];//所在地
+	 						}
+	 					}
 	 				}
-	 				if(myData["orgName"]){
-	 					oproorgName.innerHTML = myData["orgName"];//所在机构
-	 				}
-	 				if(myData["address"]){
-	 					oproadress.innerHTML = ' | '+myData["address"];//所在地
-	 				}
+	 				
+	 				
 	 				var starLevel = myData['starLevel'];
 	 				if(myData["consultCount"]) {
 	 					oconsultcount.innerHTML =  myData["consultCount"];//咨询次数
@@ -115,27 +137,8 @@
 	 					ofinished.style.display="none"; 
 	 				}
 	 				/*是否认证*/
-					if(myData.authType) {
-						nameli.classList.add('icon-vip');
-						nameli.classList.add('authicon-cu');
-						nameli.style.top = "4px";
-					} else {
-						if(myData.authStatus==3) {
-							if(myData.authentication == 1) {
-								nameli.classList.add('icon-renzheng');
-								nameli.classList.add('authicon-mana');
-//								nameli.innerHTML = "<span>科研</span>";
-							} else if(myData.authentication == 2) {
-								nameli.classList.add('icon-renzheng');
-								nameli.classList.add('authicon-staff');
-//								nameli.innerHTML = "<span>企业</span>";
-							} else {
-								nameli.classList.add('icon-renzheng');
-								nameli.classList.add('authicon-stu');
-//								nameli.innerHTML = "<span>学生</span>";
-							}
-						}
-					}
+	 				var oSty = autho(myData.authType, myData.orgAuth, myData.authStatus);
+					nameli.classList.add(oSty.sty);
 					
 					/*专家头像*/
 					if(myData["hasHeadImage"] == 0) {
@@ -163,7 +166,30 @@
  			}
  		});
  	}
+	/*职位职称所在机构，部门，地址等等*/
+function personalInformation($person) {
+	var arr1 = [$person.title, $person.office, $person.department, $person.orgName, $person.address];
+	var arr = new Array();
+	var arr2 = new Array();
+	var n = 0;
+	for(var i = 0; i < arr1.length; i++) {
+		if(arr1[i]) {
+			arr.push(arr1[i]);
+			if(arr1[i] == arr1[arr1.length - 1]) {
+				n = 1;
+			}
+		}
+	}
+	if(n == 1) {
+		for(var i = 0; i < arr.length - 1; i++) {
+			arr2.push(arr[i]);
+		}
+		return arr2.join() + " | " + arr[arr.length - 1];
+	} else {
+		return arr.join();
+	}
 
+}
  	/*咨询申请字数限制*/
 	function checkLen(obj) {  
 		var maxChars = 300;//最多字符数  
@@ -245,9 +271,7 @@
 		var aimlist = document.querySelector('.aimclass').querySelectorAll("li");
 		for(var i = 0 ; i < aimlist.length;i++){
 			aimlist[i].classList.remove('liactive');
-			aimlist[i].querySelector('em').classList.remove('icon-check');
 		}
 		this.classList.add('liactive');
-		this.querySelector("em").classList.add("icon-check");
 	});
 })

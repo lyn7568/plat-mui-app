@@ -546,26 +546,9 @@ function eachData(userid, datalist) {
 			}
 
 			//认证
-			if(item["professor"].authType) {
-				proModify = 'icon-vip authicon-cu';
-			} else {
-				if(item["professor"].authStatus==3) {
-					if(item["professor"].authentication == 1) {
-						proModify = 'icon-renzheng authicon-mana';
-						//						modifyaddEle = "<span >科研</span>";
-
-					} else if(item["professor"].authentication == 2) {
-						proModify = 'icon-renzheng authicon-staff';
-						//						modifyaddEle = "<span>企业</span>";
-
-					} else {
-
-						proModify = 'icon-renzheng authicon-stu';
-						//						modifyaddEle = "<span>学生</span>";
-
-					}
-				}
-			}
+			var oSty = autho(item["professor"].authType,item["professor"].orgAuth,item["professor"].authStatus);
+			proModify = oSty.sty;
+			
 
 			(item["professor"]["hasHeadImage"] == 0) ? photoUrl = "../images/default-photo.jpg": photoUrl = baseUrl + "/images/head/" + item["professor"].id + "_l.jpg";
 
@@ -599,7 +582,7 @@ function eachData(userid, datalist) {
 				'<span class="mui-badge mui-badge-danger readstate ' + unreadStyle + '" consultId="' + item["consultId"] + '">' + unreadCount + '</span>' +
 				'<img class="mui-media-object mui-pull-left headimg headRadius" src="' + photoUrl + '">' +
 				'<div class="mui-media-body">' +
-				'<p class="listtit">' + item["professor"]["name"] + '<em id="nameli" style="top:3px" class="mui-icon iconfont ' + proModify + '">' + modifyaddEle + '</em><span class="thistime">' + lastReplyTime + '</span></p>';
+				'<p class="listtit">' + item["professor"]["name"] + '<em id="nameli" style="top:2px" class="authicon ' + proModify + '">' + modifyaddEle + '</em><span class="thistime">' + lastReplyTime + '</span></p>';
 			str += '<p class="listtit2">';
 			if(item["professor"]["title"]) {
 				str += '<span>' + item["professor"]["title"] + '</span>, ';

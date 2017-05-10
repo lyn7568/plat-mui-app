@@ -30,23 +30,9 @@ mui.ready(function() {
 						var proOrg = document.getElementById("proOrg");
 						var proAddress = document.getElementById("proAddress");
 						var nameli=document.getElementById("aClass");
-						if($info.professor.authType) {
-							nameli.classList.add('icon-vip');
-							nameli.classList.add('authicon-cu');
-						} else {
-							if($info.professor.authStatus==3) {
-								if($info.authentication == 1) {
-									nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-mana');
-								} else if($info.professor.authentication == 2) {
-									nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-staff');
-								} else {
-									nameli.classList.add('icon-renzheng');
-									nameli.classList.add('authicon-stu');
-								}
-							}
-						}
+						var oSty = autho($info.professor.authType, $info.professor.orgAuth, $info.professor.authStatus);
+						nameli.classList.add(oSty.sty);
+						
 						if(userid==$info.professor.id){
 							document.getElementById("repaly").style.display="none";
 						}
@@ -179,7 +165,7 @@ mui.ready(function() {
 				plus.webview.create("../html/researcherProw.html", 'researcherProw.html', {}, {
 					proid: professId
 				});
-			} else if(authentication == 2) {
+			} else if(authentication == 2|| authentication == 0) {
 				plus.webview.create("../html/companybrowse.html", 'companybrowse.html', {}, {
 					proid: conId
 				});

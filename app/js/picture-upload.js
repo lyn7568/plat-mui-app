@@ -213,7 +213,7 @@ mui.plusReady(function() {
 						var Pa = plus.webview.getWebviewById('resinforupdate.html');
 						mui.fire(Pa, 'resourceMess');
 					}
-					var ifllimg = plus.webview.getWebviewById('../html/fillinfo.html');
+					var ifllimg = plus.webview.getWebviewById('fill-info.html');
 					mui.fire(ifllimg, 'showimg');
 					mui.currentWebview.close();
 					mui.back();

@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>完善个人信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<h1 class="mui-title toptit">完善个人信息</h1>
+		</header>
+		<div class="mui-content selectSortBox">
+			<div class="bindtip"><img src="../images/login_bg_tishi_3_nor@3x.png" width="100%" /></div>
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4" data-num="1">
+			        <span class="selectSort sort-pro"></span>
+			        <div class="mui-media-body">科研工作者</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4" data-num="2">
+				    <span class="selectSort sort-mana"></span>
+				    <div class="mui-media-body">企业高管</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4" data-num="3">
+				    <span class="selectSort sort-stu"></span>
+			        <div class="mui-media-body">在校生</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4" data-num="4">
+				    <span class="selectSort sort-skill"></span>
+			        <div class="mui-media-body">技术人员</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4" data-num="5">
+				    <span class="selectSort sort-hr"></span>
+			        <div class="mui-media-body">HR/猎头</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4" data-num="6">
+				    <span class="selectSort sort-sale"></span>
+			        <div class="mui-media-body">销售人员</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4" data-num="7">
+				    <span class="selectSort sort-invest"></span>
+			        <div class="mui-media-body">投资方</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4" data-num="8">
+				    <span class="selectSort sort-consult"></span>
+			        <div class="mui-media-body">咨询顾问</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 selectNow" data-num="0">
+				    <span class="selectSort sort-user"></span>
+			        <div class="mui-media-body">普通用户</div>
+			        <span class="iconfont icon-yuanxingxuanzhongfill"></span>
+				</li>
+			</ul>
+			<div class="mui-content-padded frmboxNew">
+				<button class="mui-btn mui-btn-block frmbtn frmactive" id="fillinfoNext">下一步</button>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript">
+			var applyType ;
+			mui(".selectSortBox").on("tap","li",function(){
+				applyType = this.getAttribute("data-num");
+				var liAll = document.getElementsByTagName('li');
+				var slescted =document.createElement("span")
+				slescted.className = "iconfont icon-yuanxingxuanzhongfill";
+				for(var i = 0;i <liAll.length;i++){
+					if(liAll[i].classList.contains("selectNow")){
+						liAll[i].classList.remove("selectNow");
+						liAll[i].removeChild(liAll[i].getElementsByTagName("span")[1]);
+					}
+				}
+				this.classList.add("selectNow");
+				this.appendChild(slescted);
+			})
+			
+			document.getElementById("fillinfoNext").addEventListener('tap', function() {
+				var userId = plus.storage.getItem('userid');
+				mui.ajax(baseUrl + '/ajax/professor/authen', {
+					data:{"id":userId,"authentication":applyType},
+					dataType: 'json', //数据格式类型
+					type: 'POST', //http请求类型
+					timeout: 10000, //超时设置
+					success: function(data) {
+						console.log(JSON.stringify(data));
+						if(data.success) {
+							mui.openWindow({
+								url: '../html/fill-info.html',
+								id: 'fill-info.html',
+								show: {autoShow: false}
+							});
+						}
+					},
+					error: function(data) {
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
+					}
+				})
+				
+			});
+		</script>
+	</body>
+</html>

@@ -129,11 +129,11 @@
 
 .icon-iconfont05:before { content: "\e60b"; }
 
-.icon-homestep3:before { content: "\e673"; }
+.icon-yuanxingweixuanzhong:before { content: "\e72f"; }
 
-.icon-homestep2:before { content: "\e675"; }
+.icon-yuanxingxuanzhongfill:before { content: "\e732"; }
 
-.icon-homestep1:before { content: "\e676"; }
+.icon-yuanxingxuanzhong:before { content: "\e733"; }
 
 .icon-upload:before { content: "\e674"; }
 
@@ -160,10 +160,4 @@
 .icon-service_light:before { content: "\e7dd"; }
 
 .icon-back_light:before { content: "\e7e0"; }
-
-.icon-hnc_shangchengdingdan_buzhou:before { content: "\e688"; }
-
-.icon-hnc_shangchengdingdan_buzhou1:before { content: "\e689"; }
-
-.icon-hnc_shangchengdingdan_buzhou2:before { content: "\e68b"; }
 

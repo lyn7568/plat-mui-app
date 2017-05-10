@@ -101,13 +101,52 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 /*页面数据初始化*/
 getOnePase();
 
+/*var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+if(isAndroid) {
+	//父子页面，下拉刷新
+	mui.init({
+		pullRefresh: {
+			container: '#pullrefresh2',
+			down: {
+				callback: pulldownRefresh,
+				height:50
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
+		}
+	});
+}
+if(isiOS) {
+	//父子页面，下拉刷新
+	mui.init({
+		pullRefresh: {
+			container: '#pullrefresh2',
+			down: {
+				callback: pulldownRefresh,
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				//auto:true,
+				//height:100, 
+				callback: pullupRefresh
+			}
+		}
+	});
+}*/
+
 mui.init({
 	pullRefresh: {
 		container: '#pullrefresh2',
+		down: {
+			callback: pulldownRefresh,
+			//height:50
+		},
 		up: {
 			contentrefresh: '正在加载...',
-			//auto:true,
-			//height:100, 
 			callback: pullupRefresh
 		}
 	}
@@ -119,6 +158,14 @@ function pullupRefresh() {
 		getaData()
 	}, 1000);
 }
+function pulldownRefresh() {
+	setTimeout(function() {
+		getOnePase();
+		mui('#pullrefresh2').pullRefresh().endPulldownToRefresh();
+	}, 1000);
+}
+
+
 /*时间转换*/
 function Time(dealtime) {
 	var s = dealtime;
@@ -139,7 +186,7 @@ function getaData() {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
-			async: true,
+			async: false,
 			success: function(data) {
 				if(data.success) {
 					//console.log("成功");
@@ -178,7 +225,7 @@ function getOnePase() {
 			dataType: 'json', //数据格式类型
 			type: 'GET', //http请求类型
 			timeout: 10000,
-			async: true,
+			async: false,
 			success: function(data) {
 				console.log(data)
 				discoverBox.innerHTML = "";
@@ -216,26 +263,32 @@ function datalistEach(datalist) {
 		$itemlist.find(".newsurl").attr("data-id", item.id);
 		$itemlist.find(".newsurl").attr("data-type", item.type);
 		$itemlist.find(".newsurl").attr("owner-id", item.owner);
-		if(item.image) {
-			$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
-		}
 		if(type == 1) { //专家文章
 			$itemlist.find("#newstype").text("文章");
 			$itemlist.find("#newstype").addClass("articalLabel");
 			$itemlist.find("#newsimg").addClass("artical-default");
 			$itemlist.find("#userimg").addClass("userhead");
+			if(item.image) {
+				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
+			}
 			userFun(item.owner, $itemlist);
 		} else if(type == 2) { //企业文章
 			$itemlist.find("#newstype").text("文章");
 			$itemlist.find("#newstype").addClass("articalLabel");
 			$itemlist.find("#newsimg").addClass("artical-default");
 			$itemlist.find("#userimg").addClass("cmplogo");
+			if(item.image) {
+				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
+			}
 			cmpFun(item.owner, $itemlist)
 		} else if(type == 3) { //专家资源
 			$itemlist.find("#newstype").text("资源");
 			$itemlist.find("#newstype").addClass("resourceLabel");
 			$itemlist.find("#newsimg").addClass("resource-default");
 			$itemlist.find("#userimg").addClass("userhead");
+			if(item.image) {
+				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/images/resource/" + item.image + ");");
+			}
 			userFun(item.owner, $itemlist);
 		}
 
@@ -297,28 +350,4 @@ function cmpFun(id, $itemlist) {
 			plus.nativeUI.toast("服务器链接超时", toastStyle);
 		}
 	});
-}
-
-/*标志*/
-function autho() {
-	if(arguments[0] == 1) {
-		return {
-			"sty": "authicon-pro",
-			"title": "科袖认证专家"
-		}
-	} else {
-		if(arguments[1] == 1) {
-			return {
-				"sty": "authicon-staff-ok",
-				"title": "企业认证员工"
-			}
-		} else {
-			if(arguments[2] == 3) {
-				return {
-					"sty": "authicon-real",
-					"title": "实名认证用户"
-				}
-			}
-		}
-	}
 }

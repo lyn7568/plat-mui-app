@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>筛选条件</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<style type="text/css">
+			body,.mui-content{background: #FFFFFF;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-pull-left topWord">重置</a>
+			<h1 class="mui-title toptit">“找专家”</h1>
+			<a class="mui-pull-right topWord">完成</a>
+		</header>
+		<div class="mui-content">
+		    <div class="filterListNew">
+				<div class="filterClass">
+					<h5 class="mui-navigate-right">所在城市<span class="orangeColor">不限</span></h5>
+				</div>
+				<ul class="filterUl fourUl">
+					<li class="filterCurrent">不限</li>
+		       		<li>北京</li>
+		       		<li>呼和浩特</li>
+		       		<li>太原</li>
+		       		<li>上海</li>
+		       		<li>广州</li>
+		       		<li>天津</li>
+		       		<li>北京</li>
+		       		<li>呼和浩特</li>
+		       		<li>太原</li>
+		       		<li>上海</li>
+		       		<li>广州</li>
+		       		<li>天津</li>
+		       	</ul>
+			</div>
+			<div class="filterListNew">
+				<div class="filterClass">
+					<h5 class="mui-navigate-right">学术领域<span class="orangeColor">不限</span></h5>
+				</div>
+				<ul class="filterUl threeUl">
+					<li class="filterCurrent">不限</li>
+		       		<li>材料检测</li>
+		       		<li>防腐蚀</li>
+		       		<li>材料表面与界面</li>
+		       		<li>微晶金属材料</li>
+		       		<li>黑色金属</li>
+		       		<li>金属基复合材料</li>
+		       	</ul>
+			</div>
+			<div class="filterListNew">
+				<div class="filterClass">
+					<h5 class="mui-navigate-right">应用行业<span class="orangeColor">不限</span></h5>
+				</div>
+				<ul class="filterUl fourUl">
+					<li class="filterCurrent">不限</li>
+		       		<li>航空航天</li>
+		       		<li>化工</li>
+		       		<li>新能源</li>
+		       		<li>半导体</li>
+		       		<li>航空航天</li>
+		       		<li>化工</li>
+		       		<li>新能源</li>
+		       		<li>半导体</li>
+		       		<li>航空航天</li>
+		       		<li>化工</li>
+		       		<li>新能源</li>
+		       		<li>半导体</li>
+		       	</ul>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//筛选条件的选择
+			mui(".filterUl").on("tap","li",function(){
+				this.parentNode.querySelector('li.filterCurrent').classList.remove("filterCurrent");
+				this.classList.add("filterCurrent");
+				this.parentNode.parentNode.querySelector(".filterClass span").innerText=this.innerText;
+			})
+			//筛选条件的展开关闭
+			mui(".filterListNew").on("tap",".filterClass",function(){
+				if(this.className == "filterClass filterActive") {
+					this.classList.remove("filterActive");
+					this.parentNode.querySelector(".filterUl").classList.remove("filterUlactive");
+				} else {
+					this.classList.add("filterActive");
+					//this.nextSibling.classList.add("filterUlactive");
+					this.parentNode.querySelector(".filterUl").classList.add("filterUlactive");
+				}
+			})
+		</script>
+	</body>
+
+</html>
+

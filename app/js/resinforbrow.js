@@ -72,39 +72,14 @@ function ziyuaninfo(resourceId) {
 					//所在地
 					(mydata['editProfessor']["address"]) ? oproadress.innerHTML = mydata['editProfessor']["address"]: oproadress.innerHTML = '';
 					/*是否认证*/
-					//(mydata['editProfessor']["authentication"] == true) ? opromodify.classList.add('authicon'): opromodify.classList.add('unauthicon');
-					if(mydata['editProfessor']["authType"]) {
-						opromodify.classList.add('icon-vip');
-						opromodify.classList.add('authicon-cu');
-						opromodify.style.float = "left";
-					} else {
-						if(mydata['editProfessor']["authStatus"]==3) {
-							if(mydata['editProfessor']["authentication"] == 1) {
-								opromodify.classList.add('icon-renzheng');
-								opromodify.classList.add('authicon-mana');
-								opromodify.style.position = "static";
-								opromodify.style.margin = "3px 0 0 0";
-							} else if(mydata['editProfessor']["authentication"] == 2) {
-								opromodify.classList.add('icon-renzheng');
-								opromodify.classList.add('authicon-staff');
-								opromodify.style.position = "static";
-								opromodify.style.margin = "3px 0 0 0";
-							} else {
-								opromodify.classList.add('icon-renzheng');
-								opromodify.classList.add('authicon-stu');
-								opromodify.style.position = "static";
-								opromodify.style.margin = "3px 0 0 0";
-							}
-						}
-					}
+					var oSty = autho(mydata['editProfessor']["authType"], mydata['editProfessor']["orgAuth"], mydata['editProfessor']["authStatus"]);
+					opromodify.classList.add(oSty.sty);
 
 					/*专家头像*/
 					
 					(mydata['editProfessor']["hasHeadImage"] == 0) ? oproimg.setAttribute('src', '../images/default-photo.jpg'): oproimg.setAttribute('src', baseUrl + '/images/head/' + mydata['editProfessor']['id'] + '_m.jpg');
 					console.log(mydata['editProfessor']["hasHeadImage"])
 					//资源基本信息
-					//(mydata['images']['imageSrc']) ? oziyuanimg.setAttribute('src', mydata['images']['imageSrc']): oziyuanimg.setAttribute('src', '../images/default-resource.jpg'); //资源图片
-
 					var imgRes = baseUrl + "/images/resource/" + mydata.resourceId + ".jpg";
 					if(mydata['images'].length) {
 						oziyuanimg.setAttribute('src', imgRes)
@@ -206,7 +181,7 @@ mui.plusReady(function() {
 					var $info = data.data || {}
 
 					if(data.success && data.data) {
-						if($info.authType||$info.authentication == 1) {
+						if($info.authType==1){
 							mui.openWindow({
 								url: '../html/proinforbrow.html',
 								id: 'html/proinforbrow.html',
@@ -218,7 +193,20 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
-						} else if(!$info.authType&&$info.authentication == 2) {
+						}else{
+						if($info.authentication == 1) {
+							mui.openWindow({
+								url: '../html/researcherProw.html',
+								id: 'researcherProw.html',
+								show: {
+									autoShow: false,
+									aniShow: "slide-in-left"
+								},
+								extras: {
+									proid: professorId
+								},
+							});
+						} else if($info.authentication == 2 ||$info.authentication == 0) {
 							mui.openWindow({
 								url: '../html/companybrowse.html',
 								id: 'html/companybrowse.html',
@@ -230,7 +218,7 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
-						} else if(!$info.authType&&$info.authentication == 3) {
+						} else if($info.authentication == 3) {
 							mui.openWindow({
 								url: '../html/studentbrowse.html',
 								id: 'html/studentbrowse.html',
@@ -242,6 +230,7 @@ mui.plusReady(function() {
 									proid: professorId
 								},
 							});
+						}
 						}
 
 					}
@@ -354,7 +343,7 @@ mui.plusReady(function() {
 					noExpert.style.display = "block";
 					//resourceId = data.data;
 					//console.log(resourceId)
-					plus.nativeUI.toast("资源关注成功", toastStyle);
+					plus.nativeUI.toast("收藏成功", toastStyle);
 				}
 			},
 			error: function() {
@@ -382,7 +371,7 @@ mui.plusReady(function() {
 				if(data.success) {
 					$this.style.display = "none";
 					yesExpert.style.display = "block";
-					plus.nativeUI.toast("取消关注资源", toastStyle);
+					plus.nativeUI.toast("已取消收藏", toastStyle);
 				}
 			},
 			error: function(data) {
@@ -503,11 +492,12 @@ mui.plusReady(function() {
 		};
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
-			var strtmp = "分享到\"" + share.description + "\"成功！ ";
+			/*var strtmp = "分享到\"" + share.description + "\"成功！ ";
 			console.log(strtmp);
 			plus.nativeUI.toast(strtmp, {
 				verticalAlign: 'center'
-			});
+			});*/
+			shareAddIntegral(2);
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {

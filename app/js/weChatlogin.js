@@ -15,13 +15,13 @@ mui.plusReady(function() {
 		if(s) {
 			if(!s.authResult) {
 				s.login(function(e) {
-					mui.toast("登录认证成功！");
+					mui.toast("登录成功");
 					authUserInfo(s);
 				}, function(e) {
-					mui.toast("登录认证失败！");
+					mui.toast("登录失败");
 				});
 			} else {
-				mui.toast("已经登录认证！");
+				mui.toast("已经登录认证");
 				authLogout();
 			}
 		} else {
@@ -94,6 +94,8 @@ mui.plusReady(function() {
 							id: data.id
 						});	
 					}
+				}else{
+					console.log(JSON.stringify(data));
 				}
 			},
 			error: function(x) {

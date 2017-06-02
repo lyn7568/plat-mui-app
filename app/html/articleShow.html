@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>文章浏览-科袖</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
+			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
+		</style>
+	</head>
+
+	<body>
+		<div class="maskBlack" id="maskBlack"></div>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit">文章</h1>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
+		</header>
+		<nav class="mui-bar mui-bar-tab footbox">
+			<div class="mui-row artfoot displayNone" id="textInput">
+				<div class="mui-col-xs-12">
+					<textarea name="" placeholder="说点什么吧…" id="textInputThis"></textarea>
+					<button class="mui-btn" disabled>发表</button>
+				</div>
+			</div>
+			<div class="mui-row artfoot" id="operCol">
+				<div class="mui-col-xs-8">
+					<div class="inputShow"><span>说点什么吧…</span></div>
+				</div>
+				<div class="mui-col-xs-1">
+					<span class="mui-icon iconfontnew icon-liuyan"><em class="mui-badge">16</em></span>
+				</div>
+				<div class="mui-col-xs-2">
+					<span class="mui-icon iconfontnew icon-shoucang"></span><!--已收藏 icon-yishoucang-->
+				</div>
+				<div class="mui-col-xs-1" id="shareOut">
+					<span class="mui-icon iconfontnew icon-fenxiang"></span>
+				</div>
+			</div>
+		</nav>
+		<div class="mui-content">
+		    <div class="showDetail">
+		    		<div class="h1Font hWeight">文章题目文章题目文章题目文章题目文章题目文章题目</div>
+		    		<div class="madiaBlock">
+		    			<ul class="mui-table-view noactiveTab" style="margin:0 -15px;">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter mui-clearfix">
+					                <div class="madiaHead useHead"></div>
+									<div class="madiaInfo">
+										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+										<p class="h3Font">14分钟前</p>
+									</div>
+					            </div>
+					            <span class="mui-icon attenSpan">关注</span>
+					        </li>
+					    </ul>
+		    		</div>
+			    	<!--文章内容区-->
+					<div class="showMain">
+	<p>分享，是我觉得对我熟人圈的亲戚朋友同事们有用，所以发布出来让大家看到的内容，最简单的就是鸡汤、各种鸡汤，养生，各种养生，因为这是关乎心灵和身体健康的东西。位居其后的，是我认为重要的信息。什么是重要的信息，后面我会专门展开来讲。
+	以展示和分享为主要目的的传播特征，使得社交媒体上发布的信息很像是美图秀，是无意中被刻意挑选过的。</p><p>因为朋友圈中发布的信息其实是有某种强烈的筛选机制。虽然理论上任意两个人都可以通过非常有限的朋友圈建立联系，它看上去像是开发的，但实际上，每个人的朋友圈基本上都是处于半开放的，因为虽然互相关注，但你可以选择他是否可以看你发布的内容，以及你是否看他发布的内容。
+	所以，任意一个朋友圈都是特定观念和偏好的集合，信息是在特定人群中间传播。一个坚持买《环球时报》的人，很少看到南方系的内容，反之亦然，一个热爱中医养生的人，很少看到科普党人反中医的文章，反之亦然，一个热爱唐装盘手串的人，很少看到整天攻击中国传统文化的内容，反之亦然。</p>
+	<p>所谓展示，指的是我通过信息的发布，展示我的生活方式生活态度和精神面目，一个人展示出来的东西，其实是他希望和想象的理想状态，通常是比实际情况要高一档次，比如一个人一周要吃五次卤煮，他肯定不会秀自己整天吃卤煮，但是，他要吃了一次日本料理，就一定会秀出来。去动物园服装批发市场买衣服，他不会秀，但他去了一次东京银座，即使不购物也会展示出来。他跑了五公里会秀，但宅在家里两天不出门灰头土脑一定不会秀。同样的，晒娃、晒猫狗、秀恩爱也是基于同样的心理，我希望通过这些信息，来展示我是一个多么热爱生活，当然，重要是生活品质很高，并且关心社会的一个面貌。</p>
+					</div>
+		    		<!--标签模块-->
+					<ul class="tagList">
+						<li>
+							<span class="h2Font">金属材料工程与腐</span>
+						</li>
+						<li>
+							<span class="h2Font">金属材料工程与腐蚀</span>
+						</li>
+						<li>
+							<span class="h2Font">金属材</span>
+						</li>
+						<li>
+							<span class="h2Font">金属材料工程与</span>
+						</li>
+						<li>
+							<span class="h2Font">金属材料</span>
+						</li>
+					</ul>
+					<div class="madiaBlock">
+						<div class="madiaTit">相关专家</div>
+						<ul class="mui-table-view">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter mui-clearfix">
+					                <div class="madiaHead useHead"></div>
+									<div class="madiaInfo">
+										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+										<p class="mui-ellipsis h2Font">职称/职位,所在机构</p>
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter mui-clearfix">
+					                <div class="madiaHead useHead"></div>
+									<div class="madiaInfo">
+										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+										<!--<p class="mui-ellipsis h2Font">职称/职位</p>-->
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+					<div class="madiaBlock">
+						<div class="madiaTit">相关资源</div>
+						<ul class="mui-table-view">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead resouseHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">资源名称资源名称资源名称资源名称</p>
+										<p class="mui-ellipsis h2Font">用途：资源用途资源用途资源用途资源用途资源用途</p>
+										<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead resouseHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">资源名称资源名称资源名称资源名称</p>
+										<p class="mui-ellipsis h2Font">用途：资源用途资源用途资源用途资源用途资源用途</p>
+										<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+					<!--点赞模块-->
+					<div class="thumbBlock">
+						<span class="thumbBtn">赞 200</span><!-- thumbedBtn 已赞 201-->
+					</div>
+					<!--您可能感兴趣的文章-->
+					<div class="madiaBlock">
+						<div class="madiaTit">您可能感兴趣的文章</div>
+						<ul class="mui-table-view">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
+										<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis-2 h1Font">文章名称文章名称文章名称文章名称文章名称文章名称文章名称文章名称</p>
+										<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+					<!--留言-->
+					<div class="madiaBlock">
+						<div class="madiaTit">留言</div>
+						<ul class="mui-table-view commentBlock noactiveTab">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter mui-clearfix">
+					                <div class="madiaHead useHead"></div>
+									<div class="madiaInfo">
+										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+									</div>
+					            </div>
+					            <div class="madiaInfo">
+									<p class="h2Font">留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容</p>
+									<p class="operateSpan">
+										<span class="commenttime">4小时前</span>
+										<span>删除</span>
+									</p>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter mui-clearfix">
+					                <div class="madiaHead useHead"></div>
+									<div class="madiaInfo">
+										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+									</div>
+					            </div>
+					            <div class="madiaInfo">
+									<p class="h2Font">留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容</p>
+									<p class="operateSpan">
+										<span class="commenttime">4小时前</span>
+										<span>删除</span>
+									</p>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+		    </div>
+		</div>
+		
+		<div class="shareBlock" id="shareBlock">
+			<h2 class="shareTit"><span>分享到</span></h2>
+			<ul class="mui-table-view noactiveTab">
+				<li class="mui-table-view-cell">
+					<em class="wayicon wechaticon"></em>
+					<span>微信好友</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon friendstericon"></em>
+					<span>微信朋友圈</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon sinaicon"></em>
+					<span>新浪微博</span>
+				</li>
+			</ul>
+			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
+		</div>
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		    mui(".artfoot").on("tap",".inputShow",function(){
+		    	document.getElementById("textInput").style.display="block";
+		    	document.getElementById("operCol").style.display="none";
+		    	document.getElementById("textInputThis").focus();
+		    })
+		    mui("body").on("tap",".mui-content",function(){
+		    	document.getElementById("textInput").style.display="none";
+		    	document.getElementById("operCol").style.display="block";
+		    })
+		    
+		    var BtnMore=document.getElementById("BtnMore");
+		    var shareOut=document.getElementById("shareOut");
+		    var cancelShare=document.getElementById("cancelShare");
+		    var maskBlack=document.getElementById("maskBlack");
+		    var shareBlock=document.getElementById("shareBlock");
+		    
+		    
+		    BtnMore.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    shareOut.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    cancelShare.addEventListener("tap",function(){
+		    	maskBlack.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		    maskBlack.addEventListener("tap",function(){
+		    	this.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		</script>
+	</body>
+
+</html>

@@ -605,7 +605,7 @@ mui.plusReady(function() {
 		if(oFen=="微信好友") {
 			var share = buildShareService();
 				if(share) {
-					shareMessage(share, "WXSceneSession", {
+					shareMessage(share, "sinaweibo", {
 						content: "dddddd",
 						title: "【科袖文章】",
 						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=",
@@ -716,7 +716,7 @@ mui.plusReady(function() {
 
 	}
 
-	function shareMessage(share, ex, msg) {
+	/*function shareMessage(share, ex, msg) {
 		msg.extra = {
 			scene: ex
 		};
@@ -731,5 +731,5 @@ mui.plusReady(function() {
 				});
 			}
 		});
-	}
+	}*/
 });

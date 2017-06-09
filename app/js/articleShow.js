@@ -695,7 +695,7 @@ mui.plusReady(function() {
 	}*/
 
 	function buildShareService() {
-		var share = shares["weixin"];
+		var share = shares["sinaweibo"];
 		if(share) {
 			if(share.authenticated) {
 				console.log("---已授权---");

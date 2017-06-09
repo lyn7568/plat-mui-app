@@ -605,15 +605,23 @@ mui.plusReady(function() {
 		if(oFen=="微信好友") {
 			var share = buildShareService();
 				if(share) {
-					shareMessage(share, "sinaweibo", {
+					shareMessage(share, "WXSceneSession", {
 						content: "dddddd",
-						title: "【科袖文章】",
-						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=",
+						title: "【科袖文章】" + proticleName,
+						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
 						thumbs: [baseUrl + "/images/logo180.png"]
 					});
 				}
 		}else if(oFen=="微信朋友圈") {
-			alert(2)
+			var share = buildShareService();
+				if(share) {
+					shareMessage(share, "WXSceneTimeline", {
+						content: "DDD",
+						title: "【科袖文章】" ,
+						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=",
+						thumbs: [baseUrl + "/images/logo180.png"]
+					});
+				}
 		}else if(oFen=="新浪微博") {
 			alert(3)
 		}
@@ -695,7 +703,7 @@ mui.plusReady(function() {
 	}*/
 
 	function buildShareService() {
-		var share = shares["sinaweibo"];
+		var share = shares["weixin"];
 		if(share) {
 			if(share.authenticated) {
 				console.log("---已授权---");
@@ -716,7 +724,7 @@ mui.plusReady(function() {
 
 	}
 
-	/*function shareMessage(share, ex, msg) {
+	function shareMessage(share, ex, msg) {
 		msg.extra = {
 			scene: ex
 		};
@@ -731,5 +739,5 @@ mui.plusReady(function() {
 				});
 			}
 		});
-	}*/
+	}
 });

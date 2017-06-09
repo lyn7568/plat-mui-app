@@ -603,7 +603,7 @@ mui.plusReady(function() {
 		var oFen=this.getElementsByTagName("span")[0].innerHTML;
 		console.log(oFen);
 		if(oFen=="微信好友") {
-			var share = buildShareService();
+			var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
 						content: "dddddd",
@@ -613,7 +613,7 @@ mui.plusReady(function() {
 					});
 				}
 		}else if(oFen=="微信朋友圈") {
-			var share = buildShareService();
+			var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {
 						content: "DDD",
@@ -623,7 +623,13 @@ mui.plusReady(function() {
 					});
 				}
 		}else if(oFen=="新浪微博") {
-			alert(3)
+			var share = buildShareService("sinaweibo");
+				if(share) {
+					shareMessage(share, "sinaweibo", {
+						content: "iiiiiiiiiiiiisssss",
+						
+					});
+				}
 		}
 		
 	})
@@ -702,8 +708,8 @@ mui.plusReady(function() {
 
 	}*/
 
-	function buildShareService() {
-		var share = shares["weixin"];
+	function buildShareService(ttt) {
+		var share = shares[ttt];
 		if(share) {
 			if(share.authenticated) {
 				console.log("---已授权---");

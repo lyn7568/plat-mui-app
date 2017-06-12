@@ -184,8 +184,14 @@ mui.plusReady(function() {
 			stt = $data.articleImg.substring(0, 9);
 			console.log(stt)
 			if($data.articleContent) {
-				//document.getElementById("articleContent").style.display="block";
 				document.getElementById("articleContent").innerHTML = $data.articleContent;
+				var oImg = document.getElementById("articleContent").getElementsByTagName("img");
+				for(var i = 0; i < oImg.length; i++) {
+					(function(n) {
+						var att = oImg[n].src.substr(7);
+						oImg[n].setAttribute("src", baseUrl + att);
+					})(i);
+				}
 			}
 			if($data.subject) {
 				document.getElementsByClassName("tagList")[0].style.display = "block";

@@ -37,8 +37,20 @@ mui('#discoverBox').on('tap', '.newsurl', function() {
 		});
 	} else if(datatype == 3) {
 		mui.openWindow({
-			url: '../html/resinforbrow.html',
-			id: 'html/resinforbrow.html',
+			url: '../html/resourceShow.html',
+			id: 'html/resourceShow.html',
+			show: {
+				autoShow: false,
+				aniShow: "slide-in-right",
+			},
+			extras: {
+				resourceId: id,
+			}
+		});
+	}else if(datatype == 4) {
+		mui.openWindow({
+			url: '../html/resourceShow.html',
+			id: 'html/resourceShow.html',
 			show: {
 				autoShow: false,
 				aniShow: "slide-in-right",
@@ -68,7 +80,7 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 				proid: id,
 			}
 		});
-	} else if(datatype == 2) {
+	} else if(datatype == 2 || datatype == 4) {
 		if(iftauth == 3) {
 			mui.openWindow({
 				url: '../html/cmpinfor-index.html',
@@ -178,7 +190,7 @@ function Time(dealtime) {
 /*获取上拉加载更多数据*/
 function getaData() {
 	mui.plusReady(function() {
-		mui.ajax(baseUrl + '/ajax/article/pqFind', {
+		mui.ajax(baseUrl + '/ajax/article/findHot', {
 			data: {
 				"pageNo": pageIndex,
 				"pageSize": 20,
@@ -217,7 +229,7 @@ function getaData() {
 /*获取第一页数据*/
 function getOnePase() {
 	mui.plusReady(function() {
-		mui.ajax(baseUrl + '/ajax/article/pqFind', {
+		mui.ajax(baseUrl + '/ajax/article/findHot', {
 			data: {
 				"pageNo": 1,
 				"pageSize": 20,
@@ -287,9 +299,18 @@ function datalistEach(datalist) {
 			$itemlist.find("#newsimg").addClass("resource-default");
 			$itemlist.find("#userimg").addClass("userhead");
 			if(item.image) {
-				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/images/resource/" + item.image + ");");
+				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/resource/" + item.image + ");");
 			}
 			userFun(item.owner, $itemlist);
+		}else if(type == 4) { //企业资源
+			$itemlist.find("#newstype").text("资源");
+			$itemlist.find("#newstype").addClass("resourceLabel");
+			$itemlist.find("#newsimg").addClass("resource-default");
+			$itemlist.find("#userimg").addClass("cmplogo");
+			if(item.image) {
+				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/resource/" + item.image + ");");
+			}
+			cmpFun(item.owner, $itemlist);
 		}
 
 	});

@@ -408,7 +408,7 @@ mui.plusReady(function() {
 	mui("#resourceList").on('tap', 'li', function() {
 		var resouId = this.getAttribute("resouseId");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
+		plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 			resourceId: resouId
 		});
 	});

@@ -78,9 +78,7 @@
  			success:function(data){
  				if(data.success){
  					var myData = data["data"];
- 					
- 					console.log(JSON.stringify(myData))
- 					
+ 					//console.log(JSON.stringify(myData))
 	 				if(myData["name"]){
 	 					oproname.innerText = myData["name"];//专家名字
 	 				};
@@ -221,9 +219,9 @@ function personalInformation($person) {
    	    	var oziyuanspan = document.getElementById("ziyuanspan");
    	    	for(var i = 0 ; i < lilist.length; i++){
    	    		lilist[i].classList.remove('liactive');
-   	    		lilist[i].querySelector("em").classList.remove('icon-check'); 
+   	    		lilist[i].classList.remove('icon-check'); 
    	    		lilist[1].classList.add('liactive');
-   	    		lilist[1].querySelector("em").classList.add('icon-check');;
+   	    		lilist[1].classList.add('icon-check');;
    	    	}
    	    	
    	    }
@@ -235,9 +233,10 @@ function personalInformation($person) {
 // 	   			return;
    	   			if(flag == 'ziyuan'){
 	   	   			/*返回资源信息*/
-					var ziyuaninfo = plus.webview.getWebviewById('resinforbrow.html');
-					ziyuaninfo.show();
-					mui.fire(ziyuaninfo,'backziyuaninfo'); 
+					//var ziyuaninfo = plus.webview.getWebviewById('resourceShow.html');
+					//ziyuaninfo.show();
+					mui.back();
+//					mui.fire(ziyuaninfo,'backziyuaninfo'); 
 	   	   		}else if(flag == 'professor'){
 	   	   			/*返回专家信息*/
 					var proinfo = plus.webview.getWebviewById('proinforbrow.html');

@@ -296,7 +296,7 @@ mui.ready(function() {
 		mui("#resourceList").on("tap", "li", function() {
 				var resouId = this.getAttribute("resouId");
 				var nwaiting = plus.nativeUI.showWaiting();
-				var web = plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
+				var web = plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 						resourceId: resouId
 					})
 					//				var web = plus.webview.create("../html/resinforupdate.html", "resinforupdate.html", {}, {

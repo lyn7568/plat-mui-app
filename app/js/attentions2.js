@@ -43,7 +43,7 @@ mui.plusReady(function(){
 	mui('.list').on('tap','a',function(){
 		var id=this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/resinforbrow.html",'resinforbrow.html',{},{resourceId:id});
+		plus.webview.create("../html/resourceShow.html",'resourceShow.html',{},{resourceId:id});
 	})
 })
 

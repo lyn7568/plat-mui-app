@@ -12,14 +12,15 @@ mui.init({
 
 function pullupRefresh() {
 	setTimeout(function() {
-		leword(1,0);
+		leword(1, 0);
 	}, 1000);
 }
 leword(1, 1);
 
-function leword(row,aa) {
+function leword(row, aa) {
 	mui.plusReady(function() {
-		var af=aa;
+		var af = aa,
+			stt;
 		var obj = {};
 		obj.articleId = plus.webview.currentWebview().articleId;
 		obj.createTime = createTime;
@@ -34,18 +35,18 @@ function leword(row,aa) {
 			success: function(data) {
 				if(data.success) {
 					if(af == 1) {
-						document.getElementsByClassName('commentBlock')[0].innerHTML=""
+						document.getElementsByClassName('commentBlock')[0].innerHTML = ""
 						if(data.data.length == 0) {
 							mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 							return;
 						}
-					}else{
+					} else {
 						if(data.data.length == 0) {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 							return;
 						}
 					}
-					var id=plus.storage.getItem('userid');
+					var id = plus.storage.getItem('userid');
 					createTime = data.data[data.data.length - 1].createTime;
 					orderKey = data.data[data.data.length - 1].orderKey;
 					if(data.data.length == row) {
@@ -54,9 +55,9 @@ function leword(row,aa) {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 					}
 					for(var i = 0; i < data.data.length; i++) {
-						var oText=""
-						if(id==data.data[i].professor.id) {
-							oText="删除"
+						var oText = ""
+						if(id == data.data[i].professor.id) {
+							oText = "删除"
 						}
 						var userType = autho(data.data[i].professor.authType, data.data[i].professor.orgAuth, data.data[i].professor.authStatus);
 						var baImg = "../images/default-photo.jpg";
@@ -64,7 +65,8 @@ function leword(row,aa) {
 							baImg = baseUrl + "/images/head/" + data.data[i].professor.id + "_l.jpg";
 						}
 						var li = document.createElement("li");
-						li.className = "mui-table-view-cell"
+						li.className = "mui-table-view-cell";
+						li.setAttribute("data-id", data.data[i].professor.id)
 						li.innerHTML = '<div class="flexCenter mui-clearfix">' +
 							'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>' +
 							'<div class="madiaInfo">' +
@@ -75,7 +77,7 @@ function leword(row,aa) {
 							'<p class="h2Font">' + data.data[i].content + '</p>' +
 							'<p class="operateSpan">' +
 							'<span class="commenttime">' + oTime.publish(data.data[i].createTime) + '</span>' +
-							'<span data-id="'+data.data[i].id+'" class="dele">'+oText+'</span>' +
+							'<span data-id="' + data.data[i].id + '" class="dele">' + oText + '</span>' +
 							'</p>' +
 							'</div>'
 						document.getElementsByClassName("commentBlock")[0].appendChild(li);
@@ -164,8 +166,8 @@ mui.plusReady(function() {
 				success: function(data) {
 					if(data.success) {
 						oFun(data.data);
-					}else{
-						
+					} else {
+
 					}
 				},
 				error: function(xhr, type, errorThrown) {
@@ -179,6 +181,8 @@ mui.plusReady(function() {
 			plus.webview.currentWebview().show("slide-in-right", 150);
 			//console.log(JSON.stringify($data));
 			document.getElementById("articleName").innerHTML = $data.articleTitle;
+			stt = $data.articleImg.substring(0, 9);
+			console.log(stt)
 			if($data.articleContent) {
 				//document.getElementById("articleContent").style.display="block";
 				document.getElementById("articleContent").innerHTML = $data.articleContent;
@@ -228,6 +232,34 @@ mui.plusReady(function() {
 			}
 			if($data.authStatus == 3) {
 				document.getElementById("auth").classList.add("authicon-com-ok");
+				mui('#personAL').on('tap', '#messImg,#name', function() {
+					mui.openWindow({
+						url: '../html/cmpinfor-index.html',
+						id: 'cmpinfor-index.html',
+						show: {
+							autoShow: false,
+							aniShow: "slide-in-right",
+						},
+						extras: {
+							orgId: oArticleModule.oWner,
+						}
+					});
+				})
+			} else {
+				mui('#personAL').on('tap', '#messImg,#name', function() {
+					mui.openWindow({
+						url: '../html/cmpinfor-Unindex.html',
+						id: 'cmpinfor-Unindex.html',
+						show: {
+							autoShow: false,
+							aniShow: "slide-in-right",
+						},
+						extras: {
+							orgId: oArticleModule.oWner,
+							flag: 0,
+						}
+					});
+				})
 			}
 		},
 		correlationExpert: function($data) {
@@ -271,6 +303,7 @@ mui.plusReady(function() {
 			var userType = autho($data.authType, $data.orgAuth, $data.authStatus);
 			var li = document.createElement("li");
 			li.className = "mui-table-view-cell";
+			li.setAttribute("data-id", $data.id);
 			li.innerHTML = '<div class="flexCenter mui-clearfix">' +
 				'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>' +
 				'<div class="madiaInfo">' +
@@ -294,7 +327,6 @@ mui.plusReady(function() {
 
 		},
 		rsourceList: function($data) {
-			//console.log(JSON.stringify($data));
 			var namepo, userType;
 			if($data.resourceType == 1) {
 				namepo = $data.editProfessor.name;
@@ -310,6 +342,7 @@ mui.plusReady(function() {
 			}
 			var rImg = baseUrl + "/data/resource/" + $data.images[0].imageSrc;
 			var li = document.createElement("li");
+			li.setAttribute("data-id", $data.resourceId);
 			li.className = "mui-table-view-cell";
 			li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 				' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
@@ -322,6 +355,7 @@ mui.plusReady(function() {
 			document.getElementById("resourceList").appendChild(li);
 		},
 		correlationArticle: function($data) {
+
 			if($data.length == 0) {
 				return;
 			}
@@ -349,7 +383,8 @@ mui.plusReady(function() {
 							var li = document.createElement("li");
 							if( of == 1) {
 								var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
-
+								li.setAttribute("owner-id", data.data.id);
+								li.setAttribute("data-type", 1);
 							} else {
 								var userType = {};
 								if(data.data.authStatus == 3) {
@@ -357,7 +392,10 @@ mui.plusReady(function() {
 								} else {
 									userType.sty = "e"
 								}
+								li.setAttribute("owner-id", data.data.id);
+								li.setAttribute("data-type", 2);
 							}
+							li.setAttribute("data-id", $data[i].articleId);
 							li.className = "mui-table-view-cell";
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
@@ -417,12 +455,20 @@ mui.plusReady(function() {
 	if(oArticleModule.oFlag == 1) {
 		/*企业发布文章信息*/
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + oArticleModule.oWner, "", "get", oArticleModule.business);
-		document.getElementById('attBtn').style.display="none";
-		
+		document.getElementById('attBtn').style.display = "none";
 
 	} else {
+		if(plus.storage.getItem('userid') == oArticleModule.oWner) {
+			document.getElementById('attBtn').style.display = "none";
+		}
+		mui('#personAL').on('tap', '#messImg,#name', function() {
+			var id = oArticleModule.oWner;
+			plus.nativeUI.showWaiting(); //显示原生等待框
+			plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+				proid: id
+			}); //后台创建webview并打开show.html
+		})
 		/*查询是否关注专家*/
-		
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
 			"watchObject": oArticleModule.oWner,
 			'professorId': oCurren.userid
@@ -436,8 +482,55 @@ mui.plusReady(function() {
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralateRes", {
 		"articleId": oArticleModule.articleId
 	}, "get", oArticleModule.correlationResource);
+	mui('#expertList,.commentBlock').on('tap', 'li', function() {
+		var id = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting(); //显示原生等待框
+		plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+			proid: id
+		});
+	})
+	/*资源浏览*/
+	mui('#resourceList').on('tap', 'li', function() {
+		var resouId = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
+			resourceId: resouId
+		});
+	})
 	/*点赞*/
-
+	mui('#articleList').on('tap', 'li', function() {
+		var id = this.getAttribute("data-id");
+		var datatype = this.getAttribute("data-type");
+		var ownerid = this.getAttribute("owner-id");
+		if(datatype == 1) {
+			mui.openWindow({
+				url: '../html/professorArticle.html',
+				id: 'html/professorArticle.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					articleId: id,
+					ownerid: ownerid,
+				}
+			});
+		} else if(datatype == 2) {
+			mui.openWindow({
+				url: '../html/professorArticle.html',
+				id: 'html/professorArticle.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					articleId: id,
+					ownerid: ownerid,
+					oFlag: 1
+				}
+			});
+		}
+	});
 	document.getElementsByClassName("thumbBtn")[0].addEventListener("tap", function() {
 		var oClsNm = document.getElementById("snum").parentNode.className;
 		if(oClsNm == 'thumbBtn thumbedBtn')
@@ -468,6 +561,9 @@ mui.plusReady(function() {
 	/*自定义事件*/
 	window.addEventListener("newId", function(event) {
 		oCurren.userid = plus.storage.getItem('userid');
+		if(oCurren.userid == oArticleModule.oWner) {
+			document.getElementById('attBtn').style.display = "none";
+		}
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/article/isAgree", {
 			"articleId": oArticleModule.articleId,
 			'operateId': oCurren.userid
@@ -537,15 +633,15 @@ mui.plusReady(function() {
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
 		"articleId": oArticleModule.articleId
 	}, "get", leaveWord.leaveWordTotal);
-	document.getElementById("textInputThis").addEventListener("keyup",function(){
+	document.getElementById("textInputThis").addEventListener("keyup", function() {
 		var length = trim(this.value);
 		if(length) {
 			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled")
-		}else{
-			document.getElementsByClassName("mui-btn")[0].setAttribute("disabled","true")
+		} else {
+			document.getElementsByClassName("mui-btn")[0].setAttribute("disabled", "true")
 		}
 	})
-	document.getElementsByClassName("mui-btn")[0].addEventListener("tap",function(){
+	document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function() {
 		mui.ajax(baseUrl + "/ajax/leaveWord", {
 			data: {
 				"articleId": plus.webview.currentWebview().articleId,
@@ -557,11 +653,14 @@ mui.plusReady(function() {
 			timeout: 10000, //超时时间设置为10秒；
 			success: function(data) {
 				if(data.success) {
-					document.getElementById("textInputThis").value="";
-					createTime="";
-					orderKey="";
+					document.getElementById("textInputThis").value = "";
+					createTime = "";
+					orderKey = "";
 					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 					leword(1, 1);
+					oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
+						"articleId": oArticleModule.articleId
+					}, "get", leaveWord.leaveWordTotal)
 				}
 			},
 			error: function(xhr, type, errorThrown) {
@@ -570,8 +669,8 @@ mui.plusReady(function() {
 			}
 		});
 	})
-	mui(".commentBlock").on("tap",".dele",function(){
-		var $this=this;
+	mui(".commentBlock").on("tap", ".dele", function() {
+		var $this = this;
 		mui.ajax(baseUrl + "/ajax/leaveWord/delete", {
 			data: {
 				"id": this.getAttribute("data-id"),
@@ -582,10 +681,13 @@ mui.plusReady(function() {
 			success: function(data) {
 				if(data.success) {
 					document.getElementsByClassName("commentBlock")[0].removeChild($this.parentNode.parentNode.parentNode);
-					createTime="";
-					orderKey="";
+					createTime = "";
+					orderKey = "";
 					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 					leword(1, 1);
+					oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
+						"articleId": oArticleModule.articleId
+					}, "get", leaveWord.leaveWordTotal)
 				}
 			},
 			error: function(xhr, type, errorThrown) {
@@ -594,48 +696,9 @@ mui.plusReady(function() {
 			}
 		});
 	})
-	
-	
-	
+
 	/*微信及微信朋友圈分享专家*/
 	var auths, shares;
-	mui("#shareBlock").on("tap","li",function(){
-		var oFen=this.getElementsByTagName("span")[0].innerHTML;
-		console.log(oFen);
-		if(oFen=="微信好友") {
-			var share = buildShareService("weixin");
-				if(share) {
-					shareMessage(share, "WXSceneSession", {
-						content: "dddddd",
-						title: "【科袖文章】" + proticleName,
-						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
-						thumbs: [baseUrl + "/images/logo180.png"]
-					});
-				}
-		}else if(oFen=="微信朋友圈") {
-			var share = buildShareService("weixin");
-				if(share) {
-					shareMessage(share, "WXSceneTimeline", {
-						content: "DDD",
-						title: "【科袖文章】" ,
-						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=",
-						thumbs: [baseUrl + "/images/logo180.png"]
-					});
-				}
-		}else if(oFen=="新浪微博") {
-			var share = buildShareService("sinaweibo");
-				if(share) {
-					shareMessage(share, "sinaweibo", {
-						content: "iiiiiiiiiiiiisssss",
-						
-					});
-				}
-		}
-		
-	})
-	/*document.getElementById("shareBtn").addEventListener("tap", function() {
-		shareShow()
-	})*/
 	plus.oauth.getServices(function(services) {
 		auths = {};
 		for(var i in services) {
@@ -658,55 +721,44 @@ mui.plusReady(function() {
 		}
 	}, function(e) {
 		alert("获取分享服务列表失败：" + e.message + " - " + e.code);
-	})
-
-	/*function shareShow() {
-		var shareBts = [];
-		// 更新分享列表
-		var ss = shares['weixin'];
-		if(navigator.userAgent.indexOf('StreamApp') < 0 && navigator.userAgent.indexOf('qihoo') < 0) { //在360流应用中微信不支持分享图片
-			ss && ss.nativeClient && (shareBts.push({
-					title: '微信好友',
-					s: ss,
-					x: 'WXSceneSession'
-				}),
-				shareBts.push({
-					title: '微信朋友圈',
-					s: ss,
-					x: 'WXSceneTimeline'
-				}));
-		}
-		//				// 弹出分享列表
-		shareBts.length > 0 ? plus.nativeUI.actionSheet({
-			title: '分享',
-			cancel: '取消',
-			buttons: shareBts
-		}, function(e) {
-			if(e.index == 1) {
-				var share = buildShareService();
-				if(share) {
-					shareMessage(share, "WXSceneSession", {
-						content: oImgShare.substring(0,70),
-						title: "【科袖文章】" + proticleName,
-						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
-						thumbs: [baseUrl + "/images/logo180.png"]
-					});
-				}
-			} else if(e.index == 2) {
-				var share = buildShareService();
-				if(share) {
-					shareMessage(share, "WXSceneTimeline", {
-						content: oImgShare.substring(0,70),
-						title: "【科袖文章】" + proticleName,
-						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
-						thumbs: [baseUrl + "/images/logo180.png"]
-					});
-				}
+	});
+	mui("#shareBlock").on("tap", "li", function() {
+		document.getElementById("shareBlock").style.display = "none";
+		document.getElementById("maskBlack").style.display = "none";
+		var oFen = this.getElementsByTagName("span")[0].innerHTML;
+		if(oFen == "微信好友") {
+			var share = buildShareService("weixin");
+			if(share) {
+				shareMessage(share, "WXSceneSession", {
+					content: document.getElementById("articleContent").innerText.substring(0, 70),
+					title: document.getElementById("articleName").innerHTML,
+					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
+					thumbs: [baseUrl + "/data/article/" + stt + oArticleModule.articleId + "_s.jpg"]
+				});
 			}
+		} else if(oFen == "微信朋友圈") {
+			var share = buildShareService("weixin");
+			if(share) {
+				shareMessage(share, "WXSceneTimeline", {
+					content: document.getElementById("articleContent").innerText.substring(0, 70),
+					title: document.getElementById("articleName").innerHTML,
+					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
+					thumbs: [baseUrl + "/data/article/" + stt + oArticleModule.articleId + "_s.jpg"]
+				});
+			}
+		} else if(oFen == "新浪微博") {
+			var share = buildShareService("sinaweibo");
+			if(share) {
+				shareMessage(share, "sinaweibo", {
+					content: document.getElementById("articleContent").innerText.substring(0, 70),
+					title: document.getElementById("articleName").innerHTML,
+					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
+					thumbs: [baseUrl + "/data/article/" + stt + oArticleModule.articleId + "_s.jpg"]
+				});
+			}
+		}
 
-		}) : plus.nativeUI.alert('当前环境无法支持分享操作!');
-
-	}*/
+	})
 
 	function buildShareService(ttt) {
 		var share = shares[ttt];
@@ -745,5 +797,9 @@ mui.plusReady(function() {
 				});
 			}
 		});
+	}
+	/*定位*/
+	document.querySelector(".icon-liuyan").onclick = function() {
+		window.location.href = "#title";
 	}
 });

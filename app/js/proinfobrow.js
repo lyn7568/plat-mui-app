@@ -359,7 +359,7 @@ mui.plusReady(function() {
 
 	personalMessage();
 	/*专家文章*/
-	mui.ajax(baseUrl + "/ajax/article/qaPro", {
+	mui.ajax(baseUrl + "/ajax/article/qaProPublish", {
 		dataType: 'json', //数据格式类型
 		type: 'GET', //http请求类型
 		data: {

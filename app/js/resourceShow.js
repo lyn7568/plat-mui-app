@@ -143,7 +143,9 @@ mui.plusReady(function() {
 							lastImg.innerHTML = '<a class="tab-re"><img src="'+ baseUrl+'/data/resource/' + mydata.images[mydata.images.length-1].imageSrc + '" /></a>';
 							
 							var firstImg = document.getElementById("firstImg");
-							firstImg.innerHTML = '<a class="tab-re"><img src="'+ baseUrl+'/data/resource/' + mydata.images[0].imageSrc + '" /></a>';	    	
+							firstImg.innerHTML = '<a class="tab-re"><img src="'+ baseUrl+'/data/resource/' + mydata.images[0].imageSrc + '" /></a>';
+//							var aaa = mydata.images[0].imageSrc.replace(/.jpg/,"_s.jpg");
+//							console.log(aaa)
 							for(var i = 0; i < mydata.images.length; i++) {
 								var rPdiv = document.createElement("div");
 								rPdiv.className = 'mui-slider-item';
@@ -602,7 +604,7 @@ mui.plusReady(function() {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
 					href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
-					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src") ]
+					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg")]
 				});
 			}
 		} else if(oFen == "微信朋友圈") {
@@ -612,7 +614,7 @@ mui.plusReady(function() {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
 					href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
-					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src") ]
+					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
 				});
 			}
 		} else if(oFen == "新浪微博") {
@@ -622,11 +624,9 @@ mui.plusReady(function() {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
 					href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
-//					pictures: [imageStr],
-					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src") ]
+					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
 				});
 			}
-//			console.log(firstImg.querySelectorAll("img")[0].getAttribute("src"))
 		}
 
 	})

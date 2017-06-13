@@ -23,7 +23,7 @@
   				找资源：请输入资源名称、用途、机构
 				找文章：请输入文章标题、作者-->
 			</div>
-			<div class="rightnav filtered"><!--选择筛选条件之后添加 filtered-->
+			<div class="rightnav filtered" id="sele"><!--选择筛选条件之后添加 filtered-->
 				<a class="mui-icon iconfont icon-filter"></a><br />筛选
 				<span class="mui-badge">3</span>
 			</div>
@@ -36,12 +36,12 @@
 					<li class="mui-col-xs-4">找文章</li>
 				</ul>
 			</div>
-			<div class="mui-scroll-wrapper"style="padding-top:86px">
+			<div class="mui-scroll-wrapper"style="padding-top:40px" id="pullrefresh">
 			    <div class="mui-scroll">
 					<div class="mui-card-content conblock">
-						<div class="maincontent searchTab">
+						<div class="maincontent searchTab " >
 							<!--无搜索结果-->
-							<div class="nodatabox">
+							<div class="nodatabox displayNone" id="noSearch">
 						        <div class="nodata">
 						            <div class="picbox">
 						            	<img src="../images/points_icon_ku_nor@3x.png" width="28%" />
@@ -52,8 +52,8 @@
 						        </div>
 						    </div>
 							<!--找人-->
-							<ul class="mui-table-view">
-						        <li class="mui-table-view-cell">
+							<ul class="mui-table-view" id="list">
+						        <!--<li class="mui-table-view-cell">
 						            <div class="flexCenter mui-clearfix">
 						                <div class="madiaHead useHead"></div>
 										<div class="madiaInfo">
@@ -72,10 +72,10 @@
 											<p class="mui-ellipsis h2Font">研究方向：研究方向研究方向研究方向研究方向研究方向研究方向</p>
 										</div>
 						            </div>
-						        </li>
+						        </li>-->
 						    </ul>
 						    <!--找资源-->
-						    <ul class="mui-table-view">
+						  <!--<ul class="mui-table-view">
 						        <li class="mui-table-view-cell">
 						            <div class="flexCenter OflexCenter mui-clearfix">
 						                <div class="madiaHead resouseHead"></div>
@@ -96,9 +96,9 @@
 										</div>
 						            </div>
 						        </li>
-						    </ul>
+						    </ul>-->
 						    <!--找文章-->
-						    <ul class="mui-table-view">
+						    <!--<ul class="mui-table-view">
 						        <li class="mui-table-view-cell">
 						            <div class="flexCenter OflexCenter mui-clearfix">
 						                <div class="madiaHead artHead"></div>
@@ -117,7 +117,7 @@
 										</div>
 						            </div>
 						        </li>
-						    </ul>
+						    </ul>-->
 						</div>
 					</div>
 				</div>
@@ -125,6 +125,7 @@
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/searchListNew.js"></script>
 	</body>
 
 </html>

@@ -166,6 +166,8 @@ var search = {
 	},
 	resource: function(data) {
 		console.log(JSON.stringify(data));
+		plus.nativeUI.closeWaiting();
+		plus.webview.currentWebview().show("slide-in-right", 150);
 		document.getElementById('noSearch').style.display = "none"
 		var $da = data.data;
 		if(flag == 1) {
@@ -230,6 +232,8 @@ var search = {
 
 	},
 	article: function(data) {
+		plus.nativeUI.closeWaiting();
+		plus.webview.currentWebview().show("slide-in-right", 150);
 		console.log(JSON.stringify(data))
 		document.getElementById('noSearch').style.display = "none"
 		var $data = data.data;
@@ -310,10 +314,13 @@ mui.plusReady(function() {
 	/*webvie窗口值*/
 	var windowModule = {
 		self: plus.webview.currentWebview().key,
+		flag:plus.webview.currentWebview().qiFlag,
 	}
 	document.getElementById("searchval").value = windowModule.self;
 	inputValue = windowModule.self;
-	search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
+	if(windowModule.flag==1) {
+		qiFlag=1;
+		search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
 		"key": document.getElementById("searchval").value,
 		"subject": subject,
 		"industry": industry,
@@ -322,6 +329,32 @@ mui.plusReady(function() {
 		"pageSize": pageSize,
 		"pageNo": pageNo
 	}, "get", search.oExeprt);
+	}else if(windowModule.flag==2) {
+		qiFlag=2;
+		document.getElementById("sele").style.display = "none";
+		document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[1].classList.add("liactive");
+		for(var i = 0; i < siblings(document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[1]).length; i++) {
+			siblings(document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[1])[i].classList.remove("liactive")
+		}
+		search.oAjaxGet(baseUrl + "/ajax/resource/firstpq", {
+				"key": document.getElementById("searchval").value,
+				"pageSize": pageSize,
+				"pageNo": pageNo
+			}, "get", search.resource);
+	}else {
+		qiFlag=3;
+		document.getElementById("sele").style.display = "none";
+		document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[2].classList.add("liactive");
+		for(var i = 0; i < siblings(document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[2]).length; i++) {
+			siblings(document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[2])[i].classList.remove("liactive")
+		}
+		search.oAjaxGet(baseUrl + "/ajax/article/firstpq", {
+				"key": document.getElementById("searchval").value,
+				"pageSize": pageSize,
+				"pageNo": pageNo
+			}, "get", search.article);
+	}
+	
 	document.getElementById("sele").addEventListener("tap", function() {
 		search.createWin();
 	})

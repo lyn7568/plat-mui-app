@@ -38,7 +38,8 @@ mui.plusReady(function() {
 				      aniShow:"fade-in",
 				    },
 					extras:{
-				      key:keyValue
+				      key:keyValue,
+				      qiFlag:1
 				    }
 				});
 		}

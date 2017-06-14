@@ -658,12 +658,15 @@ mui.plusReady(function() {
 		}
 	})
 	document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function() {
-		mui.ajax(baseUrl + "/ajax/leaveWord", {
-			data: {
+		var $jj= {
 				"articleId": plus.webview.currentWebview().articleId,
 				"sender": plus.storage.getItem('userid'),
 				"content": document.getElementById("textInputThis").value
-			},
+			}
+		console.log(JSON.stringify($jj));
+		return;
+		mui.ajax(baseUrl + "/ajax/leaveWord", {
+			data:$jj,
 			dataType: 'json', //服务器返回json格式数据
 			type: 'post', //HTTP请求类型
 			timeout: 10000, //超时时间设置为10秒；
@@ -682,6 +685,9 @@ mui.plusReady(function() {
 			error: function(xhr, type, errorThrown) {
 				//异常处理；
 				console.log(type);
+			},
+			beforeSend:function(data) {
+				console.log(JSON.stringify(data));
 			}
 		});
 	})
@@ -828,4 +834,19 @@ mui.plusReady(function() {
 				mui.scrollTo(document.getElementById("olisten").offsetTop,1000);
 				
 			})
+	document.getElementsByClassName("tagList")[0]
+	mui(".tagList").on("tap","li",function(){
+		mui.openWindow({
+					url: '../html/searchListNew.html',
+					id: '../html/searchListNew.html',
+					show:{
+				      autoShow:false,
+				      aniShow:"fade-in",
+				    },
+					extras:{
+				      key:this.getElementsByTagName("span")[0].innerHTML,
+				      qiFlag:3
+				    }
+				});
+	})
 });

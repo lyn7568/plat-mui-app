@@ -33,6 +33,7 @@ function leword(row, aa) {
 			timeout: 10000, //超时时间设置为10秒；
 			traditional: true,
 			success: function(data) {
+				console.log(JSON.stringify(data))
 				if(data.success) {
 					if(af == 1) {
 						document.getElementsByClassName('commentBlock')[0].innerHTML = ""
@@ -66,11 +67,10 @@ function leword(row, aa) {
 						}
 						var li = document.createElement("li");
 						li.className = "mui-table-view-cell";
-						li.setAttribute("data-id", data.data[i].professor.id)
 						li.innerHTML = '<div class="flexCenter mui-clearfix">' +
-							'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>' +
+							'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')" data-id="'+data.data[i].professor.id+'"></div>' +
 							'<div class="madiaInfo">' +
-							'<p><span class="h1Font">' + data.data[i].professor.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+							'<p><span class="h1Font" data-id="'+data.data[i].professor.id+'">' + data.data[i].professor.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
 							'</div>' +
 							'</div>' +
 							'<div class="madiaInfo">' +
@@ -83,6 +83,8 @@ function leword(row, aa) {
 						document.getElementsByClassName("commentBlock")[0].appendChild(li);
 					}
 
+				}else{
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				}
 			},
 			error: function(xhr, type, errorThrown) {
@@ -488,7 +490,15 @@ mui.plusReady(function() {
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralateRes", {
 		"articleId": oArticleModule.articleId
 	}, "get", oArticleModule.correlationResource);
-	mui('#expertList,.commentBlock').on('tap', 'li', function() {
+	mui('#expertList').on('tap', 'li', function() {
+		var id = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting(); //显示原生等待框
+		plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+			proid: id
+		});
+	})
+	/*留言*/
+	mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting(); //显示原生等待框
 		plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
@@ -499,7 +509,7 @@ mui.plusReady(function() {
 	mui('#resourceList').on('tap', 'li', function() {
 		var resouId = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
+		plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 			resourceId: resouId
 		});
 	})
@@ -702,7 +712,17 @@ mui.plusReady(function() {
 			}
 		});
 	})
-
+		mui(".artfoot").on("tap",".inputShow",function(){
+			if(!plus.storage.getItem('userid')) {
+				oCurren.login();
+				return;
+			}
+		    	document.getElementById("textInput").style.display="block";
+		    	document.getElementById("operCol").style.display="none";
+		    	document.getElementById("textInputThis").focus();
+		    })
+		
+		
 	/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	plus.oauth.getServices(function(services) {
@@ -756,10 +776,9 @@ mui.plusReady(function() {
 			var share = buildShareService("sinaweibo");
 			if(share) {
 				shareMessage(share, "sinaweibo", {
-					content: document.getElementById("articleContent").innerText.substring(0, 70),
-					title: document.getElementById("articleName").innerHTML,
-					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
-					thumbs: [baseUrl + "/data/article/" + stt + oArticleModule.articleId + "_s.jpg"]
+					href: "http://www.ekexiu.com",
+					content: "88",
+					thumbs: ["http://www.ekexiu.com/images/logo180.png"]
 				});
 			}
 		}
@@ -796,6 +815,7 @@ mui.plusReady(function() {
 			plus.nativeUI.closeWaiting();
 			shareAddIntegral(3);
 		}, function(e) {
+			console.log(JSON.stringify(e))
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {
 				plus.nativeUI.toast('已取消分享', {
@@ -804,8 +824,8 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	/*定位*/
-	document.querySelector(".icon-liuyan").onclick = function() {
-		window.location.href = "#title";
-	}
+	document.getElementById("listenClick").addEventListener("tap",function(){
+				mui.scrollTo(document.getElementById("olisten").offsetTop,1000);
+				
+			})
 });

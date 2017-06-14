@@ -9,7 +9,7 @@
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<style>
-			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
+			/*html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}*/
 			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
 		</style>
 	</head>
@@ -32,7 +32,7 @@
 				<div class="mui-col-xs-8">
 					<div class="inputShow"><span>说点什么吧…</span></div>
 				</div>
-				<div class="mui-col-xs-1">
+				<div class="mui-col-xs-1" id="listenClick">
 					<span class="mui-icon iconfontnew icon-liuyan"><em class="mui-badge"></em></span>
 				</div>
 				<div class="mui-col-xs-2">
@@ -56,7 +56,7 @@
 										<p class="h3Font" id="oTime"></p>
 									</div>
 					            </div>
-					            <span class="mui-icon attenSpan" id="attBtn">关注</span>
+					            <span class="mui-icon attenSpan" id="attBtn" style="display:block;">关注</span>
 					        </li>
 					    </ul>
 		    		</div>
@@ -91,7 +91,7 @@
 					</div>
 					<!--留言-->
 					<div class="madiaBlock mui-scroll">
-						<div class="madiaTit" id="title">留言</div>
+						<div class="madiaTit" id="olisten">留言</div>
 						<ul class="mui-table-view mui-table-view-chevron commentBlock noactiveTab">
 					       
 					   </ul>
@@ -123,11 +123,6 @@
 		<script type="text/javascript"> 
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
-		    mui(".artfoot").on("tap",".inputShow",function(){
-		    	document.getElementById("textInput").style.display="block";
-		    	document.getElementById("operCol").style.display="none";
-		    	document.getElementById("textInputThis").focus();
-		    })
 		    mui("body").on("tap",".mui-content",function(){
 		    	document.getElementById("textInput").style.display="none";
 		    	document.getElementById("operCol").style.display="block";
@@ -156,10 +151,7 @@
 		    	this.style.display="none";
 		    	shareBlock.style.display="none";
 		    })
-		    liuyanbut.addEventListener("click",function(){
-		    	var heighttop = document.getElementById("offmsg").offsetTop;
-		    	document.documentElement.scrollTop = document.body.scrollTop =heighttop; 
-		    })
+		   
 		</script>
 		<script type="text/javascript" src="../js/articleShow.js"></script>
 	</body>

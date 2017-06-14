@@ -917,10 +917,10 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .searchboxNewT{padding-right:34px;}
 .mui-bar .leftnav{position:absolute;left:0;}
 .mui-bar .rightnav{position:absolute;right:0;top:50%;margin-top:-15px;padding:0 10px;text-align: center;font-size:12px;line-height: 12px;color:#FFFFFF;}
-.mui-bar .rightnav .mui-icon{font-size:20px;padding-bottom: 0;padding-top:0;color:#FFFFFF;}
-.mui-bar .rightnav .mui-badge{position:absolute;top:-2px;padding:1px 4px;z-index: 32;display: none;}
+.mui-bar .rightnav .mui-icon.icon-filter{position:relative;font-size:20px;padding-bottom: 0;padding-top:0;color:#FFFFFF;}
+.mui-bar .rightnav .mui-badge{display:block;position:absolute;width:16px;height:16px;top:-2px;right:3px;left:auto;z-index: 32;display: none;}
 .mui-bar .rightnav:active{opacity:.3;}
-.mui-bar .rightnav.filtered .mui-badge{display:inline-block;background: #FFFFFF;color:#FF9900;}
+.mui-bar .rightnav.filtered .mui-badge{display:block;background: #FFFFFF;color:#FF9900;}
 
 .fixboxNew{background: #FFFFFF; position:fixed;top:44px;left:0;width:100%; z-index:4;}
 .fixboxNew .fixbtnNew{ padding:0; margin: 0; overflow: hidden;}

@@ -388,6 +388,7 @@ mui.plusReady(function() {
 		mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 		if(this.innerHTML == "找资源") {
 			document.getElementById("sele").style.display = "none";
+			document.getElementById("searB").classList.remove("searchboxNewT");
 			qiFlag = 2;
 			search.oAjaxGet(baseUrl + "/ajax/resource/firstpq", {
 				"key": document.getElementById("searchval").value,
@@ -408,6 +409,7 @@ mui.plusReady(function() {
 			}, "get", search.oExeprt);
 		} else if(this.innerHTML == "找文章") {
 			document.getElementById("sele").style.display = "none";
+			document.getElementById("searB").classList.remove("searchboxNewT");
 			qiFlag = 3;
 			search.oAjaxGet(baseUrl + "/ajax/article/firstpq", {
 				"key": document.getElementById("searchval").value,

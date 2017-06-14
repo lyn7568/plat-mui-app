@@ -922,7 +922,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .mui-bar .rightnav:active{opacity:.3;}
 .mui-bar .rightnav.filtered .mui-badge{display:inline-block;background: #FFFFFF;color:#FF9900;}
 
-.fixboxNew{background: #FFFFFF; position:fixed;top:45px;left:0;width:100%; z-index:4;}
+.fixboxNew{background: #FFFFFF; position:fixed;top:44px;left:0;width:100%; z-index:4;}
 .fixboxNew .fixbtnNew{ padding:0; margin: 0; overflow: hidden;}
 .fixboxNew .fixbtnNew li{ list-style: none; float: left;height:40px;line-height:40px; padding:0 10px;border-top:1px solid #F0F0F0; border-bottom:2px solid #F0F0F0;text-align: center;font-size: 14px;}
 .fixboxNew .fixbtnNew li.liactive{ color: #FF9900; border-bottom:3px solid #FF9900;}

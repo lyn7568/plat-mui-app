@@ -1022,10 +1022,11 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .showDetail .attenedSpan:before{content:"";}
 .showDetail .showMain{font-size:15px;color:#333;line-height:28px;/*text-indent: 2em;*/}
 .showDetail .showMain img{max-width: 100%;/*margin-left:-32px;*/}
-.showDetail .showMain p{margin-bottom:10px;font-size:15px;color:#333; -webkit-user-select:text;}
+.showDetail .showMain p{margin-bottom:10px;font-size:15px;color:#333;}
+.showDetail .showMain *{ -webkit-user-select:text;}
 ul.tagList{padding:0;margin:18px 0 8px;overflow: hidden;}
 ul.tagList>li{list-style:none;float: left;margin-right:10px;margin-bottom:10px;padding:4px 12px;color: #666;background:#EFEFEF;}
-ul.tagList>li .h2Font{color: #666;}
+ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .madiaBlock{clear:both;}.madiaBlock:before,.madiaBlock:after{display:table;content:""}.madiaBlock:after{clear: both;}
 .madiaBlock ul{margin:6px -15px;}
 .madiaBlock ul.infoBlock{margin:0 -15px;}
@@ -1055,6 +1056,7 @@ ul.tagList>li .h2Font{color: #666;}
 .commentBlock .flexCenter{min-height:38px;}
 .commentBlock .commenttime{margin-right:18px;}
 .commentBlock .operateSpan{margin:8px 0 0;color:#9d9ea8;font-size: 13px;color: #999;cursor: pointer;}
+.commentBlock .madiaInfo .h2Font{ -webkit-user-select:text;}
 /*资源文章底部操作栏*/
 .mui-bar-tab.footbox .artfoot.mui-row{padding:2px 15px;text-align: center;}
 .mui-bar-tab.footbox .artfoot.mui-row>[class*=mui-col-]{}

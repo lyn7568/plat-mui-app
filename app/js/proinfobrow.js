@@ -149,8 +149,7 @@ mui.plusReady(function() {
 				var string = '<li class="mui-table-view-cell mui-media listitem" resouseId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
 				if($data[i].images.length) {
-					string += '<img class="resImg headRadius" src="' + baseUrl + '/images/resource/' + $data[i].resourceId + '.jpg">'
-
+					string += '<img class="resImg headRadius" src="'+ baseUrl+'/data/resource/' + $data[i].images[0].imageSrc + '" />'
 				} else {
 
 					string += '<img class="resImg headRadius" src="../images/default-resource.jpg">'

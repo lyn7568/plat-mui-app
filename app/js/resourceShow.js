@@ -173,6 +173,16 @@ mui.plusReady(function() {
 			});
 		})
 	}
+	//关键词标签点击进去搜索
+	mui(".tagList").on("tap","li",function(){
+		var tagText = this.getElementsByTagName("span")[0].innerText;
+		console.log(tagText)
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/searchListNew.html", 'searchListNew.html', {}, {
+			key: tagText,
+			/*qiFlag: 2*/
+		});
+	})
 	/*资源里面相关文章*/
 	function relatedArticles() {
 		mui.ajax(baseUrl + '/ajax/resource/articles', {
@@ -366,10 +376,11 @@ mui.plusReady(function() {
 	//相关文章详情
 	mui('#likeArtical').on('tap', 'li', function() {
 		var artId = this.getAttribute("data-id");
+		var professorId = othisInfo.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
 			articleId: artId,
-			ownerid:professorId
+			ownerid: professorId
 		});
 	});
 	//感兴趣的资源详情
@@ -625,6 +636,7 @@ mui.plusReady(function() {
 					title: oresourceName.innerHTML,
 					href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
 					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
+					
 				});
 			}
 		}

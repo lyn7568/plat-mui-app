@@ -138,33 +138,42 @@ function datalistEach(datalistd) {
        
 		/*获取头像*/
 		if(item.resource.images.length) {
-			var img = baseUrl + "/images/resource/" + item.resource.resourceId + "_s.jpg";
+			var img = baseUrl + '/data/resource/' + item.resource.images[0].imageSrc.replace(/.jpg/,"_s.jpg"); 
 		} else {
 			var img = "../images/default-resource.jpg";
 		}
-		
 		/*判断用户是否认证*/
-		var icont = '';
-		var oSty = autho(item.resource.editProfessor.authType, item.resource.editProfessor.orgAuth, item.resource.editProfessor.authStatus);
-		icont='<em class="authicon ' + oSty.sty + '"></em>'
+		if(item.resource.editProfessor) {
+			var oSty = autho(item.resource.editProfessor.authType,item.resource.editProfessor.orgAuth, item.resource.editProfessor.authStatus);
+			oName=item.resource.editProfessor.name;
+		}else {
+			var oSty={};
+			oSty.sty="";
+			oSty.title="";
+			if(item.resource.organization.authStatus==3) {	
+				oSty.sty="authicon-com-ok";
+				oSty.title="科袖认证企业";	
+			}
+			oName=item.resource.organization.name;
+		 }
 
-		var title = item.resource.editProfessor.title || "";
-		var office = item.resource.editProfessor.office || "";
-		var orgName = item.resource.editProfessor.orgName || "";
-		var address = item.resource.editProfessor.address || "";
-
-		if(title != "") {
-			title = title + " , ";
-		}
-		if(office != "") {
-			office = office + " , ";
-		}
-		if(orgName != "") {
-			orgName = orgName;
-		}
-		if(address != "") {
-			address = " | " + address;
-		}
+//		var title = item.resource.editProfessor.title || "";
+//		var office = item.resource.editProfessor.office || "";
+//		var orgName = item.resource.editProfessor.orgName || "";
+//		var address = item.resource.editProfessor.address || "";
+//
+//		if(title != "") {
+//			title = title + " , ";
+//		}
+//		if(office != "") {
+//			office = office + " , ";
+//		}
+//		if(orgName != "") {
+//			orgName = orgName;
+//		}
+//		if(address != "") {
+//			address = " | " + address;
+//		}
 
 		var li = document.createElement('li');
 		li.className = 'mui-table-view-cell mui-media';
@@ -174,8 +183,9 @@ function datalistEach(datalistd) {
 			'<div class="mui-media-body">' +
 			'<span class="listtit">' + item.resource.resourceName + '</span>' +
 			'<p class="mui-ellipsis listtit2">' + item.resource.supportedServices + '</p>' +
-			'<span class="listtit">' + item.resource.editProfessor.name + icont + '</span>' +
-			'<p class="listtit3"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
+			'<span class="listtit">' +oName+ '<em class="authicon '+oSty.sty+'" title="'+oSty.title+'"></em>'+
+//			'<span class="listtit">' + item.resource.editProfessor.name + icont + '</span>' +
+//			'<p class="listtit3"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
 			'</div></a></li>';
 		table.appendChild(li, table.firstChild);
 		

@@ -800,10 +800,7 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	document.getElementById("listenClick").addEventListener("tap",function(){
-				mui.scrollTo(document.getElementById("olisten").offsetTop,1000);
-				
-		})
+
 	mui(".tagList").on("tap","li",function(){
 		mui.openWindow({
 					url: '../html/searchListNew.html',

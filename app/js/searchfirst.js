@@ -1,5 +1,30 @@
 mui.plusReady(function() {
-		document.getElementById("searchval").focus();
+	document.getElementById("searchval").focus()
+	if(mui.os.ios) {
+		var webView = plus.webview.currentWebview().nativeInstanceObject();
+		webView.plusCallMethod({
+			"setKeyboardDisplayRequiresUserAction": false
+		});
+	} else {
+		var webview = plus.android.currentWebview();
+		plus.android.importClass(webview);
+		webview.requestFocus();
+		var Context = plus.android.importClass("android.content.Context");
+		var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+		var main = plus.android.runtimeMainActivity();
+		var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+	}
+	var fff=1;
+	document.getElementById("searchval").addEventListener("blur",aa,false);
+	function aa() {
+		if(fff==1) {
+			this.focus();
+			fff=0;
+			this.blur()
+		}
+		document.getElementById("searchval").removeEventListener("blur",aa,false);
+	}
 	var search = {
 		oAjaxGet: function(url, obj, oType, oFun) {
 			mui.ajax(url, {
@@ -10,8 +35,12 @@ mui.plusReady(function() {
 				traditional: true,
 				success: function(data) {
 					if(data.success) {
+						setTimeout(function() {
+							document.getElementById("searchval").focus()
+						}, 500)
+
 						oFun(data.data);
-					} 
+					}
 				},
 				error: function(xhr, type, errorThrown) {
 					//异常处理；
@@ -19,47 +48,45 @@ mui.plusReady(function() {
 				}
 			});
 		},
-		keyWord:function(data){
-			if(data.lennth==0) {
+		keyWord: function(data) {
+			if(data.lennth == 0) {
 				return;
 			}
-			for(var i=0;i<data.length;i++) {
-				var li=document.createElement('li');
-				li.innerHTML=data[i].caption;
+			for(var i = 0; i < data.length; i++) {
+				var li = document.createElement('li');
+				li.innerHTML = data[i].caption;
 				document.getElementsByClassName("hotsearchNew")[0].appendChild(li);
 			}
 		},
-		createWin:function(keyValue) {
+		createWin: function(keyValue) {
 			mui.openWindow({
-					url: '../html/searchListNew.html',
-					id: '../html/searchListNew.html',
-					show:{
-				      autoShow:false,
-				      aniShow:"fade-in",
-				    },
-					extras:{
-				      key:keyValue,
-				      qiFlag:1
-				    }
-				});
+				url: '../html/searchListNew.html',
+				id: '../html/searchListNew.html',
+				show: {
+					autoShow: false,
+					aniShow: "fade-in",
+				},
+				extras: {
+					key: keyValue,
+					qiFlag: 1
+				}
+			});
 		}
 	}
-	
-		search.oAjaxGet(baseUrl + "/ajax/dataDict/qlHotKey", {
-		}, "get", search.keyWord); 
-		
-		mui(".hotsearchNew").on("tap","li",function(){
-			search.createWin(this.innerHTML);
-		})
-		
-		/*按键字搜索*/
-		document.getElementById("searchval").addEventListener("keyup", function() {
-			var e = event || window.event || arguments.caller.arguments[0];
-			if(e.keyCode == 13) {
-				search.createWin(this.value);
-				
-			}
-		})
-		
-		
+
+	search.oAjaxGet(baseUrl + "/ajax/dataDict/qlHotKey", {}, "get", search.keyWord);
+
+	mui(".hotsearchNew").on("tap", "li", function() {
+		search.createWin(this.innerHTML);
+	});
+
+	/*按键字搜索*/
+	document.getElementById("searchval").addEventListener("keyup", function() {
+		var e = event || window.event || arguments.caller.arguments[0];
+		if(e.keyCode == 13) {
+			search.createWin(this.value);
+
+		}
+	})
+
 })

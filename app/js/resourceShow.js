@@ -639,10 +639,10 @@ mui.plusReady(function() {
 			var share = buildShareService("sinaweibo");
 			if(share) {
 				shareMessage(share, "sinaweibo", {
-					content: oapplication.innerHTML,
-					title: oresourceName.innerHTML,
+					content: oresourceName.innerHTML,
+//					title: oresourceName.innerHTML,
 					href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
-					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
+//					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
 					
 				});
 			}

@@ -178,15 +178,6 @@ function pulldownRefresh() {
 }
 
 
-/*时间转换*/
-function Time(dealtime) {
-	var s = dealtime;
-	var m = s.substr(4, 2);
-	var d = s.substr(6, 2);
-	var formatTime = m.replace(/\b(0+)/gi, "") + "月" + d + "日";
-	return formatTime;
-}
-
 /*获取上拉加载更多数据*/
 function getaData() {
 	mui.plusReady(function() {
@@ -271,7 +262,7 @@ function datalistEach(datalist) {
 		$("#discoverBox").append($itemlist);
 		var type = item.type;
 		$itemlist.find("#centent").text(item.name);
-		$itemlist.find("#time").text(Time(item.createTime));
+		$itemlist.find("#time").text(commenTime(item.createTime));
 		$itemlist.find(".newsurl").attr("data-id", item.id);
 		$itemlist.find(".newsurl").attr("data-type", item.type);
 		$itemlist.find(".newsurl").attr("owner-id", item.owner);

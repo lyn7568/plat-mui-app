@@ -76,7 +76,7 @@ function leword(row, aa) {
 							'<div class="madiaInfo">' +
 							'<p class="h2Font">' + data.data[i].content + '</p>' +
 							'<p class="operateSpan">' +
-							'<span class="commenttime">' + oTime.publish(data.data[i].createTime) + '</span>' +
+							'<span class="commenttime">' + commenTime(data.data[i].createTime) + '</span>' +
 							'<span data-id="' + data.data[i].id + '" class="dele">' + oText + '</span>' +
 							'</p>' +
 							'</div>'
@@ -94,38 +94,7 @@ function leword(row, aa) {
 		});
 	})
 }
-var oTime = {
-	publish: function(startTime) {
-		//时间显示规则
-		var nowTimg = new Date();
-		var startdate = new Date();
-		startdate.setFullYear(parseInt(startTime.substring(0, 4)));
-		startdate.setMonth(parseInt(startTime.substring(4, 6)) - 1);
-		startdate.setDate(parseInt(startTime.substring(6, 8)));
-		startdate.setHours(parseInt(startTime.substring(8, 10)));
-		startdate.setMinutes(parseInt(startTime.substring(10, 12)));
-		startdate.setSeconds(parseInt(startTime.substring(12, 14)));
-		var date3 = nowTimg.getTime() - startdate.getTime(); //时间差的毫秒数
-		var hours = parseInt((date3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		var minutes = parseInt((date3 % (1000 * 60 * 60)) / (1000 * 60));
-		if(date3 < 60000) {
-			return "刚刚";
-		} else if(date3 >= 60000 && date3 < 3600000) {
-			return minutes + "分钟前";
-		} else if(date3 >= 3600000 && date3 < 86400000) {
-			return hours + "小时前";
-		} else if(date3 >= 86400000 && date3 < 172800000) {
-			return "昨天 " + startTime.substring(8, 10) + ":" + startTime.substring(10, 12);
 
-		} else if(date3 >= 172800000 && date3 < 31536000000) {
-			return startTime.substring(4, 6).replace(/\b(0+)/gi, "") + "月" + startTime.substring(6, 8).replace(/\b(0+)/gi, "") + "日 " + startTime.substring(8, 10) + ":" + startTime.substring(10, 12);
-		} else {
-			return startTime.substring(0, 4) + "年" + startTime.substring(4, 6).replace(/\b(0+)/gi, "") + "月" + startTime.substring(6, 8).replace(/\b(0+)/gi, "") + "日 " + startTime.substring(8, 10) + ":" + startTime.substring(10, 12);
-		}
-
-	}
-
-}
 mui.plusReady(function() {
 	var oCurren = {
 		self: plus.webview.currentWebview(),
@@ -221,7 +190,7 @@ mui.plusReady(function() {
 				}, "get", oArticleModule.correlationArticle);
 			}
 
-			document.getElementById("oTime").innerHTML=oTime.publish($data.publishTime);
+			document.getElementById("oTime").innerHTML= commenTime($data.publishTime);
 		},
 		professorMess: function($data) {
 			//console.log(JSON.stringify($data));

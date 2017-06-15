@@ -120,13 +120,13 @@ function shareAddIntegral(num) {
 	var burl,title;
 	if(num==1){
 		burl = "/ajax/growth/sharePro";
-		title = "成功分享专家信息到微信";
+		title = "成功分享专家信息";
 	}else if(num==2){
 		burl = "/ajax/growth/shareRes";
-		title = "成功分享资源信息到微信";
+		title = "成功分享资源信息";
 	}else if(num==3){
 		burl = "/ajax/growth/shareArticle";
-		title = "成功分享文章信息到微信";
+		title = "成功分享文章信息";
 	}
 	mui.ajax(baseUrl + burl, {
 		dataType: 'json', //数据格式类型
@@ -151,3 +151,48 @@ function shareAddIntegral(num) {
 	});
 }
 
+//时间显示规则
+function commenTime(startTime){
+	var nowTimg =  new Date();
+	var startdate = new Date(); 
+	startdate.setFullYear(parseInt(startTime.substring(0,4)));
+	startdate.setMonth(parseInt(startTime.substring(4,6))-1);
+	startdate.setDate(parseInt(startTime.substring(6,8)));
+	startdate.setHours(parseInt(startTime.substring(8,10)));
+	startdate.setMinutes(parseInt(startTime.substring(10,12)));
+	startdate.setSeconds(parseInt(startTime.substring(12,14)));
+	var date3=nowTimg.getTime()-startdate.getTime();  //时间差的毫秒数
+    var hours = parseInt((date3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = parseInt((date3 % (1000 * 60 * 60)) / (1000 * 60));
+    if(date3 < 60000){
+    	return "刚刚";
+    }else if(date3 >= 60000 && date3 < 3600000){
+    	return minutes + "分钟前";
+    }else if(date3 >= 3600000 && date3 < 86400000){
+    	return hours + "小时前";
+    }else if(date3 >= 86400000 && date3 < 172800000){
+    	return "昨天 " + startTime.substring(8,10) + ":" +startTime.substring(10,12);
+    	
+    }else if(date3 >= 172800000 && date3 < 31536000000){
+    	return startTime.substring(4,6).replace(/\b(0+)/gi, "") + "月" + startTime.substring(6,8).replace(/\b(0+)/gi, "") + "日 " + startTime.substring(8,10) + ":" + startTime.substring(10,12);
+    }
+    else{
+    	return startTime.substring(0,4)  + "年" + startTime.substring(4,6).replace(/\b(0+)/gi, "") + "月" + startTime.substring(6,8).replace(/\b(0+)/gi, "") + "日 " + startTime.substring(8,10) + ":" + startTime.substring(10,12);
+    }
+  
+}
+/*时间转换*/
+function TimeTr(dealtime) {
+	var myDate = new Date(); 
+	var s = dealtime;
+	var y = s.substr(0, 4);
+	var m = s.substr(4, 2);
+	var d = s.substr(6, 2);
+	var h = s.substr(8, 2);
+	var minute = s.substr(10, 2);
+	var formatTime = m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "")+ "日 " + h + ":" + minute;
+	if(y != myDate.getFullYear()){
+		formatTime = y + "年" + m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "")+ "日 " + h + ":" + minute;
+	}
+	return formatTime;
+}

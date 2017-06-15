@@ -125,9 +125,9 @@
 		<script src="../js/public/base.js"></script>
 		<script src="../js/public/jquery-1.11.1.js"></script>
 		<script type="text/javascript"> 
-				document.getElementById("listenClick").addEventListener("tap",function(){
-					$("body,html").animate({"scrollTop": document.getElementById("olisten").offsetTop+"px"}, 400); 
-		})
+			document.getElementById("listenClick").addEventListener("tap",function(){
+				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop+"px"}, 400); 
+			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
 		    mui("body").on("tap",".mui-content",function(){

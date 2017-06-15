@@ -270,6 +270,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .mui-search input[type=search].searchtxt{background: #FFFFFF;}
 .mui-search .mui-placeholder{ font-size: 14px; top:2px }
 
+.maintitbox{background: #FFFFFF;}
 .maintitbox .maintit{ line-height: 40px; border-bottom: 1px solid #F0F0F0; font-size: 16px; text-align: center; color: #FF9900;}
 .maintitbox .maintit2{text-align: left;color:#888888;padding:2px 10px;}
 .maintitbox .maintit2 span{color: #FF9900;}

@@ -102,11 +102,11 @@ mui.plusReady(function() {
 							omodelNumber.parentNode.style.display="block";
 						}
 						if(mydata.parameter) { //性能参数
-							operformancePa.innerHTML = mydata.parameter;
+							operformancePa.innerHTML = mydata.parameter.replace(/\n/gi,"<br />");
 							operformancePa.parentNode.style.display="block";
 						}
 						if(mydata.cooperationNotes) { //合作备注
-							oremarkContent.innerHTML = mydata.cooperationNotes;
+							oremarkContent.innerHTML = mydata.cooperationNotes.replace(/\n/gi,"<br />");
 							oremarkContent.parentNode.style.display="block";
 						}
 						if(mydata.descp) { //详细描述
@@ -135,17 +135,12 @@ mui.plusReady(function() {
 						} else {
 							document.getElementById("likeResource").parentNode.style.display="none";
 						}
-						var weibotitle = mydata.resourceName;
-						var weibourl = window.location.href;
 						if(mydata.images.length) {
-							//var weibopic = "http://" + window.location.host + "/data/resource/" + mydata.images[0].imageSrc;
 							var lastImg = document.getElementById("lastImg");;
 							lastImg.innerHTML = '<a class="tab-re"><img src="'+ baseUrl+'/data/resource/' + mydata.images[mydata.images.length-1].imageSrc + '" /></a>';
 							
 							var firstImg = document.getElementById("firstImg");
 							firstImg.innerHTML = '<a class="tab-re"><img src="'+ baseUrl+'/data/resource/' + mydata.images[0].imageSrc + '" /></a>';
-//							var aaa = mydata.images[0].imageSrc.replace(/.jpg/,"_s.jpg");
-//							console.log(aaa)
 							for(var i = 0; i < mydata.images.length; i++) {
 								var rPdiv = document.createElement("div");
 								rPdiv.className = 'mui-slider-item';
@@ -161,7 +156,6 @@ mui.plusReady(function() {
 							oresorcePic.insertBefore(lastImg,oresorcePic.firstChild);
 							oresorcePic.appendChild(firstImg,oresorcePic.lastChild);
 						}else {
-							//var weibopic = "http://" + window.location.host + "../images/default-resource.jpg";
 						}
 						plus.nativeUI.closeWaiting();
 						plus.webview.currentWebview().show("slide-in-right", 150);

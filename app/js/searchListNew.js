@@ -397,6 +397,7 @@ mui.plusReady(function() {
 			}, "get", search.resource);
 		} else if(this.innerHTML == "找专家") {
 			document.getElementById("sele").style.display = "block";
+			document.getElementById("searB").classList.add("searchboxNewT");
 			qiFlag = 1;
 			search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
 				"key": document.getElementById("searchval").value,

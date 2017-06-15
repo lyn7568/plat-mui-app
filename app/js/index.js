@@ -189,7 +189,7 @@ mui('.gridbg').on('tap', 'li', function() {
 		},
 		extras: {
 			key: subject,
-			bigClass: 1
+			qiFlag: 1
 		}
 	});
 })

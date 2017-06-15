@@ -1,21 +1,21 @@
-var createTime = "",
-	orderKey = "";
-mui.init({
-	pullRefresh: {
-		container: '#pullrefresh',
-		up: {
-			contentrefresh: '正在加载...',
-			callback: pullupRefresh
-		}
-	}
-});
-
-function pullupRefresh() {
-	setTimeout(function() {
-		leword(1, 0);
-	}, 1000);
-}
-leword(1, 1);
+//var createTime = "",
+//	orderKey = "";
+//mui.init({
+//	pullRefresh: {
+//		container: '#pullrefresh',
+//		up: {
+//			contentrefresh: '正在加载...',
+//			callback: pullupRefresh
+//		}
+//	}
+//});
+//
+//function pullupRefresh() {
+//	setTimeout(function() {
+//		leword(1, 0);
+//	}, 1000);
+//}
+leword(500, 1);
 
 function leword(row, aa) {
 	mui.plusReady(function() {
@@ -23,8 +23,8 @@ function leword(row, aa) {
 			stt;
 		var obj = {};
 		obj.articleId = plus.webview.currentWebview().articleId;
-		obj.createTime = createTime;
-		obj.orderKey = orderKey;
+		/*obj.createTime = createTime;
+		obj.orderKey = orderKey;*/
 		obj.rows = row;
 		mui.ajax(baseUrl + "/ajax/leaveWord/ql", {
 			data: obj,
@@ -35,26 +35,26 @@ function leword(row, aa) {
 			success: function(data) {
 				console.log(JSON.stringify(data))
 				if(data.success) {
-					if(af == 1) {
+					/*if(af == 1) {*/
 						document.getElementsByClassName('commentBlock')[0].innerHTML = ""
 						if(data.data.length == 0) {
-							mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
+							//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 							return;
 						}
-					} else {
+					/*} else {
 						if(data.data.length == 0) {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 							return;
 						}
-					}
+					}*/
 					var id = plus.storage.getItem('userid');
-					createTime = data.data[data.data.length - 1].createTime;
-					orderKey = data.data[data.data.length - 1].orderKey;
-					if(data.data.length == row) {
+					/*createTime = data.data[data.data.length - 1].createTime;
+					orderKey = data.data[data.data.length - 1].orderKey;*/
+					/*if(data.data.length == row) {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
 					} else {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-					}
+					}*/
 					for(var i = 0; i < data.data.length; i++) {
 						var oText = ""
 						if(id == data.data[i].professor.id) {
@@ -84,7 +84,7 @@ function leword(row, aa) {
 					}
 
 				}else{
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					/*mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);*/
 				}
 			},
 			error: function(xhr, type, errorThrown) {
@@ -490,7 +490,7 @@ mui.plusReady(function() {
 		if(datatype == 1) {
 			mui.openWindow({
 				url: '../html/professorArticle.html',
-				id: 'html/professorArticle.html',
+				id: '../html/professorArticle.html',
 				show: {
 					autoShow: false,
 					aniShow: "slide-in-right",
@@ -503,7 +503,7 @@ mui.plusReady(function() {
 		} else if(datatype == 2) {
 			mui.openWindow({
 				url: '../html/professorArticle.html',
-				id: 'html/professorArticle.html',
+				id: '../html/professorArticle.html',
 				show: {
 					autoShow: false,
 					aniShow: "slide-in-right",

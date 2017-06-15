@@ -43,8 +43,8 @@
 				</div>
 			</div>
 		</nav>
-		<div class="mui-content mui-scroll-wrapper" id="pullrefresh" style="padding-bottom:50px;">
-			<div class="mui-scroll">
+		<div class="mui-content" id="pullrefresh" style="padding-bottom:50px;">
+			<div class="">
 			    <div class="showDetail">
 			    		<div class="h1Font hWeight" id="articleName"></div>
 			    		<div class="madiaBlock">
@@ -93,7 +93,7 @@
 					<!--留言-->
 					<div class="madiaBlock">
 						<div class="madiaTit" id="olisten">留言</div>
-						<ul class="mui-table-view mui-table-view-chevron commentBlock noactiveTab">
+						<ul class="mui-table-view commentBlock noactiveTab">
 					       
 					   </ul>
 					</div>
@@ -126,7 +126,7 @@
 		<script src="../js/public/jquery-1.11.1.js"></script>
 		<script type="text/javascript"> 
 			document.getElementById("listenClick").addEventListener("tap",function(){
-				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop+"px"}, 400); 
+				$("body,html").animate({"scrollTop": document.getElementById("olisten").offsetTop+"px"}, 400); 
 			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();

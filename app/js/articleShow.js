@@ -818,7 +818,10 @@ mui.plusReady(function() {
 		};
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
-			shareAddIntegral(4);
+			if(plus.storage.getItem('userid')) {
+				shareAddIntegral(3);
+			}
+			
 		}, function(e) {
 			console.log(JSON.stringify(e))
 			plus.nativeUI.closeWaiting();

@@ -1023,7 +1023,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .showDetail .showMain{font-size:15px;color:#333;line-height:28px;/*text-indent: 2em;*/}
 .showDetail .showMain img{max-width: 100%;/*margin-left:-32px;*/}
 .showDetail .showMain p{margin-bottom:10px;font-size:15px;color:#333;}
-.showDetail .showMain *{ -webkit-user-select:text;}
+.showDetail .showMain *{ -webkit-user-select:text; word-break: break-all;}
 ul.tagList{padding:0;margin:18px 0 8px;overflow: hidden;}
 ul.tagList>li{list-style:none;float: left;margin-right:10px;margin-bottom:10px;padding:4px 12px;color: #666;background:#EFEFEF;}
 ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
@@ -1058,10 +1058,10 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .commentBlock .operateSpan{margin:8px 0 0;color:#9d9ea8;font-size: 13px;color: #999;cursor: pointer;}
 .commentBlock .madiaInfo .h2Font{ -webkit-user-select:text;}
 /*资源文章底部操作栏*/
-.mui-bar-tab.footbox .artfoot.mui-row{padding:2px 15px;text-align: center;}
+.mui-bar-tab.footbox .artfoot.mui-row{padding:2px 15px 0;text-align: center;}
 .mui-bar-tab.footbox .artfoot.mui-row>[class*=mui-col-]{}
 .mui-bar-tab.footbox .artfoot.mui-row .mui-col-xs-8{text-align:left;margin-left:0;}
-.mui-bar-tab.footbox .artfoot.mui-row .consultdiv{margin: -2px 0 0 -15px;font-size: 16px;background: #ff9900;color:#fff;line-height: 47px;}
+.mui-bar-tab.footbox .artfoot.mui-row .consultdiv{margin: -2px 0 0 -15px;font-size: 16px;background: #ff9900;color:#fff;line-height: 49px;}
 .mui-bar-tab.footbox .artfoot.mui-row .inputShow{width:90%;border:1px solid #E0E0E0;border-radius:4px;margin:6px 0 0;height: 32px;}
 .mui-bar-tab.footbox .artfoot.mui-row .inputShow span{color:#999;font-size: 14px;line-height: 30px;padding-left: 10px;}
 .mui-bar-tab.footbox .artfoot.mui-row textarea{margin:6px 0 0;font-size:14px;line-height: 20px;height: 80px;width: 100%;margin-bottom:0;padding: 8px 10px;

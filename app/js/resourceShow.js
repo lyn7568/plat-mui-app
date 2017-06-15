@@ -678,7 +678,9 @@ mui.plusReady(function() {
 		};
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
-			shareAddIntegral(2);
+			if(plus.storage.getItem('userid')) {
+				shareAddIntegral(2);
+			}
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {

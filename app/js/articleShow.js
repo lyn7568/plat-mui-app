@@ -181,7 +181,7 @@ mui.plusReady(function() {
 		articleMess: function($data) {
 			plus.nativeUI.closeWaiting();
 			plus.webview.currentWebview().show("slide-in-right", 150);
-			//console.log(JSON.stringify($data));
+			console.log(JSON.stringify($data));
 			document.getElementById("articleName").innerHTML = $data.articleTitle;
 			stt = $data.articleImg.substring(0, 9);
 			console.log(stt)
@@ -221,7 +221,7 @@ mui.plusReady(function() {
 				}, "get", oArticleModule.correlationArticle);
 			}
 
-			//document.getElementById("oTime").innerHTML=oTime.publish($data.publishTime);
+			document.getElementById("oTime").innerHTML=oTime.publish($data.publishTime);
 		},
 		professorMess: function($data) {
 			//console.log(JSON.stringify($data));
@@ -782,9 +782,8 @@ mui.plusReady(function() {
 			var share = buildShareService("sinaweibo");
 			if(share) {
 				shareMessage(share, "sinaweibo", {
-					href: "http://www.ekexiu.com",
-					content: "88",
-					thumbs: ["http://www.ekexiu.com/images/logo180.png"]
+					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
+					content:document.getElementById("articleName").innerHTML
 				});
 			}
 		}
@@ -819,7 +818,7 @@ mui.plusReady(function() {
 		};
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
-			shareAddIntegral(3);
+			shareAddIntegral(4);
 		}, function(e) {
 			console.log(JSON.stringify(e))
 			plus.nativeUI.closeWaiting();

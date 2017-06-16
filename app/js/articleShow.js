@@ -404,13 +404,16 @@ mui.plusReady(function() {
 		attentionGetExpert: function($data) {
 			if($data) {
 				document.getElementsByClassName("attenSpan")[0].classList.add("attenedSpan");
+				document.getElementsByClassName("attenSpan")[0].innerText="已关注";
 			}
 		},
 		attentionPostExpert: function($data) {
 			document.getElementsByClassName("attenSpan")[0].classList.add("attenedSpan");
+			document.getElementsByClassName("attenSpan")[0].innerText="已关注";
 		},
 		attentionNoPostExpert: function($data) {
 			document.getElementsByClassName("attenSpan")[0].classList.remove("attenedSpan");
+			document.getElementsByClassName("attenSpan")[0].innerText="关注";
 		},
 		storeGetUp: function($data) {
 			if($data) {

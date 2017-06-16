@@ -1041,7 +1041,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .madiaBlock .madiaHead.resouseHead{width:90px;height:60px;margin-top:-30px;background-image: url(../images/default-resource.jpg);border-radius:0;}
 .madiaBlock .madiaHead.artHead{width:90px;height:60px;margin-top:-30px;background-image: url(../images/default-artical.jpg);border-radius:0;}
 .madiaBlock .madiaHead.cmpHead{width: 50px;height:50px;margin-top:-25px;background-image: url(../images/default-icon.jpg);border-radius:0;}
-.madiaBlock .madiaInfo{padding-left:62px; width: 100%;padding-right:60px;}
+.madiaBlock .madiaInfo{padding-left:62px; width: 100%;padding-right:6px;}
 .madiaBlock .madiaInfo span.h1Font{display: inline-block;max-width:86%;}
 .madiaBlock .madiaInfo .authicon{position:relative;bottom:-2px;}
 .madiaBlock .madiaInfo.OmadiaInfo{padding-left: 102px;}

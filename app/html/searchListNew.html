@@ -137,10 +137,10 @@
 		    	document.getElementById("pullrefresh").style.paddingTop="40px";
 		    }else{
 		    	document.getElementById("pullrefresh").style.paddingTop="84px";
-		    	document.body.style.height=100%;
-		    	document.html.style.height=100%;
-		    	document.html.style.overflow="hidden";
-		    	document.body.style.overflow="hidden";
+		    	document.getElementsByTagName("body")[0].style.height="100%";
+		    	document.getElementsByTagName("body")[0].style.overflow="hidden"
+		    	document.getElementsByTagName("html")[0].style.height="100%";
+		    	document.getElementsByTagName("html")[0].style.overflow="hidden%";
 		    }
 		</script>
 	</body>

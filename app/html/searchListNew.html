@@ -9,7 +9,7 @@
 		<link href="../css/app.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<style type="text/css">
-			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+			html,body{margin:0;padding:0px;}
 			.mui-content{height:100%;overflow: auto;}
 		</style>
 	</head>
@@ -137,6 +137,10 @@
 		    	document.getElementById("pullrefresh").style.paddingTop="40px";
 		    }else{
 		    	document.getElementById("pullrefresh").style.paddingTop="84px";
+		    	document.body.style.height=100%;
+		    	document.html.style.height=100%;
+		    	document.html.style.overflow="hidden";
+		    	document.body.style.overflow="hidden";
 		    }
 		</script>
 	</body>

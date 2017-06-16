@@ -36,11 +36,11 @@ function leword(row, aa) {
 				console.log(JSON.stringify(data))
 				if(data.success) {
 					/*if(af == 1) {*/
-						document.getElementsByClassName('commentBlock')[0].innerHTML = ""
-						if(data.data.length == 0) {
-							//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
-							return;
-						}
+					document.getElementsByClassName('commentBlock')[0].innerHTML = ""
+					if(data.data.length == 0) {
+						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
+						return;
+					}
 					/*} else {
 						if(data.data.length == 0) {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
@@ -68,9 +68,9 @@ function leword(row, aa) {
 						var li = document.createElement("li");
 						li.className = "mui-table-view-cell";
 						li.innerHTML = '<div class="flexCenter mui-clearfix">' +
-							'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')" data-id="'+data.data[i].professor.id+'"></div>' +
+							'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')" data-id="' + data.data[i].professor.id + '"></div>' +
 							'<div class="madiaInfo">' +
-							'<p><span class="h1Font" data-id="'+data.data[i].professor.id+'">' + data.data[i].professor.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+							'<p><span class="h1Font" data-id="' + data.data[i].professor.id + '">' + data.data[i].professor.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
 							'</div>' +
 							'</div>' +
 							'<div class="madiaInfo">' +
@@ -83,7 +83,7 @@ function leword(row, aa) {
 						document.getElementsByClassName("commentBlock")[0].appendChild(li);
 					}
 
-				}else{
+				} else {
 					/*mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);*/
 				}
 			},
@@ -190,7 +190,7 @@ mui.plusReady(function() {
 				}, "get", oArticleModule.correlationArticle);
 			}
 
-			document.getElementById("oTime").innerHTML= commenTime($data.publishTime);
+			document.getElementById("oTime").innerHTML = commenTime($data.publishTime);
 		},
 		professorMess: function($data) {
 			//console.log(JSON.stringify($data));
@@ -404,16 +404,16 @@ mui.plusReady(function() {
 		attentionGetExpert: function($data) {
 			if($data) {
 				document.getElementsByClassName("attenSpan")[0].classList.add("attenedSpan");
-				document.getElementsByClassName("attenSpan")[0].innerText="已关注";
+				document.getElementsByClassName("attenSpan")[0].innerText = "已关注";
 			}
 		},
 		attentionPostExpert: function($data) {
 			document.getElementsByClassName("attenSpan")[0].classList.add("attenedSpan");
-			document.getElementsByClassName("attenSpan")[0].innerText="已关注";
+			document.getElementsByClassName("attenSpan")[0].innerText = "已关注";
 		},
 		attentionNoPostExpert: function($data) {
 			document.getElementsByClassName("attenSpan")[0].classList.remove("attenedSpan");
-			document.getElementsByClassName("attenSpan")[0].innerText="关注";
+			document.getElementsByClassName("attenSpan")[0].innerText = "关注";
 		},
 		storeGetUp: function($data) {
 			if($data) {
@@ -491,31 +491,17 @@ mui.plusReady(function() {
 		var datatype = this.getAttribute("data-type");
 		var ownerid = this.getAttribute("owner-id");
 		if(datatype == 1) {
-			mui.openWindow({
-				url: '../html/professorArticle.html',
-				id: '../html/professorArticle.html',
-				show: {
-					autoShow: false,
-					aniShow: "slide-in-right",
-				},
-				extras: {
-					articleId: id,
-					ownerid: ownerid,
-				}
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+				articleId: id,
+				ownerid: ownerid,
 			});
 		} else if(datatype == 2) {
-			mui.openWindow({
-				url: '../html/professorArticle.html',
-				id: '../html/professorArticle.html',
-				show: {
-					autoShow: false,
-					aniShow: "slide-in-right",
-				},
-				extras: {
-					articleId: id,
-					ownerid: ownerid,
-					oFlag: 1
-				}
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+				articleId: id,
+				ownerid: ownerid,
+				oFlag: 1
 			});
 		}
 	});
@@ -631,7 +617,7 @@ mui.plusReady(function() {
 	})
 	document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function() {
 		mui.ajax(baseUrl + "/ajax/leaveWord", {
-			data:{
+			data: {
 				"articleId": plus.webview.currentWebview().articleId,
 				"sender": plus.storage.getItem('userid'),
 				"content": document.getElementById("textInputThis").value
@@ -642,11 +628,11 @@ mui.plusReady(function() {
 			success: function(data) {
 				if(data.success) {
 					document.getElementById("textInputThis").value = "";
-//					createTime = "";
-//					orderKey = "";
-//					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
-					document.getElementById('textInput').style.display="none";
-					document.getElementById('operCol').style.display="block";
+					//					createTime = "";
+					//					orderKey = "";
+					//					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
+					document.getElementById('textInput').style.display = "none";
+					document.getElementById('operCol').style.display = "block";
 					leword(1, 1);
 					oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
 						"articleId": oArticleModule.articleId
@@ -657,7 +643,7 @@ mui.plusReady(function() {
 				//异常处理；
 				console.log(type);
 			},
-			beforeSend:function(data) {
+			beforeSend: function(data) {
 				console.log(JSON.stringify(data));
 			}
 		});
@@ -674,9 +660,9 @@ mui.plusReady(function() {
 			success: function(data) {
 				if(data.success) {
 					document.getElementsByClassName("commentBlock")[0].removeChild($this.parentNode.parentNode.parentNode);
-//					createTime = "";
-//					orderKey = "";
-//					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
+					//					createTime = "";
+					//					orderKey = "";
+					//					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 					leword(1, 1);
 					oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
 						"articleId": oArticleModule.articleId
@@ -689,17 +675,16 @@ mui.plusReady(function() {
 			}
 		});
 	})
-		mui(".artfoot").on("tap",".inputShow",function(){
-			if(!plus.storage.getItem('userid')) {
-				oCurren.login();
-				return;
-			}
-		    	document.getElementById("textInput").style.display="block";
-		    	document.getElementById("operCol").style.display="none";
-		    	document.getElementById("textInputThis").focus();
-		    })
-		
-		
+	mui(".artfoot").on("tap", ".inputShow", function() {
+		if(!plus.storage.getItem('userid')) {
+			oCurren.login();
+			return;
+		}
+		document.getElementById("textInput").style.display = "block";
+		document.getElementById("operCol").style.display = "none";
+		document.getElementById("textInputThis").focus();
+	})
+
 	/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	plus.oauth.getServices(function(services) {
@@ -754,7 +739,7 @@ mui.plusReady(function() {
 			if(share) {
 				shareMessage(share, "sinaweibo", {
 					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
-					content:document.getElementById("articleName").innerHTML
+					content: document.getElementById("articleName").innerHTML
 				});
 			}
 		}
@@ -792,7 +777,7 @@ mui.plusReady(function() {
 			if(plus.storage.getItem('userid')) {
 				shareAddIntegral(3);
 			}
-			
+
 		}, function(e) {
 			console.log(JSON.stringify(e))
 			plus.nativeUI.closeWaiting();
@@ -804,18 +789,18 @@ mui.plusReady(function() {
 		});
 	}
 
-	mui(".tagList").on("tap","li",function(){
+	mui(".tagList").on("tap", "li", function() {
 		mui.openWindow({
-					url: '../html/searchListNew.html',
-					id: '../html/searchListNew.html',
-					show:{
-				      autoShow:false,
-				      aniShow:"fade-in",
-				    },
-					extras:{
-				      key:this.getElementsByTagName("span")[0].innerHTML,
-				      qiFlag:3
-				    }
-				});
+			url: '../html/searchListNew.html',
+			id: '../html/searchListNew.html',
+			show: {
+				autoShow: false,
+				aniShow: "fade-in",
+			},
+			extras: {
+				key: this.getElementsByTagName("span")[0].innerHTML,
+				qiFlag: 3
+			}
+		});
 	})
 });

@@ -9,8 +9,8 @@
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<style>
-			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
-			.mui-content{min-height:100%;overflow: auto;background: #FFFFFF;}
+			html,body{height:100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
+			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
 		</style>
 	</head>
 
@@ -43,8 +43,8 @@
 				</div>
 			</div>
 		</nav>
-		<div class="mui-content" id="pullrefresh" style="padding-bottom:50px;">
-			<div class="">
+		<div class="mui-content mui-scroll-wrapper" id="pullrefresh" style="padding-bottom:50px;">
+			<div class="mui-scroll">
 			    <div class="showDetail">
 			    		<div class="h1Font hWeight" id="articleName"></div>
 			    		<div class="madiaBlock">
@@ -126,7 +126,7 @@
 		<script src="../js/public/jquery-1.11.1.js"></script>
 		<script type="text/javascript"> 
 			document.getElementById("listenClick").addEventListener("tap",function(){
-				$("body,html").animate({"scrollTop": document.getElementById("olisten").offsetTop+"px"}, 400); 
+				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop+"px"}, 400); 
 			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();

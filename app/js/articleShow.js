@@ -639,9 +639,9 @@ mui.plusReady(function() {
 			success: function(data) {
 				if(data.success) {
 					document.getElementById("textInputThis").value = "";
-					createTime = "";
-					orderKey = "";
-					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
+//					createTime = "";
+//					orderKey = "";
+//					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 					document.getElementById('textInput').style.display="none";
 					document.getElementById('operCol').style.display="block";
 					leword(1, 1);
@@ -671,9 +671,9 @@ mui.plusReady(function() {
 			success: function(data) {
 				if(data.success) {
 					document.getElementsByClassName("commentBlock")[0].removeChild($this.parentNode.parentNode.parentNode);
-					createTime = "";
-					orderKey = "";
-					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
+//					createTime = "";
+//					orderKey = "";
+//					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 					leword(1, 1);
 					oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
 						"articleId": oArticleModule.articleId

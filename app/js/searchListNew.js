@@ -64,7 +64,7 @@ var search = {
 				},
 				error: function(xhr, type, errorThrown) {
 					//异常处理；
-					console.log(type);
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
 		})
@@ -161,6 +161,11 @@ var search = {
 			show: {
 				autoShow: false,
 				aniShow: "fade-in",
+			},
+			extras:{
+				subject 	:subject,
+				industry :industry,
+				address :address
 			}
 		});
 	},

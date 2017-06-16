@@ -35,7 +35,7 @@ mui.plusReady(function() {
 				},
 				error: function(xhr, type, errorThrown) {
 					//异常处理；
-					console.log(type);
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
 		},

@@ -1,5 +1,16 @@
 mui.plusReady(function() {
-
+	var oweb = plus.webview.currentWebview();
+	function lag(se1, se2,num) {
+		var oaddress = document.getElementById(se1).getElementsByTagName("li");
+		for(var i = 0; i < oaddress.length; i++) {
+			if(oaddress[i].innerHTML == se2) {
+				oaddress[i].classList.add("filterCurrent");
+				document.getElementsByClassName("orangeColor")[num].innerHTML=se2
+			} else {
+				oaddress[i].classList.remove("filterCurrent");
+			}
+		}
+	}
 	//筛选条件的选择
 	mui(".filterUl").on("tap", "li", function() {
 		this.parentNode.querySelector('li.filterCurrent').classList.remove("filterCurrent");
@@ -40,7 +51,7 @@ mui.plusReady(function() {
 					},
 					error: function(xhr, type, errorThrown) {
 						//异常处理；
-						console.log(type);
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
 					}
 				});
 			})
@@ -58,6 +69,9 @@ mui.plusReady(function() {
 				li.innerHTML = $data[i].caption;
 				document.getElementById('industry').appendChild(li);
 			}
+			if(oweb.industry) {
+				lag("industry", oweb.industry,2);
+			}
 		},
 		sub: function($data) {
 			if($data.length == 0) {
@@ -71,6 +85,9 @@ mui.plusReady(function() {
 				var li = document.createElement("li");
 				li.innerHTML = $data[i].caption;
 				document.getElementById('subject').appendChild(li);
+			}
+			if(oweb.subject) {
+				lag("subject", oweb.subject,1);
 			}
 		},
 		add: function($data) {
@@ -86,6 +103,9 @@ mui.plusReady(function() {
 				li.innerHTML = $data[i].caption;
 				document.getElementById('address').appendChild(li);
 			}
+			if(oweb.address) {
+				lag("address", oweb.address,0);
+			}
 		},
 		res: function(aa) {
 			var t = document.getElementById(aa).getElementsByTagName("li");
@@ -96,10 +116,10 @@ mui.plusReady(function() {
 					t[i].className = ""
 				}
 			}
-			for(var n=0;n<3;n++) {
-				document.getElementsByClassName('orangeColor')[n].innerHTML="不限";
+			for(var n = 0; n < 3; n++) {
+				document.getElementsByClassName('orangeColor')[n].innerHTML = "不限";
 			}
-			
+
 		}
 	}
 	expertProfessor.oAjaxGet(baseUrl + '/ajax/dataDict/qaDictCode', {
@@ -111,19 +131,19 @@ mui.plusReady(function() {
 	expertProfessor.oAjaxGet(baseUrl + '/ajax/dataDict/qaCity', {
 		"dictCode": "ADDRESS"
 	}, "get", expertProfessor.add);
-	document.getElementById("com").addEventListener('tap',function(){
-		var arr=[];
-		for(var n=0;n<3;n++) {
-				if(document.getElementsByClassName('orangeColor')[n].innerHTML=="不限") {
-					arr[n]="";
-				}else{
-					arr[n]=document.getElementsByClassName('orangeColor')[n].innerHTML
-				}
+	document.getElementById("com").addEventListener('tap', function() {
+		var arr = [];
+		for(var n = 0; n < 3; n++) {
+			if(document.getElementsByClassName('orangeColor')[n].innerHTML == "不限") {
+				arr[n] = "";
+			} else {
+				arr[n] = document.getElementsByClassName('orangeColor')[n].innerHTML
 			}
+		}
 		var web = plus.webview.getWebviewById("../html/searchListNew.html");
-			mui.fire(web, "newId",{
-				arry:arr
-			});
-			mui.back();
+		mui.fire(web, "newId", {
+			arry: arr
+		});
+		mui.back();
 	})
 })

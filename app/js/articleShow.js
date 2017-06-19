@@ -89,7 +89,7 @@ function leword(row, aa) {
 			},
 			error: function(xhr, type, errorThrown) {
 				//异常处理；
-				console.log(type);
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
 			}
 		});
 	})
@@ -143,7 +143,7 @@ mui.plusReady(function() {
 				},
 				error: function(xhr, type, errorThrown) {
 					//异常处理；
-					console.log(type);
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
 		},
@@ -386,7 +386,7 @@ mui.plusReady(function() {
 					},
 					error: function(xhr, type, errorThrown) {
 						//异常处理；
-						console.log(type);
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
 					}
 				});
 			}
@@ -633,7 +633,7 @@ mui.plusReady(function() {
 					//					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 					document.getElementById('textInput').style.display = "none";
 					document.getElementById('operCol').style.display = "block";
-					leword(1, 1);
+					leword(500, 1);
 					oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
 						"articleId": oArticleModule.articleId
 					}, "get", leaveWord.leaveWordTotal)
@@ -641,7 +641,7 @@ mui.plusReady(function() {
 			},
 			error: function(xhr, type, errorThrown) {
 				//异常处理；
-				console.log(type);
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
 			},
 			beforeSend: function(data) {
 				console.log(JSON.stringify(data));
@@ -663,7 +663,7 @@ mui.plusReady(function() {
 					//					createTime = "";
 					//					orderKey = "";
 					//					mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
-					leword(1, 1);
+					leword(500, 1);
 					oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
 						"articleId": oArticleModule.articleId
 					}, "get", leaveWord.leaveWordTotal)
@@ -671,7 +671,7 @@ mui.plusReady(function() {
 			},
 			error: function(xhr, type, errorThrown) {
 				//异常处理；
-				console.log(type);
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
 			}
 		});
 	})

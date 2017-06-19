@@ -1058,7 +1058,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .commentBlock .flexCenter{min-height:38px;}
 .commentBlock .commenttime{margin-right:18px;}
 .commentBlock .operateSpan{margin:8px 0 0;color:#9d9ea8;font-size: 13px;color: #999;cursor: pointer;}
-.commentBlock .madiaInfo .h2Font{ -webkit-user-select:text;}
+.commentBlock .madiaInfo .h2Font{ -webkit-user-select:text;word-break:break-word;}
 /*资源文章底部操作栏*/
 .mui-bar-tab.footbox .artfoot.mui-row{padding:2px 15px 0;text-align: center;}
 .mui-bar-tab.footbox .artfoot.mui-row>[class*=mui-col-]{}

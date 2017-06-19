@@ -423,6 +423,7 @@ mui.plusReady(function() {
 		storePostUp: function($data) {
 			plus.nativeUI.toast("收藏成功", toastStyle);
 			document.getElementsByClassName("icon-shoucang")[0].classList.add("icon-yishoucang");
+			console.log(document.getElementsByClassName("icon-shoucang")[0].className);
 		},
 		storeDeleteUp: function($data) {
 			plus.nativeUI.toast("已取消收藏", toastStyle);
@@ -581,7 +582,7 @@ mui.plusReady(function() {
 	})
 	/*收藏文章*/
 	//  
-	document.getElementsByClassName("icon-shoucang")[0].addEventListener("tap", function() {
+	document.getElementById('atto').addEventListener("tap", function() {
 		var oClsNm = document.getElementsByClassName("icon-shoucang")[0].className;
 		oCurren.userid = plus.storage.getItem('userid');
 		if(oCurren.userid) {

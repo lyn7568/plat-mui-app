@@ -493,32 +493,18 @@ mui.plusReady(function() {
 			var datatype = this.getAttribute("data-type");
 			var ownerid = this.getAttribute("owner-id");
 			if(datatype == 1) {
-				mui.openWindow({
-					url: '../html/professorArticle.html',
-					id: 'html/professorArticle.html',
-					show: {
-						autoShow: false,
-						aniShow: "slide-in-right",
-					},
-					extras: {
-						articleId: id,
-						ownerid: ownerid,
-					}
-				});
+				plus.nativeUI.showWaiting();
+			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+				articleId: id,
+				ownerid: ownerid,
+			});
 			} else if(datatype == 2) {
-				mui.openWindow({
-					url: '../html/professorArticle.html',
-					id: 'html/professorArticle.html',
-					show: {
-						autoShow: false,
-						aniShow: "slide-in-right",
-					},
-					extras: {
-						articleId: id,
-						ownerid: ownerid,
-						oFlag: 1
-					}
-				});
+				plus.nativeUI.showWaiting();
+			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+				articleId: id,
+				ownerid: ownerid,
+				oFlag: 1
+			});
 			}
 		}
 	})

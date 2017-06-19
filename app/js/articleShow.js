@@ -421,9 +421,11 @@ mui.plusReady(function() {
 			}
 		},
 		storePostUp: function($data) {
+			plus.nativeUI.toast("收藏成功", toastStyle);
 			document.getElementsByClassName("icon-shoucang")[0].classList.add("icon-yishoucang");
 		},
 		storeDeleteUp: function($data) {
+			plus.nativeUI.toast("已取消收藏", toastStyle);
 			document.getElementsByClassName("icon-shoucang")[0].classList.remove("icon-yishoucang");
 		},
 	}
@@ -790,17 +792,10 @@ mui.plusReady(function() {
 	}
 
 	mui(".tagList").on("tap", "li", function() {
-		mui.openWindow({
-			url: '../html/searchListNew.html',
-			id: '../html/searchListNew.html',
-			show: {
-				autoShow: false,
-				aniShow: "fade-in",
-			},
-			extras: {
-				key: this.getElementsByTagName("span")[0].innerHTML,
-				qiFlag: 3
-			}
-		});
+		 plus.nativeUI.showWaiting();
+		var web = plus.webview.create("../html/searchListNew.html", "../html/searchListNew.html", {}, {
+			key: this.getElementsByTagName("span")[0].innerHTML,
+			qiFlag: 3
+		}); 
 	})
 });

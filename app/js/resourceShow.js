@@ -170,19 +170,11 @@ mui.plusReady(function() {
 	//关键词标签点击进去搜索
 	mui(".tagList").on("tap","li",function(){
 		var tagText = this.getElementsByTagName("span")[0].innerText;
-		mui.openWindow({
-			url: '../html/searchListNew.html',
-			id: '../html/searchListNew.html',
-			show:{
-		      autoShow:false,
-		      aniShow:"fade-in",
-		    },
-			extras:{
-		      key: tagText,
-		      qiFlag: 2
-		    }
-		});
-
+		 plus.nativeUI.showWaiting();
+		var web = plus.webview.create("../html/searchListNew.html", "../html/searchListNew.html", {}, {
+			key: tagText,
+			qiFlag: 2
+		}); 
 	})
 	/*资源里面相关文章*/
 	function relatedArticles() {

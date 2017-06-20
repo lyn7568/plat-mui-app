@@ -30,6 +30,20 @@ mui.plusReady(function() {
 	resourceId = self.resourceId;
 	getRecourceMe();/*获取资源信息*/
 	relatedArticles();/*相关文章信息*/
+	mui.ajax(baseUrl + '/ajax/resource/pageViews',{
+			"type": "POST",
+			"dataType": "json",
+			"data": {
+				"resourceId": resourceId
+			},
+			"success": function(data) {
+				console.log(data);
+				if(data.success) {}
+			},
+			"error": function() {
+				
+			}
+		});
 	function getRecourceMe() {
 		mui.plusReady(function() {
 			mui.ajax(baseUrl + '/ajax/resource/queryOne', {
@@ -611,7 +625,7 @@ mui.plusReady(function() {
 				shareMessage(share, "WXSceneSession", {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
-					href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
+					href: baseUrl + "/e/r.html?id=" + resourceId ; ,
 					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg")]
 				});
 			}
@@ -621,7 +635,7 @@ mui.plusReady(function() {
 				shareMessage(share, "WXSceneTimeline", {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
-					href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
+					href: baseUrl + "/e/r.html?id=" + resourceId ; ,
 					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
 				});
 			}
@@ -631,7 +645,7 @@ mui.plusReady(function() {
 				shareMessage(share, "sinaweibo", {
 					content: oresourceName.innerHTML,
 //					title: oresourceName.innerHTML,
-					href: baseUrl + "/ekexiu/shareResinfor.html?resourceId=" + resourceId,
+					href: baseUrl + "/e/r.html?id=" + resourceId ; ,
 //					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
 					
 				});

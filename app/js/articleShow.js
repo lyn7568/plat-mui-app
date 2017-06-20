@@ -434,7 +434,19 @@ mui.plusReady(function() {
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/query", {
 		articleId: oArticleModule.articleId
 	}, "get", oArticleModule.articleMess);
-
+	mui.ajax(baseUrl + '/ajax/article/pageViews',{
+		"type" :  "POST" ,
+		"dataType" : "json",
+		"data" :{"articleId":oArticleModule.articleId},
+		"success" : function(data) {
+			console.log(data);
+			if (data.success){
+			}
+		},
+		"error":function(){
+			
+		}
+	});
 	if(oArticleModule.oFlag == 1) {
 		/*企业发布文章信息*/
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + oArticleModule.oWner, "", "get", oArticleModule.business);
@@ -732,7 +744,7 @@ mui.plusReady(function() {
 				shareMessage(share, "WXSceneSession", {
 					content: document.getElementById("articleContent").innerText.substring(0, 70),
 					title: document.getElementById("articleName").innerHTML,
-					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
+					href: baseUrl + "/e/a.html?id=" + oArticleModule.articleId,
 					thumbs: [baseUrl + "/data/article/" + stt + oArticleModule.articleId + "_s.jpg"]
 				});
 			}
@@ -742,7 +754,7 @@ mui.plusReady(function() {
 				shareMessage(share, "WXSceneTimeline", {
 					content: document.getElementById("articleContent").innerText.substring(0, 70),
 					title: document.getElementById("articleName").innerHTML,
-					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
+					href: baseUrl + "/e/a.html?id=" + oArticleModule.articleId,
 					thumbs: [baseUrl + "/data/article/" + stt + oArticleModule.articleId + "_s.jpg"]
 				});
 			}
@@ -750,7 +762,7 @@ mui.plusReady(function() {
 			var share = buildShareService("sinaweibo");
 			if(share) {
 				shareMessage(share, "sinaweibo", {
-					href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + oArticleModule.articleId,
+					href: baseUrl + "/e/a.html?id=" + oArticleModule.articleId,
 					content: document.getElementById("articleName").innerHTML
 				});
 			}

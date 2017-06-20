@@ -625,7 +625,7 @@ mui.plusReady(function() {
 				shareMessage(share, "WXSceneSession", {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
-					href: baseUrl + "/e/r.html?id=" + resourceId ; ,
+					href: baseUrl + "/e/r.html?id=" + resourceId ,
 					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg")]
 				});
 			}
@@ -635,7 +635,7 @@ mui.plusReady(function() {
 				shareMessage(share, "WXSceneTimeline", {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
-					href: baseUrl + "/e/r.html?id=" + resourceId ; ,
+					href: baseUrl + "/e/r.html?id=" + resourceId  ,
 					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
 				});
 			}
@@ -645,7 +645,7 @@ mui.plusReady(function() {
 				shareMessage(share, "sinaweibo", {
 					content: oresourceName.innerHTML,
 //					title: oresourceName.innerHTML,
-					href: baseUrl + "/e/r.html?id=" + resourceId ; ,
+					href: baseUrl + "/e/r.html?id=" + resourceId ,
 //					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
 					
 				});

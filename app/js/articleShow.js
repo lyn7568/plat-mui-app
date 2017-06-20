@@ -494,19 +494,15 @@ mui.plusReady(function() {
 		var datatype = this.getAttribute("data-type");
 		var ownerid = this.getAttribute("owner-id");
 		if(datatype == 1) {
-			mui.openWindow({
-			url: '../html/professorArticle.html',
-			id: 'html/professorArticle.html',
-			show: {
-				autoShow: false,
-				aniShow: "slide-in-right",
-			},
-			extras: {
+			plus.nativeUI.showWaiting();
+			var webviewShow=plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
 				articleId: id,
 				ownerid: ownerid,
-			},
-			createNew:true
-		});
+			});
+			webviewShow.addEventListener("loaded", function() {
+				setTimeout(function(){plus.webview.currentWebview().close()},2000)
+				
+			}, false);
 		} else if(datatype == 2) {
 			plus.nativeUI.showWaiting();
 			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {

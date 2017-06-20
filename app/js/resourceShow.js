@@ -378,9 +378,9 @@ mui.plusReady(function() {
 	});
 	//感兴趣的资源详情
 	mui('#likeResource').on('tap', 'li', function() {
-		var webviewShow=resouId = this.getAttribute("data-id");
+		var resouId = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
-		var plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
+		var webviewShow=plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 			resourceId: resouId
 		});
 		webviewShow.addEventListener("loaded", function() {

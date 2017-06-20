@@ -500,7 +500,7 @@ mui.plusReady(function() {
 				ownerid: ownerid,
 			});
 			webviewShow.addEventListener("loaded", function() {
-				setTimeout(function(){plus.webview.currentWebview().close()},2000)
+				setTimeout(function(){plus.webview.currentWebview().close()},1000)
 				
 			}, false);
 		} else if(datatype == 2) {
@@ -511,7 +511,7 @@ mui.plusReady(function() {
 				oFlag: 1
 			});
 			webviewShow.addEventListener("loaded", function() {
-				setTimeout(function(){plus.webview.currentWebview().close()},2000)
+				setTimeout(function(){plus.webview.currentWebview().close()},1000)
 				
 			}, false);
 		}

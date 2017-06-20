@@ -384,7 +384,7 @@ mui.plusReady(function() {
 			resourceId: resouId
 		});
 		webviewShow.addEventListener("loaded", function() {
-				setTimeout(function(){plus.webview.currentWebview().close()},2000)
+				setTimeout(function(){plus.webview.currentWebview().close()},1000)
 				
 			}, false);
 	});

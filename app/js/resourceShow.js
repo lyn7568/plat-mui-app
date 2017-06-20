@@ -378,11 +378,15 @@ mui.plusReady(function() {
 	});
 	//感兴趣的资源详情
 	mui('#likeResource').on('tap', 'li', function() {
-		var resouId = this.getAttribute("data-id");
+		var webviewShow=resouId = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
+		var plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 			resourceId: resouId
 		});
+		webviewShow.addEventListener("loaded", function() {
+				setTimeout(function(){plus.webview.currentWebview().close()},2000)
+				
+			}, false);
 	});
 	//判断是否登录，登录才可咨询，关注，收藏
 	function isLogin() {

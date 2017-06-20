@@ -505,11 +505,15 @@ mui.plusReady(function() {
 			}, false);
 		} else if(datatype == 2) {
 			plus.nativeUI.showWaiting();
-			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+			var webviewShow=plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
 				articleId: id,
 				ownerid: ownerid,
 				oFlag: 1
 			});
+			webviewShow.addEventListener("loaded", function() {
+				setTimeout(function(){plus.webview.currentWebview().close()},2000)
+				
+			}, false);
 		}
 		
 	});

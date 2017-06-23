@@ -102,7 +102,9 @@ mui.plusReady(function() {
 							othisInfo.setAttribute("data-status",mydata.organization.authStatus);
 							othisInfo.setAttribute("data-type",mydata.resourceType);
 							othisName.innerHTML = mydata.organization.name;
-							othisOther.innerHTML = (mydata.organization.subject).replace(/,/, " | ");
+							if(mydata.organization.subject) {
+								othisOther.innerHTML = (mydata.organization.subject).replace(/,/, " | ");
+							}
 							othisPic.classList.add("cmpHead");
 							if(mydata.organization.hasOrgLogo) {
 								othisPic.style.backgroundImage = 'url('+ baseUrl +'/images/org/' + mydata.organization.id + '.jpg)';

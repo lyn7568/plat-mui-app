@@ -219,7 +219,7 @@ var search = {
 					userType.sty = "e"
 				}
 			}
-			var rImg = "../images/default-photo.jpg";
+			var rImg = "../images/default-resource.jpg";
 			if($data.images.length) {
 				rImg = baseUrl + "/data/resource/" + $data.images[0].imageSrc;
 			}

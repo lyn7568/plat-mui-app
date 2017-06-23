@@ -77,6 +77,7 @@ var search = {
 		document.getElementById('noSearch').style.display = "none"
 		if(flag == 1) {
 			document.getElementById("list").innerHTML = ""
+			mui('#pullrefresh').pullRefresh().scrollTo(0,0,100);
 			if(data.data.length == 0) {
 				mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 				document.getElementById('noSearch').style.display = "block";
@@ -177,6 +178,7 @@ var search = {
 		var $da = data.data;
 		if(flag == 1) {
 			document.getElementById("list").innerHTML = ""
+			mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)
 			if(data.data.length == 0) {
 				mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 				document.getElementById('noSearch').style.display = "block";
@@ -186,6 +188,7 @@ var search = {
 				mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 
 			} else {
+				alert(22)
 				mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 
 			}
@@ -247,6 +250,7 @@ var search = {
 		var $data = data.data;
 		if(flag == 1) {
 			document.getElementById("list").innerHTML = ""
+			mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)
 			if(data.data.length == 0) {
 				mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 				document.getElementById('noSearch').style.display = "block";

@@ -515,7 +515,7 @@ mui.plusReady(function() {
 			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
 				articleId: id,
 				ownerid: ownerid,
-				oFlag:1
+				oFlag: 1
 			});
 			}
 		}

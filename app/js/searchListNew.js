@@ -56,6 +56,7 @@ var search = {
 				type: oType, //HTTP请求类型
 				timeout: 10000, //超时时间设置为10秒；
 				traditional: true,
+				async:false,
 				success: function(data) {
 					//console.log(JSON.stringify(data))
 					if(data.success) {
@@ -77,6 +78,7 @@ var search = {
 		document.getElementById('noSearch').style.display = "none"
 		if(flag == 1) {
 			document.getElementById("list").innerHTML = ""
+			mui('#pullrefresh').pullRefresh().scrollTo(0,0,100);
 			if(data.data.length == 0) {
 				mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 				document.getElementById('noSearch').style.display = "block";
@@ -177,6 +179,7 @@ var search = {
 		var $da = data.data;
 		if(flag == 1) {
 			document.getElementById("list").innerHTML = ""
+			mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)
 			if(data.data.length == 0) {
 				mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 				document.getElementById('noSearch').style.display = "block";
@@ -247,6 +250,7 @@ var search = {
 		var $data = data.data;
 		if(flag == 1) {
 			document.getElementById("list").innerHTML = ""
+			mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)
 			if(data.data.length == 0) {
 				mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 				document.getElementById('noSearch').style.display = "block";
@@ -386,15 +390,19 @@ mui.plusReady(function() {
 		}, "get", search.oExeprt);
 	})
 	mui(".fixbtnNew").on("tap", "li", function() {
+		var $this=this
+		setTimeout(function(){
+			
+		
 		inputValue = document.getElementById("searchval").value;
-		this.classList.add("liactive");
-		for(var i = 0; i < siblings(this).length; i++) {
-			siblings(this)[i].classList.remove("liactive")
+		$this.classList.add("liactive");
+		for(var i = 0; i < siblings($this).length; i++) {
+			siblings($this)[i].classList.remove("liactive")
 		}
 		flag = 1;
 		pageNo = 1;
 		mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
-		if(this.innerHTML == "找资源") {
+		if($this.innerHTML == "找资源") {
 			document.getElementById("sele").style.display = "none";
 			document.getElementById("searB").classList.remove("searchboxNewT");
 			qiFlag = 2;
@@ -403,7 +411,7 @@ mui.plusReady(function() {
 				"pageSize": pageSize,
 				"pageNo": pageNo
 			}, "get", search.resource);
-		} else if(this.innerHTML == "找专家") {
+		} else if($this.innerHTML == "找专家") {
 			document.getElementById("sele").style.display = "block";
 			document.getElementById("searB").classList.add("searchboxNewT");
 			qiFlag = 1;
@@ -416,7 +424,7 @@ mui.plusReady(function() {
 				"pageSize": pageSize,
 				"pageNo": pageNo
 			}, "get", search.oExeprt);
-		} else if(this.innerHTML == "找文章") {
+		} else if($this.innerHTML == "找文章") {
 			document.getElementById("sele").style.display = "none";
 			document.getElementById("searB").classList.remove("searchboxNewT");
 			qiFlag = 3;
@@ -426,6 +434,7 @@ mui.plusReady(function() {
 				"pageNo": pageNo
 			}, "get", search.article);
 		}
+		},1100)
 	})
 
 	function siblings(elm) {

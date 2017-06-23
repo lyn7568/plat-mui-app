@@ -188,7 +188,6 @@ var search = {
 				mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 
 			} else {
-				alert(22)
 				mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 
 			}

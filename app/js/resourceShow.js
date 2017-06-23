@@ -23,7 +23,7 @@ var oattenSpan = document.getElementById("attenSpan"); //关注用户按钮
 var professorId;
 var orgId;
 var resourceId
-
+var imgFlag;
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
@@ -152,6 +152,7 @@ mui.plusReady(function() {
 							document.getElementById("likeResource").parentNode.style.display="none";
 						}
 						if(mydata.images.length) {
+							imgFlag=1;
 							var lastImg = document.getElementById("lastImg");;
 							lastImg.innerHTML = '<a class="tab-re"><img src="'+ baseUrl+'/data/resource/' + mydata.images[mydata.images.length-1].imageSrc + '" /></a>';
 							
@@ -172,6 +173,8 @@ mui.plusReady(function() {
 							oresorcePic.insertBefore(lastImg,oresorcePic.firstChild);
 							oresorcePic.appendChild(firstImg,oresorcePic.lastChild);
 						}else {
+							document.getElementById('slider').style.display="none";
+							imgFlag=2;
 						}
 						plus.nativeUI.closeWaiting();
 						plus.webview.currentWebview().show("slide-in-right", 150);
@@ -621,6 +624,10 @@ mui.plusReady(function() {
 //		for(var i=0;i<pictureS.length;i++){
 //		   imageStr+=pictureS[i].src+";";
 //		}
+		var oUrl=baseUrl + "/images/logo180.png";
+		if(imgFlag==1) {
+			oUrl=firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg");
+		}
 		if(oFen == "微信好友") {
 			var share = buildShareService("weixin");
 			if(share) {
@@ -628,7 +635,7 @@ mui.plusReady(function() {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
 					href: baseUrl + "/e/r.html?id=" + resourceId ,
-					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg")]
+					thumbs: [oUrl]
 				});
 			}
 		} else if(oFen == "微信朋友圈") {
@@ -638,7 +645,7 @@ mui.plusReady(function() {
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
 					href: baseUrl + "/e/r.html?id=" + resourceId  ,
-					thumbs: [firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg") ]
+					thumbs: [oUrl]
 				});
 			}
 		} else if(oFen == "新浪微博") {

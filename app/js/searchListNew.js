@@ -56,6 +56,7 @@ var search = {
 				type: oType, //HTTP请求类型
 				timeout: 10000, //超时时间设置为10秒；
 				traditional: true,
+				async:false,
 				success: function(data) {
 					//console.log(JSON.stringify(data))
 					if(data.success) {
@@ -433,7 +434,7 @@ mui.plusReady(function() {
 				"pageNo": pageNo
 			}, "get", search.article);
 		}
-		},600)
+		},1100)
 	})
 
 	function siblings(elm) {

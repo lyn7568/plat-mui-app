@@ -433,7 +433,7 @@ mui.plusReady(function() {
 				"pageNo": pageNo
 			}, "get", search.article);
 		}
-		},300)
+		},600)
 	})
 
 	function siblings(elm) {

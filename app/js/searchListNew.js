@@ -389,15 +389,19 @@ mui.plusReady(function() {
 		}, "get", search.oExeprt);
 	})
 	mui(".fixbtnNew").on("tap", "li", function() {
+		var $this=this
+		setTimeout(function(){
+			
+		
 		inputValue = document.getElementById("searchval").value;
-		this.classList.add("liactive");
-		for(var i = 0; i < siblings(this).length; i++) {
-			siblings(this)[i].classList.remove("liactive")
+		$this.classList.add("liactive");
+		for(var i = 0; i < siblings($this).length; i++) {
+			siblings($this)[i].classList.remove("liactive")
 		}
 		flag = 1;
 		pageNo = 1;
 		mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
-		if(this.innerHTML == "找资源") {
+		if($this.innerHTML == "找资源") {
 			document.getElementById("sele").style.display = "none";
 			document.getElementById("searB").classList.remove("searchboxNewT");
 			qiFlag = 2;
@@ -406,7 +410,7 @@ mui.plusReady(function() {
 				"pageSize": pageSize,
 				"pageNo": pageNo
 			}, "get", search.resource);
-		} else if(this.innerHTML == "找专家") {
+		} else if($this.innerHTML == "找专家") {
 			document.getElementById("sele").style.display = "block";
 			document.getElementById("searB").classList.add("searchboxNewT");
 			qiFlag = 1;
@@ -419,7 +423,7 @@ mui.plusReady(function() {
 				"pageSize": pageSize,
 				"pageNo": pageNo
 			}, "get", search.oExeprt);
-		} else if(this.innerHTML == "找文章") {
+		} else if($this.innerHTML == "找文章") {
 			document.getElementById("sele").style.display = "none";
 			document.getElementById("searB").classList.remove("searchboxNewT");
 			qiFlag = 3;
@@ -429,6 +433,7 @@ mui.plusReady(function() {
 				"pageNo": pageNo
 			}, "get", search.article);
 		}
+		},300)
 	})
 
 	function siblings(elm) {

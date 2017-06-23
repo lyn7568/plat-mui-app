@@ -219,7 +219,10 @@ var search = {
 					userType.sty = "e"
 				}
 			}
-			var rImg = baseUrl + "/data/resource/" + $data.images[0].imageSrc;
+			var rImg = "../images/default-photo.jpg";
+			if($data.images.length) {
+				rImg = baseUrl + "/data/resource/" + $data.images[0].imageSrc;
+			}
 			var li = document.createElement("li");
 			li.setAttribute("data-id", $data.resourceId);
 			li.setAttribute("data-flag", 2);

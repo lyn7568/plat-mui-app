@@ -51,6 +51,7 @@ mui.ready(function() {
 				async: false,
 				success: function(data) {
 					if(data.success&&data.data) {
+						plus.nativeUI.toast("密码修改成功，请重新登录", toastStyle);
 						goLoginFun();
 						plus.webview.close(self);
 					}

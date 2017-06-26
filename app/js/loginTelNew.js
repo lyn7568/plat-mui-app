@@ -23,7 +23,7 @@ mui.ready(function() {
 		})
 		
 		/*点击忘记密码按钮*/
-		forgetPassword.addEventListener("tap", function() {
+		/*forgetPassword.addEventListener("tap", function() {
 			mui.openWindow({
 				url: '../html/pwdFind.html',
 				id: '../html/pwdFind.html',
@@ -31,7 +31,7 @@ mui.ready(function() {
 					aniShow: "slide-in-right"
 				}
 			});
-		})
+		})*/
 
 		/*校验登录按钮显示状态*/
 		mui('.frmboxNew').on('keyup', "#username,#setCode", function() {
@@ -142,6 +142,7 @@ mui.ready(function() {
 					if(data.success){
 						var userId = data.data.id;
 						plus.storage.setItem('userid', userId);
+						plus.nativeUI.toast("登录成功", toastStyle)
 						var article = plus.webview.currentWebview();
 						if(article.flag==1){
 							var proAiticle =plus.webview.getWebviewById('professorArticle.html')

@@ -149,8 +149,7 @@ mui.plusReady(function() {
 				var string = '<li class="mui-table-view-cell mui-media listitem" resouseId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
 				if($data[i].images.length) {
-					string += '<img class="resImg headRadius" src="' + baseUrl + '/images/resource/' + $data[i].resourceId + '.jpg">'
-
+					string += '<img class="resImg headRadius" src="'+ baseUrl+'/data/resource/' + $data[i].images[0].imageSrc + '" />'
 				} else {
 
 					string += '<img class="resImg headRadius" src="../images/default-resource.jpg">'
@@ -359,7 +358,7 @@ mui.plusReady(function() {
 
 	personalMessage();
 	/*专家文章*/
-	mui.ajax(baseUrl + "/ajax/article/qaPro", {
+	mui.ajax(baseUrl + "/ajax/article/qaProPublish", {
 		dataType: 'json', //数据格式类型
 		type: 'GET', //http请求类型
 		data: {
@@ -408,7 +407,7 @@ mui.plusReady(function() {
 	mui("#resourceList").on('tap', 'li', function() {
 		var resouId = this.getAttribute("resouseId");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
+		plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 			resourceId: resouId
 		});
 	});
@@ -631,7 +630,7 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneSession", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: baseUrl + "/ekexiu/shareProinfor.html?professorId=" + proId,
+						href: baseUrl + "/e/p.html?id=" + proId,
 						thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
 					});
 				}
@@ -641,7 +640,7 @@ mui.plusReady(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: str,
 						title: "【科袖名片】" + professorName + " " + title + "",
-						href: baseUrl + "/ekexiu/shareProinfor.html?professorId=" + proId,
+						href: baseUrl + "/e/p.html?id=" + proId,
 						thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
 					});
 				}

@@ -181,15 +181,15 @@ mui('.gridbg').on('tap', 'li', function() {
 	//plus.nativeUI.showWaiting();//显示原生等待框
 	//webviewShow = plus.webview.create("../html/search.html",'search.html',{},{subject:subject,bigClass:1});//后台创建webview并打开show.html
 	mui.openWindow({
-		url: '../html/search.html',
-		id: '../html/search.html',
+		url: '../html/searchListNew.html',
+		id: '../html/searchListNew.html',
 		show: {
 			//autoShow:false,
 			aniShow: "slide-in-right",
 		},
 		extras: {
-			subject: subject,
-			bigClass: 1
+			key: subject,
+			qiFlag: 1
 		}
 	});
 })

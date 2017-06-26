@@ -218,9 +218,8 @@ mui.ready(function() {
 				var string = '<li class="mui-table-view-cell mui-media listitem" resouId=' + $data[i].resourceId + '>'
 				string += '<a class="proinfor" href="resinforupdate.html"><div class="mui-media-object mui-pull-left ResImgBox ResImgBox2">'
 				if($data[i].images.length) {
-					string += '<img class="resImg headRadius" src="' + baseUrl + '/images/resource/' + $data[i].resourceId + '.jpg">'
+					string += '<img class="resImg headRadius" src="'+ baseUrl+'/data/resource/' + $data[i].images[0].imageSrc + '" />'
 				} else {
-
 					string += '<img class="resImg headRadius" src="../images/default-resource.jpg">'
 				}
 				string += '</div><div class="mui-media-body" style="width:60%">'
@@ -296,7 +295,7 @@ mui.ready(function() {
 		mui("#resourceList").on("tap", "li", function() {
 				var resouId = this.getAttribute("resouId");
 				var nwaiting = plus.nativeUI.showWaiting();
-				var web = plus.webview.create("../html/resinforbrow.html", 'resinforbrow.html', {}, {
+				var web = plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 						resourceId: resouId
 					})
 					//				var web = plus.webview.create("../html/resinforupdate.html", "resinforupdate.html", {}, {

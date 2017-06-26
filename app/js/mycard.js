@@ -34,7 +34,7 @@ mui.ready(function() {
 
 			function makeCode() {
 				var professorId = plus.storage.getItem('userid');
-				var elurl = baseUrl + "/ekexiu/shareProinfor.html?professorId=" + professorId;
+				var elurl = baseUrl + "/e/p.html?id=" + professorId;
 				qrcode.makeCode(elurl);
 			}
 
@@ -66,7 +66,7 @@ mui.ready(function() {
 					shareMessage(share, "WXSceneSession", {
 						content: "研究方向：" + rlist,
 						title: "【科袖名片】" + professorName + " " + professortitle + "",
-						href: baseUrl + "/ekexiu/shareProinfor.html?professorId=" + professorid,
+						href: baseUrl + "/e/p.html?id=" + professorid,
 						thumbs: [baseUrl + "/images/head/" + professorid + "_m.jpg"]
 					});
 				}
@@ -78,7 +78,7 @@ mui.ready(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: "研究方向：" + rlist,
 						title: "【科袖名片】" + professorName + " " + professortitle + "",
-						href: baseUrl + "/ekexiu/shareProinfor.html?professorId=" + professorid,
+						href: baseUrl + "/e/p.html?id=" + professorid,
 						thumbs: [baseUrl + "/images/head/" + professorid + "_m.jpg"]
 					});
 				}

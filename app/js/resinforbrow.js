@@ -131,7 +131,7 @@ function ziyuaninfo(resourceId) {
 					//详细描述
 					if(mydata['descp']) {
 						odetail.innerHTML = mydata['descp'];
-						var oImg = document.getElementById("detail").getElementsByTagName("img");
+						var oImg = odetail.getElementsByTagName("img");
 						for(var i = 0; i < oImg.length; i++) {
 							(function(n) {
 								var att = oImg[n].src.substr(7);

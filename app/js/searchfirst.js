@@ -25,6 +25,7 @@ mui.plusReady(function() {
 				timeout: 10000, //超时时间设置为10秒；
 				traditional: true,
 				success: function(data) {
+					console.log(JSON.stringify(data));
 					if(data.success) {
 						setTimeout(function() {
 							document.getElementById("searchval").focus()

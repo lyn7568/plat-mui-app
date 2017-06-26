@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的积分</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+	<body>
+        <!--登陆状态-->
+		<div class="mui-content mui-scroll-wrapper" id="rawardsSet2">
+			<div class="mui-scroll">	
+				<!-- 主界面具体展示内容 -->
+				<div class="inviteBoxNew">
+					<img src="../images/points_banner_img_nor@3x.png" width="100%"/>
+					<div class="rewardBox">
+						<div class="rewardNow">
+							<p>当前积分</p>
+							<p><span id="totalFraction"></span>分</p>
+						    <p id="scorePercenthtml">超过了<em id="scorePercent"></em>的用户</p>
+						</div>
+					</div>
+				</div>
+				<div class="rewardCon">
+					<ul class="mui-row mui-clearfix alignCenter rewardCNum" id="listnav">
+						<li class="mui-col-xs-6 h1Font " data-id="1">获得积分 <span id="setFraction"></span></li>
+						<li class="mui-col-xs-6 h1Font nowClass">邀请奖励 <span id="rewardFraction"></span></li>
+					</ul>
+					<!--有奖励积分-->
+					<div class="maincontent">
+						<ul class="mui-table-view myreward" id="table2">
+								      
+						</ul>
+						<!--无奖励积分-->
+						<div class="nodatabox displayNone" id="nojl">
+					        <div class="nodata">
+					            <div class="picbox">
+					            	<img src="../images/points_icon_ku_nor@3x.png" width="28%" />
+					            </div>
+					            <div class="txtbox">
+					            	<p class="noContip">您还没有奖励积分<br />快去邀请好友获得奖励积分吧！</p>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/rawards-list.js"></script>
+		<script src="../js/rawards-prize.js"></script>
+	</body>
+</html>

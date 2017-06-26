@@ -74,11 +74,13 @@ mui.plusReady(function() {
 			success: function(data) {
 				var $info = data.data || {};
 				if(data.success && data.data) {
+					
 					plus.nativeUI.closeWaiting();
 					plus.webview.currentWebview().show("slide-in-right", 150);
 					var articleImg = document.getElementById("articleImg");
 					var artical_topic = document.getElementById("artical_topic");
 					var main_content = document.getElementById("main_content");
+					document.getElementById("numerCount").innerHTML=$info.articleAgree;
 					if(data.data.createTime) {
 						var oTime = timeGeshi(data.data.createTime);
 						document.getElementById("proRlist").innerText = oTime;
@@ -94,8 +96,10 @@ mui.plusReady(function() {
 						var oImg = main_content.getElementsByTagName("img");
 						for(var i = 0; i < oImg.length; i++) {
 							(function(n) {
+								if(oImg[n].src.substring(0,4)=='file') {
 								var att = oImg[n].src.substr(7);
 								oImg[n].setAttribute("src", baseUrl + att);
+								}
 							})(i);
 						}
 					}
@@ -119,10 +123,13 @@ mui.plusReady(function() {
 					if($profesor.hasHeadImage) {
 						document.getElementById('proHead').src = baseUrl + "/images/head/" + $profesor.id + "_l.jpg";
 					} else {
-						document.getElementById('proHead').src = "images/default-photo.jpg";
+						document.getElementById('proHead').src = "../images/default-photo.jpg";
 					}
 					var proName = document.getElementById("proName");
 					proName.innerText = $profesor.name;
+					
+					var oSty = autho($profesor.authType, $profesor.orgAuth, $profesor.authStatus);
+				    document.getElementById("flSta").classList.add(oSty.sty);
 				}
 			},
 			error: function(XMLHttpRequest) {
@@ -142,10 +149,11 @@ mui.plusReady(function() {
 					var $data = data.data;
 					var proName = document.getElementById("proName");
 					proName.innerText = $data.name;
+					
 					if($data.authStatus == 3) {
-						document.getElementById("flSta").className = "mui-icon iconfont authicon authicon-com-ok"; //authiconNew
+						document.getElementById("flSta").className = "authicon authicon-com-ok";
 					} else {
-						document.getElementById("flSta").className = "mui-icon iconfont authicon";
+						document.getElementById("flSta").className = "authicon";
 					}
 					if($data.hasOrgLogo) {
 						document.getElementById('proHead').src = baseUrl + "/images/org/" + $data.id + ".jpg";
@@ -171,13 +179,256 @@ mui.plusReady(function() {
 	document.getElementById("leaveWord").addEventListener("tap", function() {
 			var userid = plus.storage.getItem('userid');
 			if(!userid) {
-				goLoginFun();
+				mui.openWindow({
+			url: '../html/login.html',
+			id: '../html/login.html',
+			show: {
+				aniShow: "slide-in-bottom"
+			},
+			extras: {
+				flag: 1
+			}
+		});
 				return;
 			}
 			var nwaiting = plus.nativeUI.showWaiting();
 			var web = plus.webview.create("../html/articalMessage.html", "articalMessage.html", {}, {
 				articleId: proId
 			}); //后台创建webview并打开show.html   	    	
+		})
+		/*点赞文章*/
+		/*企业信息*/
+		var oThumsflag;
+	function thums(dataUrl) {
+		var userid = plus.storage.getItem('userid');
+		mui.ajax(baseUrl + dataUrl, {
+			type: "POST",
+			timeout: 10000,
+			dataType: "json",
+			data:{
+				operateId:userid,
+				articleId:proId,
+			},
+			beforeSend: function() {},
+			success: function(data, textState) {
+				if(data.success) {
+					console.log(JSON.stringify(data));
+					var oNumber=document.getElementById("numerCount");
+					if(oThumsflag==0){
+						document.getElementById("appreciate").classList.remove("icon-appreciate");
+						document.getElementById("appreciate").classList.add("icon-appreciatefill");
+						document.getElementById("thumbsUp").style.color="#ff9900";
+						oNumber.innerHTML=Number(oNumber.innerHTML)+1;
+						document.getElementById("thumbsUp").setAttribute("oThumsflag","1");
+					}else if(oThumsflag==1){
+						document.getElementById("appreciate").classList.add("icon-appreciate");
+						document.getElementById("appreciate").classList.remove("icon-appreciatefill");
+						document.getElementById("thumbsUp").style.color="#929292";
+						oNumber.innerHTML=Number(oNumber.innerHTML)-1;
+						document.getElementById("thumbsUp").setAttribute("oThumsflag","0");
+					}
+					
+				}
+			},
+			error: function(XMLHttpRequest, textStats, errorThrown) {
+				console.log(JSON.stringify(XMLHttpRequest));
+			}
+		})
+	}
+	document.getElementById("thumbsUp").addEventListener("tap", function() {
+	var userid = plus.storage.getItem('userid');
+	var oUrl;
+	oThumsflag = this.getAttribute("oThumsflag");
+	console.log(oThumsflag)
+	if(!userid) {
+		mui.openWindow({
+			url: '../html/login.html',
+			id: '../html/login.html',
+			show: {
+				aniShow: "slide-in-bottom"
+			},
+			extras: {
+				flag: 1
+			}
+		});
+		return;
+	}
+	(oThumsflag == 0) ? oUrl = "/ajax/article/agree": oUrl = "/ajax/article/unAgree";
+	console.log(oUrl);
+	thums(oUrl);
+})
+		isAgreeArticle();
+		/*查询登录者是否为这篇文章点过赞*/
+		function isAgreeArticle(){
+			var userid = plus.storage.getItem('userid');
+			if(!userid){
+				return;
+			}
+			mui.ajax(baseUrl + "/ajax/article/isAgree", {
+				type: "GET",
+				timeout: 10000,
+				dataType: "json",
+				data: {
+					"operateId": userid,
+					"articleId": proId
+				},
+				success: function(data) {
+					if(data.success) {
+						if(data.data==null){
+							document.getElementById("appreciate").classList.add("icon-appreciate");
+							document.getElementById("appreciate").classList.remove("icon-appreciatefill");
+							document.getElementById("thumbsUp").style.color="#929292";
+							document.getElementById("thumbsUp").setAttribute("oThumsflag","0");
+						}else{
+						document.getElementById("appreciate").classList.remove("icon-appreciate");
+							document.getElementById("appreciate").classList.add("icon-appreciatefill");
+							document.getElementById("thumbsUp").style.color="#ff9900";
+							document.getElementById("thumbsUp").setAttribute("oThumsflag","1");
+						}
+					}
+				},
+				error: function(XMLHttpRequest, textStats, errorThrown) {
+					console.log(JSON.stringify(XMLHttpRequest));
+				}
+			})
+		}
+		/*收藏文章*/
+		var oCollectFlag;
+
+	function collect() {
+		var userid = plus.storage.getItem('userid');
+		if(oCollectFlag == 0) {
+			mui.ajax(baseUrl + "/ajax/watch", {
+				type: "POST",
+				timeout: 10000,
+				dataType: "json",
+				data: {
+					"professorId": userid,
+					"watchObject": proId,
+					"watchType": 3
+				},
+				beforeSend: function() {},
+				success: function(data, textState) {
+					if(data.success) {
+						plus.nativeUI.toast("收藏成功", toastStyle);
+						document.getElementById("collect").setAttribute("collectFlag","1");
+						document.getElementById("collect").style.color="#F6DC00";
+						document.getElementById("yesExpert").classList.remove("icon-favor");
+						document.getElementById("yesExpert").classList.add("icon-favorfill");
+					}
+				},
+				error: function(XMLHttpRequest, textStats, errorThrown) {
+					console.log(JSON.stringify(XMLHttpRequest));
+				}
+			})
+		} else {
+			mui.ajax(baseUrl + "/ajax/watch/delete", {
+				"type": "POST",
+				"data": {
+					"professorId": userid,
+					"watchObject": proId,
+				},
+				"success": function(data) {
+					if(data.success) {
+						if(data.success) {
+							plus.nativeUI.toast("已取消收藏", toastStyle);
+							document.getElementById("collect").setAttribute("collectFlag","0");
+							document.getElementById("collect").style.color="#929292";
+							document.getElementById("yesExpert").classList.add("icon-favor");
+						    document.getElementById("yesExpert").classList.remove("icon-favorfill");
+						} 
+					}
+				},
+				"error": function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
+	}
+		document.getElementById("collect").addEventListener("tap", function() {
+	var userid = plus.storage.getItem('userid');
+	oCollectFlag = this.getAttribute("collectFlag");
+	if(!userid) {
+		mui.openWindow({
+			url: '../html/login.html',
+			id: '../html/login.html',
+			show: {
+				aniShow: "slide-in-bottom"
+			},
+			extras: {
+				flag: 1
+			}
+		});
+		return;
+	}
+	collect();
+})
+		/*进入文章浏览页面判断是否收藏文章*/
+		attentionArticle();
+		function attentionArticle(){
+			var userid = plus.storage.getItem('userid');
+			if(!userid){
+				return;
+			}
+			mui.ajax(baseUrl + "/ajax/watch/hasWatch", {
+				type: "GET",
+				timeout: 10000,
+				dataType: "json",
+				data: {
+					"professorId": userid,
+					"watchObject": proId
+				},
+				success: function(data) {
+					if(data.success) {
+						if(data.data==null){
+							document.getElementById("collect").setAttribute("collectFlag","0");
+							document.getElementById("collect").style.color="#929292";
+							document.getElementById("yesExpert").classList.add("icon-favor");
+							document.getElementById("yesExpert").classList.remove("icon-favorfill");
+						}else{
+						document.getElementById("collect").setAttribute("collectFlag","1");
+						document.getElementById("collect").style.color="#F6DC00";
+						document.getElementById("yesExpert").classList.remove("icon-favor");
+						document.getElementById("yesExpert").classList.add("icon-favorfill");
+						}
+					}
+				},
+				error: function(XMLHttpRequest, textStats, errorThrown) {
+					console.log(JSON.stringify(XMLHttpRequest));
+				}
+			})
+		}
+		/*文章留言总数*/
+		function leaveWord(){
+			mui.ajax(baseUrl + "/ajax/leaveWord/lwCount", {
+				type: "GET",
+				timeout: 10000,
+				dataType: "json",
+				data: {
+					"articleId": proId,
+				},
+				success: function(data) {
+					if(data.success) {
+						document.getElementById('leaveWord').innerHTML="留言"+"("+data.data+")";
+					}
+				},
+				error: function(XMLHttpRequest, textStats, errorThrown) {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			})
+		}
+		leaveWord();
+		window.addEventListener("newId", function(event) {
+			var fl = event.detail.rd;
+			if(fl==1){
+				leaveWord();
+			}else{
+			attentionArticle();
+			isAgreeArticle();
+			}
+			
 		})
 		/*微信及微信朋友圈分享专家*/
 	var auths, shares;
@@ -234,7 +485,7 @@ mui.plusReady(function() {
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
-						content: oImgShare,
+						content: oImgShare.substring(0,70),
 						title: "【科袖文章】" + proticleName,
 						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
 						thumbs: [baseUrl + "/images/logo180.png"]
@@ -244,7 +495,7 @@ mui.plusReady(function() {
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {
-						content: oImgShare,
+						content: oImgShare.substring(0,70),
 						title: "【科袖文章】" + proticleName,
 						href: baseUrl + "/ekexiu/shareArticalinfor.html?articleId=" + proId,
 						thumbs: [baseUrl + "/images/logo180.png"]
@@ -284,11 +535,7 @@ mui.plusReady(function() {
 		};
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
-			var strtmp = "分享到\"" + share.description + "\"成功！ ";
-			console.log(strtmp);
-			plus.nativeUI.toast(strtmp, {
-				verticalAlign: 'center'
-			});
+			shareAddIntegral(3);
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {

@@ -180,6 +180,11 @@ function autho() {
 					"sty": "authicon-real",
 					"title": "实名认证用户"
 				}
+			}else{
+				return {
+					"sty": "e",
+					"title": " "
+				}
 			}
 		}
 	}

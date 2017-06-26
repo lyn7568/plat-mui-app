@@ -411,19 +411,9 @@ function datalistEach(datalist) {
 
 		/*判断用户是否认证*/
 		var icon = '';
-		if(item.authType) {
-			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
-		} else {
-			if(item.authStatus==3) {
-				if(item.authentication == 1) {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
-				} else if(item.authentication == 2) {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
-				} else {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
-				}
-			}
-		}
+		var oSty = autho(item.authType, item.orgAuth, item.authStatus);
+		icon='<em class="authicon ' + oSty.sty + '"></em>'
+
 		
 		/*获取研究方向信息*/
 		var researchAreas = item.researchAreas;
@@ -498,20 +488,9 @@ function resourcesEach(datalist) {
 		}
 
 		/*判断用户是否认证*/
-		var icon = '';		
-		if(item.editProfessor.authType) {			
-			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
-		} else {
-			if(item.editProfessor.authStatus==3) {
-				if(item.editProfessor.authentication == 1) {					
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
-				} else if(item.editProfessor.authentication == 2) {					
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
-				} else {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
-				}
-			}
-		}
+		var icon = '';	
+		var oSty = autho(item.editProfessor.authType, item.editProfessor.orgAuth, item.editProfessor.authStatus);
+		icon='<em class="authicon ' + oSty.sty + '"></em>'
 
 		var title = item.editProfessor.title || "";
 		var office = item.editProfessor.office || "";

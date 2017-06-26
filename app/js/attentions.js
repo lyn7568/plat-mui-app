@@ -116,11 +116,8 @@ function expert2(pageNo, pageSize) {
 						var datalist = data.data.data;
 						datalistEach(datalist);
 						mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
-						if(pageNo < allPages) {
+						if(pageNo >= allPages) {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //能上拉
-						} else {
-							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //不能上拉
-							
 						}
 
 					}
@@ -158,19 +155,8 @@ function datalistEach(datalist) {
 
 		/*判断用户是否认证*/
 		var icon = '';
-		if(item.professor.authType) {
-			icon='<em class="mui-icon iconfont icon-vip authicon-cu"> </em>';
-		} else {
-			if(item.professor.authStatus==3) {
-				if(item.professor.authentication == 1) {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-mana"></em>';
-				} else if(item.professor.authentication == 2) {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-staff"></em>';
-				} else {
-					icon='<em class="mui-icon iconfont icon-renzheng authicon-stu"></em>';
-				}
-			}
-		}
+		var oSty = autho(item.professor.authType, item.professor.orgAuth, item.professor.authStatus);
+		icon='<em class="authicon ' + oSty.sty + '"></em>'
 
 		/*获取资源信息*/
 		var resources = item.professor.resources;

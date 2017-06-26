@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>搜索列表</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!-- 主页面标题 -->
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav topback leftnav"></a>
+			<div class="searchboxNew searchboxNewT">
+				<form onsubmit="return false;">
+					<input type="search" class="mui-input-clear searchtxtNew" placeholder="搜索你喜欢的" id="searchval" />
+				</form>
+			</div>
+			<div class="rightnav filtered"><!--选择筛选条件之后添加 filtered-->
+				<a class="mui-icon iconfont icon-filter"></a><br />筛选
+				<span class="mui-badge">3</span>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div class="fixboxNew">
+				<ul class="fixbtnNew">
+					<li class="mui-col-xs-4 liactive">找专家</li>
+					<li class="mui-col-xs-4">找资源</li>
+					<li class="mui-col-xs-4">找文章</li>
+				</ul>
+			</div>
+			<div class="mui-scroll-wrapper"style="padding-top:86px">
+			    <div class="mui-scroll">
+					<div class="mui-card-content conblock">
+						<div class="maincontent">
+							<!--找人-->
+							<ul class="mui-table-view searchManTab">
+						        <li class="mui-table-view-cell">
+							        <div class="flexCenter">
+							        	<div class="userImg userRadius">
+							        		<img src="../images/default-photo.jpg"/>
+							        	</div>
+										<div class="userInfo">
+											<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></p>
+											<p class="h3Font mui-ellipsis">教授级高工，董事长兼CEO</p>
+											<!--专家显示研究方向--><!--非专家显示所在机构-->
+											<p class="h3Font mui-ellipsis">研究方向：材料腐蚀与防护，材料腐蚀基因组的工程和应用</p>
+										</div>
+							        </div>
+						        </li>
+						        <li class="mui-table-view-cell">
+							        <div class="flexCenter">
+							        	<div class="userImg userRadius">
+							        		<img src="../images/default-photo.jpg"/>
+							        	</div>
+										<div class="userInfo">
+											<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-real"></em></p>
+											<p class="h3Font mui-ellipsis">教授级高工，董事长兼CEO</p>
+											<p class="h3Font mui-ellipsis">北京科技大学</p>
+										</div>
+							        </div>
+						        </li>
+						    </ul>
+						    <!--找资源-->
+						    <ul class="mui-table-view searchOtherTab">
+						        <li class="mui-table-view-cell">
+									<div class="flexCenter table-item-cell">
+										<div class="table-item-img resource-default"></div>
+										<div class="table-item-body">
+											<p class="h1Font otherTopic mui-ellipsis-2">失效分析、安全评定与剩余寿命评估、红外热像无损检测及其专家系统</p>
+											<p class="h3Font positionR mui-ellipsis">用途：进行自然环境下的各种金属材料、新型涂层。</p>
+										</div>
+									</div>
+						        </li>
+						        <li class="mui-table-view-cell">
+									<div class="flexCenter table-item-cell">
+										<div class="table-item-img resource-default"></div>
+										<div class="table-item-body">
+											<p class="h1Font otherTopic mui-ellipsis-2">失效分析、安全评定</p>
+											<p class="h3Font positionR mui-ellipsis">用途：进行自然环境下的各种金属材料、新型涂层材料的暴晒实验和户外加速腐蚀试验研究。</p>
+										</div>
+									</div>
+						        </li>
+						    </ul>
+						    <!--找文章-->
+						    <ul class="mui-table-view searchOtherTab">
+						        <li class="mui-table-view-cell">
+									<div class="flexCenter table-item-cell">
+										<div class="table-item-img artical-default"></div>
+										<div class="table-item-body">
+											<p class="h1Font otherTopic mui-ellipsis-2">失效分析、安全评定与剩余寿命评估、红外热像无损检测及其专家系统</p>
+											<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-real"></em></p>
+										</div>
+									</div>
+						        </li>
+						        <li class="mui-table-view-cell">
+									<div class="flexCenter table-item-cell">
+										<div class="table-item-img artical-default"></div>
+										<div class="table-item-body">
+											<p class="h1Font otherTopic mui-ellipsis-2">失效分析、安全评定</p>
+											<p class="h1Font positionR"><span>北京科袖科技有限公司</span><em class="authicon authicon-com-ok"></em></p>
+										</div>
+									</div>
+						        </li>
+						    </ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+<!--		<script src="../js/searchhome.js"></script>-->
+	</body>
+
+</html>

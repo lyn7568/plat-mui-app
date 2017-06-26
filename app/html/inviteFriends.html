@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>邀请好友</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="promptBlock"  id="inviteShow">
+			<div class="promptImg"></div>
+			<p class="h1Font">成功邀请好友注册「科袖」后，您将获得100个奖励积分。您邀请的好友在「科袖」完成了一些特定操作，如邀请新用户、成为[科袖认证专家]等等，还能给您带来 额外的奖励积分。</p>
+			<div class="promptBtn"><button class="mui-btn mui-btn-mini">朕知道了</button></div>
+		</div>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit">邀请好友</h1>
+		</header>
+		<div class="mui-content bodyBg mui-scroll-wrapper" id="pullrefresht">
+			<div class="mui-scroll">	
+				<!-- 主界面具体展示内容 -->
+				<div class="mui-input-group">
+					<div class="inviteBoxNew">
+						<img src="../images/In-friends_img_banner_nor.png" width="100%" id="inviteBtnLink">
+						<div class="mui-row inviteBtnNew bgRadius">
+							<div class="mui-col-xs-6 inviteFont">
+								<p class="inviteNum" id="inviteFraction"></p>
+								<p style="font-size:16px;">已获得邀请奖励</p>
+							</div>
+							<div class="mui-col-xs-6 inviteBtnLink" id="invite">
+								<img src="../images/In-friends_button_yaoqing_nor.png" width="100%" />
+							</div>
+						</div>
+					</div>
+					<div class="mui-row inviteInfor">
+						<div class="mui-col-xs-6">
+							<div class="inviteFont">
+								<p>已邀请好友</p>
+								<p class="inviteNum" id="inviteFriends"></p>
+							</div>
+						</div>
+						<div class="mui-col-xs-6">
+							<div class="inviteFont">
+								<p>好友邀请好友</p>
+							<p class="inviteNum" id="friendInviteFriend"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--未邀请好友-->
+				<div class="mui-card-content conblock displayNone" id="nodatalist">
+					<div class="maintitboxNow">
+						<img class="maintitNow" src="../images/In-friends_bg_wenti_nor@3x.png" />
+					</div>
+					<div class="maincontent">
+						<ul class="mui-table-view faqBox noactiveTab">
+							<li class="mui-table-view-cell faqItem">
+						        <h5 class="h1Font">为什么要邀请好友？</h5>
+						        <p class="h3Font">答：成功邀请好友注册「科袖」后，您将获得100个奖励积分。您邀请的好友在「科袖」完成了一些特定操作，如邀请新用户、成为[科袖认证专家]等等，还能给您带来额外的奖励积分。</p>
+						        <p class="h3Font">「科袖」将陆续发布更多的积分奖励规则，如好友完成了一次咨询或发布了一篇文章，您都能获得更多奖励积分。</p>
+					    	</li>
+					   </ul>
+					</div>
+				</div>
+				<!--邀请好友列表-->
+				<div class="mui-card-content conblock" id="datalist">
+					<div class="maintitboxNow">
+						<img class="maintitNow" src="../images/In-friends_bg_biaoti_nor.png" />
+					</div>
+					<div class="maincontent">
+						<ul class="mui-table-view mui-table-view-chevron" id="friendsList">
+					        <!--<li class="mui-table-view-cell">
+						        <div class="flexCenter">
+						        	<div class="userImg userRadius">
+						        		<img src="../images/default-photo.jpg"/>
+						        	</div>
+									<div class="userInfo">
+										<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></p>
+										<p class="h2Font">北京科技大学</p>
+										<p class="h3Font mui-ellipsis">他邀请了 <span>3</span> 位好友，为您带来了 <span>1000</span> 分积分奖励！</p>
+									</div>
+						        </div>
+					        </li>
+						        <li class="mui-table-view-cell">
+							        <div class="flexCenter">
+							        	<div class="userImg userRadius">
+							        		<img src="../images/default-photo.jpg"/>
+							        	</div>
+										<div class="userInfo">
+											<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></p>
+											<p class="h2Font">北京科技大学</p>
+											<p class="h3Font mui-ellipsis">他还没有邀请好友！</p>
+										</div>
+							        </div>
+						        </li>
+						        <li class="mui-table-view-cell">
+							        <div class="flexCenter">
+							        	<div class="userImg userRadius">
+							        		<img src="../images/default-photo.jpg"/>
+							        	</div>
+										<div class="userInfo">
+											<p class="h1Font positionR"><span>用户姓名</span><em class="authicon authicon-pro"></em></p>
+											<p class="h2Font">北京科技大学</p>
+											<p class="h3Font mui-ellipsis">他邀请了 <span>3</span> 位好友，为您带来了 <span>1000</span> 分积分奖励！</p>
+										</div>
+							        </div>
+					        </li>-->
+					        
+					    </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--点击邀请好友按钮弹出提示框-->
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/inviteFriends.js"></script>
+	</body>
+
+</html>

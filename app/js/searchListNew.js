@@ -11,6 +11,7 @@ mui.init({
 	pullRefresh: {
 		container: '#pullrefresh',
 		up: {
+			height:50,
 			contentrefresh: '正在加载...',
 			callback: pullupRefresh
 		}

@@ -762,8 +762,7 @@ mui.plusReady(function() {
 			var share = buildShareService("sinaweibo");
 			if(share) {
 				shareMessage(share, "sinaweibo", {
-					href: baseUrl + "/e/a.html?id=" + oArticleModule.articleId,
-					content: document.getElementById("articleName").innerHTML
+					content: document.getElementById("articleName").innerHTML+baseUrl + "/e/a.html?id=" + oArticleModule.articleId
 				});
 			}
 		}

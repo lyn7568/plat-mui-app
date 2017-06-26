@@ -332,6 +332,7 @@ mui.plusReady(function() {
 	document.getElementById("searchval").value = windowModule.self;
 	inputValue = windowModule.self;
 	if(windowModule.flag==1) {
+		document.getElementById("searchval").setAttribute("placeholder","请输入专家姓名、机构、研究方向");
 		qiFlag=1;
 		search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
 		"key": document.getElementById("searchval").value,
@@ -343,6 +344,7 @@ mui.plusReady(function() {
 		"pageNo": pageNo
 	}, "get", search.oExeprt);
 	}else if(windowModule.flag==2) {
+		document.getElementById("searchval").setAttribute("placeholder","请输入资源名称、用途、机构");
 		qiFlag=2;
 		document.getElementById("sele").style.display = "none";
 		document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[1].classList.add("liactive");
@@ -356,6 +358,7 @@ mui.plusReady(function() {
 			}, "get", search.resource);
 	}else {
 		qiFlag=3;
+		document.getElementById("searchval").setAttribute("placeholder","请输入文章标题、作者");
 		document.getElementById("sele").style.display = "none";
 		document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[2].classList.add("liactive");
 		for(var i = 0; i < siblings(document.getElementsByClassName("fixbtnNew")[0].getElementsByTagName("li")[2]).length; i++) {
@@ -404,6 +407,7 @@ mui.plusReady(function() {
 		pageNo = 1;
 		mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 		if($this.innerHTML == "找资源") {
+			document.getElementById("searchval").setAttribute("placeholder","请输入资源名称、用途、机构");
 			document.getElementById("sele").style.display = "none";
 			document.getElementById("searB").classList.remove("searchboxNewT");
 			qiFlag = 2;
@@ -413,6 +417,7 @@ mui.plusReady(function() {
 				"pageNo": pageNo
 			}, "get", search.resource);
 		} else if($this.innerHTML == "找专家") {
+			document.getElementById("searchval").setAttribute("placeholder","请输入专家姓名、机构、研究方向");
 			document.getElementById("sele").style.display = "block";
 			document.getElementById("searB").classList.add("searchboxNewT");
 			qiFlag = 1;
@@ -426,6 +431,7 @@ mui.plusReady(function() {
 				"pageNo": pageNo
 			}, "get", search.oExeprt);
 		} else if($this.innerHTML == "找文章") {
+			document.getElementById("searchval").setAttribute("placeholder","请输入文章标题、作者");
 			document.getElementById("sele").style.display = "none";
 			document.getElementById("searB").classList.remove("searchboxNewT");
 			qiFlag = 3;

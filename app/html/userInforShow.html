@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人浏览</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/previewImage.css"/>
+	</head>
+
+	<body>
+		<div class="maskBlack" id="maskBlack"></div>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit" id="professorName">专家名称</h1>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
+		</header>
+
+		<!--主页面底部菜单-->
+		<nav class="mui-bar mui-bar-tab footbox">
+			<div class="mui-row artfoot">
+				<div class="mui-col-xs-9" id="consultBtn">
+					<div class="consultdiv">咨询</div>
+				</div>
+				<div class="mui-col-xs-2" id="collectBtn">
+					<span class="mui-icon iconfontnew icon-shoucang" id="ifCollect"></span><!--已收藏 icon-yishoucang-->
+				</div>
+				<div class="mui-col-xs-1" id="shareOut">
+					<span class="mui-icon iconfontnew icon-fenxiang"></span>
+				</div>
+			</div>
+		</nav>
+		<!-- 主页面内容容器 -->
+		<div class="mui-content">
+			<!-- 主界面具体展示内容 -->
+			<div class="showCardI">
+				<div class="cardTop">
+					<div class="cardImg userCard"></div>
+					<div class="cardInfo">
+						<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+						<p class="mui-ellipsis h2Font">职称/职位，所属部门，所在机构</p>
+						<p class="h3Font"><em class="mui-icon iconfontNew icon-address"></em> 北京</p>
+					</div>		
+				</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorBreifinfo">
+					<div class="infocontit mui-navigate-right mui-clearfix" id="detailProfessor">个人介绍 </div>
+					<div class="infocon">
+						<span class="breifinfo mui-ellipsis-5">
+				       		 利用卷曲纳米技术,制备了Ti/Cr、Cr/SiO、SiO/SiO、SiO/Cr 4种不同金属、氧化物组合的双层纳米薄膜微管,研究了不同组合和参数对微管结构的影响,结果表明纳米薄膜沉积温度、沉积速率和纳米薄膜的厚度以及材料本身的物理性质等因素对微管的半径大小影响显著。利用Ti/Pt双层纳米薄膜微管结构制备的催化微马达在HO溶液中依靠气泡推动,表现出超快的速度和强大的推动力,在靶向给药、人工智能机器人、生物传感等领域具有应用潜力。另外,通过斜掠角蒸渡和纳米卷曲技术结合,制备了另外一种三维结构-不同螺旋角的Ti金属弹簧。
+				        </span>
+					</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorInfosubject">
+					<div class="infocontit">学术领域</div>
+					<div class="infocon listArea">
+						<ul>
+							<li>领域1</li>
+				       		<li>领域领域领域2</li>
+				       		<li>领域领域领域领域3</li>
+				       		<li>领域4</li>
+				       		<li>领域领1</li>
+				       		<li>领域1</li>
+				       		<li>领域1</li>
+						</ul>
+					</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorReserachMess">
+					<div class="infocontit">研究方向</div>
+					<div class="infocon reserachMess">
+
+					</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorinfoapply">
+					<div class="infocontit">行业领域</div>
+					<div class="infocon listArea">
+						<ul id="industry1">
+							<li>应用行业1</li>
+				       		<li>领域领域领域域领域领域域领域领域域领域领域2</li>
+				       		<li>领域领域3</li>
+				       		<li>领域4</li>
+				       		<li>领域领1</li>
+				       		<li>领域1</li>
+				       		<li>领域1</li>
+						</ul>
+					</div>
+			</div>
+			<div class="mui-input-group mainbox">
+					<div class="infocontit">资源 (<span>0</span>)</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">名称</p>
+										<p class="h2Font">用途：的萨芬的国防生的</p>
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">名称</p>
+										<p class="h2Font">用途：的萨芬的国防生的</p>
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+					<div class="seeMore"><em>查看更多</em></div>
+			</div>
+			<div class="mui-input-group mainbox">
+					<div class="infocontit">专利 (<span>0</span>)</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">名称</p>
+										<p class="h2Font">发明人：一，二，三</p>
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">名称</p>
+										<p class="h2Font">发明人：一，二，三</p>
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+					<div class="seeMore"><em>查看更多</em></div>
+			</div>
+			<div class="mui-input-group mainbox">
+					<div class="infocontit">论文 (<span>0</span>)</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">名称</p>
+										<p class="h2Font">作者：一，二，三</p>
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">名称</p>
+										<p class="h2Font">作者：一，二，三</p>
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+					<div class="seeMore"><em>查看更多</em></div>
+			</div>
+			<div class="mui-input-group mainbox">
+					<div class="infocontit">文章 (<span>0</span>)</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter OflexCenter mui-clearfix">
+					                <div class="madiaHead artHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+					<div class="seeMore"><em>查看更多</em></div>
+			</div>
+		</div>
+		
+		<div class="shareBlock" id="shareBlock">
+			<h2 class="shareTit"><span>分享到</span></h2>
+			<ul class="mui-table-view noactiveTab">
+				<li class="mui-table-view-cell">
+					<em class="wayicon wechaticon"></em>
+					<span>微信好友</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon friendstericon"></em>
+					<span>微信朋友圈</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon sinaicon"></em>
+					<span>新浪微博</span>
+				</li>
+			</ul>
+			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/proinfobrow.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		    
+		    var BtnMore=document.getElementById("BtnMore");
+		    var shareOut=document.getElementById("shareOut");
+		    var cancelShare=document.getElementById("cancelShare");
+		    var maskBlack=document.getElementById("maskBlack");
+		    var shareBlock=document.getElementById("shareBlock");
+		    
+		    
+		    BtnMore.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    shareOut.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    cancelShare.addEventListener("tap",function(){
+		    	maskBlack.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		    maskBlack.addEventListener("tap",function(){
+		    	this.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		</script>
+	</body>
+
+</html>

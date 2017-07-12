@@ -706,21 +706,21 @@ mui.ready(function() {
 			var id = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting();
 			plus.webview.create("../html/patentShow.html", 'patentShow.html', {}, {
-				"id": id
+				"paperId": id
 			});
 		})
 		mui("#patentList").on("tap", "li", function() {
 			var id = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting();
 			plus.webview.create("../html/paperShow.html", 'paperShow.html', {}, {
-				"id": id
+				"patentId": id
 			});
 		})
 		mui("#companyList").on("tap", "li", function() {
 			var id = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting();
 			plus.webview.create("../html/cmpInforShow.html", 'cmpInforShow.html', {}, {
-				"id": id
+				"cmpId": id
 			});
 		})
 		//找专家搜索条件及自定义事件

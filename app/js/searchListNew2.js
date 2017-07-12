@@ -672,7 +672,7 @@ mui.ready(function() {
 		mui("#list").on("tap", "li", function() {
 			var id = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting(); //显示原生等待框
-			plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+			plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
 				proid: id
 			});
 		})
@@ -713,6 +713,13 @@ mui.ready(function() {
 			var id = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting();
 			plus.webview.create("../html/paperShow.html", 'paperShow.html', {}, {
+				id: id
+			});
+		})
+		mui("#companyList").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/cmpInforShow.html", 'cmpInforShow.html', {}, {
 				id: id
 			});
 		})

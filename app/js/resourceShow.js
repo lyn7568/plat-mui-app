@@ -190,7 +190,7 @@ mui.plusReady(function() {
 	mui(".tagList").on("tap","li",function(){
 		var tagText = this.getElementsByTagName("span")[0].innerText;
 		 plus.nativeUI.showWaiting();
-		var web = plus.webview.create("../html/searchListNew.html", "../html/searchListNew.html", {}, {
+		var web = plus.webview.create("../html/searchListNew2.html?content=找资源", "../html/searchListNew2.html", {}, {
 			key: tagText,
 			qiFlag: 2
 		}); 

@@ -19,7 +19,7 @@
 		<div class="maskBlack" id="maskBlack"></div>
 		<header class="mui-bar mui-bar-nav toptitbox">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-			<h1 class="mui-title toptit" id="paperTit"></h1>
+			<h1 class="mui-title toptit" id="patentTit"></h1>
 			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
 		</header>
 		<nav class="mui-bar mui-bar-tab footbox">
@@ -37,19 +37,28 @@
 		</nav>
 		<div class="mui-content">
 		    <div class="showDetail">
-	    		<div class="h1Font hWeight" id="paperName"></div>
+	    		<div class="h1Font hWeight" id="patentName"></div>
 		    	<!--内容区-->
 				<div class="showMain showMainP">
 					<ul>
 						<li>
-							<div class="showTit">期刊：<span class="showCon" id="paperJournal"></span></div>
+							<div class="showTit">专利号：<span class="showCon" id="Znum1"></span></div>
 						</li>
 						<li>
-							<div class="showTit">期卷：<span class="showCon" id="paperVolume"></span></div>
+							<div class="showTit">公开日：<span class="showCon" id="Znum2"></span></div>
+						</li>
+						<li>
+							<div class="showTit">申请日：<span class="showCon" id="Znum3"></span></div>
+						</li>
+						<li>
+							<div class="showTit">申请号：<span class="showCon" id="Znum4"></span></div>
+						</li>
+						<li>
+							<div class="showTit">申请人：<span class="showCon" id="Znum5"></span></div>
 						</li>
 						<li>
 							<div class="showTit">摘要：</div>
-							<div class="showCon" id="paperAbstract">
+							<div class="showCon" id="patentAbstract">
 								
 							</div>
 						</li>
@@ -62,7 +71,7 @@
 					</li>-->
 				</ul>
 				<div class="madiaBlock">
-					<div class="madiaTit">作者</div>
+					<div class="madiaTit">发明人</div>
 					<ul class="mui-table-view" id="aboutAuthors">
 				        <!--<li class="mui-table-view-cell">
 				            <div class="flexCenter mui-clearfix">
@@ -101,7 +110,7 @@
 		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/public/base.js"></script>
-		<script src="../js/paperShow.js"></script>
+		<script src="../js/patentShow.js"></script>
 		<script type="text/javascript"> 
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();

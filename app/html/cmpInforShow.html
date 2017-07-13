@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>企业浏览</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/previewImage.css"/>
+		<style type="text/css">
+			.toptitbox{background: #28b8fa;}
+			.showCardI{background-image: url(../images/enterprise_img_bg_nor@3x.png)}
+			.infocontit:before{background: #28b8fa;}
+		</style>
+	</head>
+
+	<body>
+		<div class="maskBlack" id="maskBlack"></div>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit" id="companyNameT">企业简称</h1>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
+		</header>
+
+		<!--主页面底部菜单-->
+		<nav class="mui-bar mui-bar-tab footbox">
+			<div class="mui-row artfoot">
+				<div class="mui-col-xs-9">
+					<div class="consultdiv notopen">更多功能即将开放</div>
+				</div>
+				<div class="mui-col-xs-2" id="collectBtn">
+					<span class="mui-icon iconfontnew icon-shoucang" id="ifAttend"></span><!--已收藏 icon-yishoucang-->
+				</div>
+				<div class="mui-col-xs-1" id="shareOut">
+					<span class="mui-icon iconfontnew icon-fenxiang"></span>
+				</div>
+			</div>
+		</nav>
+		<!-- 主页面内容容器 -->
+		<div class="mui-content">
+			<!-- 主界面具体展示内容 -->
+			<div class="showCardI">
+				<div class="cardTop">
+					<div class="cardImg cmpCard">
+						<div class="boxBlock"><img class="boxBlockimg companyImg" id="oimg" src="../images/default-icon.jpg"></div>
+					</div>
+					<div class="cardInfo">
+						<p><span class="h1Font" id="companyName"></span><em class="authicon" id="authFlag"></em></p>
+						<p class="mui-ellipsis h2Font" id="industryShow"></p>
+						<p class="h3Font"><em class="mui-icon iconfontnew icon-address"></em> <span id="address"></span></p>
+					</div>		
+				</div>
+			</div>
+			<div class="mui-input-group mainbox">
+				<div class="infocontit mui-navigate-right mui-clearfix" id="goCmpBrief">企业介绍 </div>
+				<div class="infocon">
+					<span class="breifinfo mui-ellipsis-5" id="breifinfo">
+			        </span>
+				</div>
+			</div>
+			<div class="mui-input-group mainbox">
+				<div class="infocontit">专注领域</div>
+				<div class="infocon listArea">
+					<ul id="subjectShow">
+						<!--<li>领域1</li>
+			       		<li>领域领域领域2</li>-->
+					</ul>
+				</div>
+			</div>
+			<div class="mui-input-group mainbox">
+				<div class="infocontit">资源 (<span id="resourceNum">0</span>)</div>
+				<div class="infocon madiaBlock">
+					<ul class="mui-table-view" id="resourceShow">
+				        <!--<li class="mui-table-view-cell">
+				            <div class="flexCenter OflexCenter mui-clearfix">
+				                <div class="madiaHead artHead"></div>
+								<div class="madiaInfo OmadiaInfo">
+									<p class="mui-ellipsis h1Font">名称</p>
+									<p class="h2Font">用途：的萨芬的国防生的</p>
+								</div>
+				            </div>
+				        </li>-->
+				    </ul>
+				</div>
+				<div class="seeMore displayNone" id="seeMoreResource"><em>查看更多</em></div>
+			</div>
+			<div class="mui-input-group mainbox">
+				<div class="infocontit">文章 (<span id="articalNum">0</span>)</div>
+				<div class="infocon madiaBlock">
+					<ul class="mui-table-view" id="articelShow">
+				        <!--<li class="mui-table-view-cell">
+				            <div class="flexCenter OflexCenter mui-clearfix">
+				                <div class="madiaHead artHead"></div>
+								<div class="madiaInfo OmadiaInfo">
+									<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
+								</div>
+				            </div>
+				        </li>-->
+				    </ul>
+				</div>
+				<div class="seeMore displayNone" id="seeMoreArtical"><em>查看更多</em></div>
+			</div>
+		</div>
+		
+		<div class="shareBlock" id="shareBlock">
+			<h2 class="shareTit"><span>分享到</span></h2>
+			<ul class="mui-table-view noactiveTab">
+				<li class="mui-table-view-cell">
+					<em class="wayicon wechaticon"></em>
+					<span>微信好友</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon friendstericon"></em>
+					<span>微信朋友圈</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon sinaicon"></em>
+					<span>新浪微博</span>
+				</li>
+			</ul>
+			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/cmpInforShow.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		    
+		    var BtnMore=document.getElementById("BtnMore");
+		    var shareOut=document.getElementById("shareOut");
+		    var cancelShare=document.getElementById("cancelShare");
+		    var maskBlack=document.getElementById("maskBlack");
+		    var shareBlock=document.getElementById("shareBlock");
+		    
+		    
+		    BtnMore.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    shareOut.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    cancelShare.addEventListener("tap",function(){
+		    	maskBlack.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		    maskBlack.addEventListener("tap",function(){
+		    	this.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		</script>
+	</body>
+
+</html>

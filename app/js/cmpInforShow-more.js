@@ -52,17 +52,17 @@ mui.ready(function() {
 						} else {
 							document.getElementById("shotAddress").parentNode.style.display = "none";
 						}
+						/*应用行业*/
+						if($data.industry) {
+							document.getElementById("industryShow").innerText = $data.industry;
+						} else {
+							document.getElementById("industryShow").parentNode.style.display = 'none';
+						}
 						/*企业简介*/
 						if($data.descp) {
 							document.getElementById("breifinfo").innerText = $data.descp;
 						} else {
 							document.getElementById("breifinfo").parentNode.parentNode.style.display = 'none';
-						}
-						/*应用行业*/
-						if($data.industry) {
-							document.getElementById("industryShow").innerText = $data.industry;
-						} else {
-							document.getElementById("industryShow").style.display = 'none';
 						}
 						
 						/*企业资质*/

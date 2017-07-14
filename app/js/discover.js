@@ -81,32 +81,17 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 			}
 		});
 	} else if(datatype == 2 || datatype == 4) {
-		if(iftauth == 3) {
-			mui.openWindow({
-				url: '../html/cmpinfor-index.html',
-				id: 'cmpinfor-index.html',
-				show: {
-					autoShow: false,
-					aniShow: "slide-in-right",
-				},
-				extras: {
-					orgId: id,
-				}
-			});
-		} else {
-			mui.openWindow({
-				url: '../html/cmpinfor-Unindex.html',
-				id: 'cmpinfor-Unindex.html',
-				show: {
-					autoShow: false,
-					aniShow: "slide-in-right",
-				},
-				extras: {
-					orgId: id,
-					flag: 0
-				}
-			});
-		}
+		mui.openWindow({
+			url: '../html/cmpInforShow.html',
+			id: 'cmpInforShow.html',
+			show: {
+				autoShow: false,
+				aniShow: "slide-in-right",
+			},
+			extras: {
+				cmpId: id,
+			}
+		});
 	}
 });
 

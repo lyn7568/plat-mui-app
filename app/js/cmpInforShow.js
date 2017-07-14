@@ -1,6 +1,7 @@
 
 mui.ready(function() {
 	mui.plusReady(function() {
+		plus.navigator.setStatusBarBackground( "#28b8fa" );
 		var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
 		var orgId = self.cmpId;
@@ -8,7 +9,6 @@ mui.ready(function() {
 		companyMessage(orgId);
 		getArticel();
 		getResource()
-		alert(orgId)
 		
 		//点击收藏按钮
 		ifcollectionAbout(orgId,6);
@@ -27,7 +27,7 @@ mui.ready(function() {
 		document.getElementById("goCmpBrief").addEventListener("tap", function() {
 			var nwaiting = plus.nativeUI.showWaiting();
 			var web = plus.webview.create("../html/cmpInforShow-more.html", "cmpInforShow-more.html", {}, {
-				org: orgId
+				cmpId: orgId
 			}); //后台创建webview并打开show.html   	    	
 			web.addEventListener("loaded", function() {}, false);
 		});
@@ -35,7 +35,7 @@ mui.ready(function() {
 		document.getElementById("seeMoreResource").addEventListener("tap", function() {
 			var nwaiting = plus.nativeUI.showWaiting();
 			var web = plus.webview.create("../html/cmpInforShow-resources.html", "cmpInforShow-resources.html", {}, {
-				org: orgId
+				cmpId: orgId
 			}); //后台创建webview并打开show.html   	    	
 			web.addEventListener("loaded", function() {}, false);
 		});
@@ -43,7 +43,7 @@ mui.ready(function() {
 		document.getElementById("seeMoreArtical").addEventListener("tap", function() {
 			var nwaiting = plus.nativeUI.showWaiting();
 			var web = plus.webview.create("../html/cmpInforShow-article.html", "cmpInforShow-article.html", {}, {
-				org: orgId
+				cmpId: orgId
 			}); //后台创建webview并打开show.html   	    	
 			web.addEventListener("loaded", function() {}, false);
 		});

@@ -10,8 +10,8 @@ mui.plusReady(function() {
 	//关键词标签点击进去搜索
 	mui(".tagList").on("tap","li",function(){
 		var tagText = this.getElementsByTagName("span")[0].innerText;
-		 plus.nativeUI.showWaiting();
-		var web = plus.webview.create("../html/searchListNew.html", "../html/searchListNew.html", {}, {
+		plus.nativeUI.showWaiting();
+		var web = plus.webview.create("../html/searchListNew2.html?content=找论文", "../html/searchListNew2.html", {}, {
 			key: tagText,
 			qiFlag: 4
 		}); 
@@ -108,9 +108,9 @@ mui.plusReady(function() {
 				{
 					pstr+='<li><span class="h2Font">'+ subs[i] +'</span></li>'
 				};
-				document.getElementsByClassName(".tagList")[0].innerHTML= pstr;
+				document.getElementsByClassName("tagList")[0].innerHTML= pstr;
 			}else{
-				document.getElementsByClassName(".tagList")[0].style.display="none";
+				document.getElementsByClassName("tagList")[0].style.display="none";
 			}
 		}		
 	}

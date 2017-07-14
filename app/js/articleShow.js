@@ -207,37 +207,19 @@ mui.plusReady(function() {
 			if($data.hasOrgLogo) {
 				document.getElementById("messImg").style.backgroundImage = "url(" + baseUrl + "/images/org/" + $data.id + ".jpg" + ")";
 			}
-			if($data.authStatus == 3) {
-				document.getElementById("auth").classList.add("authicon-com-ok");
-				mui('#personAL').on('tap', '#messImg,#name', function() {
-					mui.openWindow({
-						url: '../html/cmpinfor-index.html',
-						id: 'cmpinfor-index.html',
-						show: {
-							autoShow: false,
-							aniShow: "slide-in-right",
-						},
-						extras: {
-							orgId: oArticleModule.oWner,
-						}
-					});
-				})
-			} else {
-				mui('#personAL').on('tap', '#messImg,#name', function() {
-					mui.openWindow({
-						url: '../html/cmpinfor-Unindex.html',
-						id: 'cmpinfor-Unindex.html',
-						show: {
-							autoShow: false,
-							aniShow: "slide-in-right",
-						},
-						extras: {
-							orgId: oArticleModule.oWner,
-							flag: 0,
-						}
-					});
-				})
-			}
+			mui('#personAL').on('tap', '#messImg,#name', function() {
+				mui.openWindow({
+					url: '../html/cmpInforShow.html',
+					id: 'cmpInforShow.html',
+					show: {
+						autoShow: false,
+						aniShow: "slide-in-right",
+					},
+					extras: {
+						cmpId: oArticleModule.oWner,
+					}
+				});
+			})
 		},
 		correlationExpert: function($data) {
 			if($data.length == 0) {

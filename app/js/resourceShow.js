@@ -342,8 +342,8 @@ mui.plusReady(function() {
 		var reType = this.getAttribute("data-type");
 		if(reType=="1"){
 			mui.openWindow({
-				url: '../html/proinforbrow.html',
-				id: 'html/proinforbrow.html',
+				url: '../html/userInforShow.html',
+				id: 'html/userInforShow.html',
 				show: {
 					autoShow: false,
 					aniShow: "slide-in-left"
@@ -354,33 +354,17 @@ mui.plusReady(function() {
 			});
 		}else{
 			var cmpId=this.getAttribute("data-id");
-			var cmpStatus=this.getAttribute("data-status");
-			if(cmpStatus==3){
-				mui.openWindow({
-					url: '../html/cmpinfor-index.html',
-					id: 'cmpinfor-index.html',
-					show: {
-						autoShow: false,
-						aniShow: "slide-in-right",
-					},
-					extras: {
-						orgId: cmpId,
-					}
-				});
-			}else{
-				mui.openWindow({
-					url: '../html/cmpinfor-Unindex.html',
-					id: 'cmpinfor-Unindex.html',
-					show: {
-						autoShow: false,
-						aniShow: "slide-in-right",
-					},
-					extras: {
-						orgId: cmpId,
-						flag: 0
-					}
-				});
-			}
+			mui.openWindow({
+				url: '../html/cmpInforShow.html',
+				id: 'cmpInforShow.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					cmpId: cmpId,
+				}
+			});
 		}
 		
 			

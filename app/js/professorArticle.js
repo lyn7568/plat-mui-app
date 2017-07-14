@@ -17,36 +17,19 @@ mui.plusReady(function() {
 			},
 			success: function(data) {
 				if(data.success) {
-					if(data.data == 3) {
-						document.getElementById("proInfor").addEventListener("tap", function() {
+					document.getElementById("proInfor").addEventListener("tap", function() {
 						mui.openWindow({
-							url: '../html/cmpinfor-index.html',
-							id: 'cmpinfor-index.html',
+							url: '../html/cmpInforShow.html',
+							id: 'cmpInforShow.html',
 							show: {
 								autoShow: false,
 								aniShow: "slide-in-right",
 							},
 							extras: {
-								orgId: ownerid,
+								cmpId: ownerid,
 							}
 						})
-						})
-					} else {
-						document.getElementById("proInfor").addEventListener("tap", function() {
-						mui.openWindow({
-							url: '../html/cmpinfor-Unindex.html',
-							id: 'cmpinfor-Unindex.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-right",
-							},
-							extras: {
-								orgId: ownerid,
-								flag: 0
-							}
-						})
-						})
-					}
+					})
 				}
 			},
 			error: function(XMLHttpRequest) {

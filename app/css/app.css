@@ -335,7 +335,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 /*专家相关信息*/
 .infocontit{font-size:16px;line-height: 40px;min-height:40px;border-bottom: 1px solid #E5E5E5; position: relative;padding-left: 26px;color:#333}
 .infocontit:before{position:absolute;top:50%;margin-top:-10px;left: 15px;;display:inline-block;content:"";width:4px;height:18px;border-radius:10px;background:#ff9900;}
-.infocontitM{padding-left: 15px;}
+.infocontitM{padding-left: 15px;font-size:15px;}
 .infocontitM:before{content: none;}
 .OnetitM{border-color: transparent;}
 .infocon{padding:15px; font-size: 14px;color:#666;}
@@ -773,7 +773,9 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .table-item-media .table-item-name span{float:left;display:block;max-width:96%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .table-item-media .authicon{bottom:-2px;}
 
-.cmplogo{ background: url(../images/default-icon.jpg);background-size: cover;border-radius:4px;}
+.cmplogo{ background:#FFFFFF;border-radius:4px;overflow: hidden;}
+.table-item-media .table-item-logo.cmplogo .boxBlock{width: 32px;height: 32px;}
+.table-item-media .table-item-logo.cmplogo .boxBlock .boxBlockimg{margin-top:-2px}
 .userhead{ background: url(../images/default-photo.jpg);background-size: cover;border-radius:50%;}
 .cmpLable{border:1px solid;border-radius:3px;padding:2px 6px;font-style: normal;font-size: 10px; line-height: 14px; vertical-align: middle;margin-right: 15px;}
 .cmpLable.articalLabel{border-color:#ff6b57;color:#ff6b57;}
@@ -1000,8 +1002,8 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .filterClass.filterActive .mui-navigate-right:after{content: '\e580'}
 
 /*****************************2017.04新版登录表单样式************************/
-.frmboxNew{margin:12px;border-radius: 6px;overflow: hidden;}
-.frmboxNew .frmbtn{margin:0;font-size: 14px;line-height:40px;padding:0;height:40px;vertical-align: middle;}
+.frmboxNew{margin:12px;border-radius:4px;overflow: hidden;}
+.frmboxNew .frmbtn{margin:0;font-size: 14px;line-height:40px;padding:0;height:40px;border-radius:4px;vertical-align: middle;}
 .frmboxNew .frm-input .frmtype{height:48px;}
 .mui-input-group.frmboxNew .mui-input-row{height:48px;}
 .mui-input-group.frmboxNew .mui-input-row:after{left: 0;}
@@ -1171,3 +1173,10 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .cardInfo .h2Font{font-size:14px;color: #666;}
 .cardInfo .h3Font{font-size:13px;line-height: 16px;color: #666;}
 .cardInfo .icon-address{position:relative;top:2px;}
+
+/*反馈意见以及投诉*/
+.mui-input-row.textBox{position: relative;background:#fff;}
+.mui-input-row.textBox .conTextare {min-height: 260px;font-size: 14px;border:none;}
+.mui-input-row.textBox .conCommit {position: absolute;bottom: 0;right: 10px;color:#BBBBBB}
+
+

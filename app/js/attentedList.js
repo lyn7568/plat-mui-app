@@ -195,7 +195,7 @@ mui.ready(function() {
 							var li = document.createElement("li");
 							li.setAttribute("data-id", $data[i].id);
 							var oimg = ($data[i].hasOrgLogo) ? baseUrl + "/images/org/" + $data[i].id + ".jpg" : "../images/default-icon.jpg";
-							var oAuth = ($data[i].authStatus == 3) ? 'authicon - com - ok' : '';
+							var oAuth = ($data[i].authStatus == 3) ? 'authicon-com-ok' : '';
 							var orgName = ($data[i].forShort) ? $data[i].forShort : $data[i].name;
 							var orgType = ($data[i].orgType == '2') ? "上市企业" : "";
 							var orgOther = ($data[i].industry) ? $data[i].industry.replace(/,/gi, " | ") : "";
@@ -360,7 +360,12 @@ mui.ready(function() {
 					}
 					li.setAttribute("owner-id", dataItem.organization.id);
 					li.setAttribute("data-type", 2);
-					name = dataItem.organization.name;
+					if(dataItem.organization.forShort){
+						name = dataItem.organization.forShort;
+					}else{
+						name = dataItem.organization.name;
+					}
+					
 				}
 				li.setAttribute("data-id", dataItem.articleId);
 				li.setAttribute("data-flag", 3);

@@ -246,7 +246,7 @@ mui.plusReady(function() {
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
-					content: document.getElementById("paperAbstract").innerHTML.substring(0,20),
+					content: document.getElementById("paperAbstract").innerHTML.substring(0,40),
 					title: document.getElementById("paperName").innerHTML,
 					href: baseUrl + "/e/l.html?id=" + paperId ,
 					thumbs: [oUrl]
@@ -256,7 +256,7 @@ mui.plusReady(function() {
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneTimeline", {
-					content: document.getElementById("paperAbstract").innerHTML.substring(0,20),
+					content: document.getElementById("paperAbstract").innerHTML.substring(0,40),
 					title: document.getElementById("paperName").innerHTML,
 					href: baseUrl + "/e/l.html?id=" + paperId ,
 					thumbs: [oUrl]

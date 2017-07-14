@@ -252,7 +252,11 @@ mui.ready(function() {
 						userType = autho($data.editProfessor.authType, $data.editProfessor.orgAuth, $data.editProfessor.authStatus);
 					} else {
 						userType = {};
-						namepo = $data.organization.name;
+						if($data.organization.forShort){
+							namepo = $data.organization.forShort;
+						}else{
+							namepo = $data.organization.name;
+						}
 						if($data.organization.authStatus == 3) {
 							userType.sty = "authicon-com-ok"
 						} else {
@@ -367,7 +371,11 @@ mui.ready(function() {
 						}
 						li.setAttribute("owner-id", $data[i].editOrganization.id);
 						li.setAttribute("data-type", 2);
-						name = $data[i].editOrganization.name;
+						if($data[i].editOrganization.forShort){
+							name = $data[i].editOrganization.forShort;
+						}else{
+							name = $data[i].editOrganization.name;
+						}
 					}
 					li.setAttribute("data-id", $data[i].articleId);
 					li.setAttribute("data-flag", 3);
@@ -602,7 +610,7 @@ mui.ready(function() {
 					var li = document.createElement("li");
 					li.setAttribute("data-id", $data[i].id);
 					var oimg = ($data[i].hasOrgLogo) ? baseUrl + "/images/org/" + $data[i].id + ".jpg" : "../images/default-icon.jpg";
-					var oAuth = ($data[i].authStatus == 3) ? 'authicon - com - ok' : '';
+					var oAuth = ($data[i].authStatus == 3) ? 'authicon-com-ok' : '';
 					var orgName = ($data[i].forShort) ? $data[i].forShort : $data[i].name;
 					var orgType = ($data[i].orgType == '2') ? "上市企业" : "";
 					var orgOther = ($data[i].industry) ? $data[i].industry.replace(/,/gi, " | ") : "";
@@ -623,6 +631,8 @@ mui.ready(function() {
 		}
 		if(webview.qiFlag == 1) {
 			document.getElementById("searchval").setAttribute("placeholder", "请输入专家姓名、机构、研究方向");
+			document.getElementById("sele").classList.remove("displayNone");
+			document.getElementById("searB").classList.add("searchboxNewT");
 			search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
 				"key": obj.ex,
 				"subject": subject,
@@ -634,6 +644,8 @@ mui.ready(function() {
 			}, "get", search.oExeprt);
 		} else if(webview.qiFlag == 2) {
 			document.getElementById("searchval").setAttribute("placeholder", "输入资源名称、用途、机构或相关关键词");
+			document.getElementById("sele").classList.add("displayNone");
+			document.getElementById("searB").classList.remove("searchboxNewT");
 			search.oAjaxGet(baseUrl + "/ajax/resource/firstpq", {
 				"key": obj.rs,
 				"pageSize": pageSize,
@@ -641,6 +653,8 @@ mui.ready(function() {
 			}, "get", search.resource);
 		} else if(webview.qiFlag == 3) {
 			document.getElementById("searchval").setAttribute("placeholder", "输入文章标题、作者或相关关键词");
+			document.getElementById("sele").classList.add("displayNone");
+			document.getElementById("searB").classList.remove("searchboxNewT");
 			search.oAjaxGet(baseUrl + "/ajax/article/firstpq", {
 				"key": obj.ar,
 				"pageSize": pageSize,
@@ -648,6 +662,8 @@ mui.ready(function() {
 			}, "get", search.article);
 		} else if(webview.qiFlag == 4) {
 			document.getElementById("searchval").setAttribute("placeholder", "输入专利名称、发明人、专利号或相关关键词");
+			document.getElementById("sele").classList.add("displayNone");
+			document.getElementById("searB").classList.remove("searchboxNewT");			
 			search.oAjaxGet(baseUrl + "/ajax/ppatent/pq", {
 				"qw": obj.pt,
 				"pageSize": pageSize,
@@ -655,6 +671,8 @@ mui.ready(function() {
 			}, "get", search.patent);
 		} else if(webview.qiFlag == 5) {
 			document.getElementById("searchval").setAttribute("placeholder", "输入论文题目、作者或相关关键词");
+			document.getElementById("sele").classList.add("displayNone");
+			document.getElementById("searB").classList.remove("searchboxNewT");	
 			search.oAjaxGet(baseUrl + "/ajax/ppaper/pq", {
 				"qw": obj.pp,
 				"pageSize": pageSize,
@@ -662,6 +680,8 @@ mui.ready(function() {
 			}, "get", search.paper);
 		} else if(webview.qiFlag == 6) {
 			document.getElementById("searchval").setAttribute("placeholder", "输入企业名称、产品名称或相关关键词");
+			document.getElementById("sele").classList.add("displayNone");
+			document.getElementById("searB").classList.remove("searchboxNewT");	
 			search.oAjaxGet(baseUrl + "/ajax/org/find/pq", {
 				"kw": obj.co,
 				"pageSize": pageSize,
@@ -849,6 +869,8 @@ mui.ready(function() {
 			if($this.innerHTML == "找专家") {
 				tabFlag = 1;
 				document.getElementById("searchval").setAttribute("placeholder", "请输入专家姓名、机构、研究方向");
+				document.getElementById("sele").classList.remove("displayNone");
+				document.getElementById("searB").classList.add("searchboxNewT");
 				if(key2[0] == 1) {
 					pageNo.ex = 1;
 					search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
@@ -883,6 +905,8 @@ mui.ready(function() {
 			} else if($this.innerHTML == "找资源") {
 				tabFlag = 2;
 				document.getElementById("searchval").setAttribute("placeholder", "输入资源名称、用途、机构或相关关键词");
+				document.getElementById("sele").classList.add("displayNone");
+				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[2] == 1) {
 					flag = 1;
 					pageNo.rs = 1;
@@ -909,6 +933,8 @@ mui.ready(function() {
 			} else if($this.innerHTML == "找文章") {
 				tabFlag = 3;
 				document.getElementById("searchval").setAttribute("placeholder", "输入文章标题、作者或相关关键词");
+				document.getElementById("sele").classList.add("displayNone");
+				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[5] == 1) {
 					flag = 1;
 					pageNo.ar = 1;
@@ -935,6 +961,8 @@ mui.ready(function() {
 			} else if($this.innerHTML == "找专利") {
 				tabFlag = 4;
 				document.getElementById("searchval").setAttribute("placeholder", "输入专利名称、发明人、专利号或相关关键词");
+				document.getElementById("sele").classList.add("displayNone");
+				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[3] == 1) {
 					flag = 1;
 					pageNo.pt = 1;
@@ -961,6 +989,8 @@ mui.ready(function() {
 			} else if($this.innerHTML == "找论文") {
 				tabFlag = 5;
 				document.getElementById("searchval").setAttribute("placeholder", "输入论文题目、作者或相关关键词");
+				document.getElementById("sele").classList.add("displayNone");
+				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[4] == 1) {
 					flag = 1;
 					pageNo.pp = 1;
@@ -987,6 +1017,8 @@ mui.ready(function() {
 			}else if($this.innerHTML == "找企业") {
 				tabFlag = 6;
 				document.getElementById("searchval").setAttribute("placeholder", "输入企业名称、产品名称或相关关键词");
+				document.getElementById("sele").classList.add("displayNone");
+				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[1] == 1) {
 					flag = 1;
 					pageNo.co = 1;

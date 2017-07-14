@@ -17,8 +17,6 @@ mui.ready(function() {
 	var myIntegral = document.getElementById("myIntegral");
 	var nosign = document.getElementById("nosign");
 	var yessign =document.getElementById("yessign");
-	var oFlag;
-	var oFlag1;
 	var professorName,scorePercent;
 	mui.plusReady(function() {
 		var userId = plus.storage.getItem('userid');
@@ -56,14 +54,14 @@ mui.ready(function() {
 			userId = event.detail.id;
 			console.log(userId);
 			loginStatus();
-			userInformation()
+			userInformation();
 		});
 		
 		//在修改上传图片触发的事件
 		window.addEventListener('photoUser', function(event) {
-			nameli.classList.remove(nameli.classList[2])
+			/*nameli.classList.remove(nameli.classList[2])
 			nameli.classList.remove(nameli.classList[2]);
-			nameli.innerHTML = ""
+			nameli.innerHTML = ""*/
 			userInformation();
 		});
 		
@@ -184,8 +182,8 @@ mui.ready(function() {
 				/*我的关注*/
 				goFollow.addEventListener('tap', function() {
 					mui.openWindow({
-						url: '../html/attentions.html',
-						id: '../html/attentions.html',
+						url: '../html/attentedList.html',
+						id: '../html/attentedList.html',
 						show: {
 							autoShow: false,
 							aniShow: "slide-in-right"
@@ -195,50 +193,14 @@ mui.ready(function() {
 				
 				/*我的修改专家*/
 				infobasic.addEventListener('tap', function() {
-						if(oFlag1) {
 							mui.openWindow({
-								url: '../html/proinforupdate.html',
-								id: 'html/proinforupdate.html',
+								url: '../html/userInforUpdate.html',
+								id: 'userInforUpdate.html',
 								show: {
 									autoShow: false,
 									aniShow: "slide-in-left"
-								},
-
+								}
 							});
-						} else if(!oFlag1 && oFlag == 1) {
-							/*我的修改企业工作者*/
-							mui.openWindow({
-								url: '../html/researcher.html',
-								id: 'html/researcher.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-
-							});
-						} else if(!oFlag1 && (oFlag == 2||oFlag==0)) {
-							/*我的修改企业工作者*/
-							mui.openWindow({
-								url: '../html/companyUpdata.html',
-								id: 'html/companyUpdata.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-
-							});
-						} else if(!oFlag1 && oFlag == 3) {
-							/*我的修改学生*/
-							mui.openWindow({
-								url: '../html/studentUpdata.html',
-								id: 'html/studentUpdata.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-
-							});
-						}
 					})
 				
 					/*我的历史和评价*/
@@ -301,8 +263,6 @@ mui.ready(function() {
 				success: function(data) {
 					if(data.success && data.data) {
 						var $info = data.data || {};
-						oFlag = $info.authentication;
-						oFlag1 = $info.authType
 						professorName = $info.name;
 						scorePercent = $info.scorePercent;
 						document.getElementById("userName").innerText = $info.name;

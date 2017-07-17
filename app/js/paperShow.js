@@ -82,7 +82,7 @@ mui.plusReady(function() {
 		if(!$da.cn4periodical && !$da.en4periodical){
 			document.getElementById("paperJournal").parentNode.parentNode.style.display="none";
 		}else{
-			document.getElementById("paperJournal").innerHTML = $da.cn4periodical + $da.en4periodical;
+			document.getElementById("paperJournal").innerHTML = $da.cn4periodical  +" " +  $da.en4periodical;
 		}
 
 		if(!$da.pubDay){

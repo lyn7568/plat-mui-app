@@ -21,7 +21,7 @@ mui.plusReady(function() {
 	personalMessage();
 	/*进入为学术领域点赞人的浏览页面*/
 	mui("#table").on('tap', 'li', function() {
-		var professId = this.getAttribute("professorId");
+		var professId = this.getAttribute("data-id");
 		var authentication = this.getAttribute("authentication");
 		var authType = this.getAttribute("authType");
 		console.log(authentication)
@@ -112,57 +112,25 @@ function datalistEach(datalist) {
 			var img = "../images/default-photo.jpg";
 		}
 
-		var title = "";
-		var office = "";
-		var orgName = "";
-		var address = "";
-		if(item.title && item.office && item.orgName && item.address) {
-			title = item.title + "，";
-			office = item.office + "，";
-			orgName = item.orgName + " | ";
-			address = item.address;
-		} else if(!item.title && item.office && item.orgName && item.address) {
-			office = item.office + "，";
-			orgName = item.orgName + " | ";
-			address = item.address;
-		} else if(item.title && !item.office && item.orgName && item.address) {
-			title = item.title + "，";
-			orgName = item.orgName + " | ";
-			address = item.address;
-		} else if(item.title && item.office && !item.orgName && item.address) {
-			title = item.title + "，";
-			office = item.office + " | ";
-			address = item.address;
-		} else if(item.title && item.office && item.orgName && !item.address) {
-			title = item.title + "，";
-			office = item.office + "，";
-			orgName = item.orgName;
-		} else if(!item.title && !item.office && item.orgName && item.address) {
-			orgName = item.orgName + " | ";
-			address = item.address;
-		} else if(!item.title && item.office && !item.orgName && item.address) {
-			office = item.office + " | ";
-			address = item.address;
-		} else if(!item.title && item.office && item.orgName && !item.address) {
-			office = item.office + "，";
-			orgName = item.orgName;
-		} else if(item.title && !item.office && !item.orgName && item.address) {
-			title = item.title + " | ";
-			address = item.address;
-		} else if(item.title && !item.office && item.orgName && !item.address) {
-			office = item.title + "，";
-			address = item.orgName;
-		} else if(item.title && item.office && !item.orgName && !item.address) {
-			title = item.title + "，";
-			office = item.office;
-		} else if(!item.title && !item.office && !item.orgName && item.address) {
-			address = item.address;
-		} else if(!item.title && !item.office && item.orgName && !item.address) {
-			orgName = item.orgName;
-		} else if(!item.title && item.office && !item.orgName && !item.address) {
-			office = item.office;
-		} else if(item.title && !item.office && !item.orgName && !item.address) {
-			title = item.title;
+		var otherIn = "";
+		if(item.title) {
+			if(item.orgName) {
+				otherIn = item.title + "，" + item.orgName;
+			} else {
+				otherIn = item.title;
+			}
+		} else {
+			if(item.office) {
+				if(item.orgName) {
+					otherIn = item.office + "，" + item.orgName;
+				} else {
+					otherIn = item.office;
+				}
+			} else {
+				if(item.orgName) {
+					otherIn = item.orgName;
+				}
+			}
 		}
 		var typeTname = '';
 		var oSty = autho(item.authType, item.orgAuth, item.authStatus);
@@ -170,17 +138,16 @@ function datalistEach(datalist) {
 		
 
 		var li = document.createElement('li');
-		li.className = 'mui-table-view-cell mui-media';
-		li.setAttribute("professorId", item.id);
+		li.className = 'mui-table-view-cell';
+		li.setAttribute("data-id", item.id);
 		li.setAttribute("authentication", item.authentication);
 		li.setAttribute("authType", item.authType);
-		li.innerHTML = '<a class="proinfor" data-id="' + item.id + '"' +
-			'<p><img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '"></p>' +
-			'<div class="mui-media-body">' +
-			'<span class="listtit">' + item.name + typeTname + '</span>' +
-			'<p class="listtit2"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
-			'</div></a></li>';
-
+		li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">'+
+					'<div class="madiaHead useHead" style="background-image:url(' + img + ')"></div>'+
+					'<div class="madiaInfo">'+
+						'<p><span class="h1Font">' + item.name + typeTname + '</p>'+
+						'<p class="mui-ellipsis-2 h2Font">'+ otherIn +'</p>'+
+					'</div></div>';
 		table.appendChild(li, table.firstChild);
 
 	});

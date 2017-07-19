@@ -60,9 +60,7 @@ mui.ready(function() {
 							mui.fire(aa, "newId", {
 								rd: 1
 							});
-						
-						web.back();
-						
+							mui.back();						
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 					}

@@ -125,6 +125,8 @@ mui.ready(function() {
 						}
 						if($data.descp) {
 							prose.descp=$data.descp;
+						}else{
+							prose.descp=""
 						}
 						//学术领域
 						tagNum({

@@ -101,7 +101,6 @@ mui.ready(function() {
 			var web = plus.webview.create("../html/updateJob-edit.html","updateJob-edit.html", {}, {});
 		})
 		window.addEventListener("newId", function(event) {
-			alert(1)
 			personalMessage();
 		})
 	});

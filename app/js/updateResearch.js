@@ -10,7 +10,7 @@ mui.ready(function() {
 			var html = [];
 			for(var i = 0; i < data.length; i++) {
 				console.log(data[i].caption);
-				html.push("<li><span class='numThis'>"+ data[i].count+"</span>" + data[i].caption + "<span class='closeThis'>删除</span></li>");
+				html.push("<li><span class='numThis'>"+ data[i].count+"</span><span class='otsave'>" + data[i].caption + "</span><span class='closeThis'>删除</span></li>");
 			};
 			document.getElementsByClassName("labelshow")[0].innerHTML = html.join('');
 		}
@@ -56,7 +56,7 @@ mui.ready(function() {
 					return;
 				}
 				var node = document.createElement("li");
-				node.innerHTML = content + '<span class="closeThis">删除</span>';
+				node.innerHTML = '<span class="numThis">0</span><span class="otsave">'+content + '</span><span class="closeThis">删除</span>';
 				document.getElementsByClassName("labelshow")[0].appendChild(node);
 				document.getElementsByTagName('input')[0].value = "";
 				var lilength = document.getElementsByTagName("li").length;
@@ -71,7 +71,7 @@ mui.ready(function() {
 		});
 		document.getElementById('login').addEventListener("tap", function() {
 			var $data = [];
-			var researchAreas = document.getElementsByTagName("li");
+			var researchAreas = document.getElementsByClassName("otsave");
 			if(researchAreas.length > 0) {
 				for(var i = 0; i < researchAreas.length; i++) {
 					var $rd = {};
@@ -81,6 +81,7 @@ mui.ready(function() {
 				}
 			}
 			var mess1 = JSON.stringify($data);
+			console.log(mess1)
 			$.ajax({
 				"url": baseUrl + '/ajax/researchArea',
 				"type": "PUT",

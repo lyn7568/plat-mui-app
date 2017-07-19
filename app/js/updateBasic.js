@@ -3,6 +3,7 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
 		var person={};
+		var f1;
 		function personalMessage() {
 			mui.ajax(baseUrl + "/ajax/professor/baseInfo/" + userid, {
 				dataType: 'json', //数据格式类型
@@ -12,6 +13,7 @@ mui.ready(function() {
 					console.log(JSON.stringify(data));
 					if(data.success) {
 						plus.nativeUI.closeWaiting();
+						if(!f1)
 						ws.show("slide-in-right", 150);
 						var $data = data.data;
 						//头像					
@@ -43,7 +45,7 @@ mui.ready(function() {
 							document.getElementById("office").innerHTML = $data.office;
 							person.office=$data.office;
 						}else{
-							$data.office=""
+							person.office=""
 						}
 						
 						if($data.address) {
@@ -80,6 +82,7 @@ mui.ready(function() {
 		}
 		personalMessage();
 		window.addEventListener("newId", function(event) {
+			fl = event.detail.rd;
 			personalMessage();
 		});
 		//创建窗口

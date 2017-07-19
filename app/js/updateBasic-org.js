@@ -92,13 +92,13 @@ mui.ready(function() {
 					console.log(JSON.stringify(data));
 					if(data.success) {
 						plus.nativeUI.showWaiting();
-							var web = plus.webview.getWebviewById("updateBasic.html");
-							mui.fire(web, "newId", {
+						var web = plus.webview.getWebviewById("updateBasic.html");
+						mui.fire(web, "newId", {
 								rd: 1
 							});
-							var Pa = plus.webview.getWebviewById('html/myaccount.html');
+						var Pa = plus.webview.getWebviewById('html/myaccount.html');
 						mui.fire(Pa, 'photoUser');
-						web.back();
+						mui.back();
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 					}

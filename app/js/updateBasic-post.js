@@ -7,6 +7,7 @@ mui.ready(function() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
 			title.innerHTML = web.office;
+			console.log(JSON.stringify(web));
 			if(web.office.length) {
 				document.getElementById("fontAdd").innerHTML = web.office.length;
 				document.getElementById("login").removeAttribute("disabled");
@@ -60,7 +61,7 @@ mui.ready(function() {
 							mui.fire(web, "newId", {
 								rd: 1
 							});
-						web.back();
+						mui.back();
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 					}

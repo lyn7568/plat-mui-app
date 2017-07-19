@@ -117,6 +117,10 @@ mui.ready(function() {
 							var proAiticle =plus.webview.getWebviewById('professorArticle.html')
 							mui.fire(proAiticle, "newId");
 						}
+						if(article.ourl) {
+							var proAiticle =plus.webview.getWebviewById(article.ourl)
+							mui.fire(proAiticle, "newId");
+						}
 						firstLogin();
 						
 						var consultPage = plus.webview.getWebviewById('consultlist.html');

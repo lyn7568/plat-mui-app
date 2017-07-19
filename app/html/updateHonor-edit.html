@@ -23,11 +23,11 @@
 			<div class="mui-input-group mainbox">
 				<div class="infocontit infocontitM">奖项名称<span class="requiredThis"> *</span></div>
 				<div class="infocon">
-					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写奖项名称(50个字以内)"></div>  
+					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写奖项名称(50个字以内)"id="project"></div>  
 				</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
-				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id='showYearPicker' data-options='{"type":"year"}'>
+				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id='showYearPicker' data-options='{"type":"year","beginYear":1900,"endYear":2020}'>
     				<span class="mui-pull-left">获奖时间</span>
 				    <span class="rightword" id="yearResult">请选择获奖时间</span>
     			</div>
@@ -35,20 +35,22 @@
 		    <div class="mui-input-group mainbox">
 				<div class="infocontit infocontitM">获奖描述</div>
 				<div class="infocon">
-					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写获奖描述(200个字以内)"></div>  
+					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写获奖描述(200个字以内)" id="descp"></div>  
 				</div>
 		    </div>
 		    <div class="mui-content-padded frmboxNew">
 				<button id="login" class="mui-btn mui-btn-block frmbtn frmactive" disabled="">保存</button>
 			</div>
 			<div class="mui-content-padded frmboxNew">
-				<button id="login" class="mui-btn mui-btn-block frmbtn frmdelete">删除</button>
+				<button  class="mui-btn mui-btn-block frmbtn frmdelete" id="del">删除</button>
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/zepto.min.js"></script>
 		<script src="../js/public/mui.picker.min.js"></script>
 		<script src="../js/public/city.data.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/updateHonor-edit.js"></script>	
 		<script type="text/javascript"> 
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();

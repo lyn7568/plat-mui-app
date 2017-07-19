@@ -23,19 +23,19 @@
 			<div class="mui-input-group mainbox">
 				<div class="infocontit infocontitM">学校名称<span class="requiredThis"> *</span></div>
 				<div class="infocon">
-					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就读的学校(50个字以内)"></div>  
+					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就读的学校(50个字以内)" id="project"></div>  
 				</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
 				<div class="infocontit infocontitM">院系名称</div>
 				<div class="infocon">
-					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就读的院系(20个字以内)"></div>   
+					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就读的院系(20个字以内)" id="college"></div>   
 				</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
 				<div class="infocontit infocontitM">专业名称</div>
 				<div class="infocon">
-					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就读的专业(20个字以内)"></div>  
+					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就读的专业(20个字以内)" id="major"></div>  
 				</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
@@ -45,7 +45,7 @@
     			</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
-				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id='showYearPicker' data-options='{"type":"year"}'>
+				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id='showYearPicker' data-options='{"type":"year","beginYear":1900,"endYear":2020}'>
     				<span class="mui-pull-left">毕业时间</span>
 				    <span class="rightword" id="yearResult">请选择毕业时间</span>
     			</div>
@@ -55,13 +55,15 @@
 				<button id="login" class="mui-btn mui-btn-block frmbtn frmactive" disabled="">保存</button>
 			</div>
 			<div class="mui-content-padded frmboxNew">
-				<button id="login" class="mui-btn mui-btn-block frmbtn frmdelete">删除</button>
+				<button id="del" class="mui-btn mui-btn-block frmbtn frmdelete">删除</button>
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/zepto.min.js"></script>
 		<script src="../js/public/mui.picker.min.js"></script>
 		<script src="../js/public/city.data.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/updateEdu-edit.js"></script>
 		<script type="text/javascript"> 
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();

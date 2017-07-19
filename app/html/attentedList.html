@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>关注与收藏</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link href="../css/app.css" rel="stylesheet" />
+	<link href="../css/iconfont.css" rel="stylesheet" />
+	<style type="text/css">
+		html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+		.mui-content{height:100%;overflow: auto;}
+	</style>
+</head>
+
+<body>
+	<!-- 主页面标题 -->
+	 <header class="mui-bar mui-bar-nav toptitbox">
+		<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></span>
+		<h1 class="mui-title toptit">关注与收藏</h1>
+	</header>
+	<div class="mui-content maincontent searchTab">
+		<div id="slider" class="mui-slider mui-fullscreen">
+			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div class="mui-scroll">
+					<a class="mui-control-item mui-active" href="#item1mobile">专家</a>
+					<a class="mui-control-item" href="#item2mobile">企业</a>
+					<a class="mui-control-item" href="#item3mobile">资源</a>
+					<a class="mui-control-item" href="#item4mobile">专利</a>
+					<a class="mui-control-item" href="#item5mobile">论文</a>
+					<a class="mui-control-item" href="#item6mobile">文章</a>
+				</div>
+			</div>
+			<div class="mui-slider-group">
+				<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+					<div id="scroll1" class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view" id="likeUser">
+						        <!--<li class="mui-table-view-cell">
+						            <div class="flexCenter mui-clearfix">
+						                <div class="madiaHead useHead"></div>
+										<div class="madiaInfo">
+											<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+											<p class="mui-ellipsis h2Font">职称/职位，所在机构</p>
+											<p class="mui-ellipsis h2Font">研究方向：研究方向研究方向研究方向研究方向研究方向研究方向</p>
+										</div>
+						            </div>
+						        </li>-->
+							</ul>
+							<!--无搜索结果-->
+							<div class="nodatabox displayNone">
+						        <div class="nodata">
+						            <div class="picbox picNull"></div>
+						            <div class="txtbox">
+						            	<p class="noContip">您还未关注任何专家</p>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div id="item2mobile" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view" id="likeCmp">
+								<!--<li class="mui-table-view-cell">
+						            <div class="flexCenter OflexCenter mui-clearfix">
+						                <div class="madiaHead companyHead">
+						                	<div class="boxBlock"><img class="boxBlockimg companyImg" src="../images/default-icon.jpg"></div>
+						                </div>
+										<div class="madiaInfo OmadiaInfo">
+											<p class="mui-ellipsis h1Font">企业名称<em class="authicon authicon-com-ok" title="科袖认证企业"></em></p>
+											<p class="mui-ellipsis h2Font"><span id="">企业类型</span> <span id="">所属行业 | 所属行业</span></p>
+										</div>
+						            </div>
+						        </li>-->
+							</ul><div class="nodatabox displayNone">
+						        <div class="nodata">
+						            <div class="picbox picNull"></div>
+						            <div class="txtbox">
+						            	<p class="noContip">您还未关注任何企业</p>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div id="item3mobile" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view" id="likeRes">
+								<!--<li class="mui-table-view-cell">
+						            <div class="flexCenter OflexCenter mui-clearfix">
+						                <div class="madiaHead resouseHead"></div>
+										<div class="madiaInfo OmadiaInfo">
+											<p class="mui-ellipsis h1Font">资源名称资源名称资源名称资源名称</p>
+											<p class="mui-ellipsis h2Font">用途：资源用途资源用途资源用途资源用途资源用途</p>
+											<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+										</div>
+						            </div>
+						        </li>-->
+							</ul>
+							<!--无搜索结果-->
+							<div class="nodatabox displayNone">
+								<div class="nodata">
+									<div class="picbox picNull"></div>
+									<div class="txtbox">
+										<p class="noContip">您还未收藏任何资源</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="item4mobile" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view" id="likePat">
+								<!--<li class="mui-table-view-cell">
+						            <div class="flexCenter OflexCenter mui-clearfix">
+						                <div class="madiaHead patentHead"></div>
+										<div class="madiaInfo OmadiaInfo">
+											<p class="mui-ellipsis h1Font">专利名称</p>
+											<p class="mui-ellipsis h2Font">发明人：发明人一，发明人一，发明人一，发明人一，发明人一</p>
+										</div>
+						            </div>
+						        </li>-->
+							</ul>
+							<div class="nodatabox displayNone">
+								<div class="nodata">
+									<div class="picbox picNull"></div>
+									<div class="txtbox">
+										<p class="noContip">您还未收藏任何专利</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="item5mobile" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view" id="likePer">
+								<!--<li class="mui-table-view-cell">
+						            <div class="flexCenter OflexCenter mui-clearfix">
+						                <div class="madiaHead paperHead"></div>
+										<div class="madiaInfo OmadiaInfo">
+											<p class="mui-ellipsis h1Font">论文题目</p>
+											<p class="mui-ellipsis h2Font">作者：作者一，作者一，作者一，作者一，作者一，作者一</p>
+										</div>
+						            </div>
+						        </li>-->
+							</ul>
+							<div class="nodatabox displayNone">
+								<div class="nodata">
+									<div class="picbox picNull"></div>
+									<div class="txtbox">
+										<p class="noContip">您还未收藏任何论文</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="item6mobile" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view" id="likeArt">
+								<!--<li class="mui-table-view-cell">
+						            <div class="flexCenter OflexCenter mui-clearfix">
+						                <div class="madiaHead artHead"></div>
+										<div class="madiaInfo OmadiaInfo">
+											<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
+											<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+										</div>
+						            </div>
+						        </li>-->
+							</ul>
+							<div class="nodatabox displayNone">
+								<div class="nodata">
+									<div class="picbox picNull"></div>
+									<div class="txtbox">
+										<p class="noContip">您还未收藏任何文章</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../js/public/mui.min.js"></script>
+	<script src="../js/public/mui.pullToRefresh.js"></script>
+	<script src="../js/public/mui.pullToRefresh.material.js"></script>
+	<script src="../js/public/base.js"></script>
+	<script src="../js/attentedList.js"></script>
+	<script type="text/javascript">
+		//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+	    iosheader();
+//	    var anos=ifiosAmdandroid();
+//
+//	    (function($) {
+//	    	//阻尼系数
+//			var deceleration = mui.os.ios?0.003:0.0009;
+//			$('.mui-scroll-wrapper').scroll({
+//				bounce: false,
+//				indicators: true, //是否显示滚动条
+//				deceleration:deceleration
+//			});
+//			
+//		})(mui);
+	    
+	    
+	</script>
+</body>
+</html>

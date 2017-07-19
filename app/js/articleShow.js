@@ -203,41 +203,32 @@ mui.plusReady(function() {
 		},
 		business: function($data) {
 			//console.log(JSON.stringify($data));
-			document.getElementById('name').innerHTML = $data.name;
+			if($data.forShort){
+				document.getElementById('name').innerHTML = $data.forShort;
+			}else{
+				document.getElementById('name').innerHTML = $data.name;
+			}
+			document.getElementById("messImg").classList.add("cmpHead");
+			document.getElementById("messImg").innerHTML='<div class="boxBlock" style="width:48px;height:48px;"><img class="boxBlockimg" id="companyImg" src="../images/default-icon.jpg"></div>'
 			if($data.hasOrgLogo) {
-				document.getElementById("messImg").style.backgroundImage = "url(" + baseUrl + "/images/org/" + $data.id + ".jpg" + ")";
+				document.getElementById("companyImg").src= baseUrl + "/images/org/" + $data.id + ".jpg";
 			}
-			if($data.authStatus == 3) {
+			if($data.authStatus==3){
 				document.getElementById("auth").classList.add("authicon-com-ok");
-				mui('#personAL').on('tap', '#messImg,#name', function() {
-					mui.openWindow({
-						url: '../html/cmpinfor-index.html',
-						id: 'cmpinfor-index.html',
-						show: {
-							autoShow: false,
-							aniShow: "slide-in-right",
-						},
-						extras: {
-							orgId: oArticleModule.oWner,
-						}
-					});
-				})
-			} else {
-				mui('#personAL').on('tap', '#messImg,#name', function() {
-					mui.openWindow({
-						url: '../html/cmpinfor-Unindex.html',
-						id: 'cmpinfor-Unindex.html',
-						show: {
-							autoShow: false,
-							aniShow: "slide-in-right",
-						},
-						extras: {
-							orgId: oArticleModule.oWner,
-							flag: 0,
-						}
-					});
-				})
 			}
+			mui('#personAL').on('tap', '#messImg,#name', function() {
+				mui.openWindow({
+					url: '../html/cmpInforShow.html',
+					id: 'cmpInforShow.html',
+					show: {
+						autoShow: false,
+						aniShow: "slide-in-right",
+					},
+					extras: {
+						cmpId: oArticleModule.oWner,
+					}
+				});
+			})
 		},
 		correlationExpert: function($data) {
 			if($data.length == 0) {
@@ -310,7 +301,11 @@ mui.plusReady(function() {
 				userType = autho($data.editProfessor.authType, $data.editProfessor.orgAuth, $data.editProfessor.authStatus);
 			} else {
 				userType = {};
-				namepo = $data.organization.name;
+				if($data.organization.forShort){
+					namepo = $data.organization.forShort;
+				}else{
+					namepo = $data.organization.name;
+				}
 				if($data.organization.authStatus == 3) {
 					userType.sty = "authicon-com-ok"
 				} else {
@@ -357,12 +352,19 @@ mui.plusReady(function() {
 					traditional: true,
 					success: function(data) {
 						if(data.success) {
+							var namepo=""
 							var li = document.createElement("li");
 							if( of == 1) {
+								namepo = data.data.name;
 								var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
 								li.setAttribute("owner-id", data.data.id);
 								li.setAttribute("data-type", 1);
 							} else {
+								if(data.data.forShort){
+									namepo = data.data.forShort;
+								}else{
+									namepo = data.data.name;
+								}
 								var userType = {};
 								if(data.data.authStatus == 3) {
 									userType.sty = 'authicon-com-ok'
@@ -378,7 +380,7 @@ mui.plusReady(function() {
 								'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
 								'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
-								'<p><span class="h2Font">' + data.data.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+								'<p><span class="h2Font">' + namepo + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
 								'</div>' +
 								'</div>'
 							document.getElementById("articleList").appendChild(li);
@@ -459,7 +461,7 @@ mui.plusReady(function() {
 		mui('#personAL').on('tap', '#messImg,#name', function() {
 			var id = oArticleModule.oWner;
 			plus.nativeUI.showWaiting(); //显示原生等待框
-			plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+			plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
 				proid: id
 			}); //后台创建webview并打开show.html
 		})
@@ -480,7 +482,7 @@ mui.plusReady(function() {
 	mui('#expertList').on('tap', 'li', function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting(); //显示原生等待框
-		plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
 			proid: id
 		});
 	})
@@ -488,7 +490,7 @@ mui.plusReady(function() {
 	mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting(); //显示原生等待框
-		plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
 			proid: id
 		});
 	})
@@ -814,7 +816,7 @@ mui.plusReady(function() {
 
 	mui(".tagList").on("tap", "li", function() {
 		 plus.nativeUI.showWaiting();
-		var web = plus.webview.create("../html/searchListNew.html", "../html/searchListNew.html", {}, {
+		var web = plus.webview.create("../html/searchListNew2.html?content=找文章", "../html/searchListNew2.html", {}, {
 			key: this.getElementsByTagName("span")[0].innerHTML,
 			qiFlag: 3
 		}); 

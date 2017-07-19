@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>编辑个人资料</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
+			.mui-table-view-cell.mui-active{background: none;}
+			.mui-table-view-cell>a:not(.mui-btn).mui-active{background: none;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">编辑个人资料</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group marginbox setblock">
+				<ul class="mui-table-view">
+				    <li class="mui-table-view-cell" style="line-height: 42px;">
+				        	<span class="mui-pull-left">头像</span>
+				        	<div class="mui-pull-right">
+				        		<div class="useHead" id="userimg" flag="0" headFlag="0"></div>
+				        	</div>
+				    </li>
+				    <li class="mui-table-view-cell">
+			        	<span class="mui-pull-left">姓名</span>
+			        	<div class="mui-pull-right" id="exName"></div>
+				    </li>
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right">
+				        	<span class="mui-pull-left">职称</span>
+				        	<div class="rightword" id="title">请填写最高职位</div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right">
+				        	<span class="mui-pull-left">所在机构</span>
+				        	<div class="rightword" id="orgName">请填写当前就职的机构</div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right">
+				        	<span class="mui-pull-left">所属部门</span>
+				        	<div class="rightword" id="department">请填写当前就职的部门</div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right">
+				        	<span class="mui-pull-left">职位</span>
+				        	<div class="rightword" id="office">请填写当前担任的职位</div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right">
+				        	<span class="mui-pull-left">所在城市</span>
+				        	<div class="rightword" id="city">请选择所在城市</div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right">
+				        	<span class="mui-pull-left">联系电话</span>
+				        	<div class="rightword" id="phone">请填写手机/办公电话</div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				        <a class="mui-navigate-right">
+				        	<span class="mui-pull-left">联系邮箱</span>
+				        	<div class="rightword" id="mail">请填写电子邮箱</div>
+				        </a>
+				    </li>
+				</ul>
+		    </div>
+			<!--<div class="mui-content-padded frmboxNew">
+				<button id="login" class="mui-btn mui-btn-block frmbtn frmactive" disabled="">保存</button>
+			</div>-->
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/zepto.min.js"></script>
+		<script src="../js/public/mui.picker.min.js"></script>
+		<script src="../js/public/city.data.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/public/upload-avatar.js"></script>
+		<!--<script type="text/javascript" src="../js/updateinfo1.js"></script>-->
+		<script type="text/javascript" src="../js/updateBasic.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
+	</body>
+
+</html>

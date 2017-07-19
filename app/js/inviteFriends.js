@@ -243,58 +243,18 @@ mui.ready(function() {
 			var oProfessorId=this.getAttribute("id");
 			var  oAuthType=this.getAttribute("authType");
 			var oAuthentication=this.getAttribute("authentication");
-			if(oAuthType==1) {
-						mui.openWindow({
-								url: '../html/proinforbrow.html',
-								id: 'proinforbrow.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-								extras: {
-									proid: oProfessorId
-								},
-							});
-			
-			}else {
-				if(oAuthentication==1){
-					mui.openWindow({
-								url: '../html/researcherProw.html',
-								id: 'researcherProw.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-								extras: {
-									proid: oProfessorId
-								},
-							});
-				}else if(oAuthentication==2||oAuthentication==0){
-					mui.openWindow({
-								url: '../html/companybrowse.html',
-								id: 'html/companybrowse.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-								extras: {
-									proid: oProfessorId
-								},
-							});
-				}else if(oAuthentication==3) {
-					mui.openWindow({
-								url: '../html/studentbrowse.html',
-								id: 'html/studentbrowse.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-								extras: {
-									proid: oProfessorId
-								},
-							});
-				}
-			}
+			mui.openWindow({
+				url: '../html/userInforShow.html',
+				id: 'userInforShow.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-left"
+				},
+				extras: {
+					proid: oProfessorId
+				},
+			});
+
 		})
 		var invite = document.getElementById("invite");
 		/*微信及微信朋友圈分享专家*/

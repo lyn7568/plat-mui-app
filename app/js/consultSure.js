@@ -97,7 +97,7 @@ mui.plusReady(function(){
 			
 			gouser.addEventListener("tap",function(){
 				plus.nativeUI.showWaiting();//显示原生等待框
-				plus.webview.create("../html/proinforbrow.html",'proinforbrow.html',{},{proid:$info.id});
+				plus.webview.create("../html/userInforShow.html",'userInforShow.html',{},{proid:$info.id});
 			})
 			
 		},

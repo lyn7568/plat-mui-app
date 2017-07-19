@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人浏览</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/previewImage.css"/>
+	</head>
+
+	<body>
+		<div class="maskBlack" id="maskBlack"></div>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit" id="professorName">专家名称</h1>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
+		</header>
+		<!-- 主页面内容容器 -->
+		<div class="mui-content">
+			<!-- 主界面具体展示内容 -->
+			
+		
+			
+			
+			<div class="mui-input-group mainbox">
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view" id="articelShow">
+					        
+					    </ul>
+					</div>
+					<div class="seeMore displayNone" id="seeMoreArtical"><em>查看更多</em></div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/userarticleList.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
+	</body>
+
+</html>

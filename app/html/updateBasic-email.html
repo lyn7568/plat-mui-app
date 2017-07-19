@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>编辑个人资料-联系邮箱</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">联系邮箱</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group mainbox">
+				<div class="infocon">
+					<div class="textareabox" contenteditable="true" id="title"></div> 
+				</div>
+		    </div>
+			<div class="limitBox">
+				<p class="limitNum"><span id="fontAdd">0</span>/50</p>
+			</div>
+			<div class="mui-content-padded frmboxNew">
+				<button id="login" class="mui-btn mui-btn-block frmbtn frmactive" disabled="">保存</button>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/zepto.min.js"></script>
+		<script src="../js/public/mui.picker.min.js"></script>
+		<script src="../js/public/city.data.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/updateBasic-email.js"></script>		
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
+	</body>
+
+</html>

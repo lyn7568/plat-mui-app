@@ -3,34 +3,15 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>投诉举报</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<style type="text/css">
 			html,body{height: 100%;margin:0 0 0 0;padding:0px;overflow: hidden;}
 			.mui-content{height:100%;overflow: auto;}
-			.mui-input-row .content {
-				min-height: 150px;
-				font-size: 14px;
-				border-bottom:none;
-			}
-			
-			/*提交按钮*/
-			.mui-content-padded .claims {
-				padding: 5px 0;
-				margin-top: 20px;
-			}
-			.text {
-				position: relative;
-				border-bottom:1px solid rgba(0,0,0,.2);
-				background:#fff;
-			}
-			#count {
-				position: absolute;
-				bottom: 0;
-				right: 10px;
-			}
+			.mui-btn-danger{padding:10px;border-radius: 4px;}
+			.mui-btn.mui-btn-danger:active{border: 1px solid #dd524d;background-color: #dd524d;}
 		</style>
 	</head>
 	<body>
@@ -39,14 +20,13 @@
 		    <h1 class="mui-title toptit">投诉举报</h1>
 		</header>
 		<div class="mui-content">
-			<div class="row mui-input-row text">
-				<textarea id='question' class="mui-input-clear question content" placeholder="请详细描述你的投诉举报内容(500字以内)"></textarea>
-				<div id="count">500</div>
+			<div class="row mui-input-row textBox">
+				<textarea id='question' class="mui-input-clear conTextare" placeholder="请详细描述你的投诉举报内容(500字以内)"></textarea>
+				<div class="conCommit" id="count">500</div>
 			</div>
-			<div class="mui-content-padded">
-				<button type="submit" class="mui-btn mui-btn-danger mui-btn-block claims">提交</button>
+			<div class="mui-content-padded frmboxNew">
+				<button type="submit" class="mui-btn mui-btn-block mui-btn-danger claims">提交</button>
 			</div>
-			
 		</div>
 		
 		<script src="../js/public/mui.min.js"></script>

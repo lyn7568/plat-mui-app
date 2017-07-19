@@ -230,7 +230,7 @@ function getOnePase() {
 			timeout: 10000,
 			async: false,
 			success: function(data) {
-				console.log(data)
+				console.log(JSON.stringify(data))
 				discoverBox.innerHTML = "";
 				if(data.success && data.data) {
 					plus.nativeUI.closeWaiting();

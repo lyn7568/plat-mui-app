@@ -704,8 +704,9 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .articalBox .artSTit{text-indent: 0.2em;font-size:16px; color:#069E21;}
 /*首页发布按钮*/
 .btnLinkBox .mui-table-view-cell:after{right: 0;bottom: 0;left:0;}
-.btnLinkBox h4{/*font-weight: normal;color:#333333*/}
-.mui-table-view .mui-media-object.btnLinkIcon{width:42px; height:42px;border-radius:50%;text-align: center;vertical-align: middle;}
+.btnLinkBox .h1Font{font-weight: normal;color:#333333;font-size:16px;line-height: 18px;}
+.btnLinkBox .h2Font{color:#666:font-size:14px;margin-bottom: 0;}
+.mui-table-view .mui-media-object.btnLinkIcon{width:42px; height:42px;margin-top:4px;margin-bottom:4px;border-radius:50%;text-align: center;vertical-align: middle;}
 .btnLinkIcon.fabuBtn{background: #007AFF;}
 .btnLinkIcon.proBtn{background: #FF9900;}
 .btnLinkIcon .iconfont{color:#FFFFFF;line-height: 42px;}
@@ -985,7 +986,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .searchTab .madiaHead.companyHead .boxBlock{width: 90px;height:60px;}
 .searchTab .madiaInfo{padding-left:62px; width: 100%;}
 .searchTab .madiaInfo.OmadiaInfo{padding-left: 102px;}
-
+.searchTab .flexCenter.OflexCenter{min-height:54px;}
 
 /*筛选条件*/
 .filterListNew{ padding:14px 14px 8px;}
@@ -1172,7 +1173,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .cardInfo .h1Font{font-size:16px;}
 .cardInfo .h2Font{font-size:14px;color: #666;}
 .cardInfo .h3Font{font-size:13px;line-height: 16px;color: #666;}
-.cardInfo .icon-address{position:relative;top:2px;}
+.cardInfo .icon-address{position:relative;top:-3px;}
 
 /*反馈意见以及投诉*/
 .mui-input-row.textBox{position: relative;background:#fff;}

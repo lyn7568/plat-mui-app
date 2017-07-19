@@ -154,12 +154,12 @@ document.getElementById("improfessor").addEventListener("tap", function() {
 		}
 	});
 })
-mui('.list').on('tap', 'a', function() {
+mui('.list').on('tap', 'li', function() {
 		var id = this.getAttribute("data-id");
 		var userid = plus.storage.getItem('userid');
 		console.log(id);
 		plus.nativeUI.showWaiting(); //显示原生等待框
-		webviewShow = plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+		webviewShow = plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
 			proid: id
 		}); //后台创建webview并打开show.html
 	})
@@ -341,22 +341,25 @@ function datalistEach(datalist) {
 			zlist += '</span>';
 		}
 
-		var title = item.title || "";
-		var office = item.office || "";
-		var orgName = item.orgName || "";
-		var address = item.address || "";
-
-		if(title != "") {
-			title = title + " , ";
-		}
-		if(office != "") {
-			office = office + " , ";
-		}
-		if(orgName != "") {
-			orgName = orgName;
-		}
-		if(address != "") {
-			address = " | " + address;
+		var otherIn = "";
+		if(item.title) {
+			if(item.orgName) {
+				otherIn = item.title + "，" + item.orgName;
+			} else {
+				otherIn = item.title;
+			}
+		} else {
+			if(item.office) {
+				if(item.orgName) {
+					otherIn = item.office + "，" + item.orgName;
+				} else {
+					otherIn = item.office;
+				}
+			} else {
+				if(item.orgName) {
+					otherIn = item.orgName;
+				}
+			}
 		}
 
 		var typeTname = '';
@@ -365,16 +368,16 @@ function datalistEach(datalist) {
 
 
 		var li = document.createElement('li');
-		li.className = 'mui-table-view-cell mui-media';
-		li.setAttribute("professorId", item.id);
-		li.innerHTML = '<a class="proinfor" data-id="' + item.id + '"' +
-			'<p><img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '"></p>' +
-			'<div class="mui-media-body">' +
-			'<span class="listtit">' + item.name + typeTname + '</span>' +
-			'<p class="listtit2"><span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>' +
-			'<p class="mui-ellipsis listtit3">' + rlist + '</p>' +
-			'<p class="mui-ellipsis listtit3">' + zlist + '</p>' +
-			'</div></a></li>';
+		li.className = 'mui-table-view-cell';
+		li.setAttribute("data-id", item.id);
+		li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">'+
+					'<div class="madiaHead useHead" style="background-image:url(' + img + ')"></div>'+
+					'<div class="madiaInfo">'+
+						'<p><span class="h1Font">' + item.name + typeTname + '</p>'+
+						'<p class="mui-ellipsis-2 h2Font">'+ otherIn +'</p>'+
+						'<p class="mui-ellipsis h3Font">' + rlist + '</p>' +
+						'<p class="mui-ellipsis h3Font">' + zlist + '</p>' +
+					'</div></div>';
 
 		table.appendChild(li, table.firstChild);
 

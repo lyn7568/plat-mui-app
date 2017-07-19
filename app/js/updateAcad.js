@@ -59,8 +59,8 @@ mui.ready(function() {
 						return;
 					}
 				}
-				if(content.length > 10) {
-					plus.nativeUI.toast("学术领域不得超过10个字", toastStyle);
+				if(content.length > 15) {
+					plus.nativeUI.toast("学术领域不得超过15个字", toastStyle);
 					return;
 				}
 				var node = document.createElement("li");

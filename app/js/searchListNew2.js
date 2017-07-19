@@ -28,6 +28,19 @@ var subject = "",
 	};
 mui.ready(function() {
 	mui.plusReady(function() {
+		var oWidth=getViewportSize ().width;
+function getViewportSize () {
+    return {
+        width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+        height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+    };
+}
+console.log(oWidth)
+for(var n=0;n<6;n++) {
+	document.getElementsByClassName("mui-control-item")[n].style.paddingLeft=(oWidth-4.5*45)/9+"px";
+	document.getElementsByClassName("mui-control-item")[n].style.paddingRight=(oWidth-4.5*45)/9+"px";
+}
+
 		document.getElementById("searchval").value = plus.webview.currentWebview().key;
 		var inputVlue = document.getElementById("searchval").value;
 		var baseValue = plus.webview.currentWebview().key

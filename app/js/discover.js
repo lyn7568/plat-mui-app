@@ -70,8 +70,8 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 	//alert(datatype)
 	if(datatype == 1 || datatype == 3) {
 		mui.openWindow({
-			url: '../html/proinforbrow.html',
-			id: 'html/proinforbrow.html',
+			url: '../html/userInforShow.html',
+			id: 'html/userInforShow.html',
 			show: {
 				autoShow: false,
 				aniShow: "slide-in-right",

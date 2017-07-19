@@ -239,7 +239,7 @@ function personalInformation($person) {
 //					mui.fire(ziyuaninfo,'backziyuaninfo'); 
 	   	   		}else if(flag == 'professor'){
 	   	   			/*返回专家信息*/
-					var proinfo = plus.webview.getWebviewById('proinforbrow.html');
+					var proinfo = plus.webview.getWebviewById('userInforShow.html');
 					proinfo.show();
 					mui.fire(proinfo,'backproinfo',{proId:proId}); 
 	   	   		}

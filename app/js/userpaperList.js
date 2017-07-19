@@ -31,7 +31,7 @@ mui.plusReady(function() {
 							li.setAttribute("data-id", obj[i].id);
 							li.className = "mui-table-view-cell";
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-								'<div class="madiaHead artHead"></div>' +
+								'<div class="madiaHead paperHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
 								'<p class="mui-ellipsis h1Font">' + obj[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +

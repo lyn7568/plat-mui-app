@@ -53,20 +53,20 @@ mui.plusReady(function() {
 				if($photos.length < 4) {
 					for(var j = 0; j < $photos.length; ++j) {
 						if($photos[j].img) {
-							showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_m.jpg'></span>";
+							showDiv += "<span class='likepeople userRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_m.jpg'></span>";
 						} else {
-							showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
+							showDiv += "<span class='likepeople userRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
 						}
 					}
 				} else {
 					for(var j = $photos.length - 2; j < $photos.length; ++j) {
 						if($photos[j].img) {
-							showDiv += "<span class='likepeople headRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_m.jpg'></span>";
+							showDiv += "<span class='likepeople userRadius'><img class='like-h' src='" + baseUrl + "/images/head/" + $photos[j].id + "_m.jpg'></span>";
 						} else {
-							showDiv += "<span class='likepeople headRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
+							showDiv += "<span class='likepeople userRadius'><img class='like-h' src='../images/default-photo.jpg'></span>";
 						}
 					}
-					showDiv += "<span class='mui-icon iconfont icon-more likepeople likemore headRadius'></span>";
+					showDiv += "<span class='mui-icon iconfont icon-more likepeople likemore userRadius'></span>";
 				}
 				showDiv += "</div></div></div>";
 				html.push(showDiv);
@@ -124,7 +124,7 @@ mui.plusReady(function() {
 				}
 
 				if($data.address) {
-					document.getElementById("address").innerHTML = '<em class="mui-icon iconfontNew icon-address"></em> ' + $data.address;
+					document.getElementById("address").innerHTML = '<em class="mui-icon iconfontnew icon-address"></em> ' + $data.address;
 				}
 
 				//学术领域
@@ -291,7 +291,7 @@ mui.plusReady(function() {
 							li.setAttribute("data-id", obj[i].id);
 							li.className = "mui-table-view-cell";
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-								'<div class="madiaHead artHead"></div>' +
+								'<div class="madiaHead paperHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
 								'<p class="mui-ellipsis h1Font">' + obj[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +
@@ -531,27 +531,27 @@ mui.plusReady(function() {
 	document.getElementById("seeMoreResource").addEventListener("tap", function() {
 		console.log(proId)
 		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/resourceList.html", 'resourceList.html', {}, {
+		var webviewShow = plus.webview.create("../html/userresourceList.html", 'userresourceList.html', {}, {
 			proid: proId
 		})
 	})
 	document.getElementById("seeMorePatent").addEventListener("tap", function() {
 		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/patentList.html", 'patentList.html', {}, {
+		var webviewShow = plus.webview.create("../html/userpatentList.html", 'userpatentList.html', {}, {
 			proid: proId,
 			authName: authName
 		})
 	})
 	document.getElementById("seeMorePaper").addEventListener("tap", function() {
 		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/paperList.html", 'paperList.html', {}, {
+		var webviewShow = plus.webview.create("../html/userpaperList.html", 'userpaperList.html', {}, {
 			proid: proId,
 			authName: authName
 		})
 	})
 	document.getElementById("seeMoreArtical").addEventListener("tap", function() {
 		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/aiticleList.html", 'aiticleList.html', {}, {
+		var webviewShow = plus.webview.create("../html/useraiticleList.html", 'useraiticleList.html', {}, {
 			proid: proId
 		})
 	})

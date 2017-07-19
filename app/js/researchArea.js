@@ -26,26 +26,9 @@ mui.plusReady(function() {
 		var authType = this.getAttribute("authType");
 		console.log(authentication)
 		plus.nativeUI.showWaiting();
-		if(authType == 1) {
-			//plus.webview.close("proinforbrow.html");
-			plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
-				proid: professId
-			});
-		} else {
-			if(authentication == 1) {
-				plus.webview.create("../html/researcherProw.html", 'researcherProw.html', {}, {
-					proid: professId
-				});
-			} else if(authentication == 2||authentication == 0) {
-				plus.webview.create("../html/companybrowse.html", 'companybrowse.html', {}, {
-					proid: professId
-				});
-			} else if(authentication == 3) {
-				plus.webview.create("../html/studentbrowse.html", 'studentbrowse.html', {}, {
-					proid: professId
-				});
-			}
-		}
+		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+			proid: professId
+		});
 
 	});
 });

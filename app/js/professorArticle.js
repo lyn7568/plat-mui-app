@@ -40,7 +40,7 @@ mui.plusReady(function() {
 		personMess();
 		document.getElementById("proInfor").addEventListener("tap", function() {
 			plus.nativeUI.showWaiting(); //显示原生等待框
-			webviewShow = plus.webview.create("../html/proinforbrow.html", 'proinforbrow.html', {}, {
+			webviewShow = plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
 				proid: ownerid
 			}); //后台创建webview并打开show.html
 		})

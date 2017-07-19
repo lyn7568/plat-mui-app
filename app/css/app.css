@@ -461,11 +461,13 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .addlabel .addlabelbtn{position: absolute;right: 0;background:#FF9900; color: #fff; border-radius:0 6px 6px 0;border-color: #FF9900;  width: 18%; height: 40px;}
 /*.labelarea{ margin: 20px 0;}*/
 .labelshow{ margin: 0; padding:0;overflow: hidden;margin-right: -10px;}
-.maincon .labelshow li{ list-style: none;padding-left:8px;border-radius:6px;margin-right:10px;margin-bottom:10px;background:#e5e5e5;font-size: 13px;float:left}
+.maincon .labelshow li{ list-style: none;padding-left:8px;border-radius:6px;margin-right:10px;margin-bottom:10px;background:#e5e5e5;font-size: 13px;float:left;}
 .maincon .labelshow li .mui-icon{ color: #FF9900; font-size:20px; margin-left: 10px;}
 .maincon .labelshow li .closeThis{display:inline-block;background: #ff9900;color:#fff;padding:4px 8px;margin-left: 8px;}
-.maincon .labelshow li .numThis{display:inline-block;background: #ff9900;color:#fff;padding:4px 8px;margin-right: 8px;min-width: 30px;text-align: center;}
-.maincon .labelshowT li{padding:0; border-radius:0 6px 6px 0;}
+.maincon .labelshow li .numThis{display:inline-block;display:inline-block;background: #ff9900;color:#fff;padding:4px 8px;margin-right: 8px;min-width: 30px;text-align: center;}
+.maincon .labelshowT li{padding:0;border-radius:0 6px 6px 0;overflow: hidden;position: relative;max-width:96%;}
+.maincon .labelshowT .otsave{display:inline-block;max-width:84%;padding: 4px; padding-right: 52px;text-overflow: ellipsis; white-space: nowrap;overflow: hidden;}
+.maincon .labelshowT .closeThis{display:inline-block;position: absolute;right: 0;}
 .selectbox{padding:0;/* margin: 4px 0;*/}
 
 .downarrow{ position:absolute; right:10px; top:50%; margin-top:-12px; color: #999999;}
@@ -1173,7 +1175,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .cardInfo .h1Font{font-size:16px;}
 .cardInfo .h2Font{font-size:14px;color: #666;}
 .cardInfo .h3Font{font-size:13px;line-height: 16px;color: #666;}
-.cardInfo .icon-address{position:relative;top:-4px;}
+.cardInfo .icon-address{position:relative;top:-5px;}
 
 /*反馈意见以及投诉*/
 .mui-input-row.textBox{position: relative;background:#fff;}

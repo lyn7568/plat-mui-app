@@ -172,7 +172,7 @@ mui.ready(function() {
 								flag: 2
 							});
 						} else {
-							document.getElementById("perfessorhonor").style.display = "none";
+							document.getElementById("perfessorEducation").style.display = "none";
 						}
 					}
 				},

@@ -99,7 +99,7 @@ mui.ready(function() {
 						
 						/*所在城市*/
 						if($data.city) {
-							document.getElementById("address").innerText = $data.city;
+							document.getElementById("address").innerHTML = '<em class="mui-icon iconfontnew icon-address"></em> ' + $data.city;
 						} else {
 							document.getElementById("address").parentNode.style.display = "none";
 						}

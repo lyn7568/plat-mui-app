@@ -10,9 +10,9 @@ mui.ready(function() {
 			var html = [];
 			for(var i = 0; i < data.length; i++) {
 				console.log(data[i].caption);
-				html.push("<li><span class='numThis'>"+ data[i].count+"</span><span class='otsave'>" + data[i].caption + "</span><span class='closeThis'>删除</span></li>");
+				html.push("<li><span class='numThis mui-pull-left'>"+ data[i].count+"</span><span class='otsave mui-pull-left'>" + data[i].caption + "</span><span class='closeThis'>删除</span></li>");
 			};
-			document.getElementsByClassName("labelshow")[0].innerHTML = html.join('');
+			document.getElementsByClassName("labelshowT")[0].innerHTML = html.join('');
 		}
 		if(ws.researchAreas) {
 			subjectShow(ws.researchAreas);
@@ -56,7 +56,7 @@ mui.ready(function() {
 					return;
 				}
 				var node = document.createElement("li");
-				node.innerHTML = '<span class="numThis">0</span><span class="otsave">'+content + '</span><span class="closeThis">删除</span>';
+				node.innerHTML = '<span class="numThis mui-pull-left">0</span><span class="otsave mui-pull-left">'+content + '</span><span class="closeThis">删除</span>';
 				document.getElementsByClassName("labelshow")[0].appendChild(node);
 				document.getElementsByTagName('input')[0].value = "";
 				var lilength = document.getElementsByTagName("li").length;

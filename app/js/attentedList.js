@@ -73,6 +73,43 @@ mui.ready(function() {
 		getWatchCon(1,10,5)
 		getWatchCon(1,10,6)
 		
+		//左滑及右滑
+		document.querySelector('#slider').addEventListener('slide', function(event) {
+			var $this = document.querySelector(".mui-scroll .mui-active");
+			if($this.innerHTML == "专家") {
+				getWatchCon(1,10,1)
+			} else if($this.innerHTML == "资源") {
+				getWatchCon(1,10,2)
+			} else if($this.innerHTML == "文章") {
+				getWatchCon(1,10,3)
+			} else if($this.innerHTML == "专利") {
+				getWatchCon(1,10,4)
+			} else if($this.innerHTML == "论文") {
+				getWatchCon(1,10,5)
+			}else if($this.innerHTML == "企业") {
+				getWatchCon(1,10,6)
+			}
+		});
+		//点击
+		document.querySelector('#slider').addEventListener('tap', function(event) {
+			var $this = document.querySelector(".mui-scroll .mui-active");
+			if($this.innerHTML == "专家") {
+				getWatchCon(1,10,1)
+			} else if($this.innerHTML == "资源") {
+				getWatchCon(1,10,2)
+			} else if($this.innerHTML == "文章") {
+				getWatchCon(1,10,3)
+			} else if($this.innerHTML == "专利") {
+				getWatchCon(1,10,4)
+			} else if($this.innerHTML == "论文") {
+				getWatchCon(1,10,5)
+			}else if($this.innerHTML == "企业") {
+				getWatchCon(1,10,6)
+			}
+		});
+
+		
+		
 		function getWatchCon(pageNo,pageSize,num) {
 			mui.ajax(baseUrl + '/ajax/watch/qaPro', {
 				data: {
@@ -97,7 +134,7 @@ mui.ready(function() {
 						}else if(num==4){
 							detailPat(datalist);
 						}else if(num==5){
-								detailPer(datalist);
+							detailPer(datalist);
 						}else if(num==6){
 							detailCmp(datalist);
 						}
@@ -113,6 +150,7 @@ mui.ready(function() {
 						}else if(num==5){
 							document.getElementById("likePer").nextSibling.classList.remove("displayNone");
 						}else if(num==6){
+							alert(JSON.stringify(data))
 							document.getElementById("likeCmp").nextSibling.classList.remove("displayNone");
 							
 						}
@@ -125,6 +163,7 @@ mui.ready(function() {
 		}
 		
 		function detailPro(datalist) {
+			document.getElementById("likeUser").innerHTML="";
 			//console.log(JSON.stringify(datalist))	
 			for(var i = 0; i < datalist.length; i++) {
 				var li = document.createElement("li");
@@ -176,6 +215,7 @@ mui.ready(function() {
 			}
 		}
 		function detailCmp(datalist) {
+			document.getElementById("likeCmp").innerHTML="";
 			//console.log(JSON.stringify(datalist))
 			var arr=[];
 			for(var i in datalist) {
@@ -219,6 +259,7 @@ mui.ready(function() {
 			});
 		}
 		function detailPat(datalist) {
+			document.getElementById("likePat").innerHTML="";
 			//console.log(JSON.stringify(datalist))
 			var arr=[];
 			for(var i in datalist) {
@@ -255,6 +296,7 @@ mui.ready(function() {
 			});
 		}
 		function detailPer(datalist) {
+			document.getElementById("likePer").innerHTML="";
 			//console.log(JSON.stringify(datalist))
 			var arr=[];
 			for(var i in datalist) {
@@ -291,6 +333,7 @@ mui.ready(function() {
 			});
 		}
 		function detailRes(datalist) {
+			document.getElementById("likeRes").innerHTML="";
 			//console.log(JSON.stringify(datalist))
 			for(var i = 0; i < datalist.length; i++) {
 				var $data = datalist[i].resource;
@@ -332,6 +375,7 @@ mui.ready(function() {
 			}
 		}
 		function detailArt(datalist) {
+			document.getElementById("likeArt").innerHTML="";
 			//console.log(JSON.stringify(datalist))
 			for(var i = 0; i < datalist.length; i++) {
 				var dataItem = datalist[i].article;

@@ -234,12 +234,12 @@ var eduDegree = {
 	"4": "大专",
 	"5": "其他"
 }
-var userid;
+
 /*判断是否收藏资源文章或者是否关注专家*/
 function ifcollectionAbout(watchObject,num) {
 	mui.ajax(baseUrl + '/ajax/watch/hasWatch', {
 		data: {
-			"professorId": userid,
+			"professorId": plus.storage.getItem('userid'),
 			"watchObject": watchObject
 		},
 		dataType: 'json', //数据格式类型
@@ -247,6 +247,7 @@ function ifcollectionAbout(watchObject,num) {
 		timeout: 10000,
 		async: false,
 		success: function(data) {
+			console.log(JSON.stringify(data))
 			if(data.success && data.data != null) {
 				if(num=="1" || num == "6"){//已关注专家
 					document.getElementById("ifAttend").classList.remove("icon-shoucang");
@@ -275,7 +276,7 @@ function ifcollectionAbout(watchObject,num) {
 function collectionAbout(watchObject, num) {
 	mui.ajax(baseUrl + '/ajax/watch', {
 		data: {
-			"professorId": userid,
+			"professorId": plus.storage.getItem('userid'),
 			"watchObject": watchObject,
 			"watchType": num
 		},
@@ -284,6 +285,7 @@ function collectionAbout(watchObject, num) {
 		timeout: 10000,
 		async: false,
 		success: function(data) {
+			console.log(JSON.stringify(data))
 			if(data.success) {
 				if(num=="1" || num == "6"){//关注专家
 					document.getElementById("ifAttend").classList.remove("icon-shoucang");
@@ -307,7 +309,7 @@ function cancelCollectionAbout(watchObject, num) {
 	mui.ajax({
 		url: baseUrl + '/ajax/watch/delete',
 		data: {
-			professorId: userid,
+			professorId: plus.storage.getItem('userid'),
 			watchObject: watchObject
 		},
 		dataType: 'json', //数据格式类型
@@ -315,7 +317,7 @@ function cancelCollectionAbout(watchObject, num) {
 		timeout: 10000,
 		async: true,
 		success: function(data) {
-			console.log(data.success)
+			console.log(JSON.stringify(data))
 			if(data.success) {
 				if(num=="1" || num == "6"){//关注专家
 					document.getElementById("ifAttend").classList.add("icon-shoucang");

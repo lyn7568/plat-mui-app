@@ -93,7 +93,7 @@ mui.ready(function() {
 							}
 							
 						}else{
-							var year="至今";
+							var year="";
 						}
 					}
 					var os = '<div class="h4Tit listtit2">' + name + '</div>' +

@@ -53,7 +53,7 @@ mui.plusReady(function() {
 		createWin: function(keyValue) {
 			document.activeElement.blur();
 			mui.openWindow({
-				url: '../html/searchListNew2.html?content=找专家',
+				url: '../html/searchListNew2.html?content=1',
 				id: '../html/searchListNew2.html',
 				show: {
 					autoShow: false,

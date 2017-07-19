@@ -816,7 +816,7 @@ mui.plusReady(function() {
 
 	mui(".tagList").on("tap", "li", function() {
 		 plus.nativeUI.showWaiting();
-		var web = plus.webview.create("../html/searchListNew2.html?content=找文章", "../html/searchListNew2.html", {}, {
+		var web = plus.webview.create("../html/searchListNew2.html?content=6", "../html/searchListNew2.html", {}, {
 			key: this.getElementsByTagName("span")[0].innerHTML,
 			qiFlag: 3
 		}); 

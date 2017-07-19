@@ -181,7 +181,7 @@ mui('.gridbg').on('tap', 'li', function() {
 	//plus.nativeUI.showWaiting();//显示原生等待框
 	//webviewShow = plus.webview.create("../html/search.html",'search.html',{},{subject:subject,bigClass:1});//后台创建webview并打开show.html
 	mui.openWindow({
-		url: '../html/searchListNew2.html?content=找专家',
+		url: '../html/searchListNew2.html?content=1',
 		id: '../html/searchListNew2.html',
 		show: {
 			//autoShow:false,

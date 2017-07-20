@@ -21,11 +21,11 @@ mui.ready(function() {
 						var $data = data.data;
 						document.getElementById("companyName").innerText = $data.name;
 						
-						/*所在城市*/
-						if($data.city) {
-							document.getElementById("address").innerText = $data.city;
+						/*企业地址*/
+						if($data.addr) {
+							document.getElementById("address").innerText = $data.addr;
 						} else {
-							document.getElementById("address").parentNode.style.display = "none";
+							document.getElementById("address").parentNode.parentNode.style.display = 'none';
 						}
 						/*时间*/
 						if($data.foundTime) {
@@ -51,12 +51,6 @@ mui.ready(function() {
 							document.getElementById("shotAddress").innerText = $data.orgUrl;
 						} else {
 							document.getElementById("shotAddress").parentNode.style.display = "none";
-						}
-						/*应用行业*/
-						if($data.industry) {
-							document.getElementById("industryShow").innerText = $data.industry;
-						} else {
-							document.getElementById("industryShow").parentNode.style.display = 'none';
 						}
 						/*企业简介*/
 						if($data.descp) {

@@ -10,7 +10,7 @@
 function pulldownRefresh() {
 	setTimeout(function() {
 		userInformation();
-		signyesFun();
+		isexpert();
 		signFun();
 		/*专家认证*/
 		//isexpert();
@@ -108,71 +108,7 @@ mui.ready(function() {
 			});
 		})
 
-		/*专家认证*/
-		function isexpert() {
-			var userId = plus.storage.getItem('userid');
-			var expertAuth = document.getElementById("expertAuth");
-			mui.ajax(baseUrl + "/ajax/professor/auth", {
-				data: {
-					"id": userId
-				},
-				dataType: 'json', //数据格式类型
-				type: 'GET', //http请求类型
-				timeout: 10000, //超时设置
-				async: false,
-				success: function(data) {
-					console.log(JSON.stringify(data));
-					var $info = data.data || {};
-					if(data.success && data.data) {
-						authStatusExpert = $info.authStatusExpert;
-						authStatus = $info.authStatus;
-						console.log(authStatusExpert)
-						if(authStatusExpert == -1) {
-							expertAuth.innerHTML = "认证失败";
-						} else if(authStatusExpert == 0) {
-							expertAuth.innerHTML = "未认证";
-						} else if(authStatusExpert == 1) {
-							expertAuth.innerHTML = "待认证";
-						} else if(authStatusExpert == 2) {
-							expertAuth.innerHTML = "认证中";
-						} else if(authStatusExpert == 3) {
-							expertAuth.innerHTML = "已认证";
-						}
-						goBecomeExpert.addEventListener('tap', function() {
-							if(authStatus == 3){
-								if(authStatusExpert == -1 || authStatusExpert == 0) {
-									mui.openWindow({
-										url: '../html/expert-authentication.html',
-										id: 'expert-authentication.html',
-										show: {
-											autoShow: false,
-											aniShow: "slide-in-right"
-										}
-									});
-								}
-							}else if(authStatus == -1 || authStatus == 0){
-								if(authStatusExpert == -1 || authStatusExpert == 0) {
-									mui.openWindow({
-										url: '../html/realname-authentication2.html',
-										id: 'realname-authentication2.html',
-										show: {
-											autoShow: false,
-											aniShow: "slide-in-right"
-										}
-									});
-								}
-							}else if(authStatus == 1 || authStatus == 2){
-								plus.nativeUI.toast("正在进行实名认证，请稍等片刻。", toastStyle);
-							}
-						})
-					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
-				}
-			});
-		}
+	
 
 		function loginStatus() {
 			//alert(userId);
@@ -370,6 +306,73 @@ function signFun(){
 								lastDayScore: data.data.lastDayScore
 							}
 						});
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+			})
+		}
+			/*专家认证*/
+		function isexpert() {
+			mui.plusReady(function(){
+			var userId = plus.storage.getItem('userid');
+			var expertAuth = document.getElementById("expertAuth");
+			mui.ajax(baseUrl + "/ajax/professor/auth", {
+				data: {
+					"id": userId
+				},
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				timeout: 10000, //超时设置
+				async: false,
+				success: function(data) {
+					console.log(JSON.stringify(data));
+					var $info = data.data || {};
+					if(data.success && data.data) {
+						authStatusExpert = $info.authStatusExpert;
+						authStatus = $info.authStatus;
+						console.log(authStatusExpert)
+						if(authStatusExpert == -1) {
+							expertAuth.innerHTML = "认证失败";
+						} else if(authStatusExpert == 0) {
+							expertAuth.innerHTML = "未认证";
+						} else if(authStatusExpert == 1) {
+							expertAuth.innerHTML = "待认证";
+						} else if(authStatusExpert == 2) {
+							expertAuth.innerHTML = "认证中";
+						} else if(authStatusExpert == 3) {
+							expertAuth.innerHTML = "已认证";
+						}
+						goBecomeExpert.addEventListener('tap', function() {
+							if(authStatus == 3){
+								if(authStatusExpert == -1 || authStatusExpert == 0) {
+									mui.openWindow({
+										url: '../html/expert-authentication.html',
+										id: 'expert-authentication.html',
+										show: {
+											autoShow: false,
+											aniShow: "slide-in-right"
+										}
+									});
+								}
+							}else if(authStatus == -1 || authStatus == 0){
+								if(authStatusExpert == -1 || authStatusExpert == 0) {
+									mui.openWindow({
+										url: '../html/realname-authentication2.html',
+										id: 'realname-authentication2.html',
+										show: {
+											autoShow: false,
+											aniShow: "slide-in-right"
+										}
+									});
+								}
+							}else if(authStatus == 1 || authStatus == 2){
+								plus.nativeUI.toast("正在进行实名认证，请稍等片刻。", toastStyle);
+							}
+						})
 					}
 				},
 				error: function() {

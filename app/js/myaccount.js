@@ -1,4 +1,25 @@
 //我的账号
+	mui.init({
+	pullRefresh: {
+		container: '#loginYes',
+		down: {
+			callback: pulldownRefresh
+		}
+	}
+});
+function pulldownRefresh() {
+	setTimeout(function() {
+		userInformation();
+		signyesFun();
+		signFun();
+		/*专家认证*/
+		//isexpert();
+		
+		/*初始化签到状态*/
+		//signFun();
+		mui('#loginYes').pullRefresh().endPulldownToRefresh();
+	}, 1000);
+}
 mui.ready(function() {
 	/*定义全局变量*/
 	var loginYes = document.getElementById("loginYes");
@@ -19,6 +40,7 @@ mui.ready(function() {
 	var yessign =document.getElementById("yessign");
 	var professorName,scorePercent;
 	mui.plusReady(function() {
+		
 		var userId = plus.storage.getItem('userid');
 		console.log(userId);
 		
@@ -254,8 +276,17 @@ mui.ready(function() {
 			}
 		}
 
-		function userInformation() {
-			mui.ajax(baseUrl + "/ajax/professor/baseInfo/" + userId, {
+		
+
+		
+	
+		
+	});
+
+});
+function userInformation() {
+			mui.plusReady(function(){
+			mui.ajax(baseUrl + "/ajax/professor/baseInfo/" + plus.storage.getItem('userid'), {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
@@ -286,14 +317,15 @@ mui.ready(function() {
 					return;
 				}
 			});
+			})
 		}
-
-		function signFun(){
+function signFun(){
+			mui.plusReady(function(){
 			mui.ajax(baseUrl + "/ajax/growth/isSignIn", {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
-				data:{"professorId":userId},
+				data:{"professorId":plus.storage.getItem('userid')},
 				//async: false,
 				success: function(data) {
 					console.log(JSON.stringify(data))
@@ -310,14 +342,16 @@ mui.ready(function() {
 					return;
 				}
 			});
+			})
 		}
 		
 		function signyesFun(){
+			mui.plusReady(function(){
 			mui.ajax(baseUrl + "/ajax/growth/signIn", {
 				dataType: 'json', //数据格式类型
 				type: 'POST', //http请求类型
 				timeout: 10000, //超时设置
-				data:{"professorId":userId},
+				data:{"professorId":plus.storage.getItem('userid')},
 				//async: false,
 				success: function(data) {
 					console.log(JSON.stringify(data))
@@ -343,8 +377,5 @@ mui.ready(function() {
 					return;
 				}
 			});
+			})
 		}
-		
-	});
-
-});

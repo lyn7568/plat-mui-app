@@ -170,15 +170,16 @@ function commenTime(startTime){
     	return minutes + "分钟前";
     }else if(date3 >= 3600000 && date3 < 86400000){
     	return hours + "小时前";
-    }else if(date3 >= 86400000 && date3 < 172800000){
-    	return "昨天 " + startTime.substring(8,10) + ":" +startTime.substring(10,12);
-    	
-    }else if(date3 >= 172800000 && date3 < 31536000000){
-    	return startTime.substring(4,6).replace(/\b(0+)/gi, "") + "月" + startTime.substring(6,8).replace(/\b(0+)/gi, "") + "日 " + startTime.substring(8,10) + ":" + startTime.substring(10,12);
-    }
-    else{
-    	return startTime.substring(0,4)  + "年" + startTime.substring(4,6).replace(/\b(0+)/gi, "") + "月" + startTime.substring(6,8).replace(/\b(0+)/gi, "") + "日 " + startTime.substring(8,10) + ":" + startTime.substring(10,12);
-    }
+    }else if(date3 >= 86400000) {
+
+		if(nowTimg.getFullYear() == startTime.substring(0, 4)) {
+
+			return startTime.substring(4, 6).replace(/\b(0+)/gi, "") + "月" + startTime.substring(6, 8).replace(/\b(0+)/gi, "") + "日 " + startTime.substring(8, 10) + ":" + startTime.substring(10, 12);
+		} else {
+
+			return startTime.substring(0, 4) + "年" + startTime.substring(4, 6).replace(/\b(0+)/gi, "") + "月" + startTime.substring(6, 8).replace(/\b(0+)/gi, "") + "日 " + startTime.substring(8, 10) + ":" + startTime.substring(10, 12);
+		}
+	}
   
 }
 /*时间转换*/

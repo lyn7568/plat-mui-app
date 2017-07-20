@@ -156,6 +156,7 @@ function pullupRefresh() {
 	}, 1000);
 }
 function pulldownRefresh() {
+	pageIndex=1;
 	setTimeout(function() {
 		getOnePase();
 		mui('#pullrefresh2').pullRefresh().endPulldownToRefresh();

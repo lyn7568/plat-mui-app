@@ -764,6 +764,18 @@ for(var n=0;n<6;n++) {
 		/*自定义事件*/
 		window.addEventListener("newId", function(event) {
 			var arry = event.detail.arry;
+			var m=0;
+			for(var i in arry) {
+				if(arry[i]){
+					m++;
+				}
+			}
+			if(m){
+				document.getElementById("sele").getElementsByTagName("span")[0].innerHTML=m;
+			}else{
+				document.getElementById("sele").getElementsByTagName("span")[0].innerHTML="";
+			}
+				
 			if(key3.subject == arry[1] && key3.industry == arry[2] && key3.address == arry[0]) {
 				return;
 			}

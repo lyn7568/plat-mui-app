@@ -316,4 +316,24 @@ mui.plusReady(function() {
 
 	/*图像预览*/
 	mui.previewImage();
+	moreMes();
+	function moreMes(){
+		document.getElementById("BtnMore").addEventListener("tap",function(){
+			var oUrl=baseUrl + "/images/logo180.png";
+			plus.nativeUI.showWaiting(); //显示原生等待框
+		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
+			proid: paperId,
+			name:"paper",
+			data:{
+					content: document.getElementById("paperAbstract").innerHTML.substring(0,40),
+					title: document.getElementById("paperName").innerHTML,
+					href: baseUrl + "/e/l.html?id=" + paperId ,
+					thumbs: [oUrl]
+				},
+			weiboData:{
+					content: document.getElementById("paperName").innerHTML+ baseUrl + "/e/l.html?id=" + paperId ,
+				}
+		})
+		})
+	}
 });

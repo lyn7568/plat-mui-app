@@ -8,7 +8,7 @@ mui.plusReady(function() {
 		document.getElementsByClassName('footbox')[0].style.display = "none";
 	}
 	var induSubjectShow = function(obj) {
-		console.log(JSON.stringify(obj));
+		//console.log(JSON.stringify(obj));
 		if(obj.data != undefined && obj.data.length != 0) {
 			var subs = new Array();
 			if(obj.data.indexOf(',')) {
@@ -321,7 +321,6 @@ mui.plusReady(function() {
 				"author": oName
 			},
 			success: function(data) {
-				console.log(JSON.stringify(data));
 				if(data.success) {
 					var obj = data.data.data;
 					if(obj.length > 0) {
@@ -671,4 +670,27 @@ mui.plusReady(function() {
 	}
 	/*图像预览*/
 	mui.previewImage();
+	 moreMes();
+	function moreMes(){
+		document.getElementById("BtnMore").addEventListener("tap",function(){
+			var str;
+			if(resear) {
+				str = "研究方向：" + resear
+			}
+			plus.nativeUI.showWaiting(); //显示原生等待框
+		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
+			proid: proId,
+			name:"professor",
+			data:{
+					content: str,
+					title: "【科袖名片】" + authName + " " + title + "",
+					href: baseUrl + "/e/p.html?id=" + proId,
+					thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
+				},
+			weiboData:{
+					content:  "【科袖名片】" + authName + " " + title + ""+baseUrl + "/e/p.html?id=" + proId
+				}
+		})
+		})
+	}
 });

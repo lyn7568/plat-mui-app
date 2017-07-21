@@ -821,4 +821,25 @@ mui.plusReady(function() {
 			qiFlag: 3
 		}); 
 	})
+	
+	moreMes();
+	function moreMes(){
+		document.getElementById("BtnMore").addEventListener("tap",function(){
+			var oUrl=baseUrl + "/images/logo180.png";
+			plus.nativeUI.showWaiting(); //显示原生等待框
+		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
+			proid: oArticleModule.articleId,
+			name:"article",
+			data:{
+					content: document.getElementById("articleContent").innerText.substring(0, 70),
+					title: document.getElementById("articleName").innerHTML,
+					href: baseUrl + "/e/a.html?id=" + oArticleModule.articleId,
+					thumbs: [baseUrl + "/data/article/" + stt + oArticleModule.articleId + "_s.jpg"]
+				},
+			weiboData:{
+					content: document.getElementById("articleName").innerHTML+baseUrl + "/e/a.html?id=" + oArticleModule.articleId
+				}
+		})
+		})
+	}
 });

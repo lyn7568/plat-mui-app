@@ -352,7 +352,29 @@ mui.ready(function() {
 	
 		/*图像预览*/
 		mui.previewImage();
-	
+		 moreMes();
+	function moreMes(){
+		document.getElementById("BtnMore").addEventListener("tap",function(){
+			var oUrl=baseUrl + "/images/logo180.png";
+			if(document.getElementById("oimg").src !="../images/default-icon.jpg"){
+				oUrl= document.getElementById("oimg").src;
+			}
+			plus.nativeUI.showWaiting(); //显示原生等待框
+		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
+			proid: orgId,
+			name:"org",
+			data:{
+						content: document.getElementById("industryShow").innerHTML.substr(0,40),
+						title: document.getElementById("companyName").innerHTML,
+						href: baseUrl + "/e/c.html?id=" + orgId ,
+						thumbs: [oUrl]
+					},
+			weiboData:{
+						content: document.getElementById("companyName").innerHTML+ baseUrl + "/e/c.html?id=" + orgId ,
+					}
+		})
+		})
+	}
 	
 	
 	});

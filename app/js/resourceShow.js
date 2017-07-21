@@ -703,4 +703,27 @@ mui.plusReady(function() {
 
 	/*图像预览*/
 	mui.previewImage();
+	 moreMes();
+	function moreMes(){
+		document.getElementById("BtnMore").addEventListener("tap",function(){
+			var oUrl=baseUrl + "/images/logo180.png";
+		if(imgFlag==1) {
+			oUrl=firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg");
+		}
+			plus.nativeUI.showWaiting(); //显示原生等待框
+		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
+			proid: resourceId,
+			name:"resource",
+			data:{
+					content: oapplication.innerHTML,
+					title: oresourceName.innerHTML,
+					href: baseUrl + "/e/r.html?id=" + resourceId ,
+					thumbs: [oUrl]
+				},
+			weiboData:{
+					content: oresourceName.innerHTML+ baseUrl + "/e/r.html?id=" + resourceId,
+				}
+		})
+		})
+	}
 });

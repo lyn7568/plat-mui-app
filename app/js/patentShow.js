@@ -321,4 +321,24 @@ mui.plusReady(function() {
 
 	/*图像预览*/
 	mui.previewImage();
+	 moreMes();
+	function moreMes(){
+		document.getElementById("BtnMore").addEventListener("tap",function(){
+			var oUrl=baseUrl + "/images/logo180.png";
+			plus.nativeUI.showWaiting(); //显示原生等待框
+		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
+			proid: patentId,
+			name:"patent",
+			data:{
+					content: document.getElementById("patentAbstract").innerHTML.substring(0,40),
+					title: document.getElementById("patentName").innerHTML,
+					href: baseUrl + "/e/z.html?id=" + patentId ,
+					thumbs: [oUrl]
+				},
+			weiboData:{
+					content: document.getElementById("patentName").innerHTML+ baseUrl + "/e/z.html?id=" + patentId ,
+				}
+		})
+		})
+	}
 });

@@ -33,7 +33,6 @@ mui.ready(function(){
 		document.getElementById("shareBlock").style.display = "none";
 		document.getElementById("maskBlack").style.display = "none";
 		var oFen = this.getElementsByTagName("span")[0].innerHTML;
-		
 		if(oFen == "微信好友") {
 			var share = buildShareService("weixin");
 			if(share) {

@@ -32,7 +32,9 @@
 				    </li>
 				</ul>
 			</div>
-			<div class="shareBlock" id="shareBlock">
+			
+		</div>
+		<div class="shareBlock" id="shareBlock">
 			<h2 class="shareTit"><span>分享到</span></h2>
 			<ul class="mui-table-view noactiveTab">
 				<li class="mui-table-view-cell">
@@ -50,13 +52,10 @@
 			</ul>
 			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
 		</div>
-		</div>
-		
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/moreItem.js"></script>
 		<script>
-			  var shareOut=document.getElementById("shareOut");
 		    var cancelShare=document.getElementById("cancelShare");
 		    var maskBlack=document.getElementById("maskBlack");
 		    var shareBlock=document.getElementById("shareBlock");
@@ -65,10 +64,7 @@
 		    	maskBlack.style.display="block";
 		    	shareBlock.style.display="block";
 		    })
-		    shareOut.addEventListener("tap",function(){
-		    	maskBlack.style.display="block";
-		    	shareBlock.style.display="block";
-		    })
+		    
 		    cancelShare.addEventListener("tap",function(){
 		    	maskBlack.style.display="none";
 		    	shareBlock.style.display="none";

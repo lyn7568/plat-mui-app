@@ -32,15 +32,6 @@ mui.ready(function() {
 						var web = plus.webview.currentWebview()
 						plus.nativeUI.closeWaiting();
 						web.show("slide-in-right", 150);
-						
-						var $data = data.data;
-						if($data.forShort){
-							document.getElementById("companyNameT").innerText = $data.forShort;
-							
-						}else{
-							document.getElementById("companyNameT").innerText = $data.name;
-							
-						}
 					}
 				},
 				error: function() {

@@ -102,5 +102,14 @@ mui.ready(function(){
 		})
 	})
 	
+	document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
+		alert(self.id);
+		if(self.name=="org") {
+			var web = plus.webview.getWebviewById("cmpInforShow.html");
+				mui.fire(web, "newId",{
+									rd: 1
+								});
+		}
+	})
 	})
 })

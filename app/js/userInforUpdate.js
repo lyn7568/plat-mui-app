@@ -47,6 +47,7 @@ mui.ready(function() {
 		//项目经历
 		var projectShow = function(obj) {
 			if(obj.data.length > 0) {
+				document.getElementById(obj.selector).parentNode.style.display="block";
 				var arr = [];
 				for(var i = 0; i < obj.data.length; i++) {
 					if(obj.flag == 1) {
@@ -69,6 +70,7 @@ mui.ready(function() {
 		//荣誉奖项
 		var honorShow = function(obj) {
 			if(obj.data.length > 0) {
+				document.getElementById(obj.selector).parentNode.style.display="block";
 				var arr = [];	                  
 				for(var i = 0; i < obj.data.length; i++) {
 					

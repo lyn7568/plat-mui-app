@@ -13,8 +13,10 @@ mui.ready(function() {
 					console.log(JSON.stringify(data));
 					if(data.success) {
 						plus.nativeUI.closeWaiting();
-						if(!f1)
-						ws.show("slide-in-right", 150);
+						console.log(f1)
+						if(!f1) {
+							ws.show("slide-in-right", 150);
+						}
 						var $data = data.data;
 						//头像					
 						if($data.hasHeadImage) {
@@ -82,7 +84,7 @@ mui.ready(function() {
 		}
 		personalMessage();
 		window.addEventListener("newId", function(event) {
-			fl = event.detail.rd;
+			f1 = event.detail.rd;
 			personalMessage();
 		});
 		//创建窗口

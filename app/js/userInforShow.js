@@ -487,6 +487,7 @@ mui.plusReady(function() {
 					ourl:self.id
 				}
 			});
+			return;
 		}
 		if(this.className == "mui-icon iconfontnew icon-yishoucang") {
 			cancelCollectionAbout(proId, '1');

@@ -56,8 +56,8 @@ mui.ready(function() {
 					console.log(JSON.stringify(data))
 					if(data.success) {
 						plus.nativeUI.showWaiting();
-							var web = plus.webview.getWebviewById("updateBasic.html");
-							mui.fire(web, "newId", {
+							var web1 = plus.webview.getWebviewById("updateBasic.html");
+							mui.fire(web1, "newId", {
 								rd: 1
 							});
 						mui.back();

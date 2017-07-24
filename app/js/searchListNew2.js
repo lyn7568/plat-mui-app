@@ -771,9 +771,10 @@ for(var n=0;n<6;n++) {
 				}
 			}
 			if(m){
+				document.getElementById('seler').style.display="block";
 				document.getElementById("sele").getElementsByTagName("span")[0].innerHTML=m;
 			}else{
-				document.getElementById("sele").getElementsByTagName("span")[0].innerHTML="";
+				document.getElementById('seler').style.display="none";
 			}
 				
 			if(key3.subject == arry[1] && key3.industry == arry[2] && key3.address == arry[0]) {

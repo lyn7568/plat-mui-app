@@ -264,11 +264,16 @@ mui.plusReady(function() {
 			})
 		} else if(this.innerHTML === "邀请ta加入") {
 			var share = buildShareService("weixin");
+			if(userid) {
+				var our=baseUrl + "/e/I.html?i=" + s16to64(patentId)+"&d="+s16to64(userid);
+			} else{
+				var our=baseUrl + "/e/I.html?i=" + s16to64(patentId);
+			}
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
-					content: document.getElementById("paperAbstract").innerHTML.substring(0, 40),
-					title: document.getElementById("paperName").innerHTML,
-					href: baseUrl + "/e/l.html?id=" + paperId,
+					content: "赶快认领，上千家企业正在期待与您合作",
+					title: "您的论文被科袖网收录了",
+					href: our,
 					thumbs: [baseUrl + "/images/logo180.png"]
 				});
 			}
@@ -385,6 +390,109 @@ mui.plusReady(function() {
 		});
 
 	}
+	var r64 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_"];
+		var d64 = {
+			"0": 0,
+			"1": 1,
+			"2": 2,
+			"3": 3,
+			"4": 4,
+			"5": 5,
+			"6": 6,
+			"7": 7,
+			"8": 8,
+			"9": 9,
+			"A": 10,
+			"B": 11,
+			"C": 12,
+			"D": 13,
+			"E": 14,
+			"F": 15,
+			"G": 16,
+			"H": 17,
+			"I": 18,
+			"J": 19,
+			"K": 20,
+			"L": 21,
+			"M": 22,
+			"N": 23,
+			"O": 24,
+			"P": 25,
+			"Q": 26,
+			"R": 27,
+			"S": 28,
+			"T": 29,
+			"U": 30,
+			"V": 31,
+			"W": 32,
+			"X": 33,
+			"Y": 34,
+			"Z": 35,
+			"a": 36,
+			"b": 37,
+			"c": 38,
+			"d": 39,
+			"e": 40,
+			"f": 41,
+			"g": 42,
+			"h": 43,
+			"i": 44,
+			"j": 45,
+			"k": 46,
+			"l": 47,
+			"m": 48,
+			"n": 49,
+			"o": 50,
+			"p": 51,
+			"q": 52,
+			"r": 53,
+			"s": 54,
+			"t": 55,
+			"u": 56,
+			"v": 57,
+			"w": 58,
+			"x": 59,
+			"y": 60,
+			"z": 61,
+			"-": 62,
+			"_": 63
+		};
+		function s16to64(s) {
+			var out, idx, n1, n2, n3;
+			idx = s.length - 1;
+			out = "";
+			while(idx >= 0) {
+				n1 = d64[s.charAt(idx--)];
+				if(idx < 0) {
+					out = r64[n1] + out;
+					break;
+				}
+				n2 = d64[s.charAt(idx--)];
+				if(idx < 0) {
+					out = r64[(n2 >>> 2)] + r64[((n2 & 0x3) << 4) + n1] + out;
+					break;
+				}
+				n3 = d64[s.charAt(idx--)];
+				out = r64[(n2 >>> 2) + (n3 << 2)] + r64[((n2 & 0x3) << 4) + n1] + out;
+			}
+			return out;
+		}
+
+		function s64to16(s) {
+			var out, idx, n1, n2;
+			idx = s.length - 1;
+			out = "";
+			while(idx >= 0) {
+				n1 = d64[s.charAt(idx--)];
+				if(idx < 0) {
+					out = r64[n1 >>> 4] + r64[n1 & 0xF] + out;
+					break;
+				}
+				n2 = d64[s.charAt(idx--)];
+				out = r64[(n2 >>> 2)] + r64[(n1 >>> 4) + ((n2 & 0x3) << 2)] + r64[n1 & 0xF] + out;
+			}
+			return out;
+		}
    /*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	plus.oauth.getServices(function(services) {

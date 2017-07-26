@@ -35,7 +35,6 @@ function getViewportSize () {
         height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
     };
 }
-console.log(oWidth)
 for(var n=0;n<6;n++) {
 	document.getElementsByClassName("mui-control-item")[n].style.paddingLeft=(oWidth-4.5*45)/9+"px";
 	document.getElementsByClassName("mui-control-item")[n].style.paddingRight=(oWidth-4.5*45)/9+"px";
@@ -334,7 +333,7 @@ for(var n=0;n<6;n++) {
 						document.getElementById('arNoSearch').classList.remove("displayNone");
 						return;
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
 						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 						key1[5].endPullUpToRefresh(false);
 
@@ -350,7 +349,7 @@ for(var n=0;n<6;n++) {
 						key1[5].endPullUpToRefresh(true);
 						return;
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
 						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 						key1[5].endPullUpToRefresh(false);
 					} else {
@@ -405,6 +404,7 @@ for(var n=0;n<6;n++) {
 				}
 			},
 			patent: function(data) {
+				
 				if(key2[3] == 1) {
 					plus.nativeUI.closeWaiting();
 					plus.webview.currentWebview().show("slide-in-right", 150);
@@ -442,7 +442,7 @@ for(var n=0;n<6;n++) {
 						document.getElementById('ptNoSearch').classList.remove("displayNone");
 						return;
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
 						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 						key1[3].endPullUpToRefresh(false);
 
@@ -458,7 +458,7 @@ for(var n=0;n<6;n++) {
 						key1[3].endPullUpToRefresh(true);
 						return;
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
 						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 						key1[3].endPullUpToRefresh(false);
 					} else {
@@ -467,6 +467,7 @@ for(var n=0;n<6;n++) {
 					}
 				}
 				for(var i = 0; i < $data.length; i++) {
+					console.log(JSON.stringify($data[i]));
 					var li = document.createElement("li");
 					li.setAttribute("data-id", $data[i].id);
 					li.className = "mui-table-view-cell";
@@ -518,7 +519,7 @@ for(var n=0;n<6;n++) {
 						document.getElementById('ppNoSearch').classList.remove("displayNone");
 						return;
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
 						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 						key1[4].endPullUpToRefresh(false);
 
@@ -534,7 +535,7 @@ for(var n=0;n<6;n++) {
 						key1[4].endPullUpToRefresh(true);
 						return;
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
 						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 						key1[4].endPullUpToRefresh(false);
 					} else {
@@ -594,7 +595,7 @@ for(var n=0;n<6;n++) {
 						document.getElementById('coNoSearch').classList.remove("displayNone");
 						return;
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
 						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 						key1[1].endPullUpToRefresh(false);
 
@@ -610,7 +611,7 @@ for(var n=0;n<6;n++) {
 						key1[1].endPullUpToRefresh(true);
 						return;
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
 						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 						key1[1].endPullUpToRefresh(false);
 					} else {
@@ -619,7 +620,6 @@ for(var n=0;n<6;n++) {
 					}
 				}
 				for(var i = 0; i < $data.length; i++) {
-					console.log(JSON.stringify($data[i]))
 					var li = document.createElement("li");
 					li.setAttribute("data-id", $data[i].id);
 					var oimg = ($data[i].hasOrgLogo) ? baseUrl + "/images/org/" + $data[i].id + ".jpg" : "../images/default-icon.jpg";
@@ -676,7 +676,8 @@ for(var n=0;n<6;n++) {
 		} else if(webview.qiFlag == 4) {
 			document.getElementById("searchval").setAttribute("placeholder", "输入专利名称、发明人、专利号或相关关键词");
 			document.getElementById("sele").classList.add("displayNone");
-			document.getElementById("searB").classList.remove("searchboxNewT");			
+			document.getElementById("searB").classList.remove("searchboxNewT");	
+			
 			search.oAjaxGet(baseUrl + "/ajax/ppatent/pq", {
 				"qw": obj.pt,
 				"pageSize": pageSize,
@@ -846,6 +847,7 @@ for(var n=0;n<6;n++) {
 						}, "get", search.article);
 					}
 				} else if(tabFlag == 4) {
+					
 					if(obj.pt != searchval) {
 						key1[3].refresh(true);
 						pageNo.pt = 1;
@@ -898,6 +900,10 @@ for(var n=0;n<6;n++) {
 				document.getElementById("sele").classList.remove("displayNone");
 				document.getElementById("searB").classList.add("searchboxNewT");
 				if(key2[0] == 1) {
+					if(obj.ex != searchval) {
+						obj.ex = searchval;
+					}
+					flag = 1;
 					pageNo.ex = 1;
 					search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
 						"key": obj.ex,
@@ -934,6 +940,9 @@ for(var n=0;n<6;n++) {
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[2] == 1) {
+					if(obj.rs != searchval) {
+						obj.rs = searchval;
+					}
 					flag = 1;
 					pageNo.rs = 1;
 					search.oAjaxGet(baseUrl + "/ajax/resource/firstpq", {
@@ -962,6 +971,9 @@ for(var n=0;n<6;n++) {
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[5] == 1) {
+					if(obj.ar != searchval) {
+						obj.ar = searchval;
+					}
 					flag = 1;
 					pageNo.ar = 1;
 					search.oAjaxGet(baseUrl + "/ajax/article/firstpq", {
@@ -990,6 +1002,11 @@ for(var n=0;n<6;n++) {
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[3] == 1) {
+					if(obj.pt != searchval) {
+						obj.pt = searchval;
+					}
+					console.log(obj.pt);
+					console.log(searchval);
 					flag = 1;
 					pageNo.pt = 1;
 					search.oAjaxGet(baseUrl + "/ajax/ppatent/pq", {
@@ -1018,6 +1035,9 @@ for(var n=0;n<6;n++) {
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[4] == 1) {
+					if(obj.pp != searchval) {
+						obj.pp = searchval; 
+					}
 					flag = 1;
 					pageNo.pp = 1;
 					search.oAjaxGet(baseUrl + "/ajax/ppaper/pq", {
@@ -1046,6 +1066,9 @@ for(var n=0;n<6;n++) {
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[1] == 1) {
+					if(obj.co != searchval) {
+						obj.co = searchval;
+					}
 					flag = 1;
 					pageNo.co = 1;
 					search.oAjaxGet(baseUrl + "/ajax/org/find/pq", {

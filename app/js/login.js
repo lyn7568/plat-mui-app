@@ -111,6 +111,7 @@ mui.ready(function() {
 					if(data.data != "null" && data.data != null) {
 						var userId = data.data.id;
 						plus.storage.setItem('userid', userId);
+						plus.storage.setItem('name', data.data.name);
 						plus.nativeUI.toast("登录成功", toastStyle);
 						var article = plus.webview.currentWebview();
 						if(article.flag==1){

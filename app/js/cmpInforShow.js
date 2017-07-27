@@ -378,7 +378,9 @@ mui.ready(function() {
 	window.addEventListener("newId", function(event) {
 			plus.navigator.setStatusBarBackground( "#28b8fa" );
 		})
-	
+	document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
+		plus.navigator.setStatusBarBackground( "#28b8fa" );
+	})
 	});
 
 })

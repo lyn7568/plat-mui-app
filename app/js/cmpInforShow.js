@@ -376,7 +376,6 @@ mui.ready(function() {
 		})
 	}
 	window.addEventListener("newId", function(event) {
-		alert(1)
 			plus.navigator.setStatusBarBackground( "#28b8fa" );
 		})
 	

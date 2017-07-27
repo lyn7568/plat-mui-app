@@ -271,7 +271,7 @@ mui.plusReady(function() {
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
 					content: "赶快认领，上千家企业正在期待与您合作",
-					title: "您的论文被科袖网收录了",
+					title: "您的专利被科袖网收录了",
 					href: our,
 					thumbs: [baseUrl + "/images/logo180.png"]
 				});

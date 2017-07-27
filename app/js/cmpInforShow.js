@@ -379,7 +379,7 @@ mui.ready(function() {
 			plus.navigator.setStatusBarBackground( "#28b8fa" );
 		})
 	document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
-		plus.navigator.setStatusBarBackground( "#28b8fa" );
+		plus.navigator.setStatusBarBackground( "#FF9900" );
 	})
 	});
 

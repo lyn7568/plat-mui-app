@@ -6,7 +6,6 @@ mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
 	var userName = plus.storage.getItem('name');
 	patentId = self.patentId;
-	//patentId="FE95F18DDCFA4E64BF62C014D67E95FB";
 	getRecourceMe();/*获取资源信息*/
 	//关键词标签点击进去搜索
 	mui(".tagList").on("tap","li",function(){
@@ -265,10 +264,12 @@ mui.plusReady(function() {
 		} else if(this.innerHTML === "邀请ta加入") {
 			var share = buildShareService("weixin");
 			if(userid) {
-				var our=baseUrl + "/e/I.html?i=" + s16to64(patentId)+"&d="+s16to64(userid);
+				var our=baseUrl + "/e/I.html?i="+ s16to64(patentId)+"&d="+s16to64(userid);
 			} else{
-				var our=baseUrl + "/e/I.html?i=" + s16to64(patentId);
+				var our=baseUrl + "/e/I.html?i="+ s16to64(patentId);
 			}
+			console.log(our);
+			return;
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
 					content: "赶快认领，上千家企业正在期待与您合作",

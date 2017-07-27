@@ -571,7 +571,7 @@ for(var n=0;n<6;n++) {
 										setTimeout(function() {
 											var ul = self.element.querySelector('.mui-table-view')
 											if(index == 1) {
-												search.oAjaxGet(baseUrl + "/ajax/ppaper/pq", {
+												search.oAjaxGet(baseUrl + "/ajax/org/find/pq", {
 													"kw": obj.co,
 													"pageSize": pageSize,
 													"pageNo": ++pageNo.co

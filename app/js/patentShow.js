@@ -268,8 +268,6 @@ mui.plusReady(function() {
 			} else{
 				var our=baseUrl + "/e/I.html?i="+ s16to64(patentId);
 			}
-			console.log(our);
-			return;
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
 					content: "赶快认领，上千家企业正在期待与您合作",

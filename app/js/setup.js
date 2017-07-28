@@ -52,6 +52,7 @@ mui.ready(function() {
 		mui.confirm("是否退出", "提示", btn, function(e) {
 			if(e.index == 0) {
 				plus.storage.removeItem("userid");
+				plus.storage.removeItem("name");
 				console.log('点击退出时id=='+plus.storage.getItem('userid'));
 				//plus.cache.clear();
 				//plus.storage.clear();

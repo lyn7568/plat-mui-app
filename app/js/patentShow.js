@@ -197,7 +197,8 @@ mui.plusReady(function() {
 											oString += '</div></div><span class="mui-icon attenSpan"  style="display:' + odis + ';" data-id="'+showPro.id+'">关注</span>'
 											liItem.innerHTML = oString;
 											document.getElementById("aboutAuthors").appendChild(liItem);
-											ifcollectionAbout1.call(liItem.getElementsByClassName("attenSpan")[0],showPro.id,1);
+											if(userid){
+											ifcollectionAbout1.call(liItem.getElementsByClassName("attenSpan")[0],showPro.id,1);}
 										}
 									}
 								})

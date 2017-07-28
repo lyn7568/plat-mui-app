@@ -106,6 +106,9 @@ mui.ready(function() {
 						/*企业简介*/
 						if($data.descp) {
 							document.getElementById("breifinfo").innerText = $data.descp;
+						}else{
+							document.getElementById("breifinfo").parentNode.style.display = "none";
+							document.getElementById("goCmpBrief").style.borderBottomColor="transparent";
 						}
 						/*应用行业*/
 						var proOther = "";

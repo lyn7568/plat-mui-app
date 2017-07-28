@@ -985,7 +985,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .searchTab .madiaHead.paperHead{background-image: url(../images/default-paper.jpg);}
 .searchTab .madiaHead.patentHead{background-image: url(../images/default-patent.jpg);}
 .searchTab .madiaHead.companyHead{background:#fff;}
-.searchTab .madiaHead.companyHead .boxBlock{width: 90px;height:60px;}
+.searchTab .madiaHead.companyHead .boxBlock{width:88px;height:58px;}
 .searchTab .madiaInfo{padding-left:62px; width: 100%;}
 .searchTab .madiaInfo.OmadiaInfo{padding-left: 102px;}
 .searchTab .flexCenter.OflexCenter{min-height:54px;}
@@ -1168,10 +1168,10 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .showCardI{overflow:hidden;background: url(../images/personal_img_bg_nor@3x.png) center 0 no-repeat;background-size:100% 130px;}
 .cardTop{position:relative;text-align:center;min-height:140px;margin:15px 15px 6px;padding:40px 40px 20px;
 		background: rgba(256,256,256,.6);background: linear-gradient( rgba(256,256,256,.6), rgba(256,256,256,.9));border-radius:6px;box-shadow: 0px 2px 4px 1px rgba(0,0,0,.1);}
-.cardImg{position: absolute;left:50%;margin-left: -31px;width: 60px;height: 60px;overflow: hidden;background-size: cover;/*border:1px solid #E5E5E5;*/background-color: #fff;}
+.cardImg{position: absolute;margin-top:-15px;left:50%;margin-left: -40px;width:80px;height: 80px;overflow: hidden;background-size: cover;/*border:1px solid #E5E5E5;*/background-color: #fff;}
 .cardImg.userCard{background-image:url(../images/default-photo.jpg);border-radius: 50%;}
 .cardImg.cmpCard{border-radius:4px;}
-.cardImg.cmpCard .boxBlock{width: 60px;height: 60px;}
+.cardImg.cmpCard .boxBlock{width: 80px;height: 80px;}
 .cardInfo{margin-top:82px;}
 .cardInfo .h1Font{font-size:16px;}
 .cardInfo .h2Font{font-size:14px;color: #666;}

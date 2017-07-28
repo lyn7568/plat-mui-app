@@ -97,6 +97,7 @@ mui.plusReady(function() {
 					document.getElementById("descp").innerHTML = $data.descp;
 				} else {
 					document.getElementById("descp").parentNode.style.display = "none";
+					document.getElementById("detailProfessor").style.borderBottomColor="transparent";
 				}
 				if($data.hasHeadImage) {
 					document.getElementsByClassName("headimg")[0].src = baseUrl + "/images/head/" + $data.id + "_l.jpg";
@@ -116,11 +117,12 @@ mui.plusReady(function() {
 				if($data.department) {
 					arr.push($data.department);
 				}
-				if($data.orgName) {
-					arr.push($data.orgName);
-				}
+				
 				if(arr.length) {
 					document.getElementById("tMess").innerHTML = arr.join("，")
+				}
+				if($data.orgName) {
+					document.getElementById("tMess2").innerHTML = $data.orgName;
 				}
 
 				if($data.address) {

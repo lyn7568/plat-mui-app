@@ -547,7 +547,7 @@ for(var n=0;n<6;n++) {
 					li.setAttribute("data-id", $data[i].id);
 					li.className = "mui-table-view-cell";
 					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-						'<div class="madiaHead paper Head"></div>' +
+						'<div class="madiaHead paperHead"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
 						'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +

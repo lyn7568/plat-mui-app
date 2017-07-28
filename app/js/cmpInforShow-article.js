@@ -4,6 +4,7 @@ mui.ready(function() {
         var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
 		var orgId = self.cmpId;
+
 		getArticel()
 		
 		mui('#articelShow').on('tap', 'li', function() {
@@ -16,6 +17,12 @@ mui.ready(function() {
 				oFlag:1
 			});
 		})
+		
+		plus.nativeUI.closeWaiting();
+		self.show("slide-in-right", 150);
+		
+	
+		
 		/*企业文章html*/
 		function getArticel() {
 			mui.ajax(baseUrl + "/ajax/article/qaOrgPublish", {

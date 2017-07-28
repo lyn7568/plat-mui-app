@@ -467,7 +467,6 @@ for(var n=0;n<6;n++) {
 					}
 				}
 				for(var i = 0; i < $data.length; i++) {
-					console.log(JSON.stringify($data[i]));
 					var li = document.createElement("li");
 					li.setAttribute("data-id", $data[i].id);
 					li.className = "mui-table-view-cell";
@@ -1005,8 +1004,6 @@ for(var n=0;n<6;n++) {
 					if(obj.pt != searchval) {
 						obj.pt = searchval;
 					}
-					console.log(obj.pt);
-					console.log(searchval);
 					flag = 1;
 					pageNo.pt = 1;
 					search.oAjaxGet(baseUrl + "/ajax/ppatent/pq", {

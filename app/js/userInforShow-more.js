@@ -78,7 +78,7 @@ mui.ready(function() {
 						if(obj.data[i].year) {
 							var year = '发表于' + obj.data[i].year + '年'
 						} else {
-							var year = "至今";
+							var year = "";
 						}
 						if(obj.data[i].descp) {
 							var odescp = '<p class="listtit3 mutlinebox">' + obj.data[i].descp + '</p>'
@@ -88,10 +88,10 @@ mui.ready(function() {
 						var name = obj.data[i].school;
 						//console.log(obj.data[i].year);
 						if(obj.data[i].year) {
-							if(obj.data[i].year != "至今  ") {
+							if(obj.data[i].year != "至今 ") {
 								var year = '毕业于' + obj.data[i].year + '年'
 							} else {
-								var year = "至今";
+								var year = "";
 							}
 							var arrq = [];
 							if(obj.data[i].degree) {
@@ -107,7 +107,7 @@ mui.ready(function() {
 								ode = '<p class="listtit3 mutlinebox">' + arrq.join(",") + '</p>'
 							}
 						} else {
-							var year = "至今";
+							var year = "";
 						}
 					}
 					var os = '<div class="h4Tit listtit2">' + name + '</div>' +

@@ -82,7 +82,7 @@ mui.ready(function() {
 						if(obj.data[i].year) {
 							var year='发表于'+obj.data[i].year+'年'
 						}else{
-							var year="至今";
+							var year="";
 						}
 						
 					} else {

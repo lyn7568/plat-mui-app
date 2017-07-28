@@ -148,7 +148,9 @@ mui.ready(function() {
 				timeout: 10000,
 				dataType: "json",
 				data: {
-					"orgId": orgId
+					"orgId": orgId,
+					"pageSize": 1000,
+					"pageNo": 1
 				},
 				success: function(data) {
 					console.log(JSON.stringify(data))
@@ -193,7 +195,9 @@ mui.ready(function() {
 				timeout: 10000,
 				dataType: "json",
 				data: {
-					"orgId": orgId
+					"orgId": orgId,
+					"pageSize": 1000,
+					"pageNo": 1
 				},
 				success: function(data) {
 					console.log(JSON.stringify(data))

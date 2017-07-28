@@ -47,7 +47,7 @@ mui.ready(function() {
 				data: {
 					"orgId": orgId,
 					"pageNo": 1,
-					"pageSize": 10,
+					"pageSize": 1000,
 				},
 				success: function(data) {
 					console.log(JSON.stringify(data))

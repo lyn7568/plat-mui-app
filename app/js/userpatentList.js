@@ -28,12 +28,6 @@ mui.plusReady(function() {
 				if(data.success) {
 					var obj = data.data.data;
 					if(obj.length > 0) {
-						document.getElementById("patentNum").innerText = obj.length;
-						if(obj.length > 2) {
-							obj.length = 2;
-							document.getElementById("seeMorePatent").classList.remove("displayNone");
-						}
-						alert(1)
 						for(var i = 0; i < obj.length; i++) {
 							var li = document.createElement("li");
 							var li = document.createElement("li");

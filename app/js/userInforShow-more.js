@@ -154,6 +154,7 @@ mui.ready(function() {
 							document.getElementById("perfessorsoJob").style.display = "none";
 						}
 						//荣誉奖项
+						console.log(JSON.stringify($data.honors))
 						if($data.honors.length) {
 							honorShow({
 								data: $data.honors,

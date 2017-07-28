@@ -96,7 +96,7 @@ mui.plusReady(function() {
 				if($data.descp) {
 					document.getElementById("descp").innerHTML = $data.descp;
 				} else {
-					document.getElementById("descp").style.display = "none";
+					document.getElementById("descp").parentNode.display = "none";
 				}
 				if($data.hasHeadImage) {
 					document.getElementsByClassName("headimg")[0].src = baseUrl + "/images/head/" + $data.id + "_l.jpg";

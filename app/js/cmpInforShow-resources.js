@@ -79,6 +79,12 @@ mui.ready(function() {
 				}
 			})
 		}
-		
+		document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
+			var web = plus.webview.getWebviewById("cmpInforShow.html");
+			if(web) 
+				mui.fire(web, "newId",{
+									rd: 1
+							});
+	})
 	});
 })

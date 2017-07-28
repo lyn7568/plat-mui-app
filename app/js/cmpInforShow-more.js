@@ -142,6 +142,11 @@ mui.ready(function() {
 				}
 			});
 		}
-		//comNum();
+		document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
+			var web = plus.webview.getWebviewById("cmpInforShow.html");
+				mui.fire(web, "newId",{
+									rd: 1
+							});
+	})
 	});
 })

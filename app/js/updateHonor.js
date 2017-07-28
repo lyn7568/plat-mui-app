@@ -65,6 +65,8 @@ mui.ready(function() {
 								selector: 'honor',
 								flag: 1
 							});
+						}else{
+							document.getElementById("honor").innerHTML="";
 						}
 
 					}

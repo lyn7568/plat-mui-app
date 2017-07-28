@@ -95,7 +95,7 @@ mui.ready(function() {
 							}
 							var arrq = [];
 							if(obj.data[i].degree) {
-								arrq.push(oDe[obj.data[i].degree]);
+								arrq.push(obj.data[i].degree);
 							}
 							if(obj.data[i].major) {
 								arrq.push(obj.data[i].major);
@@ -125,7 +125,6 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
-						console.log(JSON.stringify(data))
 						plus.nativeUI.closeWaiting();
 						plus.webview.currentWebview().show("slide-in-right", 150);
 						var $data = data.data;

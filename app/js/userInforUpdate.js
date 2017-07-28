@@ -169,6 +169,7 @@ mui.ready(function() {
 							prose.projects=$data.projects;
 						}else{
 							document.getElementById('projectExperience').innerHTML="";
+							document.getElementById('projectExperience').parentNode.display="none";
 						}
 						//工作经历
 						if($data.jobs.length) {
@@ -179,6 +180,7 @@ mui.ready(function() {
 							});
 						}else{
 							document.getElementById('soJob').innerHTML="";
+							document.getElementById('soJob').parentNode.style.display="none";
 						}
 						//荣誉奖项
 						if($data.honors.length) {
@@ -189,6 +191,7 @@ mui.ready(function() {
 							});
 						}else{
 							document.getElementById('honor').innerHTML="";
+							document.getElementById('honor').parentNode.style.display="none";
 						}
 						//教育背景
 						if($data.edus.length) {
@@ -199,6 +202,7 @@ mui.ready(function() {
 							});
 						}else{
 							document.getElementById('education').innerHTML="";
+							document.getElementById('education').parentNode.style.display="none";
 						}
 					}
 				},

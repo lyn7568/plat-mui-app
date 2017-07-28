@@ -20,7 +20,8 @@ mui.ready(function() {
 						
 						var $data = data.data;
 						document.getElementById("companyName").innerText = $data.name;
-						
+						oName=$data.name;
+						comNum()
 						/*企业地址*/
 						if($data.addr) {
 							document.getElementById("address").innerText = $data.addr;
@@ -127,8 +128,7 @@ mui.ready(function() {
 							if($data.scopeOfBusiness) {
 								str += "<li>经营范围：" + $data.scopeOfBusiness + "</li>"
 							}
-							var $str=$(str)
-							document.getElementById("comMes").innerHTML = $str;
+							document.getElementById("comMes").innerHTML = str;
 						}else {
 							document.getElementById("comMes").parentNode.parentNode.style.display="none";
 						}
@@ -142,6 +142,6 @@ mui.ready(function() {
 				}
 			});
 		}
-		comNum();
+		//comNum();
 	});
 })

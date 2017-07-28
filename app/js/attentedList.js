@@ -150,7 +150,7 @@ mui.ready(function() {
 						}else if(num==5){
 							document.getElementById("likePer").nextSibling.classList.remove("displayNone");
 						}else if(num==6){
-							alert(JSON.stringify(data))
+							//alert(JSON.stringify(data))
 							document.getElementById("likeCmp").nextSibling.classList.remove("displayNone");
 							
 						}

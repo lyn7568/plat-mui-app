@@ -190,7 +190,7 @@ mui.plusReady(function() {
 				if(data.success) {
 					var obj = data.data.data;
 					if(obj.length > 0) {
-						document.getElementById("resourceNum").innerText = obj.length;
+						document.getElementById("resourceNum").innerText = data.data.total;
 						if(obj.length > 2) {
 							obj.length = 2;
 							document.getElementById("seeMoreResource").classList.remove("displayNone");
@@ -237,7 +237,7 @@ mui.plusReady(function() {
 				if(data.success) {
 					var obj = data.data.data;
 					if(obj.length > 0) {
-						document.getElementById("articalNum").innerText = obj.length;
+						document.getElementById("articalNum").innerText = data.data.total;
 						if(obj.length > 2) {
 							obj.length = 2;
 							document.getElementById("seeMoreArtical").classList.remove("displayNone");
@@ -283,7 +283,7 @@ mui.plusReady(function() {
 				if(data.success) {
 					var obj = data.data.data;
 					if(obj.length > 0) {
-						document.getElementById("paperNum").innerText = obj.length;
+						document.getElementById("paperNum").innerText = data.data.total;
 						if(obj.length > 2) {
 							obj.length = 2;
 							document.getElementById("seeMorePaper").classList.remove("displayNone");
@@ -326,7 +326,7 @@ mui.plusReady(function() {
 				if(data.success) {
 					var obj = data.data.data;
 					if(obj.length > 0) {
-						document.getElementById("patentNum").innerText = obj.length;
+						document.getElementById("patentNum").innerText = data.data.total;
 						if(obj.length > 2) {
 							obj.length = 2;
 							document.getElementById("seeMorePatent").classList.remove("displayNone");

@@ -65,6 +65,8 @@ mui.ready(function() {
 					arr.push(str + os);
 				}
 				document.getElementById(obj.selector).innerHTML = arr.join('');
+			}else{
+				document.getElementById(obj.selector).innerHTML = "";
 			}
 		}
 		//荣誉奖项
@@ -103,6 +105,8 @@ mui.ready(function() {
 					arr.push(str + os);
 				}
 				document.getElementById(obj.selector).innerHTML = arr.join('');
+			}else{
+				document.getElementById(obj.selector).innerHTML = "";
 			}
 		}
 		function personalMessage() {

@@ -3,6 +3,7 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
 		var oarr=[];
+		var fl;
 		//项目经历
 		var projectShow = function(obj) {
 			if(obj.data.length > 0) {
@@ -72,10 +73,11 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
-						alert(1);
 						var $data = data.data;
 						plus.nativeUI.closeWaiting();
-						plus.webview.currentWebview().show("slide-in-right", 150);
+						if(!fl) {
+							plus.webview.currentWebview().show("slide-in-right", 150);
+						}
 						if($data.jobs) {
 							projectShow({
 								data: $data.jobs,
@@ -104,6 +106,7 @@ mui.ready(function() {
 			var web = plus.webview.create("../html/updateJob-edit.html","updateJob-edit.html", {}, {});
 		})
 		window.addEventListener("newId", function(event) {
+			fl = event.detail.rd;
 			personalMessage();
 		})
 	});

@@ -128,7 +128,9 @@ mui.ready(function() {
 					if(data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("updateProject.html");
-						mui.fire(web, "newId");
+						mui.fire(web, "newId", {
+								rd: 1
+							});
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
 							mui.fire(Page, 'newId', {
@@ -160,7 +162,9 @@ mui.ready(function() {
 					if($data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("updateProject.html");
-						mui.fire(web, "newId");
+						mui.fire(web, "newId", {
+								rd: 1
+							});
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
 							mui.fire(Page, 'newId', {

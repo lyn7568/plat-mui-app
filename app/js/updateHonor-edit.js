@@ -9,11 +9,9 @@ mui.ready(function() {
 		var project = document.getElementById("project");
 		var yearResult = document.getElementById("yearResult");
 		var descp = document.getElementById("descp");
-		console.log(JSON.stringify(ws.data));
 		if(!ws.data) {
 			oDel.classList.add("displayNone");
 		} else {
-			console.log(JSON.stringify(ws.data));
 			oLogin.removeAttribute("disabled");
 			project.innerHTML = (ws.data.name) ? ws.data.name : "";
 			yearResult.innerHTML =(ws.data.year) ? ws.data.year+"年" : "请选择获奖时间";
@@ -74,7 +72,9 @@ mui.ready(function() {
 					if(data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("updateHonor.html");
-						mui.fire(web, "newId");
+						mui.fire(web, "newId", {
+								rd: 1
+							});
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
 							mui.fire(Page, 'newId', {
@@ -107,7 +107,9 @@ mui.ready(function() {
 					if($data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("updateHonor.html");
-						mui.fire(web, "newId");
+						mui.fire(web, "newId", {
+								rd: 1
+							});
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
 							mui.fire(Page, 'newId', {

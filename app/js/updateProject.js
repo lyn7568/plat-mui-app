@@ -2,7 +2,7 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
-		console.log(JSON.stringify(ws.projects));
+		var fl;
 		var oarr=[];
 		//项目经历
 		var projectShow = function(obj) {
@@ -72,7 +72,9 @@ mui.ready(function() {
 					if(data.success) {
 						var $data = data.data;
 						plus.nativeUI.closeWaiting();
-						plus.webview.currentWebview().show("slide-in-right", 150);
+						if(!fl) {
+							plus.webview.currentWebview().show("slide-in-right", 150);
+						}
 						if($data.projects) {
 							projectShow({
 								data: $data.projects,
@@ -99,6 +101,7 @@ mui.ready(function() {
 			var web = plus.webview.create("../html/updateProject-edit.html","updateProject-edit.html", {}, {});
 		})
 		window.addEventListener("newId", function(event) {
+			fl = event.detail.rd;
 			personalMessage();
 		})
 	});

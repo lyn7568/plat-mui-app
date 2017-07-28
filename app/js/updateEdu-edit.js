@@ -123,7 +123,9 @@ mui.ready(function() {
 					if(data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("updateEdu.html");
-						mui.fire(web, "newId");
+						mui.fire(web, "newId",{
+								rd: 1
+							});
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
 							mui.fire(Page, 'newId', {
@@ -155,7 +157,9 @@ mui.ready(function() {
 					if($data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("updateEdu.html");
-						mui.fire(web, "newId");
+						mui.fire(web, "newId",{
+								rd: 1
+							});
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
 							mui.fire(Page, 'newId', {
@@ -164,7 +168,7 @@ mui.ready(function() {
 					}
 				},
 				"error":function(xhr){
-					console.log(JSON.stringify(xhr));
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
 		}

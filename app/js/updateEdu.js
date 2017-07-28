@@ -2,7 +2,7 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
-		console.log(JSON.stringify(ws.projects));
+		var fl;
 		var oDe={
 			1:"博士",
 			2:"硕士",
@@ -74,7 +74,9 @@ mui.ready(function() {
 					if(data.success) {
 						var $data = data.data;
 						plus.nativeUI.closeWaiting();
-						plus.webview.currentWebview().show("slide-in-right", 150);
+						if(!fl) {
+							plus.webview.currentWebview().show("slide-in-right", 150);
+						}
 						//荣誉奖项
 						//教育背景
 						if($data.edus.length) {
@@ -105,6 +107,7 @@ mui.ready(function() {
 			var web = plus.webview.create("../html/updateEdu-edit.html","updateEdu-edit.html", {}, {});
 		})
 		window.addEventListener("newId", function(event) {
+			fl = event.detail.rd;
 			personalMessage();
 		})
 	});

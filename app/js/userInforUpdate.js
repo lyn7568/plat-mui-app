@@ -169,7 +169,7 @@ mui.ready(function() {
 							prose.projects=$data.projects;
 						}else{
 							document.getElementById('projectExperience').innerHTML="";
-							document.getElementById('projectExperience').parentNode.display="none";
+							document.getElementById('projectExperience').parentNode.style.display="none";
 						}
 						//工作经历
 						if($data.jobs.length) {

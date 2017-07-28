@@ -33,7 +33,7 @@
     			</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
-				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix showMPicker" data-options='{"type":"month","beginYear":1900,"endYear":2020}'>
+				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix showMPicker" data-options='{"type":"month","beginYear":1900,"endYear":2020,"hasToCurr":true}'>
     				<span class="mui-pull-left">结束时间</span>
 				    <span class="rightword MResult" id="stopMonth">请选择结束时间</span>
     			</div>
@@ -54,7 +54,8 @@
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/zepto.min.js"></script>
-		<script src="../js/public/mui.picker.min.js"></script>
+		<script src="../js/public/mui.picker.js"></script>
+		<script src="../js/public/mui.dtpicker.js"></script>
 		<script src="../js/public/city.data.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script type="text/javascript" src="../js/updateProject-edit.js"></script>	
@@ -70,6 +71,7 @@
 						var optionsJson = this.getAttribute('data-options') || '{}';
 						var options = JSON.parse(optionsJson);
 						var id = this.getAttribute('id');
+						options.endYear=new Date().getFullYear()
 						/*
 						 * 首次显示时实例化组件
 						 * 示例为了简洁，将 options 放在了按钮的 dom 上
@@ -86,7 +88,12 @@
 							 * rs.h 时，用法同年
 							 * rs.i 分（minutes 的第二个字母），用法同年
 							 */
-							result[i].innerText =  rs.y.text +"年" + rs.m.text +"月";
+							if(rs=="9999") {
+								result[i].innerText =  "至今"
+							}else{
+								result[i].innerText =  rs.y.text +"年" + rs.m.text +"月";
+							}
+							
 							/* 
 							 * 返回 false 可以阻止选择框的关闭
 							 * return false;

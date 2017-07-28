@@ -45,7 +45,7 @@
     			</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
-				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id='showYearPicker' data-options='{"type":"year","beginYear":1900,"endYear":2020}'>
+				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id='showYearPicker' data-options='{"type":"year","beginYear":1900,"endYear":2020,"hasToCurr":true}'>
     				<span class="mui-pull-left">毕业时间</span>
 				    <span class="rightword" id="yearResult">请选择毕业时间</span>
     			</div>
@@ -61,6 +61,8 @@
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/zepto.min.js"></script>
 		<script src="../js/public/mui.picker.min.js"></script>
+		<script src="../js/public/mui.picker.js"></script>
+		<script src="../js/public/mui.dtpicker.js"></script>
 		<script src="../js/public/city.data.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script type="text/javascript" src="../js/updateEdu-edit.js"></script>
@@ -119,6 +121,7 @@
 					 * 示例为了简洁，将 options 放在了按钮的 dom 上
 					 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
 					 */
+					options.endYear=new Date().getFullYear()
 					var picker = new $.DtPicker(options);
 					picker.show(function(rs) {
 						/*
@@ -130,7 +133,12 @@
 						 * rs.h 时，用法同年
 						 * rs.i 分（minutes 的第二个字母），用法同年
 						 */
-						result.innerText =  rs.y.text +"年";
+						if(rs.y.text=="至今") {
+								result.innerText =  "至今"
+							}else{
+								result.innerText =  rs.y.text +"年";
+							}
+						
 						/* 
 						 * 返回 false 可以阻止选择框的关闭
 						 * return false;

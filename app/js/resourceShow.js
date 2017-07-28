@@ -728,9 +728,12 @@ mui.plusReady(function() {
 	}
 	document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
 			var web = plus.webview.getWebviewById("cmpInforShow.html");
-			if(web) 
+			var web1 = plus.webview.getWebviewById("cmpInforShow-resource.html");
+			if(!web1){
+				if(web) 
 				mui.fire(web, "newId",{
 									rd: 1
 							});
+			}
 	})
 });

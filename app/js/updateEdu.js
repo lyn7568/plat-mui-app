@@ -83,6 +83,8 @@ mui.ready(function() {
 								selector: 'education',
 								flag: 2
 							});
+						}else{
+							document.getElementById('education').innerHTML="";
 						}
 
 					}

@@ -2,7 +2,6 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
-		console.log(JSON.stringify(ws.projects));
 		var oarr=[];
 		//项目经历
 		var projectShow = function(obj) {
@@ -73,16 +72,18 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
+						alert(1);
 						var $data = data.data;
 						plus.nativeUI.closeWaiting();
 						plus.webview.currentWebview().show("slide-in-right", 150);
-						console.log(JSON.stringify($data.jobs))
 						if($data.jobs) {
 							projectShow({
 								data: $data.jobs,
 								selector: 'projectExperience',
 								flag: 2
 							});
+						}else{
+							document.getElementById("projectExperience").innerHTML="";
 						}
 
 					}

@@ -23,7 +23,6 @@ mui.ready(function() {
 		if(!ws.data) {
 			oDel.classList.add("displayNone");
 		} else {
-			console.log(JSON.stringify(ws.data));
 			oLogin.removeAttribute("disabled");
 			project.innerHTML = (ws.data.school) ? ws.data.school : "";
 			college.innerHTML = (ws.data.college) ? ws.data.college : "请填写就读的院系(20个字以内)";
@@ -153,7 +152,6 @@ mui.ready(function() {
 				"url": baseUrl + '/ajax/edu/' + ws.data.id,
 				"type": "DELETE",
 				"success": function($data) {
-					console.log(JSON.stringify($data));
 					if($data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("updateEdu.html");

@@ -11,12 +11,10 @@ mui.ready(function() {
 		var stopMonth = document.getElementById("stopMonth");
 		var otitle=document.getElementById('title');
 		var descp = document.getElementById("descp");
-		console.log(JSON.stringify(ws.data));
 		if(!ws.data) {
 			oDel.classList.add("displayNone");
 			oLogin.removeAttribute("disabled");
 		} else {
-			console.log(JSON.stringify(ws.data));
 			oLogin.removeAttribute("disabled");
 			project.innerHTML = (ws.data.company) ? ws.data.company : "";
 			startMonth.innerHTML = (timeT(ws.data)) ? timeT(ws.data).substring(0, timeT(ws.data).indexOf("-")) : "请选择开始时间";
@@ -134,7 +132,7 @@ mui.ready(function() {
 					console.log(JSON.stringify(data))
 					if(data.success) {
 						plus.nativeUI.showWaiting();
-						var web = plus.webview.getWebviewById("updateJob.html");
+						var web = plus.webview.getWebviewById('updateJob.html');
 						mui.fire(web, "newId");
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
@@ -159,14 +157,14 @@ mui.ready(function() {
 			});
 		}
 
-		function delf() {
+		function delf() { 
 			$.ajax({
-				"url": baseUrl + "/ajax/job" + ws.data.id,
+				"url": baseUrl + "/ajax/job/" + ws.data.id,
 				"type": "DELETE",
 				"success": function($data) {
 					if($data.success) {
 						plus.nativeUI.showWaiting();
-						var web = plus.webview.getWebviewById("updateProject.html");
+						var web = plus.webview.getWebviewById("updateJob.html");
 						mui.fire(web, "newId");
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
@@ -174,6 +172,9 @@ mui.ready(function() {
 								rd: 1
 							});
 					}
+				},
+				"error":function(x){
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
 		}

@@ -122,7 +122,6 @@ mui.ready(function() {
 							plus.webview.currentWebview().show("slide-in-right", 150);
 						}
 						var $data = data.data;
-						console.log(JSON.stringify($data.researchAreas));
 						document.getElementById("name").innerText = $data.name;
 						//头像					
 						if($data.hasHeadImage) {

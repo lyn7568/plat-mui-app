@@ -1016,7 +1016,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .frmboxNew .getCode{background: #ff9900;color:#FFFFFF;}
 .frmboxNew .mui-row.mui-input-row:after{display: block;}
 /*第三方快捷登录*/
-.quickbox{ width: 100%;position:relative;top:150px;text-align: center;}
+.quickbox{ width: 100%;position:absolute;bottom:10px;text-align: center;}
 .quicktit{position: relative;min-height: 36px;}
 .quicktit:after{position: absolute;content:"";left:15px;right:15px;top:10px;height: 1px;background: #E5E5E5;}
 .quicktit .borderword{position:absolute;left:50%;margin-left:-60px;z-index:1;padding:0 20px;font-size: 14px; color:#999999;background: #F4f6f8;}

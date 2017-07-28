@@ -273,7 +273,9 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	mui("#aboutAuthors").on("tap", "li>span", function() {
+	mui("#aboutAuthors").on("tap", "li>span", function(e) {
+		var evt=e?e:window.event;
+		evt.stopPropagation();
 		var that = this;
 		if(this.innerHTML === "是我本人") {
 			if(isLogin()) {
@@ -305,12 +307,14 @@ mui.plusReady(function() {
 				return;
 			}
 					collectionAbout1(this.getAttribute("data-id"), '1',this);
+					
 		} else if(this.innerHTML === "已关注") {
 			if(isLogin()) {
 				return;
 			}
 			cancelCollectionAbout1(this.getAttribute("data-id"), '1',this);
 		}
+		
 	})
 	
 	/*判断是否收藏资源文章或者是否关注专家*/

@@ -268,7 +268,9 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	mui("#aboutAuthors").on("tap", "li>span", function() {
+	mui("#aboutAuthors").on("tap", "li>span", function(e) {
+		var evt=e?e:window.event;
+		evt.stopPropagation();
 		var that = this;
 		if(this.innerHTML === "是我本人") {
 			if(isLogin()) {

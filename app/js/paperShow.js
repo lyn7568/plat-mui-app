@@ -45,6 +45,26 @@ mui.plusReady(function() {
 		}
 	});
 
+	//点击进入个人详情页面
+	mui("#aboutAuthors").on("tap","li",function(){
+		var oDataId =this.getAttribute("data-id");
+		if(oDataId.substring(0,1)!="#"){
+			mui.openWindow({
+				url: '../html/userInforShow.html',
+				id: 'html/userInforShow.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					proid: oDataId
+				}
+			});
+		}else{
+			
+		}
+	})
+
 	function getRecourceMe() {
 		mui.plusReady(function() {
 			mui.ajax(baseUrl + '/ajax/ppaper/qo', {
@@ -134,7 +154,7 @@ mui.plusReady(function() {
 										if($proData.success) {
 											var showPro = $proData.data;
 											if(showPro.hasHeadImage == 1) {
-												imgbg = "/images/head/" + showPro.id + "_l.jpg";
+												imgbg = baseUrl + "/images/head/" + showPro.id + "_l.jpg";
 											} else {
 												imgbg = "../images/default-photo.jpg";
 											}

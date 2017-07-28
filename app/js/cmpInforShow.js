@@ -73,7 +73,6 @@ mui.ready(function() {
 				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
-						console.log(JSON.stringify(data));
 						var web = plus.webview.currentWebview()
 						plus.nativeUI.closeWaiting();
 						web.show("slide-in-right", 150);
@@ -84,7 +83,7 @@ mui.ready(function() {
 							document.getElementById("companyName").innerText = $data.forShort;
 						}else{
 							document.getElementById("companyNameT").innerText = $data.name;
-							document.getElementById("companyName").innerText = $data.name;
+							document.getElementById("companyName").innerHTML = $data.name;
 						}
 						
 						if($data.hasOrgLogo) {
@@ -101,7 +100,7 @@ mui.ready(function() {
 						if($data.city) {
 							document.getElementById("address").innerHTML = '<em class="mui-icon iconfontnew icon-address"></em> ' + $data.city;
 						} else {
-							document.getElementById("address").parentNode.style.display = "none";
+							document.getElementById("address").style.display = "none";
 						}
 
 						/*企业简介*/

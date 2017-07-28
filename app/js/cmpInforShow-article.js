@@ -1,11 +1,10 @@
-
 mui.ready(function() {
 	mui.plusReady(function() {
         var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
 		var orgId = self.cmpId;
-
-		getArticel()
+		console.log(orgId)
+		
 		
 		mui('#articelShow').on('tap', 'li', function() {
 			var id = this.getAttribute("data-id");
@@ -24,18 +23,21 @@ mui.ready(function() {
 	
 		
 		/*企业文章html*/
-		function getArticel() {
-			mui.ajax(baseUrl + "/ajax/article/qaOrgPublish", {
+		function getArtice22() {
+			console.log(orgId)
+			mui.ajax(baseUrl + "/ajax/article/pqOrgPublish", {
 				type: "GET",
-				timeout: 10000,
+				timeout: 1000,
 				dataType: "json",
 				data: {
-					"orgId": orgId
+					"orgId": orgId,
+					"pageSize": 100,
+					"pageNo": 1
 				},
 				success: function(data) {
-					console.log(JSON.stringify(data))
+					
 					if(data.success) {
-						var obj = data.data;
+						var obj = data.data.data;
 						if(obj.length>0){
 							for(var i = 0; i < obj.length; i++) {
 								var liItem = document.createElement("li");
@@ -64,6 +66,7 @@ mui.ready(function() {
 				}
 			})
 		}
+		getArtice22()
 	document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
 			var web = plus.webview.getWebviewById("cmpInforShow.html");
 			if(web) 

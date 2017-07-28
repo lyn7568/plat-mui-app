@@ -149,7 +149,7 @@ mui.ready(function() {
 				dataType: "json",
 				data: {
 					"orgId": orgId,
-					"pageSize": 1000,
+					"pageSize": 10,
 					"pageNo": 1
 				},
 				success: function(data) {
@@ -157,7 +157,7 @@ mui.ready(function() {
 					if(data.success) {
 						var obj = data.data.data;
 						if(obj.length>0){
-							document.getElementById("resourceNum").innerText = obj.length;
+							document.getElementById("resourceNum").innerText = data.data.total;
 							if(obj.length>2){
 								obj.length =2;
 								document.getElementById("seeMoreResource").classList.remove("displayNone");
@@ -196,7 +196,7 @@ mui.ready(function() {
 				dataType: "json",
 				data: {
 					"orgId": orgId,
-					"pageSize": 1000,
+					"pageSize": 10,
 					"pageNo": 1
 				},
 				success: function(data) {
@@ -204,7 +204,7 @@ mui.ready(function() {
 					if(data.success) {
 						var obj = data.data.data;
 						if(obj.length>0){
-							document.getElementById("articalNum").innerText = obj.length;
+							document.getElementById("articalNum").innerText = data.data.total;
 							if(obj.length>2){
 								obj.length =2;
 								document.getElementById("seeMoreArtical").classList.remove("displayNone");

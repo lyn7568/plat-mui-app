@@ -1085,7 +1085,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .madiaBlock ul{margin:6px -15px;}
 .madiaBlock ul.infoBlock{margin:0 -15px;}
 .madiaBlock ul.infoBlock .mui-table-view-cell:after{background: transparent;}
-.madiaBlock ul.infoBlock .madiaInfo .authicon{bottom:auto;margin:6px;}
+.madiaBlock ul.infoBlock .madiaInfo .authicon{bottom:auto;}
 .madiaBlock ul.mui-table-view .mui-table-view-cell:after{left:15px;}
 .madiaBlock .madiaTit{position:relative;font-size:16px;color:#666;padding-left:10px;margin-top:15px;padding-bottom: 10px;}
 .madiaBlock .madiaTit:before{display:inline-block;content:"";width:4px;height: 16px;position:absolute;top:1px;left:0;background: #ff9900;}

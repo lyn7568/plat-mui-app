@@ -4,8 +4,6 @@ mui.ready(function() {
         var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
 		var orgId = self.cmpId;
-		companyMessage(orgId);
-
 		getArticel()
 		
 		mui('#articelShow').on('tap', 'li', function() {
@@ -18,29 +16,6 @@ mui.ready(function() {
 				oFlag:1
 			});
 		})
-		
-		
-		
-		function companyMessage(id) {
-			mui.ajax(baseUrl + "/ajax/org/" + id, {
-				dataType: 'json', //数据格式类型
-				type: 'GET', //http请求类型
-				timeout: 10000, //超时设置
-				success: function(data) {
-					if(data.success) {
-						console.log(JSON.stringify(data));
-						var web = plus.webview.currentWebview()
-						plus.nativeUI.closeWaiting();
-						web.show("slide-in-right", 150);
-					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
-				}
-			});
-		}
-		
 		/*企业文章html*/
 		function getArticel() {
 			mui.ajax(baseUrl + "/ajax/article/qaOrgPublish", {

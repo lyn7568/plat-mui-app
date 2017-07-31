@@ -205,13 +205,13 @@ mui.plusReady(function() {
 								})
 							} else {
 								var liItem = document.createElement("li");
-								var otext = (userName == data.data[i].name) ? "是我本人" : "邀请";
+								var otext = (userName == data.data[i].name) ? "<span class='invite'>是我本人</span>" : "<span class='invite invite2'>邀请</span>";
 								liItem.setAttribute("data-id", data.data[i].professorId);
 								liItem.className = "mui-table-view-cell"
 								var oString = '<div class="flexCenter mui-clearfix" style="width:80%;">'
 								oString += '<div class="madiaHead useHead" style="background-image:url(' + imgbg + ')"></div>'
 								oString += '<div class="madiaInfo"><p><span class="h1Font">' + data.data[i].name + '</span></p>'
-								oString += '</div></div><span class="invite">' + otext + '</span>'
+								oString += '</div></div>' + otext 
 								liItem.innerHTML = oString;
 								document.getElementById("aboutAuthors").appendChild(liItem);
 							}

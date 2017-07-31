@@ -1073,7 +1073,8 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .showDetail .attenSpan:before{position:absolute;content:"\e468";top:50%;left:2px;margin-top:-10px;font-size:20px;}
 .showDetail .attenedSpan{background:#CCCCCC;padding-left:8px;}
 .showDetail .attenedSpan:before{content:"";}
-.showDetail .invite{margin-top: -13px;border-radius: 4px;display: inline-block;line-height: normal; position: absolute;top: 50%;right: 15px;padding: 6px 8px; background-color:#ff9900;color: #fff;font-size: 12px;}
+.showDetail .invite{width:80px;text-align:center;margin-top: -13px;border-radius: 4px;display: inline-block;line-height: normal; position: absolute;top: 50%;right: 15px;padding: 6px 8px; background-color:#ff9900;color: #fff;font-size: 14px;}
+.showDetail .invite.invite2{width:56px;}
 .showDetail .showMain{font-size:15px;color:#333;line-height:28px;/*text-indent: 2em;*/}
 .showDetail .showMain img{max-width: 100%;/*margin-left:-32px;*/}
 .showDetail .showMain p{margin-bottom:10px;font-size:15px;color:#333;}

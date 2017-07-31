@@ -614,7 +614,11 @@ mui.plusReady(function() {
 			plus.nativeUI.closeWaiting();
 			if(plus.storage.getItem('userid')) {
 				//shareAddIntegral(2);
-				plus.nativeUI.toast("成功分享论文信息", toastStyle);
+				if(msg.content=="赶快认领，上千家企业正在期待与您合作") {
+					shareAddIntegral(1);
+				}else{
+					plus.nativeUI.toast("成功分享论文信息", toastStyle);
+				}
 			}
 		}, function(e) {
 			plus.nativeUI.closeWaiting();

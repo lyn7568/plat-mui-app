@@ -62,7 +62,7 @@ mui.ready(function(){
 				share.authorize(function() {
 					console.log('授权成功...')
 				}, function(e) {
-					alert("认证授权失败：" + e.code + " - " + e.message);
+					//alert("认证授权失败：" + e.code + " - " + e.message);
 					return null;
 				});
 			}

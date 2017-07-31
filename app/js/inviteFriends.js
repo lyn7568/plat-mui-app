@@ -98,7 +98,6 @@ var person = {
 							var ws = plus.webview.currentWebview();
 							plus.nativeUI.closeWaiting(); //新webview的载入完毕后关闭等待框
 							ws.show("slide-in-right", 150);
-							professorName = ws.proName;
 						}
 						if($info.length == 0) {
 							if(!pro) {
@@ -243,58 +242,18 @@ mui.ready(function() {
 			var oProfessorId=this.getAttribute("id");
 			var  oAuthType=this.getAttribute("authType");
 			var oAuthentication=this.getAttribute("authentication");
-			if(oAuthType==1) {
-						mui.openWindow({
-								url: '../html/proinforbrow.html',
-								id: 'proinforbrow.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-								extras: {
-									proid: oProfessorId
-								},
-							});
-			
-			}else {
-				if(oAuthentication==1){
-					mui.openWindow({
-								url: '../html/researcherProw.html',
-								id: 'researcherProw.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-								extras: {
-									proid: oProfessorId
-								},
-							});
-				}else if(oAuthentication==2||oAuthentication==0){
-					mui.openWindow({
-								url: '../html/companybrowse.html',
-								id: 'html/companybrowse.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-								extras: {
-									proid: oProfessorId
-								},
-							});
-				}else if(oAuthentication==3) {
-					mui.openWindow({
-								url: '../html/studentbrowse.html',
-								id: 'html/studentbrowse.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-left"
-								},
-								extras: {
-									proid: oProfessorId
-								},
-							});
-				}
-			}
+			mui.openWindow({
+				url: '../html/userInforShow.html',
+				id: 'userInforShow.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-left"
+				},
+				extras: {
+					proid: oProfessorId
+				},
+			});
+
 		})
 		var invite = document.getElementById("invite");
 		/*微信及微信朋友圈分享专家*/
@@ -347,6 +306,7 @@ mui.ready(function() {
 				cancel: '取消',
 				buttons: shareBts
 			}, function(e) {
+				professorName = plus.storage.getItem('name');
 				if(e.index == 1) {
 					var share = buildShareService();
 					if(share) {
@@ -383,7 +343,7 @@ mui.ready(function() {
 					share.authorize(function() {
 						console.log('授权成功...')
 					}, function(e) {
-						alert("认证授权失败：" + e.code + " - " + e.message);
+						//alert("认证授权失败：" + e.code + " - " + e.message);
 						return null;
 					});
 				}

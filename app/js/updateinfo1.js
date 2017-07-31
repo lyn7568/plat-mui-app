@@ -186,9 +186,9 @@ mui.ready(function() {
 			}
 		}
 		telePhone.addEventListener("blur", function() {
-				phoneVal()
-			})
-			/*校验用户账号*/
+			phoneVal()
+		})
+		/*校验用户账号*/
 		function userEmail() {
 			var gunf = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
 			if(!gunf.test(trim(mail.value))) {

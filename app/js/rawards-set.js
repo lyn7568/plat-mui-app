@@ -172,6 +172,15 @@ function datalistEach(datalist) {
 			case "24":
 				operate = "绑定邮箱";
 				break;
+			case "25":
+				operate = "分享企业给好友";
+				break;
+			case "26":
+				operate = "分享专利给好友";
+				break;
+			case "27":
+				operate = "分享论文给好友";
+				break;
 			/*case "101":
 				operate = "成功邀请好友";
 				break;

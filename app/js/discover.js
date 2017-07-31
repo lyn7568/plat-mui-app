@@ -70,8 +70,8 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 	//alert(datatype)
 	if(datatype == 1 || datatype == 3) {
 		mui.openWindow({
-			url: '../html/proinforbrow.html',
-			id: 'html/proinforbrow.html',
+			url: '../html/userInforShow.html',
+			id: 'html/userInforShow.html',
 			show: {
 				autoShow: false,
 				aniShow: "slide-in-right",
@@ -81,32 +81,17 @@ mui('#discoverBox').on('tap', '.gouserurl', function() {
 			}
 		});
 	} else if(datatype == 2 || datatype == 4) {
-		if(iftauth == 3) {
-			mui.openWindow({
-				url: '../html/cmpinfor-index.html',
-				id: 'cmpinfor-index.html',
-				show: {
-					autoShow: false,
-					aniShow: "slide-in-right",
-				},
-				extras: {
-					orgId: id,
-				}
-			});
-		} else {
-			mui.openWindow({
-				url: '../html/cmpinfor-Unindex.html',
-				id: 'cmpinfor-Unindex.html',
-				show: {
-					autoShow: false,
-					aniShow: "slide-in-right",
-				},
-				extras: {
-					orgId: id,
-					flag: 0
-				}
-			});
-		}
+		mui.openWindow({
+			url: '../html/cmpInforShow.html',
+			id: 'cmpInforShow.html',
+			show: {
+				autoShow: false,
+				aniShow: "slide-in-right",
+			},
+			extras: {
+				cmpId: id,
+			}
+		});
 	}
 });
 
@@ -171,6 +156,7 @@ function pullupRefresh() {
 	}, 1000);
 }
 function pulldownRefresh() {
+	pageIndex=1;
 	setTimeout(function() {
 		getOnePase();
 		mui('#pullrefresh2').pullRefresh().endPulldownToRefresh();
@@ -280,6 +266,7 @@ function datalistEach(datalist) {
 			$itemlist.find("#newstype").addClass("articalLabel");
 			$itemlist.find("#newsimg").addClass("artical-default");
 			$itemlist.find("#userimg").addClass("cmplogo");
+			$itemlist.find("#userimg").html('<div class="boxBlock"><img class="boxBlockimg companyImg" src="../images/default-icon.jpg"></div>');
 			if(item.image) {
 				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/article/" + item.image + ");");
 			}
@@ -298,6 +285,7 @@ function datalistEach(datalist) {
 			$itemlist.find("#newstype").addClass("resourceLabel");
 			$itemlist.find("#newsimg").addClass("resource-default");
 			$itemlist.find("#userimg").addClass("cmplogo");
+			$itemlist.find("#userimg").html('<div class="boxBlock"><img class="boxBlockimg companyImg" src="../images/default-icon.jpg"></div>');
 			if(item.image) {
 				$itemlist.find("#newsimg").attr("style", "background-image: url(" + baseUrl + "/data/resource/" + item.image + ");");
 			}
@@ -347,7 +335,7 @@ function cmpFun(id, $itemlist) {
 					$itemlist.find("#nameSpan").text(data.data.name);
 				}
 				if(data.data.hasOrgLogo) {
-					$itemlist.find("#userimg").attr("style", "background-image: url(" + baseUrl + "/images/org/" + data.data.id + ".jpg);");
+					$itemlist.find(".companyImg").attr("src",baseUrl + "/images/org/" + data.data.id + ".jpg");
 				}
 				$itemlist.find(".userurl").attr("data-id", data.data.id);
 				$itemlist.find(".userurl").attr("data-iftauth", data.data.authStatus);

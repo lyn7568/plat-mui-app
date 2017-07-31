@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>修改个人信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			.infocon{
+				display:none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">修改资料</h1>
+		</header>
+		
+		<!-- 主页面内容容器 -->
+    	<div class="mui-content">
+    		<!-- 主界面具体展示内容 -->
+    		<div class="mui-input-group marginbox searchTab">
+    			<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix">
+    				<div class="flexCenter mui-clearfix">
+		                <div class="madiaHead useHead" id="userimg" ></div>
+						<div class="madiaInfo" id="editProfile">
+							<div class="h1Font" id="name"></div>
+							<div class="h2Font">修改基本信息</div>
+						</div>
+		            </div>
+    			</div>
+ 		    </div>
+    		<div class="mui-input-group mainbox">
+    			<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id="breif">个人简介</div>
+ 		    </div>
+ 		    <div class="mui-input-group mainbox">
+    			<div class="infocontit infocontitM mui-navigate-right mui-clearfix" id="subject">
+    				<span class="mui-pull-left">学术领域</span>
+				    <span class="rightword" id="subjectNum"></span>
+    			</div>
+    			<div class="infocontit infocontitM mui-navigate-right mui-clearfix" id="researchArea">
+    				<span class="mui-pull-left">研究方向</span>
+				    <span class="rightword" id="researchAreaNum"></span>
+    			</div>
+    			<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id="industry">
+    				<span class="mui-pull-left">行业领域</span>
+				    <span class="rightword" id="industryNum"></span>
+    			</div>
+ 		    </div>
+		    <div class="mui-input-group mainbox" id="perfessorExperience">
+				<div class="infocontit infocontitM mui-navigate-right mui-clearfix" id="oproject">项目经历</div>
+		       <div class="infocon">
+			       <ul class="mui-table-view listitembox" id="projectExperience">
+			          
+			       </ul>	
+		       </div>
+		    </div>
+		     <div class="mui-input-group mainbox" id="perfessorhonor">
+				<div class="infocontit infocontitM mui-navigate-right mui-clearfix" id="ohonor">荣誉奖项</div>
+		       <div class="infocon">
+			       <ul class="mui-table-view listitembox" id="honor">
+			          
+			       </ul>	
+		       </div>
+		    </div>
+		    <div class="mui-input-group mainbox" id="perfessorsoJob">
+				<div class="infocontit infocontitM mui-navigate-right mui-clearfix" id="oJob1">工作经历</div>
+		       <div class="infocon">
+			       <ul class="mui-table-view listitembox" id="soJob">
+			           
+			       </ul>	
+		       </div>
+		    </div>
+		    <div class="mui-input-group mainbox" id="perfessorEducation">
+				<div class="infocontit infocontitM mui-navigate-right mui-clearfix" id="oeduction">教育背景</div>
+		       <div class="infocon">
+			       <ul class="mui-table-view listitembox" id="education">
+			          
+			       </ul>	
+		       </div>
+		    </div>
+        </div>
+		
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/userInforUpdate.js"></script>
+	</body>
+
+</html>

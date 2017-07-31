@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人浏览</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/previewImage.css"/>
+	</head>
+
+	<body>
+		<div class="maskBlack" id="maskBlack"></div>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit" id="professorName">专家名称</h1>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
+		</header>
+
+		<!--主页面底部菜单-->
+		<nav class="mui-bar mui-bar-tab footbox">
+			<div class="mui-row artfoot">
+				<div class="mui-col-xs-9" id="consultBtn">
+					<div class="consultdiv">咨询</div>
+				</div>
+				<div class="mui-col-xs-2">
+					<span class="mui-icon iconfontnew icon-shoucang" id="ifAttend"></span><!--已收藏 icon-yishoucang-->
+				</div>
+				<div class="mui-col-xs-1" id="shareOut">
+					<span class="mui-icon iconfontnew icon-fenxiang"></span>
+				</div>
+			</div>
+		</nav>
+		<!-- 主页面内容容器 -->
+		<div class="mui-content">
+			<!-- 主界面具体展示内容 -->
+			<div class="showCardI">
+				<div class="cardTop">
+					<div class="cardImg userCard">
+						<img class="headimg headRadius" src="../images/default-photo.jpg" data-preview-src data-preview-group="1" style="width:80px;height:80px;border-radius:50%;"/>
+					</div>
+					<div class="cardInfo">
+						<p><span class="h1Font" id="professor"></span><em class="authicon " title="科袖认证专家" id="nameLi"></em></p>
+						<p class="h2Font" id="tMess"></p>
+						<p class="h2Font" id="tMess2"></p>
+						<p class="h3Font" id="address"></p>
+					</div>		
+				</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorBreifinfo">
+					<div class="infocontit mui-navigate-right mui-clearfix" id="detailProfessor">个人介绍 </div>
+					<div class="infocon">
+						<span class="breifinfo mui-ellipsis-5" id="descp">
+				       		
+				        </span>
+					</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorInfosubject">
+					<div class="infocontit">学术领域</div>
+					<div class="infocon listArea">
+						<ul id="subjectlist">
+							
+						</ul>
+					</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorReserachMess">
+					<div class="infocontit">研究方向</div>
+					<div class="infocon reserachMess">
+
+					</div>
+			</div>
+			<div class="mui-input-group mainbox" id="professorinfoapply">
+					<div class="infocontit">行业领域</div>
+					<div class="infocon listArea">
+						<ul id="industry1">
+							
+						</ul>
+					</div>
+			</div>
+			<div class="mui-input-group mainbox">
+					<div class="infocontit">资源 (<span id="resourceNum">0</span>)</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view" id="resourceShow">
+					        
+					    </ul>
+					</div>
+					<div class="seeMore displayNone" id="seeMoreResource"><em>查看更多</em></div>
+			</div>
+			<div class="mui-input-group mainbox">
+					<div class="infocontit">专利 (<span id="patentNum">0</span>)</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view" id="patent">
+					       
+					    </ul>
+					</div>
+					<div class="seeMore displayNone" id="seeMorePatent"><em>查看更多</em></div>
+			</div>
+			<div class="mui-input-group mainbox">
+					<div class="infocontit">论文 (<span id="paperNum">0</span>)</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view" id="paper">
+					        
+					    </ul>
+					</div>
+					<div class="seeMore displayNone" id="seeMorePaper"><em>查看更多</em></div>
+			</div>
+			<div class="mui-input-group mainbox">
+					<div class="infocontit">文章 (<span id="articalNum">0</span>)</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view" id="articelShow">
+					        
+					    </ul>
+					</div>
+					<div class="seeMore displayNone" id="seeMoreArtical"><em>查看更多</em></div>
+			</div>
+		</div>
+		
+		<div class="shareBlock" id="shareBlock">
+			<h2 class="shareTit"><span>分享到</span></h2>
+			<ul class="mui-table-view noactiveTab">
+				<li class="mui-table-view-cell">
+					<em class="wayicon wechaticon"></em>
+					<span>微信好友</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon friendstericon"></em>
+					<span>微信朋友圈</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon sinaicon"></em>
+					<span>新浪微博</span>
+				</li>
+			</ul>
+			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/userInforShow.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		    
+		    //var BtnMore=document.getElementById("BtnMore");
+		    var shareOut=document.getElementById("shareOut");
+		    var cancelShare=document.getElementById("cancelShare");
+		    var maskBlack=document.getElementById("maskBlack");
+		    var shareBlock=document.getElementById("shareBlock");
+		    
+		    
+		    /*BtnMore.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })*/
+		    shareOut.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    cancelShare.addEventListener("tap",function(){
+		    	maskBlack.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		    maskBlack.addEventListener("tap",function(){
+		    	this.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		</script>
+	</body>
+
+</html>

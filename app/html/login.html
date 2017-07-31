@@ -7,6 +7,9 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-content-padded{position: relative;z-index:6;}
+		</style>
 	</head>
 
 	<body>
@@ -45,6 +48,37 @@
 		<script src="../js/public/base.js"></script>
 		<script src="../js/login.js"></script>
 		<script src="../js/weChatlogin.js"></script>
+		<script type="text/javascript">
+	    	var anos=ifiosAmdandroid();
+			function focusThis(){
+				if(anos==0) {
+		    		document.getElementsByClassName("quickbox")[0].style.position="relative";
+			    	document.getElementsByClassName("quickbox")[0].style.top="150px";
+			    	document.getElementsByClassName("quickbox")[0].style.bottom="auto";
+			    }
+			}
+			function blurThis(){
+				if(anos==0) {
+		    		document.getElementsByClassName("quickbox")[0].style.position="fixed";
+			    	document.getElementsByClassName("quickbox")[0].style.top="auto";
+			    	document.getElementsByClassName("quickbox")[0].style.bottom="10px";
+			    }
+			}
+	    	document.getElementById("username").addEventListener("focus",function(){
+	    		focusThis();
+	    	})
+	    	document.getElementById("username").addEventListener("blur",function(){
+	    		blurThis();
+	    	})
+	    	
+	    	document.getElementById("password").addEventListener("focus",function(){
+	    		focusThis();
+	    	})
+	    	document.getElementById("password").addEventListener("blur",function(){
+	    		blurThis();
+	    	})
+	    	
+		</script>
 	</body>
 
 </html>

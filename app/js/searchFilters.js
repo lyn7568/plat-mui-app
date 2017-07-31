@@ -140,7 +140,7 @@ mui.plusReady(function() {
 				arr[n] = document.getElementsByClassName('orangeColor')[n].innerHTML
 			}
 		}
-		var web = plus.webview.getWebviewById("../html/searchListNew.html");
+		var web = plus.webview.getWebviewById("../html/searchListNew2.html");
 		mui.fire(web, "newId", {
 			arry: arr
 		});

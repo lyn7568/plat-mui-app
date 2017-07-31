@@ -144,10 +144,7 @@ mui.plusReady(function() {
 		save_img();
 		//return;
 		imgOk = document.querySelector("#img_base64").value;
-		//alert(angle)
-		console.log(flag);
-		console.log(list.resourceId);
-		//alert(angle)
+		
 		if(flag == 1) {
 			var urlAdd = baseUrl + "/ajax/images/saveResImg";
 			var $data = {
@@ -181,7 +178,11 @@ mui.plusReady(function() {
 								rd: 1
 							});
 						} else if(headFlag == 0) {
-							var Page = plus.webview.getWebviewById('html/proinforupdate.html');
+							var pp = plus.webview.getWebviewById('updateBasic.html');
+							mui.fire(pp, 'newId', {
+								rd: 1
+							});
+							var Page = plus.webview.getWebviewById('userInforUpdate.html');
 							mui.fire(Page, 'newId', {
 								rd: 1
 							});

@@ -101,13 +101,18 @@ mui.plusReady(function() {
 							othisInfo.setAttribute("data-id",mydata.organization.id);
 							othisInfo.setAttribute("data-status",mydata.organization.authStatus);
 							othisInfo.setAttribute("data-type",mydata.resourceType);
-							othisName.innerHTML = mydata.organization.name;
+							if(mydata.organization.forShort){
+								othisName.innerHTML = mydata.organization.forShort;
+							}else{
+								othisName.innerHTML = mydata.organization.name;
+							}
 							if(mydata.organization.subject) {
 								othisOther.innerHTML = (mydata.organization.subject).replace(/,/, " | ");
 							}
 							othisPic.classList.add("cmpHead");
+							othisPic.innerHTML='<div class="boxBlock" style="width:48px;height:48px;"><img class="boxBlockimg" id="companyImg" src="../images/default-icon.jpg"></div>'
 							if(mydata.organization.hasOrgLogo) {
-								othisPic.style.backgroundImage = 'url('+ baseUrl +'/images/org/' + mydata.organization.id + '.jpg)';
+								document.getElementById("companyImg").src= baseUrl + "/images/org/" + mydata.organization.id + ".jpg";
 							}
 							if(mydata.organization.authStatus==3){
 								oauthFlag.classList.add("authicon-com-ok");	
@@ -190,7 +195,7 @@ mui.plusReady(function() {
 	mui(".tagList").on("tap","li",function(){
 		var tagText = this.getElementsByTagName("span")[0].innerText;
 		 plus.nativeUI.showWaiting();
-		var web = plus.webview.create("../html/searchListNew.html", "../html/searchListNew.html", {}, {
+		var web = plus.webview.create("../html/searchListNew2.html?content=3", "../html/searchListNew2.html", {}, {
 			key: tagText,
 			qiFlag: 2
 		}); 
@@ -219,8 +224,10 @@ mui.plusReady(function() {
 								dataType: "json",
 								success: function(data) {
 									if(data.success) {
+										var comName="";
 										if($html[n].article.articleType==1) {
 											var stl = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
+											comName=data.data.name;
 										}else {
 											var stl={};
 											stl.sty="";
@@ -228,6 +235,11 @@ mui.plusReady(function() {
 											if(data.data.authStatus==3) {
 												stl.sty="authicon-com-ok";
 												stl.title="认证企业";
+											}
+											if(data.data.forShort){
+												comName=data.data.forShort;
+											}else{
+												comName=data.data.name;
 											}
 										}
 										var likeRUl = document.getElementById("likeArtical");
@@ -244,7 +256,7 @@ mui.plusReady(function() {
 										}
 										str += '<div class="madiaInfo OmadiaInfo">'
 										str += '<p class="mui-ellipsis-2 h1Font">' + $html[n].article.articleTitle + '</p>'
-										str += '<p><span class="h2Font">' + data.data.name + '</span><em class="authicon ' + stl.sty + '" title="' + stl.title + '"></em></p>'
+										str += '<p><span class="h2Font">' + comName + '</span><em class="authicon ' + stl.sty + '" title="' + stl.title + '"></em></p>'
 										str += '</div></div>'
 										likeRli.innerHTML = str;
 										likeRUl.appendChild(likeRli,likeRUl.lastChild);
@@ -304,7 +316,12 @@ mui.plusReady(function() {
 								stl.sty="authicon-com-ok";
 								stl.title="认证企业";
 							}
-							var name= $respond[i].organization.name;
+							var name="";
+							if($respond[i].organization.forShort){
+								name= $respond[i].organization.forShort;
+							}else{
+								name= $respond[i].organization.name;
+							}
 						}else {
 							var stl = autho($respond[i].editProfessor.authType, $respond[i].editProfessor.orgAuth, $respond[i].editProfessor.authStatus);
 							var name= $respond[i].editProfessor.name;
@@ -342,8 +359,8 @@ mui.plusReady(function() {
 		var reType = this.getAttribute("data-type");
 		if(reType=="1"){
 			mui.openWindow({
-				url: '../html/proinforbrow.html',
-				id: 'html/proinforbrow.html',
+				url: '../html/userInforShow.html',
+				id: 'html/userInforShow.html',
 				show: {
 					autoShow: false,
 					aniShow: "slide-in-left"
@@ -354,33 +371,17 @@ mui.plusReady(function() {
 			});
 		}else{
 			var cmpId=this.getAttribute("data-id");
-			var cmpStatus=this.getAttribute("data-status");
-			if(cmpStatus==3){
-				mui.openWindow({
-					url: '../html/cmpinfor-index.html',
-					id: 'cmpinfor-index.html',
-					show: {
-						autoShow: false,
-						aniShow: "slide-in-right",
-					},
-					extras: {
-						orgId: cmpId,
-					}
-				});
-			}else{
-				mui.openWindow({
-					url: '../html/cmpinfor-Unindex.html',
-					id: 'cmpinfor-Unindex.html',
-					show: {
-						autoShow: false,
-						aniShow: "slide-in-right",
-					},
-					extras: {
-						orgId: cmpId,
-						flag: 0
-					}
-				});
-			}
+			mui.openWindow({
+				url: '../html/cmpInforShow.html',
+				id: 'cmpInforShow.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					cmpId: cmpId,
+				}
+			});
 		}
 		
 			
@@ -669,7 +670,7 @@ mui.plusReady(function() {
 				share.authorize(function() {
 					console.log('授权成功...')
 				}, function(e) {
-					alert("认证授权失败：" + e.code + " - " + e.message);
+					//alert("认证授权失败：" + e.code + " - " + e.message);
 					return null;
 				});
 			}
@@ -693,13 +694,44 @@ mui.plusReady(function() {
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {
-				plus.nativeUI.toast('已取消分享', {
-					verticalAlign: 'center'
-				});
+				
 			}
 		});
 	}
 
 	/*图像预览*/
 	mui.previewImage();
+	 moreMes();
+	function moreMes(){
+		document.getElementById("BtnMore").addEventListener("tap",function(){
+			var oUrl=baseUrl + "/images/logo180.png";
+		if(imgFlag==1) {
+			oUrl=firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg");
+		}
+			plus.nativeUI.showWaiting(); //显示原生等待框
+		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
+			proid: resourceId,
+			name:"resource",
+			data:{
+					content: oapplication.innerHTML,
+					title: oresourceName.innerHTML,
+					href: baseUrl + "/e/r.html?id=" + resourceId ,
+					thumbs: [oUrl]
+				},
+			weiboData:{
+					content: oresourceName.innerHTML+ baseUrl + "/e/r.html?id=" + resourceId,
+				}
+		})
+		})
+	}
+	document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
+			var web = plus.webview.getWebviewById("cmpInforShow.html");
+			var web1 = plus.webview.getWebviewById("cmpInforShow-resource.html");
+			if(!web1){
+				if(web) 
+				mui.fire(web, "newId",{
+									rd: 1
+							});
+			}
+	})
 });

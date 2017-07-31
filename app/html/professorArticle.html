@@ -48,18 +48,18 @@
 			    <div class="showDetail">
 			    		<div class="h1Font hWeight" id="articleName"></div>
 			    		<div class="madiaBlock">
-			    			<ul class="mui-table-view noactiveTab" style="margin:0 -15px;">
-					        <li class="mui-table-view-cell" id="personAL">
-					            <div class="flexCenter mui-clearfix">
-					                <div class="madiaHead useHead" id="messImg"></div>
-									<div class="madiaInfo" style="padding-right: 60px;">
-										<p><span class="h1Font" id="name"></span><em class="authicon" title="" id="auth"></em></p>
-										<p class="h3Font" id="oTime"></p>
-									</div>
-					            </div>
-					            <span class="mui-icon attenSpan" id="attBtn" style="display:block;">关注</span>
-					        </li>
-					    </ul>
+			    			<ul class="mui-table-view noactiveTab infoBlock">
+						        <li class="mui-table-view-cell" id="personAL">
+						            <div class="flexCenter mui-clearfix">
+						                <div class="madiaHead useHead" id="messImg"></div>
+										<div class="madiaInfo" style="padding-right: 60px;">
+											<p><span class="h1Font mui-ellipsis" id="name"></span><em class="authicon" title="" id="auth"></em></p>
+											<p class="h3Font" id="oTime"></p>
+										</div>
+						            </div>
+						            <span class="mui-icon attenSpan" id="attBtn" style="display:block;">关注</span>
+						        </li>
+						    </ul>
 			    		</div>
 				    	<!--文章内容区-->
 					<div class="showMain" id="articleContent">
@@ -135,17 +135,17 @@
 		    	document.getElementById("operCol").style.display="block";
 		    })
 		    
-		    var BtnMore=document.getElementById("BtnMore");
+		    //var BtnMore=document.getElementById("BtnMore");
 		    var shareOut=document.getElementById("shareOut");
 		    var cancelShare=document.getElementById("cancelShare");
 		    var maskBlack=document.getElementById("maskBlack");
 		    var shareBlock=document.getElementById("shareBlock");
 		    
 		    
-		    BtnMore.addEventListener("tap",function(){
+		   /* BtnMore.addEventListener("tap",function(){
 		    	maskBlack.style.display="block";
 		    	shareBlock.style.display="block";
-		    })
+		    })*/
 		    shareOut.addEventListener("tap",function(){
 		    	maskBlack.style.display="block";
 		    	shareBlock.style.display="block";

@@ -25,7 +25,6 @@ mui.plusReady(function() {
 				timeout: 10000, //超时时间设置为10秒；
 				traditional: true,
 				success: function(data) {
-					console.log(JSON.stringify(data));
 					if(data.success) {
 						setTimeout(function() {
 							document.getElementById("searchval").focus()
@@ -53,8 +52,8 @@ mui.plusReady(function() {
 		createWin: function(keyValue) {
 			document.activeElement.blur();
 			mui.openWindow({
-				url: '../html/searchListNew.html',
-				id: '../html/searchListNew.html',
+				url: '../html/searchListNew2.html?content=1',
+				id: '../html/searchListNew2.html',
 				show: {
 					autoShow: false,
 					aniShow: "fade-in",

@@ -26,9 +26,7 @@ mui.ready(function() {
 				success: function(data) {
 					if(data.success) {
 						console.log(JSON.stringify(data));
-						var web = plus.webview.currentWebview()
-						plus.nativeUI.closeWaiting();
-						web.show("slide-in-right", 150);
+						
 					}
 				},
 				error: function() {
@@ -51,6 +49,9 @@ mui.ready(function() {
 				},
 				success: function(data) {
 					console.log(JSON.stringify(data))
+					var web = plus.webview.currentWebview()
+						plus.nativeUI.closeWaiting();
+						web.show("slide-in-right", 150);
 					if(data.success) {
 						var obj = data.data.data;
 						if(obj.length>0){

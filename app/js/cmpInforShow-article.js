@@ -17,8 +17,7 @@ mui.ready(function() {
 			});
 		})
 		
-		plus.nativeUI.closeWaiting();
-		self.show("slide-in-right", 150);
+		
 		
 	
 		
@@ -35,7 +34,8 @@ mui.ready(function() {
 					"pageNo": 1
 				},
 				success: function(data) {
-					
+					plus.nativeUI.closeWaiting();
+					self.show("slide-in-right", 150);
 					if(data.success) {
 						var obj = data.data.data;
 						if(obj.length>0){
@@ -61,7 +61,7 @@ mui.ready(function() {
 					}
 				},
 				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					//plus.nativeUI.toast("服务器链接超时", toastStyle);
 					return;
 				}
 			})

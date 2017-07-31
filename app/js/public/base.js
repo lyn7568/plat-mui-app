@@ -152,7 +152,7 @@ function shareAddIntegral(num) {
 			if(data.success && data.data) {
 				plus.nativeUI.toast(title, toastStyle);
 			} else {
-				plus.nativeUI.toast("分享超过10次，不能再获得积分和成长值", toastStyle);
+				plus.nativeUI.toast(title, toastStyle);
 			}
 		},
 		error: function() {

@@ -98,7 +98,6 @@ var person = {
 							var ws = plus.webview.currentWebview();
 							plus.nativeUI.closeWaiting(); //新webview的载入完毕后关闭等待框
 							ws.show("slide-in-right", 150);
-							professorName = ws.proName;
 						}
 						if($info.length == 0) {
 							if(!pro) {
@@ -307,6 +306,7 @@ mui.ready(function() {
 				cancel: '取消',
 				buttons: shareBts
 			}, function(e) {
+				professorName = plus.storage.getItem('name');
 				if(e.index == 1) {
 					var share = buildShareService();
 					if(share) {
@@ -343,7 +343,7 @@ mui.ready(function() {
 					share.authorize(function() {
 						console.log('授权成功...')
 					}, function(e) {
-						alert("认证授权失败：" + e.code + " - " + e.message);
+						//alert("认证授权失败：" + e.code + " - " + e.message);
 						return null;
 					});
 				}

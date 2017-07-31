@@ -19,14 +19,14 @@ mui.ready(function() {
 						web.show("slide-in-right", 150);
 						
 						var $data = data.data;
-						document.getElementById("companyName").innerText = $data.name;
+						document.getElementById("companyName").innerHTML = $data.name;
 						oName=$data.name;
 						comNum()
 						/*企业地址*/
 						if($data.addr) {
 							document.getElementById("address").innerText = $data.addr;
 						} else {
-							document.getElementById("address").parentNode.parentNode.style.display = 'none';
+							document.getElementById("address").parentNode.style.display = 'none';
 						}
 						/*时间*/
 						if($data.foundTime) {
@@ -99,34 +99,34 @@ mui.ready(function() {
 							var $data = data.data;
 							var str = "";
 							if($data.num) {
-								str += "<li>工商注册号：" + $data.num + "</li>"
+								str += "<li>工商注册号：<span>" + $data.num + "</span></li>"
 							}
 							if($data.code) {
-								str += "<li>组织机构代码：" + $data.code + "</li>"
+								str += "<li>组织机构代码：<span>" + $data.code + "</span></li>"
 							}
 							if($data.creditCode) {
-								str += "<li>统一信用代码：" + $data.creditCode + "</li>"
+								str += "<li>统一信用代码：<span>" + $data.creditCode + "</span></li>"
 							}
 							if($data.type) {
-								str += "<li>企业类型：" + $data.type + "</li>"
+								str += "<li>企业类型：<span>" + $data.type + "</span></li>"
 							}
 							if($data.industry) {
-								str += "<li>行业：" + $data.industry + "</li>"
+								str += "<li>行业：<span>" + $data.industry + "</span></li>"
 							}
 							if($data.operatingPeriod) {
-								str += "<li>营业期限：" + $data.operatingPeriod + "</li>"
+								str += "<li>营业期限：<span>" + $data.operatingPeriod + "</span></li>"
 							}
 							if($data.dayOfApproval) {
-								str += "<li>核准日期：" + $data.dayOfApproval + "</li>"
+								str += "<li>核准日期：<span>" + $data.dayOfApproval + "</span></li>"
 							}
 							if($data.manager) {
-								str += "<li>登记机关：" + $data.manager + "</li>"
+								str += "<li>登记机关：<span>" + $data.manager + "</span></li>"
 							}
 							if($data.addr) {
-								str += "<li>注册地址：" + $data.addr + "</li>"
+								str += "<li>注册地址：<span>" + $data.addr + "</span></li>"
 							}
 							if($data.scopeOfBusiness) {
-								str += "<li>经营范围：" + $data.scopeOfBusiness + "</li>"
+								str += "<li>经营范围：<span>" + $data.scopeOfBusiness + "</span></li>"
 							}
 							document.getElementById("comMes").innerHTML = str;
 						}else {

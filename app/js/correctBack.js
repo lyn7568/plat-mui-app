@@ -6,10 +6,12 @@ mui.ready(function(){
 		var con=document.getElementById("question");
 		con.addEventListener("keyup", function() {
 				if(this.value.length>0) {
+					document.getElementById("fontAdd").innerHTML = this.value.length;
 					document.getElementById("refer").removeAttribute("disabled");
 				}else if(this.value.length==0) {
 					document.getElementById("refer").setAttribute("disabled","true");
 				}
+				document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		document.getElementById("refer").addEventListener("tap",function(){
 			if(!plus.storage.getItem('userid')){
@@ -41,13 +43,13 @@ mui.ready(function(){
 				timeout: 10000, //超时设置				
 				success: function(data) {
 					if(data.success) {
+						plus.nativeUI.toast("感谢您的反馈，我们马上处理。", toastStyle);
 						mui.back();
 					}
 				}
 			})
 		})
 		window.addEventListener("newId", function(event) {
-		alert(111)
-	});
+		});
 	})
 })

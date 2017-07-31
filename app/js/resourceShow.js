@@ -694,9 +694,7 @@ mui.plusReady(function() {
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {
-				plus.nativeUI.toast('已取消分享', {
-					verticalAlign: 'center'
-				});
+				
 			}
 		});
 	}

@@ -344,14 +344,13 @@ mui.ready(function() {
 			share.send(msg, function() {
 				plus.nativeUI.closeWaiting();
 				if(plus.storage.getItem('userid')) {
-					shareAddIntegral(2);
+					//shareAddIntegral(2);
+					plus.nativeUI.toast("成功分享企业信息", toastStyle);
 				}
 			}, function(e) {
 				plus.nativeUI.closeWaiting();
 				if(e.code == -2) {
-					plus.nativeUI.toast('已取消分享', {
-						verticalAlign: 'center'
-					});
+					
 				}
 			});
 		}

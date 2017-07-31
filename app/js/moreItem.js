@@ -81,16 +81,26 @@ mui.ready(function(){
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
 			if(plus.storage.getItem('userid')) {
-				shareAddIntegral(3);
+				if(self.name=="professor") {
+					shareAddIntegral(1);
+				}else if(self.name=="resource"){
+					shareAddIntegral(2);
+				}else if(self.name=="article"){
+					shareAddIntegral(3);
+				}else if(self.name=="org"){
+					plus.nativeUI.toast("成功分享企业信息", toastStyle);
+				}else if(self.name=="paper"){
+					plus.nativeUI.toast("成功分享论文信息", toastStyle);
+				}else if(self.name=="patent"){
+					plus.nativeUI.toast("成功分享专利信息", toastStyle);
+				}
 			}
 
 		}, function(e) {
 			console.log(JSON.stringify(e))
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {
-				plus.nativeUI.toast('已取消分享', {
-					verticalAlign: 'center'
-				});
+				
 			}
 		});
 	}

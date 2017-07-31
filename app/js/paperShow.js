@@ -205,7 +205,7 @@ mui.plusReady(function() {
 								})
 							} else {
 								var liItem = document.createElement("li");
-								var otext = (userName == data.data[i].name) ? "是我本人" : "邀请ta加入";
+								var otext = (userName == data.data[i].name) ? "是我本人" : "邀请";
 								liItem.setAttribute("data-id", data.data[i].professorId);
 								liItem.className = "mui-table-view-cell"
 								var oString = '<div class="flexCenter mui-clearfix" style="width:80%;">'
@@ -287,7 +287,7 @@ mui.plusReady(function() {
 					leadIn(that);
 				}
 			})
-		} else if(this.innerHTML === "邀请ta加入") {
+		} else if(this.innerHTML === "邀请") {
 			var share = buildShareService("weixin");
 			if(userid) {
 				var our=baseUrl + "/e/I.html?i=" + s16to64(paperId)+"&d="+s16to64(userid)+"&f=1";
@@ -613,14 +613,13 @@ mui.plusReady(function() {
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
 			if(plus.storage.getItem('userid')) {
-				shareAddIntegral(2);
+				//shareAddIntegral(2);
+				plus.nativeUI.toast("成功分享论文信息", toastStyle);
 			}
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {
-				plus.nativeUI.toast('已取消分享', {
-					verticalAlign: 'center'
-				});
+				
 			}
 		});
 	}

@@ -658,16 +658,14 @@ mui.plusReady(function() {
 		share.send(msg, function() {
 			plus.nativeUI.closeWaiting();
 			if(plus.storage.getItem('userid')) {
-				shareAddIntegral(3);
+				shareAddIntegral(1);
 			}
 
 		}, function(e) {
 			console.log(JSON.stringify(e))
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {
-				plus.nativeUI.toast('已取消分享', {
-					verticalAlign: 'center'
-				});
+				
 			}
 		});
 	}

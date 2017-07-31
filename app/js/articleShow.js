@@ -807,9 +807,7 @@ mui.plusReady(function() {
 			console.log(JSON.stringify(e))
 			plus.nativeUI.closeWaiting();
 			if(e.code == -2) {
-				plus.nativeUI.toast('已取消分享', {
-					verticalAlign: 'center'
-				});
+			
 			}
 		});
 	}

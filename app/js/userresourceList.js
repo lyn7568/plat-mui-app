@@ -31,7 +31,7 @@ mui.plusReady(function() {
 							} else {
 								oString += '<div class="madiaHead resouseHead"></div>'
 							}
-							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis h1Font">' + obj[i].resourceName + '</p><p class="h2Font mui-ellipsis">应用用途：' + obj[i].supportedServices + '</p>'
+							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis h1Font">' + obj[i].resourceName + '</p><p class="h2Font mui-ellipsis">用途：' + obj[i].supportedServices + '</p>'
 							oString += '</div></div>'
 							liItem.innerHTML = oString;
 							document.getElementById("resourceShow").appendChild(liItem);

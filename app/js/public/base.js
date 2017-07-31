@@ -127,6 +127,17 @@ function shareAddIntegral(num) {
 	}else if(num==3){
 		burl = "/ajax/growth/shareArticle";
 		title = "成功分享文章信息";
+	}else if(num==4){
+		burl = "/ajax/growth/shareOrg";
+		title = "成功分享企业信息";
+	}
+	else if(num==5){
+		burl = "/ajax/growth/sharePatent";
+		title = "成功分享专利信息";
+	}
+	else if(num==6){
+		burl = "/ajax/growth/sharePaper";
+		title = "成功分享论文信息";
 	}
 	mui.ajax(baseUrl + burl, {
 		dataType: 'json', //数据格式类型

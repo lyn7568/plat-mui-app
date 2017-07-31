@@ -88,11 +88,11 @@ mui.ready(function(){
 				}else if(self.name=="article"){
 					shareAddIntegral(3);
 				}else if(self.name=="org"){
-					plus.nativeUI.toast("成功分享企业信息", toastStyle);
+					shareAddIntegral(4);
 				}else if(self.name=="paper"){
-					plus.nativeUI.toast("成功分享论文信息", toastStyle);
+					shareAddIntegral(6);
 				}else if(self.name=="patent"){
-					plus.nativeUI.toast("成功分享专利信息", toastStyle);
+					shareAddIntegral(5);
 				}
 			}
 

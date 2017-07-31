@@ -345,7 +345,7 @@ mui.ready(function() {
 				plus.nativeUI.closeWaiting();
 				if(plus.storage.getItem('userid')) {
 					//shareAddIntegral(2);
-					plus.nativeUI.toast("成功分享企业信息", toastStyle);
+					shareAddIntegral(4);
 				}
 			}, function(e) {
 				plus.nativeUI.closeWaiting();

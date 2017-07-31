@@ -27,7 +27,7 @@ mui.ready(function() {
 			console.log(orgId)
 			mui.ajax(baseUrl + "/ajax/article/pqOrgPublish", {
 				type: "GET",
-				timeout: 1000,
+				timeout: 10000,
 				dataType: "json",
 				data: {
 					"orgId": orgId,

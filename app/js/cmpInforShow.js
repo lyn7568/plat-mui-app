@@ -9,7 +9,20 @@ mui.ready(function() {
 		companyMessage(orgId);
 		getArticel();
 		getResource()
-		
+		mui.ajax(baseUrl + '/ajax/org/incPageViews',{
+			"type": "POST",
+			"dataType": "json",
+			"data": {
+				"id": orgId
+			},
+			"success": function(data) {
+				console.log(data);
+				if(data.success) {}
+			},
+			"error": function() {
+				
+			}
+		});
 		//点击收藏按钮
 		ifcollectionAbout(orgId,6);
 		document.getElementById("collectBtn").addEventListener('tap', function() {

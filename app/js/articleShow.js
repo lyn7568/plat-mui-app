@@ -524,7 +524,7 @@ mui.plusReady(function() {
 	function busfil($data) {				
 				var li = document.createElement("li");
 					li.setAttribute("data-id", $data.id);
-					var oimg = ($data[i].hasOrgLogo) ? baseUrl + "/images/org/" + $data.id + ".jpg" : "../images/default-icon.jpg";
+					var oimg = ($data.hasOrgLogo) ? baseUrl + "/images/org/" + $data.id + ".jpg" : "../images/default-icon.jpg";
 					var oAuth = ($data.authStatus == 3) ? 'authicon-com-ok' : '';
 					var orgName = ($data.forShort) ? $data.forShort : $data.name;
 					var orgType = ($data.orgType == '2') ? "上市企业" : "";
@@ -547,6 +547,13 @@ mui.plusReady(function() {
 		plus.nativeUI.showWaiting(); //显示原生等待框
 		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
 			proid: id
+		});
+	})
+	mui('#busList').on('tap', 'li', function() {
+		var id = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting(); //显示原生等待框
+		plus.webview.create("../html/cmpInforShow.html", 'cmpInforShow.html', {}, {
+			cmpId: id
 		});
 	})
 	/*留言*/

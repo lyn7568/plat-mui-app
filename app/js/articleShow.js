@@ -453,7 +453,7 @@ mui.plusReady(function() {
 		/*企业发布文章信息*/
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + oArticleModule.oWner, "", "get", oArticleModule.business);
 		document.getElementById('attBtn').style.display = "none";
-
+		companylist();
 	} else {
 		if(plus.storage.getItem('userid') == oArticleModule.oWner) {
 			document.getElementById('attBtn').style.display = "none";
@@ -479,6 +479,69 @@ mui.plusReady(function() {
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralateRes", {
 		"articleId": oArticleModule.articleId
 	}, "get", oArticleModule.correlationResource);
+	//相关企业
+	function companylist() {
+		mui.ajax(baseUrl+"/ajax/article/ralateOrg",{
+		dataType: 'json', //数据格式类型
+		type: 'GET', //http请求类型
+		data: {
+			"articleId": oArticleModule.articleId,
+		},
+		timeout: 10000, //超时设置
+		success: function(data) {
+			if(data.success) {
+				
+				var $data=data.data;
+				if($data.length) {
+					document.getElementById("bus").style.display="block";
+				}
+				for(var i=0;i<$data.length;i++) {
+					angleBus.call($data[i])
+				}
+			}
+		},
+		error: function() {
+			$.MsgBox.Alert('提示', '服务器请求失败')
+		}
+	});
+	}
+	function angleBus() {
+		mui.ajax(baseUrl+"/ajax/org/" +this.orgId,{
+			type: "GET",
+			timeout: 10000,
+			dataType: "json",
+			context: document.getElementById("busList"),
+			success: function(data) {
+				if(data.success) {
+					busfil.call(this,data.data);
+				}
+			},
+			error: function(XMLHttpRequest, textStats, errorThrown) {
+				$.MsgBox.Alert('提示', '服务器请求失败')
+			}
+		})
+	}
+	function busfil($data) {				
+				var li = document.createElement("li");
+					li.setAttribute("data-id", $data.id);
+					var oimg = ($data[i].hasOrgLogo) ? baseUrl + "/images/org/" + $data.id + ".jpg" : "../images/default-icon.jpg";
+					var oAuth = ($data.authStatus == 3) ? 'authicon-com-ok' : '';
+					var orgName = ($data.forShort) ? $data.forShort : $data.name;
+					var orgType = ($data.orgType == '2') ? "上市企业" : "";
+					var orgOther = ($data.industry) ? $data.industry.replace(/,/gi, " | ") : "";
+					li.className = "mui-table-view-cell";
+					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+						'<div class="madiaHead companyHead">' +
+						'<div class="boxBlock" style="width:88px;height:58px;"><img class="boxBlockimg companyImg" src="' + oimg + '"></div>' +
+						'</div>' +
+						'<div class="madiaInfo OmadiaInfo">' +
+						'<p class="mui-ellipsis h1Font">' + orgName + '<em class="authicon ' + oAuth + '" title="科袖认证企业"></em></p>' +
+						'<p class="mui-ellipsis h2Font"><span id="">' + orgType + '</span> <span id="">' + orgOther + '</span></p>' +
+						'</div>' +
+						'</div>'
+					this.appendChild(li);
+
+}
 	mui('#expertList').on('tap', 'li', function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting(); //显示原生等待框

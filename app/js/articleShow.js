@@ -456,7 +456,7 @@ mui.plusReady(function() {
 		companylist();
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
 			"watchObject": oArticleModule.oWner,
-			'orgId': oCurren.userid
+			'professorId': oCurren.userid
 		}, "get", oArticleModule.attentionGetExpert);
 	} else {
 		if(plus.storage.getItem('userid') == oArticleModule.oWner) {

@@ -668,7 +668,7 @@ mui.plusReady(function() {
 			if(oArticleModule.oFlag == 1) {
 				$info={
 					"watchObject": oArticleModule.oWner,
-					'orgId': oCurren.userid
+					'professorId': oCurren.userid
 				}
 			}else{
 				$info={

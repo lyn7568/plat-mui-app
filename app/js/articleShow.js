@@ -638,19 +638,13 @@ mui.plusReady(function() {
 		if(oCurren.userid == oArticleModule.oWner) {
 			document.getElementById('attBtn').style.display = "none";
 		}
-		if(oArticleModule.oFlag == 1) {
-			/*查询是否关注专家*/
-		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
-			"watchObject": oArticleModule.oWner,
-			'orgId': oCurren.userid
-		}, "get", oArticleModule.attentionGetExpert);
-		}else{
+		
 			/*查询是否关注专家*/
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
 			"watchObject": oArticleModule.oWner,
 			'professorId': oCurren.userid
 		}, "get", oArticleModule.attentionGetExpert);
-		}
+		
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/article/isAgree", {
 			"articleId": oArticleModule.articleId,
 			'operateId': oCurren.userid

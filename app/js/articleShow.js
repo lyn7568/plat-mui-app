@@ -452,8 +452,12 @@ mui.plusReady(function() {
 	if(oArticleModule.oFlag == 1) {
 		/*企业发布文章信息*/
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + oArticleModule.oWner, "", "get", oArticleModule.business);
-		document.getElementById('attBtn').style.display = "none";
+		//document.getElementById('attBtn').style.display = "none";
 		companylist();
+		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
+			"watchObject": oArticleModule.oWner,
+			'orgId': oCurren.userid
+		}, "get", oArticleModule.attentionGetExpert);
 	} else {
 		if(plus.storage.getItem('userid') == oArticleModule.oWner) {
 			document.getElementById('attBtn').style.display = "none";
@@ -634,17 +638,26 @@ mui.plusReady(function() {
 		if(oCurren.userid == oArticleModule.oWner) {
 			document.getElementById('attBtn').style.display = "none";
 		}
+		if(oArticleModule.oFlag == 1) {
+			/*查询是否关注专家*/
+		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
+			"watchObject": oArticleModule.oWner,
+			'orgId': oCurren.userid
+		}, "get", oArticleModule.attentionGetExpert);
+		}else{
+			/*查询是否关注专家*/
+		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
+			"watchObject": oArticleModule.oWner,
+			'professorId': oCurren.userid
+		}, "get", oArticleModule.attentionGetExpert);
+		}
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/article/isAgree", {
 			"articleId": oArticleModule.articleId,
 			'operateId': oCurren.userid
 		}, "get", oArticleModule.thumbs);
 		console.log(oArticleModule.oFlag)
 
-		/*查询是否关注专家*/
-		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
-			"watchObject": oArticleModule.oWner,
-			'professorId': oCurren.userid
-		}, "get", oArticleModule.attentionGetExpert);
+		
 
 		/*查询是否收藏文章*/
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
@@ -657,17 +670,27 @@ mui.plusReady(function() {
 		var oClsNm = document.getElementsByClassName("attenSpan")[0].className;
 		oCurren.userid = plus.storage.getItem('userid');
 		if(oCurren.userid) {
-			if(oClsNm == 'mui-icon attenSpan attenedSpan') {
-				oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/delete", {
+			var $info={};
+			if(oArticleModule.oFlag == 1) {
+				$info={
+					"watchObject": oArticleModule.oWner,
+					'orgId': oCurren.userid
+				}
+			}else{
+				$info={
 					"watchObject": oArticleModule.oWner,
 					'professorId': oCurren.userid
-				}, "post", oArticleModule.attentionNoPostExpert);
+				}
+			}
+			if(oClsNm == 'mui-icon attenSpan attenedSpan') {
+				oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/delete",$info , "post", oArticleModule.attentionNoPostExpert);
 			} else {
-				oArticleModule.oAjaxGet(baseUrl + "/ajax/watch", {
-					"watchObject": oArticleModule.oWner,
-					'professorId': oCurren.userid,
-					"watchType": 1
-				}, "post", oArticleModule.attentionPostExpert);
+				if(oArticleModule.oFlag == 1) {
+					$info.watchType=6;
+				}else{
+					$info.watchType=1;
+				}
+				oArticleModule.oAjaxGet(baseUrl + "/ajax/watch", $info, "post", oArticleModule.attentionPostExpert);
 			}
 		} else {
 			oCurren.login();

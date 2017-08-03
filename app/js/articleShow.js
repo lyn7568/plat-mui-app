@@ -107,7 +107,7 @@ mui.plusReady(function() {
 					aniShow: "slide-in-bottom"
 				},
 				extras: {
-					flag: 1
+					ourl: plus.webview.currentWebview().id
 				}
 			});
 		}
@@ -131,14 +131,13 @@ mui.plusReady(function() {
 			mui.ajax(url, {
 				data: obj,
 				dataType: 'json', //服务器返回json格式数据
-				type: oType, //HTTP请求类型
-				timeout: 10000, //超时时间设置为10秒；
+				type: oType, //HTTP请求类型//超时时间设置为10秒；
 				traditional: true,
 				success: function(data) {
 					if(data.success) {
 						oFun(data.data);
 					} else {
-
+						//alert(JSON.stringify(data));
 					}
 				},
 				error: function(xhr, type, errorThrown) {
@@ -454,6 +453,7 @@ mui.plusReady(function() {
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + oArticleModule.oWner, "", "get", oArticleModule.business);
 		//document.getElementById('attBtn').style.display = "none";
 		companylist();
+		if(oCurren.userid)
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
 			"watchObject": oArticleModule.oWner,
 			'professorId': oCurren.userid
@@ -470,6 +470,7 @@ mui.plusReady(function() {
 			}); //后台创建webview并打开show.html
 		})
 		/*查询是否关注专家*/
+		if(oCurren.userid)
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
 			"watchObject": oArticleModule.oWner,
 			'professorId': oCurren.userid

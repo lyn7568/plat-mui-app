@@ -24,9 +24,18 @@
 			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
 		</header>
 		<nav class="mui-bar mui-bar-tab footbox">
-			<div class="mui-row artfoot">
-				<div class="mui-col-xs-9">
-					<div class="consultdiv notopen">更多功能即将开放</div>
+			<div class="mui-row artfoot displayNone" id="textInput">
+				<div class="mui-col-xs-12">
+					<textarea name="" placeholder="说点什么吧…" id="textInputThis"></textarea>
+					<button class="mui-btn" disabled>发表</button>
+				</div>
+			</div>
+			<div class="mui-row artfoot" id="operCol">
+				<div class="mui-col-xs-8">
+					<div class="inputShow"><span>说点什么吧…</span></div>
+				</div>
+				<div class="mui-col-xs-1" id="listenClick">
+					<span class="mui-icon iconfontnew icon-liuyan"><em class="mui-badge"></em></span>
 				</div>
 				<div class="mui-col-xs-2" id="collectBtn">
 					<span class="mui-icon iconfontnew icon-shoucang" id="ifCollect"></span><!--已收藏 icon-yishoucang-->
@@ -106,7 +115,15 @@
 		<script src="../js/paperShow.js"></script>
 		<script type="text/javascript"> 
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+			document.getElementById("listenClick").addEventListener("tap",function(){
+				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop-20+"px"}, 400); 
+			})
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
+		    mui("body").on("tap",".mui-content",function(){
+		    	document.getElementById("textInput").style.display="none";
+		    	document.getElementById("operCol").style.display="block";
+		    })
 		    
 		    //var BtnMore=document.getElementById("BtnMore");
 		    var shareOut=document.getElementById("shareOut");
@@ -115,7 +132,7 @@
 		    var shareBlock=document.getElementById("shareBlock");
 		    
 		    
-		    /*BtnMore.addEventListener("tap",function(){
+		   /* BtnMore.addEventListener("tap",function(){
 		    	maskBlack.style.display="block";
 		    	shareBlock.style.display="block";
 		    })*/
@@ -131,6 +148,7 @@
 		    	this.style.display="none";
 		    	shareBlock.style.display="none";
 		    })
+		    
 		</script>
 	</body>
 

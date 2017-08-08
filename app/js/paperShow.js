@@ -651,4 +651,22 @@ mui.plusReady(function() {
 			})
 		})
 	}
+	mui(".artfoot").on("tap", ".inputShow", function() {
+		if(!plus.storage.getItem('userid')) {
+			mui.openWindow({
+				url: '../html/login.html',
+				id: '../html/login.html',
+				show: {
+					aniShow: "slide-in-right"
+				},
+				extras: {
+					ourl: self.id
+				}
+			});
+			return;
+		}
+		document.getElementById("textInput").style.display = "block";
+		document.getElementById("operCol").style.display = "none";
+		document.getElementById("textInputThis").focus();
+	})
 });

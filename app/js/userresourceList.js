@@ -1,17 +1,49 @@
+var proId;
+mui.init({
+	pullRefresh: {
+		container: '#pullrefresh',
+		up: {
+			height:50,
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+		}
+	}
+});
+var Num=1;
+function pullupRefresh() {
+	setTimeout(function() {
+		Num++;
+		getResource(10,Num);
+	}, 1000);
+
+}
+
 mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
-	var proId = self.proid;
+	proId = self.proid;
 	console.log(proId)
-	getResource()
+	mui("#resourceShow").on("tap", "li", function() {
+		var resouId = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
+			resourceId: resouId
+		});
+	})
+	getResource(10,1);
+})
 
-	function getResource() {
+	
+
+function getResource(pageSize,pageNo) {
+	mui.plusReady(function() {
 		mui.ajax(baseUrl + "/ajax/resource/pqProPublish", {
 			type: "GET",
 			timeout: 10000,
 			dataType: "json",
 			data: {
 				"professorId": proId,
-				"pageSize": 100
+				"pageSize":pageSize,
+				"pageNo":pageNo
 			},
 			success: function(data) {
 				console.log(JSON.stringify(data))
@@ -20,7 +52,6 @@ mui.plusReady(function() {
 				if(data.success) {
 					var obj = data.data.data;
 					if(obj.length > 0) {
-						
 						for(var i = 0; i < obj.length; i++) {
 							var liItem = document.createElement("li");
 							liItem.className = "mui-table-view-cell"
@@ -37,19 +68,19 @@ mui.plusReady(function() {
 							document.getElementById("resourceShow").appendChild(liItem);
 						}
 					} 
+					if(pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
+					} else {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
+					}
 				}
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				return;
 			}
 		})
-	}
-	mui("#resourceShow").on("tap", "li", function() {
-		var resouId = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
-			resourceId: resouId
-		});
 	})
-})
+}
+	

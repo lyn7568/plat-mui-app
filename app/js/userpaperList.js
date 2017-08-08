@@ -1,6 +1,25 @@
+var proId;
+mui.init({
+	pullRefresh: {
+		container: '#pullrefresh',
+		up: {
+			height:50,
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+		}
+	}
+});
+var Num=1;
+function pullupRefresh() {
+	setTimeout(function() {
+		Num++;
+		getPaper(10,Num);
+	}, 1000);
+
+}
 mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
-	var proId = self.proid;
+	proId = self.proid;
 	mui("#paper").on("tap", "li", function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
@@ -8,17 +27,18 @@ mui.plusReady(function() {
 			"paperId": id
 		});
 	})
-	/*论文html*/
-	getPaper(self.authName)
-	function getPaper(oName) {
-		mui.ajax(baseUrl + "/ajax/ppaper/byAuthor", {
+	getPaper(10,1)
+})
+function getPaper(pageSize,pageNo) {
+	mui.plusReady(function() {
+		mui.ajax(baseUrl + "/ajax/ppaper/byProfessor", {
 			type: "GET",
 			timeout: 10000,
 			dataType: "json",
 			data: {
 				"id": proId,
-				"author": oName,
-				"pageSize":100
+				"pageSize":pageSize,
+				"pageNo":pageNo
 			},
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
@@ -39,15 +59,19 @@ mui.plusReady(function() {
 								'</div>'
 							document.getElementById("paper").appendChild(li);
 						}
+					} 
+					if(pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
 					} else {
-						
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
 					}
 				}
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				return;
 			}
 		})
-	}
-})
+	})
+}

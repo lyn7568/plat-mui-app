@@ -323,16 +323,17 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .personinfo .listtit{ font-size: 20px; line-height: 30px; color: #333333;}
 .personinfo .listtit3{font-size: 14px; line-height: 24px; color: #AAAAAA; margin: 0;}
 /*咨询记录及等级*/
-.peolevelbox{ display: block; padding:4% 16px; border-top:1px #F0F0F0 solid;}
+/*.peolevelbox{ display: block; padding:4% 16px; border-top:1px #F0F0F0 solid;}
 .peocountbox{width: 150px;}
-.peocount {/*font-size: 13px;*/ color:#888888 ; overflow:hidden; }
+.peocount { color:#888888 ; overflow:hidden; }
 .peocount span em{font-size: 14px; padding: 0 3px; color: #FF9900; font-weight: 600;}
-.peocount .dialogicon{ /*font-size: 16px;line-height:20px; */color: #FF9900;}
-.peocount:before{position: absolute;right: 0; top: 0;left: 15px; height: 1px; content: ''; -webkit-transform: scaleY(.5); transform: scaleY(.5);background-color: #c8c7cc;}
+.peocount .dialogicon{color: #FF9900;}
+.peocount:before{position: absolute;right: 0; top: 0;left: 15px; height: 1px; content: ''; -webkit-transform: scaleY(.5); transform: scaleY(.5);background-color: #c8c7cc;}*/
 .levelbox{margin: auto; overflow: hidden; }
 .levelbox .mui-icon{ font-size: 14px; color: #CCCCCC;}
-.icon-favorfill{ color:#F4C600;}
-.starShow{position: absolute;right: 0;top:50%; margin-top:-8px;overflow: hidden;}
+.levelbox .icon-favorfill{ color:#F4C600;}
+.starShow{position: absolute;right: 0;top:-4px;overflow: hidden;}
+.commentsArea .madiaHead.useHeadMsg{top:36px;margin-top:0;}
 /*专家相关信息*/
 .infocontit{font-size:16px;line-height: 40px;min-height:40px;border-bottom: 1px solid #E5E5E5; position: relative;padding-left: 26px;color:#333}
 .infocontit:before{position:absolute;top:50%;margin-top:-10px;left: 15px;;display:inline-block;content:"";width:4px;height:18px;border-radius:10px;background:#ff9900;}
@@ -348,7 +349,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .infocon.madiaBlock>ul{margin:-15px;}
 .infocon.madiaBlock>ul>li{padding-left:15px;}
 .seeMore{cursor:pointer;text-align:center;font-size:14px;color:#999;line-height:40px;height:40px;border-top:1px solid #E5E5E5;position: relative;}
-.seeMore em{font-style: normal;position:absolute;left:50%;margin-left: -24px;padding-right:5px;}
+.seeMore em{font-style: normal;position:absolute;left:50%;margin-left: -36px;padding-right:5px;}
 .seeMore em:before{border: solid transparent;border-left-color:#ccc;border-width: 7px;content: " ";position: absolute;left: 100%;top: 12px;}
 .seeMore em:after{border: solid transparent;border-left-color:#fff;border-width: 5px;content: " ";position: absolute;left: 100%;top: 14px;}
 .detailInfo>ul>li{color:#333;padding-left:0;}

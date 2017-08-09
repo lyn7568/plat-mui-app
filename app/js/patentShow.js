@@ -249,6 +249,7 @@ mui.plusReady(function() {
 		userid = plus.storage.getItem('userid');
 		getRecourceMe();
 		ifcollectionAbout(patentId,4);
+		isAgree();
 	});
 	function leadIn(sel) {
 		mui.ajax(baseUrl + "/ajax/ppatent/ass", {
@@ -656,7 +657,7 @@ mui.plusReady(function() {
 			}
 		},
 		error: function() {
-			$.MsgBox.Alert('提示',"服务器链接超时");
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
 		}
 	});
 }
@@ -681,7 +682,7 @@ function isAgree() {
 			}
 		},
 		error: function() {
-			$.MsgBox.Alert('提示',"服务器链接超时");
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
 		}
 	});
 }
@@ -706,8 +707,155 @@ function addAgree() {
 			}
 		},
 		error: function() {
-			$.MsgBox.Alert('提示',"服务器链接超时");
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
 		}
 	});
 }
+mui(".artfoot").on("tap", ".inputShow", function() {
+		if(!isLogin) {
+			document.getElementById("textInput").style.display = "block";
+			document.getElementById("operCol").style.display = "none";
+			document.getElementById("textInputThis").focus();
+		}
+		
+	})
+leword();
+
+function leword() {
+		var data = {"patentId": patentId,"rows": 500}	
+		mui.ajax(baseUrl + "/ajax/leaveWord/ql/patent", {
+			data: obj,
+			dataType: 'json', //服务器返回json格式数据
+			type: 'get', //HTTP请求类型
+			timeout: 10000, //超时时间设置为10秒；
+			traditional: true,
+			success: function(data) {
+				console.log(JSON.stringify(data))
+				if(data.success) {
+					document.getElementsByClassName('commentBlock')[0].innerHTML = ""
+					if(data.data.length == 0) {
+						return;
+					}
+					var id = plus.storage.getItem('userid');
+					for(var i = 0; i < data.data.length; i++) {
+						var oText = ""
+						if(id == data.data[i].professor.id) {
+							oText = "删除"
+						}
+						var userType = autho(data.data[i].professor.authType, data.data[i].professor.orgAuth, data.data[i].professor.authStatus);
+						var baImg = "../images/default-photo.jpg";
+						if(data.data[i].professor.hasHeadImage == 1) {
+							baImg = baseUrl + "/images/head/" + data.data[i].professor.id + "_l.jpg";
+						}
+						var li = document.createElement("li");
+						li.className = "mui-table-view-cell";
+						li.innerHTML = '<div class="flexCenter mui-clearfix">' +
+							'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')" data-id="' + data.data[i].professor.id + '"></div>' +
+							'<div class="madiaInfo">' +
+							'<p><span class="h1Font" data-id="' + data.data[i].professor.id + '">' + data.data[i].professor.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+							'</div>' +
+							'</div>' +
+							'<div class="madiaInfo">' +
+							'<p class="h2Font">' + data.data[i].content + '</p>' +
+							'<p class="operateSpan">' +
+							'<span class="commenttime">' + commenTime(data.data[i].createTime) + '</span>' +
+							'<span data-id="' + data.data[i].id + '" class="dele">' + oText + '</span>' +
+							'</p>' +
+							'</div>'
+						document.getElementsByClassName("commentBlock")[0].appendChild(li);
+					}
+
+				} else {
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+}
+lewordNum();
+function lewordNum() {
+		var data = {"patentId": patentId}	
+		mui.ajax(baseUrl + "/ajax/leaveWord/lwCount/patent", {
+			data: obj,
+			dataType: 'json', //服务器返回json格式数据
+			type: 'get', //HTTP请求类型
+			timeout: 10000, //超时时间设置为10秒；
+			traditional: true,
+			success: function(data) {
+				if(data.success) {
+					document.getElementsByClassName("mui-badge")[0].innerHTML=data.data;
+					}
+
+				
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+}
+function trim(str) { //删除左右两端的空格
+		　　
+		return str.replace(/(^\s*)|(\s*$)/g, "");　　
+	}
+document.getElementById("textInputThis").addEventListener("input", function() {
+		var length = trim(this.value);
+		if(length) {
+			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled")
+		} else {
+			document.getElementsByClassName("mui-btn")[0].setAttribute("disabled", "true")
+		}
+	})
+document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function() {
+		mui.ajax(baseUrl + "/ajax/leaveWord/patent", {
+			data: {
+				"patentId": patentId,
+				"sender": plus.storage.getItem('userid'),
+				"content": document.getElementById("textInputThis").value
+			},
+			dataType: 'json', //服务器返回json格式数据
+			type: 'post', //HTTP请求类型
+			timeout: 10000, //超时时间设置为10秒；
+			success: function(data) {
+				if(data.success) {
+					document.getElementById("textInputThis").value = "";
+					document.getElementById('textInput').style.display = "none";
+					document.getElementById('operCol').style.display = "block";
+					leword();
+					lewordNum();
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			},
+			beforeSend: function(data) {
+				console.log(JSON.stringify(data));
+			}
+		});
+	})
+mui(".commentBlock").on("tap", ".dele", function() {
+		var $this = this;
+		mui.ajax(baseUrl + "/ajax/leaveWord/delete", {
+			data: {
+				"id": this.getAttribute("data-id"),
+			},
+			dataType: 'json', //服务器返回json格式数据
+			type: 'post', //HTTP请求类型
+			timeout: 10000, //超时时间设置为10秒；
+			success: function(data) {
+				if(data.success) {
+					document.getElementsByClassName("commentBlock")[0].removeChild($this.parentNode.parentNode.parentNode);
+					leword();
+					lewordNum();
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+	})
 });

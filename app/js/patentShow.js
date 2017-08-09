@@ -942,4 +942,18 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 			}
 		});
 	}
+	mui("#paperList").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/paperShow.html", 'paperShow.html', {}, {
+				"paperId": id
+			});
+		})
+		mui("#patentList").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/patentShow.html", 'patentShow.html', {}, {
+				"patentId": id
+			});
+		})
 });

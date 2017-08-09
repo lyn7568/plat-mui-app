@@ -656,7 +656,7 @@ mui.plusReady(function() {
 			}
 		},
 		error: function() {
-			$.MsgBox.Alert('提示',"服务器链接超时");
+			//$.MsgBox.Alert('提示',"服务器链接超时");
 		}
 	});
 }
@@ -666,8 +666,7 @@ mui.plusReady(function() {
 	/*判断论文是否被赞*/
 function isAgree() {
 	var data = {"id": patentId,"uid":userid }
-	mui.ajax({		
-		url:"/ajax/ppatent/agree",
+	mui.ajax(baseUrl+"/ajax/ppatent/agree",{	
 		data:data,
 		dataType: 'json', //数据格式类型
 		type: 'get', //http请求类型
@@ -681,12 +680,16 @@ function isAgree() {
 			}
 		},
 		error: function() {
-			$.MsgBox.Alert('提示',"服务器链接超时");
+			//$.MsgBox.Alert('提示',"服务器链接超时");
 		}
 	});
 }
-$('.thumbBlock').on("click",".thunbgo",function(){
-	if (!isLogin) {
+mui('.thumbBlock').on("tap",".thumbBtn",function(){
+	console.log(this.className);
+	if (!isLogin()) {
+		if(this.className=="thumbBtn thumbedBtn"){
+			return;
+		}
 		addAgree();
 	}
 })
@@ -706,7 +709,7 @@ function addAgree() {
 			}
 		},
 		error: function() {
-			$.MsgBox.Alert('提示',"服务器链接超时");
+			//$.MsgBox.Alert('提示',"服务器链接超时");
 		}
 	});
 }

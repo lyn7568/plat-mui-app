@@ -715,7 +715,8 @@ function addAgree() {
 	});
 }
 mui(".artfoot").on("tap", ".inputShow", function() {
-		if(!isLogin) {
+	
+		if(!isLogin()) {
 			document.getElementById("textInput").style.display = "block";
 			document.getElementById("operCol").style.display = "none";
 			document.getElementById("textInputThis").focus();
@@ -727,7 +728,7 @@ leword();
 function leword() {
 		var data = {"patentId": patentId,"rows": 500}	
 		mui.ajax(baseUrl + "/ajax/leaveWord/ql/patent", {
-			data: obj,
+			data: data,
 			dataType: 'json', //服务器返回json格式数据
 			type: 'get', //HTTP请求类型
 			timeout: 10000, //超时时间设置为10秒；
@@ -781,7 +782,7 @@ lewordNum();
 function lewordNum() {
 		var data = {"patentId": patentId}	
 		mui.ajax(baseUrl + "/ajax/leaveWord/lwCount/patent", {
-			data: obj,
+			data: data,
 			dataType: 'json', //服务器返回json格式数据
 			type: 'get', //HTTP请求类型
 			timeout: 10000, //超时时间设置为10秒；
@@ -830,12 +831,9 @@ document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function()
 					lewordNum();
 				}
 			},
-			error: function(xhr, type, errorThrown) {
+			error: function() {
 				//异常处理；
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			},
-			beforeSend: function(data) {
-				console.log(JSON.stringify(data));
 			}
 		});
 	})
@@ -859,6 +857,13 @@ mui(".commentBlock").on("tap", ".dele", function() {
 				//异常处理；
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
 			}
+		});
+	})
+mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
+		var id = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting(); //显示原生等待框
+		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+			proid: id
 		});
 	})
 });

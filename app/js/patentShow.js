@@ -123,6 +123,7 @@ mui.plusReady(function() {
 			}
 			var pstr=""
 			if(subs.length>0){
+				paperRelatedList(subs);
 				for (var i = 0; i < subs.length; i++) 
 				{
 					pstr+='<li><span class="h2Font">'+ subs[i] +'</span></li>'
@@ -867,8 +868,8 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 		});
 	})
 //您可能感兴趣的专利
-	paperInterestingList()
-	function paperInterestingList(){
+	patentInterestingList()
+	function patentInterestingList(){
 		mui.ajax(baseUrl+"/ajax/ppatent/ralatePatents",{
 			"type" :  "GET" ,
 			"dataType" : "json",
@@ -891,7 +892,7 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 								'<div class="madiaHead patentHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
 								'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
-								'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
+								'<p class="mui-ellipsis h2Font">作者:' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'
 							document.getElementById("patentList").appendChild(li);
@@ -904,5 +905,41 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 			}
 		});
 	}
-	
+	//根据关键词查询查找相关论文
+	function paperRelatedList(array){
+		mui.ajax(baseUrl+"/ajax/ppaper/assPapers",{
+			"type" :  "GET" ,
+			"dataType" : "json",
+			"data" :{
+				"kws":array
+			},
+			//"async":false,
+			"traditional": true, //传数组必须加这个
+			"success" : function(data) {
+				if(data.success) {
+					console.log(data);
+					var $data = data.data;
+					if($data.length > 0){
+						document.getElementById("paperModule").style.display="block";
+						for(var i = 0; i < $data.length; i++) {
+							var li = document.createElement("li");
+							li.setAttribute("data-id", $data[i].id);
+							li.className = "mui-table-view-cell";
+							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+								'<div class="madiaHead paperHead"></div>' +
+								'<div class="madiaInfo OmadiaInfo">' +
+								'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
+								'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
+								'</div>' +
+								'</div>'
+							document.getElementById("paperList").appendChild(li);
+						}
+					}
+				}
+			},
+			"error":function(){
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+	}
 });

@@ -866,4 +866,43 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 			proid: id
 		});
 	})
+//您可能感兴趣的专利
+	paperInterestingList()
+	function paperInterestingList(){
+		mui.ajax(baseUrl+"/ajax/ppatent/ralatePatents",{
+			"type" :  "GET" ,
+			"dataType" : "json",
+			"data" :{
+				"patentId":patentId
+			},
+			//"async":false,
+			"traditional": true, //传数组必须加这个
+			"success" : function(data) {
+				if(data.success) {
+					console.log(data);
+					var $data = data.data;
+					if($data.length > 0){
+						document.getElementById("patentModule").style.display="block";
+						for(var i = 0; i < $data.length; i++) {
+							var li = document.createElement("li");
+							li.setAttribute("data-id", $data[i].id);
+							li.className = "mui-table-view-cell";
+							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+								'<div class="madiaHead patentHead"></div>' +
+								'<div class="madiaInfo OmadiaInfo">' +
+								'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
+								'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
+								'</div>' +
+								'</div>'
+							document.getElementById("patentList").appendChild(li);
+						}
+					}
+				}
+			},
+			"error":function(){
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+	}
+	
 });

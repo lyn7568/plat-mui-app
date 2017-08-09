@@ -374,7 +374,7 @@ function datalistEach(datalist) {
 					'<div class="madiaHead useHead" style="background-image:url(' + img + ')"></div>'+
 					'<div class="madiaInfo">'+
 						'<p><span class="h1Font">' + item.name + typeTname + '</p>'+
-						'<p class="mui-ellipsis-2 h2Font">'+ otherIn +'</p>'+
+						'<p class="mui-ellipsis h2Font">'+ otherIn +'</p>'+
 						'<p class="mui-ellipsis h3Font">' + rlist + '</p>' +
 						'<p class="mui-ellipsis h3Font">' + zlist + '</p>' +
 					'</div></div>';

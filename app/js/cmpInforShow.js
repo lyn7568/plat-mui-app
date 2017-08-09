@@ -5,10 +5,12 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
 		var orgId = self.cmpId;
-		//orgId = "A93B9348F2094D12A6DC9A23F16E1246";
 		companyMessage(orgId);
 		getArticel();
-		getResource()
+		getResource();
+		relevantarticalList();//相关文章
+		likeExperts();//感兴趣企业
+	
 		mui.ajax(baseUrl + '/ajax/org/incPageViews',{
 			"type": "POST",
 			"dataType": "json",
@@ -16,7 +18,6 @@ mui.ready(function() {
 				"id": orgId
 			},
 			"success": function(data) {
-				console.log(data);
 				if(data.success) {}
 			},
 			"error": function() {
@@ -76,6 +77,32 @@ mui.ready(function() {
 			plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 				resourceId: id
 			});
+		})
+		mui('#likePro').on('tap', 'li', function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting(); //显示原生等待框
+			plus.webview.create("../html/cmpInforShow.html", 'cmpInforShow.html', {}, {
+				cmpId: id
+			});
+		})
+		mui('#relateArt').on('tap', 'li', function() {
+			var id = this.getAttribute("data-id");
+			var ownerid = this.getAttribute("owner-id");
+			var datatype = this.getAttribute("data-type");
+			if(datatype == 1) {
+				plus.nativeUI.showWaiting();
+				var webviewShow=plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+					articleId: id,
+					ownerid: ownerid,
+				});
+			} else if(datatype == 2) {
+				plus.nativeUI.showWaiting();
+				var webviewShow=plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+					articleId: id,
+					ownerid: ownerid,
+					oFlag: 1
+				});
+			}
 		})
 		
 		
@@ -251,6 +278,168 @@ mui.ready(function() {
 				}
 			})
 		}
+		//相关文章信息
+		function relevantarticalList(){
+			mui.ajax(baseUrl + "/ajax/article/byAssOrg", {
+				"type" :  "GET" ,
+				"dataType" : "json",
+				"data" :{"id":orgId},
+				"async":"false",
+				"traditional": true, //传数组必须加这个
+				"success" : function(data) {
+					console.log(JSON.stringify(data));
+					if (data.success && data.data!=""){
+						document.getElementById("relateArt").parentNode.parentNode.classList.remove("displayNone");
+						document.getElementById("relateArt").innerHTML="";
+						var StrData = data.data
+						var lengthT;
+						if(data.data.length>5){
+							lengthT=5;
+						}else{
+							lengthT=data.data.length
+						}
+						for(var i = 0; i < lengthT; i++) {
+							(function(n) {
+								var imgL="../images/default-artical.jpg";
+								if(StrData[i].articleImg){
+									imgL=baseUrl+'/data/article/' + StrData[i].articleImg 
+								}
+								var oURL;
+								if(StrData[i].articleType==1) {
+									oURL="/ajax/professor/baseInfo/"+StrData[i].professorId;
+								}else{
+									oURL="/ajax/org/" + StrData[i].orgId;
+								}
+								mui.ajax(baseUrl + oURL, {
+									"type": "GET",
+									'dataType': "json",
+									"success": function(data) {
+										if(data.success) {
+											console.log(JSON.stringify(data));
+											var add = document.createElement("li");
+											add.className = "mui-table-view-cell"; 
+											add.setAttribute("data-id",StrData[n].articleId);
+											var thisName,userType,thisAuth,thisTitle
+											if(data.data.forShort){
+												thisName=data.data.forShort;
+											}else{
+												thisName=data.data.name;
+											}
+											if(StrData[n].articleType==1) {
+												userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
+												thisTitle = userType.title;
+												thisAuth = userType.sty;
+												add.setAttribute("owner-id", data.data.id);
+												add.setAttribute("data-type", 1);
+											}else {
+												add.setAttribute("owner-id", data.data.id);
+												add.setAttribute("data-type", 2);
+												if(data.data.authStatus==3) {
+													thisTitle = "科袖认证企业";
+													thisAuth = "authicon-com-ok";
+												}
+											}
+											
+											var itemlist = '<div class="flexCenter OflexCenter mui-clearfix"><div class="madiaHead artHead" style="background-image:url('+imgL+')"></div>';
+												itemlist += '<div class="madiaInfo OmadiaInfo">';
+												itemlist += '<p class="mui-ellipsis h2Font" id="usertitle">'+StrData[n].articleTitle+'</p>';
+												itemlist += '<p><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
+												itemlist += '</div></div>';
+												
+											add.innerHTML=itemlist;
+											document.getElementById("relateArt").appendChild(add);
+										}
+									},
+									error: function() {
+										plus.nativeUI.toast("服务器链接超时", toastStyle);
+										return;
+									}
+								});
+							})(i);
+						}
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
+	    
+	    //感兴趣
+		function likeExperts(){
+			mui.ajax(baseUrl + "/ajax/org/ralateOrgs", {
+				"type": "get",
+				"dataType" : "json",
+				"data" :{"orgId":orgId},
+				"success": function(data) {
+					if(data.success && data.data) {
+						var lengthT;
+						if(data.data.length>5){
+							lengthT=5;
+						}else{
+							lengthT=data.data.length
+						}
+						for(var i = 0; i < lengthT; i++) {
+							var ExpId = data.data[i].id;
+							likeExpertsList(ExpId);
+						}
+						
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
+		//感兴趣
+		function likeExpertsList(ExpId){
+			mui.ajax(baseUrl +  "/ajax/org/"+ExpId, {
+				"type" :  "GET" ,
+				"dataType" : "json",
+				"success" : function(data) {
+					if (data.success && data.data!=""){
+						document.getElementById("likePro").parentNode.parentNode.classList.remove("displayNone");	
+						var add = document.createElement("li");
+						add.setAttribute("data-id",data.data.id);
+						add.className = "mui-table-view-cell";
+						add.style.minHeight="68px";
+						var imgL,thisName,thisAuth,thisTitle,otherI="";
+						if(data.data.hasOrgLogo == 1) {
+							imgL= baseUrl+"/images/org/" + data.data.id + ".jpg";
+						}else{
+							imgL='../images/default-icon.jpg'
+						}
+						if(data.data.forShort){
+							thisName=data.data.forShort
+						}else{
+							thisName=data.data.name
+						}
+						if(data.data.industry){
+							otherI=data.data.industry.replace(/,/gi, " | ");
+						}
+						if(data.data.authStatus==3){
+							thisAuth="authicon-com-ok"
+							thisTitle="科袖认证企业"
+						}
+						var itemlist = '<div class="flexCenter OflexCenter mui-clearfix"><div class="madiaHead cmpHead"><div class="boxBlock"><img class="boxBlockimg" src="'+imgL+'" /></div></div>';
+							itemlist += '<div class="madiaInfo OmadiaInfo">';
+							itemlist += '<p><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
+							itemlist += '<p class="mui-ellipsis h2Font">'+otherI+'</p>';
+							itemlist += '</div></div>';
+						add.innerHTML=itemlist;
+						document.getElementById("likePro").appendChild(add);
+						
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
+			});
+		}
+
 		
 		//判断是否登录，登录才可咨询，关注，收藏
 		function isLogin() {

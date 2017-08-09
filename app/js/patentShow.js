@@ -641,4 +641,73 @@ mui.plusReady(function() {
 		})
 		})
 	}
+	isAgreeNum()
+	function isAgreeNum() {
+	var data = {"id": patentId}
+	mui.ajax(baseUrl+"/ajax/ppatent/agreeCount",{		
+		data:data,
+		dataType: 'json', //数据格式类型
+		type: 'get', //http请求类型
+		timeout: 10000,
+		async: true,
+		success: function(data) {
+			if(data.success){
+					document.getElementById("snum").innerHTML=data.data;
+			}
+		},
+		error: function() {
+			$.MsgBox.Alert('提示',"服务器链接超时");
+		}
+	});
+}
+	if(userid && userid != "null" && userid != null) {
+					isAgree() //文章点赞
+				} 
+	/*判断论文是否被赞*/
+function isAgree() {
+	var data = {"id": patentId,"uid":userid }
+	mui.ajax({		
+		url:"/ajax/ppatent/agree",
+		data:data,
+		dataType: 'json', //数据格式类型
+		type: 'get', //http请求类型
+		timeout: 10000,
+		async: true,
+		success: function(data) {
+			if(data.success){
+				if(data.data){
+					document.getElementsByClassName("thumbBtn")[0].classList.add("thumbedBtn");
+				}
+			}
+		},
+		error: function() {
+			$.MsgBox.Alert('提示',"服务器链接超时");
+		}
+	});
+}
+$('.thumbBlock').on("click",".thunbgo",function(){
+	if (!isLogin) {
+		addAgree();
+	}
+})
+/*点赞*/
+function addAgree() {
+	var data = {"uid": userid,"id": patentId}
+	mui.ajax(baseUrl+"/ajax/ppatent/agree",{		
+		data:data,
+		dataType: 'json', //数据格式类型
+		type: 'POST', //http请求类型
+		timeout: 10000,
+		async: true,
+		success: function(data) {
+			if(data.success){
+			document.getElementById("snum").innerHTML = Number(document.getElementById("snum").innerHTML) + 1;
+			document.getElementsByClassName("thumbBtn")[0].classList.add("thumbedBtn");
+			}
+		},
+		error: function() {
+			$.MsgBox.Alert('提示',"服务器链接超时");
+		}
+	});
+}
 });

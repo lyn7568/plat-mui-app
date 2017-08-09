@@ -121,6 +121,7 @@ mui.plusReady(function() {
 			}
 			var pstr = ""
 			if(subs.length > 0) {
+				patentRelatedList(subs)
 				for(var i = 0; i < subs.length; i++) {
 					pstr += '<li><span class="h2Font">' + subs[i] + '</span></li>'
 				};

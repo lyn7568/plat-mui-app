@@ -1100,6 +1100,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .madiaBlock .madiaHead.cmpHead{width:90px;height:60px;margin-top:-30px;background:#FFFFFF;border-radius:0;}
 .madiaBlock .madiaHead.cmpHead .boxBlock{width: 88px;height:58px;}
 .madiaBlock .madiaHead.cmpHead2{width:50px;height:40px;margin-top:-20px;background:#FFFFFF;border-radius:0;}
+.madiaBlock .madiaHead.cmpHead2 .boxBlock{width:48px;height:38px;}
 .madiaBlock .madiaHead.paperHead{background-image: url(../images/default-paper.jpg);}
 .madiaBlock .madiaHead.patentHead{background-image: url(../images/default-patent.jpg);}
 .madiaBlock .madiaInfo{padding-left:62px; width: 100%;padding-right:6px;}

@@ -208,7 +208,7 @@ mui.plusReady(function() {
 				document.getElementById('name').innerHTML = $data.name;
 			}
 			document.getElementById("messImg").classList.add("cmpHead2");
-			document.getElementById("messImg").innerHTML='<div class="boxBlock" style="width:48px;height:38px;"><img class="boxBlockimg" id="companyImg" src="../images/default-icon.jpg"></div>'
+			document.getElementById("messImg").innerHTML='<div class="boxBlock"><img class="boxBlockimg" id="companyImg" src="../images/default-icon.jpg"></div>'
 			if($data.hasOrgLogo) {
 				document.getElementById("companyImg").src= baseUrl + "/images/org/" + $data.id + ".jpg";
 			}

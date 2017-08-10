@@ -111,7 +111,7 @@ mui.plusReady(function() {
 								othisOther.innerHTML = (mydata.organization.subject).replace(/,/, " | ");
 							}
 							othisPic.classList.add("cmpHead2");
-							othisPic.innerHTML='<div class="boxBlock" style="width:48px;height:38px;"><img class="boxBlockimg" id="companyImg" src="../images/default-icon.jpg"></div>'
+							othisPic.innerHTML='<div class="boxBlock"><img class="boxBlockimg" id="companyImg" src="../images/default-icon.jpg"></div>'
 							if(mydata.organization.hasOrgLogo) {
 								document.getElementById("companyImg").src= baseUrl + "/images/org/" + mydata.organization.id + ".jpg";
 							}

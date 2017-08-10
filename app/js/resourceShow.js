@@ -30,6 +30,8 @@ mui.plusReady(function() {
 	resourceId = self.resourceId;
 	getRecourceMe();/*获取资源信息*/
 	relatedArticles();/*相关文章信息*/
+	interestingResources();
+	
 	mui.ajax(baseUrl + '/ajax/resource/pageViews',{
 			"type": "POST",
 			"dataType": "json",
@@ -37,7 +39,6 @@ mui.plusReady(function() {
 				"resourceId": resourceId
 			},
 			"success": function(data) {
-				console.log(data);
 				if(data.success) {}
 			},
 			"error": function() {
@@ -143,11 +144,6 @@ mui.plusReady(function() {
 						}
 						if(mydata.subject) {
 							var oSub = mydata.subject.split(",");
-							if(mydata.resourceType==1) {
-								interestingResources(oSub,mydata.professorId,0);
-							}else{
-								interestingResources(oSub,mydata.orgId,1);
-							}
 							var oSt = "";
 							for(var i = 0; i < oSub.length; i++) {
 								oSt += '<li><span class="h2Font">' + oSub[i] + '</span></li>'
@@ -202,32 +198,48 @@ mui.plusReady(function() {
 	})
 	/*资源里面相关文章*/
 	function relatedArticles() {
-		mui.ajax(baseUrl + '/ajax/resource/articles', {
+		mui.ajax(baseUrl + '/ajax/article/byAssResource', {
 			type: "GET",
+			data: {
+				"id": resourceId,
+			},
+			dataType: "json",
 			success: function(data) {
 				if(data.success) {
 					if(data.data.length == 0) {
-						document.getElementById("likeArtical").parentNode.style.display="none";
 						return;
 					}
+					document.getElementById("likeArtical").parentNode.classList.remove("displayNone");
 					var $html= data.data;
-					for(var i = 0; i < $html.length; i++) {
+					var lengthT;
+					if($html.length>5){
+						lengthT=5;
+					}else{
+						lengthT=$html.length
+					}
+					for(var i = 0; i < lengthT; i++) {
 						(function(n) {
 							var oURL;
-							if($html[i].article.articleType==1) {
-								oURL=baseUrl+"/ajax/professor/baseInfo/" + $html[i].article.professorId;
+							if($html[i].articleType==1) {
+								oURL=baseUrl+"/ajax/professor/baseInfo/" + $html[i].professorId;
 							}else{
-								oURL=baseUrl+"/ajax/org/" + $html[i].article.orgId;
+								oURL=baseUrl+"/ajax/org/" + $html[i].orgId;
 							}
 							mui.ajax(oURL, {
 								type: "GET",
 								dataType: "json",
 								success: function(data) {
 									if(data.success) {
+										var likeRUl = document.getElementById("likeArtical");
+										var likeRli = document.createElement("li");
+										likeRli.className = 'mui-table-view-cell';
+										likeRli.setAttribute("data-id", $html[n].articleId);
+										
 										var comName="";
-										if($html[n].article.articleType==1) {
+										if($html[n].articleType==1) {
 											var stl = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
 											comName=data.data.name;
+											likeRli.setAttribute("data-type", 1);
 										}else {
 											var stl={};
 											stl.sty="";
@@ -241,21 +253,18 @@ mui.plusReady(function() {
 											}else{
 												comName=data.data.name;
 											}
+											likeRli.setAttribute("data-type", 2);
 										}
-										var likeRUl = document.getElementById("likeArtical");
-										var likeRli = document.createElement("li");
-										likeRli.className = 'mui-table-view-cell';
-										likeRli.setAttribute("data-id", $html[n].article.articleId);
 										
 										var str = ""
 										str+='<div class="flexCenter OflexCenter mui-clearfix">'
-										if($html[n].article.articleImg) {
-											str += '<div class="madiaHead artHead" style="background-image: url('+ baseUrl +'/data/article/' + $html[n].article.articleImg + ')"></div>'
+										if($html[n].articleImg) {
+											str += '<div class="madiaHead artHead" style="background-image: url('+ baseUrl +'/data/article/' + $html[n].articleImg + ')"></div>'
 										} else {
 											str += '<div class="madiaHead artHead"></div>'
 										}
 										str += '<div class="madiaInfo OmadiaInfo">'
-										str += '<p class="mui-ellipsis-2 h1Font">' + $html[n].article.articleTitle + '</p>'
+										str += '<p class="mui-ellipsis-2 h1Font">' + $html[n].articleTitle + '</p>'
 										str += '<p><span class="h2Font">' + comName + '</span><em class="authicon ' + stl.sty + '" title="' + stl.title + '"></em></p>'
 										str += '</div></div>'
 										likeRli.innerHTML = str;
@@ -271,80 +280,84 @@ mui.plusReady(function() {
 					}
 				}
 			},
-			data: {
-				"resourceId": resourceId,
-				"rows": 5
-			},
-			dataType: "json",
 			error:  function(xhr, type, errorThrown) {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
 			}
 		});
 	}
 	/*感兴趣的资源*/
-	function interestingResources(arry,oId,oNu) {
-		var oUrl;
-		var $in={};
-		$in.keys= arry;
-		$in.resourceId= resourceId;
-		
-		if(oNu==0) {
-				$in.professorId= oId;
-				oUrl= baseUrl + "/ajax/resource/ralateRes";
-		}else {
-			$in.orgId= oId;
-			oUrl= baseUrl + '/ajax/resource/orgRalateRes';
-		}
-		mui.ajax(oUrl,{
-			data: $in,
+	function interestingResources() {
+		mui.ajax(baseUrl+"/ajax/resource/ralateResources",{
+			data: {"resourceId": resourceId},
 			dataType: "json",
 			traditional: true,
 			type: 'get', //HTTP请求类型
 			success: function(data) {
 				if(data.success) {
+					console.log(JSON.stringify(data))
 					if(data.data.length == 0) {
-						document.getElementById("likeResource").parentNode.style.display="none";
 						return;
 					}
+					document.getElementById("likeResource").parentNode.classList.remove("displayNone");
 					var $respond=data.data;
-					for(var i = 0; i < $respond.length; i++) {
-						if($respond[i].organization) {
-							var stl={};
-							stl.sty="";
-							stl.title="";
-							if($respond[i].organization.authStatus==3) {
-								stl.sty="authicon-com-ok";
-								stl.title="认证企业";
+					var lengthT;
+					if($respond.length>5){
+						lengthT=5;
+					}else{
+						lengthT=$respond.length
+					}
+					for(var i = 0; i < lengthT; i++) {
+						(function(n) {
+							var imgL="../images/default-resource.jpg";
+							if($respond[i].images.length){
+								imgL=baseUrl+'/data/resource/' + $respond[i].images[0].imageSrc
 							}
-							var name="";
-							if($respond[i].organization.forShort){
-								name= $respond[i].organization.forShort;
+							var oURL;
+							if($respond[i].resourceType==1) {
+								oURL="/ajax/professor/baseInfo/"+$respond[i].professorId;
 							}else{
-								name= $respond[i].organization.name;
+								oURL="/ajax/org/" + $respond[i].orgId;
 							}
-						}else {
-							var stl = autho($respond[i].editProfessor.authType, $respond[i].editProfessor.orgAuth, $respond[i].editProfessor.authStatus);
-							var name= $respond[i].editProfessor.name;
-						}
-						
-						var likeRUl = document.getElementById("likeResource");
-						var likeRli = document.createElement("li");
-						likeRli.className = 'mui-table-view-cell';
-						likeRli.setAttribute("data-id", $respond[i].resourceId);
-						var oStr = '';
-						oStr +='<div class="flexCenter OflexCenter mui-clearfix">'
-						if($respond[i].images.length) {
-							oStr += '<div class="madiaHead resouseHead" style="background-image: url('+baseUrl+'/data/resource/'+$respond[i].images[0].imageSrc+')"></div>';
-						} else {
-							oStr += '<div class="madiaHead resouseHead"></div>'
-						}
-						oStr += '<div class="madiaInfo OmadiaInfo">'
-						oStr += '<p class="mui-ellipsis h1Font">' + $respond[i].resourceName + '</p>'
-						oStr += '<p class="mui-ellipsis h2Font">用途：' + $respond[i].supportedServices + '</p>'
-						oStr += '<p><span class="h2Font">' + name + '</span><em class="authicon ' + stl.sty + '" title="' + stl.title + '"></em></p>'
-						oStr += '</div></div>';
-						likeRli.innerHTML = oStr;
-						likeRUl.appendChild(likeRli,likeRUl.lastChild);
+							mui.ajax(baseUrl+oURL,{
+								"type": "GET",
+								'dataType': "json",
+								"success": function(data) {
+									if(data.success){
+										console.log(JSON.stringify(data))
+										var thisName,userType,thisAuth,thisTitle
+										if(data.data.forShort){
+											thisName=data.data.forShort;
+										}else{
+											thisName=data.data.name;
+										}
+										if($respond.resourceType==1) {
+											userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
+											thisTitle = userType.title;
+											thisAuth = userType.sty;
+										}else {
+											if(data.data.authStatus==3) {
+												thisTitle = "科袖认证企业";
+												thisAuth = "authicon-com-ok";
+											}
+										}
+										var add = document.createElement("li");
+										add.className = "mui-table-view-cell"; 
+										add.setAttribute("data-id",$respond[n].resourceId);
+										var itemlist = '<div class="flexCenter OflexCenter"><div class="madiaHead resourceHead" style="background-image:url('+imgL+')"></div>';
+											itemlist += '<div class="madiaInfo OmadiaInfo">';
+											itemlist += '<p class="mui-ellipsis h2Font" id="usertitle">'+$respond[n].resourceName+'</p>';
+											itemlist += '<p><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
+											itemlist += '</div></div>';
+											
+										add.innerHTML=itemlist;
+										document.getElementById("likeResource").appendChild(add);
+									}
+								},
+								'error': function(xhr, type, errorThrown) {
+									plus.nativeUI.toast("服务器链接超时", toastStyle);
+								}
+							});
+						})(i);
 					}
 				}
 			},
@@ -389,12 +402,23 @@ mui.plusReady(function() {
 	//相关文章详情
 	mui('#likeArtical').on('tap', 'li', function() {
 		var artId = this.getAttribute("data-id");
-		var professorId = othisInfo.getAttribute("data-id");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
-			articleId: artId,
-			ownerid: professorId
-		});
+		var ownId = othisInfo.getAttribute("data-id");
+		var typeN = this.getAttribute("data-type");
+		if(typeN==1){
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
+				articleId: artId,
+				ownerid: ownId
+			});
+		}else{
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/professorArticle.html", 'professorArticle.html', {}, {
+				articleId: artId,
+				ownerid: ownId,
+				flag:1
+			});
+		}
+		
 	});
 	//感兴趣的资源详情
 	mui('#likeResource').on('tap', 'li', function() {

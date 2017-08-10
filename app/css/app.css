@@ -1110,9 +1110,8 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .madiaBlock .madiaInfo .h1Font{font-size: 16px;margin:0;line-height:24px;}
 /*点赞模块*/
 .thumbBlock{text-align: center;margin:10px 0;}
-.thumbBlock .thumbBtn{display:inline-block;position:relative;padding:10px 24px;padding-left:44px;font-size:16px;color:#fff;background:#ff9900;border-radius:30px;cursor: pointer;}
-.thumbBlock .thumbBtn:before{position:absolute;content:url(../images/g_article_icon_dianzan_nor.png);top:50%;left:24px;margin-top:-9px;}
-.thumbBlock .thumbBtn.thumbedBtn{background: #e0e0e0;}
+.thumbBlock .thumbBtn{display:inline-block;position:relative;padding:10px 24px;padding-left:44px;font-size:16px;color:#fff;background:url(../images/g_article_icon_dianzan_nor.png) no-repeat 24px center;background-size:16px 16px;background-color:#ff9900;border-radius:30px;cursor: pointer;}
+.thumbBlock .thumbBtn.thumbedBtn{background-color: #e0e0e0;}
 /*留言*/
 .commentBlock .flexCenter{min-height:38px;}
 .commentBlock .commenttime{margin-right:18px;}

@@ -46,6 +46,9 @@ function historyEvaluate(pageSize,pageNo){
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				if(response.success) {
 					console.log(JSON.stringify(response))
+					if(pageNo!=response.data.pageNo) {
+						response.data.data=[];
+					}
 					var $data = response.data.data;
 					if($data.length>0){
 						for(var i = 0; i < $data.length; i++) {

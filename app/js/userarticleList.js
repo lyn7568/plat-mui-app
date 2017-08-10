@@ -51,9 +51,11 @@ function getArticel(pageSize,pageNo) {
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				console.log(JSON.stringify(data))
 				if(data.success) {
+					if(pageNo!=data.data.pageNo) {
+						data.data.data=[];
+					}
 					var obj = data.data.data;
 					if(obj.length > 0) {
-						
 						for(var i = 0; i < obj.length; i++) {
 							var liItem = document.createElement("li");
 							liItem.setAttribute("data-id", obj[i].articleId);
@@ -71,7 +73,7 @@ function getArticel(pageSize,pageNo) {
 							document.getElementById("articelShow").appendChild(liItem);
 						}
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
 					} else {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/

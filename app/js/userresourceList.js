@@ -50,6 +50,9 @@ function getResource(pageSize,pageNo) {
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				if(data.success) {
+					if(pageNo!=data.data.pageNo) {
+						data.data.data=[];
+					}
 					var obj = data.data.data;
 					if(obj.length > 0) {
 						for(var i = 0; i < obj.length; i++) {

@@ -12,7 +12,7 @@ mui.init({
 var Num=1;
 function pullupRefresh() {
 	setTimeout(function() {
-		++Num;
+		Num++;
 		getArtice(10,Num);
 	}, 1000);
 
@@ -50,9 +50,13 @@ function getArtice(pageSize,pageNo) {
 				"pageNo": pageNo
 			},
 			success: function(data) {
+				console.log(JSON.stringify(data));
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				if(data.success) {
+					if(pageNo!=data.data.pageNo) {
+						data.data.data=[];
+					}
 					var obj = data.data.data;
 					if(obj.length>0){
 						for(var i = 0; i < obj.length; i++) {
@@ -75,7 +79,7 @@ function getArtice(pageSize,pageNo) {
 							mui("#pullrefresh").pullRefresh().endPullupToRefresh(true);
 						}
 					}
-					if(pageNo < Math.ceil(data.total / data.pageSize)) {
+					if(pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
 					} else {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/

@@ -780,7 +780,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 
 .cmplogo{ background:#FFFFFF;border-radius:4px;overflow: hidden;}
 .table-item-media .table-item-logo.cmplogo .boxBlock{width: 32px;height: 32px;}
-.table-item-media .table-item-logo.cmplogo .boxBlock .boxBlockimg{margin-top:-2px}
+.table-item-media .table-item-logo.cmplogo .boxBlock .boxBlockimg{margin-top:-4px}
 .userhead{ background: url(../images/default-photo.jpg);background-size: cover;border-radius:50%;}
 .cmpLable{border:1px solid;border-radius:3px;padding:2px 6px;font-style: normal;font-size: 10px; line-height: 14px; vertical-align: middle;margin-right: 15px;}
 .cmpLable.articalLabel{border-color:#ff6b57;color:#ff6b57;}

@@ -980,13 +980,13 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .searchTab .h1Font{font-size:16px;color:#333;}
 .searchTab .madiaTit{position:relative;font-size:16px;color:#666;padding-left:10px;margin-top:15px;}
 .searchTab .madiaTit:before{display:inline-block;content:"";width:4px;height: 16px;position:absolute;top:1px;left:0;background: #ff9900;}
-.searchTab .madiaHead{width:90px;height:60px;margin-top:-30px;position:absolute;border:1px solid #E5E5E5;top:50%;background-position: center;background-size: cover;}
+.searchTab .madiaHead{width:90px;height:60px;margin-top:-30px;position:absolute;/*border:1px solid #E5E5E5;*/top:50%;background-position: center;background-size: cover;}
 .searchTab .madiaHead.useHead{width: 50px;height:50px;margin-top:-25px;background-image: url(../images/default-photo.jpg);border-radius: 50%;}
 .searchTab .madiaHead.resouseHead{background-image: url(../images/default-resource.jpg);}
 .searchTab .madiaHead.artHead{background-image: url(../images/default-artical.jpg);}
 .searchTab .madiaHead.paperHead{background-image: url(../images/default-paper.jpg);}
 .searchTab .madiaHead.patentHead{background-image: url(../images/default-patent.jpg);}
-.searchTab .madiaHead.companyHead{background:#fff;}
+.searchTab .madiaHead.companyHead{background:#fff;border:none}
 .searchTab .madiaHead.companyHead .boxBlock{width:88px;height:58px;}
 .searchTab .madiaInfo{padding-left:62px; width: 100%;}
 .searchTab .madiaInfo.OmadiaInfo{padding-left: 102px;}
@@ -1066,7 +1066,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 /*****************************2017.05新版文章资源样式************************/
 /*文章浏览*/
 .showDetail{padding:15px;padding-top:10px;}
-.showDetail .hWeight{font-weight:bold; word-break: break-all; -webkit-user-select:text;}
+.showDetail .hWeight{font-weight:bold; word-break: break-word; -webkit-user-select:text;}
 .showDetail .h1Font{font-size:20px;margin:8px 0;line-height:30px;color:#333;}
 .showDetail .showFont{font-size:16px;margin-top:-4px; line-height:24px;color:#333; -webkit-user-select:text;}
 .showDetail .h2Font{font-size:14px;color:#666;}
@@ -1079,8 +1079,8 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .showDetail .invite.invite2{/*width:56px;*/}
 .showDetail .showMain{font-size:15px;color:#333;line-height:28px;/*text-indent: 2em;*/}
 .showDetail .showMain img{max-width: 100%;/*margin-left:-32px;*/}
-.showDetail .showMain p{margin-bottom:10px;font-size:15px;color:#333;}
-.showDetail .showMain *{ -webkit-user-select:text; word-break: break-all;}
+.showDetail .showMain p{margin-bottom:10px;font-size:15px;color:#333;text-align:justify}
+.showDetail .showMain *{ -webkit-user-select:text; word-break: break-word;}
 ul.tagList{padding:0;margin:18px 0 8px;overflow: hidden;}
 ul.tagList>li{list-style:none;float: left;margin-right:10px;margin-bottom:10px;padding:4px 12px;color: #666;background:#EFEFEF;}
 ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
@@ -1097,9 +1097,9 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .madiaBlock .madiaHead.useHead{width: 50px;height:50px;margin-top:-25px;background-image: url(../images/default-photo.jpg);border-radius: 50%;}
 .madiaBlock .madiaHead.resouseHead{background-image: url(../images/default-resource.jpg);}
 .madiaBlock .madiaHead.artHead{background-image: url(../images/default-artical.jpg);}
-.madiaBlock .madiaHead.cmpHead{width:90px;height:60px;margin-top:-30px;background:#FFFFFF;border-radius:0;}
+.madiaBlock .madiaHead.cmpHead{width:90px;height:60px;margin-top:-30px;background:#FFFFFF;border-radius:0;border:none}
 .madiaBlock .madiaHead.cmpHead .boxBlock{width: 88px;height:58px;}
-.madiaBlock .madiaHead.cmpHead2{width:50px;height:40px;margin-top:-20px;background:#FFFFFF;border-radius:0;}
+.madiaBlock .madiaHead.cmpHead2{width:50px;height:40px;margin-top:-20px;background:#FFFFFF;border-radius:0;border:none}
 .madiaBlock .madiaHead.cmpHead2 .boxBlock{width:48px;height:38px;}
 .madiaBlock .madiaHead.paperHead{background-image: url(../images/default-paper.jpg);}
 .madiaBlock .madiaHead.patentHead{background-image: url(../images/default-patent.jpg);}
@@ -1143,7 +1143,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .mui-slider.tab-slider .mui-slider-group .mui-slider-item .tab-re:before{content: ' ';display: inline-block;vertical-align: middle;width: 0;height: 100%;overflow: hidden;margin-left: -4px;}
 .showMain>ul{margin:0;padding:0;}
 .showMain.showRes>ul>li{padding:0;margin:0;list-style: none;display: none;}
-.showMain.showRes .showCon{-webkit-user-select:text;}
+.showMain.showRes .showCon{-webkit-user-select:text;text-align:justify}
 .showMain .showTit{position:relative;padding-left:10px;text-indent: 0;}
 .showMain .showTit:before{position:absolute;top:50%;margin-top:-10px;left:0;display:inline-block;content:"";width:4px;height:16px;background:#ff9900;}
 
@@ -1167,7 +1167,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .showMainP li{overflow: hidden;}
 .showMainP .showTit{padding-left: 0;color: #666;}
 .showMainP .showTit:before{content: none;}
-.showMainP .showCon{color: #333;}
+.showMainP .showCon{color: #333;text-align:justify}
 
 /*新版用户和企业相关*/
 .showCardI{overflow:hidden;background: url(../images/personal_img_bg_nor@3x.png) center 0 no-repeat;background-size:100% 130px;}
@@ -1175,7 +1175,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 		background: rgba(256,256,256,.6);background: linear-gradient( rgba(256,256,256,.6), rgba(256,256,256,.9));border-radius:6px;box-shadow: 0px 2px 4px 1px rgba(0,0,0,.1);}
 .cardImg{position: absolute;margin-top:-15px;left:50%;margin-left: -40px;width:80px;height: 80px;overflow: hidden;background-size: cover;/*border:1px solid #E5E5E5;*/background-color: #fff;}
 .cardImg.userCard{background-image:url(../images/default-photo.jpg);border-radius: 50%;}
-.cardImg.cmpCard{border-radius:4px;width:120px;margin-left: -60px;background: #fff;}
+.cardImg.cmpCard{border-radius:4px;width:120px;margin-left: -60px;background:none;}
 .cardImg.cmpCard .boxBlock{width:120px;height: 80px;}
 .cardInfo{margin-top:82px;}
 .cardInfo .h1Font{font-size:16px;}

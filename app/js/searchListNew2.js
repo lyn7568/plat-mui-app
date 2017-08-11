@@ -287,8 +287,8 @@ for(var n=0;n<6;n++) {
 						' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis h1Font">' + $data.resourceName + '</p>' +
-						'<p class="mui-ellipsis h2Font">用途：' + $data.supportedServices + '</p>' +
 						'<p><span class="h2Font">' + namepo + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+						'<p class="mui-ellipsis h2Font">用途：' + $data.supportedServices + '</p>' +
 						'</div>' +
 						'</div>'
 					document.getElementById("resourceList").appendChild(li);
@@ -370,17 +370,10 @@ for(var n=0;n<6;n++) {
 					var name = ""
 					var li = document.createElement("li");
 					if( of == 1) {
-						var userType = autho($data[i].professor.authType, $data[i].professor.orgAuth, $data[i].professor.authStatus);
 						li.setAttribute("owner-id", $data[i].professor.id);
 						li.setAttribute("data-type", 1);
 						name = $data[i].professor.name;
 					} else {
-						var userType = {};
-						if($data[i].editOrganization.authStatus == 3) {
-							userType.sty = 'authicon-com-ok'
-						} else {
-							userType.sty = "e"
-						}
 						li.setAttribute("owner-id", $data[i].editOrganization.id);
 						li.setAttribute("data-type", 2);
 						if($data[i].editOrganization.forShort){
@@ -396,7 +389,10 @@ for(var n=0;n<6;n++) {
 						'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
-						'<p><span class="h2Font">' + name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+						'<p class="h2Font mui-ellipsis">'+
+						'<span class="nameSpan" style="margin-right:10px">' + name + '</span>'+
+						'<span class="time">'+commenTime($data[i].publishTime)+'</span>'
+						'</p>'+
 						'</div>' +
 						'</div>'
 					document.getElementById("articleList").appendChild(li);
@@ -473,7 +469,7 @@ for(var n=0;n<6;n++) {
 					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 						'<div class="madiaHead patentHead"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
-						'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
+						'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 						'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 						'</div>' +
 						'</div>'
@@ -549,7 +545,7 @@ for(var n=0;n<6;n++) {
 					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 						'<div class="madiaHead paperHead"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
-						'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
+						'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 						'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 						'</div>' +
 						'</div>'
@@ -642,7 +638,7 @@ for(var n=0;n<6;n++) {
 			}
 		}
 		if(webview.qiFlag == 1) {
-			document.getElementById("searchval").setAttribute("placeholder", "请输入专家姓名、机构、研究方向");
+//			document.getElementById("searchval").setAttribute("placeholder", "请输入专家姓名、机构、研究方向");
 			document.getElementById("sele").classList.remove("displayNone");
 			document.getElementById("searB").classList.add("searchboxNewT");
 			search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
@@ -655,7 +651,7 @@ for(var n=0;n<6;n++) {
 				"pageNo": pageNo.ex
 			}, "get", search.oExeprt);
 		} else if(webview.qiFlag == 2) {
-			document.getElementById("searchval").setAttribute("placeholder", "输入资源名称、用途、机构或相关关键词");
+//			document.getElementById("searchval").setAttribute("placeholder", "输入资源名称、用途、机构或相关关键词");
 			document.getElementById("sele").classList.add("displayNone");
 			document.getElementById("searB").classList.remove("searchboxNewT");
 			search.oAjaxGet(baseUrl + "/ajax/resource/firstpq", {
@@ -664,7 +660,7 @@ for(var n=0;n<6;n++) {
 				"pageNo": pageNo.rs
 			}, "get", search.resource);
 		} else if(webview.qiFlag == 3) {
-			document.getElementById("searchval").setAttribute("placeholder", "输入文章标题、作者或相关关键词");
+//			document.getElementById("searchval").setAttribute("placeholder", "输入文章标题、作者或相关关键词");
 			document.getElementById("sele").classList.add("displayNone");
 			document.getElementById("searB").classList.remove("searchboxNewT");
 			search.oAjaxGet(baseUrl + "/ajax/article/firstpq", {
@@ -673,7 +669,7 @@ for(var n=0;n<6;n++) {
 				"pageNo": pageNo.ar
 			}, "get", search.article);
 		} else if(webview.qiFlag == 4) {
-			document.getElementById("searchval").setAttribute("placeholder", "输入专利名称、发明人、专利号或相关关键词");
+//			document.getElementById("searchval").setAttribute("placeholder", "输入专利名称、发明人、专利号或相关关键词");
 			document.getElementById("sele").classList.add("displayNone");
 			document.getElementById("searB").classList.remove("searchboxNewT");	
 			
@@ -683,7 +679,7 @@ for(var n=0;n<6;n++) {
 				"pageNo": pageNo.pt
 			}, "get", search.patent);
 		} else if(webview.qiFlag == 5) {
-			document.getElementById("searchval").setAttribute("placeholder", "输入论文题目、作者或相关关键词");
+//			document.getElementById("searchval").setAttribute("placeholder", "输入论文题目、作者或相关关键词");
 			document.getElementById("sele").classList.add("displayNone");
 			document.getElementById("searB").classList.remove("searchboxNewT");	
 			search.oAjaxGet(baseUrl + "/ajax/ppaper/pq", {
@@ -692,7 +688,7 @@ for(var n=0;n<6;n++) {
 				"pageNo": pageNo.pp
 			}, "get", search.paper);
 		} else if(webview.qiFlag == 6) {
-			document.getElementById("searchval").setAttribute("placeholder", "输入企业名称、产品名称或相关关键词");
+//			document.getElementById("searchval").setAttribute("placeholder", "输入企业名称、产品名称或相关关键词");
 			document.getElementById("sele").classList.add("displayNone");
 			document.getElementById("searB").classList.remove("searchboxNewT");	
 			search.oAjaxGet(baseUrl + "/ajax/org/find/pq", {
@@ -701,7 +697,7 @@ for(var n=0;n<6;n++) {
 				"pageNo": pageNo.co
 			}, "get", search.company);
 		}
-
+		
 		//跳转专家浏览页面
 		mui("#list").on("tap", "li", function() {
 			var id = this.getAttribute("data-id");
@@ -895,7 +891,7 @@ for(var n=0;n<6;n++) {
 			var searchval = document.getElementById("searchval").value;
 			if($this.innerHTML == "找专家") {
 				tabFlag = 1;
-				document.getElementById("searchval").setAttribute("placeholder", "请输入专家姓名、机构、研究方向");
+				//document.getElementById("searchval").setAttribute("placeholder", "请输入专家姓名、机构、研究方向");
 				document.getElementById("sele").classList.remove("displayNone");
 				document.getElementById("searB").classList.add("searchboxNewT");
 				if(key2[0] == 1) {
@@ -935,7 +931,7 @@ for(var n=0;n<6;n++) {
 				}
 			} else if($this.innerHTML == "找资源") {
 				tabFlag = 2;
-				document.getElementById("searchval").setAttribute("placeholder", "输入资源名称、用途、机构或相关关键词");
+				//document.getElementById("searchval").setAttribute("placeholder", "输入资源名称、用途、机构或相关关键词");
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[2] == 1) {
@@ -966,7 +962,7 @@ for(var n=0;n<6;n++) {
 				}
 			} else if($this.innerHTML == "找文章") {
 				tabFlag = 3;
-				document.getElementById("searchval").setAttribute("placeholder", "输入文章标题、作者或相关关键词");
+				//document.getElementById("searchval").setAttribute("placeholder", "输入文章标题、作者或相关关键词");
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[5] == 1) {
@@ -997,7 +993,7 @@ for(var n=0;n<6;n++) {
 				}
 			} else if($this.innerHTML == "找专利") {
 				tabFlag = 4;
-				document.getElementById("searchval").setAttribute("placeholder", "输入专利名称、发明人、专利号或相关关键词");
+				//document.getElementById("searchval").setAttribute("placeholder", "输入专利名称、发明人、专利号或相关关键词");
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[3] == 1) {
@@ -1028,7 +1024,7 @@ for(var n=0;n<6;n++) {
 				}
 			} else if($this.innerHTML == "找论文") {
 				tabFlag = 5;
-				document.getElementById("searchval").setAttribute("placeholder", "输入论文题目、作者或相关关键词");
+				//document.getElementById("searchval").setAttribute("placeholder", "输入论文题目、作者或相关关键词");
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[4] == 1) {
@@ -1059,7 +1055,7 @@ for(var n=0;n<6;n++) {
 				}
 			}else if($this.innerHTML == "找企业") {
 				tabFlag = 6;
-				document.getElementById("searchval").setAttribute("placeholder", "输入企业名称、产品名称或相关关键词");
+				//document.getElementById("searchval").setAttribute("placeholder", "输入企业名称、产品名称或相关关键词");
 				document.getElementById("sele").classList.add("displayNone");
 				document.getElementById("searB").classList.remove("searchboxNewT");
 				if(key2[1] == 1) {

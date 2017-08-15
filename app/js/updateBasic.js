@@ -30,24 +30,28 @@ mui.ready(function() {
 							person.orgName=$data.orgName;
 						}else{
 							person.orgName="";
+							document.getElementById('orgName').innerHTML="请填写当前就职的机构";
 						}
 						if($data.department) {
 							document.getElementById("department").innerHTML = $data.department;
 							person.department=$data.department;
 						}else{
+							document.getElementById("department").innerHTML = "请填写当前就职的部门";
 							person.department='';
 						}
 						if($data.title) {
 							document.getElementById("title").innerHTML= $data.title;
 							person.title=$data.title;
 						}else{
+							document.getElementById("title").innerHTML= "请填写最高职称";
 							person.title=""
 						}
 						if($data.office) {
 							document.getElementById("office").innerHTML = $data.office;
 							person.office=$data.office;
 						}else{
-							person.office=""
+							person.office="";
+							document.getElementById("office").innerHTML = "请填写当前担任的职位";
 						}
 						
 						if($data.address) {
@@ -65,12 +69,14 @@ mui.ready(function() {
 							document.getElementById("mail").innerHTML = $data.email;
 							person.email=$data.email;
 						}else{
+							document.getElementById("mail").innerHTML = "请填写电子邮箱";
 							person.email="";
 						}
 						if($data.phone) {
 							document.getElementById("phone").innerHTML = $data.phone;
 							person.phone=$data.phone;
 						}else{
+							document.getElementById("phone").innerHTML = "请填写手机/办公电话";
 							person.phone = "";
 						}
 						person.orgAuth=$data.orgAuth

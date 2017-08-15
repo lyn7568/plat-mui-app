@@ -7,20 +7,17 @@ mui.ready(function() {
 		function person() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
-			title.innerHTML = web.descp;
+				document.getElementById("tt").style.width=document.getElementById("title").scrollWidth+"px";
+				document.getElementById("tt").value=web.descp;
+				document.getElementById("title").style.height=document.getElementById("tt").scrollHeight+"px";
+			title.value = web.descp;
 			if(web.descp.length) {
 				document.getElementById("fontAdd").innerHTML = web.descp.length;
-				document.getElementById("login").removeAttribute("disabled");
 			}
-			document.getElementById("title").addEventListener("keyup", function() {
-				if(this.innerHTML.length > 500) {
-					this.innerHTML = this.innerHTML.substring(0, 500);
-				}else if(this.innerHTML.length>0) {
-					document.getElementById("login").removeAttribute("disabled");
-				}else if(this.innerHTML.length==0) {
-					document.getElementById("login").setAttribute("disabled","true");
-				}
-				document.getElementById("fontAdd").innerHTML = this.innerHTML.length;
+			document.getElementById("title").addEventListener("input", function() {
+				
+					//this.value = this.value.substring(0, 20);
+					document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		}
 		person();
@@ -28,14 +25,14 @@ mui.ready(function() {
 			 savePro();
 		})
 		function savePro() {
-			if(document.getElementById("title").innerHTML.length>500) {
+			if(document.getElementById("title").value.length>500) {
 				plus.nativeUI.toast("个人简介不得超过500个字", toastStyle);
 				return;
 			}
 			mui.ajax(baseUrl + '/ajax/professor/descp', {
 				data: {
 					"id": userid,
-					"descp": document.getElementById("title").innerHTML
+					"descp": document.getElementById("title").value
 				},
 				dataType: 'json', //数据格式类型
 				async: false,
@@ -46,7 +43,7 @@ mui.ready(function() {
 						mui.back();
 						var web = plus.webview.getWebviewById("userInforUpdate.html");
 							mui.fire(web, "newId",{
-									obre: document.getElementById("title").innerHTML
+									obre: document.getElementById("title").value
 								});
 					}
 				},

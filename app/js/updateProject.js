@@ -6,6 +6,7 @@ mui.ready(function() {
 		var oarr=[];
 		//项目经历
 		var projectShow = function(obj) {
+			console.log(JSON.stringify(obj));
 			if(obj.data.length > 0) {
 				var arr = [];
 				for(var i = 0; i < obj.data.length; i++) {

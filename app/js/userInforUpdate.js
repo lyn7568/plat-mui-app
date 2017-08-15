@@ -140,6 +140,8 @@ mui.ready(function() {
 						});
 						if($data.subject) {
 							prose.subject=$data.subject;
+						}else{
+							prose.subject="";
 						}
 						//研究方向
 						//学术领域
@@ -148,6 +150,7 @@ mui.ready(function() {
 							prose.researchAreas=$data.researchAreas;
 						}else{
 							document.getElementById("researchAreaNum").innerHTML =0;
+							prose.researchAreas=""
 						}
 						
 						//应用行业
@@ -157,6 +160,8 @@ mui.ready(function() {
 						});
 						if($data.industry) {
 							prose.industry=$data.industry;
+						}else{
+							prose.industry="";
 						}
 						//项目经历
 						if($data.projects.length) {

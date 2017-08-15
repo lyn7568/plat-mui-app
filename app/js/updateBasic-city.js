@@ -1,7 +1,7 @@
 mui.ready(function() {
 	mui.plusReady(function() {
 		var web = plus.webview.currentWebview();
-		var city, province;
+		var city, province,suc=1;
 		
 		var oadd={
 			
@@ -14,6 +14,7 @@ mui.ready(function() {
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			web.show("slide-in-right", 150);
+			suc=0;
 		});
 		
 		var userid = plus.storage.getItem('userid');
@@ -80,9 +81,9 @@ mui.ready(function() {
 			});
 		}
 		document.getElementById('currentLocation').addEventListener("tap",function(){
+			if(suc==0) return;
 			cityResult.innerText = oadd.address + "-" + oadd.province;
 			city=oadd.address;
-			province=oadd.province
 		})
 	})
 })

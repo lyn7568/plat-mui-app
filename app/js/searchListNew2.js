@@ -90,7 +90,7 @@ for(var n=0;n<6;n++) {
 										setTimeout(function() {
 											var ul = self.element.querySelector('.mui-table-view')
 											if(index == 0) {
-												search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
+												search.oAjaxGet(baseUrl + "/ajax/professor/pqBaseInfo", {
 													"key": obj.ex,
 													"subject": subject,
 													"industry": industry,
@@ -391,7 +391,7 @@ for(var n=0;n<6;n++) {
 						'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
 						'<p class="h2Font mui-ellipsis">'+
 						'<span class="nameSpan" style="margin-right:10px">' + name + '</span>'+
-						'<span class="time">'+commenTime($data[i].publishTime)+'</span>'
+						'<span class="time">'+commenTime($data[i].publishTime)+'</span>'+
 						'</p>'+
 						'</div>' +
 						'</div>'
@@ -641,7 +641,7 @@ for(var n=0;n<6;n++) {
 //			document.getElementById("searchval").setAttribute("placeholder", "请输入专家姓名、机构、研究方向");
 			document.getElementById("sele").classList.remove("displayNone");
 			document.getElementById("searB").classList.add("searchboxNewT");
-			search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
+			search.oAjaxGet(baseUrl + "/ajax/professor/pqBaseInfo", {
 				"key": obj.ex,
 				"subject": subject,
 				"industry": industry,
@@ -785,7 +785,7 @@ for(var n=0;n<6;n++) {
 				pageNo.ex = 1,
 				flag = 1;
 			key1[0].refresh(true);
-			search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
+			search.oAjaxGet(baseUrl + "/ajax/professor/pqBaseInfo", {
 				"key": obj.ex,
 				"subject": subject,
 				"industry": industry,
@@ -805,7 +805,7 @@ for(var n=0;n<6;n++) {
 						obj.ex = searchval;
 						key1[0].refresh(true);
 						pageNo.ex = 1,
-							search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
+							search.oAjaxGet(baseUrl + "/ajax/professor/pqBaseInfo", {
 								"key": obj.ex,
 								"subject": subject,
 								"industry": industry,
@@ -900,7 +900,7 @@ for(var n=0;n<6;n++) {
 					}
 					flag = 1;
 					pageNo.ex = 1;
-					search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
+					search.oAjaxGet(baseUrl + "/ajax/professor/pqBaseInfo", {
 						"key": obj.ex,
 						"subject": subject,
 						"industry": industry,
@@ -915,7 +915,7 @@ for(var n=0;n<6;n++) {
 						key1[0].refresh(true);
 						obj.ex = searchval;
 						flag = 1;
-						search.oAjaxGet(baseUrl + "/ajax/professor/pqAPP", {
+						search.oAjaxGet(baseUrl + "/ajax/professor/pqBaseInfo", {
 							"key": obj.ex,
 							"subject": subject,
 							"industry": industry,

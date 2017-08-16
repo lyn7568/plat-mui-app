@@ -10,7 +10,7 @@ mui.ready(function() {
 			var html = [];
 			for(var i = 0; i < data.length; i++) {
 				console.log(data[i].caption);
-				html.push("<li><span class='numThis mui-pull-left'>"+ data[i].count+"</span><span class='otsave mui-pull-left'>" + data[i].caption + "</span><span class='closeThis'>删除</span></li><div></div>");
+				html.push("<li style='background:white;float: none;'><span class='numThis mui-pull-left' style='margin-right:0px;'>"+ data[i].count+"</span><span class='otsave mui-pull-left' style='background: #e5e5e5;padding-left: 10px;padding-right: 10px;max-width: 80%;'>" + data[i].caption + "</span><span class='closeThis' style='border-radius: 0 6px 6px 0;right:auto;margin-left:0px;'>删除</span></li>");
 			};
 			document.getElementsByClassName("labelshowT")[0].innerHTML = html.join('');
 		}
@@ -49,7 +49,9 @@ mui.ready(function() {
 					return;
 				}
 				var node = document.createElement("li");
-				node.innerHTML = '<span class="numThis mui-pull-left">0</span><span class="otsave mui-pull-left">'+content + '</span><span class="closeThis">删除</span>';
+				node.style.background="white";
+				node.style.float="none";
+				node.innerHTML = '<span class="numThis mui-pull-left" style="margin-right:0px;">0</span><span class="otsave mui-pull-left" style="background: #e5e5e5;padding-left: 10px;padding-right: 10px;max-width: 80%;">'+content + '</span><span class="closeThis" style="border-radius: 0 6px 6px 0;right:auto;margin-left:0px;">删除</span>';
 				document.getElementsByClassName("labelshow")[0].appendChild(node);
 				document.getElementsByTagName('input')[0].value = "";
 				

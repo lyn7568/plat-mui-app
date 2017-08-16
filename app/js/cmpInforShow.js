@@ -420,7 +420,7 @@ mui.ready(function() {
 						}
 						var itemlist = '<div class="flexCenter OflexCenter mui-clearfix"><div class="madiaHead cmpHead"><div class="boxBlock"><img class="boxBlockimg" src="'+imgL+'" /></div></div>';
 							itemlist += '<div class="madiaInfo OmadiaInfo">';
-							itemlist += '<p class="mui-ellipsis"><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
+							itemlist += '<p class="mui-ellipsis"><span class="mui-ellipsis h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
 							itemlist += '<p class="mui-ellipsis h2Font">'+otherI+'</p>';
 							itemlist += '</div></div>';
 						add.innerHTML=itemlist;

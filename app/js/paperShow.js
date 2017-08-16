@@ -833,7 +833,8 @@ function trim(str) { //删除左右两端的空格
 document.getElementById("textInputThis").addEventListener("input", function() {
 		var length = trim(this.value);
 		if(length) {
-			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled")
+			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled");
+			this.value=this.value.substr(0,200);
 		} else {
 			document.getElementsByClassName("mui-btn")[0].setAttribute("disabled", "true")
 		}

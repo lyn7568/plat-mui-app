@@ -9,7 +9,20 @@
 		<style type="text/css">
 			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
 			.mui-content{height:100%;overflow: auto;}
+			.simulation{
+				padding:2px;
+				height:24px;
+				overflow:hidden;
+				width:100%;
+			}
 		</style>
+		<script>
+			function autoGrow(oField) {
+				document.getElementById("tt").style.width=oField.scrollWidth+"px";
+				document.getElementById("tt").value=oField.value.substr(0,500);
+				oField.style.height=document.getElementById("tt").scrollHeight+"px";
+			}
+			</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav toptitbox">
@@ -17,17 +30,31 @@
 		    <h1 class="mui-title toptit">纠错反馈</h1>
 		</header>
 		<div class="mui-content">
-			<div class="row mui-input-row textBox">
-				<textarea id='question' class="mui-input-clear conTextare" placeholder="请具体说明您发现的问题，以便我们为您快速解决"></textarea>
-				<div class="limitBox" style="margin-bottom:10px">
-					<p class="limitNum"><span id="fontAdd">0</span>/500</p>
+			<div class="mui-input-group mainbox">
+				<div class="infocon">
+					<textarea class="textareabox simulation" id="question" oninput="autoGrow(this)" maxlength="500" placeholder="请具体说明您发现的问题，以便我们为您快速解决"></textarea>
+					<textarea class="textareabox simulation" id="tt" style="position:absolute;top:0;left:-999px;"></textarea>
 				</div>
+		    </div>
+			<div class="limitBox">
+				<p class="limitNum"><span id="fontAdd">0</span>/500</p>
 			</div>
 			<div class="mui-content-padded frmboxNew">
-				<button type="submit" class="mui-btn mui-btn-block frmbtn frmactive" id="refer" disabled="disabled">提交</button>
+				<button id="refer" class="mui-btn mui-btn-block frmbtn frmactive" disabled="disabled">提交</button>
 			</div>
-			
 		</div>
+//		<div class="mui-content">
+//			<div class="row mui-input-row textBox">
+//				<textarea id='question' class="mui-input-clear conTextare" placeholder="请具体说明您发现的问题，以便我们为您快速解决"></textarea>
+//				<div class="limitBox" style="margin-bottom:10px">
+//					<p class="limitNum"><span id="fontAdd">0</span>/500</p>
+//				</div>
+//			</div>
+//			<div class="mui-content-padded frmboxNew">
+//				<button type="submit" class="mui-btn mui-btn-block frmbtn frmactive" id="refer" disabled="disabled">提交</button>
+//			</div>
+//			
+//		</div>
 		
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>

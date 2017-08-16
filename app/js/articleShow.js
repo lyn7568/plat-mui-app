@@ -721,13 +721,15 @@ mui.plusReady(function() {
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/leaveWord/lwCount", {
 		"articleId": oArticleModule.articleId
 	}, "get", leaveWord.leaveWordTotal);
-	document.getElementById("textInputThis").addEventListener("keyup", function() {
+	document.getElementById("textInputThis").addEventListener("input", function() {
 		var length = trim(this.value);
 		if(length) {
-			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled")
+			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled");
+			this.value=this.value.substr(0,200);
 		} else {
 			document.getElementsByClassName("mui-btn")[0].setAttribute("disabled", "true")
 		}
+		
 	})
 	document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function() {
 		mui.ajax(baseUrl + "/ajax/leaveWord", {

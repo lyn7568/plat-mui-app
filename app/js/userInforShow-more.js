@@ -76,7 +76,7 @@ mui.ready(function() {
 						var str = '<li class="mui-table-view-cell listitem">'
 						var name = obj.data[i].name;
 						if(obj.data[i].year) {
-							var year = '发表于' + obj.data[i].year + '年'
+							var year = '获得于' + obj.data[i].year + '年'
 						} else {
 							var year = "";
 						}

@@ -4,7 +4,6 @@ mui.ready(function() {
 		var ws = plus.webview.currentWebview();
 		plus.nativeUI.closeWaiting();
 		plus.webview.currentWebview().show("slide-in-right", 150);
-		console.log(ws.industry)
 		//查询学术领域
 		var subjectShow = function(data) {
 			if(data != undefined && data.length != 0) {
@@ -98,6 +97,7 @@ mui.ready(function() {
 					return;
 				}
 			});
+			
 		});
 	});
 })

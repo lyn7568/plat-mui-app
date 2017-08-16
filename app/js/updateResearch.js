@@ -22,7 +22,7 @@ mui.ready(function() {
 			　　
 			return str.replace(/(^\s*)|(\s*$)/g, "");　　
 		}
-		mui(".labelshow").on("tap", "span", function() {
+		mui(".labelshow").on("tap", ".closeThis", function() {
 			var val = this.parentNode;
 			document.getElementsByClassName('labelshow')[0].removeChild(val);
 			var lilength = document.getElementsByTagName("li").length;
@@ -67,7 +67,6 @@ mui.ready(function() {
 					$rd.caption = researchAreas[i].innerText;
 					$data[i] = $rd;
 				}
-			}
 			var mess1 = JSON.stringify($data);
 			console.log(mess1)
 			$.ajax({
@@ -93,6 +92,28 @@ mui.ready(function() {
 					}
 				}
 			});
+			}else{
+				$.ajax({
+				"url": baseUrl + '/ajax/researchArea/'+userid,
+				"type": "DELETE",
+				"async": true,
+				"contentType": "application/json",
+				"success": function(data) {
+					console.log(JSON.stringify(data));
+					if(data.success) {
+						plus.nativeUI.showWaiting();
+						var web = plus.webview.getWebviewById("userInforUpdate.html");
+						mui.fire(web, "newId", {
+							
+						});
+						mui.back();
+					} else {
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
+						return;
+					}
+				}
+			});
+			}
 		});
 	});
 })

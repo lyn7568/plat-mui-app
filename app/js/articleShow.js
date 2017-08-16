@@ -311,15 +311,17 @@ mui.plusReady(function() {
 					userType.sty = "e"
 				}
 			}
-			var rImg = baseUrl + "/data/resource/" + $data.images[0].imageSrc;
+			var rImg = "../images/default-resource.jpg";
+			if($data.images.length>0){
+				rImg = baseUrl + "/data/resource/" + $data.images[0].imageSrc;
+			}
 			var li = document.createElement("li");
 			li.setAttribute("data-id", $data.resourceId);
 			li.className = "mui-table-view-cell";
 			li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 				' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
 				'<div class="madiaInfo OmadiaInfo">' +
-				'<p class="mui-ellipsis h1Font">' + $data.resourceName + '</p>' +
-				'<p class="mui-ellipsis h2Font">用途：' + $data.supportedServices + '</p>' +
+				'<p class="mui-ellipsis-2 h1Font">' + $data.resourceName + '</p>' +
 				'<p><span class="h2Font">' + namepo + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
 				'</div>' +
 				'</div>'
@@ -379,7 +381,7 @@ mui.plusReady(function() {
 								'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
 								'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
-								'<p><span class="h2Font">' + namepo + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+								'<p><span class="h2Font" style="margin-right:10px">'+namepo+'</span><span class="time">'+commenTime($data[i].publishTime)+'</span></p>'+
 								'</div>' +
 								'</div>'
 							document.getElementById("articleList").appendChild(li);

@@ -16,14 +16,15 @@ mui.plusReady(function() {
 			qiFlag: 4
 		}); 
 	})
+	var oifCollect=document.getElementById("ifCollect")
 	//点击收藏按钮
-	ifcollectionAbout(patentId,4);
+	ifcollectionAbout(patentId,oifCollect,4);
 	ocollectBtn.addEventListener('tap', function() {
 		if(userid && userid != null && userid != "null") {
-			if(document.getElementById("ifCollect").className=='mui-icon iconfontnew icon-yishoucang'){
-				cancelCollectionAbout(patentId,4)
+			if(oifCollect.className=='mui-icon iconfontnew icon-yishoucang'){
+				cancelCollectionAbout(patentId,oifCollect,4)
 			} else {
-				collectionAbout(patentId,4);
+				collectionAbout(patentId,oifCollect,4);
 			}
 		}else{
 			isLogin();
@@ -199,7 +200,8 @@ mui.plusReady(function() {
 											liItem.innerHTML = oString;
 											document.getElementById("aboutAuthors").appendChild(liItem);
 											if(userid){
-											ifcollectionAbout1.call(liItem.getElementsByClassName("attenSpan")[0],showPro.id,1);}
+												ifcollectionAbout1.call(liItem.getElementsByClassName("attenSpan")[0],showPro.id,1,1);
+											}
 										}
 									}
 								})
@@ -249,7 +251,7 @@ mui.plusReady(function() {
 		userName = plus.storage.getItem('name');
 		userid = plus.storage.getItem('userid');
 		getRecourceMe();
-		ifcollectionAbout(patentId,4);
+		ifcollectionAbout(patentId,oifCollect,4);
 		isAgree();
 	});
 	function leadIn(sel) {
@@ -304,12 +306,12 @@ mui.plusReady(function() {
 			if(isLogin()) {
 				return;
 			}
-					collectionAbout1(this.getAttribute("data-id"), '1',this);
+					collectionAbout(this.getAttribute("data-id"),this, 1,1);
 		} else if(this.innerHTML === "已关注") {
 			if(isLogin()) {
 				return;
 			}
-			cancelCollectionAbout1(this.getAttribute("data-id"), '1',this);
+			cancelCollectionAbout(this.getAttribute("data-id"),this, 1,1);
 		}
 	})
 	/*判断是否收藏资源文章或者是否关注专家*/
@@ -349,70 +351,6 @@ mui.plusReady(function() {
 		});
 	}
 
-	/*收藏资源、文章或者关注专家*/
-	function collectionAbout1(watchObject, num,sel) {
-		mui.ajax(baseUrl + '/ajax/watch', {
-			data: {
-				"professorId": userid,
-				"watchObject": watchObject,
-				"watchType": num
-			},
-			dataType: 'json', //数据格式类型
-			type: 'POST', //http请求类型
-			timeout: 10000,
-			async: false,
-			success: function(data) {
-				if(data.success) {
-					if(num=="1"){//关注专家
-						sel.classList.add("attenedSpan");
-						sel.innerText="已关注";
-						plus.nativeUI.toast("关注成功", toastStyle);
-					}else{//收藏资源或文章
-						document.getElementById("ifCollect").classList.remove("icon-shoucang");
-						document.getElementById("ifCollect").classList.add("icon-yishoucang");
-						plus.nativeUI.toast("收藏成功", toastStyle);
-					}
-				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-	}
-
-	/*取消收藏资源、文章或者取消关注专家*/
-	function cancelCollectionAbout1(watchObject, num,sel) {
-		mui.ajax({
-			url: baseUrl + '/ajax/watch/delete',
-			data: {
-				professorId: userid,
-				watchObject: watchObject
-			},
-			dataType: 'json', //数据格式类型
-			type: 'post', //http请求类型
-			timeout: 10000,
-			async: true,
-			success: function(data) {
-				console.log(data.success)
-				if(data.success) {
-					if(num=="1"){//关注专家
-						sel.classList.remove("attenedSpan");
-						sel.innerText="关注";
-						plus.nativeUI.toast("已取消关注", toastStyle);
-					}else{//收藏资源或文章
-						document.getElementById("ifCollect").classList.add("icon-shoucang");
-						document.getElementById("ifCollect").classList.remove("icon-yishoucang");
-						plus.nativeUI.toast("已取消收藏", toastStyle);
-					}
-					
-				}
-			},
-			error: function(data) {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-
-	}
 	var r64 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_"];
 		var d64 = {
 			"0": 0,
@@ -892,7 +830,7 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead patentHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">作者:' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'
@@ -929,7 +867,7 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead paperHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'

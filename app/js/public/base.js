@@ -1,8 +1,8 @@
 //公共文件
 mui.init();
 //var baseUrl = "http://www.ekexiu.com",
-var baseUrl = "http://192.168.3.233:81",
-//var baseUrl = "http:192.168.3.85:80",    
+var baseUrl = "http://192.168.3.233",
+//var baseUrl = "http:192.168.3.233:81",    
 	toastStyle = {
 		'verticalAlign': 'top',
 	}
@@ -248,7 +248,9 @@ var eduDegree = {
 }
 
 /*判断是否收藏资源文章或者是否关注专家*/
-function ifcollectionAbout(watchObject,num) {
+function ifcollectionAbout(watchObject,sel, num,flag) {
+	var that=sel;
+	console.log(JSON.stringify(that))
 	mui.ajax(baseUrl + '/ajax/watch/hasWatch', {
 		data: {
 			"professorId": plus.storage.getItem('userid'),
@@ -262,19 +264,29 @@ function ifcollectionAbout(watchObject,num) {
 			console.log(JSON.stringify(data))
 			if(data.success && data.data != null) {
 				if(num=="1" || num == "6"){//已关注专家
-					document.getElementById("ifAttend").classList.remove("icon-shoucang");
-					document.getElementById("ifAttend").classList.add("icon-yishoucang");
+					if(flag==1){
+						that.classList.add("attenedSpan");
+						that.innerText="已关注";
+					}else{
+						that.classList.remove("icon-shoucang");
+						that.classList.add("icon-yishoucang");
+					}
 				}else{//已收藏资源或文章
-					document.getElementById("ifCollect").classList.remove("icon-shoucang");
-					document.getElementById("ifCollect").classList.add("icon-yishoucang");
+					that.classList.remove("icon-shoucang");
+					that.classList.add("icon-yishoucang");
 				}
 			} else {
 				if(num=="1" || num == "6"){//关注专家
-					document.getElementById("ifAttend").classList.add("icon-shoucang");
-					document.getElementById("ifAttend").classList.remove("icon-yishoucang");
+					if(flag==1){
+						that.classList.remove("attenedSpan");
+						that.innerText="关注";
+					}else{
+						that.classList.add("icon-shoucang");
+						that.classList.remove("icon-yishoucang");
+					}
 				}else{//收藏资源或文章
-					document.getElementById("ifCollect").classList.add("icon-shoucang");
-					document.getElementById("ifCollect").classList.remove("icon-yishoucang");
+					that.classList.add("icon-shoucang");
+					that.classList.remove("icon-yishoucang");
 				}
 			}
 		},
@@ -285,7 +297,8 @@ function ifcollectionAbout(watchObject,num) {
 }
 
 /*收藏资源、文章或者关注专家*/
-function collectionAbout(watchObject, num) {
+function collectionAbout(watchObject,sel, num,flag) {
+	var that=sel;
 	mui.ajax(baseUrl + '/ajax/watch', {
 		data: {
 			"professorId": plus.storage.getItem('userid'),
@@ -300,12 +313,17 @@ function collectionAbout(watchObject, num) {
 			console.log(JSON.stringify(data))
 			if(data.success) {
 				if(num=="1" || num == "6"){//关注专家
-					document.getElementById("ifAttend").classList.remove("icon-shoucang");
-					document.getElementById("ifAttend").classList.add("icon-yishoucang");
+					if(flag==1){
+						that.classList.add("attenedSpan");
+						that.innerText="已关注";
+					}else{
+						that.classList.remove("icon-shoucang");
+						that.classList.add("icon-yishoucang");
+					}
 					plus.nativeUI.toast("关注成功", toastStyle);
 				}else{//收藏资源或文章
-					document.getElementById("ifCollect").classList.remove("icon-shoucang");
-					document.getElementById("ifCollect").classList.add("icon-yishoucang");
+					that.classList.remove("icon-shoucang");
+					that.classList.add("icon-yishoucang");
 					plus.nativeUI.toast("收藏成功", toastStyle);
 				}
 			}
@@ -317,7 +335,8 @@ function collectionAbout(watchObject, num) {
 }
 
 /*取消收藏资源、文章或者取消关注专家*/
-function cancelCollectionAbout(watchObject, num) {
+function cancelCollectionAbout(watchObject,sel, num,flag) {
+	var that=sel;
 	mui.ajax({
 		url: baseUrl + '/ajax/watch/delete',
 		data: {
@@ -332,12 +351,17 @@ function cancelCollectionAbout(watchObject, num) {
 			console.log(JSON.stringify(data))
 			if(data.success) {
 				if(num=="1" || num == "6"){//关注专家
-					document.getElementById("ifAttend").classList.add("icon-shoucang");
-					document.getElementById("ifAttend").classList.remove("icon-yishoucang");
+					if(flag==1){
+						that.classList.remove("attenedSpan");
+						that.innerText="关注";
+					}else{
+						that.classList.add("icon-shoucang");
+						that.classList.remove("icon-yishoucang");
+					}
 					plus.nativeUI.toast("已取消关注", toastStyle);
 				}else{//收藏资源或文章
-					document.getElementById("ifCollect").classList.add("icon-shoucang");
-					document.getElementById("ifCollect").classList.remove("icon-yishoucang");
+					that.classList.add("icon-shoucang");
+					that.classList.remove("icon-yishoucang");
 					plus.nativeUI.toast("已取消收藏", toastStyle);
 				}
 				

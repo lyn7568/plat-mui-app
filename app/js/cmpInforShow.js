@@ -25,13 +25,14 @@ mui.ready(function() {
 			}
 		});
 		//点击收藏按钮
-		ifcollectionAbout(orgId,6);
+		var oifAttend=document.getElementById("ifAttend")
+		ifcollectionAbout(orgId,oifAttend,6);
 		document.getElementById("collectBtn").addEventListener('tap', function() {
 			if(userid && userid != null && userid != "null") {
-				if(document.getElementById("ifAttend").className=='mui-icon iconfontnew icon-yishoucang'){
-					cancelCollectionAbout(orgId,6)
+				if(oifAttend.className=='mui-icon iconfontnew icon-yishoucang'){
+					cancelCollectionAbout(orgId,oifAttend,6)
 				} else {
-					collectionAbout(orgId,6);
+					collectionAbout(orgId,oifAttend,6);
 				}
 			}else{
 				isLogin();
@@ -214,7 +215,7 @@ mui.ready(function() {
 								} else {
 									oString += '<div class="madiaHead resouseHead"></div>'
 								}
-								oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis h1Font">' + obj[i].resourceName + '</p><p class="h2Font mui-ellipsis">用途：' + obj[i].supportedServices + '</p>'
+								oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis h1Font">' + obj[i].resourceName + '</p><p class="h2Font mui-ellipsis-2">用途：' + obj[i].supportedServices + '</p>'
 								oString += '</div></div>'
 								liItem.innerHTML = oString;
 								document.getElementById("resourceShow").appendChild(liItem);
@@ -263,6 +264,7 @@ mui.ready(function() {
 									oString += '<div class="madiaHead artHead"></div>'
 								}
 								oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis-2 h1Font">' + obj[i].articleTitle + '</p>'
+								oString += '<p class="h2Font mui-ellipsis"><span class="time">'+commenTime(obj[i].publishTime)+'</span></p>'
 								oString += '</div></div>'
 								liItem.innerHTML = oString;
 								document.getElementById("articelShow").appendChild(liItem);
@@ -326,24 +328,17 @@ mui.ready(function() {
 												thisName=data.data.name;
 											}
 											if(StrData[n].articleType==1) {
-												userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
-												thisTitle = userType.title;
-												thisAuth = userType.sty;
 												add.setAttribute("owner-id", data.data.id);
 												add.setAttribute("data-type", 1);
 											}else {
 												add.setAttribute("owner-id", data.data.id);
 												add.setAttribute("data-type", 2);
-												if(data.data.authStatus==3) {
-													thisTitle = "科袖认证企业";
-													thisAuth = "authicon-com-ok";
-												}
 											}
 											
 											var itemlist = '<div class="flexCenter OflexCenter mui-clearfix"><div class="madiaHead artHead" style="background-image:url('+imgL+')"></div>';
 												itemlist += '<div class="madiaInfo OmadiaInfo">';
-												itemlist += '<p class="mui-ellipsis h2Font" id="usertitle">'+StrData[n].articleTitle+'</p>';
-												itemlist += '<p><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
+												itemlist += '<p class="mui-ellipsis-2 h1Font" id="usertitle">'+StrData[n].articleTitle+'</p>';
+												itemlist += '<p><span class="h2Font" style="margin-right:10px">'+thisName+'</span><span class="time">'+commenTime(StrData[n].publishTime)+'</span></p>';
 												itemlist += '</div></div>';
 												
 											add.innerHTML=itemlist;
@@ -425,7 +420,7 @@ mui.ready(function() {
 						}
 						var itemlist = '<div class="flexCenter OflexCenter mui-clearfix"><div class="madiaHead cmpHead"><div class="boxBlock"><img class="boxBlockimg" src="'+imgL+'" /></div></div>';
 							itemlist += '<div class="madiaInfo OmadiaInfo">';
-							itemlist += '<p><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
+							itemlist += '<p class="mui-ellipsis"><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
 							itemlist += '<p class="mui-ellipsis h2Font">'+otherI+'</p>';
 							itemlist += '</div></div>';
 						add.innerHTML=itemlist;

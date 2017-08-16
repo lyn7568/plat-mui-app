@@ -19,6 +19,7 @@ var odetailDescp = document.getElementById("detailDescp"); //详细描述
 var oconsultBtn = document.getElementById("consultBtn"); //咨询按钮
 var ocollectBtn = document.getElementById("collectBtn"); //收藏按钮
 var oattenSpan = document.getElementById("attenSpan"); //关注用户按钮
+var oifCollect = document.getElementById("ifCollect")//星星
 
 var professorId;
 var orgId;
@@ -65,9 +66,9 @@ mui.plusReady(function() {
 							othisInfo.setAttribute("data-type",mydata.resourceType);
 							professorId = othisInfo.getAttribute("data-id");
 							if(userid != professorId) {
-								ifcollectionAbout(professorId, 1)
-								oattenSpan.style.display="block";
+								ifcollectionAbout(professorId,oattenSpan, 1,1);
 							}else{
+								oattenSpan.style.display="none";
 								document.getElementsByClassName('footbox')[0].style.display = "none";
 							}
 							if(mydata.orgName) { //所属机构
@@ -102,10 +103,14 @@ mui.plusReady(function() {
 							othisInfo.setAttribute("data-id",mydata.organization.id);
 							othisInfo.setAttribute("data-status",mydata.organization.authStatus);
 							othisInfo.setAttribute("data-type",mydata.resourceType);
+							orgId = othisInfo.getAttribute("data-id");
 							if(mydata.organization.forShort){
 								othisName.innerHTML = mydata.organization.forShort;
 							}else{
 								othisName.innerHTML = mydata.organization.name;
+							}
+							if(userid) {
+								ifcollectionAbout(orgId,oattenSpan, 6,1)
 							}
 							if(mydata.organization.subject) {
 								othisOther.innerHTML = (mydata.organization.subject).replace(/,/, " | ");
@@ -237,17 +242,9 @@ mui.plusReady(function() {
 										
 										var comName="";
 										if($html[n].articleType==1) {
-											var stl = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
 											comName=data.data.name;
 											likeRli.setAttribute("data-type", 1);
 										}else {
-											var stl={};
-											stl.sty="";
-											stl.title="";
-											if(data.data.authStatus==3) {
-												stl.sty="authicon-com-ok";
-												stl.title="认证企业";
-											}
 											if(data.data.forShort){
 												comName=data.data.forShort;
 											}else{
@@ -265,7 +262,10 @@ mui.plusReady(function() {
 										}
 										str += '<div class="madiaInfo OmadiaInfo">'
 										str += '<p class="mui-ellipsis-2 h1Font">' + $html[n].articleTitle + '</p>'
-										str += '<p><span class="h2Font">' + comName + '</span><em class="authicon ' + stl.sty + '" title="' + stl.title + '"></em></p>'
+										str += '<p class="h2Font mui-ellipsis">'
+										str +='<span class="nameSpan" style="margin-right:10px">' + comName + '</span>'
+										str +='<span class="time">'+commenTime($html[n].publishTime)+'</span>'
+										str +='</p>'
 										str += '</div></div>'
 										likeRli.innerHTML = str;
 										likeRUl.appendChild(likeRli,likeRUl.lastChild);
@@ -345,8 +345,8 @@ mui.plusReady(function() {
 										add.setAttribute("data-id",$respond[n].resourceId);
 										var itemlist = '<div class="flexCenter OflexCenter"><div class="madiaHead resourceHead" style="background-image:url('+imgL+')"></div>';
 											itemlist += '<div class="madiaInfo OmadiaInfo">';
-											itemlist += '<p class="mui-ellipsis h2Font" id="usertitle">'+$respond[n].resourceName+'</p>';
-											itemlist += '<p><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
+											itemlist += '<p class="mui-ellipsis h1Font" id="usertitle">'+$respond[n].resourceName+'</p>';
+											itemlist += '<p><span class="h2Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
 											itemlist += '</div></div>';
 											
 										add.innerHTML=itemlist;
@@ -492,129 +492,41 @@ mui.plusReady(function() {
 
 	//点击关注专家按钮
 	oattenSpan.addEventListener('tap', function() {
+		var typeNum=othisInfo.getAttribute("data-type");
+		var thisId=othisInfo.getAttribute("data-id");
 		if(userid && userid != null && userid != "null") {
-			if(this.className=='mui-icon attenSpan attenedSpan') {
-				cancelCollectionAbout(professorId, 1)
-			} else {
-				collectionAbout(professorId, 1);
+			if(typeNum==1){
+				if(this.className=='mui-icon attenSpan attenedSpan') {
+					cancelCollectionAbout(thisId,this, 1,1)
+				} else {
+					collectionAbout(thisId,this, 1,1);
+				}
+			}else{
+				if(this.className=='mui-icon attenSpan attenedSpan') {
+					cancelCollectionAbout(thisId,this, 6,1)
+				} else {
+					collectionAbout(thisId,this, 6,1);
+				}
 			}
+					
 		}else{
 			isLogin();
 		}
 	});
 	//点击收藏按钮
-	ifcollectionAbout(resourceId,2);
+	ifcollectionAbout(resourceId,oifCollect,2);
 	ocollectBtn.addEventListener('tap', function() {
 		if(userid && userid != null && userid != "null") {
-			if(document.getElementById("ifCollect").className=='mui-icon iconfontnew icon-yishoucang'){
-				cancelCollectionAbout(resourceId, 2)
+			if(oifCollect.className=='mui-icon iconfontnew icon-yishoucang'){
+				cancelCollectionAbout(resourceId,oifCollect,2);
 			} else {
-				collectionAbout(resourceId, 2);
+				collectionAbout(resourceId,oifCollect,2);
 			}
 		}else{
 			isLogin();
 		}
 	});
-	/*判断是否收藏资源文章或者是否关注专家*/
-	function ifcollectionAbout(watchObject,num) {
-		mui.ajax(baseUrl + '/ajax/watch/hasWatch', {
-			data: {
-				"professorId": userid,
-				"watchObject": watchObject
-			},
-			dataType: 'json', //数据格式类型
-			type: 'get', //http请求类型
-			timeout: 10000,
-			async: false,
-			success: function(data) {
-				if(data.success && data.data != null) {
-					if(num=="1"){//已关注专家
-						oattenSpan.classList.add("attenedSpan");
-						oattenSpan.innerText="已关注";
-					}else{//已收藏资源或文章
-						document.getElementById("ifCollect").classList.remove("icon-shoucang");
-						document.getElementById("ifCollect").classList.add("icon-yishoucang");
-					}
-				} else {
-					if(num=="1"){//关注专家
-						oattenSpan.classList.remove("attenedSpan");
-						oattenSpan.innerText="关注";
-					}else{//收藏资源或文章
-						document.getElementById("ifCollect").classList.add("icon-shoucang");
-						document.getElementById("ifCollect").classList.remove("icon-yishoucang");
-					}
-				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-	}
-
-	/*收藏资源、文章或者关注专家*/
-	function collectionAbout(watchObject, num) {
-		mui.ajax(baseUrl + '/ajax/watch', {
-			data: {
-				"professorId": userid,
-				"watchObject": watchObject,
-				"watchType": num
-			},
-			dataType: 'json', //数据格式类型
-			type: 'POST', //http请求类型
-			timeout: 10000,
-			async: false,
-			success: function(data) {
-				if(data.success) {
-					if(num=="1"){//关注专家
-						oattenSpan.classList.add("attenedSpan");
-						oattenSpan.innerText="已关注";
-						plus.nativeUI.toast("关注成功", toastStyle);
-					}else{//收藏资源或文章
-						document.getElementById("ifCollect").classList.remove("icon-shoucang");
-						document.getElementById("ifCollect").classList.add("icon-yishoucang");
-						plus.nativeUI.toast("收藏成功", toastStyle);
-					}
-				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-	}
-
-	/*取消收藏资源、文章或者取消关注专家*/
-	function cancelCollectionAbout(watchObject, num) {
-		mui.ajax({
-			url: baseUrl + '/ajax/watch/delete',
-			data: {
-				professorId: userid,
-				watchObject: watchObject
-			},
-			dataType: 'json', //数据格式类型
-			type: 'post', //http请求类型
-			timeout: 10000,
-			async: true,
-			success: function(data) {
-				console.log(data.success)
-				if(data.success) {
-					if(num=="1"){//关注专家
-						oattenSpan.classList.remove("attenedSpan");
-						oattenSpan.innerText="关注";
-						plus.nativeUI.toast("已取消关注", toastStyle);
-					}else{//收藏资源或文章
-						document.getElementById("ifCollect").classList.add("icon-shoucang");
-						document.getElementById("ifCollect").classList.remove("icon-yishoucang");
-						plus.nativeUI.toast("已取消收藏", toastStyle);
-					}
-					
-				}
-			},
-			error: function(data) {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-
-	}
+	
    /*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	plus.oauth.getServices(function(services) {

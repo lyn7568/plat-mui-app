@@ -209,7 +209,7 @@ mui.plusReady(function() {
 							} else {
 								oString += '<div class="madiaHead resouseHead"></div>'
 							}
-							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis h1Font">' + obj[i].resourceName + '</p><p class="h2Font mui-ellipsis">用途：' + obj[i].supportedServices + '</p>'
+							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis h1Font">' + obj[i].resourceName + '</p><p class="h2Font mui-ellipsis-2">用途：' + obj[i].supportedServices + '</p>'
 							oString += '</div></div>'
 							liItem.innerHTML = oString;
 							document.getElementById("resourceShow").appendChild(liItem);
@@ -255,6 +255,7 @@ mui.plusReady(function() {
 								oString += '<div class="madiaHead artHead"></div>'
 							}
 							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis-2 h1Font">' + obj[i].articleTitle + '</p>'
+							oString += '<p class="h2Font mui-ellipsis"><span class="time">'+commenTime(obj[i].publishTime)+'</span></p>'
 							oString += '</div></div>'
 							liItem.innerHTML = oString;
 							document.getElementById("articelShow").appendChild(liItem);
@@ -295,7 +296,7 @@ mui.plusReady(function() {
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead paperHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis h1Font">' + obj[i].name + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'
@@ -336,7 +337,7 @@ mui.plusReady(function() {
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead patentHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis h1Font">' + obj[i].name + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'
@@ -437,7 +438,10 @@ mui.plusReady(function() {
 						var ExpId = data.data[i].professorId;
 						var paperN=data.data[i].paperCount;
 						var patentN=data.data[i].patentCount;
-						relExpertsList(ExpId,paperN,patentN);
+						var liItem=document.createElement("li");
+						liItem.className="mui-table-view-cell flexCenter";
+						document.getElementById("relatePro").appendChild(liItem);
+						relExpertsList(ExpId,paperN,patentN,liItem);
 					}
 					
 				}
@@ -448,7 +452,7 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	function relExpertsList(Id,numL,numZ){
+	function relExpertsList(Id,numL,numZ,liItem){
 		mui.ajax(baseUrl + "/ajax/professor/info/"+Id, {
 			"type" :  "GET" ,
 			"dataType" : "json",
@@ -495,17 +499,14 @@ mui.plusReady(function() {
 						}
 					}
 					var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
-					var add = document.createElement("li");
-					add.className = "mui-table-view-cell flexCenter";
-					add.setAttribute("data-id",data.data.id)
 					var itemlist = '<div class="madiaHead useHead" style="background-image:url('+thisImg+')"></div>';
 						itemlist += '<div class="madiaInfo">';
 						itemlist += '<p><span class="h1Font" id="userName">'+data.data.name+'</span><em class="authicon '+userType.sty+'" title="'+userType.title+'"></em></p>';
 						itemlist += '<p class="mui-ellipsis h2Font">'+thisTit+'</p>';
 						itemlist += '<p class="h2Font mui-ellipsis">'+copNum+'</p>';
 						itemlist += '</div>';
-					add.innerHTML = itemlist
-					document.getElementById("relatePro").appendChild(add);
+					liItem.innerHTML = itemlist
+					liItem.setAttribute("data-id",data.data.id)
 				}
 			},
 			error: function() {
@@ -558,24 +559,14 @@ mui.plusReady(function() {
 										}else{
 											thisName=data.data.name;
 										}
-										if(StrData[n].articleType==1) {
-											userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
-											thisTitle = userType.title;
-											thisAuth = userType.sty;
-										}else {
-											if(data.data.authStatus==3) {
-												thisTitle = "科袖认证企业";
-												thisAuth = "authicon-com-ok";
-											}
-										}
 										var add = document.createElement("li");
 										add.className = "mui-table-view-cell"; 
 										add.setAttribute("data-id",StrData[n].articleId);
 										add.setAttribute("owner-id", StrData[n].professorId);
 										var itemlist = '<div class="flexCenter OflexCenter"><div class="madiaHead artHead" style="background-image:url('+imgL+')"></div>';
 											itemlist += '<div class="madiaInfo OmadiaInfo">';
-											itemlist += '<p class="mui-ellipsis h2Font" id="usertitle">'+StrData[n].articleTitle+'</p>';
-											itemlist += '<p><span class="h1Font">'+thisName+'</span><em class="authicon '+thisAuth+'" title="'+thisTitle+'"></em></p>';
+											itemlist += '<p class="mui-ellipsis-2 h2Font" id="usertitle">'+StrData[n].articleTitle+'</p>';
+											itemlist += '<p><span class="h2Font" style="margin-right:10px">'+thisName+'</span><span class="time">'+commenTime(StrData[n].publishTime)+'</span></p>';
 											itemlist += '</div></div>';
 											
 										add.innerHTML=itemlist;
@@ -664,7 +655,7 @@ mui.plusReady(function() {
 					}
 					var itemlist = '<div class="madiaHead useHead" style="background-image:url('+imgL+')"></div>';
 						itemlist += '<div class="madiaInfo">';
-						itemlist += '<p><span class="h1Font">'+data.data.name+'</span><em class="authicon '+userType.sty+'" title="'+userType.title+'"></em></p>';
+						itemlist += '<p class="mui-ellipsis"><span class="h1Font">'+data.data.name+'</span><em class="authicon '+userType.sty+'" title="'+userType.title+'"></em></p>';
 						itemlist += '<p class="mui-ellipsis h2Font">'+otherI+'</p>';
 						itemlist += '</div>';
 					add.innerHTML=itemlist;
@@ -798,7 +789,8 @@ mui.plusReady(function() {
 	ozixun.addEventListener('tap', function() {
 		isLogin();
 	});
-	ifcollectionAbout(proId, '1');
+	var oifAttend=document.getElementById("ifAttend")
+	ifcollectionAbout(proId,oifAttend,1);
 	document.getElementById('ifAttend').addEventListener("tap", function() {
 		if(!userid) {
 			mui.openWindow({
@@ -814,9 +806,9 @@ mui.plusReady(function() {
 			return;
 		}
 		if(this.className == "mui-icon iconfontnew icon-yishoucang") {
-			cancelCollectionAbout(proId, '1');
+			cancelCollectionAbout(proId,this, 1);
 		} else {
-			collectionAbout(proId, '1');
+			collectionAbout(proId,this,1);
 		}
 
 	})

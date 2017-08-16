@@ -168,7 +168,7 @@ for(var n=0;n<6;n++) {
 						for(var n = 0; n < data.data[i].researchAreas.length; n++) {
 							arr[n] = data.data[i].researchAreas[n].caption;
 						}
-						oSub = "研究方向：" + arr.join(",");
+						oSub = "研究方向：" + arr.join("；");
 					}
 					li.setAttribute("data-id", data.data[i].id);
 					li.setAttribute("data-flag", 1);

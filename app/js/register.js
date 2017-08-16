@@ -113,7 +113,7 @@ mui.ready(function() {
 			});
 		}
 
-		/*手机发送验证码*/
+		/*手机发送验证码*/ 
 		function sendAuthentication() {
 			console.log("send code")
 			mui.ajax(baseUrl + '/ajax/regmobilephone_onlyphone', {

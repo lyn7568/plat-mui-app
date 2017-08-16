@@ -14,7 +14,7 @@ mui.ready(function() {
 						var str = '<li class="mui-table-view-cell listitem" data-o="'+i+'">'
 						var name = obj.data[i].name;
 					} else {
-						var str = '<li class="mui-table-view-cell listitem" data-o="'+i+'">'
+						var str = '<li class="mui-table-view-cell listitem" style="margin-right:40px;"data-o="'+i+'">'
 						var name = obj.data[i].company;
 					}
 					oarr[i]=obj.data[i];
@@ -22,7 +22,7 @@ mui.ready(function() {
 					if(obj.data[i].descp) {
 						odescp = obj.data[i].descp
 					}
-					var os = '<div class="h4Tit listtit2">' + name + '<span class="updatebox mui-clearfix"><em></em>修改</span></div>' +
+					var os = '<div class="h4Tit listtit2" style="margin-right:40px;">' + name + '<span class="updatebox mui-clearfix" style="top:0;margin-right:-40px;"><em></em>修改</span></div>' +
 						' <p class="listtit3">' + timeT({
 							startMonth: obj.data[i].startMonth,
 							stopMonth: obj.data[i].stopMonth

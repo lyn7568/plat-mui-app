@@ -7,13 +7,14 @@ mui.ready(function() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
 			title.value = web.phone;
+			document.getElementById("tt").style.width=title.scrollWidth+"px";
+			document.getElementById("tt").value=web.phone;
+				title.style.height=document.getElementById("tt").scrollHeight+"px";
 			if(web.phone.length) {
 				document.getElementById("fontAdd").innerHTML = web.phone.length;
 				document.getElementById("login").removeAttribute("disabled");
 			}
 			document.getElementById("title").addEventListener("input", function() {
-				
-					//this.value = this.value.substring(0, 20);
 					document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		}

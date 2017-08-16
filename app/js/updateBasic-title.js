@@ -11,8 +11,6 @@ mui.ready(function() {
 				document.getElementById("fontAdd").innerHTML = web.title.length;
 			}
 			document.getElementById("title").addEventListener("input", function() {
-				
-					//this.value = this.value.substring(0, 20);
 					document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		}
@@ -22,8 +20,8 @@ mui.ready(function() {
 		})
 		function savePro() {
 			var mess = {};
-			if(document.getElementById("title").innerHTML.length) {
-				if(document.getElementById("title").innerHTML.length>20) {
+			if(document.getElementById("title").value.length) {
+				if(document.getElementById("title").value.length>20) {
 					plus.nativeUI.toast("职称不得超过20个字", toastStyle);
 					return;
 				}

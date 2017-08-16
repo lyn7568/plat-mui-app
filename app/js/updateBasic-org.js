@@ -25,6 +25,8 @@ mui.ready(function() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
 			title.value = web.orgName;
+			document.getElementById("tt").value=web.orgName;
+				title.style.height=document.getElementById("tt").scrollHeight+"px";
 			if(web.orgName.length) {
 				document.getElementById("fontAdd").innerHTML = web.orgName.length;
 				document.getElementById("login").removeAttribute("disabled");

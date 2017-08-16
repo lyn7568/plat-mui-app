@@ -19,7 +19,7 @@ mui.ready(function() {
 				project.style.height=document.getElementById("tt").scrollHeight+"px";
 			startMonth.innerHTML = (timeT(ws.data)) ? timeT(ws.data).substring(0, timeT(ws.data).indexOf("-")) : "请选择开始时间";
 			stopMonth.innerHTML = (timeT(ws.data)) ? timeT(ws.data).substring(timeT(ws.data).indexOf("-") + 1, timeT(ws.data).length) : "请选择结束时间";
-			descp.value = ws.data.descp;
+			descp.value = (ws.data.descp)?ws.data.descp:"";
 			if(ws.data.descp) {
 				document.getElementById("tt").style.width=document.getElementById("descp").scrollWidth+"px";
 				document.getElementById("tt").value=ws.data.descp;
@@ -118,7 +118,9 @@ mui.ready(function() {
 
 				}
 			}
-			$data.descp = descp.value;
+			if(descp.value) {
+				$data.descp = descp.value;
+			}
 			if(ws.data) {
 				$data.id = ws.data.id;
 			}

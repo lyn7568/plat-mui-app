@@ -13,8 +13,6 @@ mui.ready(function() {
 				document.getElementById("login").removeAttribute("disabled");
 			}
 			document.getElementById("title").addEventListener("input", function() {
-				
-					//this.value = this.value.substring(0, 20);
 					document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		}

@@ -4,6 +4,13 @@ mui.ready(function() {
 		var ws = plus.webview.currentWebview();
 		var person={};
 		var f1;
+		function autoWidth(oField) {
+				document.getElementById("orgName").style.maxWidth=oField.scrollWidth-113+"px";
+				document.getElementById("phone").style.maxWidth=oField.scrollWidth-113+"px";
+				document.getElementById("mail").style.maxWidth=oField.scrollWidth-113+"px";
+			}
+		autoWidth(document.getElementsByClassName('mui-navigate-right')[0])
+		document.getElementsByClassName("mui-navigate-right")[0]
 		function personalMessage() {
 			mui.ajax(baseUrl + "/ajax/professor/baseInfo/" + userid, {
 				dataType: 'json', //数据格式类型

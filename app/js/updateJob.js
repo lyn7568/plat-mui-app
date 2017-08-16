@@ -23,7 +23,7 @@ mui.ready(function() {
 					}else{
 						odescp = obj.data[i].title
 					}
-					var os = '<div class="h4Tit listtit2">' + name + '<span class="updatebox mui-clearfix"><em></em>修改</span></div>' +
+					var os = '<div class="h4Tit listtit2" style="margin-right:40px;">' + name + '<span class="updatebox mui-clearfix" style="top:0;margin-right:-40px;"><em></em>修改</span></div>' +
 						 ' <p class="listtit3">'+odescp+'</p>'+
 						' <p class="listtit3">' + timeT({
 							startMonth: obj.data[i].startMonth,

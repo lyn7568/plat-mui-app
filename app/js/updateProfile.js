@@ -15,8 +15,6 @@ mui.ready(function() {
 				document.getElementById("fontAdd").innerHTML = web.descp.length;
 			}
 			document.getElementById("title").addEventListener("input", function() {
-				
-					this.value = this.value.substring(0, 500);
 					document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		}

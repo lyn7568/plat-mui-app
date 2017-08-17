@@ -107,6 +107,10 @@ mui.ready(function() {
 							var btn = ["确定更新", "取消更新"];
 							mui.confirm("检测到新版本，是否更新？", "提示", btn, function(e) {
 								if(e.index == 0) {
+									if(mui.os.ios) {
+										plus.runtime.openURL('https://itunes.apple.com/cn/app/ke-xiu-da-jian-qi-ye-yu-zhuan/id1197110983?l=en&mt=8');
+										return;
+									}
 								try {
 									     plus.nativeUI.showWaiting("检测更新...");
 									     //var d="http://192.168.3.233/download/app1.0.6.apk";

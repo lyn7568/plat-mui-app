@@ -3,13 +3,6 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
 		var proId = self.pId;
-		var oDe = {
-			1: "博士",
-			2: "硕士",
-			3: "学士",
-			4: "大专",
-			5: "其他"
-		}
 		//
 		function timeT(obj) {
 			var a, b;

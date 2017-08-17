@@ -11,14 +11,6 @@ mui.ready(function() {
 		var college = document.getElementById("college");
 		var major = document.getElementById("major");
 		var degreeResult = document.getElementById("degreeResult");
-		var oDe={
-			0:"请选择获得的学位",
-			1:"博士",
-			2:"硕士",
-			3:"学士",
-			4:"大专",
-			5:"其他"
-		}
 		console.log(JSON.stringify(ws.data));
 		if(!ws.data) {
 			oDel.classList.add("displayNone");
@@ -37,7 +29,7 @@ mui.ready(function() {
 			major.style.height=document.getElementById("tt").scrollHeight+"px";
 			}
 			major.value = (ws.data.major) ? ws.data.major : "";
-			degreeResult.innerHTML = (ws.data.degree) ? oDe[ws.data.degree] : "请选择获得的学位";
+			degreeResult.innerHTML = (ws.data.degree) ? ws.data.degree : "请选择获得的学位";
 			yearResult.innerHTML =(ws.data.year) ? ((ws.data.year!="至今 ")?(ws.data.year+"年"):"至今") : "请选择毕业时间";
 		}
 		project.addEventListener("input", function() {
@@ -94,16 +86,8 @@ mui.ready(function() {
 						$data.year = "至今";
 					}
 			}
-			if(degreeResult.innerHTML=="博士") {
-				$data.degree=1;
-			}else if(degreeResult.innerHTML=="硕士") {
-				$data.degree=2;
-			}else if(degreeResult.innerHTML=="学士") {
-				$data.degree=3;
-			}else if(degreeResult.innerHTML=="大专") {
-				$data.degree=4;
-			}else if(degreeResult.innerHTML=="其他") {
-				$data.degree=5;
+			if(degreeResult.innerHTML!="请选择获得的学位") {
+				$data.degree=degreeResult.innerHTML;
 			}
 			if(college.value!="请填写就读的院系(20个字以内)") {
 				if(college.value.length>0) {

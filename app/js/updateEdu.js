@@ -3,13 +3,6 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
 		var fl;
-		var oDe={
-			1:"博士",
-			2:"硕士",
-			3:"学士",
-			4:"大专",
-			5:"其他"
-		}
 		var oarr=[];
 		//荣誉奖项
 		var honorShow = function(obj) {
@@ -45,14 +38,14 @@ mui.ready(function() {
 						
 						var arrq=[];
 						if(obj.data[i].degree) {
-							arrq.push(oDe[obj.data[i].degree]);
+							arrq.push(obj.data[i].degree);
 						}
 						if(obj.data[i].major) {
 							arrq.push(obj.data[i].major);
 						}
 	                    if(obj.data[i].college) {
 							arrq.push(obj.data[i].college);
-						}  
+						} 
 						if(arrq.length) {
 							odescp=arrq.join(",")
 						}

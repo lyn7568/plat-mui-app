@@ -663,8 +663,9 @@ mui.plusReady(function() {
 					
 				}
 			},
-			"error":function(){
-				$.MsgBox.Alert('提示','链接服务器超时')
+			error: function() {
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				return;
 			}
 		});
 	}
@@ -907,6 +908,27 @@ mui.plusReady(function() {
 		}
 		ifcollectionAbout(proId, '1');
 	});
+	
+	liulanNum();
+	function liulanNum() {
+		mui.ajax(baseUrl+"/ajax/professor/incPageViews",{
+			"type": "POST",
+			"dataType": "json",
+			"async": true,
+			"data": {
+				"id": proId,
+			},
+			"success": function(data) {
+				if(data.success) {
+					console.log(JSON.stringify(data))
+				}
+			},
+			error: function() {
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				return;
+			}
+		});
+	}
 	/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	plus.oauth.getServices(function(services) {

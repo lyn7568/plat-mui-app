@@ -160,7 +160,7 @@ mui.ready(function() {
 		if(ws.data) {
 			oDel.addEventListener("click", function() {
 				var btn = ["确认", "取消"];
-				mui.confirm("确认删除该项目经历？", "提示", btn, function(e) {
+				mui.confirm("确认删除该工作经历？", "提示", btn, function(e) {
 					if(e.index == 0) {
 						delf();
 					}

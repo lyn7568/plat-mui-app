@@ -97,7 +97,7 @@ mui.ready(function() {
 								arrq.push(obj.data[i].college);
 							}
 							if(arrq.length) {
-								ode = '<p class="listtit3 mutlinebox">' + arrq.join(",") + '</p>'
+								ode = '<p class="listtit3 mutlinebox">' + arrq.join("，") + '</p>'
 							}
 						} else {
 							var year = "";

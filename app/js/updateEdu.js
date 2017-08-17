@@ -47,7 +47,7 @@ mui.ready(function() {
 							arrq.push(obj.data[i].college);
 						} 
 						if(arrq.length) {
-							odescp=arrq.join(",")
+							odescp=arrq.join("，")
 						}
 					var os = '<div class="listtit2" style="margin-right:40px;">' + name + '<span class="updatebox mui-clearfix" style="top:5px;"><em></em>修改</span></div>' +
 						' <p class="listtit3 mutlinebox">'+odescp+'</p><p class="listtit3">' + year + '</p></li>'

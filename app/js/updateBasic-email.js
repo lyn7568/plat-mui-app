@@ -39,7 +39,7 @@ mui.ready(function() {
 		function savePro() {
 			var mess = {};
 			if(document.getElementById("title").value.length) {
-				if(document.getElementById("title").value.length>20) {
+				if(document.getElementById("title").value.length>50) {
 					plus.nativeUI.toast("联系邮箱不得超过50个字", toastStyle);
 					return;
 				}

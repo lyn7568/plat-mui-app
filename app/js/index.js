@@ -8,6 +8,9 @@ mui.plusReady(function() {
 	plus.nativeUI.showWaiting();
 	checkVersion();
 })
+document.addEventListener("resume", function(){
+	
+}, false)
 function checkVersion(){
 		mui.plusReady(function(){
 			// 获取本地应用资源版本号

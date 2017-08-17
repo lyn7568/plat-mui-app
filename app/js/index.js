@@ -20,10 +20,8 @@ function checkVersion(){
 					timeout: 10000, //超时设置
 					async: false,
 					success: function(data) {
-						alert(JSON.stringify(data));
-						alert(wgtVer)
 						if (data.version > wgtVer) {
-							var btn = ["立即更新", "取消更新"];
+							var btn = ["立即更新"];
 							mui.confirm("有新版本发布了，赶快更新吧", "提示", btn, function(e) {
 								if(e.index == 0) {
 									if(mui.os.ios) {
@@ -57,7 +55,7 @@ function checkVersion(){
 								}
 							});
 						}else{
-							plus.nativeUI.toast("您使用的是最新版本，请放心使用！", toastStyle);
+							//plus.nativeUI.toast("您使用的是最新版本，请放心使用！", toastStyle);
 						}
 					},
 					error: function() {

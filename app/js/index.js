@@ -8,6 +8,9 @@ mui.plusReady(function() {
 	plus.nativeUI.showWaiting();
 	checkVersion();
 })
+document.addEventListener("resume", function(){
+	checkVersion();
+}, false)
 document.getElementById("demandP").addEventListener("tap", function() {
 	var userid = plus.storage.getItem('userid');
 	if(userid == null) {

@@ -112,6 +112,7 @@ body{ color: #666666; font-size:14px;line-height:20px;}
 .mainbox{margin:10px auto;}
 .mainbox:before{ position:static;}
 /*div模拟textarea多行文本框*/
+.textareabox{font-size:14px;padding:2px;}
 div.textareabox{font-size:14px;padding:2px;-webkit-user-select:text;-webkit-user-modify: read-write-plaintext-only;}
 div.textareaboxEmp:empty:before {content: attr(placeholder);font-size:14px;display: block;color: #AAAAAA;}
 div.textareaboxEmp:focus{content:none;}

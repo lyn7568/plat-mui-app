@@ -1102,9 +1102,6 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .madiaBlock .madiaHead.paperHead{background-image: url(../images/default-paper.jpg);}
 .madiaBlock .madiaHead.patentHead{background-image: url(../images/default-patent.jpg);}
 .madiaBlock .madiaInfo{padding-left:62px; width: 100%;padding-right:6px;}
-.madiaBlock .madiaInfo>p{position: relative;}
-.madiaBlock .madiaInfo span.h1Font{display: inline-block;max-width:86%;}
-.madiaBlock .madiaInfo span.h1Font + em.authicon{position:absolute;bottom: auto;top:50%;margin-top:-10px;}
 .madiaBlock .madiaInfo.OmadiaInfo{padding-left: 102px;}
 .madiaBlock .flexCenter{min-height:54px;}
 .madiaBlock .flexCenter.OflexCenter{min-height:70px;}

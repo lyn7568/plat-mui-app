@@ -59,7 +59,7 @@ function getPatent(pageSize,pageNo) {
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead patentHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis h1Font">' + obj[i].name + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'

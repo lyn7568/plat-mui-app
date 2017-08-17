@@ -194,7 +194,7 @@ mui.plusReady(function() {
 											liItem.className = "mui-table-view-cell"
 											var oString = '<div class="flexCenter mui-clearfix">'
 											oString += '<div class="madiaHead useHead" style="background-image:url('+ imgbg +')"></div>'
-											oString += '<div class="madiaInfo"><p><span class="h1Font">'+ showPro.name +'</span><em class="authicon '+ authTy +'" title="'+ authTit +'"></em></p>'
+											oString += '<div class="madiaInfo" style="padding-right: 62px;"><p class="mui-ellipsis"><span class="h1Font">'+ showPro.name +'</span><em class="authicon '+ authTy +'" title="'+ authTit +'"></em></p>'
 											oString += '<p class="mui-ellipsis h2Font">'+ baseInfo +'</p>'
 											oString += '</div></div><span class="mui-icon attenSpan"  style="display:' + odis + ';" data-id="'+showPro.id+'">关注</span>'
 											liItem.innerHTML = oString;

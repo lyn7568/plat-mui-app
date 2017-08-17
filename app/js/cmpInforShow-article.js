@@ -71,6 +71,7 @@ function getArtice(pageSize,pageNo) {
 								oString += '<div class="madiaHead artHead"></div>'
 							}
 							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis-2 h1Font">' + obj[i].articleTitle + '</p>'
+							oString += '<p class="h2Font mui-ellipsis"><span class="time">'+commenTime(obj[i].publishTime)+'</span></p>'
 							oString += '</div></div>'
 							liItem.innerHTML = oString;
 							document.getElementById("articelShow").appendChild(liItem);

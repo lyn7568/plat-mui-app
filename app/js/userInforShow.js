@@ -1,4 +1,5 @@
 mui.plusReady(function() {
+	//test git
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var ozixun = document.getElementById("consultBtn");

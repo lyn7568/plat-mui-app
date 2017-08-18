@@ -193,7 +193,7 @@ mui.plusReady(function() {
 											liItem.setAttribute("data-id", showPro.id);
 											var odis = (userid == showPro.id) ? "none" : "block";
 											liItem.className = "mui-table-view-cell"
-											var oString = '<div class="flexCenter mui-clearfix" style="width:80%;">'
+											var oString = '<div class="flexCenter mui-clearfix">'
 											oString += '<div class="madiaHead useHead" style="background-image:url(' + imgbg + ')"></div>'
 											oString += '<div class="madiaInfo" style="padding-right: 62px;"><p class="mui-ellipsis"><span class="h1Font">' + showPro.name + '</span><em class="authicon ' + authTy + '" title="' + authTit + '"></em></p>'
 											oString += '<p class="mui-ellipsis h2Font">' + baseInfo + '</p>'
@@ -210,7 +210,7 @@ mui.plusReady(function() {
 								var otext = (userName == data.data[i].name) ? "<span class='invite'>是我本人</span>" : "<span class='invite invite2'>邀请</span>";
 								liItem.setAttribute("data-id", data.data[i].professorId);
 								liItem.className = "mui-table-view-cell"
-								var oString = '<div class="flexCenter mui-clearfix" style="width:80%;">'
+								var oString = '<div class="flexCenter mui-clearfix">'
 								oString += '<div class="madiaHead useHead" style="background-image:url(' + imgbg + ')"></div>'
 								oString += '<div class="madiaInfo"><p><span class="h1Font">' + data.data[i].name + '</span></p>'
 								oString += '</div></div>' + otext 

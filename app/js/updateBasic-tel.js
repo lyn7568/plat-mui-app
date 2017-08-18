@@ -6,20 +6,16 @@ mui.ready(function() {
 		function person() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
-			title.innerHTML = web.phone;
-			if(web.title.length) {
-				document.getElementById("fontAdd").innerHTML = web.title.length;
+			title.value = web.phone;
+			document.getElementById("tt").style.width=title.scrollWidth+"px";
+			document.getElementById("tt").value=web.phone;
+				title.style.height=document.getElementById("tt").scrollHeight+"px";
+			if(web.phone.length) {
+				document.getElementById("fontAdd").innerHTML = web.phone.length;
 				document.getElementById("login").removeAttribute("disabled");
 			}
-			document.getElementById("title").addEventListener("keyup", function() {
-				if(this.innerHTML.length > 20) {
-					this.innerHTML = this.innerHTML.substring(0, 20);
-				}else if(this.innerHTML.length>0) {
-					document.getElementById("login").removeAttribute("disabled");
-				}else if(this.innerHTML.length==0) {
-					document.getElementById("login").setAttribute("disabled","true");
-				}
-				document.getElementById("fontAdd").innerHTML = this.innerHTML.length;
+			document.getElementById("title").addEventListener("input", function() {
+					document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		}
 		person();
@@ -28,8 +24,8 @@ mui.ready(function() {
 		})
 		function savePro() {
 			var mess = {};
-			if(document.getElementById("title").innerHTML.length) {
-				if(document.getElementById("title").innerHTML.length>20) {
+			if(document.getElementById("title").value.length) {
+				if(document.getElementById("title").value.length>50) {
 					plus.nativeUI.toast("联系方式不得超过50个字", toastStyle);
 					return;
 				}
@@ -42,7 +38,7 @@ mui.ready(function() {
 			mess.address = web.address;
 			mess.email = web.email;
 			mess.province=web.province;
-			mess.phone =document.getElementById("title").innerHTML;			
+			mess.phone =document.getElementById("title").value;			
 			mess.id = userid;
 			var mess1 = JSON.stringify(mess);
 			console.log(JSON.stringify(mess))

@@ -11,7 +11,21 @@
 		<style>
 			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
 			.mui-content{height:100%;overflow: auto;}
+			.simulation{
+				padding:2px;
+				height:24px;
+				overflow:hidden;
+				width:100%;
+				font-size:14px;
+			}
 		</style>
+		<script>
+			function autoGrow(oField) {
+				document.getElementById("tt").style.width=oField.scrollWidth+"px";
+				document.getElementById("tt").value=oField.value;
+				oField.style.height=document.getElementById("tt").scrollHeight+"px";
+			}
+		</script>
 	</head>
 
 	<body>
@@ -23,19 +37,23 @@
 			<div class="mui-input-group mainbox">
 				<div class="infocontit infocontitM">机构名称 <span class="requiredThis"> *</span></div>
 				<div class="infocon">
-					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就职的机构(50个字以内)" id="project"></div>  
+					<textarea class="textareabox simulation textareaboxEmp" id="project" oninput="autoGrow(this)" maxlength="50" placeholder="请填写就职的机构(50个字以内)"></textarea>
+					<textarea class="textareabox simulation" id="tt" style="position:absolute;top:0;left:-999px;"></textarea>
+					<!--<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就职的机构(50个字以内)" id="project"></div>-->  
 				</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
 				<div class="infocontit infocontitM">部门名称</div>
 				<div class="infocon">
-					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就职的部门(20个字以内)" id='descp'></div> 
+					<textarea class="textareabox simulation textareaboxEmp" id="descp" oninput="autoGrow(this)" maxlength="20" placeholder="请填写就职的部门(20个字以内)"></textarea>
+					<!--<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写就职的部门(20个字以内)" id='descp'></div>--> 
 				</div>
 		    </div>
 		    <div class="mui-input-group mainbox">
 				<div class="infocontit infocontitM">职位 <span class="requiredThis"> *</span></div>
 				<div class="infocon">
-					<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写担任的职位(20个字以内)" id="title"></div>  
+					<textarea class="textareabox simulation textareaboxEmp" id="title" oninput="autoGrow(this)" maxlength="20" placeholder="请填写担任的职位(20个字以内)"></textarea>
+					<!--<div class="textareabox textareaboxEmp" contenteditable="true" placeholder="请填写担任的职位(20个字以内)" id="title"></div>-->  
 				</div>
 		    </div>
 		    <div class="mui-input-group mainbox">

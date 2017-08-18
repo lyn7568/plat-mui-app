@@ -4,7 +4,6 @@ mui.ready(function() {
 		var ws = plus.webview.currentWebview();
 		plus.nativeUI.closeWaiting();
 		plus.webview.currentWebview().show("slide-in-right", 150);
-		console.log(ws.industry)
 		//查询学术领域
 		var subjectShow = function(data) {
 			if(data != undefined && data.length != 0) {
@@ -25,9 +24,6 @@ mui.ready(function() {
 		}
 		if(ws.industry) {
 			subjectShow(ws.industry);
-			document.getElementById("login").removeAttribute("disabled");
-		}else{
-			document.getElementById("login").setAttribute("disabled","true");
 		}
 
 		function trim(str) { //删除左右两端的空格
@@ -37,12 +33,6 @@ mui.ready(function() {
 		mui(".labelshow").on("tap", "span", function() {
 			var val = this.parentNode;
 			document.getElementsByClassName('labelshow')[0].removeChild(val);
-			var lilength=document.getElementsByTagName("li").length;
-				if(lilength>0) {
-					document.getElementById("login").removeAttribute("disabled");
-				}else if(lilength==0) {
-					document.getElementById("login").setAttribute("disabled","true");
-				}
 		});
 		document.getElementsByClassName("addlabelbtn")[0].addEventListener("tap", function() {
 			var addContent = document.getElementsByTagName('input')[0].value;
@@ -60,20 +50,14 @@ mui.ready(function() {
 						return;
 					}
 				}
-				if(content.length > 10) {
-					plus.nativeUI.toast("行业领域不得超过10个字", toastStyle);
+				if(content.length > 15) {
+					plus.nativeUI.toast("行业领域不得超过15个字", toastStyle);
 					return;
 				}
 				var node = document.createElement("li");
 				node.innerHTML = content + '<span class="closeThis">删除</span>';
 				document.getElementsByClassName("labelshow")[0].appendChild(node);
 				document.getElementsByTagName('input')[0].value = "";
-				var lilength=document.getElementsByTagName("li").length;
-				if(lilength>0) {
-					document.getElementById("login").removeAttribute("disabled");
-				}else if(lilength==0) {
-					document.getElementById("login").setAttribute("disabled","true");
-				}
 			} else {
 				plus.nativeUI.toast("请填写您的行业领域", toastStyle);
 			}
@@ -113,6 +97,7 @@ mui.ready(function() {
 					return;
 				}
 			});
+			
 		});
 	});
 })

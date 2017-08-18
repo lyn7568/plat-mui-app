@@ -85,6 +85,7 @@ mui.plusReady(function() {
 						});
 					}else{
 						plus.storage.setItem('userid', data.data.id);
+						plus.storage.setItem('name', data.data.name);
 						console.log(data.data.id)
 						firstLogin();
 						var proAiticle =plus.webview.getWebviewById('professorArticle.html')

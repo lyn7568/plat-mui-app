@@ -10,30 +10,23 @@ mui.ready(function() {
 			var html = [];
 			for(var i = 0; i < data.length; i++) {
 				console.log(data[i].caption);
-				html.push("<li><span class='numThis mui-pull-left'>"+ data[i].count+"</span><span class='otsave mui-pull-left'>" + data[i].caption + "</span><span class='closeThis'>删除</span></li>");
+				html.push("<li style='background:white;float: none;'><span class='numThis mui-pull-left' style='margin-right:0px;'>"+ data[i].count+"</span><span class='otsave mui-pull-left' style='background: #e5e5e5;padding-left: 10px;padding-right: 10px;max-width: 80%;'>" + data[i].caption + "</span><span class='closeThis' style='border-radius: 0 6px 6px 0;right:auto;margin-left:0px;'>删除</span></li>");
 			};
 			document.getElementsByClassName("labelshowT")[0].innerHTML = html.join('');
 		}
 		if(ws.researchAreas) {
 			subjectShow(ws.researchAreas);
-			document.getElementById("login").removeAttribute("disabled");
-		} else {
-			document.getElementById("login").setAttribute("disabled", "true");
-		}
+		} 
 
 		function trim(str) { //删除左右两端的空格
 			　　
 			return str.replace(/(^\s*)|(\s*$)/g, "");　　
 		}
-		mui(".labelshow").on("tap", "span", function() {
+		mui(".labelshow").on("tap", ".closeThis", function() {
 			var val = this.parentNode;
 			document.getElementsByClassName('labelshow')[0].removeChild(val);
 			var lilength = document.getElementsByTagName("li").length;
-			if(lilength > 0) {
-				document.getElementById("login").removeAttribute("disabled");
-			} else if(lilength == 0) {
-				document.getElementById("login").setAttribute("disabled", "true");
-			}
+			
 		});
 		document.getElementsByClassName("addlabelbtn")[0].addEventListener("tap", function() {
 			var addContent = document.getElementsByTagName('input')[0].value;
@@ -51,20 +44,17 @@ mui.ready(function() {
 						return;
 					}
 				}
-				if(content.length > 20) {
-					plus.nativeUI.toast("研究方向不得超过20个字", toastStyle);
+				if(content.length > 30) {
+					plus.nativeUI.toast("研究方向不得超过30个字", toastStyle);
 					return;
 				}
 				var node = document.createElement("li");
-				node.innerHTML = '<span class="numThis mui-pull-left">0</span><span class="otsave mui-pull-left">'+content + '</span><span class="closeThis">删除</span>';
+				node.style.background="white";
+				node.style.float="none";
+				node.innerHTML = '<span class="numThis mui-pull-left" style="margin-right:0px;">0</span><span class="otsave mui-pull-left" style="background: #e5e5e5;padding-left: 10px;padding-right: 10px;max-width: 80%;">'+content + '</span><span class="closeThis" style="border-radius: 0 6px 6px 0;right:auto;margin-left:0px;">删除</span>';
 				document.getElementsByClassName("labelshow")[0].appendChild(node);
 				document.getElementsByTagName('input')[0].value = "";
-				var lilength = document.getElementsByTagName("li").length;
-				if(lilength > 0) {
-					document.getElementById("login").removeAttribute("disabled");
-				} else if(lilength == 0) {
-					document.getElementById("login").setAttribute("disabled", "true");
-				}
+				
 			} else {
 				plus.nativeUI.toast("请填写您的研究方向", toastStyle);
 			}
@@ -79,7 +69,6 @@ mui.ready(function() {
 					$rd.caption = researchAreas[i].innerText;
 					$data[i] = $rd;
 				}
-			}
 			var mess1 = JSON.stringify($data);
 			console.log(mess1)
 			$.ajax({
@@ -105,6 +94,28 @@ mui.ready(function() {
 					}
 				}
 			});
+			}else{
+				$.ajax({
+				"url": baseUrl + '/ajax/researchArea/'+userid,
+				"type": "DELETE",
+				"async": true,
+				"contentType": "application/json",
+				"success": function(data) {
+					console.log(JSON.stringify(data));
+					if(data.success) {
+						plus.nativeUI.showWaiting();
+						var web = plus.webview.getWebviewById("userInforUpdate.html");
+						mui.fire(web, "newId", {
+							
+						});
+						mui.back();
+					} else {
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
+						return;
+					}
+				}
+			});
+			}
 		});
 	});
 })

@@ -13,17 +13,23 @@ mui.ready(function() {
 		if(!ws.data) {
 			oDel.classList.add("displayNone");
 		} else {
-			console.log(JSON.stringify(ws.data));
 			oLogin.removeAttribute("disabled");
-			project.innerHTML = (ws.data.name) ? ws.data.name : "";
+			project.value = ws.data.name;
+				document.getElementById("tt").value=ws.data.name;
+				project.style.height=document.getElementById("tt").scrollHeight+"px";
 			startMonth.innerHTML = (timeT(ws.data)) ? timeT(ws.data).substring(0, timeT(ws.data).indexOf("-")) : "请选择开始时间";
 			stopMonth.innerHTML = (timeT(ws.data)) ? timeT(ws.data).substring(timeT(ws.data).indexOf("-") + 1, timeT(ws.data).length) : "请选择结束时间";
-			descp.innerHTML = (ws.data.descp) ? ws.data.descp : "";
+			descp.value = (ws.data.descp)?ws.data.descp:"";
+			if(ws.data.descp) {
+				document.getElementById("tt").style.width=document.getElementById("descp").scrollWidth+"px";
+				document.getElementById("tt").value=ws.data.descp;
+				descp.style.height=document.getElementById("tt").scrollHeight+"px";
+			}
 		}
-		project.addEventListener("keyup", function() {
-			if(this.innerHTML.length > 0) {
+		project.addEventListener("input", function() {
+			if(this.value.length > 0) {
 				document.getElementById("login").removeAttribute("disabled");
-			} else if(this.innerHTML.length == 0) {
+			} else if(this.value.length == 0) {
 				document.getElementById("login").setAttribute("disabled", "true");
 			}
 		})
@@ -62,8 +68,8 @@ mui.ready(function() {
 			return str.replace(/(^\s*)|(\s*$)/g, "");　　
 		}
 		oLogin.addEventListener("tap", function() {
-			var projectL = trim(project.innerHTML);
-			var descpL = trim(descp.innerHTML);
+			var projectL = trim(project.value);
+			var descpL = trim(descp.value);
 			var startMonthL = startMonth.innerHTML;
 			var stopMonthL = stopMonth.innerHTML;
 			if(!projectL.length) {
@@ -97,7 +103,7 @@ mui.ready(function() {
 		function savePro() {
 			var $data = {};
 			$data.professorId = userid;
-			$data.name = project.innerHTML;
+			$data.name = project.value;
 			if(startMonth.innerHTML) {
 				if(startMonth.innerHTML.length != 7) {
 					$data.startMonth = startMonth.innerHTML.substring(0, 4) + startMonth.innerHTML.substring(5, 7);
@@ -112,7 +118,9 @@ mui.ready(function() {
 
 				}
 			}
-			$data.descp = descp.innerHTML;
+			if(descp.value) {
+				$data.descp = descp.value;
+			}
 			if(ws.data) {
 				$data.id = ws.data.id;
 			}

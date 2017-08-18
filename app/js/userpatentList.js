@@ -1,7 +1,25 @@
-mui.plusReady(function() {
+var proId;
+mui.init({
+	pullRefresh: {
+		container: '#pullrefresh',
+		up: {
+			height:50,
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+		}
+	}
+});
+var Num=1;
+function pullupRefresh() {
+	setTimeout(function() {
+		Num++;
+		getPatent(10,Num);
+	}, 1000);
 
+}
+mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
-	var proId = self.proid;
+	proId = self.proid;
 	mui("#patent").on("tap", "li", function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
@@ -9,23 +27,28 @@ mui.plusReady(function() {
 			"patentId": id
 		});
 	})
-	getPatent(self.authName)
-	/*论文html*/
-	function getPatent(oName) {
-		mui.ajax(baseUrl + "/ajax/ppatent/byAuthor", {
+	getPatent(10,1)
+})
+
+function getPatent(pageSize,pageNo) {
+	mui.plusReady(function() {
+		mui.ajax(baseUrl + "/ajax/ppatent/byProfessor", {
 			type: "GET",
 			timeout: 10000,
 			dataType: "json",
 			data: {
 				"id": proId,
-				"author": oName,
-				"pageSize":100
+				"pageSize":pageSize,
+				"pageNo":pageNo
 			},
 			success: function(data) {
 				console.log(JSON.stringify(data));
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				if(data.success) {
+					if(pageNo!=data.data.pageNo) {
+						data.data.data=[];
+					}
 					var obj = data.data.data;
 					if(obj.length > 0) {
 						for(var i = 0; i < obj.length; i++) {
@@ -36,21 +59,25 @@ mui.plusReady(function() {
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead patentHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis h1Font">' + obj[i].name + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'
 							document.getElementById("patent").appendChild(li);
 						}
+					}
+					if(pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
 					} else {
-						document.getElementById("patent").parentNode.parentNode.style.display = "none";
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
 					}
 				}
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				return;
 			}
 		})
-	}
-})
+	})
+}

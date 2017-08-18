@@ -80,7 +80,7 @@ mui.ready(function() {
 						var str = '<li class="mui-table-view-cell listitem">'
 						var name = obj.data[i].name;
 						if(obj.data[i].year) {
-							var year='发表于'+obj.data[i].year+'年'
+							var year='获得于'+obj.data[i].year+'年'
 						}else{
 							var year="";
 						}
@@ -140,6 +140,8 @@ mui.ready(function() {
 						});
 						if($data.subject) {
 							prose.subject=$data.subject;
+						}else{
+							prose.subject="";
 						}
 						//研究方向
 						//学术领域
@@ -148,6 +150,7 @@ mui.ready(function() {
 							prose.researchAreas=$data.researchAreas;
 						}else{
 							document.getElementById("researchAreaNum").innerHTML =0;
+							prose.researchAreas=""
 						}
 						
 						//应用行业
@@ -157,6 +160,8 @@ mui.ready(function() {
 						});
 						if($data.industry) {
 							prose.industry=$data.industry;
+						}else{
+							prose.industry="";
 						}
 						//项目经历
 						if($data.projects.length) {

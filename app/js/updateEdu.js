@@ -3,13 +3,6 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
 		var fl;
-		var oDe={
-			1:"博士",
-			2:"硕士",
-			3:"学士",
-			4:"大专",
-			5:"其他"
-		}
 		var oarr=[];
 		//荣誉奖项
 		var honorShow = function(obj) {
@@ -45,18 +38,18 @@ mui.ready(function() {
 						
 						var arrq=[];
 						if(obj.data[i].degree) {
-							arrq.push(oDe[obj.data[i].degree]);
+							arrq.push(obj.data[i].degree);
 						}
 						if(obj.data[i].major) {
 							arrq.push(obj.data[i].major);
 						}
 	                    if(obj.data[i].college) {
 							arrq.push(obj.data[i].college);
-						}  
+						} 
 						if(arrq.length) {
-							odescp=arrq.join(",")
+							odescp=arrq.join("，")
 						}
-					var os = '<div class="listtit2">' + name + '<span class="updatebox mui-clearfix"><em></em>修改</span></div>' +
+					var os = '<div class="listtit2" style="margin-right:40px;">' + name + '<span class="updatebox mui-clearfix" style="top:5px;"><em></em>修改</span></div>' +
 						' <p class="listtit3 mutlinebox">'+odescp+'</p><p class="listtit3">' + year + '</p></li>'
 					arr.push(str + os);
 				}

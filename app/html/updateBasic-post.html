@@ -11,7 +11,20 @@
 		<style>
 			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
 			.mui-content{height:100%;overflow: auto;}
+			.simulation{
+				padding:2px;
+				height:24px;
+				overflow:hidden;
+				width:100%;
+			}
 		</style>
+		<script>
+			function autoGrow(oField) {
+				document.getElementById("tt").style.width=oField.scrollWidth+"px";
+				document.getElementById("tt").value=oField.value;
+				oField.style.height=document.getElementById("tt").scrollHeight+"px";
+			}
+		</script>
 	</head>
 
 	<body>
@@ -22,14 +35,15 @@
 		<div class="mui-content">
 			<div class="mui-input-group mainbox">
 				<div class="infocon">
-					<div class="textareabox" contenteditable="true" id="title"></div> 
+					<textarea class="textareabox simulation" id="title" oninput="autoGrow(this)" maxlength="20" placeholder="请填写当前担任的职位"></textarea>
+					<textarea class="textareabox simulation" id="tt" style="position:absolute;top:0;left:-999px;"></textarea> 
 				</div>
 		    </div>
 			<div class="limitBox">
 				<p class="limitNum"><span id="fontAdd">0</span>/20</p>
 			</div>
 			<div class="mui-content-padded frmboxNew">
-				<button id="login" class="mui-btn mui-btn-block frmbtn frmactive" disabled="">保存</button>
+				<button id="login" class="mui-btn mui-btn-block frmbtn frmactive">保存</button>
 			</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>

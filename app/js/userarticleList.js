@@ -1,6 +1,26 @@
+var proId;
+mui.init({
+	pullRefresh: {
+		container: '#pullrefresh',
+		up: {
+			height:50,
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+		}
+	}
+});
+var Num=1;
+function pullupRefresh() {
+	setTimeout(function() {
+		++Num;
+		getArticel(10,Num);
+	}, 1000);
+
+}
+
 mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
-	var proId = self.proid;
+	proId = self.proid;
 	mui("#articelShow").on("tap", "li", function() {
 		var id = this.getAttribute("data-id");
 		var ownerid = this.getAttribute("owner-id");
@@ -12,26 +32,30 @@ mui.plusReady(function() {
 			ownerid: ownerid,
 		});
 	})
-	/*企业文章html*/
-	getArticel();
+	getArticel(10,1);
+})
 
-	function getArticel() {
+function getArticel(pageSize,pageNo) {
+	mui.plusReady(function() {
 		mui.ajax(baseUrl + "/ajax/article/pqProPublish", {
 			type: "GET",
 			timeout: 10000,
 			dataType: "json",
 			data: {
 				"professorId": proId,
-				"pageSize":100
+				"pageSize": pageSize,
+				"pageNo": pageNo
 			},
 			success: function(data) {
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				console.log(JSON.stringify(data))
 				if(data.success) {
+					if(pageNo!=data.data.pageNo) {
+						data.data.data=[];
+					}
 					var obj = data.data.data;
 					if(obj.length > 0) {
-						
 						for(var i = 0; i < obj.length; i++) {
 							var liItem = document.createElement("li");
 							liItem.setAttribute("data-id", obj[i].articleId);
@@ -44,19 +68,26 @@ mui.plusReady(function() {
 								oString += '<div class="madiaHead artHead"></div>'
 							}
 							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis-2 h1Font">' + obj[i].articleTitle + '</p>'
+							oString += '<p class="h2Font mui-ellipsis"><span class="time">'+commenTime(obj[i].publishTime)+'</span></p>'
 							oString += '</div></div>'
 							liItem.innerHTML = oString;
 							document.getElementById("articelShow").appendChild(liItem);
 						}
+					}
+					if(pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
 					} else {
-						
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
 					}
 				}
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				return;
 			}
 		})
-	}
-})
+	})
+}
+
+

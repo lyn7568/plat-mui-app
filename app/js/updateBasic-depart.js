@@ -6,20 +6,13 @@ mui.ready(function() {
 		function person() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
-			title.innerHTML = web.department;
+			title.value = web.department;
 			if(web.department.length) {
 				document.getElementById("fontAdd").innerHTML = web.department.length;
 				document.getElementById("login").removeAttribute("disabled");
 			}
-			document.getElementById("title").addEventListener("keyup", function() {
-				if(this.innerHTML.length > 20) {
-					this.innerHTML = this.innerHTML.substring(0, 20);
-				}else if(this.innerHTML.length>0) {
-					document.getElementById("login").removeAttribute("disabled");
-				}else if(this.innerHTML.length==0) {
-					document.getElementById("login").setAttribute("disabled","true");
-				}
-				document.getElementById("fontAdd").innerHTML = this.innerHTML.length;
+			document.getElementById("title").addEventListener("input", function() {
+					document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		}
 		person();
@@ -28,15 +21,15 @@ mui.ready(function() {
 		})
 		function savePro() {
 			var mess = {};
-			if(document.getElementById("title").innerHTML.length) {
-				if(document.getElementById("title").innerHTML.length>20) {
+			if(document.getElementById("title").value.length) {
+				if(document.getElementById("title").value.length>20) {
 					plus.nativeUI.toast("所属部门不得超过20个字", toastStyle);
 					return;
 				}
 			}
 			mess.name = web.name;
 			mess.orgName = web.orgName;
-			mess.department = document.getElementById("title").innerHTML;
+			mess.department = document.getElementById("title").value;
 			mess.title = web.title;
 			mess.office =web.office;	
 			mess.address = web.address;

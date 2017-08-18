@@ -3,13 +3,6 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var self = plus.webview.currentWebview();
 		var proId = self.pId;
-		var oDe = {
-			1: "博士",
-			2: "硕士",
-			3: "学士",
-			4: "大专",
-			5: "其他"
-		}
 		//
 		function timeT(obj) {
 			var a, b;
@@ -76,7 +69,7 @@ mui.ready(function() {
 						var str = '<li class="mui-table-view-cell listitem">'
 						var name = obj.data[i].name;
 						if(obj.data[i].year) {
-							var year = '发表于' + obj.data[i].year + '年'
+							var year = '获得于' + obj.data[i].year + '年'
 						} else {
 							var year = "";
 						}
@@ -104,7 +97,7 @@ mui.ready(function() {
 								arrq.push(obj.data[i].college);
 							}
 							if(arrq.length) {
-								ode = '<p class="listtit3 mutlinebox">' + arrq.join(",") + '</p>'
+								ode = '<p class="listtit3 mutlinebox">' + arrq.join("，") + '</p>'
 							}
 						} else {
 							var year = "";

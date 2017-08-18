@@ -6,20 +6,12 @@ mui.ready(function() {
 		function person() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
-			title.innerHTML = web.title;
+			title.value = web.title;
 			if(web.title.length) {
 				document.getElementById("fontAdd").innerHTML = web.title.length;
-				document.getElementById("login").removeAttribute("disabled");
 			}
-			document.getElementById("title").addEventListener("keyup", function() {
-				if(this.innerHTML.length > 20) {
-					this.innerHTML = this.innerHTML.substring(0, 20);
-				}else if(this.innerHTML.length>0) {
-					document.getElementById("login").removeAttribute("disabled");
-				}else if(this.innerHTML.length==0) {
-					document.getElementById("login").setAttribute("disabled","true");
-				}
-				document.getElementById("fontAdd").innerHTML = this.innerHTML.length;
+			document.getElementById("title").addEventListener("input", function() {
+					document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
 		}
 		person();
@@ -28,8 +20,8 @@ mui.ready(function() {
 		})
 		function savePro() {
 			var mess = {};
-			if(document.getElementById("title").innerHTML.length) {
-				if(document.getElementById("title").innerHTML.length>20) {
+			if(document.getElementById("title").value.length) {
+				if(document.getElementById("title").value.length>20) {
 					plus.nativeUI.toast("职称不得超过20个字", toastStyle);
 					return;
 				}
@@ -37,7 +29,7 @@ mui.ready(function() {
 			mess.name = web.name;
 			mess.orgName = web.orgName;
 			mess.department = web.department;
-			mess.title = document.getElementById("title").innerHTML;
+			mess.title = document.getElementById("title").value;
 			mess.office =web.office;	
 			mess.address = web.address;
 			mess.province=web.province;
@@ -45,7 +37,6 @@ mui.ready(function() {
 			mess.phone =web.phone;			
 			mess.id = userid;
 			var mess1 = JSON.stringify(mess);
-			console.log(JSON.stringify(mess))
 			$.ajax({
 				"url": baseUrl + '/ajax/professor',
 				"type": "PUT",

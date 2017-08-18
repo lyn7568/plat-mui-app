@@ -178,7 +178,6 @@ function getaData() {
 			async: false,
 			success: function(data) {
 				if(data.success) {
-					//console.log("成功");
 					var dice1 = data.data.total; //总条数
 					var dice2 = data.data.pageSize; //每页条数
 					var result = '';
@@ -216,7 +215,6 @@ function getOnePase() {
 			timeout: 10000,
 			async: false,
 			success: function(data) {
-				console.log(data)
 				discoverBox.innerHTML = "";
 				if(data.success && data.data) {
 					plus.nativeUI.closeWaiting();
@@ -302,7 +300,6 @@ function userFun(id, $itemlist) {
 		"type": "get",
 		"async": true,
 		"success": function(data) {
-			console.log(data);
 			if(data.success && data.data) {
 				$itemlist.find("#nameSpan").text(data.data.name);
 				if(data.data.hasHeadImage == 1) {
@@ -327,7 +324,6 @@ function cmpFun(id, $itemlist) {
 		"type": "get",
 		"async": true,
 		"success": function(data) {
-			console.log(data);
 			if(data.success && data.data) {
 				if(data.data.forShort) {
 					$itemlist.find("#nameSpan").text(data.data.forShort);

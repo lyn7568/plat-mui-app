@@ -13,14 +13,24 @@ mui.ready(function() {
 		var descp = document.getElementById("descp");
 		if(!ws.data) {
 			oDel.classList.add("displayNone");
-			oLogin.removeAttribute("disabled");
+			
 		} else {
 			oLogin.removeAttribute("disabled");
-			project.innerHTML = (ws.data.company) ? ws.data.company : "";
+			document.getElementById("tt").value=ws.data.company;
+			project.style.height=document.getElementById("tt").scrollHeight+"px";
+			project.value = ws.data.company;
 			startMonth.innerHTML = (timeT(ws.data)) ? timeT(ws.data).substring(0, timeT(ws.data).indexOf("-")) : "请选择开始时间";
 			stopMonth.innerHTML = (timeT(ws.data)) ? timeT(ws.data).substring(timeT(ws.data).indexOf("-") + 1, timeT(ws.data).length) : "请选择结束时间";
-			descp.innerHTML = (ws.data.department) ? ws.data.department : "";
-			otitle.innerHTML = (ws.data.title) ? ws.data.title : "";
+			if(ws.data.department) {
+				document.getElementById("tt").value=ws.data.department;
+			descp.style.height=document.getElementById("tt").scrollHeight+"px";
+			}
+			descp.value = (ws.data.department) ? ws.data.department : "";
+			if(ws.data.title) {
+				document.getElementById("tt").value=ws.data.title;
+			otitle.style.height=document.getElementById("tt").scrollHeight+"px";
+			}
+			otitle.value = (ws.data.title) ? ws.data.title : "";
 		}
 
 		function timeT(obj) {
@@ -57,11 +67,11 @@ mui.ready(function() {
 			return str.replace(/(^\s*)|(\s*$)/g, "");　　
 		}
 		oLogin.addEventListener("tap", function() {
-			var projectL = trim(project.innerHTML);
-			var descpL = trim(descp.innerHTML);
+			var projectL = trim(project.value);
+			var descpL = trim(descp.value);
 			var startMonthL = startMonth.innerHTML;
 			var stopMonthL = stopMonth.innerHTML;
-			var ti=otitle.innerHTML;
+			var ti=otitle.value;
 			if(!projectL.length) {
 				plus.nativeUI.toast("请填写机构名称");
 				return;
@@ -101,7 +111,7 @@ mui.ready(function() {
 		function savePro() {
 			var $data = {};
 			$data.professorId = userid;
-			$data.company = project.innerHTML;
+			$data.company = project.value;
 			if(startMonth.innerHTML) {
 				if(startMonth.innerHTML.length != 7) {
 					$data.startMonth = startMonth.innerHTML.substring(0, 4) + startMonth.innerHTML.substring(5, 7);
@@ -116,8 +126,8 @@ mui.ready(function() {
 
 				}
 			}
-			$data.title=otitle.innerHTML;
-			$data.department = descp.innerHTML;
+			$data.title=otitle.value;
+			$data.department = descp.value;
 			if(ws.data) {
 				$data.id = ws.data.id;
 			}
@@ -150,7 +160,7 @@ mui.ready(function() {
 		if(ws.data) {
 			oDel.addEventListener("click", function() {
 				var btn = ["确认", "取消"];
-				mui.confirm("确认删除该项目经历？", "提示", btn, function(e) {
+				mui.confirm("确认删除该工作经历？", "提示", btn, function(e) {
 					if(e.index == 0) {
 						delf();
 					}
@@ -171,7 +181,7 @@ mui.ready(function() {
 							});
 						mui.back();
 						var Page = plus.webview.getWebviewById('userInforUpdate.html');
-							mui.fire(Page, 'newId', {
+							titlemui.fire(Page, 'newId', {
 								rd: 1
 							});
 					}
@@ -181,5 +191,12 @@ mui.ready(function() {
 				}
 			});
 		}
+		mui(document).on("input","#project,#title",function(){
+			if(project.value!=""&&otitle.value!=""){
+				oLogin.removeAttribute("disabled");
+			}else{
+				oLogin.setAttribute("disabled", "true");
+			}
+		})
 	});
 })

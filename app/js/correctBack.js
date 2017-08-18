@@ -4,9 +4,10 @@ mui.ready(function(){
 		plus.nativeUI.closeWaiting();
 		plus.webview.currentWebview().show("slide-in-right", 150);
 		var con=document.getElementById("question");
-		con.addEventListener("keyup", function() {
+		con.addEventListener("input", function() {
 				if(this.value.length>0) {
 					document.getElementById("fontAdd").innerHTML = this.value.length;
+					this.value=this.value.substr(0,500);
 					document.getElementById("refer").removeAttribute("disabled");
 				}else if(this.value.length==0) {
 					document.getElementById("refer").setAttribute("disabled","true");

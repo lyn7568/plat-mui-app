@@ -15,7 +15,7 @@ mui.ready(function() {
 						var str = '<li class="mui-table-view-cell listitemExit" data-o="'+i+'">'
 						var name = obj.data[i].name;
 						if(obj.data[i].year) {
-							var year='发表于'+obj.data[i].year+'年'
+							var year='获得于'+obj.data[i].year+'年'
 						}else{
 							var year="";
 						}
@@ -39,7 +39,7 @@ mui.ready(function() {
 						if(obj.data[i].descp) {
 							odescp=obj.data[i].descp;
 						}
-					var os = '<div class="listtit2">' + name + '<span class="updatebox mui-clearfix"><em></em>修改</span></div>' +
+					var os = '<div class="listtit2" style="margin-right:40px;">' + name + '<span class="updatebox mui-clearfix" style="top:5px;"><em></em>修改</span></div>' +
 						' <p class="listtit3">' + year + '</p><p class="listtit3 mutlinebox">'+odescp+'</p></li>'
 					arr.push(str + os);
 				}

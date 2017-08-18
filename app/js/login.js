@@ -114,10 +114,6 @@ mui.ready(function() {
 						plus.storage.setItem('name', data.data.name);
 						plus.nativeUI.toast("登录成功", toastStyle);
 						var article = plus.webview.currentWebview();
-						if(article.flag==1){
-							var proAiticle =plus.webview.getWebviewById('professorArticle.html')
-							mui.fire(proAiticle, "newId");
-						}
 						if(article.ourl) {
 							var proAiticle =plus.webview.getWebviewById(article.ourl)
 							mui.fire(proAiticle, "newId");

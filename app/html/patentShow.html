@@ -23,9 +23,18 @@
 			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
 		</header>
 		<nav class="mui-bar mui-bar-tab footbox">
-			<div class="mui-row artfoot">
-				<div class="mui-col-xs-9">
-					<div class="consultdiv notopen">更多功能即将开放</div>
+			<div class="mui-row artfoot displayNone" id="textInput">
+				<div class="mui-col-xs-12">
+					<textarea name="" placeholder="说点什么吧…" id="textInputThis" maxlength="200"></textarea>
+					<button class="mui-btn" disabled>发表</button>
+				</div>
+			</div>
+			<div class="mui-row artfoot" id="operCol">
+				<div class="mui-col-xs-8">
+					<div class="inputShow"><span>说点什么吧…</span></div>
+				</div>
+				<div class="mui-col-xs-1" id="listenClick">
+					<span class="mui-icon iconfontnew icon-liuyan"><em class="mui-badge">0</em></span>
 				</div>
 				<div class="mui-col-xs-2" id="collectBtn">
 					<span class="mui-icon iconfontnew icon-shoucang" id="ifCollect"></span><!--已收藏 icon-yishoucang-->
@@ -85,6 +94,43 @@
 				        
 				    </ul>
 				</div>
+				<div class="madiaBlock displayNone" id="paperModule">
+						<div class="madiaTit">相关论文</div>
+						<ul class="mui-table-view" id="paperList">
+					       <!--<li class="mui-table-view-cell">
+						       	<div class="flexCenter OflexCenter mui-clearfix">
+									<div class="madiaHead paperHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">CdS/CdSSe轴向异质结纳米线的非对称光波导及双波长激射</p>
+										<p class="mui-ellipsis h2Font">作者：李丹,梁君武,刘华伟,张学红,万强,张清林,潘安练</p>
+									</div> 
+								</div>
+					      </li>-->
+					    </ul>
+				</div>
+				<div class="thumbBlock">
+						<span class="thumbBtn">赞 <span id="snum"></span></span><!-- thumbedBtn 已赞 201-->
+				</div>
+				<div class="madiaBlock displayNone" id="patentModule">
+						<div class="madiaTit">您可能感兴趣的专利</div>
+						<ul class="mui-table-view" id="patentList">
+							<!--<li class="mui-table-view-cell">
+						       	<div class="flexCenter OflexCenter mui-clearfix">
+									<div class="madiaHead patentHead"></div>
+									<div class="madiaInfo OmadiaInfo">
+										<p class="mui-ellipsis h1Font">CdS/CdSSe轴向异质结纳米线的非对称光波导及双波长激射</p>
+										<p class="mui-ellipsis h2Font">作者：李丹,梁君武,刘华伟,张学红,万强,张清林,潘安练</p>
+									</div>
+								</div>
+					      </li>-->
+					    </ul>
+				</div>
+				<div class="madiaBlock" style="padding-bottom:50px;">
+						<div class="madiaTit" id="olisten">留言</div>
+						<ul class="mui-table-view commentBlock noactiveTab">
+					     
+					   </ul>
+				</div>
 		    </div>
 		</div>
 		
@@ -110,19 +156,27 @@
 		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/public/jquery-1.11.1.js"></script>
 		<script src="../js/patentShow.js"></script>
 		<script type="text/javascript"> 
+			document.getElementById("listenClick").addEventListener("tap",function(){
+				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop-20+"px"}, 400); 
+			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
+		    mui("body").on("tap",".mui-content",function(){
+		    	document.getElementById("textInput").style.display="none";
+		    	document.getElementById("operCol").style.display="block";
+		    })
 		    
-		   // var BtnMore=document.getElementById("BtnMore");
+		    //var BtnMore=document.getElementById("BtnMore");
 		    var shareOut=document.getElementById("shareOut");
 		    var cancelShare=document.getElementById("cancelShare");
 		    var maskBlack=document.getElementById("maskBlack");
 		    var shareBlock=document.getElementById("shareBlock");
 		    
 		    
-		    /*BtnMore.addEventListener("tap",function(){
+		   /* BtnMore.addEventListener("tap",function(){
 		    	maskBlack.style.display="block";
 		    	shareBlock.style.display="block";
 		    })*/

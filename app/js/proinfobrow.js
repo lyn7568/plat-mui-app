@@ -382,7 +382,7 @@ mui.plusReady(function() {
 						string += '<img class="resImg headRadius" src="../images/default-artical.jpg">'
 					}
 					string += '</div><div class="mui-media-body centerTit">'
-					string += '<span class="listtit mui-ellipsis-2">' + $data[i].articleTitle + '</span>'
+					string += '<span class="listtit mui-ellipsis-2" >' + $data[i].articleTitle + '</span>'
 					string += '</div></a></li>'
 					html.push(string);
 				}

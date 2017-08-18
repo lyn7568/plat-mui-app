@@ -34,7 +34,7 @@ mui.ready(function() {
 	var userImg2 = document.getElementById("userImg2");
 	var nameli = document.getElementById("nameli");
 	var goBecomeExpert = document.getElementById("goBecomeExpert");
-	var infobasic = document.getElementById("exitSpan");
+	var infobasic = document.getElementById("setUser");
 	var myIntegral = document.getElementById("myIntegral");
 	var nosign = document.getElementById("nosign");
 	var yessign =document.getElementById("yessign");

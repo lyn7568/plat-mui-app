@@ -13,14 +13,21 @@ mui.ready(function() {
 			oDel.classList.add("displayNone");
 		} else {
 			oLogin.removeAttribute("disabled");
-			project.innerHTML = (ws.data.name) ? ws.data.name : "";
+			document.getElementById("tt").value=ws.data.name;
+			project.style.height=document.getElementById("tt").scrollHeight+"px";
+			project.value = (ws.data.name) ? ws.data.name : "";
 			yearResult.innerHTML =(ws.data.year) ? ws.data.year+"年" : "请选择获奖时间";
-			descp.innerHTML = (ws.data.descp) ? ws.data.descp : "请填写获奖描述(200个字以内)";
+			if(ws.data.descp) {
+				document.getElementById("tt").style.width=document.getElementById("descp").scrollWidth+"px";
+				document.getElementById("tt").value=ws.data.descp;
+				descp.style.height=document.getElementById("tt").scrollHeight+"px";
+			}
+			descp.value = (ws.data.descp) ? ws.data.descp : "";
 		}
-		project.addEventListener("keyup", function() {
-			if(this.innerHTML.length > 0) {
+		project.addEventListener("input", function() {
+			if(this.value.length > 0) {
 				document.getElementById("login").removeAttribute("disabled");
-			} else if(this.innerHTML.length == 0) {
+			} else if(this.value.length == 0) {
 				document.getElementById("login").setAttribute("disabled", "true");
 			}
 		})
@@ -29,8 +36,8 @@ mui.ready(function() {
 			return str.replace(/(^\s*)|(\s*$)/g, "");　　
 		}
 		oLogin.addEventListener("tap", function() {
-			var projectL = trim(project.innerHTML);
-			var descpL = trim(descp.innerHTML);
+			var projectL = trim(project.value);
+			var descpL = trim(descp.value);
 			var startMonthL = yearResult.innerHTML;
 			if(!projectL.length) {
 				plus.nativeUI.toast("“请填写奖项名称");
@@ -51,12 +58,12 @@ mui.ready(function() {
 		function savePro() {
 			var $data = {};
 			$data.professorId = userid;
-			$data.name = project.innerHTML;
+			$data.name = project.value;
 			if(yearResult.innerHTML.length!=7) {
 					$data.year = yearResult.innerHTML.substring(0, 4);
 			}
-			if(descp.innerHTML!="请填写获奖描述(200个字以内)")
-			$data.descp = descp.innerHTML;
+			if(descp.value!="请填写获奖描述(200个字以内)")
+			$data.descp = descp.value;
 			if(ws.data) {
 				$data.id = ws.data.id;
 			}

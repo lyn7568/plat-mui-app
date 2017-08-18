@@ -18,13 +18,14 @@ mui.plusReady(function() {
 		});
 	})
 	//点击收藏按钮
-	ifcollectionAbout(paperId, 5);
+	var oifCollect=document.getElementById("ifCollect")
+	ifcollectionAbout(paperId,oifCollect, 5);
 	ocollectBtn.addEventListener('tap', function() {
 		if(userid && userid != null && userid != "null") {
-			if(document.getElementById("ifCollect").className == 'mui-icon iconfontnew icon-yishoucang') {
-				cancelCollectionAbout(paperId, 5)
+			if(oifCollect.className == 'mui-icon iconfontnew icon-yishoucang') {
+				cancelCollectionAbout(paperId,oifCollect, 5)
 			} else {
-				collectionAbout(paperId, 5);
+				collectionAbout(paperId,oifCollect, 5);
 			}
 		} else {
 			isLogin();
@@ -121,6 +122,7 @@ mui.plusReady(function() {
 			}
 			var pstr = ""
 			if(subs.length > 0) {
+				patentRelatedList(subs)
 				for(var i = 0; i < subs.length; i++) {
 					pstr += '<li><span class="h2Font">' + subs[i] + '</span></li>'
 				};
@@ -191,15 +193,15 @@ mui.plusReady(function() {
 											liItem.setAttribute("data-id", showPro.id);
 											var odis = (userid == showPro.id) ? "none" : "block";
 											liItem.className = "mui-table-view-cell"
-											var oString = '<div class="flexCenter mui-clearfix" style="width:80%;">'
+											var oString = '<div class="flexCenter mui-clearfix">'
 											oString += '<div class="madiaHead useHead" style="background-image:url(' + imgbg + ')"></div>'
-											oString += '<div class="madiaInfo"><p><span class="h1Font">' + showPro.name + '</span><em class="authicon ' + authTy + '" title="' + authTit + '"></em></p>'
+											oString += '<div class="madiaInfo" style="padding-right: 62px;"><p class="mui-ellipsis"><span class="h1Font">' + showPro.name + '</span><em class="authicon ' + authTy + '" title="' + authTit + '"></em></p>'
 											oString += '<p class="mui-ellipsis h2Font">' + baseInfo + '</p>'
 											oString += '</div></div><span class="mui-icon attenSpan"  style="display:' + odis + ';" data-id="'+showPro.id+'">关注</span>'
 											liItem.innerHTML = oString;
 											document.getElementById("aboutAuthors").appendChild(liItem);
 											if(userid){
-											ifcollectionAbout1.call(liItem.getElementsByClassName("attenSpan")[0],showPro.id,1);}
+											ifcollectionAbout1.call(liItem.getElementsByClassName("attenSpan")[0],showPro.id,1,1);}
 										}
 									}
 								})
@@ -208,7 +210,7 @@ mui.plusReady(function() {
 								var otext = (userName == data.data[i].name) ? "<span class='invite'>是我本人</span>" : "<span class='invite invite2'>邀请</span>";
 								liItem.setAttribute("data-id", data.data[i].professorId);
 								liItem.className = "mui-table-view-cell"
-								var oString = '<div class="flexCenter mui-clearfix" style="width:80%;">'
+								var oString = '<div class="flexCenter mui-clearfix">'
 								oString += '<div class="madiaHead useHead" style="background-image:url(' + imgbg + ')"></div>'
 								oString += '<div class="madiaInfo"><p><span class="h1Font">' + data.data[i].name + '</span></p>'
 								oString += '</div></div>' + otext 
@@ -252,7 +254,7 @@ mui.plusReady(function() {
 		userName = plus.storage.getItem('name');
 		userid = plus.storage.getItem('userid');
 		getRecourceMe();
-		ifcollectionAbout(paperId, 5);
+		ifcollectionAbout(paperId,oifCollect, 5);
 	});
 
 	function leadIn(sel) {
@@ -306,13 +308,13 @@ mui.plusReady(function() {
 			if(isLogin()) {
 				return;
 			}
-					collectionAbout1(this.getAttribute("data-id"), '1',this);
+					collectionAbout(this.getAttribute("data-id"),this, 1,1);
 					
 		} else if(this.innerHTML === "已关注") {
 			if(isLogin()) {
 				return;
 			}
-			cancelCollectionAbout1(this.getAttribute("data-id"), '1',this);
+			cancelCollectionAbout(this.getAttribute("data-id"),this,1,1);
 		}
 		
 	})
@@ -354,70 +356,6 @@ mui.plusReady(function() {
 		});
 	}
 
-	/*收藏资源、文章或者关注专家*/
-	function collectionAbout1(watchObject, num,sel) {
-		mui.ajax(baseUrl + '/ajax/watch', {
-			data: {
-				"professorId": userid,
-				"watchObject": watchObject,
-				"watchType": num
-			},
-			dataType: 'json', //数据格式类型
-			type: 'POST', //http请求类型
-			timeout: 10000,
-			async: false,
-			success: function(data) {
-				if(data.success) {
-					if(num=="1"){//关注专家
-						sel.classList.add("attenedSpan");
-						sel.innerText="已关注";
-						plus.nativeUI.toast("关注成功", toastStyle);
-					}else{//收藏资源或文章
-						document.getElementById("ifCollect").classList.remove("icon-shoucang");
-						document.getElementById("ifCollect").classList.add("icon-yishoucang");
-						plus.nativeUI.toast("收藏成功", toastStyle);
-					}
-				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-	}
-
-	/*取消收藏资源、文章或者取消关注专家*/
-	function cancelCollectionAbout1(watchObject, num,sel) {
-		mui.ajax({
-			url: baseUrl + '/ajax/watch/delete',
-			data: {
-				professorId: userid,
-				watchObject: watchObject
-			},
-			dataType: 'json', //数据格式类型
-			type: 'post', //http请求类型
-			timeout: 10000,
-			async: true,
-			success: function(data) {
-				console.log(data.success)
-				if(data.success) {
-					if(num=="1"){//关注专家
-						sel.classList.remove("attenedSpan");
-						sel.innerText="关注";
-						plus.nativeUI.toast("已取消关注", toastStyle);
-					}else{//收藏资源或文章
-						document.getElementById("ifCollect").classList.add("icon-shoucang");
-						document.getElementById("ifCollect").classList.remove("icon-yishoucang");
-						plus.nativeUI.toast("已取消收藏", toastStyle);
-					}
-					
-				}
-			},
-			error: function(data) {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-
-	}
 	var r64 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_"];
 		var d64 = {
 			"0": 0,
@@ -651,4 +589,339 @@ mui.plusReady(function() {
 			})
 		})
 	}
+	mui(".artfoot").on("tap", ".inputShow", function() {
+		if(!plus.storage.getItem('userid')) {
+			mui.openWindow({
+				url: '../html/login.html',
+				id: '../html/login.html',
+				show: {
+					aniShow: "slide-in-right"
+				},
+				extras: {
+					ourl: self.id
+				}
+			});
+			return;
+		}
+		document.getElementById("textInput").style.display = "block";
+		document.getElementById("operCol").style.display = "none";
+		document.getElementById("textInputThis").focus();
+	})
+	isAgreeNum()
+	function isAgreeNum() {
+	var data = {"id": paperId}
+	mui.ajax(baseUrl+"/ajax/ppaper/agreeCount",{		
+		data:data,
+		dataType: 'json', //数据格式类型
+		type: 'get', //http请求类型
+		timeout: 10000,
+		async: true,
+		success: function(data) {
+			if(data.success){
+					document.getElementById("snum").innerHTML=data.data;
+			}
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+		}
+	});
+}
+	if(userid && userid != "null" && userid != null) {
+					isAgree() //文章点赞
+				} 
+	/*判断论文是否被赞*/
+function isAgree() {
+	var data = {"id": paperId,"uid":userid }
+	mui.ajax(baseUrl+"/ajax/ppaper/agree",{	
+		data:data,
+		dataType: 'json', //数据格式类型
+		type: 'get', //http请求类型
+		timeout: 10000,
+		async: true,
+		success: function(data) {
+			if(data.success){
+				if(data.data){
+					document.getElementsByClassName("thumbBtn")[0].classList.add("thumbedBtn");
+				}
+			}
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+		}
+	});
+}
+mui('.thumbBlock').on("tap",".thumbBtn",function(){
+	if (!isLogin()) {
+		if(this.className=="thumbBtn thumbedBtn"){
+			return;
+		}
+		addAgree();
+	}
+})
+/*点赞*/
+function addAgree() {
+	var data = {"uid": userid,"id": paperId}
+	mui.ajax(baseUrl+"/ajax/ppaper/agree",{		
+		data:data,
+		dataType: 'json', //数据格式类型
+		type: 'POST', //http请求类型
+		timeout: 10000,
+		async: true,
+		success: function(data) {
+			if(data.success){
+			document.getElementById("snum").innerHTML = Number(document.getElementById("snum").innerHTML) + 1;
+			document.getElementsByClassName("thumbBtn")[0].classList.add("thumbedBtn");
+			}
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+		}
+	});
+}
+mui(".artfoot").on("tap", ".inputShow", function() {
+	
+		if(!isLogin()) {
+			document.getElementById("textInput").style.display = "block";
+			document.getElementById("operCol").style.display = "none";
+			document.getElementById("textInputThis").focus();
+		}
+		
+	})
+leword();
+
+function leword() {
+		var data = {"paperId": paperId,"rows": 500}	
+		mui.ajax(baseUrl + "/ajax/leaveWord/ql/paper", {
+			data: data,
+			dataType: 'json', //服务器返回json格式数据
+			type: 'get', //HTTP请求类型
+			timeout: 10000, //超时时间设置为10秒；
+			traditional: true,
+			success: function(data) {
+				if(data.success) {
+					document.getElementsByClassName('commentBlock')[0].innerHTML = ""
+					if(data.data.length == 0) {
+						return;
+					}
+					var id = plus.storage.getItem('userid');
+					for(var i = 0; i < data.data.length; i++) {
+						var oText = ""
+						if(id == data.data[i].professor.id) {
+							oText = "删除"
+						}
+						var userType = autho(data.data[i].professor.authType, data.data[i].professor.orgAuth, data.data[i].professor.authStatus);
+						var baImg = "../images/default-photo.jpg";
+						if(data.data[i].professor.hasHeadImage == 1) {
+							baImg = baseUrl + "/images/head/" + data.data[i].professor.id + "_l.jpg";
+						}
+						var li = document.createElement("li");
+						li.className = "mui-table-view-cell";
+						li.innerHTML = '<div class="flexCenter mui-clearfix">' +
+							'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')" data-id="' + data.data[i].professor.id + '"></div>' +
+							'<div class="madiaInfo">' +
+							'<p><span class="h1Font" data-id="' + data.data[i].professor.id + '">' + data.data[i].professor.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+							'</div>' +
+							'</div>' +
+							'<div class="madiaInfo">' +
+							'<p class="h2Font">' + data.data[i].content + '</p>' +
+							'<p class="operateSpan">' +
+							'<span class="commenttime">' + commenTime(data.data[i].createTime) + '</span>' +
+							'<span data-id="' + data.data[i].id + '" class="dele">' + oText + '</span>' +
+							'</p>' +
+							'</div>'
+						document.getElementsByClassName("commentBlock")[0].appendChild(li);
+					}
+
+				} else {
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+}
+lewordNum();
+function lewordNum() {
+		var data = {"paperId": paperId}	
+		mui.ajax(baseUrl + "/ajax/leaveWord/lwCount/paper", {
+			data: data,
+			dataType: 'json', //服务器返回json格式数据
+			type: 'get', //HTTP请求类型
+			timeout: 10000, //超时时间设置为10秒；
+			traditional: true,
+			success: function(data) {
+				if(data.success) {
+					document.getElementsByClassName("mui-badge")[0].innerHTML=data.data;
+					}
+
+				
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+}
+function trim(str) { //删除左右两端的空格
+		　　
+		return str.replace(/(^\s*)|(\s*$)/g, "");　　
+	}
+document.getElementById("textInputThis").addEventListener("input", function() {
+		var length = trim(this.value);
+		if(length) {
+			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled");
+		} else {
+			document.getElementsByClassName("mui-btn")[0].setAttribute("disabled", "true")
+		}
+	})
+document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function() {
+	if(document.getElementById("textInputThis").value.length>200) {
+				plus.nativeUI.toast("留言不得超过200个字", toastStyle);
+				return;
+			}
+		mui.ajax(baseUrl + "/ajax/leaveWord/paper", {
+			data: {
+				"paperId": paperId,
+				"sender": plus.storage.getItem('userid'),
+				"content": document.getElementById("textInputThis").value
+			},
+			dataType: 'json', //服务器返回json格式数据
+			type: 'post', //HTTP请求类型
+			timeout: 10000, //超时时间设置为10秒；
+			success: function(data) {
+				if(data.success) {
+					document.getElementById("textInputThis").value = "";
+					document.getElementById('textInput').style.display = "none";
+					document.getElementById('operCol').style.display = "block";
+					leword();
+					lewordNum();
+				}
+			},
+			error: function() {
+				//异常处理；
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+	})
+mui(".commentBlock").on("tap", ".dele", function() {
+		var $this = this;
+		mui.ajax(baseUrl + "/ajax/leaveWord/delete", {
+			data: {
+				"id": this.getAttribute("data-id"),
+			},
+			dataType: 'json', //服务器返回json格式数据
+			type: 'post', //HTTP请求类型
+			timeout: 10000, //超时时间设置为10秒；
+			success: function(data) {
+				if(data.success) {
+					document.getElementsByClassName("commentBlock")[0].removeChild($this.parentNode.parentNode.parentNode);
+					leword();
+					lewordNum();
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+	})
+mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
+		var id = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting(); //显示原生等待框
+		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+			proid: id
+		});
+	})
+//您可能感兴趣的论文
+	paperInterestingList()
+	function paperInterestingList(){
+		mui.ajax(baseUrl+"/ajax/ppaper/ralatePapers",{
+			"type" :  "GET" ,
+			"dataType" : "json",
+			"data" :{
+				"paperId":paperId
+			},
+			"traditional": true, //传数组必须加这个
+			"success" : function(data) {
+				if(data.success) {
+					console.log(data);
+					var $data = data.data;
+					if($data.length > 0){
+						document.getElementById("paperModule").style.display="block";
+						for(var i = 0; i < $data.length; i++) {
+							var li = document.createElement("li");
+							li.setAttribute("data-id", $data[i].id);
+							li.className = "mui-table-view-cell";
+							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+								'<div class="madiaHead paperHead"></div>' +
+								'<div class="madiaInfo OmadiaInfo">' +
+								'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
+								'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
+								'</div>' +
+								'</div>'
+							document.getElementById("paperList").appendChild(li);
+						}
+					}
+				}
+			},
+			"error":function(){
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+	}
+	//根据关键词查询查找相关专利
+	function patentRelatedList(array){
+		mui.ajax(baseUrl+"/ajax/ppatent/assPatents",{
+			"type" :  "GET" ,
+			"dataType" : "json",
+			"data" :{
+				"kws":array
+			},
+			"traditional": true, //传数组必须加这个
+			"success" : function(data) {
+				if(data.success) {
+					console.log(data);
+					var $data = data.data;
+					if($data.length > 0){
+						document.getElementById("paperModule").style.display="block";
+						for(var i = 0; i < $data.length; i++) {
+							var li = document.createElement("li");
+							li.setAttribute("data-id", $data[i].id);
+							li.className = "mui-table-view-cell";
+							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+								'<div class="madiaHead patentHead"></div>' +
+								'<div class="madiaInfo OmadiaInfo">' +
+								'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
+								'<p class="mui-ellipsis h2Font">作者:' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
+								'</div>' +
+								'</div>'
+							document.getElementById("patentList").appendChild(li);
+						}
+					}
+				}
+			},
+			"error":function(){
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			}
+		});
+	}
+	mui("#paperList").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			var webviewShow1=plus.webview.create("../html/paperShow.html", 'paperShow.html', {}, {
+				"paperId": id
+			});
+			webviewShow1.addEventListener("loaded", function() {
+				setTimeout(function(){plus.webview.currentWebview().close()},1000)
+				
+			}, false);
+		})
+		mui("#patentList").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/patentShow.html", 'patentShow.html', {}, {
+				"patentId": id
+			});
+		})
 });

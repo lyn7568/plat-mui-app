@@ -81,7 +81,7 @@ phone.addEventListener("keyup",function(){
 		/*手机发送验证码*/
 		function sendAuthentication() {
 			console.log("send code")
-			mui.ajax(baseUrl + '/ajax/regmobilephone', {
+			mui.ajax(baseUrl + '/ajax/regmobilephone_onlyphone', {
 				data: {
 					mobilePhone: phone.value
 				},
@@ -208,6 +208,7 @@ phone.addEventListener("keyup",function(){
 					if(data.success) {
 						var userId = data.data;
 						plus.storage.setItem('userid', userId);
+						plus.storage.setItem('name', weiChatName.value);
 						plus.nativeUI.toast("已完成注册，请填写个人信息", toastStyle);
 						mui.openWindow({
 							url: 'fill-select.html',

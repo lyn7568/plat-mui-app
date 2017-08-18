@@ -161,6 +161,10 @@ var person = {
 										inviNum = "他邀请了 <span>" + $data + "</span> 位好友，为您带来了 <span>" + $data * 50 + "</span> 奖励积分。"
 									}
 									($info.hasHeadImage == 1) ? img = baseUrl + "/images/head/" + $info.id + "_l.jpg": img = "../images/default-photo.jpg";
+									var orgNa="";
+									if($info.orgName){
+										orgNa=$info.orgName
+									}
 									var li = document.createElement("li");
 									li.setAttribute("id",$info.id);
 									li.setAttribute("authType",$info.authType);
@@ -172,7 +176,7 @@ var person = {
 									oString += '</div>'
 									oString += '<div class="userInfo">'
 									oString += '<p class="h1Font positionR"><span>' + $info.name + '</span><em class="authicon ' + oSty.sty + '"></em></p>'
-									oString += '<p class="h2Font">' + $info.orgName + '</p>'
+									oString += '<p class="h2Font">' + orgNa + '</p>'
 									oString += '<p class="h3Font mui-ellipsis">' + inviNum + '</p>'
 									oString += '</div>'
 									oString += '</div>'
@@ -307,6 +311,7 @@ mui.ready(function() {
 				buttons: shareBts
 			}, function(e) {
 				professorName = plus.storage.getItem('name');
+				console.log(professorName)
 				if(e.index == 1) {
 					var share = buildShareService();
 					if(share) {

@@ -75,7 +75,7 @@ mui.plusReady(function() {
 					console.log(data.data)
 					if(data.data != "null" && data.data != null) {
 						var userId = data.data.id;
-						buildingWeiChat(userId);
+						buildingWeiChat(userId,data.data.name);
 					} else {
 						plus.nativeUI.toast("帐号和密码不匹配，请检查后重试", toastStyle);
 						return;
@@ -87,7 +87,7 @@ mui.plusReady(function() {
 				}
 			});
 		}
-		function buildingWeiChat(id){
+		function buildingWeiChat(id,name){
 			console.log(ws.openid);
 			console.log(id);
 			mui.ajax(baseUrl + '/ajax/oauth/associate', {
@@ -103,6 +103,7 @@ mui.plusReady(function() {
 					console.log(JSON.stringify(data));
 					if(data.success) {
 						plus.storage.setItem('userid', id);
+						plus.storage.setItem('name',name);
 						var proAiticle =plus.webview.getWebviewById('professorArticle.html')
 							mui.fire(proAiticle, "newId");
 						var consultPage = plus.webview.getWebviewById('consultlist.html');

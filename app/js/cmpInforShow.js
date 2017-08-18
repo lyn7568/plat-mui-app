@@ -82,9 +82,13 @@ mui.ready(function() {
 		mui('#likePro').on('tap', 'li', function() {
 			var id = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting(); //显示原生等待框
-			plus.webview.create("../html/cmpInforShow.html", 'cmpInforShow.html', {}, {
+			var webviewShow1=plus.webview.create("../html/cmpInforShow.html", 'cmpInforShow.html', {}, {
 				cmpId: id
 			});
+			webviewShow1.addEventListener("loaded", function() {
+				setTimeout(function(){plus.webview.currentWebview().close()},1000)
+				
+			}, false);
 		})
 		mui('#relateArt').on('tap', 'li', function() {
 			var id = this.getAttribute("data-id");

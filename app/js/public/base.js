@@ -387,7 +387,7 @@ function checkVersion(){
 					async: false,
 					success: function(data) {
 						if (data.version > wgtVer) {
-							var btn = ["立即更新", "稍后更新"];
+							var btn = ["立即更新", "取消更新"];
 							mui.confirm("新版本上线了，为了不影响您的正常使用，赶快更新吧", "提示", btn, function(e) {
 								if(e.index == 0) {
 									if(mui.os.ios) {

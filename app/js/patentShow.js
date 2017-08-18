@@ -894,8 +894,12 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 		mui("#patentList").on("tap", "li", function() {
 			var id = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting();
-			plus.webview.create("../html/patentShow.html", 'patentShow.html', {}, {
+			var webviewShow1=plus.webview.create("../html/patentShow.html", 'patentShow.html', {}, {
 				"patentId": id
 			});
+			webviewShow1.addEventListener("loaded", function() {
+				setTimeout(function(){plus.webview.currentWebview().close()},1000)
+				
+			}, false);
 		})
 });

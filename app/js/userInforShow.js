@@ -846,16 +846,24 @@ mui.plusReady(function() {
 	mui("#evaluateShow").on("tap", ".urlhref", function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+		var webviewShow1=plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
 			"proid": id,
 		});
+		webviewShow1.addEventListener("loaded", function() {
+				setTimeout(function(){plus.webview.currentWebview().close()},1000)
+				
+			}, false);
 	})
 	mui("#relatePro,#likePro").on("tap", "li", function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+		var webviewShow1=plus.webview.create("userInforShow.html", 'userInforShow.html', {}, {
 			"proid": id,
 		});
+		webviewShow1.addEventListener("loaded", function() {
+				setTimeout(function(){plus.webview.currentWebview().close()},1000)
+				
+			}, false);
 	})
 	mui("#relateArt").on("tap", "li", function() {
 		var id = this.getAttribute("data-id");

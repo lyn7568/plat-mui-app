@@ -282,7 +282,7 @@ mui.ready(function() {
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead patentHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'
@@ -319,7 +319,7 @@ mui.ready(function() {
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead artHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis h1Font">' + $data[i].name + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'
@@ -367,8 +367,8 @@ mui.ready(function() {
 					' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
 					'<div class="madiaInfo OmadiaInfo">' +
 					'<p class="mui-ellipsis h1Font">' + $data.resourceName + '</p>' +
-					'<p class="mui-ellipsis h2Font">用途：' + $data.supportedServices + '</p>' +
 					'<p><span class="h2Font">' + namepo + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+					'<p class="mui-ellipsis-2 h2Font">用途：' + $data.supportedServices + '</p>' +
 					'</div>' +
 					'</div>'
 				document.getElementById("likeRes").appendChild(li);
@@ -418,7 +418,7 @@ mui.ready(function() {
 					'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
 					'<div class="madiaInfo OmadiaInfo">' +
 					'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
-					'<p><span class="h2Font">' + name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
+					'<p><span class="h2Font" style="margin-right:10px">'+name+'</span><span class="time">'+commenTime(dataItem.publishTime)+'</span></p>'+
 					'</div>' +
 					'</div>'
 				document.getElementById("likeArt").appendChild(li);

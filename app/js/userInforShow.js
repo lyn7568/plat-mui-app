@@ -566,7 +566,7 @@ mui.plusReady(function() {
 										add.setAttribute("owner-id", StrData[n].professorId);
 										var itemlist = '<div class="flexCenter OflexCenter"><div class="madiaHead artHead" style="background-image:url('+imgL+')"></div>';
 											itemlist += '<div class="madiaInfo OmadiaInfo">';
-											itemlist += '<p class="mui-ellipsis-2 h2Font" id="usertitle">'+StrData[n].articleTitle+'</p>';
+											itemlist += '<p class="mui-ellipsis-2 h1Font" id="usertitle">'+StrData[n].articleTitle+'</p>';
 											itemlist += '<p><span class="h2Font" style="margin-right:10px">'+thisName+'</span><span class="time">'+commenTime(StrData[n].publishTime)+'</span></p>';
 											itemlist += '</div></div>';
 											

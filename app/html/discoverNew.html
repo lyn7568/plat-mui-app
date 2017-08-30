@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>发现</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			.mui-pull-top-tips {
+				width: 100%;
+				height: 1px;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 100%;
+				height: 44px;
+				display: block;
+				text-align: center;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 800ms;
+				transition-duration: 800ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 600ms;
+				transition-duration: 600ms;				
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				
+			}
+			.mui-pull-down-cap{
+				display:inline-block;
+				margin-top:22px;
+				margin-left:5px;
+			}
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+			.sizefont{
+				font-size:16px;
+			}
+			.elipse{
+				text-overflow:ellipsis;white-space:nowrap;overflow:hidden;
+			}
+			.bgImg{
+				display:block;height:276px;background-size:cover;
+			}
+			.photoTop{
+				top:135px;
+			}
+			.he{
+				height:35px;
+			}
+			.tem{
+				height:210px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content maincontent searchTab">
+			<!--<div id="slider1" class="mui-slider" style="top:40px;z-index: 1;">
+				
+			</div>-->
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item  mui-active" href="#item1mobile">最新文章</a>
+						<a class="mui-control-item" href="#item2mobile">前沿动态</a>
+						<a class="mui-control-item" href="#item3mobile">学术经验</a>
+						<a class="mui-control-item" href="#item4mobile">检测分析</a>
+						<a class="mui-control-item" href="#item5mobile">会议培训</a>
+						<a class="mui-control-item tab-article" href="#item6mobile">科袖访谈</a>
+						<a class="mui-control-item tab-article" href="#item7mobile">招聘招生</a>
+					</div>
+				</div>
+				<!--最后一张图片-->
+				
+			
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="dd">
+							<div id="slider1" class="mui-slider">
+								<div class="mui-slider-group mui-slider-loop" style="height:210px;">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					
+					<div class="mui-slider-item mui-slider-item-duplicate tem" data-id="">
+						<a href="#"  class="bgImg photoTop" style="background-image:url(../images/yuantiao.jpg);top:135px;">
+							<p class="mui-slider-title sizefont elipse he">静静看这世界</p>
+						</a>
+					</div>
+					<!--第一张图片-->
+					<div class="mui-slider-item" data-id="" style="height:210px;">
+						<a href="#" class="bgImg photoTop" style="background-image:url(../images/shuijiao.jpg);top:105px;height:210px;">
+							<p class="mui-slider-title sizefont elipse he">幸福就是可以一起睡觉幸福就是可以一起睡觉幸福就是可以一起睡觉幸福就是可以一起睡觉</p>
+						</a>
+					</div>
+					<!--第二张-->
+					<div class="mui-slider-item" data-id="">
+						<a href="#" class="bgImg photoTop" style="background-image:url(../images/muwu.jpg);top:135px;">
+							<p class="mui-slider-title sizefont elipse he">想要一间这样的木屋，静静的喝咖啡</p>
+						</a>
+					</div>
+					<!--第三张-->
+					<div class="mui-slider-item" data-id="">
+						<a href="#" class="bgImg photoTop" style="background-image:url(../images/cbd.jpg);top:135px;">
+							<p class="mui-slider-title sizefont">Color of SIP CBD</p>
+						</a>
+					</div>
+					<!--第四张-->
+					<div class="mui-slider-item" data-id="">
+						<a href="#" class="bgImg photoTop" style="background-image:url(../images/yuantiao.jpg);top:135px;">
+							<p class="mui-slider-title sizefont elipse">去外面看看</p>
+						</a>
+					</div>
+					<!--最后一张-->
+					<div class="mui-slider-item "data-id="">
+						<a href="#" class="bgImg photoTop" style="background-image:url(../images/yuantiao.jpg);top:135px;">
+							<p class="mui-slider-title sizefont elipse">静静看这世界</p>
+						</a>
+					</div>
+					<!--第一张-->
+					<div class="mui-slider-item mui-slider-item-duplicate" data-id="">
+						<a href="#" class="bgImg photoTop" style="background-image:url(../images/shuijiao.jpg);top:135px;">
+							<p class="mui-slider-title sizefont elipse">幸福就是可以一起睡觉幸福就是可以一起睡觉幸福就是可以一起睡觉幸福就是可以一起睡觉</p>
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator mui-text-right" style="bottom:30px;">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div></div>
+								<ul class="mui-table-view" id="list">
+									<!--<li class="mui-table-view-cell">
+							<div class="flexCenter OflexCenter mui-clearfix">
+							<div class="madiaHead artHead"></div>
+							<div class="madiaInfo OmadiaInfo">
+							<p class="mui-ellipsis-2 h1Font">机械设备</p>
+							<p class="h2Font mui-ellipsis">
+								<span> 新闻</span>
+							<span class="nameSpan" style="margin-right:10px">北京科袖</span>
+							<span class="time">8月25日 14:29</span>
+							</p>
+							</div>
+							</div>
+									</li>-->
+								</ul>
+								<div class="nodatabox displayNone" >
+									<div class="nodata">
+										<div class="picbox picNull"></div>
+										<div class="txtbox">
+											<p class="noContip">暂时没有内容</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content posi">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="companyList">
+								</ul>
+								<div class="nodatabox displayNone" >
+									<div class="nodata">
+										<div class="picbox picNull"></div>
+										<div class="txtbox">
+											<p class="noContip">暂时没有内容</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								
+								<ul class="mui-table-view" id="resourceList">
+									
+								</ul>
+								<div class="nodatabox displayNone" >
+									<div class="nodata">
+										<div class="picbox picNull"></div>
+										<div class="txtbox">
+											<p class="noContip">暂时没有内容</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="patentList" >
+									
+								</ul>
+								<div class="nodatabox displayNone" >
+									<div class="nodata">
+										<div class="picbox picNull"></div>
+										<div class="txtbox">
+											<p class="noContip">暂时没有内容</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item5mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="paperList">
+									
+								</ul>
+								<div class="nodatabox displayNone" >
+									<div class="nodata">
+										<div class="picbox picNull"></div>
+										<div class="txtbox">
+											<p class="noContip">暂时没有内容</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item6mobile" class="mui-slider-item mui-control-content cnt-article">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="articleList">
+									<!--<li class="mui-table-view-cell">
+										<div class="flexCenter OflexCenter mui-clearfix">
+											<div class="madiaHead artHead"></div>
+											<div class="madiaInfo OmadiaInfo">
+												<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
+												<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+											</div>
+										</div>
+									</li>-->
+								</ul>
+								<div class="nodatabox displayNone" >
+									<div class="nodata">
+										<div class="picbox picNull"></div>
+										<div class="txtbox">
+											<p class="noContip">暂时没有内容</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div id="item7mobile" class="mui-slider-item mui-control-content cnt-article">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="">
+									<!--<li class="mui-table-view-cell">
+										<div class="flexCenter OflexCenter mui-clearfix">
+											<div class="madiaHead artHead"></div>
+											<div class="madiaInfo OmadiaInfo">
+												<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
+												<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+											</div>
+										</div>
+									</li>-->
+								</ul>
+								<div class="nodatabox displayNone" >
+									<div class="nodata">
+										<div class="picbox picNull"></div>
+										<div class="txtbox">
+											<p class="noContip">暂时没有内容</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/public/mui.pullToRefresh1.js"></script>
+		<!--<script src="../js/public/mui.pullToRefresh.material.js"></script>-->
+		<script src="../js/discoverNew.js"></script>		
+	</body>
+
+</html>

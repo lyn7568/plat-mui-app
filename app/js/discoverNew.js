@@ -1,15 +1,15 @@
 (function($) {
-//阻尼系数
-var key1 = [];
-var m = 0;
-var deceleration = mui.os.ios ? 0.003 : 0.0009;
-$('.mui-scroll-wrapper').scroll({
-	bounce: false,
-	indicators: true, //是否显示滚动条
-	deceleration: deceleration
-});
-$.ready(function() {
-	$.plusReady(function() {
+	//阻尼系数
+	var key1 = [];
+	var m = 0;
+	var deceleration = mui.os.ios ? 0.003 : 0.0009;
+	$('.mui-scroll-wrapper').scroll({
+		bounce: false,
+		indicators: true, //是否显示滚动条
+		deceleration: deceleration
+	});
+	$.ready(function() {
+		$.plusReady(function() {
 			var columnType = {
 				"1": {
 					fullName: "个人原创",
@@ -117,11 +117,13 @@ $.ready(function() {
 						key1[index] = $(pullRefreshEl).pullToRefresh({
 							down: {
 								callback: function() {
+									
 									var self = this;
-									self.refresh(true);
+									//self.refresh(true);
 									setTimeout(function() {
 										var ul = self.element.querySelector('.mui-table-view');
 										ul.innerHTML = "";
+										key1[m].endPullUpToRefresh(true);
 										if(index == 0) {
 											_this.pageNo.a = 1;
 											_this.colum.a = ""
@@ -153,6 +155,7 @@ $.ready(function() {
 
 							},
 							up: {
+								
 								callback: function() {
 									var self = this;
 									setTimeout(function() {
@@ -216,92 +219,95 @@ $.ready(function() {
 					}
 				},
 				createFragment: function(data) {
+					//alert(JSON.stringify(data))
 					if(data.success) {
-					if(!arguments[1]) {
-						document.getElementsByClassName("nodatabox")[m].classList.add("displayNone");
-						if(data.data.data.length == 0) {
-							document.getElementsByClassName("nodatabox")[m].classList.remove("displayNone");
-							key1[m].endPullUpToRefresh(true);
-							return;
-						}
-						if(data.data.pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
-							key1[m].endPullUpToRefresh(false);
-						} else {
-							key1[m].endPullUpToRefresh(true);
-						}
-					}
+						
 
-					var $data = data.data.data;
-					if(arguments[1]) {
-						if($data.length > 1) {
-							$data.length = 1;
-						}
-					}
-					for(var i = 0; i < $data.length; i++) {
-						var of ;
-						if($data[i].articleType == 1) { of = 1;
-						} else { of = 2;
-						}
-						var arImg = "../images/default-artical.jpg";
-						if($data[i].articleImg) {
-							arImg = baseUrl + "/data/article/" + $data[i].articleImg
-						}
-						var title = $data[i].articleTitle;
-						var colSpan = "";
-						if(m == 0) {
-							if(arguments[1]) {
-								colSpan = "<span style='border:1px solid red;border-radius:3px;padding:0px 1px;margin-right:5px;color:red;'>置顶</span>"
-							} else {
-								if($data[i].colNum != 0)
-									colSpan = "<span style='border:1px solid green;border-radius:3px;padding:0px 1px;margin-right:5px;color:green;'>" + columnType[$data[i].colNum].shortName + "</span>"
-							}
-
-						}
-						var li = document.createElement("li");
-						li.setAttribute("data-id", $data[i].articleId);
-						li.setAttribute("data-flag", 3);
-						li.className = "mui-table-view-cell";
-						li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-							'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
-							'<div class="madiaInfo OmadiaInfo">' +
-							'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
-							'<p class="h2Font mui-ellipsis">' + colSpan +
-							'<span class="nameSpan" style="margin-right:10px"></span>' +
-							'<span class="time">' + commenTime($data[i].publishTime) + '</span>' +
-							'</p>' +
-							'</div>' +
-							'</div>'
+						var $data = data.data.data;
 						if(arguments[1]) {
-							if(document.getElementsByTagName("ul")[m].children[0]) {
-								document.getElementsByTagName("ul")[m].insertBefore(li, document.getElementsByTagName("ul")[m].children[0])
+							if($data.length > 1) {
+								$data.length = 1;
+							}
+						}
+						for(var i = 0; i < $data.length; i++) {
+							var of ;
+							if($data[i].articleType == 1) { of = 1;
+							} else { of = 2;
+							}
+							var arImg = "../images/default-artical.jpg";
+							if($data[i].articleImg) {
+								arImg = baseUrl + "/data/article/" + $data[i].articleImg
+							}
+							var title = $data[i].articleTitle;
+							var colSpan = "";
+							if(m == 0) {
+								if(arguments[1]) {
+									colSpan = "<span style='border:1px solid red;border-radius:3px;padding:0px 1px;margin-right:5px;color:red;'>置顶</span>"
+								} else {
+									if($data[i].colNum != 0)
+										colSpan = "<span style='border:1px solid green;border-radius:3px;padding:0px 1px;margin-right:5px;color:green;'>" + columnType[$data[i].colNum].shortName + "</span>"
+								}
+
+							}
+							var li = document.createElement("li");
+							li.setAttribute("data-id", $data[i].articleId);
+							li.setAttribute("data-flag", 3);
+							li.className = "mui-table-view-cell";
+							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+								'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
+								'<div class="madiaInfo OmadiaInfo">' +
+								'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
+								'<p class="h2Font mui-ellipsis">' + colSpan +
+								'<span class="nameSpan" style="margin-right:10px"></span>' +
+								'<span class="time">' + commenTime($data[i].publishTime) + '</span>' +
+								'</p>' +
+								'</div>' +
+								'</div>'
+							if(arguments[1]) {
+								if(document.getElementsByTagName("ul")[m].children[0]) {
+									document.getElementsByTagName("ul")[m].insertBefore(li, document.getElementsByTagName("ul")[m].children[0])
+								} else {
+									document.getElementsByTagName("ul")[m].appendChild(li);
+								}
 							} else {
 								document.getElementsByTagName("ul")[m].appendChild(li);
 							}
-						} else {
-							document.getElementsByTagName("ul")[m].appendChild(li);
+							if( of == 1) {
+								li.setAttribute("owner-id", $data[i].professorId);
+								li.setAttribute("data-type", 1);
+								$D({
+									data: {},
+									fun: ob.proName,
+									url: "/ajax/professor/editBaseInfo/" + $data[i].professorId,
+									sele: li.getElementsByClassName("nameSpan")[0]
+								});
+							} else {
+								li.setAttribute("owner-id", $data[i].orgId);
+								li.setAttribute("data-type", 2);
+								$D({
+									data: {},
+									fun: ob.orgName,
+									url: "/ajax/org/" + $data[i].orgId,
+									sele: li.getElementsByClassName("nameSpan")[0]
+								});
+							}
 						}
-						if( of == 1) {
-							li.setAttribute("owner-id", $data[i].professorId);
-							li.setAttribute("data-type", 1);
-							$D({
-								data: {},
-								fun: ob.proName,
-								url: "/ajax/professor/editBaseInfo/" + $data[i].professorId,
-								sele: li.getElementsByClassName("nameSpan")[0]
-							});
-						} else {
-							li.setAttribute("owner-id", $data[i].orgId);
-							li.setAttribute("data-type", 2);
-							$D({
-								data: {},
-								fun: ob.orgName,
-								url: "/ajax/org/" + $data[i].orgId,
-								sele: li.getElementsByClassName("nameSpan")[0]
-							});
+						if(!arguments[1]) {
+							document.getElementsByClassName("nodatabox")[m].classList.add("displayNone");
+							if(data.data.data.length == 0) {
+								document.getElementsByClassName("nodatabox")[m].classList.remove("displayNone");
+								key1[m].endPullUpToRefresh(true);
+								return;
+							}
+							if(data.data.pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
+								key1[m].refresh(true);
+								key1[m].endPullUpToRefresh(false);
+							} else {
+								key1[m].endPullUpToRefresh(true);
+							}
 						}
 					}
 				}
-					}
 			}
 			Discover.prototype.Init.prototype = Discover.prototype;
 			var $D = Discover;
@@ -357,7 +363,7 @@ $.ready(function() {
 					});
 				}
 			})
-			$.ajax(baseUrl + "/data/inc/col_bannerApp.html?ttt=" +new Date().getTime(), {
+			$.ajax(baseUrl + "/data/inc/col_bannerApp.html?ttt=" + new Date().getTime(), {
 				dataType: 'html', //服务器返回json格式数据
 				type: "get", //HTTP请求类型
 				timeout: 10000, //超时时间设置为10秒；
@@ -372,7 +378,7 @@ $.ready(function() {
 					$("#slider1").on("tap", "a", function() {
 						plus.nativeUI.showWaiting();
 						var id = this.parentNode.getAttribute("data-id");
-						var col=this.parentNode.getAttribute("col-id");
+						var col = this.parentNode.getAttribute("col-id");
 						aiticl(id)
 						addClick1(col);
 					})
@@ -393,10 +399,9 @@ $.ready(function() {
 					traditional: true,
 					async: true,
 					success: function(data) {
-						if(data.success) {
-						}
+						if(data.success) {}
 					}
-					});
+				});
 			}
 
 			function aiticl(id) {
@@ -433,7 +438,7 @@ $.ready(function() {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 					}
 				});
-	}
-})
-})
+			}
+		})
+	})
 })(mui)

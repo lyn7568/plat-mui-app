@@ -1,57 +1,54 @@
 (function($) {
-	//阻尼系数
-	var key1 = [];
-	var m = 0;
-	var deceleration = mui.os.ios ? 0.003 : 0.0009;
-	$('.mui-scroll-wrapper').scroll({
-		bounce: false,
-		indicators: true, //是否显示滚动条
-		deceleration: deceleration
-	});
-	$.ready(function() {
-		$.plusReady(function() {
+//阻尼系数
+var key1 = [];
+var m = 0;
+var deceleration = mui.os.ios ? 0.003 : 0.0009;
+$('.mui-scroll-wrapper').scroll({
+	bounce: false,
+	indicators: true, //是否显示滚动条
+	deceleration: deceleration
+});
+$.ready(function() {
+	$.plusReady(function() {
 			var columnType = {
-	"1":{
-		fullName:"个人原创",
-		shortName:"原创"
-	},
-	"2":{
-		fullName:"企业原创",
-		shortName:"原创"
-	},
-	"3":{
-		fullName:"前沿动态",
-		shortName:"前沿"
-	},
-	"4":{
-		fullName:"学术经验",
-		shortName:"经验"
-	},
-	"5":{
-		fullName:"分析检测",
-		shortName:"检测"
-	},
-	"6":{
-		fullName:"会议培训",
-		shortName:"会议"
-	},
-	"7":{
-		fullName:"科袖访谈",
-		shortName:"访谈"
-	},
-	"8":{
-		fullName:"招聘招生",
-		shortName:"招聘"
-	},
-	"9":{
-		fullName:"重大新闻",
-		shortName:"新闻"
-	}	
-}
-			var slider = mui("#slider1");
-			slider.slider({
-				interval: 5000
-			});
+				"1": {
+					fullName: "个人原创",
+					shortName: "原创"
+				},
+				"2": {
+					fullName: "企业原创",
+					shortName: "原创"
+				},
+				"3": {
+					fullName: "前沿动态",
+					shortName: "前沿"
+				},
+				"4": {
+					fullName: "学术经验",
+					shortName: "经验"
+				},
+				"5": {
+					fullName: "分析检测",
+					shortName: "检测"
+				},
+				"6": {
+					fullName: "会议培训",
+					shortName: "会议"
+				},
+				"7": {
+					fullName: "科袖访谈",
+					shortName: "访谈"
+				},
+				"8": {
+					fullName: "招聘招生",
+					shortName: "招聘"
+				},
+				"9": {
+					fullName: "重大新闻",
+					shortName: "新闻"
+				}
+			}
+
 			var oWidth = getViewportSize().width;
 
 			function getViewportSize() {
@@ -102,7 +99,6 @@
 						traditional: true,
 						async: true,
 						success: function(data) {
-							console.log(JSON.stringify(data));
 							if(obj.sele) {
 								obj.fun.call(obj.sele, data);
 							} else {
@@ -182,6 +178,7 @@
 							}
 						});
 					});
+
 					mui("#slider").on("tap", "li", function() {
 						var id = this.getAttribute("data-id");
 						var datatype = this.getAttribute("data-type");
@@ -201,6 +198,7 @@
 							});
 						}
 					})
+
 				},
 				proName: function(data) {
 					if(data.success) {
@@ -218,6 +216,7 @@
 					}
 				},
 				createFragment: function(data) {
+					if(data.success) {
 					if(!arguments[1]) {
 						document.getElementsByClassName("nodatabox")[m].classList.add("displayNone");
 						if(data.data.data.length == 0) {
@@ -248,15 +247,15 @@
 							arImg = baseUrl + "/data/article/" + $data[i].articleImg
 						}
 						var title = $data[i].articleTitle;
-						var colSpan="";
-						if(m==0) {
+						var colSpan = "";
+						if(m == 0) {
 							if(arguments[1]) {
-								colSpan="<span style='border:1px solid red;border-radius:3px;padding:0px 1px;margin-right:5px;color:red;'>置顶</span>"
-							}else{
-								if($data[i].colNum!=0)
-							colSpan="<span style='border:1px solid green;border-radius:3px;padding:0px 1px;margin-right:5px;color:green;'>"+columnType[$data[i].colNum].shortName+"</span>"
+								colSpan = "<span style='border:1px solid red;border-radius:3px;padding:0px 1px;margin-right:5px;color:red;'>置顶</span>"
+							} else {
+								if($data[i].colNum != 0)
+									colSpan = "<span style='border:1px solid green;border-radius:3px;padding:0px 1px;margin-right:5px;color:green;'>" + columnType[$data[i].colNum].shortName + "</span>"
 							}
-							
+
 						}
 						var li = document.createElement("li");
 						li.setAttribute("data-id", $data[i].articleId);
@@ -266,7 +265,7 @@
 							'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
 							'<div class="madiaInfo OmadiaInfo">' +
 							'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
-							'<p class="h2Font mui-ellipsis">' +colSpan+
+							'<p class="h2Font mui-ellipsis">' + colSpan +
 							'<span class="nameSpan" style="margin-right:10px"></span>' +
 							'<span class="time">' + commenTime($data[i].publishTime) + '</span>' +
 							'</p>' +
@@ -302,6 +301,7 @@
 						}
 					}
 				}
+					}
 			}
 			Discover.prototype.Init.prototype = Discover.prototype;
 			var $D = Discover;
@@ -357,19 +357,83 @@
 					});
 				}
 			})
-			$.ajax(baseUrl + "/inc/col_bannerApp.html", {
-						dataType: 'html', //服务器返回json格式数据
-						type: "get", //HTTP请求类型
-						timeout: 10000, //超时时间设置为10秒；
-						traditional: true,
-						async: true,
-						success: function(data) {
-								document.getElementById("slider1").innerHTML=data;
-						},
-						error: function(xhr, type, errorThrown) {
-							//plus.nativeUI.toast("服务器链接超时", toastStyle);
-						}
+			$.ajax(baseUrl + "/data/inc/col_bannerApp.html?ttt=" +new Date().getTime(), {
+				dataType: 'html', //服务器返回json格式数据
+				type: "get", //HTTP请求类型
+				timeout: 10000, //超时时间设置为10秒；
+				traditional: true,
+				async: true,
+				success: function(data) {
+					document.getElementById("slider1").innerHTML = data;
+					var slider = $("#slider1");
+					slider.slider({
+						interval: 5000
 					});
-		})
-	})
+					$("#slider1").on("tap", "a", function() {
+						plus.nativeUI.showWaiting();
+						var id = this.parentNode.getAttribute("data-id");
+						var col=this.parentNode.getAttribute("col-id");
+						aiticl(id)
+						addClick1(col);
+					})
+				},
+				error: function(xhr, type, errorThrown) {
+					//plus.nativeUI.toast("服务器链接超时", toastStyle);
+				}
+			});
+
+			function addClick1(colId) {
+				$.ajax(baseUrl + "/ajax/operation/statist/bannerClick", {
+					dataType: 'json', //服务器返回json格式数据
+					type: "post", //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					data: {
+						"id": colId
+					},
+					traditional: true,
+					async: true,
+					success: function(data) {
+						if(data.success) {
+						}
+					}
+					});
+			}
+
+			function aiticl(id) {
+				$.ajax("http://www.ekexiu.com" + "/ajax/article/query", {
+					dataType: 'json', //服务器返回json格式数据
+					type: "get", //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					data: {
+						"articleId": id
+					},
+					traditional: true,
+					async: true,
+					success: function(data) {
+						if(data.success) {
+							var ownerid;
+							if(data.data.articleType == 1) {
+								ownerid = data.data.professorId;
+								plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+									articleId: id,
+									ownerid: ownerid,
+								});
+							} else {
+								ownerid = data.data.orgId
+								plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+									articleId: id,
+									ownerid: ownerid,
+									oFlag: 1
+								});
+							}
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+						plus.nativeUI.toast("服务器链接超时", toastStyle);
+					}
+				});
+	}
+})
+})
 })(mui)

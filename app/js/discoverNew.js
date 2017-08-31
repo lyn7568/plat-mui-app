@@ -1,5 +1,6 @@
 (function($) {
 	//阻尼系数
+	var arr=[];
 	var key1 = [];
 	var m = 0;
 	var deceleration = mui.os.ios ? 0.003 : 0.0009;
@@ -97,7 +98,7 @@
 						type: "get", //HTTP请求类型
 						timeout: 10000, //超时时间设置为10秒；
 						traditional: true,
-						async: true,
+						async: false,
 						success: function(data) {
 							if(obj.sele) {
 								obj.fun.call(obj.sele, data);
@@ -145,7 +146,8 @@
 											"fun": _this.createFragment,
 											data: {
 												col: index ? _this.colum[index + 2] : _this.colum.a,
-												pageNo: 1
+												pageNo: 1,
+												exclude:arr
 											},
 											url: "/ajax/article/find"
 										});
@@ -172,7 +174,8 @@
 											"fun": _this.createFragment,
 											data: {
 												col: index ? _this.colum[index + 2] : _this.colum.a,
-												pageNo: pa
+												pageNo: pa,
+												exclude:arr
 											},
 											url: "/ajax/article/find"
 										});
@@ -219,10 +222,7 @@
 					}
 				},
 				createFragment: function(data) {
-					//alert(JSON.stringify(data))
 					if(data.success) {
-						
-
 						var $data = data.data.data;
 						if(arguments[1]) {
 							if($data.length > 1) {
@@ -244,8 +244,13 @@
 								if(arguments[1]) {
 									colSpan = "<span style='border:1px solid red;border-radius:3px;padding:0px 1px;margin-right:5px;color:red;'>置顶</span>"
 								} else {
-									if($data[i].colNum != 0)
-										colSpan = "<span style='border:1px solid green;border-radius:3px;padding:0px 1px;margin-right:5px;color:green;'>" + columnType[$data[i].colNum].shortName + "</span>"
+									if($data[i].colNum != 0) {
+										if($data[i].colNum==9) {
+											colSpan="";
+										}else{
+											colSpan = "<span style='border:1px solid green;border-radius:3px;padding:0px 1px;margin-right:5px;color:green;'>" + columnType[$data[i].colNum].shortName + "</span>"
+										}
+									}
 								}
 
 							}
@@ -267,6 +272,12 @@
 								if(document.getElementsByTagName("ul")[m].children[0]) {
 									document.getElementsByTagName("ul")[m].insertBefore(li, document.getElementsByTagName("ul")[m].children[0])
 								} else {
+									if(arr.length==6) {
+										arr[5]=$data[i].articleId;
+									}else{
+										arr.push($data[i].articleId);
+									}
+									
 									document.getElementsByTagName("ul")[m].appendChild(li);
 								}
 							} else {
@@ -314,23 +325,7 @@
 			$D().bindEvent();
 			var ob = $D();
 			//alert(ob.createFragment)
-			$D({
-				"fun": ob.createFragment,
-				data: {
-					col: "",
-					pageNo: ob.pageNo.a
-				},
-				url: "/ajax/article/find"
-			});
-			$D({
-				"fun": ob.createFragment,
-				data: {
-					col: 9,
-					pageNo: 1
-				},
-				flag: 1,
-				url: "/ajax/article/find"
-			});
+			
 			document.querySelector('#slider').addEventListener('slide', function(event) {
 
 				var $this = document.querySelector(".mui-scroll .mui-active");
@@ -368,9 +363,12 @@
 				type: "get", //HTTP请求类型
 				timeout: 10000, //超时时间设置为10秒；
 				traditional: true,
-				async: true,
+				async: false,
 				success: function(data) {
 					document.getElementById("slider1").innerHTML = data;
+					for(var i=1;i<6;i++) {
+						arr.push(document.getElementById("slider1").getElementsByClassName("mui-slider-item")[i].getAttribute("data-id"));
+					}
 					var slider = $("#slider1");
 					slider.slider({
 						interval: 5000
@@ -387,7 +385,26 @@
 					//plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
-
+			
+			$D({
+				"fun": ob.createFragment,
+				data: {
+					col: 9,
+					pageNo: 1
+				},
+				flag: 1,
+				url: "/ajax/article/find"
+			});
+			console.log(arr)
+			$D({
+				"fun": ob.createFragment,
+				data: {
+					col: "",
+					pageNo: ob.pageNo.a,
+					exclude:arr
+				},
+				url: "/ajax/article/find"
+			});
 			function addClick1(colId) {
 				$.ajax(baseUrl + "/ajax/operation/statist/bannerClick", {
 					dataType: 'json', //服务器返回json格式数据

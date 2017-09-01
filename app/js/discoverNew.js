@@ -244,13 +244,8 @@
 								if(arguments[1]) {
 									colSpan = '<span class="column">置顶</span>'
 								} else {
-									if($data[i].colNum != 0){
-										if($data[i].colNum==9) {
-											colSpan="";
-										}else{
+									if($data[i].colNum != 0){	
 											colSpan = "<span class='column columnOther'>" + columnType[$data[i].colNum].shortName + "</span>"
-								
-										}
 									}
 								}
 							}

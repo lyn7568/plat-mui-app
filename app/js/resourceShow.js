@@ -253,8 +253,7 @@ mui.plusReady(function() {
 											likeRli.setAttribute("data-type", 2);
 										}
 										
-										var str = ""
-										str+='<div class="flexCenter OflexCenter mui-clearfix">'
+										var str = '<div class="flexCenter OflexCenter">'
 										if($html[n].articleImg) {
 											str += '<div class="madiaHead artHead" style="background-image: url('+ baseUrl +'/data/article/' + $html[n].articleImg + ')"></div>'
 										} else {

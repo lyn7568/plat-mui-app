@@ -192,7 +192,7 @@ mui.plusReady(function() {
 											var odis = (userid == showPro.id) ? "none" : "block";
 											liItem.setAttribute("data-id",showPro.id);
 											liItem.className = "mui-table-view-cell"
-											var oString = '<div class="flexCenter mui-clearfix">'
+											var oString = '<div class="flexCenter">'
 											oString += '<div class="madiaHead useHead" style="background-image:url('+ imgbg +')"></div>'
 											oString += '<div class="madiaInfo" style="padding-right: 62px;"><p class="mui-ellipsis"><span class="h1Font">'+ showPro.name +'</span><em class="authicon '+ authTy +'" title="'+ authTit +'"></em></p>'
 											oString += '<p class="mui-ellipsis h2Font">'+ baseInfo +'</p>'
@@ -830,7 +830,7 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 							var li = document.createElement("li");
 							li.setAttribute("data-id", $data[i].id);
 							li.className = "mui-table-view-cell";
-							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+							li.innerHTML = '<div class="flexCenter OflexCenter">' +
 								'<div class="madiaHead patentHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
 								'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
@@ -867,7 +867,7 @@ mui('.commentBlock').on('tap', '.useHead,.h1Font', function() {
 							var li = document.createElement("li");
 							li.setAttribute("data-id", $data[i].id);
 							li.className = "mui-table-view-cell";
-							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+							li.innerHTML = '<div class="flexCenter OflexCenter">' +
 								'<div class="madiaHead paperHead"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
 								'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +

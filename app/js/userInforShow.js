@@ -868,11 +868,9 @@ mui.plusReady(function() {
 	})
 	mui("#relateArt").on("tap", "li", function() {
 		var id = this.getAttribute("data-id");
-		var ownerid = this.getAttribute("owner-id");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-			articleId: id,
-			ownerid: ownerid,
+			articleId: id
 		});
 	})
 

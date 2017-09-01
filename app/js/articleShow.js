@@ -123,10 +123,11 @@ mui.plusReady(function() {
 			document.getElementsByClassName('mui-badge')[0].innerHTML = $data
 		}
 	}
+	
 	var oArticleModule = {
 		articleId: oCurren.self.articleId,
-		oFlag: oCurren.self.oFlag,
-		oWner: oCurren.self.ownerid,
+//		oFlag: oCurren.self.oFlag,
+//		oWner: oCurren.self.ownerid,
 		oAjaxGet: function(url, obj, oType, oFun) {
 			mui.ajax(url, {
 				data: obj,
@@ -151,6 +152,12 @@ mui.plusReady(function() {
 			plus.webview.currentWebview().show("slide-in-right", 150);
 			console.log(JSON.stringify($data));
 			document.getElementById("articleName").innerHTML = $data.articleTitle;
+			if($data.articleType=='2'){
+				oArticleModule.oFlag = 1;
+				oArticleModule.oWner=$data.orgId;
+			}else{
+				oArticleModule.oWner=$data.professorId;
+			}
 			if($data.articleImg){
 				stt = $data.articleImg.substring(0, 9);
 			}
@@ -192,6 +199,38 @@ mui.plusReady(function() {
 			}
 
 			document.getElementById("oTime").innerHTML = commenTime($data.publishTime);
+			
+			if(oArticleModule.oFlag == 1) {
+				/*企业发布文章信息*/
+				oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + oArticleModule.oWner, "", "get", oArticleModule.business);
+				//document.getElementById('attBtn').style.display = "none";
+				companylist();
+				if(oCurren.userid)
+				oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
+					"watchObject": oArticleModule.oWner,
+					'professorId': oCurren.userid
+				}, "get", oArticleModule.attentionGetExpert);
+			} else {
+				if(plus.storage.getItem('userid') == oArticleModule.oWner) {
+					document.getElementById('attBtn').style.display = "none";
+				}
+				mui('#personAL').on('tap', '#messImg,#name', function() {
+					var id = oArticleModule.oWner;
+					plus.nativeUI.showWaiting(); //显示原生等待框
+					plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+						proid: id
+					}); //后台创建webview并打开show.html
+				})
+				/*查询是否关注专家*/
+				if(oCurren.userid)
+				oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
+					"watchObject": oArticleModule.oWner,
+					'professorId': oCurren.userid
+				}, "get", oArticleModule.attentionGetExpert);
+				/*个人发布文章信息*/
+				oArticleModule.oAjaxGet(baseUrl + "/ajax/professor/editBaseInfo/" + oArticleModule.oWner, "", "get", oArticleModule.professorMess);
+			}
+			
 		},
 		professorMess: function($data) {
 			//console.log(JSON.stringify($data));
@@ -452,36 +491,7 @@ mui.plusReady(function() {
 			
 		}
 	});
-	if(oArticleModule.oFlag == 1) {
-		/*企业发布文章信息*/
-		oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + oArticleModule.oWner, "", "get", oArticleModule.business);
-		//document.getElementById('attBtn').style.display = "none";
-		companylist();
-		if(oCurren.userid)
-		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
-			"watchObject": oArticleModule.oWner,
-			'professorId': oCurren.userid
-		}, "get", oArticleModule.attentionGetExpert);
-	} else {
-		if(plus.storage.getItem('userid') == oArticleModule.oWner) {
-			document.getElementById('attBtn').style.display = "none";
-		}
-		mui('#personAL').on('tap', '#messImg,#name', function() {
-			var id = oArticleModule.oWner;
-			plus.nativeUI.showWaiting(); //显示原生等待框
-			plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
-				proid: id
-			}); //后台创建webview并打开show.html
-		})
-		/*查询是否关注专家*/
-		if(oCurren.userid)
-		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
-			"watchObject": oArticleModule.oWner,
-			'professorId': oCurren.userid
-		}, "get", oArticleModule.attentionGetExpert);
-		/*个人发布文章信息*/
-		oArticleModule.oAjaxGet(baseUrl + "/ajax/professor/editBaseInfo/" + oArticleModule.oWner, "", "get", oArticleModule.professorMess);
-	}
+	
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralatePro", {
 		"articleId": oArticleModule.articleId
 	}, "get", oArticleModule.correlationExpert);
@@ -581,34 +591,17 @@ mui.plusReady(function() {
 			resourceId: resouId
 		});
 	})
-	/*点赞*/
 	mui('#articleList').on('tap', 'li', function() {
 		var id = this.getAttribute("data-id");
-		var datatype = this.getAttribute("data-type");
-		var ownerid = this.getAttribute("owner-id");
-		if(datatype == 1) {
-			plus.nativeUI.showWaiting();
-			var webviewShow=plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-				articleId: id,
-				ownerid: ownerid,
-			});
-			webviewShow.addEventListener("loaded", function() {
-				setTimeout(function(){plus.webview.currentWebview().close()},1000)
-				
-			}, false);
-		} else if(datatype == 2) {
-			plus.nativeUI.showWaiting();
-			var webviewShow=plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-				articleId: id,
-				ownerid: ownerid,
-				oFlag: 1
-			});
-			webviewShow.addEventListener("loaded", function() {
-				setTimeout(function(){plus.webview.currentWebview().close()},1000)
-				
-			}, false);
-		}
-		
+		plus.nativeUI.showWaiting();
+		var webviewShow=plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+			articleId: id
+		});
+		webviewShow.addEventListener("loaded", function() {
+			setTimeout(function(){plus.webview.currentWebview().close()},1000)
+			
+		}, false);
+
 	});
 	document.getElementsByClassName("thumbBtn")[0].addEventListener("tap", function() {
 		var oClsNm = document.getElementById("snum").parentNode.className;
@@ -654,7 +647,6 @@ mui.plusReady(function() {
 			"articleId": oArticleModule.articleId,
 			'operateId': oCurren.userid
 		}, "get", oArticleModule.thumbs);
-		console.log(oArticleModule.oFlag)
 
 		
 

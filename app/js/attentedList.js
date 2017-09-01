@@ -28,21 +28,11 @@ mui.ready(function() {
 		})
 		mui("#likeArt").on("tap", "li", function() {
 			var id = this.getAttribute("data-id");
-			var datatype = this.getAttribute("data-type");
-			var ownerid = this.getAttribute("owner-id");
-			if(datatype == 1) {
-				plus.nativeUI.showWaiting();
-				plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-					articleId: id,
-					ownerid: ownerid,
-				});
-			} else if(datatype == 2) {
-				plus.nativeUI.showWaiting();
-				plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-					articleId: id,
-					ownerid: ownerid,
-					oFlag: 1
-				});
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+				articleId: id
+				
+			});
 			}
 		})
 		mui("#likePer").on("tap", "li", function() {

@@ -805,9 +805,10 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .mui-slider.columnImg .mui-slider-item .mui-slider-title{height:35px;line-height:35px;background-color: rgba(0, 0, 0, .4);opacity: 1;color: #FFFFFF;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 .mui-slider.columnImg .mui-slider-item{height: 210px;}
 .mui-slider.columnImg .mui-slider-item>a {display: block;height: 210px;background-size: cover;background-position: center;}
+.mui-slider.columnImg .mui-slider-item>a p{font-size:16px;}
 .mui-slider.columnImg .mui-slider-indicator{bottom:35px}
 
-.column {font-size: 10px;border: 1px solid red;border-radius: 3px;padding: 2px 1px 0;margin-right: 6px;position: relative;top: -2px;color: red;}
+.column {font-size: 10px;border: 1px solid red;border-radius: 3px;padding: 1px 1px 0;margin-right: 6px;position: relative;top: -2px;color: red;}
 .columnOther {border: 1px solid #28b8fa;color: #28b8fa;}
 /***************************************2017.04新版样式******************************/
 /*--------邀请好友------------*/

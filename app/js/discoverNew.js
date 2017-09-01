@@ -421,7 +421,7 @@
 			}
 
 			function aiticl(id) {
-				$.ajax("http://www.ekexiu.com" + "/ajax/article/query", {
+				$.ajax(baseUrl + "/ajax/article/query", {
 					dataType: 'json', //服务器返回json格式数据
 					type: "get", //HTTP请求类型
 					timeout: 10000, //超时时间设置为10秒；

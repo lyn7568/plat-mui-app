@@ -420,7 +420,7 @@
 				});
 			}
 
-			function aiticl(id) {
+			function aiticl(id) { 
 				$.ajax(baseUrl + "/ajax/article/query", {
 					dataType: 'json', //服务器返回json格式数据
 					type: "get", //HTTP请求类型

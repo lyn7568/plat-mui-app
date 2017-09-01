@@ -16,7 +16,7 @@
 //	}, 1000);
 //}
 leword(500, 1);
-
+var stt;
 function leword(row, aa) {
 	mui.plusReady(function() {
 		var af = aa,
@@ -151,7 +151,9 @@ mui.plusReady(function() {
 			plus.webview.currentWebview().show("slide-in-right", 150);
 			console.log(JSON.stringify($data));
 			document.getElementById("articleName").innerHTML = $data.articleTitle;
-			stt = $data.articleImg.substring(0, 9);
+			if($data.articleImg){
+				stt = $data.articleImg.substring(0, 9);
+			}
 			console.log(stt)
 			if($data.articleContent) {
 				document.getElementById("articleContent").innerHTML = $data.articleContent;

@@ -382,20 +382,19 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .attentbtn em{font-size: 20px;line-height: 24px;color:#F6DC00;}
 .attentbtn.attentbtn2 em{color:#ff9900;}
 /*更多详细信息*/
-/*
 .listitembox{ position: static;width: 100%;}
 .listitembox>.listitem{border-left: 2px solid #efefef; padding: 4px 15px;padding-left: 16px;margin-left: 6px;overflow: visible;}
 .listitembox>.listitem .h4Tit{position:relative;padding:2px 0;}
 .listitembox>.listitem .h4Tit:before{content:"";position: absolute;left:-23px;top:8px;width:12px; height:12px;background:#ff9900;border-radius: 50%;}
 .listitem .listtit2{color:#333;}
-.listitem .listtit3{color:#999}*/
+.listitem .listtit3{color:#999}
 /*.listitembox .listitem .iconposition{ border-radius: 50%; max-width:60px; height:60px; margin: 1% 0; margin-right: 10px;}*/
-/*.listitembox .listitem .mutlinebox{ white-space:normal; overflow: auto;word-break:break-word; color:#666}
+.listitembox .listitem .mutlinebox{ white-space:normal; overflow: auto;word-break:break-word; color:#666}
 .listitembox .listitem.mui-table-view-cell:after{background:none;}
 .listitembox .listitem.mui-table-view-cell.mui-active{background:none;}
 .listitembox>.listitemExit{padding:8px 0 15px}
 .listitembox>.listitemExit.mui-table-view-cell:after{background:none;border-top:2px dashed #b5b5b5;left:0;}
-.listitembox>.listitemExit.mui-table-view-cell:last-child:after{border-top:none}*/
+.listitembox>.listitemExit.mui-table-view-cell:last-child:after{border-top:none}
 
 /***********************专家信息浏览*******************/
 

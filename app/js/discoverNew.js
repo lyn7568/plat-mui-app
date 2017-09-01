@@ -9,6 +9,15 @@
 		indicators: true, //是否显示滚动条
 		deceleration: deceleration
 	});
+	var pullObj={
+		"0":0,
+		"1":0,
+		"2":0,
+		"3":0,
+		"4":0,
+		"5":0,
+		"6":0
+	}
 	$.ready(function() {
 		$.plusReady(function() {
 			var columnType = {
@@ -98,7 +107,7 @@
 						type: "get", //HTTP请求类型
 						timeout: 10000, //超时时间设置为10秒；
 						traditional: true,
-						async: false,
+						async: true,
 						success: function(data) {
 							if(obj.sele) {
 								obj.fun.call(obj.sele, data);
@@ -118,7 +127,7 @@
 						key1[index] = $(pullRefreshEl).pullToRefresh({
 							down: {
 								callback: function() {
-									
+									console.log(new Date().getTime() +"a")
 									var self = this;
 									//self.refresh(true);
 									setTimeout(function() {
@@ -126,8 +135,31 @@
 										ul.innerHTML = "";
 										key1[m].endPullUpToRefresh(true);
 										if(index == 0) {
+											pullObj["0"]=1;
 											_this.pageNo.a = 1;
-											_this.colum.a = ""
+											_this.colum.a = "";
+											$.ajax(baseUrl + "/data/inc/col_bannerApp.html?ttt=" + new Date().getTime(), {
+				dataType: 'html', //服务器返回json格式数据
+				type: "get", //HTTP请求类型
+				timeout: 10000, //超时时间设置为10秒；
+				traditional: true,
+				async: false,
+				success: function(data) {
+					document.getElementById("slider1").innerHTML = data;
+					for(var i=1;i<6;i++) {
+						arr=[];
+						arr.push(document.getElementById("slider1").getElementsByClassName("mui-slider-item")[i].getAttribute("data-id"));
+					var slider = $("#slider1");
+					slider.slider({
+						interval: 5000
+					});
+					}
+					
+				},
+				error: function(xhr, type, errorThrown) {
+					//plus.nativeUI.toast("服务器链接超时", toastStyle);
+				}
+			});
 											$D({
 												"fun": ob.createFragment,
 												data: {
@@ -138,21 +170,24 @@
 												url: "/ajax/article/find"
 											});
 										} else {
+											pullObj[index]=1;
 											_this.pageNo[index] = 1;
 											_this.colum[index + 2] = index + 2;
 										}
-
+									console.log(new Date().getTime() +"b")
 										$D({
 											"fun": _this.createFragment,
 											data: {
 												col: index ? _this.colum[index + 2] : _this.colum.a,
 												pageNo: 1,
-												exclude:arr
+												exclude:arr,
 											},
 											url: "/ajax/article/find"
 										});
 									}, 1000);
-									self.endPullDownToRefresh();
+									
+
+									console.log(new Date().getTime() +"c")
 								}
 
 							},
@@ -235,8 +270,9 @@
 							} else { of = 2;
 							}
 							var arImg = "../images/default-artical.jpg";
+							
 							if($data[i].articleImg) {
-								arImg = baseUrl + "/data/article/" + $data[i].articleImg
+								arImg = baseUrl + "/data/article/" + $data[i].articleImg.replace(".","_s.")
 							}
 							var title = $data[i].articleTitle;
 							var colSpan = "";
@@ -244,10 +280,20 @@
 								if(arguments[1]) {
 									colSpan = '<span class="column">置顶</span>'
 								} else {
+									if(pullObj["0"]==1) {
+										
+										key1[m].endPullDownToRefresh();
+										pullObj[m]=0;
+									} 									
 									if($data[i].colNum != 0){	
 											colSpan = "<span class='column columnOther'>" + columnType[$data[i].colNum].shortName + "</span>"
 									}
 								}
+							}else{
+								if(pullObj[m]==1) {
+										key1[m].endPullDownToRefresh();
+										pullObj[m]=0;
+									} 
 							}
 							var li = document.createElement("li");
 							li.setAttribute("data-id", $data[i].articleId);

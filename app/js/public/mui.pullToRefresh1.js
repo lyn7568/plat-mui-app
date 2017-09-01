@@ -25,7 +25,7 @@
 			this.element = element;
 			this.options = $.extend(true, {
 				down: {
-					height: 45,
+					height: 30,
 					callback: false,
 				},
 				up: {

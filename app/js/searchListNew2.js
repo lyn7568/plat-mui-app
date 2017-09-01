@@ -172,15 +172,14 @@ for(var n=0;n<6;n++) {
 					}
 					li.setAttribute("data-id", data.data[i].id);
 					li.setAttribute("data-flag", 1);
-					li.className = "mui-table-view-cell";
-					li.innerHTML = '<div class="flexCenter mui-clearfix">' +
-						' <div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>' +
+					li.className = "mui-table-view-cell flexCenter";
+					li.innerHTML = ' <div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>' +
 						'<div class="madiaInfo">' +
 						'<p><span class="h1Font">' + data.data[i].name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
 						'<p class="mui-ellipsis h2Font">' + os + '</p>' +
 						'<p class="mui-ellipsis h2Font">' + oSub + '</p>' +
-						'</div>' +
 						'</div>'
+						
 					document.getElementById("list").appendChild(li);
 				}
 			},
@@ -282,15 +281,14 @@ for(var n=0;n<6;n++) {
 					var li = document.createElement("li");
 					li.setAttribute("data-id", $data.resourceId);
 					li.setAttribute("data-flag", 2);
-					li.className = "mui-table-view-cell";
-					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-						' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
+					li.className = "mui-table-view-cell flexCenter OflexCenter";
+					li.innerHTML = ' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis h1Font">' + $data.resourceName + '</p>' +
 						'<p><span class="h2Font">' + namepo + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
 						'<p class="mui-ellipsis h2Font">用途：' + $data.supportedServices + '</p>' +
-						'</div>' +
 						'</div>'
+						
 					document.getElementById("resourceList").appendChild(li);
 				}
 
@@ -384,16 +382,14 @@ for(var n=0;n<6;n++) {
 					}
 					li.setAttribute("data-id", $data[i].articleId);
 					li.setAttribute("data-flag", 3);
-					li.className = "mui-table-view-cell";
-					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-						'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
+					li.className = "mui-table-view-cell flexCenter OflexCenter";
+					li.innerHTML = '<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
 						'<p class="h2Font mui-ellipsis">'+
 						'<span class="nameSpan" style="margin-right:10px">' + name + '</span>'+
 						'<span class="time">'+commenTime($data[i].publishTime)+'</span>'+
 						'</p>'+
-						'</div>' +
 						'</div>'
 					document.getElementById("articleList").appendChild(li);
 
@@ -465,13 +461,11 @@ for(var n=0;n<6;n++) {
 				for(var i = 0; i < $data.length; i++) {
 					var li = document.createElement("li");
 					li.setAttribute("data-id", $data[i].id);
-					li.className = "mui-table-view-cell";
-					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-						'<div class="madiaHead patentHead"></div>' +
+					li.className = "mui-table-view-cell flexCenter OflexCenter";
+					li.innerHTML ='<div class="madiaHead patentHead"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 						'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
-						'</div>' +
 						'</div>'
 					document.getElementById("patentList").appendChild(li);
 				}
@@ -541,13 +535,11 @@ for(var n=0;n<6;n++) {
 				for(var i = 0; i < $data.length; i++) {
 					var li = document.createElement("li");
 					li.setAttribute("data-id", $data[i].id);
-					li.className = "mui-table-view-cell";
-					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-						'<div class="madiaHead paperHead"></div>' +
+					li.className = "mui-table-view-cell flexCenter OflexCenter";
+					li.innerHTML = '<div class="madiaHead paperHead"></div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 						'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
-						'</div>' +
 						'</div>'
 					document.getElementById("paperList").appendChild(li);
 				}
@@ -622,15 +614,13 @@ for(var n=0;n<6;n++) {
 					var orgName = ($data[i].forShort) ? $data[i].forShort : $data[i].name;
 					var orgType = ($data[i].orgType == '2') ? "上市企业" : "";
 					var orgOther = ($data[i].industry) ? $data[i].industry.replace(/,/gi, " | ") : "";
-					li.className = "mui-table-view-cell";
-					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-						'<div class="madiaHead companyHead">' +
+					li.className = "mui-table-view-cell flexCenter OflexCenter";
+					li.innerHTML = '<div class="madiaHead companyHead">' +
 						'<div class="boxBlock"><img class="boxBlockimg companyImg" src="' + oimg + '"></div>' +
 						'</div>' +
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis h1Font">' + orgName + '<em class="authicon ' + oAuth + '" title="科袖认证企业"></em></p>' +
 						'<p class="mui-ellipsis h2Font"><span id="">' + orgType + '</span> <span id="">' + orgOther + '</span></p>' +
-						'</div>' +
 						'</div>'
 
 					document.getElementById("companyList").appendChild(li);

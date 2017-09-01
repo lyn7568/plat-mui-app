@@ -242,31 +242,29 @@
 							var colSpan = "";
 							if(m == 0) {
 								if(arguments[1]) {
-									colSpan = "<span style='border:1px solid red;border-radius:3px;padding:0px 1px;margin-right:5px;color:red;'>置顶</span>"
+									colSpan = '<span class="column">置顶</span>'
 								} else {
-									if($data[i].colNum != 0) {
+									if($data[i].colNum != 0){
 										if($data[i].colNum==9) {
 											colSpan="";
 										}else{
-											colSpan = "<span style='border:1px solid green;border-radius:3px;padding:0px 1px;margin-right:5px;color:green;'>" + columnType[$data[i].colNum].shortName + "</span>"
+											colSpan = "<span class='column columnOther'>" + columnType[$data[i].colNum].shortName + "</span>"
+								
 										}
 									}
 								}
-
 							}
 							var li = document.createElement("li");
 							li.setAttribute("data-id", $data[i].articleId);
 							li.setAttribute("data-flag", 3);
-							li.className = "mui-table-view-cell";
-							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-								'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
+							li.className = "mui-table-view-cell flexCenter OflexCenter";
+							li.innerHTML = '<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
 								'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
 								'<p class="h2Font mui-ellipsis">' + colSpan +
 								'<span class="nameSpan" style="margin-right:10px"></span>' +
 								'<span class="time">' + commenTime($data[i].publishTime) + '</span>' +
 								'</p>' +
-								'</div>' +
 								'</div>'
 							if(arguments[1]) {
 								if(document.getElementsByTagName("ul")[m].children[0]) {
@@ -365,6 +363,7 @@
 				traditional: true,
 				async: false,
 				success: function(data) {
+					//alert(JSON.stringify(data))
 					document.getElementById("slider1").innerHTML = data;
 					for(var i=1;i<6;i++) {
 						arr.push(document.getElementById("slider1").getElementsByClassName("mui-slider-item")[i].getAttribute("data-id"));

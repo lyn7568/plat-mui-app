@@ -326,7 +326,7 @@ function datalistEach(datalist) {
 		var rlist = '';
 		for(var n = 0; n < researchAreas.length; n++) {
 			//console.log(researchAreas[n].caption);
-			rlist += '<span>' + researchAreas[n].caption
+			rlist += '<span>研究方向：' + researchAreas[n].caption
 			if(n < researchAreas.length - 1) {
 				rlist += " , "
 			}
@@ -372,16 +372,16 @@ function datalistEach(datalist) {
 
 
 		var li = document.createElement('li');
-		li.className = 'mui-table-view-cell';
+		li.className = 'mui-table-view-cell flexCenter OflexCenter';
 		li.setAttribute("data-id", item.id);
-		li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">'+
+		li.innerHTML =
 					'<div class="madiaHead useHead" style="background-image:url(' + img + ')"></div>'+
 					'<div class="madiaInfo">'+
 						'<p><span class="h1Font">' + item.name + typeTname + '</p>'+
 						'<p class="mui-ellipsis h2Font">'+ otherIn +'</p>'+
-						'<p class="mui-ellipsis h3Font">' + rlist + '</p>' +
-						'<p class="mui-ellipsis h3Font">' + zlist + '</p>' +
-					'</div></div>';
+						'<p class="mui-ellipsis h2Font">' + rlist + '</p>' +
+//						'<p class="mui-ellipsis h3Font">' + zlist + '</p>' +
+					'</div>';
 
 		table.appendChild(li, table.firstChild);
 

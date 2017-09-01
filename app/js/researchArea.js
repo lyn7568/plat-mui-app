@@ -121,16 +121,15 @@ function datalistEach(datalist) {
 		
 
 		var li = document.createElement('li');
-		li.className = 'mui-table-view-cell';
+		li.className = 'mui-table-view-cell flexCenter OflexCenter';
 		li.setAttribute("data-id", item.id);
 		li.setAttribute("authentication", item.authentication);
 		li.setAttribute("authType", item.authType);
-		li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">'+
-					'<div class="madiaHead useHead" style="background-image:url(' + img + ')"></div>'+
+		li.innerHTML = '<div class="madiaHead useHead" style="background-image:url(' + img + ')"></div>'+
 					'<div class="madiaInfo">'+
 						'<p><span class="h1Font">' + item.name + typeTname + '</p>'+
 						'<p class="mui-ellipsis-2 h2Font">'+ otherIn +'</p>'+
-					'</div></div>';
+					'</div>';
 		table.appendChild(li, table.firstChild);
 
 	});

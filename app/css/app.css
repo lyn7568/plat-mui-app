@@ -1198,4 +1198,12 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .mui-input-row.textBox .conTextare {min-height: 260px;font-size: 14px;border:none;}
 .mui-input-row.textBox .conCommit {position: absolute;bottom: 0;right: 10px;color:#BBBBBB}
 
+/*--------------新版需求相关--------------*/
+.needList .madiaInfo{padding:0;}
+.needList .madiaInfo .h1Font{font-size: 16px;margin-bottom: 10px;}
+.needList .madiaInfo .h2Font{font-size: 14px;line-height:24px;margin: 4px 0;color: #666;}
+.needList .madiaInfo .h3Font{font-size: 12px;color:#999;}
+.needList>ul>li{padding:15px;}
+.needList ul .showli{overflow: hidden;}
+.needList ul .showli>span{display:inline-block;margin-top: 6px;padding-right:10px;float:left;}
 

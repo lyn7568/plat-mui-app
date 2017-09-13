@@ -112,7 +112,7 @@ mui.ready(function() {
 										return;
 									}
 								try {
-									     plus.nativeUI.showWaiting("检测更新...");
+									     plus.nativeUI.showWaiting("正在下载...");
 									     //var d="http://192.168.3.233/download/app1.0.6.apk";
 										 plus.downloader.createDownload( data.wgt, {filename:"_doc/update/"}, function(d,status){
 									        if ( status == 200 ) { 

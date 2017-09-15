@@ -1,8 +1,8 @@
 //公共文件
 mui.init();
-var baseUrl = "http://www.ekexiu.com", 
+//var baseUrl = "http://www.ekexiu.com", 
 //var baseUrl = "http://192.168.3.233",
-//var baseUrl = "http:192.168.3.233:81",    
+var baseUrl = "http:192.168.3.233:81",    
 	toastStyle = {
 		'verticalAlign': 'top',
 	}
@@ -206,7 +206,10 @@ function TimeTr(dealtime) {
 	if(s.length <= 6) {
 		formatTime = y + "年" + m.replace(/\b(0+)/gi, "") + "月";
 	} else if(s.length > 6 && s.length <= 8) {
-		formatTime = y + "年" + m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "") + "日 ";
+		formatTime = m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "") + "日 ";
+		if(y != myDate.getFullYear()) {
+			formatTime = y + "年" + m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "") + "日 ";
+		}
 	} else {
 		formatTime = m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "") + "日 " + h + ":" + minute;
 		if(y != myDate.getFullYear()) {
@@ -246,7 +249,23 @@ var eduDegree = {
 	"4": "大专",
 	"5": "其他"
 }
-
+//需求的费用预算
+var demandCost = {
+	'1': '1万元以内',
+	'2': '1-5万元',
+	'3': '5-10万元',
+	'4': '10-20万元',
+	'5': '20-50万元',
+	'6': '50万元以上'
+}
+//需求的预期时长
+var demandDuration = {
+	'1': '1个月内',
+	'2': '1-3个月',
+	'3': '3-6个月',
+	'4': '6-12个月',
+	'5': '1年以上'
+}
 /*判断是否收藏资源文章或者是否关注专家*/
 function ifcollectionAbout(watchObject,sel, num,flag) {
 	var that=sel;

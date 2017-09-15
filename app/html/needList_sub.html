@@ -12,28 +12,25 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav toptitbox">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">我发布的需求</h1>
-		    <span class="mui-pull-right topsave">发需求</span>
-		</header>
-		<div class="mui-content"></div>
-		
+		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+		 	<div class="mui-scroll">
+			    <ul class="mui-table-view myAllneeds" id="myneedList">
+					<!--<li class="mui-table-view-cell flexCenter">
+						<div class="madiaInfo">
+							<p class="h1Font mui-ellipsis-2">需求主题寻求一名斯特林热机顾问</p>
+							<div class="showli mui-ellipsis">
+								<span>发布于 8月17日 18:00</span>
+								<span class="redTip">已于 8月17日 18:00 过期</span>
+							</div>
+						</div>
+					</li>-->
+			    </ul>
+			</div>
+		</div>
+
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
-		<script type="text/javascript">
-			//启用双击监听
-			mui.init({
-				subpages:[{
-					url:'needList_sub.html',
-					id:'needList_sub.html',
-					styles:{
-						top: '44px',
-						bottom: '0px',
-					}
-				}]
-			});
-		</script>
+		<script src="../js/needList.js"></script>
 	</body>
 
 </html>

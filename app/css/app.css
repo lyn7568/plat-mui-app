@@ -420,13 +420,13 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .verified{ color: #FF9900;}
 
 /*我的关注*/
-.fixbox{ background: #FFFFFF; position:fixed;top:45px;left:0;width:100%; z-index:1;}
+/*.fixbox{ background: #FFFFFF; position:fixed;top:45px;left:0;width:100%; z-index:1;}
 .fixbox .fixbtn{ padding:0; margin: 0; overflow: hidden;}
-.fixbox .fixbtn li{ list-style: none; float: left;height:40px;line-height:40px; padding:0 10px;border-top:1px solid #F0F0F0; border-bottom:1px solid #F0F0F0;text-align: center;font-size: 14px;}
+.fixbox .fixbtn li{ list-style: none; float: left;height:40px;line-height:40px; padding:0 10px;border-top:1px solid #F0F0F0; border-bottom:1px solid #F0F0F0;text-align: center;font-size: 14px;}*/
 /*.fixbox .fixbtn li:first-child{ border-right:1px solid #F0F0F0;}*/
-.fixbox .fixbtn li.liactive{ color: #FF9900; border-bottom:2px solid #FF9900;}
+/*.fixbox .fixbtn li.liactive{ color: #FF9900; border-bottom:2px solid #FF9900;}
 .childlist{ display: none;}
-.alllist{ margin-top: 45px;}
+.alllist{ margin-top: 45px;}*/
 /*合作历史及评价*/
 .lefthead{ margin-right: 10px; text-align:center;}
 .contit{ position:relative;}
@@ -558,10 +558,10 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .consultinfo tr td.sendbox{text-align: right;position: relative;}
 .consultinfo tr td .sendbtn{width: 20%;font-size: 13px; padding: 4px 10px;margin:0;position:absolute;right:0; top:0; }
 
-.tableList .mui-table-view-cell:after{right: 0;bottom: 0;left:0;background: none;}
+/*.tableList .mui-table-view-cell:after{right: 0;bottom: 0;left:0;background: none;}
 .tableList {background: #EFEFEF;}	
 .tableList li .proinfor{background:#FFFFFF;}	
-.tableList li:first-child{margin-top:0;}
+.tableList li:first-child{margin-top:0;}*/
 
 .operatebox{ width:100%;background: #FFFFFF;overflow: hidden;min-height: 60px;padding:10px;position: relative;}
 .themespan{ width: 54%;}
@@ -937,19 +937,23 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .commonBtn .mui-col-xs-6 .h3Font{color:#333333;line-height: 30px;margin:0;}
 .setItemblock{padding-top:44px;padding-bottom:20px;}
 .setItemblock .rightword{position: absolute;right: 32px;font-size: 13px;color: #999999;}
-.setItem{width:96%;font-size:14px;color:#333;margin:6px auto;background-repeat: no-repeat;background-position:0 0;background-size: 100%;}
+.setItem{font-size:14px;color:#333;margin:6px auto;}
 .setItem .mui-navigate-right:after{right:10px;font-size:18px;}
-.setItem .mui-table-view{border-radius: 10px;overflow: hidden;padding-top: 2px;padding-bottom: 3px;}
-.setItem .mui-table-view .mui-table-view-cell{width: 90%;margin: auto;padding:4% 0 4% 8px;border-top: 2px dashed #E5E5E5;}
-.setItem .mui-table-view .mui-table-view-cell:first-child{border-color:transparent;}
-.setItem .mui-table-view .mui-table-view-cell:after{height: 0;}
+.setItem .mui-table-view{border-radius: 10px;overflow: hidden;padding-top: 2px;padding-bottom: 3px;width:96%;margin: auto;}
+
+.setItem .mui-table-view .mui-table-view-cell:after{background:transparent}
 .setItem .mui-table-view .mui-table-view-cell>a:not(.mui-btn).mui-active{background: none;}
-.setItem.itemOne{background-image: url(../images/me_bg_img_1_nor@3x.png);}
-.setItem.itemTwo{background-image: url(../images/me_bg_img_2_nor@3x.png);}
-.setItem.itemThree{background-image: url(../images/me_bg_img_3_nor@3x.png);}
+.setItem .mui-table-view .mui-table-view-cell:before{content:"";background:url(../images/me_bg_img_line_nor@3x_03.png) no-repeat center center transparent;background-size:auto 100%;display: block;width:92%;height:2px;position:absolute;top:0;}
+.setItem .mui-table-view .mui-table-view-cell:first-child:before{background: transparent;}
+.setItem .mui-table-view .mui-table-view-cell:first-child{background-image: url(../images/me_bg_img_3_nor@3x_01.png);}
+.setItem .mui-table-view .mui-table-view-cell + .mui-table-view-cell:last-child{background-image: url(../images/me_bg_img_3_nor@3x_03.png);}
+.setItem .mui-table-view .mui-table-view-cell{background-image: url(../images/me_bg_img_3_nor@3x_02.png);background-repeat: no-repeat;background-position:0 0;background-size:100% 100%; padding:4.5% 16px 4.5%;width:100%;}
+.setItem.itemOne .mui-table-view .mui-table-view-cell{background-image: url(../images/me_bg_img_1_nor@3x.png);}
+
 .itemIcon{display:inline-block;float:left;margin-right:8px;width:20px;height: 20px;background-repeat:no-repeat;background-position:0 0;background-size:100%;}
 .itemIcon.iconFocus{background-image: url(../images/me_button_guanzhushoucang_nor@3x.png);}
 .itemIcon.iconDemand{background-image: url(../images/me_button_xuqiu_nor@3x.png);}
+.itemIcon.iconDemandS{background-image: url(../images/me_button_xuqiusearch_nor@3x.png);}
 .itemIcon.iconReward{background-image: url(../images/me_button_jifen_nor@3x.png);}
 .itemIcon.iconInvite{background-image: url(../images/me_button_yaoqing_nor@3x.png);}
 .itemIcon.iconAuth{background-image: url(../images/me_button_renzheng_nor@3x.png);}
@@ -1204,6 +1208,10 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .needList .madiaInfo .h2Font{font-size: 14px;line-height:24px;margin: 4px 0;color: #666;}
 .needList .madiaInfo .h3Font{font-size: 12px;color:#999;}
 .needList>ul>li{padding:15px;}
-.needList ul .showli{overflow: hidden;}
-.needList ul .showli>span{display:inline-block;margin-top: 6px;padding-right:10px;float:left;}
+.showli{overflow: hidden;margin-top:10px;}
+.showli>span{padding-right:10px;font-size: 12px;color:#999;}
+.showli>span.draftLable{color:#FF0000;}
+.showli>span.overLable{color:#14b521;}
 
+.myAllneeds>li{min-height: 97px;}
+.right-span{position: absolute;right: 15px;top:50%;margin-top:-25px;border: 1px solid #999;color:#999;padding:1px 2px;font-size: 12px;line-height:normal;border-radius: 2px;}

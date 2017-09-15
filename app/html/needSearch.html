@@ -7,12 +7,6 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
-		<style type="text/css">
-			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
-			.mui-content{height:100%;overflow: auto;}
-			.icon-renzheng{top: 14px;}
-			
-		</style>
 	</head>
 
 	<body>
@@ -20,77 +14,23 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
 		    <h1 class="mui-title toptit">需求搜索</h1>
 		</header>
-		<div class="mui-content">
-			<div class="filterbox2 filterdiv">
-				<ul class="filterblock2">
-					<li style="width:22%;">
-						<a href="#middlePopover1"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck1" headck='0'>需求目的</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-					</li>
-					<li style="width:22%;">
-						<a href="#middlePopoveracad"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck2" headck='0'>热门行业</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-					</li>
-					<li style="width:22%;">
-						<a href="#middlePopoveruse"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2"><span id="headck3" headck='0'>热门领域</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-					</li>
-					<li style="width:34%;">
-						<a href="#middlePopover4"  class="mui-btn mui-btn-block mui-btn-outlined filterlist2" ><span id="headck4" headck='1'>按最新发布时间排序</span><em class="mui-icon mui-icon-arrowdown"></em></a>
-					</li>
-				</ul>
-			</div>
-			
-				<div id="pullrefresht" class="mui-content mui-scroll-wrapper"style="padding-top:40px">
-		  			<div class="mui-scroll">
-					    <ul class="mui-table-view protable tableList">
-					   		
-					    </ul>
-					</div>
-				</div>
-		</div>
-		<!--下拉菜单-->
-		<!--需求目的-->
-		<div id="middlePopover1" class="mui-popover popoverbox">
-			<div class="mui-popover-arrow"></div>
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<ul class="mui-table-view mui-table-view-radio">
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck2="0">不限</a></li>
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck2="1">技术咨询</a></li>
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck2="2">资源咨询</a></li>
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck2="3">其他事务</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!--应用行业-->
-		<div id="middlePopoveracad" class="mui-popover popoverbox2" >
-			<ul class="mui-table-view yyhy" id="yyhy">
-			</ul>
-		</div>
-		<!--学术领域-->
-		<div id="middlePopoveruse" class="mui-popover popoverbox2">
-			<ul class="mui-table-view xsly" id="xsly">
-			</ul>
-		</div>
-		<!--排序-->
-		<div id="middlePopover4" class="mui-popover popoverbox" style="height:80px;width:160px;">
-			<div class="mui-popover-arrow"></div>
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<ul class="mui-table-view mui-table-view-radio">
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck4="0">按最新发布时间排序</a></li>
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#" ck4="1">按最早发布时间排序</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<div class="mui-content"></div>
 		
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
-		<script type="text/javascript"> 
-			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
-		    iosheader();
+		<script type="text/javascript">
+			//启用双击监听
+			mui.init({
+				subpages:[{
+					url:'needSearch_sub.html',
+					id:'needSearch_sub.html',
+					styles:{
+						top: '44px',
+						bottom: '0px',
+					}
+				}]
+			});
 		</script>
-		<script src="../js/needSearch.js"></script>
 	</body>
 
 </html>

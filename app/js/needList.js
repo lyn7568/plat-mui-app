@@ -13,19 +13,19 @@
 		}
 	});
 	var Num=1;
+	function pulldownRefresh() {
+		setTimeout(function() {
+			demandOnePase();
+			mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+		}, 1500);
+	}
 	function pullupRefresh() {
 		setTimeout(function() {
 			Num = ++Num;
 			myDemandList(10,Num);
-			mui('#pullrefresh').pullRefresh().endPullupToRefresh((Num>2));
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh();
 		}, 1500);
 	
-	}
-	function pulldownRefresh() {
-		setTimeout(function() {
-			myDemandList(10,1);
-			mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-		}, 1500);
 	}
 	
 	mui.plusReady(function() {
@@ -53,9 +53,6 @@
 						var ws=plus.webview.getWebviewById("../html/needList.html");
 						plus.nativeUI.closeWaiting();
 						ws.show("slide-in-right", 150);
-						if(pageNo == 1){
-							document.getElementById("myneedList").innerHTML="";
-						}
 						if(pageNo!=data.data.pageNo) {
 							data.data.data=[];
 						}
@@ -79,6 +76,49 @@
 				error: function() {
 					plus.nativeUI.toast("服务器链接超时", toastStyle);
 					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					return;
+				}
+			});
+		})
+	}
+	function demandOnePase() {
+		mui.plusReady(function() {
+			Num=1;
+			mui.ajax(baseUrl + '/ajax/demand/pq', {
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				timeout: 10000, //超时设置
+				data: {
+					"uid": plus.storage.getItem('userid'),
+					"pageNo": 1,
+					"pageSize": 10
+				},
+				success: function(data) {
+					if(data.success) {
+						mui('#pullrefresh').pullRefresh().refresh(true);
+						var ws=plus.webview.getWebviewById("../html/needList.html");
+						plus.nativeUI.closeWaiting();
+						ws.show("slide-in-right", 150);
+						document.getElementById("myneedList").innerHTML="";
+						var $info = data.data.data;
+						console.log(JSON.stringify(data))
+						if($info.length > 0){
+							for(var i = 0; i < $info.length; i++) {
+								var liStr=document.createElement("li");
+								liStr.className="mui-table-view-cell flexCenter";
+								document.getElementById("myneedList").appendChild(liStr);
+								demandHtml($info[i],liStr);
+							}
+						}
+						if(1 < Math.ceil(data.data.total / data.data.pageSize)) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
+						} else {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
+						}
+					}
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
 					return;
 				}
 			});

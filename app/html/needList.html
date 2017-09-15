@@ -15,7 +15,7 @@
 		<header class="mui-bar mui-bar-nav toptitbox">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
 		    <h1 class="mui-title toptit">我发布的需求</h1>
-		    <span class="mui-pull-right topsave">发需求</span>
+		    <span class="mui-pull-right topsave" id="needIssue">发需求</span>
 		</header>
 		<div class="mui-content"></div>
 		
@@ -33,6 +33,52 @@
 					}
 				}]
 			});
+			/*点击按钮*/
+			mui.plusReady(function(){
+				document.getElementById("needIssue").addEventListener('tap', function() {
+					var $status=["0","1"];
+					mui.ajax(baseUrl+"/ajax/demand/qc",{//查询是否有发布中和已过期的需求
+						type:"get",
+						data:{
+							state:$status,
+							uid:plus.storage.getItem('userid')
+						},
+						async:true,
+						datatype:"json",
+						traditional: true,
+						success:function(data){
+							var statusN=data.data;
+							if(statusN!=0){
+								mui.openWindow({
+									url: '../html/needIssue.html',
+									id: '../html/needIssue.html',
+									show: {
+										aniShow: "slide-in-right"
+									},
+									extras: {
+										ourl: plus.webview.currentWebview().id
+									}
+								});
+							}else{
+								mui.openWindow({
+									url: '../html/updateBasic-org.html',
+									id: '../html/updateBasic-org.html',
+									show: {
+										aniShow: "slide-in-right"
+									},
+									extras: {
+										ourl: plus.storage.getItem('userid')
+									}
+								});
+							}
+						},
+						error: function() {
+							plus.nativeUI.toast("服务器链接超时", toastStyle);
+							return;
+						}
+					})
+				});
+			})
 		</script>
 	</body>
 

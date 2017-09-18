@@ -221,7 +221,7 @@
  					if( arr[i].demand.value.replace(/(^\s*)|(\s*$)/g,"")=="") {
 		 				plus.nativeUI.toast("请填写" + arr[i].alertTitle , "toastStyle");
 		 				return;
-		 			}else if( arr[i].demand.value.length >50 ) {
+		 			}else if( arr[i].demand.value.length >arr[i].fontNum ) {
 		 				plus.nativeUI.toast( arr[i].alertTitle +"不可超过"+ arr[i].fontNum +"个字", "toastStyle");
 		 				return;
 		 			}

@@ -6,11 +6,11 @@ mui.ready(function() {
 		function person() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
-			title.value = web.orgName;
-			document.getElementById("tt").value=web.orgName;
+			title.value = web.name;
+			document.getElementById("tt").value=web.name;
 				title.style.height=document.getElementById("tt").scrollHeight+"px";
-			if(web.orgName.length) {
-				document.getElementById("fontAdd").innerHTML = web.orgName.length;
+			if(web.name.length) {
+				document.getElementById("fontAdd").innerHTML = web.name.length;
 				document.getElementById("login").removeAttribute("disabled");
 			}
 			document.getElementById("title").addEventListener("input", function() {

@@ -1,50 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
-		<title>我的需求</title>
+		<title>需求详情</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/previewImage.css" rel="stylesheet" type="text/css" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
-		<style type="text/css">
-			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #fff;}
-			.mui-content{background: #fff;height:100%;overflow: auto;}
-			.mui-table-view:before,.mui-table-view:after{background:#E6E6E6;}
-			.coutopicbox{border-bottom:none;margin:0;padding:0;width:100%}
-			.demandBtn .frmactive2{color:#FF0000}
-			.demandBtn .frmactive2.mui-btn:enabled:active{color:#FF0000}
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
+			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
 		</style>
 	</head>
 
 	<body>
+		<div class="maskBlack" id="maskBlack"></div>
 		<header class="mui-bar mui-bar-nav toptitbox">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
-		    <h1 class="mui-title toptit">我的需求</h1>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit" id="needTit"></h1>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore displayNone" id="BtnMore"></a>
+			<span class="mui-pull-right topsave displayNone" id="goUpdate">修改</span>
 		</header>
-		<div class="mui-content">
-			<div class="conBody">
-				<div class="contentInner demandBasic">
-					<h3 id="demandTitle"></h3>
-					<h5 class="coutopicbox">
-						发布时间：<span id="poTime"></span>
-						<em class="aimlabel" id="oDemandType"></em>
-						<em class="aimlabel" id="oDemandAim"></em>
-						<em class="status-1" id="oDemandStatus"></em>
-						<!--<em class="status-5">已关闭</em>-->
-					</h5>
+		<nav class="mui-bar mui-bar-tab footbox">
+			<div class="mui-row artfoot notSelf displayNone">
+				<div class="mui-col-xs-9">
+					<div class="consultdiv notopen statusTip"></div>
 				</div>
-				<div class="demandCon contentInner" id="demandContent" style="word-wrap:break-word;">
-	
+				<div class="mui-col-xs-2">
+					<span class="mui-icon iconfontnew icon-shoucang" id="ifCollect"></span>
 				</div>
-				<div class="contentInner demandBtn" id="closedDemand">
-					<button class="mui-btn mui-btn-block frmbtn frmactive2">关闭该需求</button>
+				<div class="mui-col-xs-1 fenxBtn" id="shareOut">
+					<span class="mui-icon iconfontnew icon-fenxiang"></span>
 				</div>
 			</div>
+			<div class="mui-row artfoot mySelf displayNone">
+				<div class="mui-col-xs-9">
+					<div class="consultdiv notopen statusTip"></div>
+				</div>
+				<div class="mui-col-xs-2" id="closeBtn">
+					<span class="mui-icon iconfontnew icon-guanbi"></span>
+				</div>
+				<div class="mui-col-xs-1 fenxBtn" id="shareOut2">
+					<span class="mui-icon iconfontnew icon-fenxiang"></span>
+				</div>
+			</div>
+			<div class="mui-row artfoot mySelf2 displayNone">
+				<div class="mui-col-xs-12">
+					<div class="consultdiv notopen statusTip" style="margin-right:-15px"></div>
+				</div>
+			</div>
+		</nav>
+		<div class="mui-content">
+		    <div class="showDetail">
+	    		<div class="h1Font hWeight" id="demandTit"></div>
+	    		<div class="madiaBlock">
+	    			<ul class="mui-table-view noactiveTab infoBlock">
+				        <li class="mui-table-view-cell" id="personAL">
+				            <div class="flexCenter mui-clearfix">
+				                <div class="madiaHead cmpHead2">
+				                	<div class="boxBlock"><img class="boxBlockimg" id="companyImg" src="../images/default-icon.jpg"></div>
+				                </div>
+								<div class="madiaInfo">
+									<p class="mui-ellipsis"><span class="h1Font mui-ellipsis" id="cmpname"></span><em class="authicon " id="QauthFlag"></em></p>
+									<p class="h3Font" id="oTime"></p>
+								</div>
+				            </div>
+				        </li>
+				    </ul>
+	    		</div>
+		    	<!--内容区-->
+				<div class="showMain showMainP" style="margin-top: 0;">
+					<ul>
+						<li id="demandInfo">
+							
+						</li>
+						<li>
+							<div class="showTit">需求内容：</div>
+							<div class="showCon" id="demandDesp">
+								
+							</div>
+						</li>
+					</ul>
+				</div>
+		    </div>
+		</div>
+		
+		<div class="shareBlock" id="shareBlock">
+			<h2 class="shareTit"><span>分享到</span></h2>
+			<ul class="mui-table-view noactiveTab">
+				<li class="mui-table-view-cell">
+					<em class="wayicon wechaticon"></em>
+					<span>微信好友</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon friendstericon"></em>
+					<span>微信朋友圈</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon sinaicon"></em>
+					<span>新浪微博</span>
+				</li>
+			</ul>
+			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/public/jquery-1.11.1.js"></script>
 		<script src="../js/needShow.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
 	</body>
 
 </html>

@@ -29,7 +29,7 @@
 	}
 	
 	mui.plusReady(function() {
-		mui("#myneedList").on("tap", "li>.madiaInfo", function() {
+		mui("#myneedList").on("tap", "li", function() {
 			var oDemandId = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting();
 			plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
@@ -62,6 +62,7 @@
 							for(var i = 0; i < $info.length; i++) {
 								var liStr=document.createElement("li");
 								liStr.className="mui-table-view-cell flexCenter";
+								liStr.setAttribute( "data-id",$info[i].id);
 								document.getElementById("myneedList").appendChild(liStr);
 								demandHtml($info[i],liStr);
 							}
@@ -106,6 +107,7 @@
 							for(var i = 0; i < $info.length; i++) {
 								var liStr=document.createElement("li");
 								liStr.className="mui-table-view-cell flexCenter";
+								liStr.setAttribute( "data-id",$info[i].id);
 								document.getElementById("myneedList").appendChild(liStr);
 								demandHtml($info[i],liStr);
 							}
@@ -138,7 +140,7 @@
 			statusU='<span>已于 '+TimeTr($data.modifyTime)+' 关闭</span>'
 		}
 		var strCon='';
-			strCon+='<div class="madiaInfo" data-id="'+$data.id+'">'
+			strCon+='<div class="madiaInfo">'
 			strCon+='<p class="h1Font mui-ellipsis-2">'+ $data.title +'</p>'
 			strCon+='<div class="showli mui-ellipsis">'
 			strCon+='<span>发布于 '+TimeTr($data.createTime)+'</span>'

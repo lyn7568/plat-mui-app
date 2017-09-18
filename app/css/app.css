@@ -25,6 +25,7 @@
 .icon-yishoucang{width:22px;background-image: url("../images/article_button_shoucang_hig@3x.png");}
 .icon-fenxiang{width:22px;background-image: url("../images/article_button_fenxiang_nor@3x.png");}
 .icon-address{width:11px;height:14px;background-image: url("../images/personal_icon_dizhi_nor@3x.png");background-size:cover;line-height: 14px;}
+.icon-guanbi{width:22px;background-image: url("../images/article_button_guanbi_nor@3x.png");}
 
 img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:bicubic;border:0;padding:0; margin:0;}
 
@@ -1139,7 +1140,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .mui-bar-tab.footbox .artfoot.mui-row>[class*=mui-col-]{}
 .mui-bar-tab.footbox .artfoot.mui-row .mui-col-xs-8{text-align:left;margin-left:0;}
 .mui-bar-tab.footbox .artfoot.mui-row .consultdiv{margin: -2px 0 0 -15px;font-size: 16px;background: #ff9900;color:#fff;line-height: 49px;}
-.mui-bar-tab.footbox .artfoot.mui-row .notopen{background: #E5E5E5;color:#999}
+.mui-bar-tab.footbox .artfoot.mui-row .notopen{font-size: 14px;background: #E5E5E5;color:#999;}
 .mui-bar-tab.footbox .artfoot.mui-row .inputShow{width:90%;border:1px solid #E0E0E0;border-radius:4px;margin:6px 0 0;height: 32px;}
 .mui-bar-tab.footbox .artfoot.mui-row .inputShow span{color:#999;font-size: 14px;line-height: 30px;padding-left: 10px;}
 .mui-bar-tab.footbox .artfoot.mui-row textarea{margin:6px 0 0;font-size:14px;line-height: 20px;height: 80px;width: 100%;margin-bottom:0;padding: 8px 10px;
@@ -1215,3 +1216,4 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 
 .myAllneeds>li{min-height: 97px;}
 .right-span{position: absolute;right: 15px;top:50%;margin-top:-25px;border: 1px solid #999;color:#999;padding:1px 2px;font-size: 12px;line-height:normal;border-radius: 2px;}
+

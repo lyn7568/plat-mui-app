@@ -41,7 +41,6 @@ mui.ready(function() {
 	mui.plusReady(function() {
 		var userId = plus.storage.getItem('userid');
 		console.log(userId);
-		var iflogin=0;
 		/*判断登录是否成功*/
 		loginStatus();
 		
@@ -123,7 +122,21 @@ mui.ready(function() {
 			}
 		})
 		/*我的需求*/
-		mui(".mydemand")[iflogin].addEventListener('tap', function() {
+		document.getElementById("mydemand").addEventListener('tap', function() {
+			if(userId && userId != "null" && userId != null){
+				mui.openWindow({
+					url: '../html/needList.html',
+					id: '../html/needList.html',
+					show: {
+						autoShow: false,
+						aniShow: "slide-in-right"
+					}
+				});
+			}else{
+				goLoginFun();
+			}
+		})
+		document.getElementById("mydemand2").addEventListener('tap', function() {
 			if(userId && userId != "null" && userId != null){
 				mui.openWindow({
 					url: '../html/needList.html',
@@ -138,7 +151,17 @@ mui.ready(function() {
 			}
 		})
 		/*需求搜索*/
-		mui(".demandSearch")[iflogin].addEventListener('tap', function() {
+		document.getElementById("demandSearch").addEventListener('tap', function() {
+			mui.openWindow({
+				url: '../html/needSearch.html',
+				id: '../html/needSearch.html',
+				show: {
+					autoShow: false,
+					aniShow: "slide-in-right"
+				}
+			});
+		})
+		document.getElementById("demandSearch2").addEventListener('tap', function() {
 			mui.openWindow({
 				url: '../html/needSearch.html',
 				id: '../html/needSearch.html',
@@ -149,7 +172,21 @@ mui.ready(function() {
 			});
 		})
 		/*我的关注*/
-		mui(".goFollow")[iflogin].addEventListener('tap', function() {
+		document.getElementById("goFollow").addEventListener('tap', function() {
+			if(userId && userId != "null" && userId != null){
+				mui.openWindow({
+					url: '../html/attentedList.html',
+					id: '../html/attentedList.html',
+					show: {
+						autoShow: false,
+						aniShow: "slide-in-right"
+					}
+				});
+			}else{
+				goLoginFun();
+			}
+		})
+		document.getElementById("goFollow2").addEventListener('tap', function() {
 			if(userId && userId != "null" && userId != null){
 				mui.openWindow({
 					url: '../html/attentedList.html',

@@ -23,34 +23,24 @@ mui.ready(function() {
 				mui.back();
 				return;
 			}
-			if(web.orgAuth==1) {
 				var btn = ["确定", "取消"];
-				mui.confirm("您修改了所在机构，认证员工身份将失效，为企业发布的需求也将关闭，确定修改？", "提示", btn, function(e) {
+				mui.confirm("您修改了姓名，您的专利和论文将取消关联，确定修改？", "提示", btn, function(e) {
 					if(e.index == 0) {
 						savePro();
 					}
-				})
-			}else{
-				var btn = ["确定", "取消"];
-				mui.confirm("您修改了所在机构，您为企业发布的需求将关闭，确定修改？", "提示", btn, function(e) {
-					if(e.index == 0) {
-						savePro();
-					}
-				})
-			}
-			 
+				}) 
 		})
 		
 		function savePro() {
 			var mess = {};
 			if(document.getElementById("title").value.length) {
 				if(document.getElementById("title").value.length>50) {
-					plus.nativeUI.toast("所在机构不得超过50个字", toastStyle);
+					plus.nativeUI.toast("姓名不得超过10个字", toastStyle);
 					return;
 				}
 			}
-			mess.name = web.name;
-			mess.orgName = document.getElementById("title").value;
+			mess.name = document.getElementById("title").value;
+			mess.orgName = web.orgName ;
 			mess.department =web.department;
 			mess.title = web.title;
 			mess.office =web.office;	

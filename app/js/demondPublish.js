@@ -252,7 +252,7 @@
 				"city": cityResult.getAttribute('city'),
 				"cost": document.querySelector("#showDegreePicker").getAttribute('flag')==null?'':document.querySelector("#showDegreePicker").getAttribute('flag'),
 				"duration": document.querySelector("#ExpecteDuration").getAttribute('flag')==null?'':document.querySelector("#ExpecteDuration").getAttribute('flag'),
-				"invalidDay": result.getAttribute('flag'),
+				"invalidDay": btns.getAttribute('flag'),
 				"contactNum": document.querySelector("#phone").value,
 				"creator": userid,
 				"orgId": oRd

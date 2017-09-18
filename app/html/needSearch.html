@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>需求搜索</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">需求搜索</h1>
+		</header>
+		<div class="mui-content"></div>
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript">
+			//启用双击监听
+			mui.init({
+				subpages:[{
+					url:'needSearch_sub.html',
+					id:'needSearch_sub.html',
+					styles:{
+						top: '44px',
+						bottom: '0px',
+					}
+				}]
+			});
+		</script>
+	</body>
+
+</html>

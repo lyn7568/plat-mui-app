@@ -444,16 +444,16 @@ mui.ready(function() {
 							
 							li.setAttribute("data-id",$data[i].id);
 							li.className = "mui-table-view-cell flexCenter OflexCenter";
-							var sowU="";
-							if($data[i].pageViews!=0){
-								sowU='<span>浏览量 '+$data[i].pageViews+'</span>'
-							}
 							var strCon='';
 							strCon+='<div class="madiaInfo">'
 							strCon+='<p class="h1Font mui-ellipsis-2">'+ $data[i].title +'</p>'
 							strCon+='<div class="showli mui-ellipsis">'
-							strCon+='<span>发布于 '+TimeTr($data[i].createTime)+'</span>'+ sowU
-							strCon+='<span class="creator"></span>'
+							
+							if($data[i].city){ strCon+='<span>'+$data[i].city+'</span>' }
+							if($data[i].duration!=0){ strCon+='<span>预期 '+demandDuration[$data[i].duration]+'</span>' }
+							if($data[i].cost!=0){ strCon+='<span>预算 '+demandCost[$data[i].cost]+'</span>' }
+							if($data[i].invalidDay){ strCon+='<span>有效期至 '+TimeTr($data[i].invalidDay)+'</span>' }
+							
 							strCon+='</div></div>'
 							
 							li.innerHTML = strCon

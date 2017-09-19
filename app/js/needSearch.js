@@ -140,9 +140,9 @@ function demandHtml($data,liStr) {
 		strCon+='<div class="showli mui-ellipsis">'
 		
 		if($data.city){ strCon+='<span>'+$data.city+'</span>' }
-		if($data.duration!=0){ strCon+='<span>预期：'+demandDuration[$data.duration]+'</span>' }
-		if($data.cost!=0){ strCon+='<span>预算：'+demandCost[$data.cost]+'</span>' }
-		if($data.invalidDay){ strCon+='<span>有效期至：'+TimeTr($data.invalidDay)+'</span>' }
+		if($data.duration!=0){ strCon+='<span>预期 '+demandDuration[$data.duration]+'</span>' }
+		if($data.cost!=0){ strCon+='<span>预算 '+demandCost[$data.cost]+'</span>' }
+		if($data.invalidDay){ strCon+='<span>有效期至 '+TimeTr($data.invalidDay)+'</span>' }
 		
 		strCon+='</div></div>'
 	liStr.innerHTML=strCon;

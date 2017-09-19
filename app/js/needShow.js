@@ -1,6 +1,6 @@
 mui.ready(function() {
 	mui.plusReady(function() {
-		var consuId, demandTitle, demandContent;
+		var consuId, demandTitle, demandContent,orgThis;
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
 		var demandId = ws.demanid;
@@ -15,6 +15,7 @@ mui.ready(function() {
 	    var cancelShare=document.getElementById("cancelShare");
 	    var maskBlack=document.getElementById("maskBlack");
 	    var shareBlock=document.getElementById("shareBlock");
+	    var attBtn=document.getElementById("attBtn");
 		 
 		getDemandinfo();
 		pageViewsVal();
@@ -44,6 +45,21 @@ mui.ready(function() {
 					cancelCollectionAbout(demandId,oifCollect, 7)
 				} else {
 					collectionAbout(demandId,oifCollect, 7);
+				}
+			} else {
+				isLogin();
+			}
+		});
+		
+		if(userid){
+			ifcollectionAbout(orgThis,attBtn, 6,1);
+		}
+		attBtn.addEventListener('tap', function() {
+			if(userid && userid != null && userid != "null") {
+				if(this.className=='mui-icon attenSpan attenedSpan') {
+					cancelCollectionAbout(orgThis,this, 6,1)
+				} else {
+					collectionAbout(orgThis,this, 6,1);
 				}
 			} else {
 				isLogin();
@@ -192,6 +208,7 @@ mui.ready(function() {
 						}
 						cmpFun($da.orgId);
 						
+						orgThis=$da.orgId;
 						consuId = $da.creator;
 						demandTitle = $da.title;
 						demandContent = $da.descp;
@@ -361,7 +378,7 @@ mui.ready(function() {
 					data: {
 						content: document.getElementById("demandDesp").innerHTML.substring(0, 40),
 						title: document.getElementById("demandTit").innerHTML,
-						href: baseUrl + "/e/l.html?id=" + demandId,
+						href: baseUrl + "/e/d.html?id=" + demandId,
 						thumbs: [oUrl]
 					},
 					weiboData: {
@@ -409,7 +426,7 @@ mui.ready(function() {
 					shareMessage(share, "WXSceneSession", {
 						content: document.getElementById("demandDesp").innerHTML.substring(0, 40),
 						title: document.getElementById("demandTit").innerHTML,
-						href: baseUrl + "/e/l.html?id=" + demandId,
+						href: baseUrl + "/e/d.html?id=" + demandId,
 						thumbs: [oUrl]
 					});
 				}
@@ -419,7 +436,7 @@ mui.ready(function() {
 					shareMessage(share, "WXSceneTimeline", {
 						content: document.getElementById("demandDesp").innerHTML.substring(0, 40),
 						title: document.getElementById("demandTit").innerHTML,
-						href: baseUrl + "/e/l.html?id=" + demandId,
+						href: baseUrl + "/e/d.html?id=" + demandId,
 						thumbs: [oUrl]
 					});
 				}
@@ -427,7 +444,7 @@ mui.ready(function() {
 				var share = buildShareService("sinaweibo");
 				if(share) {
 					shareMessage(share, "sinaweibo", {
-						content: document.getElementById("demandTit").innerHTML + baseUrl + "/e/l.html?id=" + demandId,
+						content: document.getElementById("demandTit").innerHTML + baseUrl + "/e/d.html?id=" + demandId,
 					});
 				}
 			}

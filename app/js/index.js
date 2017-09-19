@@ -49,8 +49,8 @@ function dem(uid, oid) {
 						url: '../html/demandPublish.html',
 						id: 'demandPublish.html',
 						show: {
-							autoShow: ture,
-							aniShow: "slide-in-left"
+							autoShow: true,
+							aniShow: "slide-in-right"
 						}
 					});
 				} else {

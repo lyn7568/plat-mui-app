@@ -85,7 +85,6 @@ mui.ready(function() {
 				"success": function(data) {
 					console.log(JSON.stringify(data));
 					if(data.success) {
-						plus.nativeUI.showWaiting();
 						mui.openWindow({
 							url: '../html/demandPublish.html',
 							id: 'demandPublish.html',

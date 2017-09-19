@@ -47,6 +47,7 @@
 						datatype:"json",
 						traditional: true,
 						success:function(data){
+							console.log(JSON.stringify(data))
 							var statusN=data.data;
 							if(statusN!=0){
 								mui.openWindow({
@@ -54,20 +55,14 @@
 									id: '../html/demandPublish.html',
 									show: {
 										aniShow: "slide-in-right"
-									},
-									extras: {
-										ourl: plus.webview.currentWebview().id
 									}
 								});
 							}else{
 								mui.openWindow({
-									url: '../html/updateBasic-org.html',
-									id: '../html/updateBasic-org.html',
+									url: '../html/sureOrg.html',
+									id: '../html/sureOrg.html',
 									show: {
 										aniShow: "slide-in-right"
-									},
-									extras: {
-										ourl: plus.storage.getItem('userid')
 									}
 								});
 							}

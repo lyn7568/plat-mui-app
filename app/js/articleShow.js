@@ -96,6 +96,7 @@ function leword(row, aa) {
 }
 
 mui.plusReady(function() {
+	var ffl=false;
 	var oCurren = {
 		self: plus.webview.currentWebview(),
 		userid: plus.storage.getItem('userid'),
@@ -369,11 +370,26 @@ mui.plusReady(function() {
 			document.getElementById("resourceList").appendChild(li);
 		},
 		correlationArticle: function($data) {
-
-			if($data.length == 0) {
-				return;
+				if($data.total) {
+					if($data.data.length == 0) {
+						return;
+					}
+				}else{
+					if($data.length == 0) {
+						return;
+					}
+				}
+				var oo=1;
+			if($data.total) {
+				var $data=$data.data;
+				
+				document.getElementById('newarticle').style.display = "block";
+				oo=0;
+			}else{
+				document.getElementById('article').style.display = "block";
+				
 			}
-			document.getElementById('article').style.display = "block"
+			
 			for(var i = 0; i < $data.length; i++) {
 				var ourl, of ;
 				if($data[i].articleType == 1) {
@@ -425,7 +441,10 @@ mui.plusReady(function() {
 								'<p><span class="h2Font" style="margin-right:10px">'+namepo+'</span><span class="time">'+commenTime($data[i].publishTime)+'</span></p>'+
 								'</div>' +
 								'</div>'
-							document.getElementById("articleList").appendChild(li);
+							
+							if(oo==0){
+								document.getElementById("newarticleList").appendChild(li)
+							}else{document.getElementById("articleList").appendChild(li);}
 						}
 					},
 					error: function(xhr, type, errorThrown) {
@@ -491,7 +510,7 @@ mui.plusReady(function() {
 			
 		}
 	});
-	
+	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/find", {pageSize:5}, "get", oArticleModule.correlationArticle);
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralatePro", {
 		"articleId": oArticleModule.articleId
 	}, "get", oArticleModule.correlationExpert);
@@ -591,7 +610,7 @@ mui.plusReady(function() {
 			resourceId: resouId
 		});
 	})
-	mui('#articleList').on('tap', 'li', function() {
+	mui('#articleList,#newarticleList').on('tap', 'li', function() {
 		var id = this.getAttribute("data-id");
 		plus.nativeUI.showWaiting();
 		var webviewShow=plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {

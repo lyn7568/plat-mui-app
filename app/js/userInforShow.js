@@ -181,6 +181,53 @@ mui.plusReady(function() {
 	relevantExperts();//合作专家
 	relevantarticalList();//相关文章
 	likeExperts();//感兴趣专家
+	usersBrowse();
+	//用户浏览页内容
+	function usersBrowse(){
+		mui.ajax(baseUrl + "/ajax/demand/pq", {
+			type: "GET",
+			timeout: 10000,
+			dataType: "json",
+			data:{
+				"state":1,
+				"uid":proId
+			},
+			success: function(data) {
+				if(data.success){
+					var obj = data.data.data;
+					if(obj.length>0){
+						for(var i=0;i<obj.length;i++){
+							var li = document.createElement("li");
+							var needDate=obj[i].invalidDay;
+							var lastDate=TimeTr(needDate);
+							li.className = "mui-table-view-cell";
+							var oString = '<div class="madiaInfo">'
+								oString += '<p class="h1Font mui-ellipsis-2">'+obj[i].title+'</p>';
+								oString += '<p class="h2Font mui-ellipsis-5">'+obj[i].descp+'</p>'
+								oString += '<div class="showli mui-ellipsis">'
+								oString += '<span>'+obj[i].province+'</span>'
+								if(obj[i].duration!=0){oString += '<span>预期 '+demandDuration[obj[i].duration]+'</span>'}
+								if(obj[i].cost!=0){oString += '<span>预算 '+demandCost[obj[i].cost]+'</span>'}
+								oString += '<span>有效期至'+lastDate+' </span>'
+							    oString += '</div>'
+								oString += '</div>'
+							
+								li.innerHTML = oString;
+								document.getElementById("bower_u").appendChild(li);
+							
+						}
+					}else{
+						document.getElementById("bower_u").parentNode.parentNode.style.display = "none";
+					}
+				}
+			},
+			error: function() {
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				return;
+			}
+		})
+		
+	}
 	
 	function getResource() {
 		mui.ajax(baseUrl + "/ajax/resource/pqProPublish", {
@@ -191,7 +238,7 @@ mui.plusReady(function() {
 				"professorId": proId
 			},
 			success: function(data) {
-				console.log(JSON.stringify(data))
+//				console.log(JSON.stringify(data))
 				if(data.success) {
 					var obj = data.data.data;
 					if(obj.length > 0) {

@@ -90,10 +90,10 @@
  		 */
  		var oD = new Date();
  		oDy = oD.getFullYear();
- 		oDm = parseInt(oD.getMonth()) + 1;
+ 		oDm = parseInt(oD.getMonth()) ;
  		oDd = parseInt(oD.getDate()) + 1;
  		var oc = oDy + "-" + oDm + "-" + oDd
- 		options.beginDate = new Date(oc); //设置开始日期 
+ 		options.beginDate = new Date(oDy,oDm,oDd); //设置开始日期 
  		options.endYear = new Date().getFullYear() + 100;
  		var picker = new $.DtPicker(options);
  		picker.show(function(rs) {

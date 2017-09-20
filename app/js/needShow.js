@@ -71,7 +71,7 @@ mui.ready(function() {
 				url: '../html/demandModify.html',
 				id: '../html/demandModify.html',
 				show: {
-					autoShow: false,
+					autoShow: true,
 					aniShow: "slide-in-right",
 				},
 				extras: {

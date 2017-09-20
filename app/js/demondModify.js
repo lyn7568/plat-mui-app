@@ -6,6 +6,7 @@
  		var currWindow = plus.webview.currentWebview();
  		var demandId= currWindow.demandId;
  		var oCost={
+ 			'0' : '请选择预算范围',
 			'1' : '1万元以内',
 			'2' : '1-5万元' ,
 			'3' : '5-10万元' ,
@@ -14,6 +15,7 @@
 			'6' : '50万元以上'
 		};
 		var oSpend= {
+			'0' : '请选择预期时长',
 			'1' : '1个月内',
 			'2' : '1-3个月' ,
 			'3' : '3-6个月' ,
@@ -95,7 +97,7 @@
  	btns.addEventListener('tap', function() {
  		var optionsJson = this.getAttribute('data-options') || '{}';
  		var options = JSON.parse(optionsJson);
- 		options.beginDate = new Date('2017-06-11'); //设置开始日期 
+ 		//options.beginDate = new Date('2017-08-11'); //设置开始日期 
  		var id = this.getAttribute('id');
  		/*
  		 * 首次显示时实例化组件
@@ -104,10 +106,12 @@
  		 */
  		var oD = new Date();
  		oDy = oD.getFullYear();
- 		oDm = parseInt(oD.getMonth()) + 1;
+ 		oDm = parseInt(oD.getMonth()) + 0;
+ 		console.log(oDm)
  		oDd = parseInt(oD.getDate()) + 1;
+ 		console.log(oDd)
  		var oc = oDy + "-" + oDm + "-" + oDd
- 		options.beginDate = new Date(oc); //设置开始日期 
+ 		options.beginDate = new Date( oDy , oDm , oDd); //设置开始日期 
  		options.endYear = new Date().getFullYear() + 100;
  		var picker = new $.DtPicker(options);
  		picker.show(function(rs) {
@@ -149,8 +153,8 @@
  	showCityPickerButton.addEventListener('tap', function(event) {
  		cityPicker.show(function(items) {
  			cityResult.innerText = items[0].text + "-" + items[1].text;
- 			cityResult.setAttribute('city',items[1].text);
- 			cityResult.setAttribute('province',items[0].text)
+ 			showCityPickerButton.setAttribute('city',items[1].text);
+ 			showCityPickerButton.setAttribute('province',items[0].text)
  		});
  	}, false);
  	queryDemand();
@@ -165,6 +169,7 @@
  			timeout: 10000,
  			async: true,
  			success: function(data) {
+ 				console.log(JSON.stringify(data))
  				if(data.success) {
  					var $data=data.data;
  					document.querySelector("#cityResult").innerHTML=$data.province + "-" + $data.city ;
@@ -240,11 +245,11 @@
  			type: 'post', //http请求类型
  			data: { 
  				"id":demandId ,
-				"province": cityResult.getAttribute('province'),
-				"city": cityResult.getAttribute('city'),
+				"province": showCityPickerButton.getAttribute('province'),
+				"city": showCityPickerButton.getAttribute('city'),
 				"cost": document.querySelector("#showDegreePicker").getAttribute('flag')==null?'':document.querySelector("#showDegreePicker").getAttribute('flag'),
 				"duration": document.querySelector("#ExpecteDuration").getAttribute('flag')==null?'':document.querySelector("#ExpecteDuration").getAttribute('flag'),
-				"invalidDay": result.getAttribute('flag'),
+				"invalidDay": btns.getAttribute('flag'),
 				"contactNum": document.querySelector("#phone").value,
 				"modifier" : userid
  			},

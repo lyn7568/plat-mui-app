@@ -183,7 +183,7 @@
 						document.querySelector("#showDegreePicker").setAttribute('flag', $data.cost );
 					}
 					if($data.duration) {
-						document.querySelector("#ExpecteResult").innerHTML=oCost[ $data.duration ] ;
+						document.querySelector("#ExpecteResult").innerHTML=oSpend[ $data.duration ] ;
 						document.querySelector("#ExpecteDuration").setAttribute('flag', $data.duration );
 					}
  				}

@@ -41,7 +41,7 @@ mui.ready(function(){
 			} else if(oFen == "微信朋友圈") {
 				var share = buildShareService("weixin");
 				if(share) {
-					shareMessage(share, "WXSceneSession",  self.data);
+					shareMessage(share, "WXSceneTimeline",  self.data);
 				}
 			} else if(oFen == "新浪微博") {
 				var share = buildShareService("sinaweibo");

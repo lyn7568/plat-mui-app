@@ -19,16 +19,16 @@ mui.ready(function() {
 		}
 		person();
 		document.getElementById("login").addEventListener("tap",function(){
-			if(web.orgName==document.getElementById("title").value) {
+			if(web.name==document.getElementById("title").value) {
 				mui.back();
 				return;
 			}
-				var btn = ["确定", "取消"];
+			var btn = ["确定", "取消"];
 				mui.confirm("您修改了姓名，您的专利和论文将取消关联，确定修改？", "提示", btn, function(e) {
 					if(e.index == 0) {
 						savePro();
 					}
-				}) 
+				}) 	
 		})
 		
 		function savePro() {
@@ -50,7 +50,6 @@ mui.ready(function() {
 			mess.phone =web.phone;			
 			mess.id = userid;
 			var mess1 = JSON.stringify(mess);
-			console.log(JSON.stringify(mess))
 			$.ajax({
 				"url": baseUrl + '/ajax/professor',
 				"type": "PUT",
@@ -58,7 +57,6 @@ mui.ready(function() {
 				"data": mess1,
 				"contentType": "application/json",
 				"success": function(data) {
-					console.log(JSON.stringify(data));
 					if(data.success) {
 						plus.nativeUI.showWaiting();
 						var web = plus.webview.getWebviewById("updateBasic.html");

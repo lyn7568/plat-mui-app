@@ -1,6 +1,6 @@
 mui.ready(function() {
 	mui.plusReady(function() {
-		var consuId, demandTitle, demandContent,orgThis;
+		var consuId, demandTitle, demandContent,orgThis,f1=0;
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
 		var demandId = ws.demanid;
@@ -132,14 +132,16 @@ mui.ready(function() {
 					console.log(JSON.stringify(data));
 					if(data.success) {
 						var ws=plus.webview.currentWebview();
+						
 						plus.nativeUI.closeWaiting();
+						if(f1==0) 
 						ws.show("slide-in-right", 150);
 						
 						var $da=data.data;
 						document.getElementById("needTit").innerHTML=$da.title; //名字
 						document.getElementById("demandTit").innerHTML=$da.title; //名字
 						document.getElementById("oTime").innerHTML=commenTime($da.createTime);
-						document.getElementById("demandDesp").innerHTML=$da.descp; //内容
+						document.getElementById("demandDesp").innerText=$da.descp; //内容
 						
 						var strCon="";
 						if($da.city){ strCon+='<div class="showTit">所在城市：<span class="showCon">'+$da.city+'</span></div>' }
@@ -302,6 +304,7 @@ mui.ready(function() {
 								mySelf.classList.add("displayNone");
 								notSelf.classList.add("displayNone");
 								mySelf2.querySelector(".statusTip").innerHTML="该需求 已完成";
+								goUpdate.classList.add("displayNone");
 							}
 						}
 					});
@@ -486,6 +489,9 @@ mui.ready(function() {
 				}
 			});
 		}
-	
+	window.addEventListener("newId", function(event) {
+			f1 = event.detail.rd;
+			getDemandinfo()
+		});
 	});
 })

@@ -258,6 +258,10 @@
  			success: function(data) {
  				if(data.success) {
  					$.back();
+ 					var web = plus.webview.getWebviewById("needShow.html");
+						$.fire(web, "newId",{
+								rd: 1
+							});
  				}
  			},
  			error: function() {

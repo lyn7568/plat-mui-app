@@ -97,6 +97,7 @@ mui.ready(function() {
 								mySelf.classList.add("displayNone");
 								notSelf.classList.add("displayNone");
 								mySelf2.querySelector(".statusTip").innerHTML="该需求 已关闭";
+								goUpdate.classList.add("displayNone");
 							}
 						}
 					});

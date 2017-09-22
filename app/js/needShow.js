@@ -38,7 +38,7 @@ mui.ready(function() {
 		//收藏
 		var oifCollect=document.getElementById("ifCollect");
 		var ocollectBtn=document.getElementById("ifCollect").parentNode;
-		ifcollectionAbout(demandId,oifCollect, 7);
+		
 		ocollectBtn.addEventListener('tap', function() {
 			if(userid && userid != null && userid != "null") {
 				if(oifCollect.className == 'mui-icon iconfontnew icon-yishoucang') {
@@ -52,6 +52,7 @@ mui.ready(function() {
 		});
 		
 		if(userid){
+			ifcollectionAbout(demandId,oifCollect, 7);
 			ifcollectionAbout(orgThis,attBtn, 6,1);
 		}
 		attBtn.addEventListener('tap', function() {
@@ -280,7 +281,7 @@ mui.ready(function() {
 						aniShow: "slide-in-right"
 					},
 					extras: {
-						ourl: self.id
+						ourl: ws.id
 					}
 				});
 				return 1;
@@ -491,6 +492,9 @@ mui.ready(function() {
 		}
 	window.addEventListener("newId", function(event) {
 			f1 = event.detail.rd;
+			userid = plus.storage.getItem('userid');
+			ifcollectionAbout(demandId,oifCollect, 7);
+			ifcollectionAbout(orgThis,attBtn, 6,1);
 			getDemandinfo()
 		});
 	});

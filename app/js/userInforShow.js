@@ -177,7 +177,7 @@ mui.plusReady(function() {
 	getArticel();
 	getPaper();
 	getPatent();
-	historyEvaluate();
+	//historyEvaluate();
 	relevantExperts();//合作专家
 	relevantarticalList();//相关文章
 	likeExperts();//感兴趣专家

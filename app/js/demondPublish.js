@@ -4,6 +4,7 @@
 
  		var userid = plus.storage.getItem('userid');
  		var oRd="";
+ 		
  		/**
  		 * 获取对象属性的值
  		 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
@@ -175,6 +176,8 @@
  			async: true,
  			success: function(data) {
  				if(data.success) {
+ 					var osur = plus.webview.getWebviewById("sureOrg.html");
+ 					osur.close();
  					document.querySelector("#publisher").innerHTML = data.data.forShort ? data.data.forShort : data.data.name;
  				}
  			},
@@ -261,6 +264,7 @@
  			async: true,
  			success: function(data) {
  				if(data.success) {
+ 					
  					$.back();
  				}
  			},

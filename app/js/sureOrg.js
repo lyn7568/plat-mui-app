@@ -14,7 +14,9 @@ mui.ready(function() {
 				document.getElementById("fontAdd").innerHTML = orgName.length;
 				document.getElementById("login").removeAttribute("disabled");
 			}
-			document.getElementById("title").addEventListener("input", function() {
+			
+		}
+		document.getElementById("title").addEventListener("input", function() {
 				if(this.value == "") {
 					document.getElementById("login").disabled = "disabled";
 				} else {
@@ -22,8 +24,6 @@ mui.ready(function() {
 				}
 				document.getElementById("fontAdd").innerHTML = this.value.length;
 			})
-		}
-
 		document.getElementById("login").addEventListener("tap", function() {
 			if(document.getElementById("title").value.length) {
 				if(document.getElementById("title").value.length>50) {
@@ -57,8 +57,15 @@ mui.ready(function() {
 				success: function(data) {
 					if(data.success && data.data) {
 						var $info = data.data || {};
-						person($info.orgName);
-						organName=$info.orgName;
+						if($info.orgName) {
+							person($info.orgName);
+							organName=$info.orgName;
+						}else{
+							document.getElementById("login").disabled = "disabled";
+							organName="undefined"
+						}
+						
+						
 					}
 				},
 				error: function() {

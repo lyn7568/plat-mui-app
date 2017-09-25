@@ -177,6 +177,7 @@
  			success: function(data) {
  				if(data.success) {
  					var osur = plus.webview.getWebviewById("sureOrg.html");
+ 					if(osur!=null)
  					osur.close();
  					document.querySelector("#publisher").innerHTML = data.data.forShort ? data.data.forShort : data.data.name;
  				}
@@ -264,7 +265,7 @@
  			async: true,
  			success: function(data) {
  				if(data.success) {
- 					
+ 					plus.nativeUI.toast("需求发布成功", toastStyle);
  					$.back();
  				}
  			},

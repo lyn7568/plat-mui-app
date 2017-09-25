@@ -198,6 +198,7 @@ mui.plusReady(function() {
 					if(obj.length>0){
 						for(var i=0;i<obj.length;i++){
 							var li = document.createElement("li");
+							li.setAttribute("id",obj[i].id);
 							var needDate=obj[i].invalidDay;
 							var lastDate=TimeTr(needDate);
 							li.className = "mui-table-view-cell";
@@ -228,7 +229,13 @@ mui.plusReady(function() {
 		})
 		
 	}
-	
+	mui("#bower_u").on("tap","li",function(){
+		var dId=this.getAttribute("id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
+			demanid: dId
+		});
+	})
 	function getResource() {
 		mui.ajax(baseUrl + "/ajax/resource/pqProPublish", {
 			type: "GET",

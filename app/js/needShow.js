@@ -153,14 +153,15 @@ mui.ready(function() {
 						document.getElementById("demandInfo").innerHTML=strCon;
 						
 						if(userid==$da.creator){
-							if($da.state==0){
-								mySelf2.classList.add("displayNone");
-								mySelf.classList.remove("displayNone");
-								notSelf.classList.add("displayNone");
-								goUpdate.classList.remove("displayNone");
-								BtnMore.classList.add("displayNone");
-								mySelf.querySelector(".statusTip").innerHTML="该需求 已过期";
-							}else if($da.state==1){
+//							if($da.state==0){
+//								mySelf2.classList.add("displayNone");
+//								mySelf.classList.remove("displayNone");
+//								notSelf.classList.add("displayNone");
+//								goUpdate.classList.remove("displayNone");
+//								BtnMore.classList.add("displayNone");
+//								mySelf.querySelector(".statusTip").innerHTML="该需求 已过期";
+//							}else
+							if($da.state==0 || $da.state==1){
 								mySelf2.classList.add("displayNone");
 								mySelf.classList.remove("displayNone");
 								notSelf.classList.add("displayNone");

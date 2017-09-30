@@ -235,6 +235,22 @@
  	/*发布需求*/
  	document.querySelector("#publishDemand").addEventListener( "tap", function() {
  		if(checkout()) {
+ 			var time=new Date(),
+ 			y=time.getFullYear();
+ 			m=time.getMonth()+1;
+ 			if(m<10) {
+ 				m="0"+m;
+ 			}
+ 			d=time.getDate();
+ 			if(d<10) {
+ 				d="0"+d;
+ 			}
+ 			var oTime=Number(y+""+m+""+d);
+ 			var seleTime=Number(btns.getAttribute("flag"));
+ 			if(oTime > seleTime) {
+ 				plus.nativeUI.toast("该需求已过期，请修改有效期，若已解决请点击「需求已完成」按钮", toastStyle);
+ 				return;
+ 			}
  			pubDemand();
  		}
  	},false);

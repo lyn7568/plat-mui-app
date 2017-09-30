@@ -789,6 +789,9 @@ for(var n=0;n<6;n++) {
 			var e = event || window.event || arguments.caller.arguments[0];
 			if(e.keyCode == 13) {
 				var searchval = document.getElementById("searchval").value;
+				if(searchval.replace(/^\s*|\s*$/,"")) {
+				wlog("kw", searchval);
+			}
 				if(tabFlag == 1) {
 					if(obj.ex != searchval) {
 						flag = 1;

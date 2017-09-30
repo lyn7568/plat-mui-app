@@ -493,6 +493,7 @@ mui.plusReady(function() {
 			document.getElementsByClassName("icon-shoucang")[0].classList.remove("icon-yishoucang");
 		},
 	}
+	wlog("article", oArticleModule.articleId, 2)
 	/*文章详细内容*/
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/query", {
 		articleId: oArticleModule.articleId

@@ -70,12 +70,16 @@ mui.plusReady(function() {
 	search.oAjaxGet(baseUrl + "/ajax/dataDict/qlHotKey", {}, "get", search.keyWord);
 
 	mui(".hotsearchNew").on("tap", "li", function() {
+		wlog("kw", this.innerHTML);
 		search.createWin(this.innerHTML);
 	});
 
 	/*按键字搜索*/
 	document.getElementById("searchval").addEventListener("keyup", function(e) {
 		if(e.keyCode == 13) {
+			if(this.value.replace(/^\s*|\s*$/,"")) {
+				wlog("kw", this.value);
+			}
 			search.createWin(this.value);
 		}
 	})

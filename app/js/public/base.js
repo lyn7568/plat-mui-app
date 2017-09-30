@@ -269,7 +269,6 @@ var demandDuration = {
 /*判断是否收藏资源文章或者是否关注专家*/
 function ifcollectionAbout(watchObject,sel, num,flag) {
 	var that=sel;
-	console.log(JSON.stringify(that))
 	mui.ajax(baseUrl + '/ajax/watch/hasWatch', {
 		data: {
 			"professorId": plus.storage.getItem('userid'),
@@ -451,4 +450,17 @@ function checkVersion(){
 			});
 		})
 	}
-
+function wlog(dt, id, src) {
+	var src = src || "1";
+	mui.ajax({
+		url: "http://www.ekexiu.com:8082/log/ajax/log",
+		data: {
+			"id": id,
+			"src": src,
+			"__lt": dt,
+		},
+		success:function(data) {
+		},
+		dataType: "json"
+	});
+}

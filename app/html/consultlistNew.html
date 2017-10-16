@@ -75,6 +75,19 @@
 	<script src="../js/public/mui.min.js"></script>
 	<script src="../js/public/base.js"></script>
 	<!--<script src="../js/consult.js"></script>-->
+	<script>
+		var ws = new WebSocket("ws://192.168.3.233:8081/portal/websocket/msg?id=" + userid + "&pm=app");
+		ws.onopen = function() {
+			console.log(userid);
+		};
+		ws.onmessage = function(a) {
+			var fol = true;
+			var $info = JSON.parse(a.data);	
+		}
+		ws.onclose = function() {
 
+		}
+	
+	</script>
 </body>
 </html>

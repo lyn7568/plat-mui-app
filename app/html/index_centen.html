@@ -14,11 +14,8 @@
 	</head>
 
 	<body>
-
 		<!-- 主页面内容容器 -->
-		<div class="mui-content mui-scroll-wrapper" id="pullrefresh" >
-			<div class="mui-scroll">
-				<!-- 主界面具体展示内容 -->
+		<div class="mui-content" >
 				<div class="bannerA">
 					<img src="../images/banner/banner0307.png" width="100%"/>
 				</div>
@@ -82,99 +79,105 @@
 					<!--</div>
 				</div>-->
 				<!--按钮-->
-				<div class="conblock btnLinkBox">
-					<ul class="mui-table-view">
-						<li class="mui-table-view-cell mui-media" id="demandP">
+				<div class="conblock btnLinkBox mui-clearfix">
+					<ul class="mui-table-view mui-row mui-clearfix">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6" id="improfessor">
 							<a href="javascript:;">
-								<div class="mui-media-object mui-pull-left btnLinkIcon fabuBtn">
-									<em class="mui-icon iconfont icon-fabu"></em>
-								</div>
+								<div class="mui-media-object mui-pull-left btnLinkIcon proBtn"></div>
 								<div class="mui-media-body btnLink">
-									<h4 class='h1Font'>发布需求</h4>
-									<p class='h2Font mui-ellipsis'>获得专家回复，专业快速便捷，解决研发问题</p>
+									<h4 class='h1Font'>找专家</h4>
+									<p class='h2Font mui-ellipsis'>快速获得专家回复</p>
 								</div>
 							</a>
 						</li>
-						<li class="mui-table-view-cell mui-media" id="improfessor">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6" id="demandP">
 							<a href="javascript:;">
-								<div class="mui-media-object mui-pull-left btnLinkIcon proBtn">
-									<em class="mui-icon iconfont icon-profilefill"></em>
-								</div>
+								<div class="mui-media-object mui-pull-left btnLinkIcon fabuBtn"></div>
 								<div class="mui-media-body btnLink">
-									<h4 class='h1Font'>我是专家</h4>
-									<p class='h2Font mui-ellipsis'>提升学术声誉，寻找企业合作，科研价值变现</p>
+									<h4 class='h1Font'>发需求</h4>
+									<p class='h2Font mui-ellipsis'>解决企业研发难题</p>
 								</div>
 							</a>
 						</li>
 					</ul>
 				</div>
-				<!-- 九宫格排版-->
-				<div class="mui-card-content conblock">
+				<div class="mui-input-group mainbox">
 					<div class="maintitbox">
 						<div class="maintit">热门领域</div>
 					</div>
 					<ul class="mui-table-view mui-grid-view mui-grid-9 gridbg">
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="腐蚀与防护">
+						    <a href="#">
+						        <span class="fieldicon fieldicon01"></span>
+						        <div class="mui-media-body">腐蚀与防护</div>
+						    </a>
+						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料失效与保护">
-							<a>
-								<div class="fieldicon">
-									<img src="../images/field_icon/field05.png" />
-								</div>
-								<div class="mui-media-body">材料失效与保护</div>
-							</a>
+						    <a href="#">
+						        <span class="fieldicon fieldicon02"></span>
+						        <div class="mui-media-body">材料失效与保护</div>
+						    </a>
 						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料表面与界面">
-							<a>
-								<div class="fieldicon">
-									<img src="../images/field_icon/field02.png" />
-								</div>
-								<div class="mui-media-body">材料表面与界面</div>
-							</a>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料加工">
+						    <a href="#">
+						        <span class="fieldicon fieldicon03"></span>
+						        <div class="mui-media-body">材料加工</div>
+						    </a>
 						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="黑色金属及其合金">
-							<a>
-								<div class="fieldicon">
-									<img src="../images/field_icon/field07.png" />
-								</div>
-								<div class="mui-media-body">黑色金属及其合金</div>
-							</a>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="复合材料">
+						    <a href="#">
+						        <span class="fieldicon fieldicon04"></span>
+						        <div class="mui-media-body">复合材料</div>
+						    </a>
 						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="金属材料">
-							<a>
-								<div class="fieldicon">
-									<img src="../images/field_icon/field18.png" />
-								</div>
-								<div class="mui-media-body">金属材料</div>
-							</a>
+						    <a href="#">
+						        <span class="fieldicon fieldicon05"></span>
+						        <div class="mui-media-body">金属材料</div>
+						    </a>
 						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="有色金属及其合金">
-							<a>
-								<div class="fieldicon">
-									<img src="../images/field_icon/field04.png" />
-								</div>
-								<div class="mui-media-body">有色金属及其合金</div>
-							</a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="材料检测与分析技术">
-							<a>
-								<div class="fieldicon">
-									<img src="../images/field_icon/field16.png" />
-								</div>
-								<div class="mui-media-body">材料检测与分析技术</div>
-							</a>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4" data-title="">
+						    <a href="#">
+						        <span class="fieldicon fieldicon-more"></span>
+						        <div class="mui-media-body">更多领域</div>
+						    </a>
 						</li>
 					</ul>
+						
 				</div>
-				<!--图文列表-->
-				<div class="mui-card-content searchTab">
+				<div class="mui-input-group mainbox">
 					<div class="maintitbox">
-						<div class="maintit">热门专家</div>
+						<div class="maintit">推荐专家</div>
 					</div>
-					<!--数据列表-->
-					<ul class="mui-table-view mui-table-view-chevron list">
-
-					</ul>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view" id="hotPro">
+					        
+					    </ul>
+					</div>
+					<div class="seeMore" id="moreHotp"><em>查看全部</em></div>
 				</div>
-			</div>
+				<div class="mui-input-group mainbox">
+					<div class="maintitbox">
+						<div class="maintit">热门资源</div>
+					</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view" id="resShare">
+					       
+					    </ul>
+					</div>
+					<div class="seeMore" id="moreShare"><em>查看全部</em></div>
+				</div>
+				<div class="mui-input-group mainbox" style="margin-bottom: 20px;">
+					<div class="maintitbox">
+						<div class="maintit">入驻企业</div>
+					</div>
+					<div class="infocon madiaBlock">
+						<ul class="mui-table-view" id="ruZhuCmp">
+					        
+					    </ul>
+					</div>
+					<div class="seeMore" id="moreRcmp"><em>查看全部</em></div>
+				</div>
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>

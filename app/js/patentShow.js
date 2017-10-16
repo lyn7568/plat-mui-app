@@ -11,7 +11,7 @@ mui.plusReady(function() {
 	mui(".tagList").on("tap","li",function(){
 		var tagText = this.getElementsByTagName("span")[0].innerText;
 		plus.nativeUI.showWaiting();
-		var web = plus.webview.create("../html/searchListNew2.html?content=5", "../html/searchListNew2.html", {}, {
+		var web = plus.webview.create("../html/searchListNew2.html?content=4", "../html/searchListNew2.html", {}, {
 			key: tagText,
 			qiFlag: 4
 		}); 
@@ -90,6 +90,7 @@ mui.plusReady(function() {
 		})
 	}
 	function patentHtml($da) {
+		console.log(JSON.stringify($da))
 		document.getElementById("patentTit").innerHTML = $da.name;
 		document.getElementById("patentName").innerHTML = $da.name; //名字
 		document.getElementById("patentAbstract").innerHTML = $da.summary; //摘要内容
@@ -125,11 +126,10 @@ mui.plusReady(function() {
 			var pstr=""
 			if(subs.length>0){
 				paperRelatedList(subs);
-				for (var i = 0; i < subs.length; i++) 
-				{
-					pstr+='<li><span class="h2Font">'+ subs[i] +'</span></li>'
+				for(var i = 0; i < subs.length; i++) {
+					pstr += '<li><span class="h2Font">' + subs[i] + '</span></li>'
 				};
-				document.getElementsByClassName("tagList")[0].innerHTML= pstr;
+				document.getElementsByClassName("tagList")[0].innerHTML = pstr;
 			}else{
 				document.getElementsByClassName("tagList")[0].style.display="none";
 			}

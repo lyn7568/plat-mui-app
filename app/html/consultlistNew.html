@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+    <link href="../css/app.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- 主页面内容容器 -->
+    <div id="logined">
+		<div id="zixunpullrefresh" class="mui-content mui-scroll-wrapper" >
+		  	<div class="mui-scroll">
+		  		<div class="infocon madiaBlock">
+				    <ul class="mui-table-view consultList" id="consultList">
+				    	<li class="mui-table-view-cell">
+							<div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"></div>
+							<div class="madiaInfo">
+								<div class="h1Font mui-ellipsis">
+									<span>用户姓名</span>
+									<span class="authicon authicon-pro"></span>
+									<span class="thistime">8月17日 18:00</span>
+								</div>
+								<div class="h3Font mui-ellipsis">这里显示对话的最后一条消息，天个人似乎突然今天个人似乎突然今天跟i</div>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"></div>
+							<div class="madiaInfo">
+								<div class="h1Font mui-ellipsis">
+									<span>用户姓名</span>
+									<span class="authicon authicon-pro"></span>
+									<span class="thistime">8月17日 18:00</span>
+								</div>
+								<div class="h3Font mui-ellipsis">富贵花开就看看和个人似乎突然</div>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"></div>
+							<div class="madiaInfo">
+								<div class="h1Font mui-ellipsis">
+									<span>用户姓名</span>
+									<span class="authicon authicon-pro"></span>
+									<span class="thistime">8月17日 18:00</span>
+								</div>
+								<div class="h3Font mui-ellipsis"></div>
+							</div>
+						</li>
+				    </ul>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<!--未登录或者未注册时咨询主页面-->
+	<div class="mui-content" id="unlogin">
+		<div class="nodatabox">
+	        <div class="nodata">
+	            <div class="picbox"><span class="defpic consult-pic"></span></div>
+	            <div class="txtbox">
+	            	<p class="currword" style="color:#ff9900;font-weight: bold;margin-top:20px;">登录科袖</p>
+	                <p class="currtip">随时和专家沟通，掌握最新动态</p>
+	            </div>
+	        </div>
+	   </div>
+		<div class="mui-content-padded frmbox">
+			<button id='logBtn' class="mui-btn mui-btn-block frmbtn frmactive" style="width: 86%;" >登&nbsp;录</button>
+			<button id='regBtn' class="mui-btn mui-btn-block mui-btn-outlined frmbtn" style="width: 86%;" >注&nbsp;册</button>
+		</div>
+    </div>
+	
+	
+	<script src="../js/public/mui.min.js"></script>
+	<script src="../js/public/base.js"></script>
+	<!--<script src="../js/consult.js"></script>-->
+
+</body>
+</html>

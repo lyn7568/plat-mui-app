@@ -297,14 +297,19 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .maintitbox .maintit{ line-height: 40px; border-bottom: 1px solid #F0F0F0; font-size: 16px; text-align: center; color: #FF9900;}
 .maintitbox .maintit2{text-align: left;color:#888888;padding:2px 10px;}
 .maintitbox .maintit2 span{color: #FF9900;}
-.conblock{ /*background: #FFFFFF;*/ margin:10px 0;}
+.conblock{ background: #FFFFFF;margin:10px 0;}
 .mui-grid-view.gridbg{ background: #FFFFFF; border: none;}
-.mui-grid-view.gridbg .mui-table-view-cell{ /*border:none;*/ padding: 10px 4px;}
+.mui-grid-view.gridbg .mui-table-view-cell{ padding: 10px 4px;}
 .mui-grid-view.gridbg .mui-table-view-cell .mui-media-body{ font-size: 12px;}
 .mui-table-view.gridbg:after{height:0;}
 /*热门领域*/
-.fieldicon{ overflow: hidden;width:24px; height:24px;margin: auto;}
-.fieldicon img{width: 100%;}
+.fieldicon{display:block;width:24px; height:24px;margin: auto;background-repeat: no-repeat;background-size: cover;}
+.fieldicon01{background-image: url(../images/field_icon/home_field_youqi.png);}
+.fieldicon02{background-image: url(../images/field_icon/home_field_luosi.png);}
+.fieldicon03{background-image: url(../images/field_icon/home_field_banshou.png);}
+.fieldicon04{background-image: url(../images/field_icon/home_field_6bian.png);}
+.fieldicon05{background-image: url(../images/field_icon/home_field_jinshu.png);}
+.fieldicon-more{background-image: url(../images/field_icon/home_field_more.png);}
 /*热门专家*/
 .mui-table-view-cell.prolist:after{/*background:#C0C0C0*//*#c8c7cc;*/}
 .protable:before{ background-color:transparent;}
@@ -350,6 +355,10 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .infocon.listArea>ul>li{float: left;margin-right: 10px;margin-top:10px;border:1px solid #E5E5E5;border-radius:6px;padding:2px 12px;}
 .infocon.madiaBlock>ul{margin:-15px;}
 .infocon.madiaBlock>ul>li{padding-left:15px;}
+.infocon.madiaBlock>.consultList>li{height:68px;}
+.infocon.madiaBlock>.consultList.mui-table-view .mui-table-view-cell:after{left:0;}
+.infocon.madiaBlock>.consultList .h3Font{color:#999999;}
+.infocon.madiaBlock>.consultList .h1Font{line-height: 26px;}
 .seeMore{cursor:pointer;text-align:center;font-size:14px;color:#999;line-height:40px;height:40px;border-top:1px solid #E5E5E5;position: relative;}
 .seeMore em{font-style: normal;position:absolute;left:50%;margin-left: -36px;padding-right:5px;}
 .seeMore em:before{border: solid transparent;border-left-color:#ccc;border-width: 7px;content: " ";position: absolute;left: 100%;top: 12px;}
@@ -592,7 +601,7 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .coutopicbox .status-4{background:#6CA8FF;}/*待回复*/
 .coutopicbox .status-5{background:#d3d3d3;}/*已拒绝/被拒绝*/
 
-.thistime{ position: absolute; right:6px; font-size: 12px; color: #999999;}
+.thistime{ position: absolute; right:4%; font-size: 12px; color: #999999;}
 
 .mui-table-view-cell>.proinfor>.mui-badge{top: 20px;left:10px; right:auto;}
 /*星级评价*/
@@ -708,16 +717,14 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .articalBox .indentNone .imgTit{ font-size: 12px;line-height: 20px;}
 .articalBox .artSTit{text-indent: 0.2em;font-size:16px; color:#069E21;}
 /*首页发布按钮*/
-.btnLinkBox .mui-table-view-cell:after{right: 0;bottom: 0;left:0;}
-.btnLinkBox .h1Font{font-weight: normal;color:#333333;font-size:16px;line-height: 18px;}
-.btnLinkBox .h2Font{color:#666;font-size:14px;margin-bottom: 0;}
-.mui-table-view .mui-media-object.btnLinkIcon{width:42px; height:42px;margin-top:4px;margin-bottom:4px;border-radius:50%;text-align: center;vertical-align: middle;}
-.btnLinkIcon.fabuBtn{background: #007AFF;}
-.btnLinkIcon.proBtn{background: #FF9900;}
-.btnLinkIcon .iconfont{color:#FFFFFF;line-height: 42px;}
-.btnLinkIcon.fabuBtn .mui-icon.icon-fabu{font-size:18px;}
-.btnLinkIcon.proBtn .mui-icon.icon-profilefill{font-size:24px;}
-/*.btnLink{padding-left:4px;}*/
+.btnLinkBox .mui-table-view-cell:after{background: transparent;}
+.btnLinkBox .mui-table-view-cell:first-child{border-right:2px dashed #E5E5E5;}
+.btnLinkBox .h1Font{font-weight: normal;color:#333333;font-size:16px;line-height: 18px;margin-bottom: 0;}
+.btnLinkBox .h2Font{color:#888;font-size:12px;margin-bottom: 0;}
+.mui-table-view .mui-media-object.btnLinkIcon{position:absolute;width:28px; height:28px;top:50%;margin-top:-14px;left:22px;text-align: center;vertical-align: middle;background-position: center;background-size: cover;}
+.btnLinkIcon.fabuBtn{background-image: url(../images/home_faxuqiu_nor@3x.png);}
+.btnLinkIcon.proBtn{background-image: url(../images/home_zhaozj_nor@3x.png);}
+.mui-table-view .mui-media-body.btnLink{padding-left:40px;}
 /***********************需求相关*******************/
 .contentInner{width:90%;margin:4% auto;}
 .maincon ul .divideSpace{margin:4px auto 8px;}
@@ -813,7 +820,6 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .columnOther {border: 1px solid #28b8fa;color: #28b8fa;}
 /***************************************2017.04新版样式******************************/
 /*--------邀请好友------------*/
-.mui-card-content.conblock{background: #fff;}
 .inviteBoxNew{position:relative;}
 .inviteBtnNew{position: absolute;width:86%;height:50%;bottom:-25%; left:7%;background: #FFFFFF;
 			padding:0 6%;
@@ -973,9 +979,9 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .mui-bar .leftnav{position:absolute;left:0;}
 .mui-bar .rightnav{position:absolute;right:0;top:50%;margin-top:-15px;padding:0 10px;text-align: center;font-size:12px;line-height: 12px;color:#FFFFFF;}
 .mui-bar .rightnav .mui-icon.icon-filter{position:relative;font-size:20px;padding-bottom: 0;padding-top:0;color:#FFFFFF;}
-.mui-bar .rightnav .mui-badge{display:block;position:absolute;width:16px;height:16px;top:-2px;right:3px;left:auto;z-index: 32;display: none;}
+.mui-bar .rightnav .mui-badge{position:absolute;top:-2px;right:3px;left:auto;z-index: 32;display: none;}
 .mui-bar .rightnav:active{opacity:.3;}
-.mui-bar .rightnav.filtered .mui-badge{display:block;background: #FFFFFF;color:#FF9900;}
+.mui-bar .rightnav.filtered .mui-badge{display:inline-block;background: #FFFFFF;color:#FF9900;}
 
 /*.fixboxNew{background: #FFFFFF; position:fixed;top:44px;left:0;width:100%; z-index:4;}
 .fixboxNew .fixbtnNew{ padding:0; margin: 0; overflow: hidden;}
@@ -1147,8 +1153,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 		-webkit-user-select: text;border: 1px solid #E0E0E0;border-radius: 4px;outline: 0;background-color: #fff;
     -webkit-appearance: none;}
 .mui-bar-tab.footbox .artfoot .iconfontnew{margin: 10px 0;position: relative;}
-.mui-bar-tab.footbox .artfoot .mui-badge{position:absolute;top:-6px;right:-10px;font-size:8px;line-height:14px;z-index:24;font-style: normal;background:#f45b5d;color:#fff;}
-
+.mui-bar-tab.footbox .artfoot .mui-badge{position:absolute;top:-6px;right:-10px;/*font-size:8px;line-height:14px;*/z-index:24;font-style: normal;background:#f45b5d;color:#fff;}
 .mui-bar-tab.footbox .artfoot.mui-row .mui-btn{font-weight: 400;position: relative;z-index: 20;margin-bottom:10px;float:right;top:0;padding:4px 10px;background: #FF9900;color:#FFF;border-color:#ff9900;}
 .mui-bar-tab.footbox .artfoot.mui-row .mui-btn:disabled{background:#E0E0E0;border-color:#E0E0E0;}
 /*资源图片轮播*/

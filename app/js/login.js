@@ -120,7 +120,7 @@ mui.ready(function() {
 						}
 						firstLogin();
 						
-						var consultPage = plus.webview.getWebviewById('consultlist.html');
+						var consultPage = plus.webview.getWebviewById('consultlistNew.html');
 						mui.fire(consultPage, 'logined', {
 							id: userId
 						});	

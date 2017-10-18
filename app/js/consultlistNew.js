@@ -134,9 +134,10 @@ mui.ready(function() {
 
 		}
 		document.querySelector("#hh").addEventListener("tap", function() {
+			alert(1234)
 			mui.openWindow({
-				url: '../html/1.html',
-				id: '1.html',
+				url: '../html/weChat.html',
+				id: 'weChat.html',
 				show: {
 					autoShow: true,
 					aniShow: "slide-in-right",

@@ -18,6 +18,7 @@
 				-webkit-touch-callout: none;
 				-webkit-user-select: none;
 			}
+			
 			footer {
 				position: fixed;
 				width: 100%;
@@ -30,6 +31,7 @@
 				padding: 0px 50px 0px 10px;
 				background-color: #fafafa;
 			}
+			
 			.footer-left {
 				position: absolute;
 				width: 50px;
@@ -40,8 +42,9 @@
 				vertical-align: middle;
 				line-height: 100%;
 				padding: 12px 4px;
-				display:none;
+				display: none;
 			}
+			
 			.footer-right {
 				position: absolute;
 				width: 50px;
@@ -54,15 +57,18 @@
 				padding: 12px 5px;
 				display: inline-block;
 			}
+			
 			.footer-center {
 				height: 100%;
 				padding: 5px 0px;
 			}
+			
 			.footer-center [class*=input] {
 				width: 100%;
 				height: 100%;
 				border-radius: 5px;
 			}
+			
 			.footer-center .input-text {
 				background: #fff;
 				border: solid 1px #ddd;
@@ -72,33 +78,39 @@
 				font-family: verdana !important;
 				overflow: hidden;
 			}
+			
 			.footer-center .input-sound {
 				background-color: #eee;
 			}
+			
 			.mui-content {
 				height: 100%;
 				padding: 44px 0px 50px 0px;
 				overflow: auto;
 				background-color: #eaeaea;
 			}
+			
 			#msg-list {
 				height: 100%;
 				overflow: auto;
 				-webkit-overflow-scrolling: touch;
 			}
+			
 			.msg-item {
 				padding: 8px;
 				clear: both;
 			}
+			
 			.msg-item .mui-item-clear {
 				clear: both;
 			}
+			
 			.msg-item .msg-user {
 				width: 38px;
 				height: 38px;
-				border: solid 1px #d3d3d3;
+				/*border: solid 1px #d3d3d3;*/
 				display: inline-block;
-				background: #fff;
+				/*background: #fff;*/
 				border-radius: 3px;
 				vertical-align: top;
 				text-align: center;
@@ -107,7 +119,7 @@
 				color: #ddd;
 			}
 			
-			.msg-item .msg-user-img{
+			.msg-item .msg-user-img {
 				width: 38px;
 				height: 38px;
 				display: inline-block;
@@ -133,9 +145,11 @@
 				min-width: 35px;
 				float: left;
 			}
+			
 			.msg-item .msg-content .msg-content-inner {
 				overflow-x: hidden;
 			}
+			
 			.msg-item .msg-content .msg-content-arrow {
 				position: absolute;
 				border: solid 1px #d3d3d3;
@@ -149,50 +163,59 @@
 				-webkit-transform: rotateZ(45deg);
 				transform: rotateZ(45deg);
 			}
+			
 			.msg-item-self .msg-user,
 			.msg-item-self .msg-content {
 				float: right;
 			}
+			
 			.msg-item-self .msg-content .msg-content-arrow {
 				left: auto;
 				right: -5px;
 				-webkit-transform: rotateZ(225deg);
 				transform: rotateZ(225deg);
 			}
+			
 			.msg-item-self .msg-content,
 			.msg-item-self .msg-content .msg-content-arrow {
 				background-color: #4CD964;
 				color: #fff;
 				border-color: #2AC845;
 			}
+			
 			footer .mui-icon {
 				color: #000;
 			}
+			
 			footer .mui-icon:active {
 				color: #007AFF !important;
 			}
+			
 			footer .mui-icon-paperplane:before {
 				content: "发送";
-				color:lightgray;
+				color: lightgray;
 			}
+			
 			footer .mui-icon-paperplane.addColor:before {
 				content: "发送";
-				color:#ff9900;
+				color: #ff9900;
 			}
+			
 			footer .mui-icon-paperplane {
 				/*-webkit-transform: rotateZ(45deg);
 				transform: rotateZ(45deg);*/
-				
 				font-size: 16px;
 				word-break: keep-all;
 				line-height: 100%;
 				padding-top: 6px;
 				color: rgba(0, 135, 250, 1);
 			}
+			
 			#msg-sound {
 				-webkit-user-select: none !important;
 				user-select: none !important;
 			}
+			
 			.rprogress {
 				position: absolute;
 				left: 50%;
@@ -210,6 +233,7 @@
 				display: none;
 				-webkit-transition: .15s;
 			}
+			
 			.rschedule {
 				background-color: rgba(0, 0, 0, 0);
 				border: 5px solid rgba(0, 183, 229, 0.9);
@@ -228,7 +252,8 @@
 				-webkit-animation: spin 1s infinite linear;
 				animation: spin 1s infinite linear;
 			}
-			.r-sigh{
+			
+			.r-sigh {
 				display: none;
 				border-radius: 50px;
 				box-shadow: 0 0 15px #2187e7;
@@ -245,15 +270,19 @@
 				font-weight: bold;
 				color: #2187e7;
 			}
-			.rprogress-sigh{
+			
+			.rprogress-sigh {
 				background-image: none !important;
 			}
-			.rprogress-sigh .rschedule{
+			
+			.rprogress-sigh .rschedule {
 				display: none !important;
 			}
-			.rprogress-sigh .r-sigh{
+			
+			.rprogress-sigh .r-sigh {
 				display: block !important;
 			}
+			
 			.rsalert {
 				font-size: 12px;
 				color: #bbb;
@@ -266,6 +295,7 @@
 				left: 0px;
 				bottom: 0px;
 			}
+			
 			@-webkit-keyframes spin {
 				0% {
 					-webkit-transform: rotate(0deg);
@@ -274,6 +304,7 @@
 					-webkit-transform: rotate(360deg);
 				}
 			}
+			
 			@keyframes spin {
 				0% {
 					transform: rotate(0deg);
@@ -282,6 +313,7 @@
 					transform: rotate(360deg);
 				}
 			}
+			
 			#h {
 				background: #fff;
 				border: solid 1px #ddd;
@@ -296,6 +328,7 @@
 				word-break: break-all;
 				word-wrap: break-word;
 			}
+			
 			.cancel {
 				background-color: darkred;
 			}
@@ -304,40 +337,44 @@
 
 	<body contextmenu="return false;">
 		<header class="mui-bar mui-bar-nav toptitbox" style="z-index: 999;">
- 			<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback" id="backBtn">
- 				<a href="consultlist.html"></a>
+			<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback" id="backBtn">
  			</span>
- 			<h1 class="mui-title toptit" id="chatName">
- 				
+			<h1 class="mui-title toptit" id="chatName">
  			</h1>
- 			<!--<span class="mui-icon mui-icon-contact mui-pull-right personhead"></span>-->
- 		</header>
+ 			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore">...</a>
+			<!--<span class="mui-icon mui-icon-contact mui-pull-right personhead"></span>-->
+		</header>
 		<pre id='h'></pre>
 		<script id='msg-template' type="text/template">
 			<% for(var i in record){ var item=record[i]; %>
-				<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
-					<div style="text-align:center;margin-bottom:5px;"><span style="font-size:12px;border-radius: 5px;background:#d4d4d4;color:white;padding:2px 7px;">5月8号 18:00</span></div>
-					<% if(item.sender=='self' ) { %>
-						<img class="msg-user-img msg-user" src="../images/logo.png" alt="" style="border-radius:50%;"/>
-						<!--<i class="msg-user mui-icon mui-icon-person" style="border-radius:50%;" id="hu"></i>-->
-					<% } else { %>
-						<img class="msg-user-img" src="../images/logo.png" alt="" style="border-radius:50%;"/>
-					<% } %>
-					<div class="msg-content">
-						<div class="msg-content-inner">
-							<% if(item.type=='text' ) { %>
-								<%=( item.content|| '&nbsp;&nbsp;') %>
-							<% } else if(item.type=='image' ) { %>
-								<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
-							<% } else if(item.type=='sound' ) { %>
-								<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
-								<span class="play-state">点击播放</span>
-							<% } %>
-						</div>
-						<div class="msg-content-arrow"></div>
+			<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
+
+				<% if(item.timeGe ) { %>
+				<div class="otime" style="text-align:center;margin-bottom:5px;" data-time="<%=(item.timeStr)%>"><span style="font-size:12px;border-radius: 5px;background:#d4d4d4;color:white;padding:2px 7px;"><%=( item.timeGe) %></span></div>
+				<% } else { %>
+				<div class="otime" style="text-align:center;margin-bottom:5px;display: none;" data-time="<%=(item.timeStr)%>"><span style="font-size:12px;border-radius: 5px;background:#d4d4d4;color:white;padding:2px 7px;"><%=( item.timeGe) %></span></div>
+				<% } %>
+				<% if(item.sender=='self' ) { %>
+				<img class="msg-user-img msg-user" src="<%=(item.url)%>" alt="" style="border-radius:50%;" />
+				<!--<i class="msg-user mui-icon mui-icon-person" style="border-radius:50%;" id="hu"></i>-->
+				<% } else { %>
+				<img class="msg-user-img" src="<%=(item.url)%>" alt="" style="border-radius:50%;" />
+				<% } %>
+				<div class="msg-content">
+					<div class="msg-content-inner">
+						<% if(item.type=='text' ) { %>
+						<%=( item.content|| '&nbsp;&nbsp;') %>
+						<% } else if(item.type=='image' ) { %>
+						<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
+						<% } else if(item.type=='sound' ) { %>
+						<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
+						<span class="play-state">点击播放</span>
+						<% } %>
 					</div>
-					<div class="mui-item-clear"></div>
+					<div class="msg-content-arrow"></div>
 				</div>
+				<div class="mui-item-clear"></div>
+			</div>
 			<% } %>
 		</script>
 		<div class="mui-content">
@@ -361,12 +398,10 @@
 			<div class="r-sigh">!</div>
 			<div id="audio_tips" class="rsalert">手指上滑，取消发送</div>
 		</div>
-		<script src="../js/mui.min.js"></script>
-		<script src="../js/mui.imageViewer.js"></script>
-		<script>
-			console.log(document.getElementById("hu"));
-		</script>
-		<script src="../js/arttmpl.js"></script>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/mui.imageViewer.js"></script>
+		<script src="../js/public/arttmpl.js"></script>
+		<script src="../js/public/base.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			(function($, doc) {
 				var MIN_SOUND_TIME = 800;
@@ -387,9 +422,25 @@
 					plus.webview.currentWebview().setStyle({
 						softinputMode: "adjustResize"
 					});
-					
+					var professorId = plus.webview.currentWebview().professorId;
+					document.getElementById("BtnMore").addEventListener("tap",function(){
+						mui.openWindow({
+				url: '../html/jubao.html',
+				id: 'jubao.html',
+				show: {
+					autoShow: true,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					professorId: professorId
+				}
+			})
+					})
+					var userid = plus.storage.getItem('userid');
+					var url1 = baseUrl + '/images/head/' + professorId + '_l.jpg';
+					var url2 = baseUrl + '/images/head/' + userid + '_l.jpg';
 					var showKeyboard = function() {
-						if ($.os.ios) {
+						if($.os.ios) {
 							var webView = plus.webview.currentWebview().nativeInstanceObject();
 							webView.plusCallMethod({
 								"setKeyboardDisplayRequiresUserAction": false
@@ -405,17 +456,97 @@
 							//alert("ll");
 						}
 					};
-					var record = [{
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！'
-					}];//消息数组
+					document.getElementById("backBtn").addEventListener("tap",function(){
+						var web3 = plus.webview.getWebviewById("consultlistNew.html");
+												mui.fire(web3, "newId");
+												var web4=plus.webview.getLaunchWebview();
+							mui.fire(web4, "newId", {
+								rd: 3
+							});
+					})
+					
+					var record = []; //消息数组
+					messageList();
+					pe()
+
+					function pe() {
+						mui.ajax(baseUrl + '/ajax/professor/baseInfo/' + professorId, {
+							"type": "get",
+							"async": true,
+							"success": function(data) {
+								if(data.success && data.data) {
+									document.getElementById("chatName").innerHTML = data.data.name;
+								}
+							},
+							"error": function() {
+								plus.nativeUI.toast("服务器链接超时", toastStyle);
+							}
+						});
+					}
+
+					function messageList() {
+						$.ajax(baseUrl + '/ajax/webMsg/cnt/load', {
+							data: {
+								sender: professorId,
+								reciver: userid,
+								both: true
+							},
+							dataType: 'json', //服务器返回json格式数据
+							type: 'GET', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							traditional: true, //传数组必须加这个
+							success: function(data) {
+								//plus.nativeUI.closeWaiting();
+								//plus.webview.currentWebview().show();
+								if(data.success) {
+
+									var $data = data.data;
+									if($data.length) {
+										for(var i = 0; i < $data.length; i++) {
+											var time1;
+											if(i != 0) {
+												time1 = compareTime($data[i - 1].sendTime, $data[i].sendTime)
+											} else {
+												time1 = anTime($data[i].sendTime)
+											}
+											if(professorId == $data[i].sender) {
+												record.push({
+													sender: 'zs',
+													type: 'text',
+													content: $data[i].cnt,
+													url: url1,
+													timeStr: $data[i].sendTime,
+													timeGe: time1
+												})
+											} else {
+												record.push({
+													sender: 'self',
+													type: 'text',
+													content: $data[i].cnt,
+													url: url2,
+													timeStr: $data[i].sendTime,
+													timeGe: time1
+												})
+											}
+										}
+										bindMsgList();
+									} else {
+
+									}
+
+								}
+							},
+							error: function(x) {
+								plus.nativeUI.toast("服务器链接超时", toastStyle);
+							}
+						});
+					}
 					var ui = {
 						body: doc.querySelector('body'),
 						footer: doc.querySelector('footer'),
 						footerRight: doc.querySelector('.footer-right'),
 						footerLeft: doc.querySelector('.footer-left'),
-						btnMsgType: doc.querySelector('#msg-type'),//
+						btnMsgType: doc.querySelector('#msg-type'), //
 						boxMsgText: doc.querySelector('#msg-text'),
 						boxMsgSound: doc.querySelector('#msg-sound'),
 						btnMsgImage: doc.querySelector('#msg-image'),
@@ -427,10 +558,12 @@
 					ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
 					//alert(ui.boxMsgText.offsetWidth );
 					var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
+					//ui.footer.style.height = (ui.h.offsetHeight + footerPadding) + 'px';
+					//					ui.content.style.paddingBottom = ui.footer.style.height;
 					var msgItemTap = function(msgItem, event) {
 						var msgType = msgItem.getAttribute('msg-type');
 						var msgContent = msgItem.getAttribute('msg-content')
-						if (msgType == 'sound') {
+						if(msgType == 'sound') {
 							player = plus.audio.createPlayer(msgContent);
 							var playState = msgItem.querySelector('.play-state');
 							playState.innerText = '正在播放...';
@@ -463,15 +596,33 @@
 						imageViewer.findAllImage();
 						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
 					};
-					bindMsgList();
+
 					window.addEventListener('resize', function() {
 						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
 					}, false);
 					var send = function(msg) {
 						record.push(msg);
 						bindMsgList();
-						toRobot(msg.content);
+						//toRobot(msg.content);
 					};
+					window.addEventListener("newId", function(event) {
+						var oTime = document.querySelectorAll(".otime");
+						var time1;
+						if(oTime.length) {
+							time1 = compareTime(oTime[oTime.length - 1].getAttribute("data-time"), event.detail.sendTime)
+						} else {
+							time1 = anTime(event.detail.sendTime)
+						}
+						record.push({
+							sender: 'zs',
+							type: 'text',
+							content: event.detail.rd,
+							url: url1,
+							timeStr: event.detail.sendTime,
+							timeGe: time1
+						})
+						bindMsgList();
+					})
 					var toRobot = function(info) {
 						var apiUrl = 'http://www.tuling123.com/openapi/api';
 						$.getJSON(apiUrl, {
@@ -490,21 +641,21 @@
 					};
 
 					function msgTextFocus() {
+						ui.boxMsgText.focus();
+						setTimeout(function() {
 							ui.boxMsgText.focus();
-							setTimeout(function() {
-								ui.boxMsgText.focus();
-							}, 150);
-						}
-						//解决长按“发送”按钮，导致键盘关闭的问题；
+						}, 150);
+					}
+					//解决长按“发送”按钮，导致键盘关闭的问题；
 					ui.footerRight.addEventListener('touchstart', function(event) {
-						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 							msgTextFocus();
 							event.preventDefault();
 						}
 					});
 					//解决长按“发送”按钮，导致键盘关闭的问题；
 					ui.footerRight.addEventListener('touchmove', function(event) {
-						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 							msgTextFocus();
 							event.preventDefault();
 						}
@@ -522,31 +673,63 @@
 					//						}
 					//					});
 					ui.footerRight.addEventListener('release', function(event) {
-						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 							if(!ui.btnMsgType.classList.contains('addColor')) {
 								return;
 							}
+							ui.btnMsgType.classList['remove']('addColor');
+							//return;
 							//showKeyboard();
 							ui.boxMsgText.focus();
 							setTimeout(function() {
 								ui.boxMsgText.focus();
 							}, 150);
+							//return;
 							//							event.detail.gesture.preventDefault();
-							send({
-								sender: 'self',
-								type: 'text',
-								content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
+							$.ajax(baseUrl + '/ajax/webMsg', {
+								data: {
+									sender: userid,
+									reciver: professorId,
+									cnt: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
+								},
+								dataType: 'json', //服务器返回json格式数据
+								type: 'POST', //HTTP请求类型
+								timeout: 10000, //超时时间设置为10秒；
+								traditional: true, //传数组必须加这个
+								success: function(data) {
+									if(data.success) {
+										var oTime = document.querySelectorAll(".otime");
+										var time1;
+										if(oTime.length) {
+											time1 = compareTime(oTime[oTime.length - 1].getAttribute("data-time"), data.data)
+										} else {
+											time1 = anTime(data.data)
+										}
+										send({
+											sender: 'self',
+											type: 'text',
+											content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>'),
+											url: url2,
+											timeStr: data.data,
+											timeGe: time1
+										})
+										ui.boxMsgText.value = '';
+										$.trigger(ui.boxMsgText, 'input', null);
+									}
+								},
+								error: function(x) {
+									plus.nativeUI.toast("服务器链接超时", toastStyle);
+								}
 							});
-							ui.boxMsgText.value = '';
-							$.trigger(ui.boxMsgText, 'input', null);
-						} else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {
+
+						} else if(ui.btnMsgType.classList.contains('mui-icon-mic')) {
 							ui.btnMsgType.classList.add('mui-icon-compose');
 							ui.btnMsgType.classList.remove('mui-icon-mic');
 							ui.boxMsgText.style.display = 'none';
 							ui.boxMsgSound.style.display = 'block';
 							ui.boxMsgText.blur();
 							document.body.focus();
-						} else if (ui.btnMsgType.classList.contains('mui-icon-compose')) {
+						} else if(ui.btnMsgType.classList.contains('mui-icon-compose')) {
 							ui.btnMsgType.classList.add('mui-icon-mic');
 							ui.btnMsgType.classList.remove('mui-icon-compose');
 							ui.boxMsgSound.style.display = 'none';
@@ -571,7 +754,7 @@
 							buttons: btnArray
 						}, function(e) {
 							var index = e.index;
-							switch (index) {
+							switch(index) {
 								case 0:
 									break;
 								case 1:
@@ -595,17 +778,17 @@
 									break;
 							}
 						});
-					}, false); 
-					var setSoundAlertVisable=function(show){
-						if(show){
+					}, false);
+					var setSoundAlertVisable = function(show) {
+						if(show) {
 							ui.boxSoundAlert.style.display = 'block';
 							ui.boxSoundAlert.style.opacity = 1;
-						}else{
+						} else {
 							ui.boxSoundAlert.style.opacity = 0;
 							//fadeOut 完成再真正隐藏
-							setTimeout(function(){
+							setTimeout(function() {
 								ui.boxSoundAlert.style.display = 'none';
-							},200);
+							}, 200);
 						}
 					};
 					var recordCancel = false;
@@ -616,12 +799,12 @@
 					var stopTimer = null;
 					ui.boxMsgSound.addEventListener('hold', function(event) {
 						recordCancel = false;
-						if(stopTimer)clearTimeout(stopTimer);
+						if(stopTimer) clearTimeout(stopTimer);
 						audio_tips.innerHTML = "手指上划，取消发送";
 						ui.boxSoundAlert.classList.remove('rprogress-sigh');
 						setSoundAlertVisable(true);
 						recorder = plus.audio.getRecorder();
-						if (recorder == null) {
+						if(recorder == null) {
 							plus.nativeUI.toast("不能获取录音对象");
 							return;
 						}
@@ -629,7 +812,7 @@
 						recorder.record({
 							filename: "_doc/audio/"
 						}, function(path) {
-							if (recordCancel) return;
+							if(recordCancel) return;
 							send({
 								sender: 'self',
 								type: 'sound',
@@ -641,18 +824,18 @@
 					}, false);
 					ui.body.addEventListener('drag', function(event) {
 						//console.log('drag');
-						if (Math.abs(event.detail.deltaY) > 50) {
-							if (!recordCancel) {
+						if(Math.abs(event.detail.deltaY) > 50) {
+							if(!recordCancel) {
 								recordCancel = true;
-								if (!audio_tips.classList.contains("cancel")) {
+								if(!audio_tips.classList.contains("cancel")) {
 									audio_tips.classList.add("cancel");
 								}
 								audio_tips.innerHTML = "松开手指，取消发送";
 							}
 						} else {
-							if (recordCancel) {
+							if(recordCancel) {
 								recordCancel = false;
-								if (audio_tips.classList.contains("cancel")) {
+								if(audio_tips.classList.contains("cancel")) {
 									audio_tips.classList.remove("cancel");
 								}
 								audio_tips.innerHTML = "手指上划，取消发送";
@@ -661,20 +844,20 @@
 					}, false);
 					ui.boxMsgSound.addEventListener('release', function(event) {
 						//console.log('release');
-						if (audio_tips.classList.contains("cancel")) {
+						if(audio_tips.classList.contains("cancel")) {
 							audio_tips.classList.remove("cancel");
 							audio_tips.innerHTML = "手指上划，取消发送";
 						}
 						//
 						stopTimestamp = (new Date()).getTime();
-						if (stopTimestamp - startTimestamp < MIN_SOUND_TIME) {
+						if(stopTimestamp - startTimestamp < MIN_SOUND_TIME) {
 							audio_tips.innerHTML = "录音时间太短";
 							ui.boxSoundAlert.classList.add('rprogress-sigh');
 							recordCancel = true;
-							stopTimer=setTimeout(function(){
+							stopTimer = setTimeout(function() {
 								setSoundAlertVisable(false);
-							},800);
-						}else{
+							}, 800);
+						} else {
 							setSoundAlertVisable(false);
 						}
 						recorder.stop();
@@ -691,24 +874,67 @@
 						ui.content.style.paddingBottom = ui.footer.style.height;
 					});
 					var focus = false;
+					var flag = 1;
 					ui.boxMsgText.addEventListener('tap', function(event) {
+						if(flag) {
+							ui.footer.style.height = (ui.h.offsetHeight + footerPadding + 15) + 'px';
+							ui.content.style.paddingBottom = ui.footer.style.height;
+							flag = 0;
+						}
+
 						ui.boxMsgText.focus();
 						setTimeout(function() {
 							ui.boxMsgText.focus();
 						}, 0);
 						focus = true;
-						setTimeout(function () {
+						setTimeout(function() {
 							focus = false;
-						},1000);
+						}, 1000);
 						event.detail.gesture.preventDefault();
 					}, false);
 					//点击消息列表，关闭键盘
-					ui.areaMsgList.addEventListener('click',function (event) {
-						if(!focus){
+					ui.areaMsgList.addEventListener('click', function(event) {
+						if(!focus) {
 							ui.boxMsgText.blur();
 						}
 					})
-					
+					/*超过时间10min*/
+					function timeC(startTime) {
+						var startdate = new Date();
+						startdate.setFullYear(parseInt(startTime.substring(0, 4)));
+						startdate.setMonth(parseInt(startTime.substring(4, 6)) - 1);
+						startdate.setDate(parseInt(startTime.substring(6, 8)));
+						startdate.setHours(parseInt(startTime.substring(8, 10)));
+						startdate.setMinutes(parseInt(startTime.substring(10, 12)));
+						startdate.setSeconds(parseInt(startTime.substring(12, 14)));
+						startdate.setMilliseconds(parseInt(startTime.substring(14, 17)));
+						return startdate.getTime();
+					}
+
+					function compareTime(startTime, secondTime) {
+						var date3 = timeC(secondTime) - timeC(startTime); //时间差的毫秒数
+						if(date3 >= 600000) {
+							if(new Date().getFullYear() == secondTime.substring(0, 4)) {
+
+								return secondTime.substring(4, 6).replace(/\b(0+)/gi, "") + "月" + secondTime.substring(6, 8).replace(/\b(0+)/gi, "") + "日 " + secondTime.substring(8, 10) + ":" + secondTime.substring(10, 12);
+							} else {
+
+								return secondTime.substring(0, 4) + "年" + secondTime.substring(4, 6).replace(/\b(0+)/gi, "") + "月" + secondTime.substring(6, 8).replace(/\b(0+)/gi, "") + "日 " + secondTime.substring(8, 10) + ":" + secondTime.substring(10, 12);
+							}
+						} else {
+							return '';
+						}
+					}
+
+					function anTime(secondTime) {
+						if(new Date().getFullYear() == secondTime.substring(0, 4)) {
+
+							return secondTime.substring(4, 6).replace(/\b(0+)/gi, "") + "月" + secondTime.substring(6, 8).replace(/\b(0+)/gi, "") + "日 " + secondTime.substring(8, 10) + ":" + secondTime.substring(10, 12);
+						} else {
+
+							return secondTime.substring(0, 4) + "年" + secondTime.substring(4, 6).replace(/\b(0+)/gi, "") + "月" + secondTime.substring(6, 8).replace(/\b(0+)/gi, "") + "日 " + secondTime.substring(8, 10) + ":" + secondTime.substring(10, 12);
+						}
+					}
 				});
 			}(mui, document));
 		</script>

@@ -30,9 +30,11 @@ function pulldownRefresh() {
 mui.plusReady(function() {
 	mui("#demandList").on("tap", "li", function() {
 		var oDemandId = this.getAttribute("data-id");
+		var poD=this.getAttribute("data-creator");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
-			demanid: oDemandId
+			demanid: oDemandId,
+			professorId:poD
 		});
 	})
 })
@@ -69,6 +71,7 @@ function demandList(pageSize, pageNo) {
 							var liStr=document.createElement("li");
 							liStr.className="mui-table-view-cell";
 							liStr.setAttribute( "data-id",$info[i].id);
+							liStr.setAttribute( "data-creator",$info[i].creator);
 							document.getElementById("demandList").appendChild(liStr);
 							demandHtml($info[i],liStr);
 						}

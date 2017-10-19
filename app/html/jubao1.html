@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>意见反馈</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
+			
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">举报</h1>
+		</header>
+		<div class="mui-content">
+			<div class="row mui-input-row textBox">
+				<textarea id='question' class="mui-input-clear conTextare" placeholder="请具体说明举报对方的原因，以便我们为您快速解决" maxlength="500" ></textarea>
+				
+			</div>
+			<div class="mui-content-padded frmboxNew">
+				<button type="submit" class="mui-btn mui-btn-block frmbtn frmactive tijiao" id="logun" disabled="">提交</button>
+			</div>
+			
+		</div>
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
+		<script type="text/javascript" src="../js/jubao1.js"></script>
+		
+	</body>
+</html>

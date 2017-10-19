@@ -451,14 +451,19 @@ mui.plusReady(function() {
 			var consulttitle = oresourceName.innerHTML;
 			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
 			if(reType=="1"){
-				webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
-					'proId': professorId,
-					'flag': flag,
-					'consulttitle': consulttitle
-				});
-				webviewShow.addEventListener("loaded", function() {
-
-				}, false);
+				mui.openWindow({
+				url: '../html/weChat.html',
+				id: 'weChat.html',
+				show: {
+					autoShow: true,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					professorId: professorId,
+					flag:1
+				}
+			})
+				
 			}else{
 				mui.ajax(baseUrl + '/ajax/resource/qaLinkman', {
 					data: {
@@ -470,15 +475,18 @@ mui.plusReady(function() {
 						if(data.success){
 							console.log(JSON.stringify(data))
 							var linkProfirstId = data.data[0].professorId;
-							var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
-							webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
-								'proId': linkProfirstId,
-								'flag': flag,
-								'consulttitle': consulttitle
-							});
-							webviewShow.addEventListener("loaded", function() {
-	
-							}, false);
+							mui.openWindow({
+								url: '../html/weChat.html',
+								id: 'weChat.html',
+								show: {
+									autoShow: true,
+									aniShow: "slide-in-right",
+								},
+								extras: {
+									professorId: linkProfirstId,
+									flag:1
+								}
+							})
 						}
 					},
 					error: function() {

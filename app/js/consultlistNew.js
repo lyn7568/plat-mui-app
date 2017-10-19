@@ -3,6 +3,7 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var content1 = document.getElementById('logined');
 		var content2 = document.getElementById('unlogin');
+		//console.log(document.getElementById("meLI").innerHTML)
 		if(userid == null || userid == 'null') {
 			content1.style.display = 'none';
 		} else {
@@ -49,25 +50,34 @@ mui.ready(function() {
 		});
 		var ws = new WebSocket("ws://192.168.3.233:8081/portal/websocket/msg?id=" + userid + "&pm=app");
 		ws.onopen = function() {
-			console.log(userid);
+			
 		};
+		window.addEventListener("newId", function(event) {
+			messageList();
+		})
 
 		function messageList() {
 			mui.ajax(baseUrl + '/ajax/webMsg/idx/qm', {
 				data: {
 					"id": userid
-				}, 
+				},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'GET', //HTTP请求类型
 				timeout: 10000, //超时时间设置为10秒；
 				traditional: true, //传数组必须加这个
 				success: function(data) {
-					console.log(JSON.stringify(data))
+					
 					if(data.success) {
+						$("#consultList").html("");
 						var $data = data.data;
 						for(var i = 0; i < $data.length; i++) {
-							var str = '<li class="mui-table-view-cell" data-id="'+$data[i].id+'">' +
-								'<div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"><span class="mui-icon  icon-messagenew"><span class="mui-badge">56</span></span></div>' +
+							if($data[i].num == 0) {
+								var ostyle = "none";
+							} else {
+								var ostyle = "block";
+							}
+							var str = '<li class="mui-table-view-cell" data-id="' + $data[i].id + '" data-time="' + $data[i].timeStr + '">' +
+								'<div class="mui-slider-handle"><div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"><span class="mui-icon  icon-messagenew" style="display:' + ostyle + '"><span class="mui-badge">' + $data[i].num + '</span></span></div>' +
 								'<div class="madiaInfo">' +
 								'<div class="h1Font mui-ellipsis">' +
 								'<span class="userName"></span>' +
@@ -75,11 +85,11 @@ mui.ready(function() {
 								'<span class="thistime">' + commenTime($data[i].timeStr) + '</span>' +
 								'</div>' +
 								'<div class="h3Font mui-ellipsis">' + $data[i].cnt + '</div>' +
-								'</div>' +
+								'</div></div><div class="mui-slider-right mui-disabled"><a class="mui-btn mui-btn-red">删除</a></div>' +
 								'</li>'
-								var $info=$(str)
-								$("#consultList").append($info);
-								userInformation($data[i].id, $info)
+							var $info = $(str)
+							$("#consultList").append($info);
+							userInformation($data[i].id, $info)
 						}
 					}
 				},
@@ -88,13 +98,44 @@ mui.ready(function() {
 				}
 			});
 		}
+		var btnArray = ['确认', '取消'];
+		mui('#consultList').on('tap', '.mui-btn', function(event) {
+			var elem = this;
+			var li = elem.parentNode.parentNode;
+			mui.confirm('确认删除该会话？', btnArray, function(e) {
+				if(e.index == 1) {
+					mui.ajax(baseUrl + '/ajax/webMsg/disable/show', {
+						"type": "post",
+						"async": true,
+						"data": {
+							owner:userid,
+							actor:li.getAttribute("data-id")
+						},
+						"context": this,
+						"success": function(data) {
+							if(data.success) {
+								li.parentNode.removeChild(li);
+							}
+						},
+						"error": function() {
+							plus.nativeUI.toast("服务器链接超时", toastStyle);
+						}
+					});
+
+				} else {
+					setTimeout(function() {
+						mui.swipeoutClose(li);
+					}, 0);
+				}
+			});
+		});
 		/*用户信息*/
 		function userInformation(id, $itemlist) {
 			mui.ajax(baseUrl + '/ajax/professor/baseInfo/' + id, {
 				"type": "get",
 				"async": true,
 				"success": function(data) {
-					console.log(JSON.stringify(data))
+					
 					if(data.success && data.data) {
 						$itemlist.find(".userName").text(data.data.name);
 						if(data.data.hasHeadImage == 1) {
@@ -112,37 +153,120 @@ mui.ready(function() {
 		ws.onmessage = function(a) {
 			var fol = true;
 			var $info = JSON.parse(a.data);
-			console.log(1111);
-			var li=$("#consultList").find("li");
-			$.each(li,function() {
-				var $id=$(this).attr("data-id");
-				if($info.sender==$id) {
-					$(this).find(".icon-messagenew").show().end().find('.thistime').text(commenTime($info.sendTime)).end().find(".h3Font").text($info.cnt);
-					if($(this).index()!=0) {
+			
+			var li = $("#consultList").find("li");
+			var cf = 1;
+			$.each(li, function() {
+				var $id = $(this).attr("data-id");
+				if($info.sender == $id) {
+					cf = 0;
+					if($(this).index() != 0) {
 						$(this).remove().clone().prependTo($('#consultList'));
 					}
+
+					var web = plus.webview.getWebviewById("weChat.html");
+
+					if(web) {
+						if(web.professorId == $info.sender) {
+							$(this).find('.thistime').text(commenTime($info.sendTime)).end().find(".h3Font").text($info.cnt);
+							readed.call($(this), $id, $info.sendTime);
+							mui.fire(web, "newId", {
+								rd: $info.cnt,
+								sendTime: $info.sendTime
+							});
+						} else {
+							$(this).find(".icon-messagenew").show().end().find('.mui-badge').text(Number($(this).find(".mui-badge").text()) + 1).end().find('.thistime').text(commenTime($info.sendTime)).end().find(".h3Font").text($info.cnt);
+							var web3=plus.webview.getLaunchWebview();
+							mui.fire(web3, "newId", {
+								rd: 1
+							});
+						}
+					} else {
+						$(this).find(".icon-messagenew").show().end().find('.mui-badge').text(Number($(this).find(".mui-badge").text()) + 1).end().find('.thistime').text(commenTime($info.sendTime)).end().find(".h3Font").text($info.cnt);
+						var web3=plus.webview.getLaunchWebview();
+							mui.fire(web3, "newId", {
+								rd: 1
+							});
+					}
+
 				}
 			})
-			console.log(1212)
-			return;
-			var web = plus.webview.getWebviewById("1.html");
-			mui.fire(web, "newId", {
-				rd: $info.cnt
-			});
+
+			if(cf) {
+
+				var str1 = '<li class="mui-table-view-cell" data-id="' + $info.sender + '" data-time="' + $info.sendTime + '">' +
+					'<div class="mui-slider-handle"><div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"><span class="mui-icon  icon-messagenew"><span class="mui-badge">1</span></span></div>' +
+					'<div class="madiaInfo">' +
+					'<div class="h1Font mui-ellipsis">' +
+					'<span class="userName"></span>' +
+					'<span class="authicon "></span>' +
+					'<span class="thistime">' + commenTime($info.sendTime) + '</span>' +
+					'</div>' +
+					'<div class="h3Font mui-ellipsis">' + $info.cnt + '</div>' +
+					'</div></div><div class="mui-slider-right mui-disabled"><a class="mui-btn mui-btn-red">删除</a></div>' +
+					'</li>'
+				var $info1 = $(str1)
+				$("#consultList").prepend($info1);
+				var web1 = plus.webview.getWebviewById("weChat.html");
+				if(web1.professorId == $info.sender) {
+					mui.fire(web1, "newId", {
+						rd: $info.cnt,
+						sendTime: $info.sendTime
+					});
+					readed.call($info1, $info.sender, $info.sendTime);
+				}
+				userInformation($info.sender, $info1)
+
+			}
 		}
 		ws.onclose = function() {
 
 		}
-		document.querySelector("#hh").addEventListener("tap", function() {
-			alert(1234)
+		mui("#consultList").on("tap", "li", function() {
+			var opId = this.getAttribute("data-id");
+			var oTimeStr = this.getAttribute("data-time") //
+			if($(this).find(".icon-messagenew").css("display") == "block") {
+				
+				var web3=plus.webview.getLaunchWebview();
+							mui.fire(web3, "newId", {
+								rd: 2,
+								ct:$(this).find(".mui-badge").text()
+							});
+				readed.call($(this), opId, oTimeStr);
+			}
 			mui.openWindow({
 				url: '../html/weChat.html',
 				id: 'weChat.html',
 				show: {
 					autoShow: true,
 					aniShow: "slide-in-right",
+				},
+				extras: {
+					professorId: opId
+				}
+			})
+		})
+		//消息制为已读
+		function readed(pId, timeStr) {
+			//alert(1)
+			mui.ajax(baseUrl + '/ajax/webMsg/readed', {
+				"type": "post",
+				"async": true,
+				"data": {
+					sender: pId,
+					reciver: userid,
+					time: timeStr
+				},
+				"context": this,
+				"success": function(data) {
+					if(data.success) {
+						this.find(".icon-messagenew").hide().end().find(".mui-badge").text(0);
+					}
+				},
+				"error": function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
-		})
+		}
 	})
 })

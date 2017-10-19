@@ -21,7 +21,7 @@
 	         <span class="mui-tab-label">发现</span>
 	    </a>
 	    <a class="mui-tab-item" href="html/consult_home.html" dataid="2">
-	        <span class="mui-icon iconfontnew icon-messagenew"><span class="mui-badge">56</span></span>
+	        <span class="mui-icon iconfontnew icon-messagenew" id="meLI"><span class="mui-badge" id="meLInum"></span></span>
 	         <span class="mui-tab-label">消息</span>
 	    </a>
 	    <a class="mui-tab-item" id="isLogin" href="html/myaccount.html" dataid="3">
@@ -53,6 +53,51 @@
 				mui.extend(aniShow, temp);
 			}
 			self.append(sub);
+		}
+		window.addEventListener("newId", function(event) {
+			if(event.detail.rd==1) {
+				document.getElementById("meLInum").style.display="block"
+				document.getElementById("meLInum").innerHTML=Number(document.getElementById("meLInum").innerHTML)+1;
+			}else if(event.detail.rd==2) {
+				var numtt=Number(document.getElementById("meLInum").innerHTML)-Number(event.detailct)
+				if(numtt>0) {
+					document.getElementById("meLInum").style.display="block";
+					ocument.getElementById("meLInum").innerHTML=numtt;
+				}else{
+					document.getElementById("meLInum").style.display="none";
+					ocument.getElementById("meLInum").innerHTML=0;
+				}
+			}else{
+				totalNum();
+			}
+			
+			
+		})
+		totalNum()
+		function totalNum() {
+			mui.ajax(baseUrl + '/ajax/webMsg/unReadedCount', {
+						"data":{id:plus.storage.getItem('userid')},
+						"type": "get",
+						"async": true,
+						"context": this,
+						"success": function(data) {
+							console.log(123);
+							console.log(JSON.stringify(data))
+							if(data.success) {
+								if(data.data) {
+									document.getElementById("meLInum").style.display="block"
+									document.getElementById("meLInum").innerHTML=data.data;
+								}else{
+									document.getElementById("meLInum").style.display="none";
+									document.getElementById("meLInum").innerHTML=0;
+								}
+								
+							}
+						},
+						"error": function() {
+							plus.nativeUI.toast("服务器链接超时", toastStyle);
+						}
+					});
 		}
 	});
 	//当前激活选项

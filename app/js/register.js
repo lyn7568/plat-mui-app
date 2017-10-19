@@ -27,7 +27,7 @@ mui.ready(function() {
 			}
 		});
 		
-		phoneName.addEventListener('keyup', function() {
+		phoneName.addEventListener('input', function() {
 			if(phoneName.value==""){
 				obtainCode.disabled = "disabled";
 			}else{
@@ -70,8 +70,8 @@ mui.ready(function() {
 				plus.nativeUI.toast("密码由6-24个字符组成，区分大小写", toastStyle);
 				return;
 			}
-//			isReg(1);
-			isReg();
+			isReg(1);
+			//completeReg()
 		})
 		
 		/*用户协议*/
@@ -85,11 +85,15 @@ mui.ready(function() {
 			});
 		});
 		
-		changImage.addEventListener("tap",function(){
+		changImage.addEventListener("tap",function(){ 
 			this.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
 		})
 		/*校验手机号*/
 		function phoneVal() {
+			if(imgCode.value=="") {
+				plus.nativeUI.toast("请输入图形验证码", toastStyle);
+				return;
+			}
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
 			if(hunPhone.test(phoneName.value)){
 				isReg();
@@ -107,12 +111,14 @@ mui.ready(function() {
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
 				success: function(data) {
+					console.log(JSON.stringify(data))
 					if(data.data == false) {
 						plus.nativeUI.toast("该账号已存在，请直接登录", toastStyle);
 						return;
 					} else {
 						if(oArg==1){
-							codeVal();
+							completeReg()
+							//sendAuthentication(1)
 						}else{	
 							phoneCode = true;
 							if(phoneCode){
@@ -127,25 +133,32 @@ mui.ready(function() {
 				}
 			});
 		}
-
+		
 		/*手机发送验证码*/ 
 		function sendAuthentication() {
 			console.log(phoneName.value)
 			console.log(imgCode.value)
+			var cookieValue=plus.navigator.getCookie("http://www.ekexiu.com/ajax/PictureVC");
+			console.log(cookieValue)
+			//plus.navigator.setCookie( baseUrl + '/ajax/regmobilephone', cookieValue )
 			mui.ajax(baseUrl + '/ajax/regmobilephone', {
+				header:{
+					"Cookie":cookieValue
+				},
 				data: {
 					mobilePhone: phoneName.value,
 					vcode: imgCode.value
 				},
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
-				async: false,
+				async: true,
 				timeout: 10000, //超时设置
 				success: function(data) {
 					console.log(JSON.stringify(data))
 					if(data.success) {
 						state = data.data;
-						doClick();
+							doClick();
+						
 					}else{
 						if(data.code==20001) {
 							plus.nativeUI.toast("请输入正确的图形验证码", toastStyle);
@@ -177,6 +190,7 @@ mui.ready(function() {
 					obtainCode.style.display = "block";
 					getCodeOff.style.display = "none";
 					obtainCode.value = "获取验证码";
+					changImage.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
 				}
 			}, 1000);
 		}

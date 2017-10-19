@@ -790,16 +790,28 @@ mui.plusReady(function() {
 
 		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
 
-			var flag = 'professor';
-			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
-			webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
-				'proId': proId,
-				'flag': flag
-			});
-
-			webviewShow.addEventListener("loaded", function() {
-
-			}, false);
+//			var flag = 'professor';
+//			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
+//			webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
+//				'proId': proId,
+//				'flag': flag
+//			});
+//
+//			webviewShow.addEventListener("loaded", function() {
+//
+//			}, false);
+			mui.openWindow({
+				url: '../html/weChat.html',
+				id: 'weChat.html',
+				show: {
+					autoShow: true,
+					aniShow: "slide-in-right",
+				},
+				extras: {
+					professorId: proId,
+					flag:1
+				}
+			})
 
 		} else {
 			mui.openWindow({

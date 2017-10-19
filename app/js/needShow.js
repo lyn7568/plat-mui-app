@@ -4,6 +4,7 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
 		var demandId = ws.demanid;
+		var professorId=ws.professorId;
 		var mySelf=document.getElementsByClassName("mySelf")[0];
 		var mySelf2=document.getElementsByClassName("mySelf2")[0];
 		var notSelf=document.getElementsByClassName("notSelf")[0];
@@ -317,6 +318,19 @@ mui.ready(function() {
 		//点击回复按钮调用函数
 		function replayGo(){
 			if(userid && userid != null && userid != "null") {
+				mui.openWindow({
+								url: '../html/weChat.html',
+								id: 'weChat.html',
+								show: {
+									autoShow: true,
+									aniShow: "slide-in-right",
+								},
+								extras: {
+									professorId: professorId,
+									flag:1
+								}
+							})
+				return;
 				mui.ajax(baseUrl+"/ajax/consult/byDemand",{
 					"type": "GET",
 					"async": false,

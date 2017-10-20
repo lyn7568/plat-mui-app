@@ -12,13 +12,13 @@ mui.ready(function() {
 		}
 		/*登陆*/
 		window.addEventListener('logined', function(event) {
-			var userId = event.detail.id;
+			var userid = event.detail.id;
 			content1.style.display = 'block';
 			content2.style.display = 'none';
 			messageList()
 		});
 		window.addEventListener('exited', function(event) {
-			var userId = event.detail.id;
+			var userid = event.detail.id;
 			content1.style.display = 'none';
 			content2.style.display = 'block';
 			document.getElementById('unlogin').style.display = 'block';

@@ -464,3 +464,45 @@ function wlog(dt, id, src) {
 		dataType: "json"
 	});
 }
+function client1() {
+   	var uId = plus.storage.getItem('userid');
+   	var bId = plus.storage.getItem('bid');
+   	if(uId && uId != "null" && uId != null) {
+   		if(bId && bId != "null" && bId != null) {
+   			if(uId==bId) {
+   				return;
+   			}else {
+   				client();
+   			}
+   		}else{
+   			client();
+   		}
+   	}else{
+   		return;
+   	}
+   }
+ function client() {
+		var infor=plus.push.getClientInfo();
+		mui.ajax(baseUrl + '/ajax/push/bindAlias',{
+		data: {
+			alias: plus.storage.getItem('userid'),
+			cid: infor.clientid
+		},
+		dataType: 'json', //数据格式类型
+		type: 'post', //http请求类型
+		timeout: 10000,
+		async: true,
+		success: function(data) {
+			if(data.success) {
+				if(data.data) {
+					plus.storage.setItem('bid', plus.storage.getItem('userid'));
+				}
+			}
+			
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+		}
+	});
+
+}

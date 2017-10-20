@@ -250,6 +250,7 @@ mui.ready(function() {
 					if(data.success) {
 						var userId = data.data;
 						plus.storage.setItem('userid', userId);
+						client()
 						plus.storage.setItem('name', name.value);
 						plus.nativeUI.toast("已完成注册，请填写个人信息", toastStyle);
 						mui.openWindow({

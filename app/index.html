@@ -31,7 +31,6 @@
 	</nav>
     <script src="js/public/mui.min.js"></script>
 	<script src="js/public/base.js"></script>
-	
 <script type="text/javascript" charset="utf-8">
 	var subpages = ['html/index_home.html', 'html/discover_index.html', 'html/consult_home.html', 'html/myaccount.html'];
 	var subpage_style = {
@@ -54,6 +53,23 @@
 			}
 			self.append(sub);
 		}
+		client1()
+ 		document.addEventListener("plusready", function() {
+ 			plus.push.addEventListener("click", function(msg) {
+ 				plus.push.clear();
+ 				//plus.push.remove(plus.push.getAllMessage());
+ 				//plus.push.setAutoNotification(false);
+ 				plus.webview.getLaunchWebview().show();
+ 				plus.webview.getWebviewById("html/consult_home.html").show();
+ 				mui(".mui-tab-item").each(function(index) {
+ 					if(index == 2) {
+ 						this.classList.add("mui-active");
+ 					} else {
+ 						this.classList.remove("mui-active");
+ 					}
+ 				})
+ 			}, false);
+ 		}, false)
 		window.addEventListener("newId", function(event) {
 			if(event.detail.rd==1) {
 				document.getElementById("meLInum").style.display="block"

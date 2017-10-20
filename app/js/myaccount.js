@@ -76,6 +76,7 @@ mui.ready(function() {
 			userInformation();
 			document.getElementById("noExpert").classList.remove("displayNone");
 			document.getElementById("isExpert").classList.add("displayNone");
+			client1();
 		});
 
 		//在修改上传图片触发的事件

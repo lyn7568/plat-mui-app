@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../css/app.css" />
 		<link href="../css/mui.imageviewer.css" rel="stylesheet" />
 		<style>
@@ -341,7 +342,7 @@
  			</span>
 			<h1 class="mui-title toptit" id="chatName">
  			</h1>
- 			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore">...</a>
+ 			<a class="mui-icon iconfont icon-moreandroid mui-pull-right topmore" id="BtnMore"></a>
 			<!--<span class="mui-icon mui-icon-contact mui-pull-right personhead"></span>-->
 		</header>
 		<pre id='h'></pre>
@@ -513,7 +514,7 @@
 												record.push({
 													sender: 'zs',
 													type: 'text',
-													content: $data[i].cnt,
+													content: $data[i].cnt.replace(new RegExp('\n', 'gm'), '<br/>'),
 													url: url1,
 													timeStr: $data[i].sendTime,
 													timeGe: time1
@@ -522,7 +523,7 @@
 												record.push({
 													sender: 'self',
 													type: 'text',
-													content: $data[i].cnt,
+													content: $data[i].cnt.replace(new RegExp('\n', 'gm'), '<br/>'),
 													url: url2,
 													timeStr: $data[i].sendTime,
 													timeGe: time1
@@ -690,7 +691,7 @@
 								data: {
 									sender: userid,
 									reciver: professorId,
-									cnt: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
+									cnt: ui.boxMsgText.value
 								},
 								dataType: 'json', //服务器返回json格式数据
 								type: 'POST', //HTTP请求类型

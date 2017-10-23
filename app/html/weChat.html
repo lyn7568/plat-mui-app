@@ -342,7 +342,7 @@
  			</span>
 			<h1 class="mui-title toptit" id="chatName">
  			</h1>
- 			<a class="mui-icon iconfont icon-moreandroid mui-pull-right topmore" id="BtnMore"></a>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right topmore" id="BtnMore"></a>
 			<!--<span class="mui-icon mui-icon-contact mui-pull-right personhead"></span>-->
 		</header>
 		<pre id='h'></pre>
@@ -424,18 +424,18 @@
 						softinputMode: "adjustResize"
 					});
 					var professorId = plus.webview.currentWebview().professorId;
-					document.getElementById("BtnMore").addEventListener("tap",function(){
+					document.getElementById("BtnMore").addEventListener("tap", function() {
 						mui.openWindow({
-				url: '../html/jubao.html',
-				id: 'jubao.html',
-				show: {
-					autoShow: true,
-					aniShow: "slide-in-right",
-				},
-				extras: {
-					professorId: professorId
-				}
-			})
+							url: '../html/jubao.html',
+							id: 'jubao.html',
+							show: {
+								autoShow: true,
+								aniShow: "slide-in-right",
+							},
+							extras: {
+								professorId: professorId
+							}
+						})
 					})
 					var userid = plus.storage.getItem('userid');
 					var url1 = baseUrl + '/images/head/' + professorId + '_l.jpg';
@@ -457,18 +457,59 @@
 							//alert("ll");
 						}
 					};
-					document.getElementById("backBtn").addEventListener("tap",function(){
+					document.getElementById("backBtn").addEventListener("tap", function() {
 						var web3 = plus.webview.getWebviewById("consultlistNew.html");
-												mui.fire(web3, "newId");
-												var web4=plus.webview.getLaunchWebview();
-							mui.fire(web4, "newId", {
-								rd: 3
-							});
+						mui.fire(web3, "newId");
+						var web4 = plus.webview.getLaunchWebview();
+						mui.fire(web4, "newId", {
+							rd: 3
+						});
 					})
-					
+
 					var record = []; //消息数组
 					messageList();
-					pe()
+					pe();
+					if(mui.os.ios) {
+						totalNum();
+					}
+					function sendJava(num) {
+						var infor=plus.push.getClientInfo();
+						mui.ajax(baseUrl + '/ajax/webMsg/applyBadge', {
+							"data": {
+								badge:num,
+								cid:infor.clientid,
+								devtoken :infor.token
+							},
+							"type": "get",
+							"async": true,
+							"context": this,
+							"success": function(data) {
+								if(data.success) {
+								}
+							},
+							"error": function() {
+								plus.nativeUI.toast("服务器链接超时", toastStyle);
+							}
+						});
+					}
+					function totalNum() {
+						mui.ajax(baseUrl + '/ajax/webMsg/unReadedCount', {
+							"data": {
+								id: plus.storage.getItem('userid')
+							},
+							"type": "get",
+							"async": true,
+							"context": this,
+							"success": function(data) {
+								if(data.success) {	
+									sendJava(data.data);
+								}
+							},
+							"error": function() {
+								plus.nativeUI.toast("服务器链接超时", toastStyle);
+							}
+						});
+					}
 
 					function pe() {
 						mui.ajax(baseUrl + '/ajax/professor/baseInfo/' + professorId, {

@@ -483,9 +483,15 @@ function client1() {
    }
  function client() {
 		var infor=plus.push.getClientInfo();
+		var ouid;
+		if(mui.os.ios) {
+			ouid="I_"+plus.storage.getItem('userid')
+		}else{
+			ouid="A_"+plus.storage.getItem('userid')
+		}
 		mui.ajax(baseUrl + '/ajax/push/bindAlias',{
 		data: {
-			alias: plus.storage.getItem('userid'),
+			alias: ouid, 
 			cid: infor.clientid
 		},
 		dataType: 'json', //数据格式类型

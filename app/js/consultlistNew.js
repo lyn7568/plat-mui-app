@@ -12,7 +12,7 @@ mui.ready(function() {
 		}
 		/*登陆*/
 		window.addEventListener('logined', function(event) {
-			var userid = event.detail.id;
+		 userid = event.detail.id;
 			content1.style.display = 'block';
 			content2.style.display = 'none';
 			messageList()

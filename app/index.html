@@ -117,9 +117,12 @@ if(mui.os.ios) {
 						"context": this,
 						"success": function(data) {
 							if(data.success) {
-								plus.runtime.setBadgeNumber(data.data);
+								if(mui.os.ios) {
+									plus.runtime.setBadgeNumber(data.data);
 									 var GeTuiSdk = plus.ios.importClass('GeTuiSdk');
             								GeTuiSdk.setBadge(data.data);
+								}
+								
 								if(data.data) {
 									
 									document.getElementById("meLInum").style.display="block"

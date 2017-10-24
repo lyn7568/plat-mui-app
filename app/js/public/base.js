@@ -512,3 +512,23 @@ function client1() {
 	});
 
 }
+ function toNum() {
+						mui.ajax(baseUrl + '/ajax/webMsg/unReadedCount', {
+							"data": {
+								id: plus.storage.getItem('userid')
+							},
+							"type": "get",
+							"async": true,
+							"context": this,
+							"success": function(data) {
+								if(data.success) {	
+									plus.runtime.setBadgeNumber(data.data);
+									 var GeTuiSdk = plus.ios.importClass('GeTuiSdk');
+            								GeTuiSdk.setBadge(data.data);
+								}
+							},
+							"error": function() {
+								plus.nativeUI.toast("服务器链接超时", toastStyle);
+							}
+						});
+					}

@@ -615,3 +615,48 @@ function proShow(){//专家
 		}
 	})
 }
+
+document.addEventListener('plusready',function(){
+    checkArguments();
+},false);
+// 判断启动方式
+function checkArguments(){
+    console.log("plus.runtime.launcher: "+plus.runtime.launcher);
+    var args= plus.runtime.arguments;
+    alert(args)
+    if(args){ //处理args参数，如打开新页面等  ekexiu://
+    	var argValue,arg_arr,sp_arr,url_sub;
+        var url=args.substr(9);
+		var n=url.indexOf("?");//使用indexOf()函数进行检索?，返回的是字符串的下标
+		var aimPage=url.substring(0,n);//获取目标页面
+		var aimPageId=aimPage.substr(8);//获取目标页面id
+		//var aimArg=url.substring(n+1,url.indexOf("="));//获取目标参数
+		if(n>=0){//使用substr进行截取
+		  url_sub=url.substr(n); //表示从n这个位置一直截取到最后 
+		  sp_arr=url_sub.split("&");//对截取到的字符串进行分割
+		  arg_arr=sp_arr[0].split("=");//对第一个数组中的值进行分割
+  		  argValue=arg_arr[1];//得到参数的值
+  		  
+  		  alert("aimPage="+aimPage+",aimPageId="+aimPageId+",argValue="+argValue)
+  		  
+  		  var webArg={
+  		  	articleId:argValue,
+  		  	proid:argValue,
+  		  	resourceId:argValue,
+  		  	paperId:argValue,
+  		  	patentId:argValue,
+  		  	cmpId:argValue
+  		  };
+  		  var aimWeb=plus.webview.create(aimPage, aimPageId, {}, webArg);
+  		  	
+		}
+  
+    }
+}
+// 处理从后台恢复
+document.addEventListener('newintent',function(){
+    console.log("addEventListener: newintent");
+    checkArguments();
+},false);
+
+

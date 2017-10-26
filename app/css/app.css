@@ -1104,6 +1104,11 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .showDetail .showMain img{max-width: 100%;/*margin-left:-32px;*/}
 .showDetail .showMain p{margin-bottom:16px;font-size:15px;color:#333;text-align:justify}
 .showDetail .showMain *{ -webkit-user-select:text; word-break: break-word;}
+#articleContent ul,#articleContent ol{padding-left:20px;}
+#articleContent ul{list-style-type:disc;}
+#articleContent ol{list-style-type:decimal;}
+#articleContent ul>li,#articleContent ol>li{padding-left:0px;}
+#articleContent ul>li>p,#articleContent ol>li>p{margin: 0;}
 ul.tagList{padding:0;margin:18px 0 8px;overflow: hidden;}
 ul.tagList>li{list-style:none;float: left;margin-right:10px;margin-bottom:10px;padding:4px 12px;color: #666;background:#EFEFEF;}
 ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}

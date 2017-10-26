@@ -623,7 +623,7 @@ document.addEventListener('plusready',function(){
 function checkArguments(){
     console.log("plus.runtime.launcher: "+plus.runtime.launcher);
     var args= plus.runtime.arguments;
-    alert(args)
+    //alert(args)
     if(args){ //处理args参数，如打开新页面等  ekexiu://
     	var argValue,arg_arr,sp_arr,url_sub;
         var url=args.substr(9);
@@ -637,15 +637,15 @@ function checkArguments(){
 		  arg_arr=sp_arr[0].split("=");//对第一个数组中的值进行分割
   		  argValue=arg_arr[1];//得到参数的值
   		  
-  		  alert("aimPage="+aimPage+",aimPageId="+aimPageId+",argValue="+argValue)
-  		  
+  		 // alert("aimPage="+aimPage+",aimPageId="+aimPageId+",argValue="+argValue)
   		  var webArg={
   		  	articleId:argValue,
   		  	proid:argValue,
   		  	resourceId:argValue,
   		  	paperId:argValue,
   		  	patentId:argValue,
-  		  	cmpId:argValue
+  		  	cmpId:argValue,
+  		  	demanid:argValue
   		  };
   		  var aimWeb=plus.webview.create(aimPage, aimPageId, {}, webArg);
   		  	

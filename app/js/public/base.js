@@ -1,8 +1,8 @@
 //公共文件
 mui.init();
 //var baseUrl = "http://www.ekexiu.com", 
-//var baseUrl = "http://192.168.3.233",
-var baseUrl = "http:192.168.3.233:81",    
+var baseUrl = "http://192.168.3.233",
+//var baseUrl = "http:192.168.3.233:81",    
 	toastStyle = {
 		'verticalAlign': 'top',
 	}
@@ -392,7 +392,7 @@ function cancelCollectionAbout(watchObject,sel, num,flag) {
 
 }
 function checkVersion(){
-		mui.plusReady(function(){
+		//mui.plusReady(function(){
 			if(!plus.webview.currentWebview()) return;
 			// 获取本地应用资源版本号
 		    plus.runtime.getProperty(plus.runtime.appid,function(inf){
@@ -448,7 +448,8 @@ function checkVersion(){
 					}
 				});
 			});
-		})
+			
+		//})
 	}
 function wlog(dt, id, src) {
 	var src = src || "1";

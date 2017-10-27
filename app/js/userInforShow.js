@@ -233,7 +233,8 @@ mui.plusReady(function() {
 		var dId=this.getAttribute("id");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
-			demanid: dId
+			demanid: dId,
+			professorId:proId
 		});
 	})
 	function getResource() {

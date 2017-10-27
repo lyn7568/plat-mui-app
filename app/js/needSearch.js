@@ -117,6 +117,7 @@ function demandOnePase() {
 							var liStr=document.createElement("li");
 							liStr.className="mui-table-view-cell";
 							liStr.setAttribute( "data-id",$info[i].id);
+							liStr.setAttribute( "data-creator",$info[i].creator);
 							document.getElementById("demandList").appendChild(liStr);
 							demandHtml($info[i],liStr);
 						}

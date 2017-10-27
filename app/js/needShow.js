@@ -330,33 +330,7 @@ mui.ready(function() {
 									flag:1
 								}
 							})
-				return;
-				mui.ajax(baseUrl+"/ajax/consult/byDemand",{
-					"type": "GET",
-					"async": false,
-					"data":{
-						"demandId":demandId,
-						"professorId":userid
-					},
-					"success": function(data) {
-						if(data.success) {
-							console.log(JSON.stringify(data))
-							if(data.data == null) {
-								var btn = ["确定", "取消"];
-								mui.confirm("确认回复该需求？", "提示", btn, function(e) {
-									if(e.index == 0) {
-										createConsult()
-									}
-								})
-							}else{
-								webviewShow = plus.webview.create("../html/chats.html", 'chats.html', {}, {
-									'consultId': data.data,
-									'consultantId': userid
-								});
-							}
-						}
-					}
-				});
+				
 			}else{
 				isLogin();
 			}

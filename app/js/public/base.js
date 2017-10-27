@@ -453,7 +453,7 @@ function checkVersion(){
 function wlog(dt, id, src) {
 	var src = src || "1";
 	mui.ajax({
-		url: "http://www.ekexiu.com:8082/log/ajax/log",
+		url: "http://www.ekexiu.com:8082/log/jsonp/log",
 		data: {
 			"id": id,
 			"src": src,
@@ -461,7 +461,7 @@ function wlog(dt, id, src) {
 		},
 		success:function(data) {
 		},
-		dataType: "json"
+		dataType: "jsonp"
 	});
 }
 function client1() {

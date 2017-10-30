@@ -350,18 +350,29 @@
 			this.options.up.callback.apply(this);
 		},
 		endPullDownToRefresh: function() {
+			var self=this;
 			this.loading = false;
 			this.pullUpTips && this.pullUpTips.classList.remove(CLASS_HIDDEN);
 			this.pullDownTips.classList.add(CLASS_TRANSITIONING);
-			this.pullDownTips.style.webkitTransform = 'translate3d(0,0,0)';
-			if (this.deltaY <= 0) {
-				this.removePullDownTips();
+			//alert( this.pullDownTips.innerHTML)
+			
+			//this.pullDownTips.scrollTo(-50px, 500);
+				//this.pullDownTips.style.webkitTransform = 'translate3d(0,0,0)';
+			
+			this.pullDownTips.style.webkitTransition = "height 300ms ease";
+			this.pullDownTips.style.height=0+"px";
+			//this.pullDownTips.style.webkitTransition="all 0 ease 0";
+			setTimeout(function(){
+				if (self.deltaY <= 0) {
+				self.removePullDownTips();
 			} else {
-				this.removing = true;
+				self.removing = true;
 			}
-			if (this.isInScroll) {
-				$(this.element.parentNode).scroll().refresh();
+			if (self.isInScroll) {
+				$(self.element.parentNode).scroll().refresh();
 			}
+			},30)
+			
 		},
 		endPullUpToRefresh: function(finished) {
 			if (finished) {

@@ -31,7 +31,6 @@ mui.ready(function() {
 			plus.nativeUI.showWaiting();
 			plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
 				articleId: id
-				
 			});
 		})
 		mui("#likePer").on("tap", "li", function() {
@@ -55,12 +54,21 @@ mui.ready(function() {
 				"cmpId": id
 			});
 		})
+		mui("#likeDemand").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
+				"demanid": id
+			});
+		})
+		
 		getWatchCon(1,10,1)
 		getWatchCon(1,10,2)
 		getWatchCon(1,10,3)
 		getWatchCon(1,10,4)
 		getWatchCon(1,10,5)
 		getWatchCon(1,10,6)
+		getWatchCon(1,10,7)
 		
 		//左滑及右滑
 		document.querySelector('#slider').addEventListener('slide', function(event) {
@@ -77,6 +85,8 @@ mui.ready(function() {
 				getWatchCon(1,10,5)
 			}else if($this.innerHTML == "企业") {
 				getWatchCon(1,10,6)
+			}else if($this.innerHTML == "需求") {
+				getWatchCon(1,10,7)
 			}
 		});
 		//点击
@@ -94,6 +104,8 @@ mui.ready(function() {
 				getWatchCon(1,10,5)
 			}else if($this.innerHTML == "企业") {
 				getWatchCon(1,10,6)
+			}else if($this.innerHTML == "需求") {
+				getWatchCon(1,10,7)
 			}
 		});
 
@@ -126,6 +138,8 @@ mui.ready(function() {
 							detailPer(datalist);
 						}else if(num==6){
 							detailCmp(datalist);
+						}else if(num==7){
+							detailDemand(datalist);
 						}
 					}else{
 						if(num==1){
@@ -139,9 +153,9 @@ mui.ready(function() {
 						}else if(num==5){
 							document.getElementById("likePer").nextSibling.classList.remove("displayNone");
 						}else if(num==6){
-							//alert(JSON.stringify(data))
 							document.getElementById("likeCmp").nextSibling.classList.remove("displayNone");
-							
+						}else if(num==7){
+							document.getElementById("likeDemand").nextSibling.classList.remove("displayNone");
 						}
 					}
 				},
@@ -408,6 +422,50 @@ mui.ready(function() {
 
 			}
 		}
-	
+		
+		function detailDemand(datalist) {
+			document.getElementById("likeDemand").innerHTML="";
+			var arr=[];
+			for(var i in datalist) {
+				arr[i]=datalist[i].watchObject;
+			}
+			mui.ajax(baseUrl+"/ajax/demand/qm",{
+				data: {
+					id:arr,
+				},
+				dataType: 'json', //数据格式类型
+				type: 'get', //http请求类型
+				traditional: true,
+				success: function(data) {
+					if(data.success && data.data != "") {
+						var $data=data.data;
+						for(var i = 0; i < $data.length; i++) {
+							var li = document.createElement("li");
+							
+							li.setAttribute("data-id",$data[i].id);
+							li.className = "mui-table-view-cell flexCenter OflexCenter";
+							var strCon='';
+							strCon+='<div class="madiaInfo">'
+							strCon+='<p class="h1Font mui-ellipsis-2">'+ $data[i].title +'</p>'
+							strCon+='<div class="showli mui-ellipsis">'
+							
+							if($data[i].city){ strCon+='<span>'+$data[i].city+'</span>' }
+							if($data[i].duration!=0){ strCon+='<span>预期 '+demandDuration[$data[i].duration]+'</span>' }
+							if($data[i].cost!=0){ strCon+='<span>预算 '+demandCost[$data[i].cost]+'</span>' }
+							if($data[i].invalidDay){ strCon+='<span>有效期至 '+TimeTr($data[i].invalidDay)+'</span>' }
+							
+							strCon+='</div></div>'
+							
+							li.innerHTML = strCon
+							document.getElementById("likeDemand").appendChild(li);
+			
+						}
+					}
+				},
+				error:  function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle); 
+				}
+			});
+		}
 	})
 });

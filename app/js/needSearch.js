@@ -1,308 +1,155 @@
-var orderKey, subject = "",
-	industry = "",
-	demandAim = "",
-	sortType = "";
 mui.init({
 	pullRefresh: {
-		container: '#pullrefresht',
+		container: '#pullrefresh',
 		up: {
 			height: 50,
 			contentrefresh: '正在加载...',
 			callback: pullupRefresh
+		},
+		down: {
+			auto:true,
+			callback: pulldownRefresh
 		}
 	}
 });
-
+var Num=1;
 function pullupRefresh() {
 	setTimeout(function() {
-		personalMessage(orderKey)
-	}, 1000);
+		Num = ++Num;
+		demandList(5,Num);
+		mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+	}, 1500);
+
+}
+function pulldownRefresh() {
+	setTimeout(function() {
+		demandOnePase();
+		mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+	}, 1500);
 }
 mui.plusReady(function() {
-	var userid = plus.storage.getItem('userid');
-	var industryid = document.getElementById("headck2");
-	var subjectid = document.getElementById("headck3");
-	personalMessage();
-	/*需求目的*/
-	mui("#middlePopover1").on('tap', '.mui-navigate-right', function(e) {
-		plus.nativeUI.showWaiting(); //显示等待框
-		if(this.innerHTML == "不限") {
-			document.getElementById("headck1").innerHTML = "需求目的"
-		} else {
-			document.getElementById("headck1").innerHTML = this.innerHTML;
-		}
-		document.querySelector('.mui-backdrop').style.display = 'none';
-		document.getElementById("middlePopover1").style.display = 'none';
-		//去掉样式类mui-active,要不然会多点击一次
-		document.getElementById("middlePopover1").classList.remove('mui-active');
-		if(this.innerText == "技术咨询") {
-			demandAim = 1;
-		} else if(this.innerText == "资源咨询") {
-			demandAim = 2;
-		} else if(this.innerText == "其他事务") {
-			demandAim = 3;
-		} else {
-			demandAim = "";
-		}
-
-		mui('#pullrefresht').pullRefresh().refresh(true);
-		personalMessage(0);
-		plus.nativeUI.closeWaiting(); //关闭等待框
-	});
-	/*时间排序*/
-	mui("#middlePopover4").on('tap', '.mui-navigate-right', function(e) {
-		plus.nativeUI.showWaiting(); //显示等待框
-		document.getElementById("headck4").innerHTML = this.innerHTML;
-		document.querySelector('.mui-backdrop').style.display = 'none';
-		document.getElementById("middlePopover4").style.display = 'none';
-		//去掉样式类mui-active,要不然会多点击一次
-		document.getElementById("middlePopover4").classList.remove('mui-active');
-		if(this.innerText == "按最新发布时间排序") {
-			sortType = 0;
-		} else if(this.innerText == "按最早发布时间排序") {
-			sortType = 1;
-		}
-		mui('#pullrefresht').pullRefresh().refresh(true);
-		personalMessage(0);
-		plus.nativeUI.closeWaiting(); //关闭等待框
-	});
-	/*热门行业*/
-	mui(".yyhy").on('tap', 'a', function() {
-		industry = this.innerText;
-		industryid.innerText = industry;
-		document.querySelector('#yyhy li a.active').classList.remove('active');
-		this.classList.add("active");
-		if(industry == "不限") {
-			industry = "";
-			industryid.innerText = "热门行业";
-		}
+	mui("#demandList").on("tap", "li", function() {
+		var oDemandId = this.getAttribute("data-id");
+		var poD=this.getAttribute("data-creator");
 		plus.nativeUI.showWaiting();
-		mui('.mui-popover').popover('hide');
-		mui('#pullrefresht').pullRefresh().refresh(true);
-		console.log(industry);
-		personalMessage(0);
-	});
-	/*热门领域*/
-	mui(".xsly").on('tap', 'a', function() {
-		subject = this.innerText;
-		subjectid.innerText = subject;
-		document.querySelector('#xsly li a.active').classList.remove('active');
-		this.classList.add("active");
-		if(subject == "不限") {
-			subject = "";
-			subjectid.innerText = "热门领域";
-		}
-		plus.nativeUI.showWaiting();
-		mui('.mui-popover').popover('hide');
-		mui('#pullrefresht').pullRefresh().refresh(true);
-		personalMessage(0);
-	});
-	/*进入needSure.html*/
-	mui(".tableList").on('tap', 'li', function() {
-		var oDemandId = this.getAttribute("demandId");
-		mui.openWindow({
-			url: '../html/needSure.html',
-			id: '../html/needSure.html',
-			show: {
-				autoShow: false,
-				aniShow: "slide-in-right",
-			},
-			extras: {
-					deman:oDemandId
-			},
+		plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
+			demanid: oDemandId,
+			professorId:poD
 		});
-	});
-});
+	})
+})
 
-function personalMessage(a) {
 
+/*需求列表*/
+function demandList(pageSize, pageNo) {
 	mui.plusReady(function() {
-		var ws = plus.webview.currentWebview();
-		var c = new Object();
-		c.sortType = sortType;
-		c.demandAim = demandAim;
-		c.industry = industry;
-		c.rows = 10;
-		if(a) {
-			c.orderKey = a
-		}
-		mui.ajax(baseUrl + "/ajax/demand/ql", {
-			dataType: 'json', //数据格式类型
-			type: 'GET', //http请求类型
-			timeout: 10000, //超时设置
-			data: c,
+		mui.ajax(baseUrl+"/ajax/demand/search",{
+			type: "GET",
+			timeout: 10000,
+			dataType: "json",
+			traditional:true,
+			data: {
+				"state":"1",
+				"pageNo": pageNo,
+				"pageSize":pageSize
+			},
 			success: function(data) {
 				if(data.success) {
-					console.log(JSON.stringify(data));
+					var ws=plus.webview.getWebviewById("../html/needSearch.html");
 					plus.nativeUI.closeWaiting();
 					ws.show("slide-in-right", 150);
-					if(!a) {
-						document.getElementsByClassName("tableList")[0].innerHTML = ""
+					if(pageNo==1) {
+						document.getElementById("demandList").innerHTML="";
 					}
-					if(data.data.length == 0) {
-						mui('#pullrefresht').pullRefresh().disablePullupToRefresh(true);
-						return;
+					if(pageNo!=data.data.pageNo) {
+						data.data.data=[];
 					}
-
-					var datalist = data.data;
-					datalistEach(datalist);
-					orderKey = data.data[data.data.length - 1].orderKey;
-					if(data.data.length == 10) {
-						mui('#pullrefresht').pullRefresh().endPullupToRefresh(false); /*能上拉*/
+					var $info = data.data.data;
+					console.log(JSON.stringify(data))
+					if($info.length > 0){
+						for(var i = 0; i < $info.length; i++) {
+							var liStr=document.createElement("li");
+							liStr.className="mui-table-view-cell";
+							liStr.setAttribute( "data-id",$info[i].id);
+							liStr.setAttribute( "data-creator",$info[i].creator);
+							document.getElementById("demandList").appendChild(liStr);
+							demandHtml($info[i],liStr);
+						}
+					}
+					if(pageNo < Math.ceil(data.data.total / data.data.pageSize)) {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
 					} else {
-						mui('#pullrefresht').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
 					}
 				}
 			},
 			error: function() {
 				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				mui('#pullrefresht').pullRefresh().endPullupToRefresh(true);
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				return;
 			}
-		});
+		})
 	})
 }
-
-function datalistEach(datalist) {
-	mui.each(datalist, function(index, ite) {
-		item = ite.professor;
-		/*获取头像*/
-		if(item.hasHeadImage == 1) {
-			var img = baseUrl + "/images/head/" + item.id + "_l.jpg";
-		} else {
-			var img = "../images/default-photo.jpg";
-		}
-
-		var title = "";
-		var office = "";
-		var orgName = "";
-		var address = "";
-		if(item.title && item.office && item.orgName && item.address) {
-			title = item.title + "，";
-			office = item.office + "，";
-			orgName = item.orgName + " | ";
-			address = item.address;
-		} else if(!item.title && item.office && item.orgName && item.address) {
-			office = item.office + "，";
-			orgName = item.orgName + " | ";
-			address = item.address;
-		} else if(item.title && !item.office && item.orgName && item.address) {
-			title = item.title + "，";
-			orgName = item.orgName + " | ";
-			address = item.address;
-		} else if(item.title && item.office && !item.orgName && item.address) {
-			title = item.title + "，";
-			office = item.office + " | ";
-			address = item.address;
-		} else if(item.title && item.office && item.orgName && !item.address) {
-			title = item.title + "，";
-			office = item.office + "，";
-			orgName = item.orgName;
-		} else if(!item.title && !item.office && item.orgName && item.address) {
-			orgName = item.orgName + " | ";
-			address = item.address;
-		} else if(!item.title && item.office && !item.orgName && item.address) {
-			office = item.office + " | ";
-			address = item.address;
-		} else if(!item.title && item.office && item.orgName && !item.address) {
-			office = item.office + "，";
-			orgName = item.orgName;
-		} else if(item.title && !item.office && !item.orgName && item.address) {
-			title = item.title + " | ";
-			address = item.address;
-		} else if(item.title && !item.office && item.orgName && !item.address) {
-			office = item.title + "，";
-			address = item.orgName;
-		} else if(item.title && item.office && !item.orgName && !item.address) {
-			title = item.title + "，";
-			office = item.office;
-		} else if(!item.title && !item.office && !item.orgName && item.address) {
-			address = item.address;
-		} else if(!item.title && !item.office && item.orgName && !item.address) {
-			orgName = item.orgName;
-		} else if(!item.title && item.office && !item.orgName && !item.address) {
-			office = item.office;
-		} else if(item.title && !item.office && !item.orgName && !item.address) {
-			title = item.title;
-		}
-		var typeTname = '';
-		var oSty = autho(item.authType, item.orgAuth, item.authStatus);
-		typeTname='<em class="authicon ' + oSty.sty + '"></em>'
+function demandOnePase() {
+	mui.plusReady(function() {
+		Num=1;
+		mui.ajax(baseUrl+"/ajax/demand/search",{
+			type: "GET",
+			timeout: 10000,
+			dataType: "json",
+			traditional:true,
+			data: {
+				"state":"1",
+				"pageNo": 1,
+				"pageSize":5
+			},
+			success: function(data) {
+				if(data.success) {
+					mui('#pullrefresh').pullRefresh().refresh(true);
+					var ws=plus.webview.getWebviewById("../html/needSearch.html");
+					plus.nativeUI.closeWaiting();
+					ws.show("slide-in-right", 150);
+					document.getElementById("demandList").innerHTML="";
+					var $info = data.data.data;
+					if($info.length > 0){
+						for(var i = 0; i < $info.length; i++) {
+							var liStr=document.createElement("li");
+							liStr.className="mui-table-view-cell";
+							liStr.setAttribute( "data-id",$info[i].id);
+							liStr.setAttribute( "data-creator",$info[i].creator);
+							document.getElementById("demandList").appendChild(liStr);
+							demandHtml($info[i],liStr);
+						}
+					}
+					if(1 < Math.ceil(data.data.total / data.data.pageSize)) {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
+					} else {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); /*不能上拉*/
+					}
+				}
+			},
+			error: function() {
+				plus.nativeUI.toast("服务器链接超时", toastStyle);
+				return;
+			}
+		})
+	})
+}
+function demandHtml($data,liStr) {
+	var strCon='';
+		strCon+='<div class="madiaInfo">'
+		strCon+='<p class="h1Font mui-ellipsis-2">'+ $data.title +'</p>'
+		strCon+='<p class="h2Font mui-ellipsis-5">'+ $data.descp +'</p>'
+		strCon+='<div class="showli mui-ellipsis">'
 		
-		var li = document.createElement('li');
-		li.className = 'mui-table-view-cell mui-media';
-		li.setAttribute("demandId", ite.demandId);
-		var oCreateTime = ite.createTime.substr(0, 4) + "-" + ite.createTime.substr(4, 2) + "-" + ite.createTime.substr(6, 2) + " " + ite.createTime.substr(8, 2) + ":" + ite.createTime.substr(10, 2);
-		var odemand, odemandAim;
-		(ite.demandType == 1) ? odemand = "个人": odemand = "企业";
-		(ite.demandAim == 1) ? odemandAim = "技术": (ite.demandAim == 2) ? odemandAim = "资源" : odemandAim = "其他";
-		var oString = '<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">' + ite.demandTitle + '</span>'
-		oString += '<div class="coustatus mui-pull-right">'
-		oString += '<span class="aimlabel">' + odemand + '</span>'
-		oString += '<span class="aimlabel">' + odemandAim + '</span></div></div>'
-		oString += '<a class="proinfor itemBtn">' <!-- displayNone-->
-		oString += '<img class="mui-media-object mui-pull-left headimg headRadius" src="' + img + '">'
-		oString += '<div class="mui-media-body">'
-		oString += '<p class="listtit">' + item.name + ' ' + typeTname + ''
-		oString += '<span class="thistime">' + oCreateTime + '</span></p>'
-		oString += '<p class="listtit2">'
-		oString += '<span>' + title + '</span><span>' + office + '</span><span>' + orgName + '</span><span>' + address + '</span></p>'
-		oString += '<p class="listtit3 mui-ellipsis">' + ite.demandContent + '</p></div></a>'
-		li.innerHTML = oString;
-		document.getElementsByClassName("tableList")[0].appendChild(li);
-
-	});
+		if($data.city){ strCon+='<span>'+$data.city+'</span>' }
+		if($data.duration!=0){ strCon+='<span>预期 '+demandDuration[$data.duration]+'</span>' }
+		if($data.cost!=0){ strCon+='<span>预算 '+demandCost[$data.cost]+'</span>' }
+		if($data.invalidDay){ strCon+='<span>有效期至 '+TimeTr($data.invalidDay)+'</span>' }
+		
+		strCon+='</div></div>'
+	liStr.innerHTML=strCon;
 }
 
-mui.plusReady(function() {
-	//应用行业
-	var yyhy = document.getElementById("yyhy");
-	var xsly = document.getElementById("xsly");
-	mui.ajax(baseUrl + '/ajax/dataDict/qaDictCode', {
-		data: {
-			"dictCode": "INDUSTRY"
-		},
-		dataType: 'json', //数据格式类型
-		type: 'GET', //http请求类型
-		timeout: 10000,
-		success: function(data) {
-			var finallist = '<li class="mui-table-view-cell mui-col-xs-5"><a class="active">不限</a></li>';
-			//			console.log(data.success)
-			//			console.log(JSON.stringify(data.data))
-			if(data.success && data.data != "") {
-				mui.each(data.data, function(i, n) {
-					finallist += '<li class="mui-table-view-cell mui-col-xs-5"><a >' + n.caption + '</a></li>';
-				});
-				yyhy.innerHTML = finallist;
-			}
 
-		},
-		error: function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-		}
-	});
-	//学术领域
-	mui.ajax(baseUrl + '/ajax/dataDict/qaDictCode', {
-		data: {
-			"dictCode": "SUBJECT"
-		},
-		dataType: 'json', //数据格式类型
-		type: 'GET', //http请求类型
-		timeout: 10000,
-		success: function(data) {
-			var finallist = '<li class="mui-table-view-cell mui-col-xs-5"><a class="active" >不限</a></li>';
-			//console.log(data.success)
-			//console.log(JSON.stringify(data.data))
-			if(data.success && data.data != "") {
-				mui.each(data.data, function(i, n) {
-					finallist += '<li class="mui-table-view-cell mui-col-xs-5"><a >' + n.caption + '</a></li>';
-				});
-				xsly.innerHTML = finallist;
-			}
-		},
-		error: function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-		}
-	});
-
-})

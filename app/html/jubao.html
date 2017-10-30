@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			#table {
+				background: #ffffff;
+			}
+			/*#table li .proinfor{background:#FFFFFF;}*/
+			
+			#table li:first-child {
+				margin-top: 0;
+			}
+			
+			#table li.mui-table-view-cell:after {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				left: 64px;
+				height: 1px;
+				content: '';
+				background-color: #c8c7cc;
+			}
+			
+			#table li.mui-table-view-cell:last-child:after {
+				background: none;
+			}
+			#breif {
+				margin-top:20px;
+				background: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit">更多选项</h1>
+		</header>
+		<div class="mui-content researchAreaBox mui-scroll-wrapper searchTab" id="pullrefresh">
+			<div class="mui-scroll">
+				<ul class="mui-table-view protable" id="table">
+					<li class="mui-table-view-cell" id="lis">
+				<div class="flexCenter OflexCenter mui-clearfix">
+					<div class="madiaHead useHead" id="img"></div>
+					<div class="madiaInfo">
+						<p><span class="h1Font" id="name"></span><em class="authicon " title="科袖认证专家" id="authicon"></em></p>
+						<p class="mui-ellipsis-2 h2Font" id="title"></p>
+					</div>
+				</div>
+			</li>
+				</ul>
+				<div class="infocontit infocontitM OnetitM mui-navigate-right mui-clearfix" id="breif">举报</div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src='../js/jubao.js'></script>
+			
+		
+	</body>
+
+</html>

@@ -19,12 +19,12 @@ mui.plusReady(function() {
 					document.getElementById("totalFraction").innerText = parseInt(data.data.inviteScore + data.data.myScore);
 					document.getElementById("setFraction").innerText = data.data.myScore;
 					document.getElementById("rewardFraction").innerText = data.data.inviteScore;
-					var scornum = self.score.replace(/%/, "");
+					/*var scornum = self.score.replace(/%/, "");
 					if(scornum > 5){
 						document.getElementById("scorePercent").innerText=self.score;
 					}else{
 						document.getElementById("scorePercenthtml").innerHTML="请再接再厉";
-					}
+					}*/
 				}
 			},
 			error: function() {

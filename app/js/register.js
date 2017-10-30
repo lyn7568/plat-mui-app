@@ -9,14 +9,16 @@ mui.ready(function() {
 	var setpassword = document.getElementById("setpassword");
 	var reg = document.getElementById("reg");
 	var protocollink = document.getElementById("protocollink");
+	var imgCode = document.getElementById("imgCode");
+	var changImage = document.getElementById("changImage")
 	var phoneCode = false;
 	var state = 0;
 	
 	mui.plusReady(function() {
 
 		/*校验提交按钮显示状态*/
-		mui('.frmboxNew').on('keyup', "#name,#username,#set-code,#setpassword", function() {
-			if(name.value == "" || phoneName.value == "" || setCode.value == "" || setpassword.value == "") {
+		mui('.frmboxNew').on('keyup', "#name,#username,#imgCode,#set-code,#setpassword", function() {
+			if(name.value == "" || phoneName.value == "" || imgCode.value == "" || setCode.value == "" || setpassword.value == "") {
 				reg.classList.remove("frmactiveok");
 				reg.disabled = "disabled";
 			} else {
@@ -25,7 +27,7 @@ mui.ready(function() {
 			}
 		});
 		
-		phoneName.addEventListener('keyup', function() {
+		phoneName.addEventListener('input', function() {
 			if(phoneName.value==""){
 				obtainCode.disabled = "disabled";
 			}else{
@@ -51,6 +53,15 @@ mui.ready(function() {
 				plus.nativeUI.toast("请输入正确的手机号码", toastStyle);
 				return;
 			}
+			if(imgCode.value.length==0) {
+				plus.nativeUI.toast("请输入图形验证码", toastStyle);
+				return;
+			}else if(imgCode.value.length==4){
+				
+			}else{
+				plus.nativeUI.toast("图形验证码4位", toastStyle);
+				return;
+			}
 			if(!oNum.test(setCode.value)) {
 				plus.nativeUI.toast("验证码为4位数字", toastStyle);
 				return;
@@ -60,6 +71,7 @@ mui.ready(function() {
 				return;
 			}
 			isReg(1);
+			//completeReg()
 		})
 		
 		/*用户协议*/
@@ -73,8 +85,15 @@ mui.ready(function() {
 			});
 		});
 		
+		changImage.addEventListener("tap",function(){ 
+			this.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
+		})
 		/*校验手机号*/
 		function phoneVal() {
+			if(imgCode.value=="") {
+				plus.nativeUI.toast("请输入图形验证码", toastStyle);
+				return;
+			}
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
 			if(hunPhone.test(phoneName.value)){
 				isReg();
@@ -92,12 +111,14 @@ mui.ready(function() {
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
 				success: function(data) {
+					console.log(JSON.stringify(data))
 					if(data.data == false) {
 						plus.nativeUI.toast("该账号已存在，请直接登录", toastStyle);
 						return;
 					} else {
-						if(oArg==1){	
-							codeVal();
+						if(oArg==1){
+							completeReg()
+							//sendAuthentication(1)
 						}else{	
 							phoneCode = true;
 							if(phoneCode){
@@ -112,23 +133,37 @@ mui.ready(function() {
 				}
 			});
 		}
-
+		
 		/*手机发送验证码*/ 
 		function sendAuthentication() {
-			console.log("send code")
-			mui.ajax(baseUrl + '/ajax/regmobilephone_onlyphone', {
+			console.log(phoneName.value)
+			console.log(imgCode.value)
+			var cookieValue=plus.navigator.getCookie("http://www.ekexiu.com/ajax/PictureVC");
+			console.log(cookieValue)
+			//plus.navigator.setCookie( baseUrl + '/ajax/regmobilephone', cookieValue )
+			mui.ajax(baseUrl + '/ajax/regmobilephone', {
+				header:{
+					"Cookie":cookieValue
+				},
 				data: {
-					mobilePhone: phoneName.value
+					mobilePhone: phoneName.value,
+					vcode: imgCode.value
 				},
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
-				async: false,
+				async: true,
 				timeout: 10000, //超时设置
 				success: function(data) {
 					console.log(JSON.stringify(data))
 					if(data.success) {
 						state = data.data;
-						doClick();
+							doClick();
+						
+					}else{
+						if(data.code==20001) {
+							plus.nativeUI.toast("请输入正确的图形验证码", toastStyle);
+							changImage.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
+						}
 					}
 				},
 				error: function() {
@@ -155,10 +190,10 @@ mui.ready(function() {
 					obtainCode.style.display = "block";
 					getCodeOff.style.display = "none";
 					obtainCode.value = "获取验证码";
+					changImage.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
 				}
 			}, 1000);
 		}
-
 		/*校验验证码*/
 		function codeVal() {
 			mui.ajax(baseUrl + '/ajax/validCode', {
@@ -215,6 +250,7 @@ mui.ready(function() {
 					if(data.success) {
 						var userId = data.data;
 						plus.storage.setItem('userid', userId);
+						client()
 						plus.storage.setItem('name', name.value);
 						plus.nativeUI.toast("已完成注册，请填写个人信息", toastStyle);
 						mui.openWindow({
@@ -227,6 +263,12 @@ mui.ready(function() {
 								aniShow: "slide-in-right"
 							}
 						});
+					}else{
+						if(data.code==-1){
+							plus.nativeUI.toast("验证码已过期，请重新获取", toastStyle);
+						}else if(data.code==-2 || data.code==-3 ||data.code==0){
+							plus.nativeUI.toast("验证码错误，请检查后重试", toastStyle);
+						}
 					}
 				},
 				error: function() {

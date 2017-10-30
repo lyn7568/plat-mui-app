@@ -1,22 +1,22 @@
 (function($) {
 	//阻尼系数
-	var arr=[];
+	var arr = [];
 	var key1 = [];
 	var m = 0;
-	var deceleration = mui.os.ios ? 0.003 : 0.0009;
-	$('.mui-scroll-wrapper').scroll({
-		bounce: false,
-		indicators: true, //是否显示滚动条
-		deceleration: deceleration
-	});
-	var pullObj={
-		"0":0,
-		"1":0,
-		"2":0,
-		"3":0,
-		"4":0,
-		"5":0,
-		"6":0
+		var deceleration = mui.os.ios ? 0.003 : 0.0009;
+		$('.mui-scroll-wrapper').scroll({
+			bounce: false,
+			indicators: true, //是否显示滚动条
+			deceleration: deceleration
+		});
+	var pullObj = {
+		"0": 0,
+		"1": 0,
+		"2": 0,
+		"3": 0,
+		"4": 0,
+		"5": 0,
+		"6": 0
 	}
 	$.ready(function() {
 		$.plusReady(function() {
@@ -127,7 +127,7 @@
 						key1[index] = $(pullRefreshEl).pullToRefresh({
 							down: {
 								callback: function() {
-									console.log(new Date().getTime() +"a")
+									console.log(new Date().getTime() + "a")
 									var self = this;
 									//self.refresh(true);
 									setTimeout(function() {
@@ -135,64 +135,76 @@
 										ul.innerHTML = "";
 										key1[m].endPullUpToRefresh(true);
 										if(index == 0) {
-											pullObj["0"]=1;
+											pullObj["0"] = 1;
 											_this.pageNo.a = 1;
 											_this.colum.a = "";
 											$.ajax(baseUrl + "/data/inc/col_bannerApp.html?ttt=" + new Date().getTime(), {
-				dataType: 'html', //服务器返回json格式数据
-				type: "get", //HTTP请求类型
-				timeout: 10000, //超时时间设置为10秒；
-				traditional: true,
-				async: false,
-				success: function(data) {
-					document.getElementById("slider1").innerHTML = data;
-					for(var i=1;i<6;i++) {
-						arr=[];
-						arr.push(document.getElementById("slider1").getElementsByClassName("mui-slider-item")[i].getAttribute("data-id"));
-					var slider = $("#slider1");
-					slider.slider({
-						interval: 5000
-					});
-					}
-					
-				},
-				error: function(xhr, type, errorThrown) {
-					//plus.nativeUI.toast("服务器链接超时", toastStyle);
-				}
-			});
-											$D({
-												"fun": ob.createFragment,
-												data: {
-													col: 9,
-													pageNo: 1
+												dataType: 'html', //服务器返回json格式数据
+												type: "get", //HTTP请求类型
+												timeout: 10000, //超时时间设置为10秒；
+												traditional: true,
+												async: true,
+												success: function(data) {
+													document.getElementById("slider1").parentNode.removeChild(document.getElementById("slider1"));
+													var odiv = document.createElement("div");
+													odiv.id = "slider1";
+													odiv.className = "mui-slider columnImg";
+													document.getElementById("dd").insertBefore(odiv, document.getElementById("list"))
+													document.getElementById("slider1").innerHTML = data;
+													arr = [];
+													for(var i = 0; i < 5; i++) {
+														arr.push(document.getElementById("slider1").getElementsByClassName("mui-slider-item")[i].getAttribute("data-id"));
+													}
+													var slider = $("#slider1");
+													slider.slider({
+														interval: 5000
+													});
+													$("#slider1").on("tap", "a", function() {
+														plus.nativeUI.showWaiting();
+														var id = this.parentNode.getAttribute("data-id");
+														var col = this.parentNode.getAttribute("col-id");
+														aiticl(id)
+														addClick1(col);
+													})
+													$D({
+														"fun": ob.createFragment,
+														data: {
+															col: 9,
+															pageNo: 1
+														},
+														flag: 1,
+														url: "/ajax/article/find"
+													});
 												},
-												flag: 1,
-												url: "/ajax/article/find"
+												error: function(xhr, type, errorThrown) {
+													//plus.nativeUI.toast("服务器链接超时", toastStyle);
+												}
 											});
+
 										} else {
-											pullObj[index]=1;
+											pullObj[index] = 1;
 											_this.pageNo[index] = 1;
 											_this.colum[index + 2] = index + 2;
-										}
-									console.log(new Date().getTime() +"b")
-										$D({
-											"fun": _this.createFragment,
-											data: {
-												col: index ? _this.colum[index + 2] : _this.colum.a,
-												pageNo: 1,
-												exclude:arr,
-											},
-											url: "/ajax/article/find"
-										});
-									}, 1000);
-									
 
-									console.log(new Date().getTime() +"c")
+											console.log(new Date().getTime() + "b")
+											$D({
+												"fun": _this.createFragment,
+												data: {
+													col: index ? _this.colum[index + 2] : _this.colum.a,
+													pageNo: 1,
+													exclude: arr,
+												},
+												url: "/ajax/article/find"
+											});
+										}
+									}, 1000);
+
+									console.log(new Date().getTime() + "c")
 								}
 
 							},
 							up: {
-								
+
 								callback: function() {
 									var self = this;
 									setTimeout(function() {
@@ -210,7 +222,7 @@
 											data: {
 												col: index ? _this.colum[index + 2] : _this.colum.a,
 												pageNo: pa,
-												exclude:arr
+												exclude: arr
 											},
 											url: "/ajax/article/find"
 										});
@@ -264,36 +276,39 @@
 								$data.length = 1;
 							}
 						}
+
 						for(var i = 0; i < $data.length; i++) {
 							var of ;
 							if($data[i].articleType == 1) { of = 1;
 							} else { of = 2;
 							}
 							var arImg = "../images/default-artical.jpg";
-							
+
 							if($data[i].articleImg) {
-								arImg = baseUrl + "/data/article/" + $data[i].articleImg.replace(".","_s.")
+								arImg = baseUrl + "/data/article/" + $data[i].articleImg.replace(".", "_s.")
 							}
 							var title = $data[i].articleTitle;
 							var colSpan = "";
 							if(m == 0) {
 								if(arguments[1]) {
+
 									colSpan = '<span class="column">置顶</span>'
 								} else {
-									if(pullObj["0"]==1) {
-										
+
+									if(pullObj["0"] == 1) {
+
 										key1[m].endPullDownToRefresh();
-										pullObj[m]=0;
-									} 									
-									if($data[i].colNum != 0){	
-											colSpan = "<span class='column columnOther'>" + columnType[$data[i].colNum].shortName + "</span>"
+										pullObj[m] = 0;
+									}
+									if($data[i].colNum != 0) {
+										colSpan = "<span class='column columnOther'>" + columnType[$data[i].colNum].shortName + "</span>"
 									}
 								}
-							}else{
-								if(pullObj[m]==1) {
-										key1[m].endPullDownToRefresh();
-										pullObj[m]=0;
-									} 
+							} else {
+								if(pullObj[m] == 1) {
+									key1[m].endPullDownToRefresh();
+									pullObj[m] = 0;
+								}
 							}
 							var li = document.createElement("li");
 							li.setAttribute("data-id", $data[i].articleId);
@@ -311,17 +326,12 @@
 								if(document.getElementsByTagName("ul")[m].children[0]) {
 									document.getElementsByTagName("ul")[m].insertBefore(li, document.getElementsByTagName("ul")[m].children[0])
 								} else {
-									if(arr.length==6) {
-										arr[5]=$data[i].articleId;
-									}else{
-										arr.push($data[i].articleId);
-									}
-									
 									document.getElementsByTagName("ul")[m].appendChild(li);
 								}
 							} else {
 								document.getElementsByTagName("ul")[m].appendChild(li);
 							}
+
 							if( of == 1) {
 								li.setAttribute("owner-id", $data[i].professorId);
 								li.setAttribute("data-type", 1);
@@ -341,6 +351,21 @@
 									sele: li.getElementsByClassName("nameSpan")[0]
 								});
 							}
+						}
+
+						if(arguments[1]) {
+							arr.push($data[0].articleId);
+							console.log(arr + "   273");
+							$D({
+								"fun": ob.createFragment,
+								data: {
+									col: "",
+									pageNo: 1,
+									exclude: arr
+								},
+								url: "/ajax/article/find"
+							});
+
 						}
 						if(!arguments[1]) {
 							document.getElementsByClassName("nodatabox")[m].classList.add("displayNone");
@@ -364,7 +389,7 @@
 			$D().bindEvent();
 			var ob = $D();
 			//alert(ob.createFragment)
-			
+
 			document.querySelector('#slider').addEventListener('slide', function(event) {
 
 				var $this = document.querySelector(".mui-scroll .mui-active");
@@ -402,13 +427,22 @@
 				type: "get", //HTTP请求类型
 				timeout: 10000, //超时时间设置为10秒；
 				traditional: true,
-				async: false,
+				async: true,
 				success: function(data) {
 					//alert(JSON.stringify(data))
 					document.getElementById("slider1").innerHTML = data;
-					for(var i=1;i<6;i++) {
+					for(var i = 0; i < 5; i++) {
 						arr.push(document.getElementById("slider1").getElementsByClassName("mui-slider-item")[i].getAttribute("data-id"));
 					}
+					$D({
+						"fun": ob.createFragment,
+						data: {
+							col: 9,
+							pageNo: 1
+						},
+						flag: 1,
+						url: "/ajax/article/find",
+					});
 					var slider = $("#slider1");
 					slider.slider({
 						interval: 5000
@@ -425,26 +459,16 @@
 					//plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
-			
-			$D({
-				"fun": ob.createFragment,
-				data: {
-					col: 9,
-					pageNo: 1
-				},
-				flag: 1,
-				url: "/ajax/article/find"
-			});
-			console.log(arr)
-			$D({
-				"fun": ob.createFragment,
-				data: {
-					col: "",
-					pageNo: ob.pageNo.a,
-					exclude:arr
-				},
-				url: "/ajax/article/find"
-			});
+
+			//			$D({
+			//				"fun": ob.createFragment,
+			//				data: {
+			//					col: "",
+			//					pageNo: ob.pageNo.a,
+			//					exclude:arr
+			//				},
+			//				url: "/ajax/article/find"
+			//			});
 			function addClick1(colId) {
 				$.ajax(baseUrl + "/ajax/operation/statist/bannerClick", {
 					dataType: 'json', //服务器返回json格式数据
@@ -461,7 +485,7 @@
 				});
 			}
 
-			function aiticl(id) { 
+			function aiticl(id) {
 				$.ajax(baseUrl + "/ajax/article/query", {
 					dataType: 'json', //服务器返回json格式数据
 					type: "get", //HTTP请求类型

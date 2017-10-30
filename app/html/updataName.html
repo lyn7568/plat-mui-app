@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>编辑个人资料-所在机构</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
+			.simulation{
+				padding:2px;
+				height:24px;
+				overflow:hidden;
+				width:100%;
+			}
+		</style>
+		<script>
+			function autoGrow(oField) {
+				document.getElementById("tt").style.width=oField.scrollWidth+"px";
+				document.getElementById("tt").value=oField.value;
+				oField.style.height=document.getElementById("tt").scrollHeight+"px";
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">名字</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group mainbox">
+				<div class="infocon">
+					<textarea class="textareabox simulation" id="title" oninput="autoGrow(this)" maxlength="10" placeholder="请填写您的姓名"></textarea>
+					<textarea class="textareabox simulation" id="tt" style="position:absolute;top:0;left:-999px;"></textarea>
+				</div>
+		    </div>
+			<div class="limitBox">
+				<p class="limitNum"><span id="fontAdd">0</span>/10</p>
+			</div>
+			<div class="mui-content-padded frmboxNew">
+				<button id="login" class="mui-btn mui-btn-block frmbtn frmactive">保存</button>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/zepto.min.js"></script>
+		<script src="../js/public/mui.picker.min.js"></script>
+		<script src="../js/public/city.data.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/updateName.js"></script>		
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		</script>
+	</body>
+
+</html>

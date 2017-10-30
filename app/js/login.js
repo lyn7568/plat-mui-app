@@ -120,9 +120,10 @@ mui.ready(function() {
 						}
 						firstLogin();
 						
-						var consultPage = plus.webview.getWebviewById('consultlist.html');
+						var consultPage = plus.webview.getWebviewById('consultlistNew.html');
 						mui.fire(consultPage, 'logined', {
-							id: userId
+							id: userId,
+							rd:1
 						});	
 					} else {
 						plus.nativeUI.toast("帐号和密码不匹配，请检查后重试", toastStyle);

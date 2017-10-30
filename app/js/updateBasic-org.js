@@ -3,24 +3,6 @@ mui.ready(function() {
 		var web = plus.webview.currentWebview()
 		web.show("slide-in-right", 150);
 		var userid = plus.storage.getItem('userid');
-		var upStatus = function() {
-			mui.ajax(baseUrl + "/ajax/professor/removeOrgAuth", {
-				dataType: 'json', //数据格式类型
-				type: 'post', //http请求类型
-				data: {
-					id: userid
-				},
-				timeout: 10000, //超时设置				
-				success: function(data) {
-					console.log(JSON.stringify(data));
-					if(data.success) {
-						
-					} else {
-
-					}
-				}
-			})
-		}
 		function person() {
 			plus.nativeUI.closeWaiting();
 			var title = document.getElementById("title");
@@ -43,13 +25,18 @@ mui.ready(function() {
 			}
 			if(web.orgAuth==1) {
 				var btn = ["确定", "取消"];
-				mui.confirm("您修改了所在机构，员工认证即将失效，确认修改？", "提示", btn, function(e) {
+				mui.confirm("您修改了所在机构，认证员工身份将失效，为企业发布的需求也将关闭，确定修改？", "提示", btn, function(e) {
 					if(e.index == 0) {
 						savePro();
 					}
 				})
 			}else{
-				savePro();
+				var btn = ["确定", "取消"];
+				mui.confirm("您修改了所在机构，您为企业发布的需求将关闭，确定修改？", "提示", btn, function(e) {
+					if(e.index == 0) {
+						savePro();
+					}
+				})
 			}
 			 
 		})
@@ -61,9 +48,6 @@ mui.ready(function() {
 					plus.nativeUI.toast("所在机构不得超过50个字", toastStyle);
 					return;
 				}
-			}
-			if(web.orgAuth==1) {
-				upStatus();
 			}
 			mess.name = web.name;
 			mess.orgName = document.getElementById("title").value;

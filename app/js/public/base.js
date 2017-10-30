@@ -1,7 +1,7 @@
 //公共文件
 mui.init();
-var baseUrl = "http://www.ekexiu.com", 
-//var baseUrl = "http://192.168.3.233",
+//var baseUrl = "http://www.ekexiu.com", 
+var baseUrl = "http://192.168.3.233",
 //var baseUrl = "http:192.168.3.233:81",    
 	toastStyle = {
 		'verticalAlign': 'top',
@@ -206,7 +206,10 @@ function TimeTr(dealtime) {
 	if(s.length <= 6) {
 		formatTime = y + "年" + m.replace(/\b(0+)/gi, "") + "月";
 	} else if(s.length > 6 && s.length <= 8) {
-		formatTime = y + "年" + m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "") + "日 ";
+		formatTime = m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "") + "日 ";
+		if(y != myDate.getFullYear()) {
+			formatTime = y + "年" + m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "") + "日 ";
+		}
 	} else {
 		formatTime = m.replace(/\b(0+)/gi, "") + "月" + d.replace(/\b(0+)/gi, "") + "日 " + h + ":" + minute;
 		if(y != myDate.getFullYear()) {
@@ -246,11 +249,26 @@ var eduDegree = {
 	"4": "大专",
 	"5": "其他"
 }
-
+//需求的费用预算
+var demandCost = {
+	'1': '1万元以内',
+	'2': '1-5万元',
+	'3': '5-10万元',
+	'4': '10-20万元',
+	'5': '20-50万元',
+	'6': '50万元以上'
+}
+//需求的预期时长
+var demandDuration = {
+	'1': '1个月内',
+	'2': '1-3个月',
+	'3': '3-6个月',
+	'4': '6-12个月',
+	'5': '1年以上'
+}
 /*判断是否收藏资源文章或者是否关注专家*/
 function ifcollectionAbout(watchObject,sel, num,flag) {
 	var that=sel;
-	console.log(JSON.stringify(that))
 	mui.ajax(baseUrl + '/ajax/watch/hasWatch', {
 		data: {
 			"professorId": plus.storage.getItem('userid'),
@@ -374,7 +392,7 @@ function cancelCollectionAbout(watchObject,sel, num,flag) {
 
 }
 function checkVersion(){
-		mui.plusReady(function(){
+		//mui.plusReady(function(){
 			if(!plus.webview.currentWebview()) return;
 			// 获取本地应用资源版本号
 		    plus.runtime.getProperty(plus.runtime.appid,function(inf){
@@ -395,7 +413,7 @@ function checkVersion(){
 										return;
 									}
 								try {
-									     plus.nativeUI.showWaiting("检测更新...");
+									     plus.nativeUI.showWaiting("正在下载...");
 									     //var d="http://192.168.3.233/download/app1.0.6.apk";
 										 plus.downloader.createDownload( data.wgt, {filename:"_doc/update/"}, function(d,status){
 									        if ( status == 200 ) { 
@@ -430,6 +448,88 @@ function checkVersion(){
 					}
 				});
 			});
-		})
+			
+		//})
 	}
+function wlog(dt, id, src) {
+	var src = src || "1";
+	mui.ajax({
+		url: "http://www.ekexiu.com:8082/log/jsonp/log",
+		data: {
+			"id": id,
+			"src": src,
+			"__lt": dt,
+		},
+		success:function(data) {
+		},
+		dataType: "jsonp"
+	});
+}
+function client1() {
+   	var uId = plus.storage.getItem('userid');
+   	var bId = plus.storage.getItem('bid');
+   	if(uId && uId != "null" && uId != null) {
+   		if(bId && bId != "null" && bId != null) {
+   			if(uId==bId) {
+   				return;
+   			}else {
+   				client();
+   			}
+   		}else{
+   			client();
+   		}
+   	}else{
+   		return;
+   	}
+   }
+ function client() {
+		var infor=plus.push.getClientInfo();
+		var ouid;
+		if(mui.os.ios) {
+			ouid="I_"+plus.storage.getItem('userid')
+		}else{
+			ouid="A_"+plus.storage.getItem('userid')
+		}
+		mui.ajax(baseUrl + '/ajax/push/bindAlias',{
+		data: {
+			alias: ouid, 
+			cid: infor.clientid
+		},
+		dataType: 'json', //数据格式类型
+		type: 'post', //http请求类型
+		timeout: 10000,
+		async: true,
+		success: function(data) {
+			if(data.success) {
+				if(data.data) {
+					plus.storage.setItem('bid', plus.storage.getItem('userid'));
+				}
+			}
+			
+		},
+		error: function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+		}
+	});
 
+}
+ function toNum() {
+						mui.ajax(baseUrl + '/ajax/webMsg/unReadedCount', {
+							"data": {
+								id: plus.storage.getItem('userid')
+							},
+							"type": "get",
+							"async": true,
+							"context": this,
+							"success": function(data) {
+								if(data.success) {	
+									plus.runtime.setBadgeNumber(data.data);
+									 var GeTuiSdk = plus.ios.importClass('GeTuiSdk');
+            								GeTuiSdk.setBadge(data.data);
+								}
+							},
+							"error": function() {
+								plus.nativeUI.toast("服务器链接超时", toastStyle);
+							}
+						});
+					}

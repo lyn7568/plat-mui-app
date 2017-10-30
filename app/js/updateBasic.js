@@ -30,7 +30,19 @@ mui.ready(function() {
 							var mun = Math.round(Math.random() * 99 + 1);
 							document.getElementById("userimg").style.backgroundImage = "url(" + baseUrl + "/images/head/" + $data.id + "_l.jpg?" + mun + ")";
 						}
-						document.getElementById("exName").innerHTML=$data.name;
+						var onp=document.querySelectorAll(".exName");
+						if($data.orgAuth==0) {
+							onp[0].style.display="none";
+							onp[1].style.display="none";
+							onp[2].style.display="block";
+							onp[3].innerHTML=$data.name;
+							if(!f1) {
+						
+							bindEvent({selector:"name",txt:"请填写您的姓名",web:{html:'updataName.html',id:"updataName.html"}});
+						}
+						}else {
+							onp[1].innerHTML=$data.name;
+						}
 						person.name=$data.name;
 						if($data.orgName) {
 							document.getElementById('orgName').innerHTML=$data.orgName;
@@ -119,5 +131,6 @@ mui.ready(function() {
 		bindEvent({selector:"orgName",txt:"请填写当前就职的机构",web:{html:'updateBasic-org.html',id:"updateBasic-org.html"}});
 		bindEvent({selector:"city",txt:"请选择所在城市",web:{html:'updateBasic-city.html',id:"updateBasic-city.html"}});
 		bindEvent({selector:"mail",txt:"请填写电子邮箱",web:{html:'updateBasic-email.html',id:"updateBasic-email.html"}});
+		
 	});
 })

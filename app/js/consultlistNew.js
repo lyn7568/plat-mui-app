@@ -63,7 +63,7 @@ mui.ready(function() {
 		websocket1()
 
 		function websocket1() {
-			var ws = new WebSocket("ws://192.168.3.233:8081/portal/websocket/msg?id=" + userid + "&pm=app");
+			var ws = new WebSocket("ws://www.ekexiu.com:8080/portal/websocket/msg?id=" + userid + "&pm=app");
 			ws.onopen = function() {
 
 			};

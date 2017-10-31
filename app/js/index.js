@@ -149,80 +149,18 @@ document.getElementById("demandP").addEventListener("tap", function() {
 
 })
 document.getElementById("improfessor").addEventListener("tap", function() {
-	var userid = plus.storage.getItem('userid');
-	if(userid == null) {
-		mui.openWindow({
-			url: '../html/login.html',
-			id: 'login.html'
-		})
-		return;
-	}
-	mui.ajax(baseUrl + "/ajax/professor/auth", {
-		dataType: 'json', //数据格式类型
-		type: 'GET', //http请求类型
-		timeout: 10000, //超时设置
-		data: {
-			"id": userid
-		},
-		success: function(data) {
-			if(data.success) {
-				var $data = data.data;
-				if($data.authType == 1) {
-					mui.openWindow({
-						url: '../html/needSearch.html',
-						id: '../html/needSearch.html',
-						show: {
-							autoShow: false,
-							aniShow: "slide-in-right",
-						}
-					});
-				} else {
-					if($data.authStatusExpert == 2) {
-						plus.nativeUI.toast("我们正在对您的信息进行认证，请稍等片刻", {
-							'verticalAlign': 'center'
-						});
-					} else if($data.authStatusExpert == 1) {
-						plus.nativeUI.toast("我们将尽快对您的信息进行认证", {
-							'verticalAlign': 'center'
-						});
-					} else if($data.authStatusExpert <= 0) {
-						if($data.authStatus == 3) {
-							mui.openWindow({
-								url: '../html/expert-authentication.html',
-								id: 'expert-authentication.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-right",
-								}
-							});
-						} else if($data.authStatus == 2) {
-							plus.nativeUI.toast("我们正在对您的信息进行认证，请稍等片刻", {
-								'verticalAlign': 'center'
-							});
-						} else if($data.authStatus == 1) {
-							plus.nativeUI.toast("我们将尽快对您的信息进行认证", {
-								'verticalAlign': 'center'
-							});
-						} else {
-							mui.openWindow({
-								url: '../html/realname-authentication2.html',
-								id: 'realname-authentication2.html',
-								show: {
-									autoShow: false,
-									aniShow: "slide-in-right",
-								}
-							});
-						}
-					}
+	mui.openWindow({
+				url: '../html/searchListNew2.html?content=1',
+				id: '../html/searchListNew2.html',
+				show: {
+					autoShow: false,
+					aniShow: "fade-in",
+				},
+				extras: {
+					key: "",
+					qiFlag: 1
 				}
-
-			}
-		},
-		error: function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-			return;
-		}
-	});
+			});
 })
 
 proShow()

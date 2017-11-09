@@ -117,22 +117,12 @@ for(var n=0;n<6;n++) {
 						document.getElementById('noSearch').classList.remove("displayNone");
 						return;
 					}
-					if(pageNo.ex < Math.ceil(data.total / data.pageSize)) {
-						key1[0].endPullUpToRefresh(false);
-					} else {
-						key1[0].endPullUpToRefresh(true);
-					}
 					flag = 2;
 
 				} else {
 					if(data.data.length == 0) {
 						key1[0].endPullupToRefresh(true);
 						return;
-					}
-					if(pageNo.ex < Math.ceil(data.total / data.pageSize)) {
-						key1[0].endPullUpToRefresh(false);
-					} else {
-						key1[0].endPullUpToRefresh(true);
 					}
 				}
 				for(var i = 0; i < data.data.length; i++) {
@@ -181,6 +171,11 @@ for(var n=0;n<6;n++) {
 						'</div>'
 						
 					document.getElementById("list").appendChild(li);
+				}
+				if(pageNo.ex < Math.ceil(data.total / data.pageSize)) {
+					key1[0].endPullUpToRefresh(false);
+				} else {
+					key1[0].endPullUpToRefresh(true);
 				}
 			},
 			createWin: function() {
@@ -231,16 +226,9 @@ for(var n=0;n<6;n++) {
 				if(flag == 1) {
 					document.getElementById("resourceList").innerHTML = ""
 					if(data.data.length == 0) {
-						//key1[2].endPullupToRefresh(true);
 						key1[2].endPullUpToRefresh(true);
 						document.getElementById('reNoSearch').classList.remove("displayNone");
 						return;
-					}
-					if(pageNo.rs < Math.ceil(data.total / data.pageSize)) {
-						//key1[2].endPullupToRefresh(false);
-						key1[2].endPullUpToRefresh(false);
-					} else {
-						key1[2].endPullUpToRefresh(true);
 					}
 					flag = 2;
 				} else {
@@ -248,11 +236,6 @@ for(var n=0;n<6;n++) {
 						document.getElementById('reNoSearch').classList.remove("displayNone");
 						key1[2].endPullupToRefresh(true);
 						return;
-					}
-					if(pageNo.rs < Math.ceil(data.total / data.pageSize)) {
-						key1[2].endPullUpToRefresh(false);
-					} else {
-						key1[2].endPullUpToRefresh(true);
 					}
 				}
 				for(var i = 0; i < $da.length; i++) {
@@ -291,7 +274,11 @@ for(var n=0;n<6;n++) {
 						
 					document.getElementById("resourceList").appendChild(li);
 				}
-
+				if(pageNo.rs < Math.ceil(data.total / data.pageSize)) {
+					key1[2].endPullUpToRefresh(false);
+				} else {
+					key1[2].endPullUpToRefresh(true);
+				}
 			},
 			article: function(data) {
 				if(key2[5] == 1) {
@@ -326,33 +313,16 @@ for(var n=0;n<6;n++) {
 				if(flag == 1) {
 					document.getElementById("articleList").innerHTML = ""
 					if(data.data.length == 0) {
-						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 						key1[5].endPullUpToRefresh(true);
 						document.getElementById('arNoSearch').classList.remove("displayNone");
 						return;
-					}
-					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-						key1[5].endPullUpToRefresh(false);
-
-					} else {
-						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
-						key1[5].endPullUpToRefresh(true);
 					}
 					flag = 2;
 				} else {
 					if(data.data.length == 0) {
 						document.getElementById('arNoSearch').classList.remove("displayNone");
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 						key1[5].endPullUpToRefresh(true);
 						return;
-					}
-					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-						key1[5].endPullUpToRefresh(false);
-					} else {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-						key1[5].endPullUpToRefresh(false);
 					}
 				}
 				for(var i = 0; i < $data.length; i++) {
@@ -394,6 +364,12 @@ for(var n=0;n<6;n++) {
 					document.getElementById("articleList").appendChild(li);
 
 				}
+				if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
+					key1[5].endPullUpToRefresh(false);
+
+				} else {
+					key1[5].endPullUpToRefresh(true);
+				}
 			},
 			patent: function(data) {
 				
@@ -429,33 +405,16 @@ for(var n=0;n<6;n++) {
 				if(flag == 1) {
 					document.getElementById("patentList").innerHTML = ""
 					if(data.data.length == 0) {
-						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 						key1[3].endPullUpToRefresh(true);
 						document.getElementById('ptNoSearch').classList.remove("displayNone");
 						return;
-					}
-					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-						key1[3].endPullUpToRefresh(false);
-
-					} else {
-						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
-						key1[3].endPullUpToRefresh(true);
 					}
 					flag = 2;
 				} else {
 					if(data.data.length == 0) {
 						document.getElementById('ptNoSearch').classList.remove("displayNone");
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 						key1[3].endPullUpToRefresh(true);
 						return;
-					}
-					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-						key1[3].endPullUpToRefresh(false);
-					} else {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-						key1[3].endPullUpToRefresh(false);
 					}
 				}
 				for(var i = 0; i < $data.length; i++) {
@@ -468,6 +427,12 @@ for(var n=0;n<6;n++) {
 						'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 						'</div>'
 					document.getElementById("patentList").appendChild(li);
+				}
+				if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
+					key1[3].endPullUpToRefresh(false);
+
+				} else {
+					key1[3].endPullUpToRefresh(true);
 				}
 			},
 			paper: function(data) {
@@ -503,33 +468,16 @@ for(var n=0;n<6;n++) {
 				if(flag == 1) {
 					document.getElementById("paperList").innerHTML = ""
 					if(data.data.length == 0) {
-						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 						key1[4].endPullUpToRefresh(true);
 						document.getElementById('ppNoSearch').classList.remove("displayNone");
 						return;
-					}
-					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-						key1[4].endPullUpToRefresh(false);
-
-					} else {
-						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
-						key1[4].endPullUpToRefresh(true);
 					}
 					flag = 2;
 				} else {
 					if(data.data.length == 0) {
 						document.getElementById('ppNoSearch').classList.remove("displayNone");
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 						key1[4].endPullUpToRefresh(true);
 						return;
-					}
-					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-						key1[4].endPullUpToRefresh(false);
-					} else {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-						key1[4].endPullUpToRefresh(false);
 					}
 				}
 				for(var i = 0; i < $data.length; i++) {
@@ -542,6 +490,11 @@ for(var n=0;n<6;n++) {
 						'<p class="mui-ellipsis h2Font">' + $data[i].authors.substring(0, $data[i].authors.length - 1) + '</p>' +
 						'</div>'
 					document.getElementById("paperList").appendChild(li);
+				}
+				if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
+					key1[4].endPullUpToRefresh(false);
+				} else {
+					key1[4].endPullUpToRefresh(false);
 				}
 			},
 			company: function(data) {
@@ -577,33 +530,16 @@ for(var n=0;n<6;n++) {
 				if(flag == 1) {
 					document.getElementById("companyList").innerHTML = ""
 					if(data.data.length == 0) {
-						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
 						key1[1].endPullUpToRefresh(true);
 						document.getElementById('coNoSearch').classList.remove("displayNone");
 						return;
-					}
-					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-						key1[1].endPullUpToRefresh(false);
-
-					} else {
-						//mui('#pullrefresh').pullRefresh().disablePullupToRefresh(true);
-						key1[1].endPullUpToRefresh(true);
 					}
 					flag = 2;
 				} else {
 					if(data.data.length == 0) {
 						document.getElementById('coNoSearch').classList.remove("displayNone");
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 						key1[1].endPullUpToRefresh(true);
 						return;
-					}
-					if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-						key1[1].endPullUpToRefresh(false);
-					} else {
-						//mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-						key1[1].endPullUpToRefresh(false);
 					}
 				}
 				for(var i = 0; i < $data.length; i++) {
@@ -624,6 +560,12 @@ for(var n=0;n<6;n++) {
 						'</div>'
 
 					document.getElementById("companyList").appendChild(li);
+				}
+				if(data.pageNo < Math.ceil(data.total / data.pageSize)) {
+					key1[1].endPullUpToRefresh(false);
+
+				} else {
+					key1[1].endPullUpToRefresh(true);
 				}
 			}
 		}

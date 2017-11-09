@@ -392,65 +392,65 @@ function cancelCollectionAbout(watchObject,sel, num,flag) {
 
 }
 function checkVersion(){
-		//mui.plusReady(function(){
-			if(!plus.webview.currentWebview()) return;
-			// 获取本地应用资源版本号
-		    plus.runtime.getProperty(plus.runtime.appid,function(inf){
-			    wgtVer=inf.version;
-			    console.log("当前应用版本："+wgtVer);
-			    mui.ajax(baseUrl + "/data/manager/version.json", {
-					dataType: 'json', //数据格式类型
-					type: 'GET', //http请求类型
-					timeout: 10000, //超时设置
-					async: false,
-					success: function(data) {
-						if (data.version > wgtVer) {
-							var btn = ["立即更新", "稍后更新"];
-							mui.confirm("新版本上线了，为了不影响您的正常使用，赶快更新吧", "提示", btn, function(e) {
-								if(e.index == 0) {
-									if(mui.os.ios) {
-										plus.runtime.openURL('https://itunes.apple.com/cn/app/ke-xiu-da-jian-qi-ye-yu-zhuan/id1197110983?l=en&mt=8');
-										return;
-									}
-								try {
-									     plus.nativeUI.showWaiting("正在下载...");
-									     //var d="http://192.168.3.233/download/app1.0.6.apk";
-										 plus.downloader.createDownload( data.wgt, {filename:"_doc/update/"}, function(d,status){
-									        if ( status == 200 ) { 
-									            plus.runtime.install(d.filename, {}, function() {
-													console.log("安装新版本文件成功！");
-													/*plus.nativeUI.alert("应用资源更新完成,程序需要立即重启", function() {
-														plus.runtime.restart();
-													});*/
-												}, function(e) {
-													console.log("安装新版文件失败[" + e.code + "]：" + e.message);
-													plus.nativeUI.toast("安装新版文件失败[" + e.code + "]：" + e.message);
-												});
-									            
-									        } else {
-									            console.log("下载新版本失败！");
-									            plus.nativeUI.toast("下载新版本失败！");
-									        }
-							       			plus.nativeUI.closeWaiting();
-							    		}).start();
-						    		} catch (e) {
-										console.log(e.message);
-									}	
+	//mui.plusReady(function(){
+		if(!plus.webview.currentWebview()) return;
+		// 获取本地应用资源版本号
+	    plus.runtime.getProperty(plus.runtime.appid,function(inf){
+		    wgtVer=inf.version;
+		    console.log("当前应用版本："+wgtVer);
+		    mui.ajax(baseUrl + "/data/manager/version.json", {
+				dataType: 'json', //数据格式类型
+				type: 'GET', //http请求类型
+				timeout: 10000, //超时设置
+				async: false,
+				success: function(data) {
+					if (data.version > wgtVer) {
+						var btn = ["立即更新", "稍后更新"];
+						mui.confirm("新版本上线了，为了不影响您的正常使用，赶快更新吧", "提示", btn, function(e) {
+							if(e.index == 0) {
+								if(mui.os.ios) {
+									plus.runtime.openURL('https://itunes.apple.com/cn/app/ke-xiu-da-jian-qi-ye-yu-zhuan/id1197110983?l=en&mt=8');
+									return;
 								}
-							});
-						}else{
-							//plus.nativeUI.toast("您使用的是最新版本，请放心使用！", toastStyle);
-						}
-					},
-					error: function() {
-						plus.nativeUI.toast("服务器链接超时", toastStyle);
-						return;
+								try {
+								     plus.nativeUI.showWaiting("正在下载...");
+								     //var d="http://192.168.3.233/download/app1.0.6.apk";
+									 plus.downloader.createDownload( data.wgt, {filename:"_doc/update/"}, function(d,status){
+								        if ( status == 200 ) { 
+								            plus.runtime.install(d.filename, {}, function() {
+												console.log("安装新版本文件成功！");
+												/*plus.nativeUI.alert("应用资源更新完成,程序需要立即重启", function() {
+													plus.runtime.restart();
+												});*/
+											}, function(e) {
+												console.log("安装新版文件失败[" + e.code + "]：" + e.message);
+												plus.nativeUI.toast("安装新版文件失败[" + e.code + "]：" + e.message);
+											});
+								            
+								        } else {
+								            console.log("下载新版本失败！");
+								            plus.nativeUI.toast("下载新版本失败！");
+								        }
+						       			plus.nativeUI.closeWaiting();
+						    		}).start();
+					    		} catch (e) {
+									console.log(e.message);
+								}	
+							}
+						});
+					}else{
+						//plus.nativeUI.toast("您使用的是最新版本，请放心使用！", toastStyle);
 					}
-				});
+				},
+				error: function() {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+					return;
+				}
 			});
-			
-		//})
-	}
+		});
+		
+	//})
+}
 function wlog(dt, id, src) {
 	var src = src || "1";
 	mui.ajax({

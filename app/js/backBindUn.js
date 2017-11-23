@@ -6,6 +6,7 @@ var oPhoneCode=document.getElementById("phoneCode");
 var weiChatName=document.getElementById("weiChatName");
 var setpassword=document.getElementById("setpassword");
 var binding=document.getElementById("binding");
+var changImage = document.getElementById("changImage")
 var state = 0;
 var phoneCode = false;
 document.getElementById("weiChatName").value=ws.name;
@@ -20,7 +21,7 @@ phone.addEventListener("keyup",function(){
 	}
 })
 /*校验提交按钮显示状态*/
-		mui('.frmboxNew').on('keyup', "#weiChatName,#phone,#phoneCode,#setpassword", function() {
+		mui('.frmboxNew').on('keyup', "#weiChatName,#imgCode,#phone,#phoneCode,#setpassword", function() {
 			if(weiChatName.value == "" || phone.value == "" || oPhoneCode.value == "" || setpassword.value == "") {
 				binding.setAttribute("disabled","disabled");
 			} else {
@@ -30,12 +31,18 @@ phone.addEventListener("keyup",function(){
 				binding.removeAttribute("disabled");
 			}
 		});
-		
+		changImage.addEventListener("tap",function(){ 
+			this.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
+		})
 		/*校验手机号*/
 		getPhoneCode.addEventListener("tap",function(){
 			phoneVal();
 		})
 		function phoneVal() {
+			if(imgCode.value=="") {
+				plus.nativeUI.toast("请输入图形验证码", toastStyle);
+				return;
+			}
 			var hunPhone = /^1[3|4|5|7|8]\d{9}$/;
 			if(hunPhone.test(phone.value)) {
 				isReg();
@@ -80,10 +87,15 @@ phone.addEventListener("keyup",function(){
 		}
 		/*手机发送验证码*/
 		function sendAuthentication() {
-			console.log("send code")
-			mui.ajax(baseUrl + '/ajax/regmobilephone_onlyphone', {
+			var cookieValue=plus.navigator.getCookie("http://www.ekexiu.com/ajax/PictureVC");
+			console.log(cookieValue)
+			mui.ajax(baseUrl + '/ajax/regmobilephone', {
+				header:{
+					"Cookie":cookieValue
+				},
 				data: {
-					mobilePhone: phone.value
+					mobilePhone: phone.value,
+					vcode: imgCode.value
 				},
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
@@ -95,6 +107,11 @@ phone.addEventListener("keyup",function(){
 						state = data.data;
 						console.log(state);
 						doClick();
+					}else{
+						if(data.code==20001) {
+							plus.nativeUI.toast("请输入正确的图形验证码", toastStyle);
+							changImage.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
+						}
 					}
 				},
 				error: function() {
@@ -120,6 +137,7 @@ phone.addEventListener("keyup",function(){
 					getPhoneCode.style.display = "block";
 					getCodeOff.style.display = "none";
 					getPhoneCode.value = "获取验证码";
+					changImage.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
 				}
 			}, 1000);
 		}
@@ -175,6 +193,15 @@ phone.addEventListener("keyup",function(){
 				plus.nativeUI.toast("请输入正确的手机号码", toastStyle);
 				return;
 			}
+			if(imgCode.value.length==0) {
+				plus.nativeUI.toast("请输入图形验证码", toastStyle);
+				return;
+			}else if(imgCode.value.length==4){
+				
+			}else{
+				plus.nativeUI.toast("图形验证码4位", toastStyle);
+				return;
+			}
 			if(!oNum.test(oPhoneCode.value)) {
 				plus.nativeUI.toast("验证码为4位数字", toastStyle);
 				return;
@@ -220,6 +247,12 @@ phone.addEventListener("keyup",function(){
 								aniShow: "slide-in-right"
 							}
 						});
+					}else{
+						if(data.code==-1){
+							plus.nativeUI.toast("验证码已过期，请重新获取", toastStyle);
+						}else if(data.code==-2 || data.code==-3 ||data.code==0){
+							plus.nativeUI.toast("验证码错误，请检查后重试", toastStyle);
+						}
 					}
 				},
 				error: function() {

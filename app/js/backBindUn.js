@@ -32,7 +32,7 @@ phone.addEventListener("keyup",function(){
 			}
 		});
 		changImage.addEventListener("tap",function(){ 
-			this.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
+			this.setAttribute("src",baseUrl+"/ajax/PictureVC?"+new Date().getTime());
 		})
 		/*校验手机号*/
 		getPhoneCode.addEventListener("tap",function(){
@@ -87,7 +87,7 @@ phone.addEventListener("keyup",function(){
 		}
 		/*手机发送验证码*/
 		function sendAuthentication() {
-			var cookieValue=plus.navigator.getCookie("http://www.ekexiu.com/ajax/PictureVC");
+			var cookieValue=plus.navigator.getCookie(baseUrl+"/ajax/PictureVC");
 			console.log(cookieValue)
 			mui.ajax(baseUrl + '/ajax/regmobilephone', {
 				header:{
@@ -110,7 +110,7 @@ phone.addEventListener("keyup",function(){
 					}else{
 						if(data.code==20001) {
 							plus.nativeUI.toast("请输入正确的图形验证码", toastStyle);
-							changImage.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
+							changImage.setAttribute("src",baseUrl+"/ajax/PictureVC?"+new Date().getTime());
 						}
 					}
 				},
@@ -137,7 +137,7 @@ phone.addEventListener("keyup",function(){
 					getPhoneCode.style.display = "block";
 					getCodeOff.style.display = "none";
 					getPhoneCode.value = "获取验证码";
-					changImage.setAttribute("src","http://www.ekexiu.com/ajax/PictureVC?"+new Date().getTime());
+					changImage.setAttribute("src",baseUrl+"/ajax/PictureVC?"+new Date().getTime());
 				}
 			}, 1000);
 		}

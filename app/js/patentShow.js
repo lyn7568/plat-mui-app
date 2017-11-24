@@ -490,7 +490,7 @@ mui.plusReady(function() {
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
-					content: document.getElementById("patentAbstract").innerHTML.substring(0,40),
+					content: document.getElementById("patentAbstract").innerHTML.substring(0,70),
 					title: document.getElementById("patentName").innerHTML,
 					href: baseUrl + "/e/z.html?id=" + patentId ,
 					thumbs: [oUrl]
@@ -500,7 +500,7 @@ mui.plusReady(function() {
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneTimeline", {
-					content: document.getElementById("patentAbstract").innerHTML.substring(0,40),
+					content: document.getElementById("patentAbstract").innerHTML.substring(0,70),
 					title: document.getElementById("patentName").innerHTML,
 					href: baseUrl + "/e/z.html?id=" + patentId ,
 					thumbs: [oUrl]

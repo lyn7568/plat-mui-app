@@ -418,7 +418,7 @@ mui.ready(function() {
 				var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
-						content: document.getElementById("demandDesp").innerHTML.substring(0, 40),
+						content: document.getElementById("demandDesp").innerHTML.substring(0, 70),
 						title: document.getElementById("demandTit").innerHTML,
 						href: baseUrl + "/e/d.html?id=" + demandId,
 						thumbs: [oUrl]
@@ -428,7 +428,7 @@ mui.ready(function() {
 				var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {
-						content: document.getElementById("demandDesp").innerHTML.substring(0, 40),
+						content: document.getElementById("demandDesp").innerHTML.substring(0, 70),
 						title: document.getElementById("demandTit").innerHTML,
 						href: baseUrl + "/e/d.html?id=" + demandId,
 						thumbs: [oUrl]

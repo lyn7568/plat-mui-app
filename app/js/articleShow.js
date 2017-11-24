@@ -96,6 +96,9 @@ function leword(row, aa) {
 }
 
 mui.plusReady(function() {
+	mui('#articleContent').on('tap','a',function(){
+		plus.runtime.openURL( this.href);
+	});
 	var ffl=false;
 	var oCurren = {
 		self: plus.webview.currentWebview(),

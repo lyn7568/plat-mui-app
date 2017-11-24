@@ -32,7 +32,9 @@ mui.plusReady(function() {
 	getRecourceMe();/*获取资源信息*/
 	relatedArticles();/*相关文章信息*/
 	interestingResources();
-	
+	mui('#detailDescp').on('tap','a',function(){
+		plus.runtime.openURL( this.href);
+	});
 	mui.ajax(baseUrl + '/ajax/resource/pageViews',{
 			"type": "POST",
 			"dataType": "json",

@@ -533,3 +533,33 @@ function client1() {
 							}
 						});
 					}
+	
+//广告轮播操作
+function addscript(){
+	var script=document.createElement("script");  
+	script.setAttribute("type", "text/javascript");  
+	var srclink= "http://www.ekexiu.com/data/inc/ad/ad_article_app.js?r=" + new Date().getTime();
+	script.setAttribute("src", srclink);  
+	var heads = document.getElementsByTagName("head");  
+	if(heads.length){  
+	    heads[0].appendChild(script);  
+	}else{
+		document.documentElement.appendChild(script);
+	}
+}
+mui.ready(function(){
+	//处理点击事件，需要打开原生浏览器
+	mui("body").on("tap","a.advertsub",function(){
+		var adId = this.getAttribute('data-id');
+		var urlHref = this.getAttribute('href');
+		if (urlHref) {
+			if (window.plus) {
+				plus.runtime.openURL(urlHref);
+			} else {
+				location.href = urlHref;
+			}
+		}
+		wlog("ad", adId ,"2");
+	})
+})
+ 	

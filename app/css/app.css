@@ -1227,3 +1227,9 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .myAllneeds>li{min-height: 97px;}
 .right-span{position: absolute;right: 15px;top:50%;margin-top:-25px;border: 1px solid #999;color:#999;padding:1px 2px;font-size: 12px;line-height:normal;border-radius: 2px;}
 .mui-dtpicker-header .mui-btn.mui-btn-blue {border: 1px solid #ff9900;background-color: #ff9900;}
+
+/*广告位的设计规则及尺寸(760*220)*/
+.advertItem .swiper-pagination-bullet{width:6px; height:6px;}
+.advertItem.swiper-container-horizontal>.swiper-pagination{bottom:2px;}
+.advertsub{position: relative;display: block;}
+.advertsub:after{content:"广告";font-size:10px;color:#fff;background:rgba(0,0,0,0.3);position:absolute;padding:0 4px;right:0;bottom:0px;}

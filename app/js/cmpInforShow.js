@@ -541,7 +541,7 @@ mui.ready(function() {
 				var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
-						content: document.getElementById("industryShow").innerHTML.substr(0,40),
+						content: document.getElementById("industryShow").innerHTML.substr(0,70),
 						title: document.getElementById("companyName").innerHTML,
 						href: baseUrl + "/e/c.html?id=" + orgId ,
 						thumbs: [oUrl]
@@ -551,7 +551,7 @@ mui.ready(function() {
 				var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {
-						content: document.getElementById("industryShow").innerHTML.substr(0,40),
+						content: document.getElementById("industryShow").innerHTML.substr(0,70),
 						title: document.getElementById("companyName").innerHTML,
 						href: baseUrl + "/e/c.html?id=" + orgId ,
 						thumbs: [oUrl]

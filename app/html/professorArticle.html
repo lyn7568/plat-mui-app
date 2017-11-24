@@ -6,8 +6,13 @@
 		<title>文章浏览-科袖</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/swiper.min.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/public/jquery-1.11.1.js"></script>
+		<script src="../js/public/swiper.min.js"></script>
 		<style>
 			html,body{height:100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
 			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
@@ -91,7 +96,9 @@
 						<span class="thumbBtn">赞 <span id="snum"></span></span><!-- thumbedBtn 已赞 201-->
 					</div>
 					<!--广告模块-->
-					<div class="madiaBlock advertItem" style="margin:30px 0 10px"></div>
+					<div class="madiaBlock swiper-container advertItem" style="margin:30px 0 10px">
+					  
+					</div>
 					<!--您可能感兴趣的文章-->
 					<div class="madiaBlock displayNone" id="article">
 						<div class="madiaTit">您可能感兴趣的文章</div>
@@ -135,12 +142,10 @@
 			</ul>
 			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
 		</div>
-		
-		<script src="../js/public/mui.min.js"></script>
-		<script src="../js/public/base.js"></script>
-		<script src="../js/public/jquery-1.11.1.js"></script>
-		<script src="../js/adverts/ad_article_bottom.js"></script>
+
 		<script type="text/javascript"> 
+			addscript();//动态调用js
+			
 			document.getElementById("listenClick").addEventListener("tap",function(){
 				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop-20+"px"}, 400); 
 			})
@@ -174,7 +179,6 @@
 		    	this.style.display="none";
 		    	shareBlock.style.display="none";
 		    })
-		   
 		</script>
 		<script type="text/javascript" src="../js/articleShow.js"></script>
 	</body>

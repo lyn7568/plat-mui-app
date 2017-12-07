@@ -451,7 +451,19 @@ mui.plusReady(function() {
 		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
 			var flag = 'ziyuan';
 			var consulttitle = oresourceName.innerHTML;
-			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
+			//var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
+			var wechat=plus.webview.getWebviewById('weChat.html');
+			var jubao=plus.webview.getWebviewById('jubao.html');
+			
+			if(wechat) {
+				wechat.close();
+			}
+			if(jubao) {
+				jubao.close()
+			}
+			setTimeout(function(){
+				
+			
 			if(reType=="1"){
 				mui.openWindow({
 				url: '../html/weChat.html',
@@ -496,6 +508,7 @@ mui.plusReady(function() {
 					}
 				});
 			}
+			},100);
 		}
 	});
 

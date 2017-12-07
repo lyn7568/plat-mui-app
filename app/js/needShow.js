@@ -325,6 +325,9 @@ mui.ready(function() {
 			if(jubao) {
 				jubao.close();
 			}
+			setTimeout(function(){
+				
+			
 			if(userid && userid != null && userid != "null") {
 				mui.openWindow({
 								url: '../html/weChat.html',
@@ -342,6 +345,7 @@ mui.ready(function() {
 			}else{
 				isLogin();
 			}
+			},100)
 		}
 		//立即回复新建跳转咨询
 		function createConsult() {

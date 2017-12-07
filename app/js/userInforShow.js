@@ -166,7 +166,7 @@ mui.plusReady(function() {
 		});
 	}
 	/*进入个人简介页面*/
-	document.getElementById("detailProfessor").addEventListener("tap", function() {
+	document.getElementById("professorBreifinfo").addEventListener("tap", function() {
 		plus.nativeUI.showWaiting(); //显示原生等待框
 		var webviewShow = plus.webview.create("../html/userInforShow-more.html", 'userInforShow-more.html', {}, {
 			pId: proId
@@ -801,7 +801,18 @@ mui.plusReady(function() {
 //			webviewShow.addEventListener("loaded", function() {
 //
 //			}, false);
-			mui.openWindow({
+			
+			var wechat=plus.webview.getWebviewById('weChat.html');
+			var jubao=plus.webview.getWebviewById('jubao.html');
+			
+			if(wechat) {
+				wechat.close();
+			}
+			if(jubao) {
+				jubao.close();
+			}
+			setTimeout(function() {
+				mui.openWindow({
 				url: '../html/weChat.html',
 				id: 'weChat.html',
 				show: {
@@ -813,6 +824,8 @@ mui.plusReady(function() {
 					flag:1
 				}
 			})
+			},100);
+			
 
 		} else {
 			mui.openWindow({

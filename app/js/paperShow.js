@@ -752,8 +752,10 @@ function lewordNum() {
 			traditional: true,
 			success: function(data) {
 				if(data.success) {
-					document.getElementsByClassName("mui-badge")[0].innerHTML=data.data;
+					if(data.data > 0) {
+						document.getElementsByClassName("mui-badge")[0].innerHTML = data.data;
 					}
+				}
 
 				
 			},

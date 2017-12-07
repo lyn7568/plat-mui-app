@@ -3,9 +3,13 @@ mui.init();
 //var baseUrl = "http://www.ekexiu.com", 
 //var baseUrl = "http://192.168.3.233",
 var baseUrl = "http:192.168.3.233:81",    
-	toastStyle = {
-		'verticalAlign': 'top',
-	}
+var wlogurl="http://192.168.3.233:8080"
+//var wlogurl="http://www.ekexiu.com:8082"
+
+
+toastStyle = {
+	'verticalAlign': 'top',
+}
 
 function goHome() {
 	mui.openWindow({
@@ -454,7 +458,7 @@ function checkVersion(){
 function wlog(dt, id, src) {
 	var src = src || "1";
 	mui.ajax({
-		url: "http://www.ekexiu.com:8082/log/jsonp/log",
+		url: wlogurl+"/log/jsonp/log",
 		data: {
 			"id": id,
 			"src": src,

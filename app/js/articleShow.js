@@ -124,7 +124,9 @@ mui.plusReady(function() {
 			console.log(JSON.stringify($data));
 		},
 		leaveWordTotal: function($data) {
-			document.getElementsByClassName('mui-badge')[0].innerHTML = $data
+			if($data>0){
+				document.getElementsByClassName('mui-badge')[0].innerHTML = $data
+			}
 		}
 	}
 	

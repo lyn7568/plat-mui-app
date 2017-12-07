@@ -1158,7 +1158,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 		-webkit-user-select: text;border: 1px solid #E0E0E0;border-radius: 4px;outline: 0;background-color: #fff;
     -webkit-appearance: none;}
 .mui-bar-tab.footbox .artfoot .iconfontnew{margin: 10px 0;position: relative;}
-.mui-bar-tab.footbox .artfoot .mui-badge{position:absolute;top:-6px;right:-10px;/*font-size:8px;line-height:14px;*/z-index:24;font-style: normal;background:#f45b5d;color:#fff;}
+.mui-bar-tab.footbox .artfoot .mui-badge{position:absolute;top:-6px;right:-10px;z-index:24;font-style: normal;background:#f45b5d;color:#fff;padding:0}
 .mui-bar-tab.footbox .artfoot.mui-row .mui-btn{font-weight: 400;position: relative;z-index: 20;margin-bottom:10px;float:right;top:0;padding:4px 10px;background: #FF9900;color:#FFF;border-color:#ff9900;}
 .mui-bar-tab.footbox .artfoot.mui-row .mui-btn:disabled{background:#E0E0E0;border-color:#E0E0E0;}
 /*资源图片轮播*/

@@ -9,6 +9,15 @@
 			indicators: true, //是否显示滚动条
 			deceleration: deceleration
 		});
+	var colum= {
+					"a": "", //最新文章
+					"3": 3, //前沿动态
+					"4": 7, //学术经验
+					"5": 4, //检测分析
+					"6": 5, //会议培训
+					"7": 6, //科袖访谈
+					"8": 8 //招聘招生
+			}
 	var pullObj = {
 		"0": 0,
 		"1": 0,
@@ -21,44 +30,44 @@
 	$.ready(function() {
 		$.plusReady(function() {
 			var columnType = {
-				"1": {
-					fullName: "个人原创",
-					shortName: "原创"
-				},
-				"2": {
-					fullName: "企业原创",
-					shortName: "原创"
-				},
-				"3": {
-					fullName: "前沿动态",
-					shortName: "前沿"
-				},
-				"4": {
-					fullName: "学术经验",
-					shortName: "经验"
-				},
-				"5": {
-					fullName: "分析检测",
-					shortName: "检测"
-				},
-				"6": {
-					fullName: "会议培训",
-					shortName: "会议"
-				},
-				"7": {
-					fullName: "科袖访谈",
-					shortName: "访谈"
-				},
-				"8": {
-					fullName: "招聘招生",
-					shortName: "招聘"
-				},
-				"9": {
-					fullName: "重大新闻",
-					shortName: "新闻"
-				}
-			}
+		"1": {
+			fullName: "个人原创",
+			shortName: "原创"
+		},
+		"2": {
+			fullName: "企业原创",
+			shortName: "原创"
+		},
+		"3": {
+			fullName: "科研",
+			shortName: "科研"
+		},
+		"4": {
+			fullName: "智库",
+			shortName: "智库"
+		},
+		"5": {
+			fullName: "检测",
+			shortName: "检测"
+		},
+		"6": {
+			fullName: "会议",
+			shortName: "会议"
+		},
+		"7": {
+			fullName: "企业",
+			shortName: "企业"
+		},
+		"8": {
+			fullName: "招聘",
+			shortName: "招聘"
+		},
 
+		"9": {
+			fullName: "新闻",
+			shortName: "新闻"
+		}
+	}
 			var oWidth = getViewportSize().width;
 
 			function getViewportSize() {
@@ -68,8 +77,8 @@
 				};
 			}
 			for(var n = 0; n < 7; n++) {
-				document.getElementsByClassName("mui-control-item")[n].style.paddingLeft = (oWidth - 4.5 * 45) / 9 + "px";
-				document.getElementsByClassName("mui-control-item")[n].style.paddingRight = (oWidth - 4.5 * 45) / 9 + "px";
+				document.getElementsByClassName("mui-control-item")[n].style.paddingLeft = (oWidth - 5.25 * 30) / 9 + "px";
+				document.getElementsByClassName("mui-control-item")[n].style.paddingRight = (oWidth - 5.25 * 30) / 9 + "px";
 			}
 
 			function Discover(obj) {
@@ -88,10 +97,10 @@
 				colum: {
 					"a": "", //最新文章
 					"3": 3, //前沿动态
-					"4": 4, //学术经验
-					"5": 5, //检测分析
-					"6": 6, //会议培训
-					"7": 7, //科袖访谈
+					"4": 7, //学术经验
+					"5": 4, //检测分析
+					"6": 5, //会议培训
+					"7": 6, //科袖访谈
 					"8": 8 //招聘招生
 				},
 				constructor: Discover,
@@ -184,13 +193,14 @@
 										} else {
 											pullObj[index] = 1;
 											_this.pageNo[index] = 1;
+											
 											_this.colum[index + 2] = index + 2;
 
 											console.log(new Date().getTime() + "b")
 											$D({
 												"fun": _this.createFragment,
 												data: {
-													col: index ? _this.colum[index + 2] : _this.colum.a,
+													col: index ? colum[m+2] : _this.colum.a,
 													pageNo: 1,
 													exclude: arr,
 												},
@@ -214,13 +224,12 @@
 											_this.colum.a = ""
 										} else {
 											pa = ++_this.pageNo[index];
-											_this.colum[index + 2] = index + 2;
 										}
 										//var ul = self.element.querySelector('.mui-table-view');						
 										$D({
 											"fun": _this.createFragment,
 											data: {
-												col: index ? _this.colum[index + 2] : _this.colum.a,
+												col: index ? colum[m+2] : _this.colum.a,
 												pageNo: pa,
 												exclude: arr
 											},
@@ -269,6 +278,8 @@
 					}
 				},
 				createFragment: function(data) {
+					console.log(JSON.stringify(data))
+					console.log(m)
 					if(data.success) {
 						var $data = data.data.data;
 						if(arguments[1]) {
@@ -393,29 +404,29 @@
 			document.querySelector('#slider').addEventListener('slide', function(event) {
 
 				var $this = document.querySelector(".mui-scroll .mui-active");
-				if($this.innerHTML == "前沿动态") {
+				if($this.innerHTML == "科研") {
 					m = 1;
-				} else if($this.innerHTML == "学术经验") {
+				} else if($this.innerHTML == "企业") {
 					m = 2;
-				} else if($this.innerHTML == "检测分析") {
+				} else if($this.innerHTML == "智库") {
 					m = 3;
-				} else if($this.innerHTML == "会议培训") {
+				} else if($this.innerHTML == "检测") {
 					m = 4;
-				} else if($this.innerHTML == "科袖访谈") {
+				} else if($this.innerHTML == "会议") {
 					m = 5;
-				} else if($this.innerHTML == "招聘招生") {
+				} else if($this.innerHTML == "招聘") {
 					m = 6;
-				} else if($this.innerHTML == "最新文章") {
+				} else if($this.innerHTML == "推荐") {
 					m = 0;
 				}
 				if(!$this.getAttribute("flag")) {
 
 					$this.setAttribute("flag", 1);
-
+						console.log(colum[m+2] +" 99999")
 					$D({
 						"fun": ob.createFragment,
 						data: {
-							col: m + 2,
+							col: colum[m+2],
 							pageNo: 1
 						},
 						url: "/ajax/article/find"

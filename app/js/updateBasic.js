@@ -12,7 +12,7 @@ mui.ready(function() {
 		autoWidth(document.getElementsByClassName('mui-navigate-right')[0])
 		document.getElementsByClassName("mui-navigate-right")[0]
 		function personalMessage() {
-			mui.ajax(baseUrl + "/ajax/professor/baseInfo/" + userid, {
+			mui.ajax(baseUrl + "/ajax/professor/editBaseInfo/" + userid, {
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置

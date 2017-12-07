@@ -359,7 +359,7 @@
 				<img class="msg-user-img msg-user" src="<%=(item.url)%>" alt="" style="border-radius:50%;" />
 				<!--<i class="msg-user mui-icon mui-icon-person" style="border-radius:50%;" id="hu"></i>-->
 				<% } else { %>
-				<img class="msg-user-img" src="<%=(item.url)%>" alt="" style="border-radius:50%;" />
+				<img class="msg-user-img profe" src="<%=(item.url)%>" alt="" style="border-radius:50%;" />
 				<% } %>
 				<div class="msg-content">
 					<div class="msg-content-inner">
@@ -431,7 +431,11 @@
 					plus.webview.currentWebview().setStyle({
 						softinputMode: "adjustResize"
 					});
+					
 					var professorId = plus.webview.currentWebview().professorId;
+					mui("#msg-list").on("tap",".profe",function(){
+						plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {proid: professorId}); 
+					})
 					document.getElementById("BtnMore").addEventListener("tap", function() {
 						mui.openWindow({
 							url: '../html/jubao.html',
@@ -473,6 +477,9 @@
 							type: 'GET',
 							timeout: 10000,
 							success: function(data) {
+								console.log(professorId +"   11111")
+								console.log(JSON.stringify(data))
+								console.log("  6666")
 								if(data.success && data.data) {
 									var $info=data.data;
 									document.getElementById("chatName").innerHTML = data.data.name;

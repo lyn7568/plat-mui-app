@@ -152,7 +152,11 @@ mui.ready(function() {
 						mui.fire(consultPage, 'logined', {id: userId});	
 						
 						firstLogin();
-						
+						var consultPage = plus.webview.getWebviewById('consultlistNew.html');
+						mui.fire(consultPage, 'logined', {
+							id: userId,
+							rd:1
+						});
 					}else{
 						if(data.code==-1){
 							plus.nativeUI.toast("验证码已过期，请重新获取", toastStyle);

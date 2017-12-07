@@ -317,6 +317,14 @@ mui.ready(function() {
 		}
 		//点击回复按钮调用函数
 		function replayGo(){
+			var wechat=plus.webview.getWebviewById('weChat.html');
+			var jubao=plus.webview.getWebviewById('jubao.html');
+			if(wechat) {
+				wechat.close();
+			}
+			if(jubao) {
+				jubao.close();
+			}
 			if(userid && userid != null && userid != "null") {
 				mui.openWindow({
 								url: '../html/weChat.html',

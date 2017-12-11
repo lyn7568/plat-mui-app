@@ -85,6 +85,7 @@ mui.plusReady(function() {
 			type: 'GET', //http请求类型
 			timeout: 10000, //超时设置
 			success: function(data) {
+				console.log(JSON.stringify(data))
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				var $data = data.data;
@@ -143,7 +144,7 @@ mui.plusReady(function() {
 					researchAreaShow($data.researchAreas, $data.editResearchAreaLogs);
 				} else {
 					document.getElementById("professorReserachMess").style.display = "none";
-				}
+				} 
 				//应用行业
 				if($data.industry) {
 					induSubjectShow({
@@ -166,7 +167,7 @@ mui.plusReady(function() {
 		});
 	}
 	/*进入个人简介页面*/
-	document.getElementById("professorBreifinfo").addEventListener("tap", function() {
+	document.getElementById("detailProfessor").addEventListener("tap", function() {
 		plus.nativeUI.showWaiting(); //显示原生等待框
 		var webviewShow = plus.webview.create("../html/userInforShow-more.html", 'userInforShow-more.html', {}, {
 			pId: proId

@@ -146,6 +146,10 @@ if(mui.os.ios) {
 	mui('.mui-bar-tab').on('tap', 'a', function(e) {
 		var targetTab = this.getAttribute('href');
 		var num = this.getAttribute('dataid');
+		if(num==2) {
+			var web3 = plus.webview.getWebviewById("consultlistNew.html");
+		   mui.fire(web3, "newId");
+		}
 		if(num==3){
 			var myPage = plus.webview.getWebviewById('html/myaccount.html');
 				mui.fire(myPage,'mPage', {});	

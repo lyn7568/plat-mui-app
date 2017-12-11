@@ -31,7 +31,9 @@ mui.ready(function() {
 							document.getElementById("userimg").style.backgroundImage = "url(" + baseUrl + "/images/head/" + $data.id + "_l.jpg?" + mun + ")";
 						}
 						var onp=document.querySelectorAll(".exName");
-						if($data.orgAuth==0) {
+						if($data.authType==1||$data.orgAuth=='1'||$data.authStatus==3) {
+							onp[1].innerHTML=$data.name;
+						}else {
 							onp[0].style.display="none";
 							onp[1].style.display="none";
 							onp[2].style.display="block";
@@ -40,8 +42,7 @@ mui.ready(function() {
 						
 							bindEvent({selector:"name",txt:"请填写您的姓名",web:{html:'updataName.html',id:"updataName.html"}});
 						}
-						}else {
-							onp[1].innerHTML=$data.name;
+							
 						}
 						person.name=$data.name;
 						if($data.orgName) {
@@ -80,8 +81,10 @@ mui.ready(function() {
 							person.address="";
 						}
 						if($data.province) {
+							console.log("111" +$data.province)
 							person.province=$data.province;
 						}else{
+							console.log("222" +$data.province)
 							person.province="";
 						}
 						if($data.email) {

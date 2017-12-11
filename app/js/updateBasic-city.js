@@ -1,6 +1,7 @@
 mui.ready(function() {
 	mui.plusReady(function() {
 		var web = plus.webview.currentWebview();
+		console.log(JSON.stringify(web));
 		var city, province,suc=1;
 		
 		var oadd={
@@ -84,6 +85,7 @@ mui.ready(function() {
 			if(suc==0) return;
 			cityResult.innerText = oadd.address + "-" + oadd.province;
 			city=oadd.address;
+			province=oadd.province;
 		})
 	})
 })

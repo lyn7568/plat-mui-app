@@ -165,7 +165,7 @@ mui.ready(function() {
 				timeout: 10000, //超时时间设置为10秒；
 				traditional: true, //传数组必须加这个
 				success: function(data) {
-
+					console.log(JSON.stringify(data))
 					if(data.success) {
 						$("#consultList").html("");
 						var $data = data.data;

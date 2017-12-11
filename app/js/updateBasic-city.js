@@ -8,10 +8,16 @@ mui.ready(function() {
 			
 		}
 		plus.geolocation.getCurrentPosition(function(p) {
+			console.log(JSON.stringify(p));
 			plus.nativeUI.closeWaiting();
 			web.show("slide-in-right", 150);
 			oadd.address=p.address.city;
-			oadd.province=p.address.province;
+			if(!p.address.province) {
+				oadd.province=p.address.city;
+			}else{
+				oadd.province=p.address.province;
+			}
+			
 		}, function(e) {
 			plus.nativeUI.closeWaiting();
 			web.show("slide-in-right", 150);

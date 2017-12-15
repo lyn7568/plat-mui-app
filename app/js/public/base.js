@@ -551,6 +551,14 @@ function addscript(){
 		document.documentElement.appendChild(script);
 	}
 }
+// 判断微信客户端
+ function weixinClient() {
+ 	if(!plus.runtime.isApplicationExist({pname:'com.tencent.mm',action:'weixin://'})) {
+		plus.nativeUI.toast("请安装微信客户端", toastStyle);
+						return false;
+		}
+ 	return true;
+ }
 mui.ready(function(){
 	//处理点击事件，需要打开原生浏览器
 	mui("body").on("tap","a.advertsub",function(){

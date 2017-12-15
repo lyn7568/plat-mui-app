@@ -334,7 +334,7 @@ mui.ready(function() {
 					}
 				}
 
-			}) : plus.nativeUI.alert('当前环境无法支持分享操作!');
+			}) : plus.nativeUI.toast("请安装微信客户端", toastStyle);
 
 		}
 

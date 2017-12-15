@@ -273,6 +273,9 @@ mui.plusReady(function() {
 		});
 	}
 	mui("#aboutAuthors").on("tap", "li>span", function(e) {
+		if(!weixinClient()) {
+					return;
+				}
 		var evt=e?e:window.event;
 		evt.stopPropagation();
 		var that = this;
@@ -487,6 +490,9 @@ mui.plusReady(function() {
 		var oUrl=baseUrl + "/images/logo180.png";
 		
 		if(oFen == "微信好友") {
+			if(!weixinClient()) {
+					return;
+				}
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
@@ -497,6 +503,9 @@ mui.plusReady(function() {
 				});
 			}
 		} else if(oFen == "微信朋友圈") {
+			if(!weixinClient()) {
+					return;
+				}
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneTimeline", {

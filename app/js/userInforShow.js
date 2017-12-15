@@ -1051,6 +1051,9 @@ mui.plusReady(function() {
 				str = "研究方向：" + resear
 			}
 		if(oFen == "微信好友") {
+			if(!weixinClient()) {
+					return;
+				}
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
@@ -1061,6 +1064,9 @@ mui.plusReady(function() {
 				});
 			}
 		} else if(oFen == "微信朋友圈") {
+			if(!weixinClient()) {
+					return;
+				}
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneSession", {

@@ -588,6 +588,9 @@ mui.plusReady(function() {
 			oUrl=firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg");
 		}
 		if(oFen == "微信好友") {
+			if(!weixinClient()) {
+					return;
+				}
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneSession", {
@@ -598,6 +601,9 @@ mui.plusReady(function() {
 				});
 			}
 		} else if(oFen == "微信朋友圈") {
+			if(!weixinClient()) {
+					return;
+				}
 			var share = buildShareService("weixin");
 			if(share) {
 				shareMessage(share, "WXSceneTimeline", {

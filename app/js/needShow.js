@@ -427,6 +427,9 @@ mui.ready(function() {
 			var oUrl = baseUrl + "/images/logo180.png";
 	
 			if(oFen == "微信好友") {
+				if(!weixinClient()) {
+					return;
+				}
 				var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
@@ -437,6 +440,9 @@ mui.ready(function() {
 					});
 				}
 			} else if(oFen == "微信朋友圈") {
+				if(!weixinClient()) {
+					return;
+				}
 				var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {

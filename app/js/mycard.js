@@ -61,6 +61,9 @@ mui.ready(function() {
 			})
 
 			document.getElementById("weixin").addEventListener('tap', function() {
+				if(!weixinClient()) {
+					return;
+				}
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneSession", {
@@ -73,6 +76,9 @@ mui.ready(function() {
 			})
 
 			document.getElementById("weixinp").addEventListener('tap', function() {
+				if(!weixinClient()) {
+					return;
+				}
 				var share = buildShareService();
 				if(share) {
 					shareMessage(share, "WXSceneTimeline", {

@@ -34,11 +34,17 @@ mui.ready(function(){
 			document.getElementById("maskBlack").style.display = "none";
 			var oFen = this.getElementsByTagName("span")[0].innerHTML;
 			if(oFen == "微信好友") {
+				if(!weixinClient()) {
+					return;
+				}
 				var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneSession", self.data);
 				}
 			} else if(oFen == "微信朋友圈") {
+				if(!weixinClient()) {
+					return;
+				}
 				var share = buildShareService("weixin");
 				if(share) {
 					shareMessage(share, "WXSceneTimeline",  self.data);

@@ -1,4 +1,8 @@
 mui.plusReady(function() {
+	if(mui.os.ipad)
+		if(!plus.runtime.isApplicationExist({pname:'com.tencent.mm',action:'weixin://'})) {
+			document.getElementsByClassName("quickbox")[0].style.display="none";
+		}
 	var auths;
 	plus.oauth.getServices(function(services) {
 		auths = {};

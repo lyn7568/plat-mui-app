@@ -1,10 +1,10 @@
 //公共文件
 mui.init();
-//var baseUrl = "http://www.ekexiu.com"; 
+var baseUrl = "http://www.ekexiu.com";
 //var baseUrl = "http://192.168.3.233";
-var baseUrl = "http:192.168.3.233:81";    
-var wlogurl="http://192.168.3.233:8080"
-//var wlogurl="http://www.ekexiu.com:8082";
+//var baseUrl = "http:192.168.3.233:81";   
+//var wlogurl="http://192.168.3.233:8080";
+var wlogurl="http://www.ekexiu.com:8082";
 
 
 toastStyle = {

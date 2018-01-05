@@ -10,13 +10,14 @@
 			deceleration: deceleration
 		});
 	var colum= {
-					"a": "", //最新文章
+					"a":"", //最新文章
 					"3": 3, //前沿动态
 					"4": 7, //学术经验
-					"5": 4, //检测分析
-					"6": 5, //会议培训
-					"7": 6, //科袖访谈
-					"8": 8 //招聘招生
+                    "5":10,
+					"6": 4, //检测分析
+					"7": 5, //会议培训
+					"8": 6, //科袖访谈
+					"9": 8 //招聘招生
 			}
 	var pullObj = {
 		"0": 0,
@@ -25,8 +26,10 @@
 		"3": 0,
 		"4": 0,
 		"5": 0,
-		"6": 0
+		"6": 0,
+        "7": 0
 	}
+	var QAtime,QAid,QArows = 20;
 	$.ready(function() {
 		$.plusReady(function() {
 			var columnType = {
@@ -66,7 +69,11 @@
 		"9": {
 			fullName: "新闻",
 			shortName: "新闻"
-		}
+		},
+        "10":{
+		    fullName:"问答",
+            shortName:"问答"
+        }
 	}
 			var oWidth = getViewportSize().width;
 
@@ -93,15 +100,17 @@
 					"4": 1,
 					"5": 1,
 					"6": 1,
+                    "7": 1
 				},
 				colum: {
 					"a": "", //最新文章
 					"3": 3, //前沿动态
 					"4": 7, //学术经验
-					"5": 4, //检测分析
-					"6": 5, //会议培训
-					"7": 6, //科袖访谈
-					"8": 8 //招聘招生
+                    "5":10,
+					"6": 4, //检测分析
+					"7": 5, //会议培训
+					"8": 6, //科袖访谈
+					"9": 8 //招聘招生
 				},
 				constructor: Discover,
 				Init: function(obj) {
@@ -193,19 +202,29 @@
 										} else {
 											pullObj[index] = 1;
 											_this.pageNo[index] = 1;
-											
+
 											_this.colum[index + 2] = index + 2;
 
-											console.log(new Date().getTime() + "b")
-											$D({
-												"fun": _this.createFragment,
-												data: {
-													col: index ? colum[m+2] : _this.colum.a,
-													pageNo: 1,
-													exclude: arr,
-												},
-												url: "/ajax/article/find"
-											});
+											console.log(new Date().getTime() + "b");
+											if(m==3){
+                                                $D({
+                                                    "fun": _this.QA,
+                                                    data: {
+                                                        rows:QArows
+                                                    },
+                                                    url: "/ajax/article/find"
+                                                });
+                                            }else{
+                                                $D({
+                                                    "fun": _this.createFragment,
+                                                    data: {
+                                                        col: index ? colum[m+2] : _this.colum.a,
+                                                        pageNo: 1,
+                                                        exclude: arr,
+                                                    },
+                                                    url: "/ajax/article/find"
+                                                });
+                                            }
 										}
 									}, 1000);
 
@@ -225,16 +244,28 @@
 										} else {
 											pa = ++_this.pageNo[index];
 										}
-										//var ul = self.element.querySelector('.mui-table-view');						
-										$D({
-											"fun": _this.createFragment,
-											data: {
-												col: index ? colum[m+2] : _this.colum.a,
-												pageNo: pa,
-												exclude: arr
-											},
-											url: "/ajax/article/find"
-										});
+										//var ul = self.element.querySelector('.mui-table-view');
+                                        if (m == 3){
+                                            $D({
+                                                "fun": _this.QA,
+                                                data: {
+                                                    time: QAtime,
+                                                    id:QAid,
+                                                    rows:QArows
+                                                },
+                                                url: "/ajax/article/find"
+                                            });
+                                        }else {
+                                            $D({
+                                                "fun": _this.createFragment,
+                                                data: {
+                                                    col: index ? colum[m + 2] : _this.colum.a,
+                                                    pageNo: pa,
+                                                    exclude: arr
+                                                },
+                                                url: "/ajax/article/find"
+                                            });
+                                        }
 									}, 1000);
 								}
 							}
@@ -277,6 +308,17 @@
 
 					}
 				},
+                answer:function (data) {
+                    if (data.success){
+                        //todo 填充用户信息
+                    }
+                },
+                leaveMsgCount:function (data) {
+                    if (data.success){
+                        //todo 填充留言数量
+                        this.innerHTML = data.data
+                    }
+                },
 				createFragment: function(data) {
 					console.log(JSON.stringify(data))
 					console.log(m)
@@ -393,8 +435,69 @@
 							}
 						}
 					}
-				}
-			}
+				},
+                QA:function (data) {
+                    if(data.success) {
+                        var $data = data.data.data;
+                        QAtime = $data[data.length-1].createTime;
+                        QAid = $data[data.length-1].id;
+                        if (arguments[1]){
+                            if($data.length>1) {
+                                $data.length = 1;
+                            }
+                        }
+                        for (var i = 0; i<$data.length;i++) {
+                            var id = $data[i].id,//回答ID
+                                qid = $data[i].qid,//问题ID
+                                uid = $data[i].uid,//回答人ID
+                                agree=$data[i].agree,//点赞数量
+                                cnt = $data[i].cnt;//回答内容
+                            if(pullObj[m] == 1) {
+                                key1[m].endPullDownToRefresh();
+                                pullObj[m] = 0;
+                            }
+                            var li = document.createElement("li");
+                            //回答模块DOM
+                            // li.setAttribute("data-id", id);
+                            // li.setAttribute("data-flag", 3);
+                            // li.className = "mui-table-view-cell flexCenter OflexCenter";
+                            // li.innerHTML = '<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
+                            //     '<div class="madiaInfo OmadiaInfo">' +
+                            //     '<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
+                            //     '<p class="h2Font mui-ellipsis">' + colSpan +
+                            //     '<span class="nameSpan" style="margin-right:10px"></span>' +
+                            //     '<span class="time">' + commenTime($data[i].publishTime) + '</span>' +
+                            //     '</p>' +
+                            //     '</div>'
+                            // if(arguments[1]) {
+                            //     if(document.getElementsByTagName("ul")[m].children[0]) {
+                            //         document.getElementsByTagName("ul")[m].insertBefore(li, document.getElementsByTagName("ul")[m].children[0])
+                            //     } else {
+                            //         document.getElementsByTagName("ul")[m].appendChild(li);
+                            //     }
+                            // } else {
+                            //     document.getElementsByTagName("ul")[m].appendChild(li);
+                            // }
+                            // li.setAttribute("owner-id", uid);
+                            $D({
+                                data: {},
+                                fun: ob.proName,
+                                url: "/ajax/professor/editBaseInfo/" + uid,
+                                sele: li.getElementsByClassName("nameSpan")[0]
+                            });
+                            $D({
+                                data:{sid:id,stype:"4"},
+                                fun:ob.leaveCount,
+                                url:"/ajax/leavemsg/count"
+                                //todo 留言数量的this
+                                // sele:
+                            })
+
+                            //todo 正在加载和加载完毕的显示和隐藏。
+                        }
+                    }
+                }
+            }
 			Discover.prototype.Init.prototype = Discover.prototype;
 			var $D = Discover;
 			$D().bindEvent();
@@ -409,28 +512,40 @@
 				} else if($this.innerHTML == "企业") {
 					m = 2;
 				} else if($this.innerHTML == "智库") {
-					m = 3;
-				} else if($this.innerHTML == "检测") {
 					m = 4;
-				} else if($this.innerHTML == "会议") {
+				} else if($this.innerHTML == "检测") {
 					m = 5;
-				} else if($this.innerHTML == "招聘") {
+				} else if($this.innerHTML == "会议") {
 					m = 6;
+				} else if($this.innerHTML == "招聘") {
+					m = 7;
 				} else if($this.innerHTML == "推荐") {
 					m = 0;
-				}
+				} else if($this.innerHtml == "问答"){
+				    m = 3
+                }
 				if(!$this.getAttribute("flag")) {
 
 					$this.setAttribute("flag", 1);
 						console.log(colum[m+2] +" 99999")
-					$D({
-						"fun": ob.createFragment,
-						data: {
-							col: colum[m+2],
-							pageNo: 1
-						},
-						url: "/ajax/article/find"
-					});
+                    if (m = 3){
+                        $D({
+                            "fun": ob.QA,
+                            data: {
+                                rows:QArows
+                            },
+                            url: "/ajax/question/answer/byTime"
+                        });
+                    }else {
+                        $D({
+                            "fun": ob.createFragment,
+                            data: {
+                                col: colum[m + 2],
+                                pageNo: 1
+                            },
+                            url: "/ajax/article/find"
+                        });
+                    }
 				}
 			})
 			$.ajax(baseUrl + "/data/inc/col_bannerApp.html?ttt=" + new Date().getTime(), {

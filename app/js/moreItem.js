@@ -120,6 +120,18 @@ mui.ready(function(){
 				name:self.name,
 			})
 		})
+		document.getElementById("corrAnswer").addEventListener('tap',function(){
+//			plus.nativeUI.showWaiting(); //显示原生等待框
+//			var webviewShow = plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
+//			})
+			mui.openWindow({
+				 url:"../html/qa-answer-q.html",
+			    id:"../html/qa-answer-q.html",
+				show: {
+					aniShow: "slide-in-right"
+				}
+			});
+		})
 		
 		document.getElementsByClassName("topback")[0].addEventListener("tap",function(){
 			if(self.name=="org") {

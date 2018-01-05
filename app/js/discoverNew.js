@@ -3,21 +3,21 @@
 	var arr = [];
 	var key1 = [];
 	var m = 0;
-		var deceleration = mui.os.ios ? 0.003 : 0.0009;
-		$('.mui-scroll-wrapper').scroll({
-			bounce: false,
-			indicators: true, //是否显示滚动条
-			deceleration: deceleration
-		});
-	var colum= {
-					"a": "", //最新文章
-					"3": 3, //前沿动态
-					"4": 7, //学术经验
-					"5": 4, //检测分析
-					"6": 5, //会议培训
-					"7": 6, //科袖访谈
-					"8": 8 //招聘招生
-			}
+	var deceleration = mui.os.ios ? 0.003 : 0.0009;
+	$('.mui-scroll-wrapper').scroll({
+		bounce: false,
+		indicators: true, //是否显示滚动条
+		deceleration: deceleration
+	});
+	var colum = {
+		"a": "", //最新文章
+		"3": 3, //前沿动态
+		"4": 7, //学术经验
+		"5": 4, //检测分析
+		"6": 5, //会议培训
+		"7": 6, //科袖访谈
+		"8": 8 //招聘招生
+	}
 	var pullObj = {
 		"0": 0,
 		"1": 0,
@@ -30,44 +30,44 @@
 	$.ready(function() {
 		$.plusReady(function() {
 			var columnType = {
-		"1": {
-			fullName: "个人原创",
-			shortName: "原创"
-		},
-		"2": {
-			fullName: "企业原创",
-			shortName: "原创"
-		},
-		"3": {
-			fullName: "科研",
-			shortName: "科研"
-		},
-		"4": {
-			fullName: "智库",
-			shortName: "智库"
-		},
-		"5": {
-			fullName: "检测",
-			shortName: "检测"
-		},
-		"6": {
-			fullName: "会议",
-			shortName: "会议"
-		},
-		"7": {
-			fullName: "企业",
-			shortName: "企业"
-		},
-		"8": {
-			fullName: "招聘",
-			shortName: "招聘"
-		},
+				"1": {
+					fullName: "个人原创",
+					shortName: "原创"
+				},
+				"2": {
+					fullName: "企业原创",
+					shortName: "原创"
+				},
+				"3": {
+					fullName: "科研",
+					shortName: "科研"
+				},
+				"4": {
+					fullName: "智库",
+					shortName: "智库"
+				},
+				"5": {
+					fullName: "检测",
+					shortName: "检测"
+				},
+				"6": {
+					fullName: "会议",
+					shortName: "会议"
+				},
+				"7": {
+					fullName: "企业",
+					shortName: "企业"
+				},
+				"8": {
+					fullName: "招聘",
+					shortName: "招聘"
+				},
 
-		"9": {
-			fullName: "新闻",
-			shortName: "新闻"
-		}
-	}
+				"9": {
+					fullName: "新闻",
+					shortName: "新闻"
+				}
+			}
 			var oWidth = getViewportSize().width;
 
 			function getViewportSize() {
@@ -94,15 +94,15 @@
 					"5": 1,
 					"6": 1,
 				},
-				colum: {
-					"a": "", //最新文章
-					"3": 3, //前沿动态
-					"4": 7, //学术经验
-					"5": 4, //检测分析
-					"6": 5, //会议培训
-					"7": 6, //科袖访谈
-					"8": 8 //招聘招生
-				},
+				//				colum: {
+				//					"a": "", //最新文章
+				//					"3": 3, //前沿动态
+				//					"4": 7, //学术经验
+				//					"5": 4, //检测分析
+				//					"6": 5, //会议培训
+				//					"7": 6, //科袖访谈
+				//					"8": 8 //招聘招生
+				//				},
 				constructor: Discover,
 				Init: function(obj) {
 					if(obj) {
@@ -184,23 +184,20 @@
 														flag: 1,
 														url: "/ajax/article/find"
 													});
-												},
-												error: function(xhr, type, errorThrown) {
-													//plus.nativeUI.toast("服务器链接超时", toastStyle);
 												}
 											});
 
 										} else {
 											pullObj[index] = 1;
 											_this.pageNo[index] = 1;
-											
+
 											_this.colum[index + 2] = index + 2;
 
 											console.log(new Date().getTime() + "b")
 											$D({
 												"fun": _this.createFragment,
 												data: {
-													col: index ? colum[m+2] : _this.colum.a,
+													col: index ? colum[m + 2] : _this.colum.a,
 													pageNo: 1,
 													exclude: arr,
 												},
@@ -229,7 +226,7 @@
 										$D({
 											"fun": _this.createFragment,
 											data: {
-												col: index ? colum[m+2] : _this.colum.a,
+												col: index ? colum[m + 2] : _this.colum.a,
 												pageNo: pa,
 												exclude: arr
 											},
@@ -422,11 +419,11 @@
 				if(!$this.getAttribute("flag")) {
 
 					$this.setAttribute("flag", 1);
-						console.log(colum[m+2] +" 99999")
+					console.log(colum[m + 2] + " 99999")
 					$D({
 						"fun": ob.createFragment,
 						data: {
-							col: colum[m+2],
+							col: colum[m + 2],
 							pageNo: 1
 						},
 						url: "/ajax/article/find"
@@ -471,15 +468,6 @@
 				}
 			});
 
-			//			$D({
-			//				"fun": ob.createFragment,
-			//				data: {
-			//					col: "",
-			//					pageNo: ob.pageNo.a,
-			//					exclude:arr
-			//				},
-			//				url: "/ajax/article/find"
-			//			});
 			function addClick1(colId) {
 				$.ajax(baseUrl + "/ajax/operation/statist/bannerClick", {
 					dataType: 'json', //服务器返回json格式数据

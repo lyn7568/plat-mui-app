@@ -57,6 +57,7 @@
 						<a class="mui-control-item  mui-active" href="#item1mobile" flag="1">推荐</a>
 						<a class="mui-control-item" href="#item2mobile">科研</a>
 						<a class="mui-control-item" href="#item3mobile">企业</a>
+						<a class="mui-control-item" href="#item8mobile">问答</a>
 						<a class="mui-control-item" href="#item4mobile">智库</a>
 						<a class="mui-control-item" href="#item5mobile">检测</a>
 						<a class="mui-control-item tab-article" href="#item6mobile">会议</a>
@@ -141,6 +142,82 @@
 							</div>
 						</div>
 					</div>
+					<div id="item8mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="btnLinkBox qa-btnlink mui-clearfix">
+									<div class="qa-top">
+										<div class="unlogin displayNone">马上登录，参与问答</div>
+										<div class="onlogin mui-navigate-right" id="my-q&a">
+											<div class="flexCenter madiaBlock">
+												<div class="madiaHead useHead"></div>
+												<div class="madiaInfo h1Font">
+													<span class="mui-pull-left">用户姓名</span>
+													<span class="rightword">我的回答</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="mui-row madiaBlock">
+										<div class="mui-table-view-cell mui-media mui-col-xs-6" id="goQu">
+											<div class="mui-clearfix">
+												<div class="mui-media-object mui-pull-left btnLinkIcon wen"></div>
+												<div class="mui-media-body btnLink">马上提问</div>
+											</div>
+										</div>
+										<div class="mui-table-view-cell mui-media mui-col-xs-6" id="goAn">
+											<div class="mui-clearfix">
+												<div class="mui-media-object mui-pull-left btnLinkIcon da"></div>
+												<div class="mui-media-body btnLink">等您回答</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<ul class="mui-table-view myAllneeds partLine" id="questionItem">
+									<li class="mui-table-view-cell">
+										<div class="madiaInfo">
+											<p class="h1Font mui-ellipsis-2">需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问</p>
+											<div class="flexCenter qa-owner">
+												<div class="owner-head useHead"></div>
+												<div class="owner-info">
+													<div class="owner-name"><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></div>
+													<div class="owner-tit mui-ellipsis h2Font">职称/职位,所在机构职称/职位,所在机构职称/职位,所在机构</div>
+												</div>
+											</div>
+											<p class="qa-con mui-ellipsis-5">需求内容：我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出产品的三维模型，用于展示以及为后续生产做准备我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出
+											</p>
+											<div class="showli mui-ellipsis">
+												<span>5月8日 18:00</span>
+												<span>N 赞</span>
+												<span>N 留言</span>
+											</div>
+										</div>
+									</li>
+									<li class="mui-table-view-cell">
+										<div class="madiaInfo">
+											<p class="h1Font mui-ellipsis-2">需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问</p>
+											<div class="flexCenter qa-owner">
+												<div class="owner-head useHead"></div>
+												<div class="owner-info">
+													<div class="owner-name"><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></div>
+													<div class="owner-tit mui-ellipsis h2Font">职称/职位,所在机构职称/职位,所在机构职称/职位,所在机构</div>
+												</div>
+											</div>
+											<p class="qa-con mui-ellipsis-5">需求内容：我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出产品的三维模型，用于展示以及为后续生产做准备我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出
+											</p>
+											<div class="showli mui-ellipsis">
+												<span>5月8日 18:00</span>
+												<span>N 赞</span>
+												<span>N 留言</span>
+											</div>
+										</div>
+									</li>
+								</ul>
+			
+							</div>
+						</div>
+					</div>
+
 					<div id="item4mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
@@ -235,6 +312,45 @@
 		<script src="../js/public/mui.pullToRefresh1.js"></script>
 		<!--<script src="../js/public/mui.pullToRefresh.material.js"></script>-->
 		<script src="../js/discoverNew.js"></script>
+		<script type="text/javascript">
+			document.getElementById("my-q&a").addEventListener("tap",function(){
+				mui.openWindow({
+					 url:"../html/qa-my-wenda.html",
+				    id:"../html/qa-my-wenda.html",
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			document.getElementById("goQu").addEventListener("tap",function(){
+				mui.openWindow({
+					 url:"../html/qa-going-q-01.html",
+				    id:"../html/qa-going-q-01.html",
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			document.getElementById("goAn").addEventListener("tap",function(){
+				mui.openWindow({
+					 url:"../html/qa-waiting-a.html",
+				    id:"../html/qa-waiting-a.html",
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			
+			mui("#questionItem").on("tap","li",function(){
+				mui.openWindow({
+					 url:"../html/qa-question-show.html",
+				    id:"../html/qa-question-show.html",
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+		</script>
 	</body>
 
 </html>

@@ -91,20 +91,15 @@ mui.ready(function() {
 				dataType: 'json', //数据格式类型
 				async: false,
 				type: 'POST', //http请求类型
-				timeout: 10000, //超时设置
 				success: function(data) {
 					if(data.success) {
 						//console.log(JSON.stringify(data))
 						plus.nativeUI.showWaiting();
 						plus.nativeUI.toast("问题发布成功", toastStyle);
 						plus.webview.create("../html/qa-question-show.html", 'qa-question-show.html', {}, {
-							qid: data.data
+							quid: data.data
 						});
 					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
 				}
 			});
 		});

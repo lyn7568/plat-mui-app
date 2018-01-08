@@ -1,88 +1,162 @@
-var ocollectBtn = document.getElementById("collectBtn"); //收藏按钮
-var paperId;
+mui.init({
+	pullRefresh: {
+		container: '#pullrefresh',
+		up: {
+			height: 50,
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+		},
+		down: {
+			auto:true,
+			callback: pulldownRefresh
+		}
+	}
+});
+var Num=1;
+function pulldownRefresh() {
+	setTimeout(function() {
+//		demandOnePase();
+		mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+	}, 1500);
+}
+function pullupRefresh() {
+	setTimeout(function() {
+//		Num = ++Num;
+//		myDemandList(10,Num);
+		mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+	}, 1500);
+
+}
+
+
+
+var ocollectBtn = document.getElementsByClassName("collectBtn")[0],
+    oanswer = document.getElementsByClassName("go-answer")[0],
+    yaoanswer = document.getElementsByClassName("invite-answer")[0];
 mui.plusReady(function() {
 	var userid = plus.storage.getItem('userid');
-	console.log(userid)
 	var self = plus.webview.currentWebview();
-	var userName = plus.storage.getItem('name');
-	paperId = self.paperId;
-	//paperId="FF6EFFA4D7474CC7B808D9BC08E88E79";
-	getRecourceMe(); /*获取资源信息*/
+	var questionId=self.quid;
+	plus.nativeUI.closeWaiting();
+	plus.webview.currentWebview().show("slide-in-right", 150);
+	getConmain();
+	console.log(JSON.stringify(questionId))
 
-	//点击收藏按钮
-	var oifCollect=document.getElementById("ifCollect")
-	ifcollectionAbout(paperId,oifCollect, 5);
-	ocollectBtn.addEventListener('tap', function() {
-		if(userid && userid != null && userid != "null") {
-			if(oifCollect.className == 'mui-icon iconfontnew icon-yishoucang') {
-				cancelCollectionAbout(paperId,oifCollect, 5)
-			} else {
-				collectionAbout(paperId,oifCollect, 5);
-			}
-		} else {
-			isLogin();
-		}
-	});
-
+	//关注按钮
+//	var oifCollect=document.getElementById("ifCollect")
+//	ifcollectionAbout(questionId,oifCollect, 5);
+//	ocollectBtn.addEventListener('tap', function() {
+//		if(userid && userid != null && userid != "null") {
+//			if(oifCollect.className == 'mui-icon iconfontnew icon-yishoucang') {
+//				cancelCollectionAbout(questionId,oifCollect, 5)
+//			} else {
+//				collectionAbout(questionId,oifCollect, 5);
+//			}
+//		} else {
+//			isLogin();
+//		}
+//	});
 	
+	oanswer.addEventListener('tap', function() {
+		var id =document.getElementById("questionId").getAttribute("data-id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
+			"quid": id
+		});
+	})
+	yaoanswer.addEventListener('tap', function() {
+		var id =document.getElementById("questionId").getAttribute("data-id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/qa-request-da.html", 'qa-request-da.html', {}, {
+			"quid": id
+		});
+	})
 
-	function getRecourceMe() {
-		mui.plusReady(function() {
-			mui.ajax(baseUrl + '/ajax/ppaper/qo', {
-				data: {
-					"id": paperId
-				},
-				dataType: 'json', //服务器返回json格式数据
-				type: 'get', //HTTP请求类型
-				timeout: 10000, //超时时间设置为10秒；
-				success: function(data) {
-					if(data.success) {
-						console.log(JSON.stringify(data))
-						paperHtml(data.data);
-						getPaperAuthors(data.data.id)
-
-						plus.nativeUI.closeWaiting();
-						plus.webview.currentWebview().show("slide-in-right", 150);
-					}
-				},
-				error: function(xhr, type, errorThrown) {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
+	function getConmain() {
+		mui.ajax(baseUrl + '/ajax/question/qo', {
+			data: {
+				"id": questionId
+			},
+			dataType: 'json',
+			type: 'get', 
+			success: function(data) {
+				if(data.success) {
+					console.log(JSON.stringify(data))
+					conHtml(data.data);
 				}
-			});
-		})
+			}
+		});
 	}
-
-	function paperHtml($da) {
-		document.getElementById("paperTit").innerHTML = $da.name;
-		document.getElementById("paperName").innerHTML = $da.name; //名字
-		document.getElementById("paperAbstract").innerHTML = $da.summary; //摘要内容
-		if(!$da.cn4periodical) {
-			$da.cn4periodical = ""
-		}
-		if(!$da.en4periodical) {
-			$da.en4periodical = ""
-		}
-		if(!$da.cn4periodical && !$da.en4periodical) {
-			document.getElementById("paperJournal").parentNode.parentNode.style.display = "none";
-		} else {
-			document.getElementById("paperJournal").innerHTML = $da.cn4periodical + " " + $da.en4periodical;
-		}
-
-		if(!$da.pubDay) {
-			document.getElementById("paperVolume").parentNode.parentNode.style.display = "none";
-		} else {
-			document.getElementById("paperVolume").innerHTML = $da.pubDay;
-		}
-		if($da.keywords != undefined && $da.keywords.length != 0) {
+	function conHtml($da) {
+		document.getElementById("questionId").setAttribute("data-id",$da.id);
+		document.getElementById("questionTit").innerHTML = $da.title;
+		document.getElementById("questionCnt").innerHTML = $da.cnt;
+		document.getElementById("questionTime").innerHTML = commenTime($da.createTime);
+		document.getElementById("replyCount").innerHTML = $da.replyCount;
+		
+		if($da.keys != undefined && $da.keys.length != 0) {
 			var subs = new Array();
-			if($da.keywords.indexOf(',')) {
-				subs = $da.keywords.split(',');
+			if($da.keys.indexOf(',')) {
+				subs = $da.keys.split(',');
 			} else {
-				subs[0] = $da.keywords;
+				subs[0] = $da.keys;
 			}
 			var pstr = ""
 			if(subs.length > 0) {
-				patentRelatedList(subs)
+				for(var i = 0; i < subs.length; i++) {
+					pstr += '<li><span class="h2Font">' + subs[i] + '</span></li>'
+				};
+				document.getElementsByClassName("tagList")[0].innerHTML = pstr;
+			} else {
+				document.getElementsByClassName("tagList")[0].style.display = "none";
+			}
+		}
+	}
+	function answerList(byway){
+		if(byway==1){
+			typeurl="/ajax/question/answer/qes/byScore"
+		}else if(byway==2){
+			typeurl="/ajax/question/answer/qes/byTime"
+		}
+		mui.ajax(baseUrl + typeurl, {
+			data: {
+				"qid": questionId,
+				"time": time,
+				"id":id,
+				"rows":rows
+			},
+			dataType: 'json',
+			type: 'get', 
+			success: function(data) {
+				if(data.success) {
+					console.log(JSON.stringify(data))
+					for(var i = 0; i < data.data.length; i++) {
+						var dataStr = data.data[i]
+						var liStr = document.createElement("li");
+						liStr.setAttribute("data-id", dataStr.id);
+						document.getElementById(aimId).appendChild(liStr);
+						answerHtml(dataStr,liStr);
+					}
+				}
+			}
+		});
+	}
+	function answerHtml(dataStr,liStr) {
+		document.getElementById("questionId").setAttribute("data-id",$da.id);
+		document.getElementById("questionTit").innerHTML = $da.title;
+		document.getElementById("questionCnt").innerHTML = $da.cnt;
+		document.getElementById("questionTime").innerHTML = commenTime($da.createTime);
+		document.getElementById("replyCount").innerHTML = $da.replyCount;
+		
+		if($da.keys != undefined && $da.keys.length != 0) {
+			var subs = new Array();
+			if($da.keys.indexOf(',')) {
+				subs = $da.keys.split(',');
+			} else {
+				subs[0] = $da.keys;
+			}
+			var pstr = ""
+			if(subs.length > 0) {
 				for(var i = 0; i < subs.length; i++) {
 					pstr += '<li><span class="h2Font">' + subs[i] + '</span></li>'
 				};
@@ -94,273 +168,121 @@ mui.plusReady(function() {
 	}
 	
 
-	
-	window.addEventListener("newId", function(event) {
-		userName = plus.storage.getItem('name');
-		userid = plus.storage.getItem('userid');
-		getRecourceMe();
-		ifcollectionAbout(paperId,oifCollect, 5);
-	});
-
-	
-	
-	/*判断是否收藏资源文章或者是否关注专家*/
-	function ifcollectionAbout1(watchObject,num) {
-		var that=this;
-		mui.ajax(baseUrl + '/ajax/watch/hasWatch', {
-			data: {
-				"professorId": userid,
-				"watchObject": watchObject
-			},
-			dataType: 'json', //数据格式类型
-			type: 'get', //http请求类型
-			timeout: 10000,
-			async: false,
-			success: function(data) {
-				if(data.success && data.data != null) {
-					if(num=="1"){//已关注专家
-						that.classList.add("attenedSpan");
-						that.innerText="已关注";
-					}else{//已收藏资源或文章
-						document.getElementById("ifCollect").classList.remove("icon-shoucang");
-						document.getElementById("ifCollect").classList.add("icon-yishoucang");
-					}
-				} else {
-					if(num=="1"){//关注专家
-						that.classList.remove("attenedSpan");
-						that.innerText="关注";
-					}else{//收藏资源或文章
-						document.getElementById("ifCollect").classList.add("icon-shoucang");
-						document.getElementById("ifCollect").classList.remove("icon-yishoucang");
-					}
-				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-	}
-
-	var r64 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_"];
-		var d64 = {
-			"0": 0,
-			"1": 1,
-			"2": 2,
-			"3": 3,
-			"4": 4,
-			"5": 5,
-			"6": 6,
-			"7": 7,
-			"8": 8,
-			"9": 9,
-			"A": 10,
-			"B": 11,
-			"C": 12,
-			"D": 13,
-			"E": 14,
-			"F": 15,
-			"G": 16,
-			"H": 17,
-			"I": 18,
-			"J": 19,
-			"K": 20,
-			"L": 21,
-			"M": 22,
-			"N": 23,
-			"O": 24,
-			"P": 25,
-			"Q": 26,
-			"R": 27,
-			"S": 28,
-			"T": 29,
-			"U": 30,
-			"V": 31,
-			"W": 32,
-			"X": 33,
-			"Y": 34,
-			"Z": 35,
-			"a": 36,
-			"b": 37,
-			"c": 38,
-			"d": 39,
-			"e": 40,
-			"f": 41,
-			"g": 42,
-			"h": 43,
-			"i": 44,
-			"j": 45,
-			"k": 46,
-			"l": 47,
-			"m": 48,
-			"n": 49,
-			"o": 50,
-			"p": 51,
-			"q": 52,
-			"r": 53,
-			"s": 54,
-			"t": 55,
-			"u": 56,
-			"v": 57,
-			"w": 58,
-			"x": 59,
-			"y": 60,
-			"z": 61,
-			"-": 62,
-			"_": 63
-		};
-		function s16to64(s) {
-			var out, idx, n1, n2, n3;
-			idx = s.length - 1;
-			out = "";
-			while(idx >= 0) {
-				n1 = d64[s.charAt(idx--)];
-				if(idx < 0) {
-					out = r64[n1] + out;
-					break;
-				}
-				n2 = d64[s.charAt(idx--)];
-				if(idx < 0) {
-					out = r64[(n2 >>> 2)] + r64[((n2 & 0x3) << 4) + n1] + out;
-					break;
-				}
-				n3 = d64[s.charAt(idx--)];
-				out = r64[(n2 >>> 2) + (n3 << 2)] + r64[((n2 & 0x3) << 4) + n1] + out;
-			}
-			return out;
-		}
-
-		function s64to16(s) {
-			var out, idx, n1, n2;
-			idx = s.length - 1;
-			out = "";
-			while(idx >= 0) {
-				n1 = d64[s.charAt(idx--)];
-				if(idx < 0) {
-					out = r64[n1 >>> 4] + r64[n1 & 0xF] + out;
-					break;
-				}
-				n2 = d64[s.charAt(idx--)];
-				out = r64[(n2 >>> 2)] + r64[(n1 >>> 4) + ((n2 & 0x3) << 2)] + r64[n1 & 0xF] + out;
-			}
-			return out;
-		}
 	/*微信及微信朋友圈分享专家*/
-	var auths, shares;
-	plus.oauth.getServices(function(services) {
-		auths = {};
-		for(var i in services) {
-			var t = services[i];
-			auths[t.id] = t;
+//	var auths, shares;
+//	plus.oauth.getServices(function(services) {
+//		auths = {};
+//		for(var i in services) {
+//			var t = services[i];
+//			auths[t.id] = t;
+//
+//		}
+//	}, function(e) {
+//		alert("获取登录服务列表失败：" + e.message + " - " + e.code);
+//	});
+//	plus.share.getServices(function(services) {
+//
+//		shares = {};
+//		for(var i in services) {
+//
+//			var t = services[i];
+//
+//			shares[t.id] = t;
+//
+//		}
+//	}, function(e) {
+//		alert("获取分享服务列表失败：" + e.message + " - " + e.code);
+//	});
+//	mui("#shareBlock").on("tap", "li", function() {
+//		document.getElementById("shareBlock").style.display = "none";
+//		document.getElementById("maskBlack").style.display = "none";
+//		var oFen = this.getElementsByTagName("span")[0].innerHTML;
+//
+//		var oUrl = baseUrl + "/images/logo180.png";
+//
+//		if(oFen == "微信好友") {
+//			if(!weixinClient()) {
+//					return;
+//				}
+//			var share = buildShareService("weixin");
+//			if(share) {
+//				shareMessage(share, "WXSceneSession", {
+//					content: document.getElementById("paperAbstract").innerHTML.substring(0, 70),
+//					title: document.getElementById("paperName").innerHTML,
+//					href: baseUrl + "/e/l.html?id=" + paperId,
+//					thumbs: [oUrl]
+//				});
+//			}
+//		} else if(oFen == "微信朋友圈") {
+//			if(!weixinClient()) {
+//					return;
+//				}
+//			var share = buildShareService("weixin");
+//			if(share) {
+//				shareMessage(share, "WXSceneTimeline", {
+//					content: document.getElementById("paperAbstract").innerHTML.substring(0, 70),
+//					title: document.getElementById("paperName").innerHTML,
+//					href: baseUrl + "/e/l.html?id=" + paperId,
+//					thumbs: [oUrl]
+//				});
+//			}
+//		} else if(oFen == "新浪微博") {
+//			var share = buildShareService("sinaweibo");
+//			if(share) {
+//				shareMessage(share, "sinaweibo", {
+//					content: document.getElementById("paperName").innerHTML + baseUrl + "/e/l.html?id=" + paperId,
+//				});
+//			}
+//		}
+//
+//	})
+//
+//	function buildShareService(ttt) {
+//		var share = shares[ttt];
+//		if(share) {
+//			if(share.authenticated) {
+//				console.log("---已授权---");
+//			} else {
+//				console.log("---未授权---");
+//				share.authorize(function() {
+//					console.log('授权成功...')
+//				}, function(e) {
+//					//alert("认证授权失败：" + e.code + " - " + e.message);
+//					return null;
+//				});
+//			}
+//			return share;
+//		} else {
+//			alert("没有获取微信分享服务");
+//			return null;
+//		}
+//
+//	}
+//
+//	function shareMessage(share, ex, msg) {
+//		msg.extra = {
+//			scene: ex
+//		};
+//		share.send(msg, function() {
+//			plus.nativeUI.closeWaiting();
+//			if(plus.storage.getItem('userid')) {
+//				//shareAddIntegral(2);
+//				if(msg.content=="赶快认领，上千家企业正在期待与您合作") {
+//					shareAddIntegral(1);
+//				}else{
+//					shareAddIntegral(6);
+//				}
+//			}
+//		}, function(e) {
+//			plus.nativeUI.closeWaiting();
+//			if(e.code == -2) {
+//				
+//			}
+//		});
+//	}
+//
 
-		}
-	}, function(e) {
-		alert("获取登录服务列表失败：" + e.message + " - " + e.code);
-	});
-	plus.share.getServices(function(services) {
-
-		shares = {};
-		for(var i in services) {
-
-			var t = services[i];
-
-			shares[t.id] = t;
-
-		}
-	}, function(e) {
-		alert("获取分享服务列表失败：" + e.message + " - " + e.code);
-	});
-	mui("#shareBlock").on("tap", "li", function() {
-		document.getElementById("shareBlock").style.display = "none";
-		document.getElementById("maskBlack").style.display = "none";
-		var oFen = this.getElementsByTagName("span")[0].innerHTML;
-
-		var oUrl = baseUrl + "/images/logo180.png";
-
-		if(oFen == "微信好友") {
-			if(!weixinClient()) {
-					return;
-				}
-			var share = buildShareService("weixin");
-			if(share) {
-				shareMessage(share, "WXSceneSession", {
-					content: document.getElementById("paperAbstract").innerHTML.substring(0, 70),
-					title: document.getElementById("paperName").innerHTML,
-					href: baseUrl + "/e/l.html?id=" + paperId,
-					thumbs: [oUrl]
-				});
-			}
-		} else if(oFen == "微信朋友圈") {
-			if(!weixinClient()) {
-					return;
-				}
-			var share = buildShareService("weixin");
-			if(share) {
-				shareMessage(share, "WXSceneTimeline", {
-					content: document.getElementById("paperAbstract").innerHTML.substring(0, 70),
-					title: document.getElementById("paperName").innerHTML,
-					href: baseUrl + "/e/l.html?id=" + paperId,
-					thumbs: [oUrl]
-				});
-			}
-		} else if(oFen == "新浪微博") {
-			var share = buildShareService("sinaweibo");
-			if(share) {
-				shareMessage(share, "sinaweibo", {
-					content: document.getElementById("paperName").innerHTML + baseUrl + "/e/l.html?id=" + paperId,
-				});
-			}
-		}
-
-	})
-
-	function buildShareService(ttt) {
-		var share = shares[ttt];
-		if(share) {
-			if(share.authenticated) {
-				console.log("---已授权---");
-			} else {
-				console.log("---未授权---");
-				share.authorize(function() {
-					console.log('授权成功...')
-				}, function(e) {
-					//alert("认证授权失败：" + e.code + " - " + e.message);
-					return null;
-				});
-			}
-			return share;
-		} else {
-			alert("没有获取微信分享服务");
-			return null;
-		}
-
-	}
-
-	function shareMessage(share, ex, msg) {
-		msg.extra = {
-			scene: ex
-		};
-		share.send(msg, function() {
-			plus.nativeUI.closeWaiting();
-			if(plus.storage.getItem('userid')) {
-				//shareAddIntegral(2);
-				if(msg.content=="赶快认领，上千家企业正在期待与您合作") {
-					shareAddIntegral(1);
-				}else{
-					shareAddIntegral(6);
-				}
-			}
-		}, function(e) {
-			plus.nativeUI.closeWaiting();
-			if(e.code == -2) {
-				
-			}
-		});
-	}
-
-	/*图像预览*/
-	mui.previewImage();
-	moreMes();
-
+//	moreMes();
 	function moreMes() {
 		document.getElementById("BtnMore").addEventListener("tap", function() {
 			var oUrl = baseUrl + "/images/logo180.png";
@@ -380,270 +302,5 @@ mui.plusReady(function() {
 			})
 		})
 	}
-	mui(".artfoot").on("tap", ".inputShow", function() {
-		if(!plus.storage.getItem('userid')) {
-			mui.openWindow({
-				url: '../html/login.html',
-				id: '../html/login.html',
-				show: {
-					aniShow: "slide-in-right"
-				},
-				extras: {
-					ourl: self.id
-				}
-			});
-			return;
-		}
-		document.getElementById("textInput").style.display = "block";
-		document.getElementById("operCol").style.display = "none";
-		document.getElementById("textInputThis").focus();
-	})
-	isAgreeNum()
-	function isAgreeNum() {
-	var data = {"id": paperId}
-	mui.ajax(baseUrl+"/ajax/ppaper/agreeCount",{		
-		data:data,
-		dataType: 'json', //数据格式类型
-		type: 'get', //http请求类型
-		timeout: 10000,
-		async: true,
-		success: function(data) {
-			if(data.success){
-					document.getElementById("snum").innerHTML=data.data;
-			}
-		},
-		error: function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-		}
-	});
-}
-	if(userid && userid != "null" && userid != null) {
-					isAgree() //文章点赞
-				} 
-	/*判断论文是否被赞*/
-function isAgree() {
-	var data = {"id": paperId,"uid":userid }
-	mui.ajax(baseUrl+"/ajax/ppaper/agree",{	
-		data:data,
-		dataType: 'json', //数据格式类型
-		type: 'get', //http请求类型
-		timeout: 10000,
-		async: true,
-		success: function(data) {
-			if(data.success){
-				if(data.data){
-					document.getElementsByClassName("thumbBtn")[0].classList.add("thumbedBtn");
-				}
-			}
-		},
-		error: function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-		}
-	});
-}
-mui('.thumbBlock').on("tap",".thumbBtn",function(){
-	if (!isLogin()) {
-		if(this.className=="thumbBtn thumbedBtn"){
-			return;
-		}
-		addAgree();
-	}
-})
-/*点赞*/
-function addAgree() {
-	var data = {"uid": userid,"id": paperId}
-	mui.ajax(baseUrl+"/ajax/ppaper/agree",{		
-		data:data,
-		dataType: 'json', //数据格式类型
-		type: 'POST', //http请求类型
-		timeout: 10000,
-		async: true,
-		success: function(data) {
-			if(data.success){
-			document.getElementById("snum").innerHTML = Number(document.getElementById("snum").innerHTML) + 1;
-			document.getElementsByClassName("thumbBtn")[0].classList.add("thumbedBtn");
-			}
-		},
-		error: function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-		}
-	});
-}
-mui(".artfoot").on("tap", ".inputShow", function() {
-	
-		if(!isLogin()) {
-			document.getElementById("textInput").style.display = "block";
-			document.getElementById("operCol").style.display = "none";
-			document.getElementById("textInputThis").focus();
-		}
-		
-	})
-leword();
 
-function leword() {
-		var data = {"paperId": paperId,"rows": 500}	
-		mui.ajax(baseUrl + "/ajax/leaveWord/ql/paper", {
-			data: data,
-			dataType: 'json', //服务器返回json格式数据
-			type: 'get', //HTTP请求类型
-			timeout: 10000, //超时时间设置为10秒；
-			traditional: true,
-			success: function(data) {
-				if(data.success) {
-					document.getElementsByClassName('commentBlock')[0].innerHTML = ""
-					if(data.data.length == 0) {
-						return;
-					}
-					var id = plus.storage.getItem('userid');
-					for(var i = 0; i < data.data.length; i++) {
-						var oText = ""
-						if(id == data.data[i].professor.id) {
-							oText = "删除"
-						}
-						var userType = autho(data.data[i].professor.authType, data.data[i].professor.orgAuth, data.data[i].professor.authStatus);
-						var baImg = "../images/default-photo.jpg";
-						if(data.data[i].professor.hasHeadImage == 1) {
-							baImg = baseUrl + "/images/head/" + data.data[i].professor.id + "_l.jpg";
-						}
-						var li = document.createElement("li");
-						li.className = "mui-table-view-cell";
-						li.innerHTML = '<div class="flexCenter mui-clearfix">' +
-							'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')" data-id="' + data.data[i].professor.id + '"></div>' +
-							'<div class="madiaInfo">' +
-							'<p><span class="h1Font" data-id="' + data.data[i].professor.id + '">' + data.data[i].professor.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em></p>' +
-							'</div>' +
-							'</div>' +
-							'<div class="madiaInfo">' +
-							'<p class="h2Font">' + data.data[i].content + '</p>' +
-							'<p class="operateSpan">' +
-							'<span class="commenttime">' + commenTime(data.data[i].createTime) + '</span>' +
-							'<span data-id="' + data.data[i].id + '" class="dele">' + oText + '</span>' +
-							'</p>' +
-							'</div>'
-						document.getElementsByClassName("commentBlock")[0].appendChild(li);
-					}
-
-				} else {
-				}
-			},
-			error: function(xhr, type, errorThrown) {
-				//异常处理；
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-}
-lewordNum();
-function lewordNum() {
-		var data = {"paperId": paperId}	
-		mui.ajax(baseUrl + "/ajax/leaveWord/lwCount/paper", {
-			data: data,
-			dataType: 'json', //服务器返回json格式数据
-			type: 'get', //HTTP请求类型
-			timeout: 10000, //超时时间设置为10秒；
-			traditional: true,
-			success: function(data) {
-				if(data.success) {
-					if(data.data > 0) {
-						document.getElementsByClassName("mui-badge")[0].innerHTML = data.data;
-					}
-				}
-
-				
-			},
-			error: function(xhr, type, errorThrown) {
-				//异常处理；
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-}
-function trim(str) { //删除左右两端的空格
-		　　
-		return str.replace(/(^\s*)|(\s*$)/g, "");　　
-	}
-document.getElementById("textInputThis").addEventListener("input", function() {
-		var length = trim(this.value);
-		if(length) {
-			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled");
-		} else {
-			document.getElementsByClassName("mui-btn")[0].setAttribute("disabled", "true")
-		}
-	})
-document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function() {
-	if(document.getElementById("textInputThis").value.length>200) {
-				plus.nativeUI.toast("留言不得超过200个字", toastStyle);
-				return;
-			}
-		mui.ajax(baseUrl + "/ajax/leaveWord/paper", {
-			data: {
-				"paperId": paperId,
-				"sender": plus.storage.getItem('userid'),
-				"content": document.getElementById("textInputThis").value
-			},
-			dataType: 'json', //服务器返回json格式数据
-			type: 'post', //HTTP请求类型
-			timeout: 10000, //超时时间设置为10秒；
-			success: function(data) {
-				if(data.success) {
-					document.getElementById("textInputThis").value = "";
-					document.getElementById('textInput').style.display = "none";
-					document.getElementById('operCol').style.display = "block";
-					leword();
-					lewordNum();
-				}
-			},
-			error: function() {
-				//异常处理；
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-	})
-mui(".commentBlock").on("tap", ".dele", function() {
-		var $this = this;
-		mui.ajax(baseUrl + "/ajax/leaveWord/delete", {
-			data: {
-				"id": this.getAttribute("data-id"),
-			},
-			dataType: 'json', //服务器返回json格式数据
-			type: 'post', //HTTP请求类型
-			timeout: 10000, //超时时间设置为10秒；
-			success: function(data) {
-				if(data.success) {
-					document.getElementsByClassName("commentBlock")[0].removeChild($this.parentNode.parentNode.parentNode);
-					leword();
-					lewordNum();
-				}
-			},
-			error: function(xhr, type, errorThrown) {
-				//异常处理；
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-			}
-		});
-	})
-
-		
-	moreMes();
-	function moreMes(){
-		document.getElementById("BtnMore").addEventListener("tap",function(){
-			var oUrl=baseUrl + "/images/logo180.png";
-		if(imgFlag==1) {
-			oUrl=firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg");
-		}
-			plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
-			proid: resourceId,
-			name:"resource",
-			data:{
-					content: oapplication.innerHTML,
-					title: oresourceName.innerHTML,
-					href: baseUrl + "/e/r.html?id=" + resourceId ,
-					thumbs: [oUrl]
-				},
-			weiboData:{
-					content: oresourceName.innerHTML+ baseUrl + "/e/r.html?id=" + resourceId,
-				}
-		})
-		})
-	}
 });
-
-

@@ -27,7 +27,8 @@
 		"4": 0,
 		"5": 0,
 		"6": 0,
-        "7": 0
+        "7": 0,
+		"8":0
 	}
 	var QAtime,QAid,QArows = 20;
 	$.ready(function() {
@@ -100,17 +101,19 @@
 					"4": 1,
 					"5": 1,
 					"6": 1,
-                    "7": 1
+                    "7": 1,
+					"8":1,
 				},
-				//				colum: {
-				//					"a": "", //最新文章
-				//					"3": 3, //前沿动态
-				//					"4": 7, //学术经验
-				//					"5": 4, //检测分析
-				//					"6": 5, //会议培训
-				//					"7": 6, //科袖访谈
-				//					"8": 8 //招聘招生
-				//				},
+				colum: {
+                    "a":"", //最新文章
+                    "3": 3, //前沿动态
+                    "4": 7, //学术经验
+                    "5":10,
+                    "6": 4, //检测分析
+                    "7": 5, //会议培训
+                    "8": 6, //科袖访谈
+                    "9": 8 //招聘招生
+				},
 				constructor: Discover,
 				Init: function(obj) {
 					if(obj) {
@@ -208,7 +211,7 @@
                                                     data: {
                                                         rows:QArows
                                                     },
-                                                    url: "/ajax/article/find"
+                                                    url: "/ajax/question/answer/byTime"
                                                 });
                                             }else{
                                                 $D({
@@ -249,7 +252,7 @@
                                                     id:QAid,
                                                     rows:QArows
                                                 },
-                                                url: "/ajax/article/find"
+                                                url: "/ajax/question/answer/byTime"
                                             });
                                         }else {
                                             $D({
@@ -311,8 +314,9 @@
                 },
                 leaveMsgCount:function (data) {
                     if (data.success){
-                        //todo 填充留言数量
-                        this.innerHTML = data.data
+                    	if(data.data>0) {
+                            this.innerHTML = data.data + "留言"
+                        }
                     }
                 },
 				createFragment: function(data) {
@@ -434,9 +438,11 @@
 				},
                 QA:function (data) {
                     if(data.success) {
-                        var $data = data.data.data;
-                        QAtime = $data[data.length-1].createTime;
-                        QAid = $data[data.length-1].id;
+                        var $data = data.data;
+                        if($data.length>0){
+	                        QAtime = $data[$data.length-1].createTime;
+	                        QAid = $data[$data.length-1].id;
+                        }
                         if (arguments[1]){
                             if($data.length>1) {
                                 $data.length = 1;
@@ -447,34 +453,38 @@
                                 qid = $data[i].qid,//问题ID
                                 uid = $data[i].uid,//回答人ID
                                 agree=$data[i].agree,//点赞数量
-                                cnt = $data[i].cnt;//回答内容
+                                cnt = $data[i].cnt,//回答内容
+								Qtitle,Uname,Uinfo;
                             if(pullObj[m] == 1) {
                                 key1[m].endPullDownToRefresh();
                                 pullObj[m] = 0;
                             }
                             var li = document.createElement("li");
-                            //回答模块DOM
-                            // li.setAttribute("data-id", id);
-                            // li.setAttribute("data-flag", 3);
-                            // li.className = "mui-table-view-cell flexCenter OflexCenter";
-                            // li.innerHTML = '<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
-                            //     '<div class="madiaInfo OmadiaInfo">' +
-                            //     '<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
-                            //     '<p class="h2Font mui-ellipsis">' + colSpan +
+                            li.setAttribute("data-id", id);
+                            li.setAttribute("data-flag", 3);
+                            li.className = "mui-table-view-cell flexCenter OflexCenter";
+                            // li.innerHTML = '<div class="madiaInfo OmadiaInfo">' +
+                            //     '<p class="mui-ellipsis-2 h1Font">' + agree + '</p>' +
+                            //     '<p class="h2Font mui-ellipsis">' + cnt +
                             //     '<span class="nameSpan" style="margin-right:10px"></span>' +
-                            //     '<span class="time">' + commenTime($data[i].publishTime) + '</span>' +
+                            //     '<span class="time">' + commenTime($data[i].createTime) + '</span>' +
                             //     '</p>' +
-                            //     '</div>'
-                            // if(arguments[1]) {
-                            //     if(document.getElementsByTagName("ul")[m].children[0]) {
-                            //         document.getElementsByTagName("ul")[m].insertBefore(li, document.getElementsByTagName("ul")[m].children[0])
-                            //     } else {
-                            //         document.getElementsByTagName("ul")[m].appendChild(li);
-                            //     }
-                            // } else {
-                            //     document.getElementsByTagName("ul")[m].appendChild(li);
-                            // }
-                            // li.setAttribute("owner-id", uid);
+                            //     '</div>';
+							li.innerHTML = '<div class="madiaInfo">' +
+									'<p class="h1Font mui-ellipsis-2">' + Qtitle + '</p>' +
+								'<div class="flexCenter qa-owner">' +
+								'<div class="owner-head useHead"></div>' +
+								'<div class="owner-info">' +
+								'<div class="owner-name"><span class="h1Font">'+ Uname +'</span><em class="authicon authicon-pro" title="科袖认证专家"></em></div>' +
+								'<div class="owner-tit mui-ellipsis h2Font"></div></div>' +
+								'<p class="qa-con mui-ellipsis-5">'+cnt+'</p>' +
+								'<div class="showli mui-ellipsis">' +
+								'<span>'+ commenTime($data[i].createTime) +'</span>' +
+								'<span>'+ agree +'赞 </span>' +
+								'<span class="leaveMsgCount"></span>' +
+								'</div>' +
+								'</div>'
+                            document.getElementsByTagName("ul")[m].appendChild(li);
                             $D({
                                 data: {},
                                 fun: ob.proName,
@@ -483,13 +493,24 @@
                             });
                             $D({
                                 data:{sid:id,stype:"4"},
-                                fun:ob.leaveCount,
-                                url:"/ajax/leavemsg/count"
+                                fun:ob.leaveMsgCount,
+                                url:"/ajax/leavemsg/count",
                                 //todo 留言数量的this
-                                // sele:
+                                sele:li.getElementsByClassName("leaveMsgCount")[0]
                             })
-
-                            //todo 正在加载和加载完毕的显示和隐藏。
+                        }
+                        //todo 正在加载和加载完毕的显示和隐藏。
+                        document.getElementsByClassName("nodatabox")[m].classList.add("displayNone");
+                        if($data.length == 0) {
+                            document.getElementsByClassName("nodatabox")[m].classList.remove("displayNone");
+                            key1[m].endPullUpToRefresh(true);
+                            return;
+                        }
+                        if($data.length < QArows) {
+                            key1[m].endPullUpToRefresh(true);
+                        } else {
+                            key1[m].refresh(true);
+                            key1[m].endPullUpToRefresh(false);
                         }
                     }
                 }
@@ -517,14 +538,14 @@
 					m = 7;
 				} else if($this.innerHTML == "推荐") {
 					m = 0;
-				} else if($this.innerHtml == "问答"){
+				} else if($this.innerHTML == "问答"){
 				    m = 3
                 }
 				if(!$this.getAttribute("flag")) {
 
 					$this.setAttribute("flag", 1);
 						console.log(colum[m+2] +" 99999")
-                    if (m = 3){
+                    if (m == 3){
                         $D({
                             "fun": ob.QA,
                             data: {

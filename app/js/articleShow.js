@@ -4,10 +4,11 @@ var stt;
 
 
 mui.plusReady(function() {
+	console.log(JSON.stringify(module))
 	mui('#articleContent').on('tap','a',function(){
 		plus.runtime.openURL( this.href);
 	});
-	
+	module.lWord(plus.webview.currentWebview().articleId, 1);
 	var ffl=false;
 	var oCurren = {
 		self: plus.webview.currentWebview(),
@@ -577,14 +578,12 @@ mui.plusReady(function() {
 			"articleId": oArticleModule.articleId,
 			'operateId': oCurren.userid
 		}, "get", oArticleModule.thumbs);
-
-		
-
 		/*查询是否收藏文章*/
 		oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/hasWatch", {
 			"watchObject": oArticleModule.articleId,
 			'professorId': oCurren.userid
 		}, "get", oArticleModule.storeGetUp);
+		module.init.init();
 	})
 
 	document.getElementsByClassName("attenSpan")[0].addEventListener("tap", function() {
@@ -642,23 +641,7 @@ mui.plusReady(function() {
 		}
 	})
 	/*留言总数*/
-	function trim(str) { //删除左右两端的空格
-		　　
-		return str.replace(/(^\s*)|(\s*$)/g, "");　　
-	}
 	
-	document.getElementById("textInputThis").addEventListener("input", function() {
-		var length = trim(this.value);
-		if(length) {
-			document.getElementsByClassName("mui-btn")[0].removeAttribute("disabled");
-			
-		} else {
-			document.getElementsByClassName("mui-btn")[0].setAttribute("disabled", "true")
-		}
-		
-	})
-	
-
 	/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	plus.oauth.getServices(function(services) {

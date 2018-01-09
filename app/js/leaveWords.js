@@ -59,7 +59,7 @@ mui.ready(function() {
 				for(var i = 0; i < data.length; i++) {
 					var oText = "",
 						reply = "",
-						re = '<span class="replyLew" style="margin-right:10px;" data-id="' + data[i].id + '">回复</span>' + '<span class="mui-icon iconfont plusbtn icon-appreciate"style="padding-left:10px;margin-right:10px;font-size:14px;" data-id="' + data[i].id + '">' + data[i].agreeCount + '赞</span>';
+						re = '<span class="replyLew" style="margin-right:10px;" data-id="' + data[i].id + '">回复</span>' + '<span class="mui-icon iconfont plusbtn icon-appreciate"style="padding-left:10px;margin-right:10px;font-size:14px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></span><span  class="zan"style="display:'+(data[i].agreeCount?"inline-block":"none")+'">' + data[i].agreeCount + ' 赞 </span>';
 					if(id == data[i].sender) {
 						oText = "删除";
 						re = "";
@@ -90,7 +90,8 @@ mui.ready(function() {
 					} else {
 						self.userInfo(data[i].sender, li, 1);
 					}
-					self.referThup(data[i].id, li);
+					if(data[i].agreeCount)
+					self.referThup(data[i].id, li,data[i].agreeCount);
 				}
 			})
 		}
@@ -159,6 +160,9 @@ mui.ready(function() {
 				if(!lgin()) {
 					return;
 				}
+				if(this.classList.contains('icon-appreciatefill')==true) {
+					return;
+				}
 				self.thub.call(this, this.getAttribute("data-id"));
 			})
 			mui(".commentBlock").on("tap", ".replyLew", function() {
@@ -193,13 +197,14 @@ mui.ready(function() {
 				document.getElementById("textInputThis").focus();
 			})
 		}
-		LeaveWord.prototype.referThup = function(lid, li) {
+		LeaveWord.prototype.referThup = function(lid, li,num) {
 			ajaxRequist(baseUrl + "/ajax/leavemsg/agree", {
 				id: lid,
 				uid: plus.storage.getItem('userid')
 			}, "GET", function(data) {
 				if(data) {
 					li.getElementsByClassName("plusbtn")[0].classList.add("icon-appreciatefill");
+					li.getElementsByClassName("zan")[0].innerHTML="已赞" +num;
 				}
 			})
 		}
@@ -211,6 +216,8 @@ mui.ready(function() {
 				uname: plus.storage.getItem('name')
 			}, "POST", function(data) {
 				self.classList.add("icon-appreciatefill");
+				self.nextElementSibling.innerHTML="已赞" +(Number(self.getAttribute("data-num"))+1);
+				self.nextElementSibling.style.display="inline-block";
 			})
 		}
 		LeaveWord.prototype.replyLword = function(lid) {

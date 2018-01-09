@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box {
+				position: absolute;
+				z-index: 2;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				overflow: hidden;
+				width: 100%;
+				background-color: #ffffff;
+			}
+			
+			.header {
+				width: 100%;
+			}
+			
+			.header img {
+				width: 100%;
+			}
+			
+			.footer {
+				background-color: #ffffff;
+				height: 370px;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				bottom: 0;
+			}
+			
+			.footer img {
+				width: 180px;
+				height: 120px;
+			}
+			
+			.skip {
+				position: fixed;
+				top: 42px;
+				right: 28px;
+				height: 60px;
+				width: 180px;
+				background: rgba(0, 0, 0, 0.15);
+				text-align: center;
+				line-height: 60px;
+				color: #fff;
+				z-index: 2;
+				font-size: 30px;
+				border-radius: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="header">
+				<img src="../images/20171220113002.jpg" />
+			</div>
+			<div class="footer">
+				<img src="../images/logo.png" alt="" />
+			</div>
+		</div>
+		<div class="skip" id="close">跳过广告</div>
+	</body>
+	<script src="../js/public/mui.min.js"></script>
+	<script>
+		mui.init();
+		mui.ready(function() {
+			mui.plusReady(function() {
+				plus.navigator.setFullscreen(true);
+				plus.navigator.closeSplashscreen();
+			});
+			document.getElementById("close").addEventListener('tap', function(event) {
+				plus.navigator.setFullscreen(false);
+				plus.webview.currentWebview().close();
+			}, false);
+			//setTimeMiu(5)
+
+			function setTimeMiu(n) {
+				var i = 0;
+				var Timer = setInterval(function() {
+					i++;
+					if(i == n - 1) {
+						plus.webview.currentWebview().close();
+						clearInterval(Timer);
+					}
+				}, 1000);
+			}
+		})
+	</script>
+
+</html>

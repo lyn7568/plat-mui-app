@@ -669,7 +669,7 @@ mui('.thumbBlock').on("tap",".thumbBtn",function(){
 })
 /*点赞*/
 function addAgree() {
-	var data = {"uid": userid,"id": paperId}
+	var data = {"uid": userid,"id": paperId,"uname":plus.storage.getItem('name')}
 	mui.ajax(baseUrl+"/ajax/ppaper/agree",{		
 		data:data,
 		dataType: 'json', //数据格式类型

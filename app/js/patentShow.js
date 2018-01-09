@@ -614,7 +614,7 @@ mui.plusReady(function() {
 				} 
 	/*判断论文是否被赞*/
 function isAgree() {
-	var data = {"id": patentId,"uid":userid }
+	var data = {"id": patentId,"uid":userid}
 	mui.ajax(baseUrl+"/ajax/ppatent/agree",{	
 		data:data,
 		dataType: 'json', //数据格式类型
@@ -644,7 +644,7 @@ mui('.thumbBlock').on("tap",".thumbBtn",function(){
 })
 /*点赞*/
 function addAgree() {
-	var data = {"uid": userid,"id": patentId}
+	var data = {"uid": userid,"id": patentId,"uname":plus.storage.getItem('name') }
 	mui.ajax(baseUrl+"/ajax/ppatent/agree",{		
 		data:data,
 		dataType: 'json', //数据格式类型

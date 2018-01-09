@@ -750,7 +750,8 @@ mui.plusReady(function() {
 				"data": {
 					"targetId": this.getAttribute("data-pid"),
 					"targetCaption": this.getAttribute("data-caption"),
-					"opId": userid
+					"opId": userid,
+					"uname":plus.storage.getItem('name')
 				},
 				"contentType": "application/x-www-form-urlencoded",
 				"success": function($data) {

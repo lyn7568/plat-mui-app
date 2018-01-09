@@ -224,7 +224,8 @@ mui.plusReady(function() {
 			data: {
 				"professorId": userid,
 				"watchObject": proId,
-				"watchType": 1
+				"watchType": 1,
+				"uname": plus.storage.getItem('name')
 			},
 			dataType: 'json', //数据格式类型
 			type: 'POST', //http请求类型

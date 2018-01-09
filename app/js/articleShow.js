@@ -540,7 +540,8 @@ mui.plusReady(function() {
 		if(oCurren.userid) {
 			oArticleModule.oAjaxGet(baseUrl + "/ajax/article/agree", {
 				"articleId": oArticleModule.articleId,
-				'operateId': oCurren.userid
+				'operateId': oCurren.userid,
+				"uname":plus.storage.getItem('name')
 			}, "post", oArticleModule.thumbsUp);
 		} else {
 			oCurren.login();
@@ -605,6 +606,7 @@ mui.plusReady(function() {
 			if(oClsNm == 'mui-icon attenSpan attenedSpan') {
 				oArticleModule.oAjaxGet(baseUrl + "/ajax/watch/delete",$info , "post", oArticleModule.attentionNoPostExpert);
 			} else {
+				$info.uname=plus.storage.getItem('name');
 				if(oArticleModule.oFlag == 1) {
 					$info.watchType=6;
 				}else{
@@ -631,7 +633,8 @@ mui.plusReady(function() {
 				oArticleModule.oAjaxGet(baseUrl + "/ajax/watch", {
 					"watchObject": oArticleModule.articleId,
 					'professorId': oCurren.userid,
-					"watchType": 3
+					"watchType": 3,
+					"uname": plus.storage.getItem('name')
 				}, "post", oArticleModule.storePostUp);
 			}
 		} else {

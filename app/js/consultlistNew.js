@@ -8,7 +8,7 @@ mui.ready(function() {
 			content1.style.display = 'none';
 		} else {
 			content2.style.display = 'none';
-			messageList(true)
+			messageList(true);
 		}
 		/*登陆*/
 		window.addEventListener('logined', function(event) {
@@ -60,17 +60,32 @@ mui.ready(function() {
 			});
 
 		});
+		mui("#tongzhi").on("tap", "li", function() {
+			mui.openWindow({
+					url: '../html/inform.html',
+					id: 'inform.html',
+					show: {
+						autoShow: true,
+						aniShow: "slide-in-right",
+					}
+				})
+		})
 		websocket1()
 
 		function websocket1() {
-			var ws = new WebSocket("ws://www.ekexiu.com:8080/portal/websocket/msg?id=" + userid + "&pm=app");
+			var ws = new WebSocket("ws://192.168.3.233:8081/portal/websocket/msg?id=" + userid + "&pm=app");
 			ws.onopen = function() {
 
 			};
 			ws.onmessage = function(a) {
 				var fol = true;
 				var $info = JSON.parse(a.data);
-
+				if(!$info.sender) {
+				document.getElementById("inf").innerHTML=$info.cnt;	
+				document.getElementById("iconT").style.display="block";
+				document.getElementById("iconNum").innerHTML=parseInt(document.getElementById("iconNum").innerHTML)+1;
+				return;
+				}
 				var li = $("#consultList").find("li");
 				var cf = 1;
 				$.each(li, function() {
@@ -193,6 +208,36 @@ mui.ready(function() {
 					}
 				},
 				error: function(x) {
+					plus.nativeUI.toast("服务器链接超时", toastStyle);
+				}
+			});
+		}
+		inform();
+		/*通知*/
+		function inform() {
+			mui.ajax(baseUrl + '/ajax/notify/idx', {
+				"type": "GET",
+				"async": true,
+				"data": {
+					id:userid
+				},
+				"success": function(data) {
+					console.log(JSON.stringify(data));
+					//return;
+					if(data.success) {
+						document.getElementById("inf").innerHTML=data.data.lastCnt;
+						if(data.data.unRead) {
+							document.getElementById("iconT").style.display="block";
+							document.getElementById("iconNum").innerHTML=data.data.unRead;
+						}else{
+							document.getElementById("iconT").style.display="none";
+							document.getElementById("iconNum").innerHTML=0;
+						}
+						
+					}
+				},
+				"error": function(x) {
+					console.log(x)
 					plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});

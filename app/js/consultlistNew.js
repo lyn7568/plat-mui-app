@@ -9,6 +9,8 @@ mui.ready(function() {
 		} else {
 			content2.style.display = 'none';
 			messageList(true);
+			inform();
+			websocket1();
 		}
 		/*登陆*/
 		window.addEventListener('logined', function(event) {
@@ -22,8 +24,9 @@ mui.ready(function() {
 			});
 			if(event.detail.rd) {
 				websocket1();
+				inform();
 			}
-
+			
 		});
 		window.addEventListener('exited', function(event) {
 			var userid = event.detail.id;
@@ -70,7 +73,7 @@ mui.ready(function() {
 					}
 				})
 		})
-		websocket1()
+		
 
 		function websocket1() {
 			var ws = new WebSocket("ws://192.168.3.233:8081/portal/websocket/msg?id=" + userid + "&pm=app");
@@ -84,6 +87,10 @@ mui.ready(function() {
 				document.getElementById("inf").innerHTML=$info.cnt;	
 				document.getElementById("iconT").style.display="block";
 				document.getElementById("iconNum").innerHTML=parseInt(document.getElementById("iconNum").innerHTML)+1;
+				var web4 = plus.webview.getLaunchWebview();
+			mui.fire(web4, "newId", {
+				rd: 1
+			});
 				return;
 				}
 				var li = $("#consultList").find("li");
@@ -166,7 +173,12 @@ mui.ready(function() {
 			}
 		}
 		window.addEventListener("newId", function(event) {
+			var web4 = plus.webview.getLaunchWebview();
+			mui.fire(web4, "newId", {
+				rd: 3
+			});
 			messageList(false);
+			inform();
 		})
 
 		function messageList(bole) {

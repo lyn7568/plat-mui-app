@@ -130,30 +130,50 @@ if(mui.os.ios) {
 						"context": this,
 						"success": function(data) {
 							if(data.success) {
-								if(mui.os.ios) {
-									plus.runtime.setBadgeNumber(data.data);
-									 var GeTuiSdk = plus.ios.importClass('GeTuiSdk');
-            								GeTuiSdk.setBadge(data.data);
-								}
 								
-								if(data.data) {
-									
-									document.getElementById("meLInum").style.display="block"
-									document.getElementById("meLInum").innerHTML=data.data;
-								}else{
-									document.getElementById("meLInum").style.display="none";
-									document.getElementById("meLInum").innerHTML=0;
-								}
-								
+								lewd(data.data);
 							}
 						},
 						"error": function() {
 							plus.nativeUI.toast("服务器链接超时", toastStyle);
-						}
-					});
+}
+});
+}
+});
+
+function lewd(num) {
+	mui.ajax(baseUrl + '/ajax/notify/idx', {
+		"data": {
+			id: plus.storage.getItem('userid')
+		},
+		"type": "get",
+		"async": true,
+		"context": this,
+		"success": function(data) {
+			if(data.success) {
+				data.data.unRead+=num;
+				if(mui.os.ios) {
+					plus.runtime.setBadgeNumber(data.data.unRead);
+					var GeTuiSdk = plus.ios.importClass('GeTuiSdk');
+					GeTuiSdk.setBadge(data.data.unRead);
+				}
+
+				if(data.data) {
+
+					document.getElementById("meLInum").style.display = "block"
+					document.getElementById("meLInum").innerHTML = data.data.unRead;
+				} else {
+					document.getElementById("meLInum").style.display = "none";
+					document.getElementById("meLInum").innerHTML = 0;
+				}
+
+			}
+		},
+		"error": function() {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
 		}
 	});
-	//当前激活选项
+}//当前激活选项
 	var activeTab = subpages[0];
 	//选项卡点击事件
 	mui('.mui-bar-tab').on('tap', 'a', function(e) {

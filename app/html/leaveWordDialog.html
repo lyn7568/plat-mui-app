@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>论文浏览-科袖</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0px;
+				overflow: hidden;
+				background: #FFFFFF;
+			}
+			
+			.mui-content {
+				height: 100%;
+				overflow: auto;
+				background: #FFFFFF;
+			}
+			
+			.fix {
+				position: fixed;
+				z-index: 10;
+				right: 0;
+				left: 0;
+				height: 44px;
+				background-color: #ffffff;
+				-webkit-backface-visibility: hidden;
+				backface-visibility: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit">留言对话</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab footbox" style="border-top:none ;">
+			<div class="mui-row artfoot displayNone" id="textInput">
+				<div class="mui-col-xs-12">
+					<textarea name="" placeholder="说点什么吧…" id="textInputThis" maxlength="200"></textarea>
+					<button class="mui-btn" disabled>发表</button>
+				</div>
+			</div>
+		</nav>
+		<div class="mui-content">
+			<div class="showDetail">
+				<div class="madiaBlock" style="padding-bottom:50px;">
+					<ul class="mui-table-view commentBlock noactiveTab">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script type="text/javascript" src="../js/leaveWordDialog.js"></script>
+		<script type="text/javascript">
+			iosheader();
+			mui.ready(function() {
+				mui.plusReady(function() {
+					plus.nativeUI.closeWaiting();
+					module.lWord(plus.webview.currentWebview().lid);
+				})
+			})
+		</script>
+	</body>
+
+</html>

@@ -7,7 +7,7 @@ mui.init({
 		up: {
 			contentrefresh: '正在加载...',
 			callback: pullupRefresh,
-			auto:true
+			auto: true
 		}
 	}
 });
@@ -40,11 +40,11 @@ var count,
  */
 
 function pullupRefresh() {
-	
+
 	mui.plusReady(function() {
 		if(!obj.uid) {
-				obj.uid = plus.storage.getItem('userid');
-			}
+			obj.uid = plus.storage.getItem('userid');
+		}
 		setTimeout(function() {
 			informList(obj);
 		}, 1000);
@@ -53,7 +53,6 @@ function pullupRefresh() {
 }
 
 function informList(objec) {
-	console.log(JSON.stringify(objec));
 	mui.ajax(baseUrl + '/ajax/notify', {
 		data: objec,
 		async: true,
@@ -63,7 +62,7 @@ function informList(objec) {
 		success: function(data) {
 			if(data.success) {
 				var $info = data.data;
-				console.log($info.length)
+
 				if($info.length == 0) {
 					if(count) {
 						document.getElementById("nodatalist").style.display = "block";
@@ -75,15 +74,21 @@ function informList(objec) {
 					}
 				}
 				if(count) {
-					document.getElementById("consultList").innerHTML="";
+					document.getElementById("consultList").innerHTML = "";
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+
 				}
+				readed({
+					uid: obj.uid,
+					mid: $info[0].id,
+					time: $info[0].createTime
+				})
 				count = 0;
 				informHtml($info);
 				if(data.data.length == obj.rows) {
 					mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); /*能上拉*/
-					obj.time = $info[$info.length-1].createTime;
-					obj.mid = $info[$info.length-1].id;
+					obj.time = $info[$info.length - 1].createTime;
+					obj.mid = $info[$info.length - 1].id;
 				} else {
 					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				}
@@ -99,13 +104,16 @@ function informList(objec) {
 
 function informHtml($data) {
 	for(var i = 0; i < $data.length; i++) {
+		var par = JSON.stringify($data[i]);
+		console.log($data[i].readed);
 		var li = document.createElement("li");
 		li.className = "mui-table-view-cell";
 		li.style.height = "80px";
-		li.innerHTML = '<div class="madiaHead useHead" style="../images/default-photo.jpg"></div>' +
+		li.innerHTML = '<div class="madiaHead useHead" style="../images/default-photo.jpg" data-id="' + $data[i].uid + '"></div>' +
 			'<div class="madiaInfo">' +
 			'<div class="h2Font mui-ellipsis-2" style="color: #333;font-weight: 400;">' + $data[i].cnt + '</div>' +
 			'<div class="h3Font" style="margin: 5px 0;">' + commenTime($data[i].createTime) + '</div></div>'
+		li.getElementsByClassName("madiaInfo")[0].setAttribute("data-obj", par);
 		document.getElementById("consultList").appendChild(li);
 		uinfo(li, $data[i].uid)
 	}
@@ -130,3 +138,98 @@ function uinfo(li, uid) {
 		}
 	});
 }
+
+function readed(objec) {
+	mui.ajax(baseUrl + '/ajax/notify/readed', {
+		data: objec,
+		async: true,
+		dataType: 'json', //服务器返回json格式数据
+		type: 'POST', //HTTP请求类型
+		traditional: true, //传数组必须加这个
+		success: function(data) {
+			if(data.success) {
+				console.log(JSON.stringify(data))
+			}
+
+		},
+		error: function(x) {
+			plus.nativeUI.toast("服务器链接超时", toastStyle);
+		}
+	});
+}
+mui("#consultList").on("tap", ".madiaInfo", function() {
+	var dobj = JSON.parse(this.getAttribute("data-obj"));
+	var our = "",
+		data;
+	if(dobj.opType == 0) {
+		ourl = "userInforShow.html";
+		data = {
+			proid: dobj.pid
+		}
+	} else if(dobj.opType == 1) {
+		ourl = "researchAreaHead.html";
+		data = {
+			dataCaption: dobj.cnt.substring(dobj.cnt.indexOf(">") + 1, dobj.cnt.lastIndexOf("<")),
+			professorId: dobj.pid
+		}
+	} else if(dobj.opType == 2) {
+		ourl = "professorArticle.html";
+		data = {
+			articleId: dobj.pid,
+			ownerid: obj.uid
+		};
+	} else if(dobj.opType == 3) {
+		ourl = "qa-answer-show.html";
+		data = {
+			anid: dobj.pid
+		};
+	} else if(dobj.opType == 4) {
+		ourl = "qa-answer-show.html";
+		data = {
+			anid: dobj.pid
+		};
+	} else if(dobj.opType == 5) {
+		ourl = "qa-question-show.html"
+		data = {
+			quid: dobj.pid
+		};
+	} else if(dobj.opType == 6) {
+		ourl = "patentShow.html"
+		data = {
+			patentId: dobj.pid
+		}
+	} else if(dobj.opType == 7) {
+		ourl = "paperShow.html";
+		data = {
+			paperId: dobj.pid
+		}
+	} else {
+		ourl = "leaveWordDialog.html";
+		data = {
+			lid: dobj.pid
+		}
+	}
+	mui.openWindow({
+		url: '../html/' + ourl,
+		id: ourl,
+		show: {
+			autoShow: false,
+			aniShow: "slide-in-right",
+		},
+		extras: data
+	})
+})
+mui("#consultList").on("tap", ".useHead", function() {
+	var dobj = this.getAttribute("data-id");
+	mui.openWindow({
+		url: '../html/userInforShow.html',
+		id: "userInforShow.html",
+		show: {
+			autoShow: false,
+			aniShow: "slide-in-right",
+		},
+		extras: {
+			proid: dobj
+		}
+	})
+})

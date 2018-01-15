@@ -32,6 +32,11 @@
 					}
 				}]
 			});
+			document.getElementsByClassName("toptitbox")[0].addEventListener("tap",function(){
+				var web3 = plus.webview.getWebviewById("consultlistNew.html");
+				mui.fire(web3, "newId");
+				return true;
+			})
 		</script>
 	</body>
 

@@ -3,7 +3,10 @@ mui.ready(function(){
 		var self = plus.webview.currentWebview();
 		plus.nativeUI.closeWaiting();
 		plus.webview.currentWebview().show("slide-in-right", 150);
-		 
+		var flag=self.flag
+		if(flag){
+			document.getElementsByClassName("xiugai-qa")[0].classList.remove("displayNone")
+		}
 		/*微信及微信朋友圈分享专家*/
 		var auths, shares;
 		plus.oauth.getServices(function(services) {
@@ -104,6 +107,12 @@ mui.ready(function(){
 				if(self.name=="demand"){
 				 	plus.nativeUI.toast("成功分享需求信息", toastStyle);
 				}
+				if(self.name=="question"){
+				 	plus.nativeUI.toast("成功分享问题信息", toastStyle);
+				}
+				if(self.name=="answer"){
+				 	plus.nativeUI.toast("成功分享回答信息", toastStyle);
+				}
 				
 			}, function(e) {
 				console.log(JSON.stringify(e))
@@ -121,16 +130,32 @@ mui.ready(function(){
 			})
 		})
 		document.getElementById("corrAnswer").addEventListener('tap',function(){
-//			plus.nativeUI.showWaiting(); //显示原生等待框
-//			var webviewShow = plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
-//			})
-			mui.openWindow({
-				 url:"../html/qa-answer-q.html",
-			    id:"../html/qa-answer-q.html",
-				show: {
-					aniShow: "slide-in-right"
+			plus.nativeUI.showWaiting(); //显示原生等待框
+			var webviewShow = plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
+				anid: self.proid,
+				quid: self.quid,
+				qutit:self.data.title,
+				qucnt:self.data.content
+			})
+		})
+		document.getElementsByClassName("exitbtn")[0].addEventListener("tap",function(){
+			var bts = ["是", "否"];
+			plus.nativeUI.confirm("确认删除该回答？", function(e) {
+				var i = e.index;
+				if(i == 0) {
+					mui.ajax(baseUrl + "/ajax/question/answer/delete", {
+						data: {id:self.proid},
+						dataType: 'json',
+						type: 'get',
+						success: function(data) {
+							if(data.success) {
+								plus.nativeUI.toast("该回答已删除", toastStyle);
+								mui.back();
+							}
+						}
+					});
 				}
-			});
+			}, "删除回答", bts);
 		})
 		
 		document.getElementsByClassName("topback")[0].addEventListener("tap",function(){

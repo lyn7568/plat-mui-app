@@ -9,6 +9,9 @@ mui('.mui-scroll-wrapper').scroll({
 });
 mui.ready(function () {
     mui.plusReady(function () {
+    	var self = plus.webview.currentWebview()
+    	plus.nativeUI.closeWaiting();
+		self.show("slide-in-right", 150);
         var currentIndex,
             currentSelf,
             pageNo = 1,
@@ -72,8 +75,6 @@ mui.ready(function () {
                     success: function (res) {
                         if (res.success) {
                             oFun(res);
-                            console.log(JSON.stringify(res));
-                            console.log(JSON.stringify(obj));
                         }
                     }
                 });
@@ -119,8 +120,7 @@ mui.ready(function () {
                                         currentSelf.endPullUpToRefresh()
                                     }, 1000);
                                 }
-                            },
-                            auto:true
+                            }
                         });
                     }
                 })
@@ -160,23 +160,18 @@ mui.ready(function () {
             }
         };
         var oMyQ = function (res) {
-                console.log(0)
                 comPull(res.data, 0);
             },
             oMyA = function (res) {
-                console.log(1)
                 comPull(res.data, 1);
             },
             oWatchPro = function (res) {
-                console.log(2)
                 comPull(res.data.data, 2, res.data);
             },
             oWatchQ = function (res) {
-                console.log(3)
                 comPull(res.data, 3);
             },
             oWatchA = function (res) {
-                console.log(4)
                 comPull(res.data, 4);
             },
             proModule = function (dataStr, liStr) {
@@ -226,9 +221,15 @@ mui.ready(function () {
             },
             questionModule = function (dataStr, liStr) {
                 var baImg = "../images/default-q&a.jpg";
-                if (dataStr.img) {
-                    baImg = baseUrl + dataStr.img;
-                }
+				var subs = new Array();
+				if(dataStr.img) {
+					if(dataStr.img.indexOf(',')) {
+						subs = dataStr.img.split(',');
+					} else {
+						subs[0] = dataStr.img;
+					}
+					baImg = baseUrl + "/data/question"+ subs[0];
+				}
                 var hd = "";
                 if (dataStr.replyCount > 0) {
                     hd = '<span>' + dataStr.replyCount + ' 回答</span>'
@@ -399,5 +400,28 @@ mui.ready(function () {
             var $type = $this.getAttribute("data-type");
             slideFun($type);
         });
+        
+        mui("#myQ,#watchQ").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			console.log(JSON.stringify(id))
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/qa-question-show.html", 'qa-question-show.html', {}, {
+				"quid": id
+			});
+		})
+		mui("#myA,#watchA").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/qa-answer-show.html", 'qa-answer-show.html', {}, {
+				"anid": id
+			});
+		})
+		mui("#watchPro").on("tap", "li", function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+				"proid": id
+			});
+		})
     })
 });

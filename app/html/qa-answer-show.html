@@ -32,11 +32,11 @@
 				<div class="mui-col-xs-8">
 					<div class="inputShow"><span>说点什么吧…</span></div>
 				</div>
-				<div class="mui-col-xs-1">
-					<span class="mui-icon iconfontnew icon-liuyan"><em class="mui-badge">16</em></span>
+				<div class="mui-col-xs-1" id="listenClick">
+					<span class="mui-icon iconfontnew icon-liuyan"><em class="mui-badge"></em></span>
 				</div>
-				<div class="mui-col-xs-2">
-					<span class="mui-icon iconfontnew icon-shoucang"></span>
+				<div class="mui-col-xs-2" id="collectBtn">
+					<span class="mui-icon iconfontnew icon-shoucang" id="ifCollect"></span>
 				</div>
 				<div class="mui-col-xs-1" id="shareOut">
 					<span class="mui-icon iconfontnew icon-fenxiang"></span>
@@ -46,67 +46,36 @@
 		<div class="mui-content">
 		    <div class="showDetail">
 		    		<div class="qa-top flexCenter mui-navigate-right">
-		    			<div class="h1Font hWeight flex-pright">文章题目文章题目文章题目文章题目文章题目文章题目</div>
+		    			<div class="h1Font hWeight flex-pright" id="questTit"></div>
 					</div>
 		    		
 		    		<div class="madiaBlock">
 		    			<ul class="mui-table-view noactiveTab" style="margin:0 -15px;">
 					        <li class="mui-table-view-cell">
-					            <div class="flexCenter flex-pright">
-					                <div class="madiaHead useHead"></div>
+					            <div class="flexCenter flex-pright" id="ownerCon">
+					                <!--<div class="madiaHead useHead"></div>
 									<div class="madiaInfo">
 										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
 										<p class="mui-ellipsis h2Font">职称/职位，所在机构</p>
-									</div>
+									</div>-->
 					            </div>
-					            <span class="mui-icon attenSpan" style="display: block;";>关注</span>
+					            <span class="mui-icon attenSpan" id="attenSpan">关注</span>
 					        </li>
 					    </ul>
 		    		</div>
 			    	<!--文章内容区-->
-					<div class="showMain">
-	所谓展示，指的是我通过信息的发布，展示我的生活方式生活态度和精神面目，一个人展示出来的东西，其实是他希望和想象的理想状态，通常是比实际情况要高一档次，比如一个人一周要吃五次卤煮，他肯定不会秀自己整天吃卤煮，但是，他要吃了一次日本料理，就一定会秀出来。去动物园服装批发市场买衣服，他不会秀，但他去了一次东京银座，即使不购物也会展示出来。他跑了五公里会秀，但宅在家里两天不出门灰头土脑一定不会秀。同样的，晒娃、晒猫狗、秀恩爱也是基于同样的心理，我希望通过这些信息，来展示我是一个多么热爱生活，当然，重要是生活品质很高，并且关心社会的一个面貌。
-					</div>
-					<div class="h3Font" style="margin-top: 10px;">发布于5月8日 18:00</div>
+					<div class="showMain"  id="answerCnt"></div>
+					<div class="h3Font" style="margin-top: 10px;" id="answerTime"></div>
 					<!--点赞模块-->
 					<div class="thumbBlock">
-						<span class="thumbBtn">赞 200</span>
+						<span class="thumbBtn">赞 <span id="snum"></span></span>
 						<span class="stepBtn">踩</span><!--<span class="stepBtn stepedBtn">取消踩</span>-->
 					</div>
 					<!--留言-->
 					<div class="madiaBlock">
 						<div class="madiaTit">留言</div>
 						<ul class="mui-table-view commentBlock noactiveTab">
-					        <li class="mui-table-view-cell">
-					            <div class="flexCenter mui-clearfix">
-					                <div class="madiaHead useHead"></div>
-									<div class="madiaInfo">
-										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
-									</div>
-					            </div>
-					            <div class="madiaInfo">
-									<p class="h2Font">留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容</p>
-									<p class="operateSpan">
-										<span class="commenttime">4小时前</span>
-										<span>删除</span>
-									</p>
-					            </div>
-					        </li>
-					        <li class="mui-table-view-cell">
-					            <div class="flexCenter mui-clearfix">
-					                <div class="madiaHead useHead"></div>
-									<div class="madiaInfo">
-										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
-									</div>
-					            </div>
-					            <div class="madiaInfo">
-									<p class="h2Font">留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容</p>
-									<p class="operateSpan">
-										<span class="commenttime">4小时前</span>
-										<span>删除</span>
-									</p>
-					            </div>
-					        </li>
+					        
 					    </ul>
 					</div>
 		    </div>
@@ -133,8 +102,13 @@
 		
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/public/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="../js/leaveWords.js"></script>
 		<script src="../js/qa-answer-show.js"></script>
-		<script type="text/javascript"> 
+		<script type="text/javascript">
+			document.getElementById("listenClick").addEventListener("tap",function(){
+				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop-20+"px"}, 400); 
+			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
 		    mui(".artfoot").on("tap",".inputShow",function(){

@@ -224,8 +224,14 @@ mui.ready(function() {
 			},
 			questionModule: function(dataStr, liStr) {
 				var baImg = "../images/default-q&a.jpg";
+				var subs = new Array();
 				if(dataStr.img) {
-					baImg = baseUrl + dataStr.img;
+					if(dataStr.img.indexOf(',')) {
+						subs = dataStr.img.split(',');
+					} else {
+						subs[0] = dataStr.img;
+					}
+					baImg = baseUrl + "/data/question"+ subs[0];
 				}
 				var hd = "";
 				if(dataStr.replyCount > 0) {

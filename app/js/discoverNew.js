@@ -3,22 +3,22 @@
 	var arr = [];
 	var key1 = [];
 	var m = 0;
-		var deceleration = mui.os.ios ? 0.003 : 0.0009;
-		$('.mui-scroll-wrapper').scroll({
-			bounce: false,
-			indicators: true, //是否显示滚动条
-			deceleration: deceleration
-		});
-	var colum= {
-					"a":"", //最新文章
-					"3": 3, //前沿动态
-					"4": 7, //学术经验
-                    "5":10,
-					"6": 4, //检测分析
-					"7": 5, //会议培训
-					"8": 6, //科袖访谈
-					"9": 8 //招聘招生
-			}
+	var deceleration = mui.os.ios ? 0.003 : 0.0009;
+	$('.mui-scroll-wrapper').scroll({
+		bounce: false,
+		indicators: true, //是否显示滚动条
+		deceleration: deceleration
+	});
+	var colum = {
+		"a": "", //最新文章
+		"3": 3, //前沿动态
+		"4": 7, //学术经验
+		"5": 10,
+		"6": 4, //检测分析
+		"7": 5, //会议培训
+		"8": 6, //科袖访谈
+		"9": 8 //招聘招生
+	}
 	var pullObj = {
 		"0": 0,
 		"1": 0,
@@ -27,55 +27,83 @@
 		"4": 0,
 		"5": 0,
 		"6": 0,
-        "7": 0,
-		"8":0
+		"7": 0,
+		"8": 0
 	}
-	var QAtime,QAid,QArows = 20;
+	var QAtime, QAid, QArows = 2;
 	$.ready(function() {
 		$.plusReady(function() {
+			var userid = plus.storage.getItem('userid');
+			var userN =  plus.storage.getItem('name');
+			/*登陆*/
+			window.addEventListener('loginIn', function(event) {
+				userid = event.detail.id;
+				document.getElementsByClassName("unlogin")[0].classList.add("displayNone")
+				document.getElementsByClassName("onlogin")[0].classList.remove("displayNone")
+				userInfo();
+				var web4 = plus.webview.getLaunchWebview();
+				mui.fire(web4, "newId", {
+					rd: 3
+				});
+			});
+			window.addEventListener('exitOut', function(event) {
+				userid = event.detail.id;
+				document.getElementsByClassName("unlogin")[0].classList.remove("displayNone")
+				document.getElementsByClassName("onlogin")[0].classList.add("displayNone")
+				var web4 = plus.webview.getLaunchWebview();
+				mui.fire(web4, "newId", {
+					rd: 2
+				});
+			});
+			if(userid && userid != null && userid != "null") {
+				userInfo();
+			}else{
+				document.getElementsByClassName("unlogin")[0].classList.remove("displayNone")
+				document.getElementsByClassName("onlogin")[0].classList.add("displayNone")
+			}		
 			var columnType = {
-		"1": {
-			fullName: "个人原创",
-			shortName: "原创"
-		},
-		"2": {
-			fullName: "企业原创",
-			shortName: "原创"
-		},
-		"3": {
-			fullName: "科研",
-			shortName: "科研"
-		},
-		"4": {
-			fullName: "智库",
-			shortName: "智库"
-		},
-		"5": {
-			fullName: "检测",
-			shortName: "检测"
-		},
-		"6": {
-			fullName: "会议",
-			shortName: "会议"
-		},
-		"7": {
-			fullName: "企业",
-			shortName: "企业"
-		},
-		"8": {
-			fullName: "招聘",
-			shortName: "招聘"
-		},
+				"1": {
+					fullName: "个人原创",
+					shortName: "原创"
+				},
+				"2": {
+					fullName: "企业原创",
+					shortName: "原创"
+				},
+				"3": {
+					fullName: "科研",
+					shortName: "科研"
+				},
+				"4": {
+					fullName: "智库",
+					shortName: "智库"
+				},
+				"5": {
+					fullName: "检测",
+					shortName: "检测"
+				},
+				"6": {
+					fullName: "会议",
+					shortName: "会议"
+				},
+				"7": {
+					fullName: "企业",
+					shortName: "企业"
+				},
+				"8": {
+					fullName: "招聘",
+					shortName: "招聘"
+				},
 
-		"9": {
-			fullName: "新闻",
-			shortName: "新闻"
-		},
-        "10":{
-		    fullName:"问答",
-            shortName:"问答"
-        }
-	}
+				"9": {
+					fullName: "新闻",
+					shortName: "新闻"
+				},
+				"10": {
+					fullName: "问答",
+					shortName: "问答"
+				}
+			}
 			var oWidth = getViewportSize().width;
 
 			function getViewportSize() {
@@ -101,18 +129,18 @@
 					"4": 1,
 					"5": 1,
 					"6": 1,
-                    "7": 1,
-					"8":1,
+					"7": 1,
+					"8": 1,
 				},
 				colum: {
-                    "a":"", //最新文章
-                    "3": 3, //前沿动态
-                    "4": 7, //学术经验
-                    "5":10,
-                    "6": 4, //检测分析
-                    "7": 5, //会议培训
-                    "8": 6, //科袖访谈
-                    "9": 8 //招聘招生
+					"a": "", //最新文章
+					"3": 3, //前沿动态
+					"4": 7, //学术经验
+					"5": 10,
+					"6": 4, //检测分析
+					"7": 5, //会议培训
+					"8": 6, //科袖访谈
+					"9": 8 //招聘招生
 				},
 				constructor: Discover,
 				Init: function(obj) {
@@ -205,25 +233,25 @@
 											_this.colum[index + 2] = index + 2;
 
 											console.log(new Date().getTime() + "b");
-											if(m==3){
-                                                $D({
-                                                    "fun": _this.QA,
-                                                    data: {
-                                                        rows:QArows
-                                                    },
-                                                    url: "/ajax/question/answer/byTime"
-                                                });
-                                            }else{
-                                                $D({
-                                                    "fun": _this.createFragment,
-                                                    data: {
-                                                        col: index ? colum[m+2] : _this.colum.a,
-                                                        pageNo: 1,
-                                                        exclude: arr,
-                                                    },
-                                                    url: "/ajax/article/find"
-                                                });
-                                            }
+											if(m == 3) {
+												$D({
+													"fun": _this.QA,
+													data: {
+														rows: QArows
+													},
+													url: "/ajax/question/answer/byTime"
+												});
+											} else {
+												$D({
+													"fun": _this.createFragment,
+													data: {
+														col: index ? colum[m + 2] : _this.colum.a,
+														pageNo: 1,
+														exclude: arr,
+													},
+													url: "/ajax/article/find"
+												});
+											}
 										}
 									}, 1000);
 
@@ -232,7 +260,6 @@
 
 							},
 							up: {
-
 								callback: function() {
 									var self = this;
 									setTimeout(function() {
@@ -244,27 +271,27 @@
 											pa = ++_this.pageNo[index];
 										}
 										//var ul = self.element.querySelector('.mui-table-view');
-                                        if (m == 3){
-                                            $D({
-                                                "fun": _this.QA,
-                                                data: {
-                                                    time: QAtime,
-                                                    id:QAid,
-                                                    rows:QArows
-                                                },
-                                                url: "/ajax/question/answer/byTime"
-                                            });
-                                        }else {
-                                            $D({
-                                                "fun": _this.createFragment,
-                                                data: {
-                                                    col: index ? colum[m + 2] : _this.colum.a,
-                                                    pageNo: pa,
-                                                    exclude: arr
-                                                },
-                                                url: "/ajax/article/find"
-                                            });
-                                        }
+										if(m == 3) {
+											$D({
+												"fun": _this.QA,
+												data: {
+													time: QAtime,
+													id: QAid,
+													rows: QArows
+												},
+												url: "/ajax/question/answer/byTime"
+											});
+										} else {
+											$D({
+												"fun": _this.createFragment,
+												data: {
+													col: index ? colum[m + 2] : _this.colum.a,
+													pageNo: pa,
+													exclude: arr
+												},
+												url: "/ajax/article/find"
+											});
+										}
 									}, 1000);
 								}
 							}
@@ -290,11 +317,96 @@
 							});
 						}
 					})
-
+					mui("#questionItem").on("tap", "li", function() {
+						var id = this.getAttribute("data-id");
+						plus.nativeUI.showWaiting();
+						plus.webview.create("../html/qa-answer-show.html", 'qa-answer-show.html', {}, {
+							anid: id
+						});
+					})
+					document.getElementsByClassName("unlogin")[0].addEventListener("tap", function() {
+						mui.openWindow({
+							url: '../html/login.html',
+							id: 'login.html'
+						})
+					})
+					document.getElementById("my-q&a").addEventListener("tap", function() {
+						if(userid && userid != null && userid != "null") {
+							plus.nativeUI.showWaiting();
+							plus.webview.create("../html/qa-my-wenda.html", "qa-my-wenda.html", {}, {
+							});
+						}else{
+							mui.openWindow({
+								url: '../html/login.html',
+								id: 'login.html'
+							})	
+						}
+					})
+					document.getElementById("goQu").addEventListener("tap", function() {
+						if(userid && userid != null && userid != "null") {
+							plus.nativeUI.showWaiting();
+							plus.webview.create("../html/qa-going-q-01.html", "qa-going-q-01.html", {}, {
+							});
+						}else{
+							mui.openWindow({
+								url: '../html/login.html',
+								id: 'login.html'
+							})	
+						}
+					})
+					document.getElementById("goAn").addEventListener("tap", function() {
+						mui.openWindow({
+							url: "../html/qa-waiting-a.html",
+							id: "qa-waiting-a.html",
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					})
 				},
 				proName: function(data) {
 					if(data.success) {
 						this.innerHTML = data.data.name;
+					}
+				},
+				proinfo: function(res) {
+						var dataStr = res.data
+						var baImg = "../images/default-photo.jpg";
+						if(dataStr.hasHeadImage == 1) {
+							baImg = baseUrl + "/images/head/" + dataStr.id + "_l.jpg";
+						}
+						var userType = autho(dataStr.authType, dataStr.orgAuth, dataStr.authStatus);
+						var os = "";
+						if(dataStr.title) {
+							if(dataStr.orgName) {
+								os = dataStr.title + "，" + dataStr.orgName;
+							} else {
+								os = dataStr.title;
+							}
+						} else {
+							if(dataStr.office) {
+								if(dataStr.orgName) {
+									os = dataStr.office + "，" + dataStr.orgName;
+								} else {
+									os = dataStr.office;
+								}
+							} else {
+								if(dataStr.orgName) {
+									os = dataStr.orgName;
+								}
+							}
+						}
+						var str = '<div class="owner-head useHead" style="background:url(' + baImg + ')"></div>' +
+							'<div class="owner-info">' +
+							'<div class="owner-name"><span class="h1Font">' + dataStr.name + '</span><em class="authicon ' + userType.sty + '" title="' + userType.title + '"></em></div>' +
+							'<div class="owner-tit mui-ellipsis h2Font">' + os + '</div>' +
+							'</div>'
+
+						this.innerHTML=str;
+				},
+				questioninfo: function(res) {
+					if(res.success) {
+						this.innerHTML=res.data.title
 					}
 				},
 				orgName: function(data) {
@@ -307,18 +419,13 @@
 
 					}
 				},
-                answer:function (data) {
-                    if (data.success){
-                        //todo 填充用户信息
-                    }
-                },
-                leaveMsgCount:function (data) {
-                    if (data.success){
-                    	if(data.data>0) {
-                            this.innerHTML = data.data + "留言"
-                        }
-                    }
-                },
+				leaveMsgCount: function(data) {
+					if(data.success) {
+						if(data.data > 0) {
+							this.innerHTML = data.data + "留言"
+						}
+					}
+				},
 				createFragment: function(data) {
 					console.log(JSON.stringify(data))
 					console.log(m)
@@ -436,85 +543,83 @@
 						}
 					}
 				},
-                QA:function (data) {
-                    if(data.success) {
-                        var $data = data.data;
-                        if($data.length>0){
-	                        QAtime = $data[$data.length-1].createTime;
-	                        QAid = $data[$data.length-1].id;
-                        }
-                        if (arguments[1]){
-                            if($data.length>1) {
-                                $data.length = 1;
-                            }
-                        }
-                        for (var i = 0; i<$data.length;i++) {
-                            var id = $data[i].id,//回答ID
-                                qid = $data[i].qid,//问题ID
-                                uid = $data[i].uid,//回答人ID
-                                agree=$data[i].agree,//点赞数量
-                                cnt = $data[i].cnt,//回答内容
-								Qtitle,Uname,Uinfo;
-                            if(pullObj[m] == 1) {
-                                key1[m].endPullDownToRefresh();
-                                pullObj[m] = 0;
-                            }
-                            var li = document.createElement("li");
-                            li.setAttribute("data-id", id);
-                            li.setAttribute("data-flag", 3);
-                            li.className = "mui-table-view-cell flexCenter OflexCenter";
-                            // li.innerHTML = '<div class="madiaInfo OmadiaInfo">' +
-                            //     '<p class="mui-ellipsis-2 h1Font">' + agree + '</p>' +
-                            //     '<p class="h2Font mui-ellipsis">' + cnt +
-                            //     '<span class="nameSpan" style="margin-right:10px"></span>' +
-                            //     '<span class="time">' + commenTime($data[i].createTime) + '</span>' +
-                            //     '</p>' +
-                            //     '</div>';
-							li.innerHTML = '<div class="madiaInfo">' +
-									'<p class="h1Font mui-ellipsis-2">' + Qtitle + '</p>' +
-								'<div class="flexCenter qa-owner">' +
-								'<div class="owner-head useHead"></div>' +
-								'<div class="owner-info">' +
-								'<div class="owner-name"><span class="h1Font">'+ Uname +'</span><em class="authicon authicon-pro" title="科袖认证专家"></em></div>' +
-								'<div class="owner-tit mui-ellipsis h2Font"></div></div>' +
-								'<p class="qa-con mui-ellipsis-5">'+cnt+'</p>' +
+				QA: function(data) {
+					if(data.success) {
+						var $data = data.data;
+						if($data.length > 0) {
+							QAtime = $data[$data.length - 1].createTime;
+							QAid = $data[$data.length - 1].id;
+						}
+						if(arguments[1]) {
+							if($data.length > 1) {
+								$data.length = 1;
+							}
+						}
+						for(var i = 0; i < $data.length; i++) {
+							if(pullObj[m] == 1) {
+								key1[m].endPullDownToRefresh();
+								pullObj[m] = 0;
+							}
+							var liStr = document.createElement("li");
+							liStr.className = "mui-table-view-cell";
+							liStr.setAttribute("data-id", $data[i].id);
+							var hd = "",
+								hl = "";
+							if($data[i].agree > 0) {
+								hd = '<span>' + $data[i].agree + ' 赞</span>'
+							}
+							liStr.setAttribute("data-id", $data[i].id);
+							liStr.className = "mui-table-view-cell";
+							liStr.innerHTML = '<div class="madiaInfo">' +
+								'<p class="h1Font mui-ellipsis-2 qa-question"></p>'+
+								'<div class="flexCenter qa-owner"></div>' +
+								'<p class="qa-con mui-ellipsis-5">' + $data[i].cnt + '</p>' +
 								'<div class="showli mui-ellipsis">' +
-								'<span>'+ commenTime($data[i].createTime) +'</span>' +
-								'<span>'+ agree +'赞 </span>' +
-								'<span class="leaveMsgCount"></span>' +
+								'<span>' + commenTime($data[i].createTime) + '</span>' + hd + '<span class="leaveMsgCount"></span>' +
 								'</div>' +
 								'</div>'
-                            document.getElementsByTagName("ul")[m].appendChild(li);
-                            $D({
-                                data: {},
-                                fun: ob.proName,
-                                url: "/ajax/professor/editBaseInfo/" + uid,
-                                sele: li.getElementsByClassName("nameSpan")[0]
-                            });
-                            $D({
-                                data:{sid:id,stype:"4"},
-                                fun:ob.leaveMsgCount,
-                                url:"/ajax/leavemsg/count",
-                                //todo 留言数量的this
-                                sele:li.getElementsByClassName("leaveMsgCount")[0]
-                            })
-                        }
-                        //todo 正在加载和加载完毕的显示和隐藏。
-                        document.getElementsByClassName("nodatabox")[m].classList.add("displayNone");
-                        if($data.length == 0) {
-                            document.getElementsByClassName("nodatabox")[m].classList.remove("displayNone");
-                            key1[m].endPullUpToRefresh(true);
-                            return;
-                        }
-                        if($data.length < QArows) {
-                            key1[m].endPullUpToRefresh(true);
-                        } else {
-                            key1[m].refresh(true);
-                            key1[m].endPullUpToRefresh(false);
-                        }
-                    }
-                }
-            }
+							document.getElementsByTagName("ul")[m].appendChild(liStr);
+							$D({
+								data: {},
+								fun: ob.proinfo,
+								url: "/ajax/professor/editBaseInfo/" + $data[i].uid,
+								sele: liStr.getElementsByClassName("qa-owner")[0]
+							});
+							$D({
+								data: {
+									"id": $data[i].qid
+								},
+								fun: ob.questioninfo,
+								url: "/ajax/question/qo",
+								sele: liStr.getElementsByClassName("qa-question")[0]
+							});
+							$D({
+								data: {
+									sid: $data[i].id,
+									stype: "4"
+								},
+								fun: ob.leaveMsgCount,
+								url: "/ajax/leavemsg/count",
+								//todo 留言数量的this
+								sele: liStr.getElementsByClassName("leaveMsgCount")[0]
+							})
+						}
+						document.getElementsByClassName("nodatabox")[m].classList.add("displayNone");
+						var liLen=document.getElementsByTagName("ul")[m].querySelectorAll("li").length;
+						if($data.length == 0&&liLen==0 ) {
+							document.getElementsByClassName("nodatabox")[m].classList.remove("displayNone");
+							key1[m].endPullUpToRefresh(true);
+							return;
+						}
+						if($data.length < QArows) {
+							key1[m].endPullUpToRefresh(true);
+						} else {
+							key1[m].refresh(true);
+							key1[m].endPullUpToRefresh(false);
+						}
+					}
+				}
+			}
 			Discover.prototype.Init.prototype = Discover.prototype;
 			var $D = Discover;
 			$D().bindEvent();
@@ -538,31 +643,31 @@
 					m = 7;
 				} else if($this.innerHTML == "推荐") {
 					m = 0;
-				} else if($this.innerHTML == "问答"){
-				    m = 3
-                }
+				} else if($this.innerHTML == "问答") {
+					m = 3
+				}
 				if(!$this.getAttribute("flag")) {
 
 					$this.setAttribute("flag", 1);
-						console.log(colum[m+2] +" 99999")
-                    if (m == 3){
-                        $D({
-                            "fun": ob.QA,
-                            data: {
-                                rows:QArows
-                            },
-                            url: "/ajax/question/answer/byTime"
-                        });
-                    }else {
-                        $D({
-                            "fun": ob.createFragment,
-                            data: {
-                                col: colum[m + 2],
-                                pageNo: 1
-                            },
-                            url: "/ajax/article/find"
-                        });
-                    }
+					console.log(colum[m + 2] + " 99999")
+					if(m == 3) {
+						$D({
+							"fun": ob.QA,
+							data: {
+								rows: QArows
+							},
+							url: "/ajax/question/answer/byTime"
+						});
+					} else {
+						$D({
+							"fun": ob.createFragment,
+							data: {
+								col: colum[m + 2],
+								pageNo: 1
+							},
+							url: "/ajax/article/find"
+						});
+					}
 				}
 			})
 			$.ajax(baseUrl + "/data/inc/col_bannerApp.html?ttt=" + new Date().getTime(), {
@@ -602,7 +707,32 @@
 					//plus.nativeUI.toast("服务器链接超时", toastStyle);
 				}
 			});
-
+			function userInfo(){
+				$.ajax({
+					type:"get",
+					url:baseUrl+"/ajax/professor/editBaseInfo/" + userid,
+					async:true,
+					success:function(res){
+						if(res.success){
+							document.getElementsByClassName("unlogin")[0].classList.add("displayNone")
+							document.getElementsByClassName("onlogin")[0].classList.remove("displayNone")
+							var baImg = "../images/default-photo.jpg";
+							if(res.data.hasHeadImage == 1) {
+								baImg = baseUrl + "/images/head/" + res.data.id + "_l.jpg";
+							}
+							var str='<div class="flexCenter madiaBlock">'+
+										'<div class="madiaHead useHead" style="background:url(' + baImg + ')"></div>'+
+										'<div class="madiaInfo h1Font">'+
+											'<span class="mui-pull-left">'+res.data.name+'</span>'+
+											'<span class="rightword">我的回答</span>'+
+										'</div>'+
+									'</div>'
+							document.getElementById("my-q&a").innerHTML=str;
+						}
+					}
+				});
+			}
+			
 			function addClick1(colId) {
 				$.ajax(baseUrl + "/ajax/operation/statist/bannerClick", {
 					dataType: 'json', //服务器返回json格式数据

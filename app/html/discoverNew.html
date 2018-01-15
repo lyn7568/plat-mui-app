@@ -16,16 +16,20 @@
 				padding: 0px;
 				overflow: hidden;
 			}
+			
 			.mui-content {
 				height: 100%;
 				overflow: auto;
 			}
-			.mui-pull-down-cap{
-				margin-left:7px;
+			
+			.mui-pull-down-cap {
+				margin-left: 7px;
 			}
+			
 			.mui-bar~.mui-pull-top-tips {
 				top: 20px;
 			}
+			
 			.mui-pull-top-wrapper {
 				width: 100%;
 				height: 32px;
@@ -33,16 +37,19 @@
 				text-align: center;
 				overflow: hidden;
 			}
+			
 			.mui-pull-top-tips.mui-transitioning {
 				-webkit-transition-duration: 800ms;
 				transition-duration: 800ms;
 			}
+			
 			.mui-pull-top-tips .mui-pull-loading {
 				-webkit-backface-visibility: hidden;
 				-webkit-transition-duration: 600ms;
 				transition-duration: 600ms;
 				margin: 0;
 			}
+			
 			.mui-pull-top-wrapper .mui-icon.mui-reverse {
 				-webkit-transform: rotate(180deg) translateZ(0);
 			}
@@ -67,9 +74,10 @@
 				<div class="mui-slider-group">
 					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll" id="dd">
-								<div id="slider1" class="mui-slider columnImg">
-									<!--<div class="mui-slider-item" data-id="">
+							<div class="mui-scroll">
+								<div class="scroll-view" id="dd">
+									<div id="slider1" class="mui-slider columnImg">
+										<!--<div class="mui-slider-item" data-id="">
 										<a href="#" style="background-image:url(../images/cbd.jpg);">
 											<p class="mui-slider-title">幸福就是可以一起睡觉幸福就是可以一起睡觉幸福就是可以一起睡觉幸福就是可以一起睡觉</p>
 										</a>
@@ -81,9 +89,9 @@
 									    <div class="mui-indicator"></div>
 									    <div class="mui-indicator"></div>
 									</div>-->
-								</div>
-								<ul class="mui-table-view" id="list">
-									<!--<li class="mui-table-view-cell">
+									</div>
+									<ul class="mui-table-view" id="list">
+										<!--<li class="mui-table-view-cell">
 									<div class="flexCenter OflexCenter mui-clearfix">
 									<div class="madiaHead artHead"></div>
 									<div class="madiaInfo OmadiaInfo">
@@ -96,12 +104,13 @@
 									</div>
 									</div>
 									</li>-->
-								</ul>
-								<div class="nodatabox displayNone">
-									<div class="nodata">
-										<div class="picbox picNull"></div>
-										<div class="txtbox">
-											<p class="noContip">暂时没有内容</p>
+									</ul>
+									<div class="nodatabox displayNone">
+										<div class="nodata">
+											<div class="picbox picNull"></div>
+											<div class="txtbox">
+												<p class="noContip">暂时没有内容</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -111,13 +120,15 @@
 					<div id="item2mobile" class="mui-slider-item mui-control-content posi">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="companyList">
-								</ul>
-								<div class="nodatabox displayNone">
-									<div class="nodata">
-										<div class="picbox picNull"></div>
-										<div class="txtbox">
-											<p class="noContip">暂时没有内容</p>
+								<div class="scroll-view">
+									<ul class="mui-table-view" id="companyList">
+									</ul>
+									<div class="nodatabox displayNone">
+										<div class="nodata">
+											<div class="picbox picNull"></div>
+											<div class="txtbox">
+												<p class="noContip">暂时没有内容</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -127,15 +138,16 @@
 					<div id="item3mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
+								<div class="scroll-view">
+									<ul class="mui-table-view" id="resourceList">
 
-								<ul class="mui-table-view" id="resourceList">
-
-								</ul>
-								<div class="nodatabox displayNone">
-									<div class="nodata">
-										<div class="picbox picNull"></div>
-										<div class="txtbox">
-											<p class="noContip">暂时没有内容</p>
+									</ul>
+									<div class="nodatabox displayNone">
+										<div class="nodata">
+											<div class="picbox picNull"></div>
+											<div class="txtbox">
+												<p class="noContip">暂时没有内容</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -145,79 +157,56 @@
 					<div id="item8mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<div class="btnLinkBox qa-btnlink mui-clearfix">
-									<div class="qa-top">
-										<div class="unlogin displayNone">马上登录，参与问答</div>
-										<div class="onlogin mui-navigate-right" id="my-q&a">
-											<div class="flexCenter madiaBlock">
-												<div class="madiaHead useHead"></div>
-												<div class="madiaInfo h1Font">
-													<span class="mui-pull-left">用户姓名</span>
-													<span class="rightword">我的回答</span>
+								<div class="scroll-view">
+									<div class="btnLinkBox qa-btnlink mui-clearfix">
+										<div class="qa-top">
+											<div class="unlogin displayNone">马上登录，参与问答</div>
+											<div class="onlogin mui-navigate-right displayNone" id="my-q&a">
+												
+											</div>
+										</div>
+										<div class="mui-row madiaBlock">
+											<div class="mui-table-view-cell mui-media mui-col-xs-6" id="goQu">
+												<div class="mui-clearfix">
+													<div class="mui-media-object mui-pull-left btnLinkIcon wen"></div>
+													<div class="mui-media-body btnLink">马上提问</div>
+												</div>
+											</div>
+											<div class="mui-table-view-cell mui-media mui-col-xs-6" id="goAn">
+												<div class="mui-clearfix">
+													<div class="mui-media-object mui-pull-left btnLinkIcon da"></div>
+													<div class="mui-media-body btnLink">等您回答</div>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="mui-row madiaBlock">
-										<div class="mui-table-view-cell mui-media mui-col-xs-6" id="goQu">
-											<div class="mui-clearfix">
-												<div class="mui-media-object mui-pull-left btnLinkIcon wen"></div>
-												<div class="mui-media-body btnLink">马上提问</div>
-											</div>
-										</div>
-										<div class="mui-table-view-cell mui-media mui-col-xs-6" id="goAn">
-											<div class="mui-clearfix">
-												<div class="mui-media-object mui-pull-left btnLinkIcon da"></div>
-												<div class="mui-media-body btnLink">等您回答</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<ul class="mui-table-view myAllneeds partLine" id="questionItem">
-									<!--<li class="mui-table-view-cell">-->
+									<ul class="mui-table-view myAllneeds partLine" id="questionItem">
+										<!--<li class="mui-table-view-cell">-->
 										<!--<div class="madiaInfo">-->
-											<!--<p class="h1Font mui-ellipsis-2">需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问</p>-->
-											<!--<div class="flexCenter qa-owner">-->
-												<!--<div class="owner-head useHead"></div>-->
-												<!--<div class="owner-info">-->
-													<!--<div class="owner-name"><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></div>-->
-													<!--<div class="owner-tit mui-ellipsis h2Font">职称/职位,所在机构职称/职位,所在机构职称/职位,所在机构</div>-->
-												<!--</div>-->
-											<!--</div>-->
-											<!--<p class="qa-con mui-ellipsis-5">需求内容：我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出产品的三维模型，用于展示以及为后续生产做准备我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出-->
-											<!--</p>-->
-											<!--<div class="showli mui-ellipsis">-->
-												<!--<span>5月8日 18:00</span>-->
-												<!--<span>N 赞</span>-->
-												<!--<span>N 留言</span>-->
-											<!--</div>-->
+										<!--<p class="h1Font mui-ellipsis-2">需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问</p>-->
+										<!--<div class="flexCenter qa-owner">-->
+										<!--<div class="owner-head useHead"></div>-->
+										<!--<div class="owner-info">-->
+										<!--<div class="owner-name"><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></div>-->
+										<!--<div class="owner-tit mui-ellipsis h2Font">职称/职位,所在机构职称/职位,所在机构职称/职位,所在机构</div>-->
 										<!--</div>-->
-									<!--</li>-->
-									<!--<li class="mui-table-view-cell">-->
-										<!--<div class="madiaInfo">-->
-											<!--<p class="h1Font mui-ellipsis-2">需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问需求主题寻求一名斯特林热机技术顾问</p>-->
-											<!--<div class="flexCenter qa-owner">-->
-												<!--<div class="owner-head useHead"></div>-->
-												<!--<div class="owner-info">-->
-													<!--<div class="owner-name"><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></div>-->
-													<!--<div class="owner-tit mui-ellipsis h2Font">职称/职位,所在机构职称/职位,所在机构职称/职位,所在机构</div>-->
-												<!--</div>-->
-											<!--</div>-->
-											<!--<p class="qa-con mui-ellipsis-5">需求内容：我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出产品的三维模型，用于展示以及为后续生产做准备我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出-->
-											<!--</p>-->
-											<!--<div class="showli mui-ellipsis">-->
-												<!--<span>5月8日 18:00</span>-->
-												<!--<span>N 赞</span>-->
-												<!--<span>N 留言</span>-->
-											<!--</div>-->
 										<!--</div>-->
-									<!--</li>-->
-								</ul>
-								<div class="nodatabox displayNone">
-									<div class="nodata">
-										<div class="picbox picNull"></div>
-										<div class="txtbox">
-											<p class="noContip">暂时没有内容</p>
+										<!--<p class="qa-con mui-ellipsis-5">需求内容：我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出产品的三维模型，用于展示以及为后续生产做准备我们是一家医疗器械公司，主要生产健康理疗类的电子产品，目前希望对护膝、护腰类的产品进行改进， 想先找一位有资深设计经验的三维工业设计专家，通过三维建模的方式先设计出-->
+										<!--</p>-->
+										<!--<div class="showli mui-ellipsis">-->
+										<!--<span>5月8日 18:00</span>-->
+										<!--<span>N 赞</span>-->
+										<!--<span>N 留言</span>-->
+										<!--</div>-->
+										<!--</div>-->
+										<!--</li>-->
+									</ul>
+									<div class="nodatabox displayNone">
+										<div class="nodata">
+											<div class="picbox picNull"></div>
+											<div class="txtbox">
+												<p class="noContip">暂时没有内容</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -227,14 +216,16 @@
 					<div id="item4mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="patentList">
+								<div class="scroll-view">
+									<ul class="mui-table-view" id="patentList">
 
-								</ul>
-								<div class="nodatabox displayNone">
-									<div class="nodata">
-										<div class="picbox picNull"></div>
-										<div class="txtbox">
-											<p class="noContip">暂时没有内容</p>
+									</ul>
+									<div class="nodatabox displayNone">
+										<div class="nodata">
+											<div class="picbox picNull"></div>
+											<div class="txtbox">
+												<p class="noContip">暂时没有内容</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -244,14 +235,16 @@
 					<div id="item5mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="paperList">
+								<div class="scroll-view">
+									<ul class="mui-table-view" id="paperList">
 
-								</ul>
-								<div class="nodatabox displayNone">
-									<div class="nodata">
-										<div class="picbox picNull"></div>
-										<div class="txtbox">
-											<p class="noContip">暂时没有内容</p>
+									</ul>
+									<div class="nodatabox displayNone">
+										<div class="nodata">
+											<div class="picbox picNull"></div>
+											<div class="txtbox">
+												<p class="noContip">暂时没有内容</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -261,8 +254,9 @@
 					<div id="item6mobile" class="mui-slider-item mui-control-content cnt-article">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="articleList">
-									<!--<li class="mui-table-view-cell">
+								<div class="scroll-view">
+									<ul class="mui-table-view" id="articleList">
+										<!--<li class="mui-table-view-cell">
 										<div class="flexCenter OflexCenter mui-clearfix">
 											<div class="madiaHead artHead"></div>
 											<div class="madiaInfo OmadiaInfo">
@@ -271,12 +265,13 @@
 											</div>
 										</div>
 									</li>-->
-								</ul>
-								<div class="nodatabox displayNone">
-									<div class="nodata">
-										<div class="picbox picNull"></div>
-										<div class="txtbox">
-											<p class="noContip">暂时没有内容</p>
+									</ul>
+									<div class="nodatabox displayNone">
+										<div class="nodata">
+											<div class="picbox picNull"></div>
+											<div class="txtbox">
+												<p class="noContip">暂时没有内容</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -286,8 +281,9 @@
 					<div id="item7mobile" class="mui-slider-item mui-control-content cnt-article">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="">
-									<!--<li class="mui-table-view-cell">
+								<div class="scroll-view">
+									<ul class="mui-table-view" id="">
+										<!--<li class="mui-table-view-cell">
 										<div class="flexCenter OflexCenter mui-clearfix">
 											<div class="madiaHead artHead"></div>
 											<div class="madiaInfo OmadiaInfo">
@@ -296,12 +292,13 @@
 											</div>
 										</div>
 									</li>-->
-								</ul>
-								<div class="nodatabox displayNone">
-									<div class="nodata">
-										<div class="picbox picNull"></div>
-										<div class="txtbox">
-											<p class="noContip">暂时没有内容</p>
+									</ul>
+									<div class="nodatabox displayNone">
+										<div class="nodata">
+											<div class="picbox picNull"></div>
+											<div class="txtbox">
+												<p class="noContip">暂时没有内容</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -316,47 +313,7 @@
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/public/mui.pullToRefresh1.js"></script>
-		<!--<script src="../js/public/mui.pullToRefresh.material.js"></script>-->
 		<script src="../js/discoverNew.js"></script>
-		<script type="text/javascript">
-			document.getElementById("my-q&a").addEventListener("tap",function(){
-				mui.openWindow({
-					 url:"../html/qa-my-wenda.html",
-				    id:"../html/qa-my-wenda.html",
-					show: {
-						aniShow: "slide-in-right"
-					}
-				});
-			})
-			document.getElementById("goQu").addEventListener("tap",function(){
-				mui.openWindow({
-					 url:"../html/qa-going-q-01.html",
-				    id:"../html/qa-going-q-01.html",
-					show: {
-						aniShow: "slide-in-right"
-					}
-				});
-			})
-			document.getElementById("goAn").addEventListener("tap",function(){
-				mui.openWindow({
-					 url:"../html/qa-waiting-a.html",
-				    id:"../html/qa-waiting-a.html",
-					show: {
-						aniShow: "slide-in-right"
-					}
-				});
-			})
-			
-			mui("#questionItem").on("tap","li",function(){
-				mui.openWindow({
-					 url:"../html/qa-question-show.html",
-				    id:"../html/qa-question-show.html",
-					show: {
-						aniShow: "slide-in-right"
-					}
-				});
-			})
-		</script>
 	</body>
 
 </html>

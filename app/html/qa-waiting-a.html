@@ -12,45 +12,30 @@
 		<link href="../css/app.css" rel="stylesheet" />
 	</head>
 
-	<body>
+	<body class="singleView">
 		<header class="mui-bar mui-bar-nav toptitbox">
 			<a class="mui-action-back mui-icon mui-icon-left-nav topback leftnav"></a>
 			<h1 class="mui-title toptit">等您回答</h1>
 		</header>
-		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
-			<div class="mui-scroll">
-				<ul class="mui-table-view madiaBlock" id="questList">
-					<!--<li class="mui-table-view-cell">
-						<div class="flexCenter OflexCenter mui-clearfix">
-							<div class="madiaHead qa-Head"></div>
-							<div class="madiaInfo OmadiaInfo">
-								<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
-								<p class="show-item mui-ellipsis h2Font">
-									<span>N 回答</span>
-									<span>N 关注</span>
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="flexCenter OflexCenter mui-clearfix">
-							<div class="madiaHead qa-Head"></div>
-							<div class="madiaInfo OmadiaInfo">
-								<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
-								<p class="show-item mui-ellipsis h2Font">
-									<span>N 回答</span>
-									<span>N 关注</span>
-								</p>
-							</div>
-						</div>
-					</li>-->
-				</ul>
-			</div>
-		</div>
 
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
-		<script src="../js/qa-waiting-a.js"></script>
+		<script type="text/javascript">
+			mui.ready(function(){
+				//启用双击监听
+				mui.init({
+					subpages:[{
+							url:'qa-waiting-a_sub.html',
+							id:'qa-waiting-a_sub.html',
+							styles:{
+								top: '44px',
+								bottom: '0px',
+							}
+					}]
+				});
+			})
+			
+		</script>
 	</body>
 
 </html>

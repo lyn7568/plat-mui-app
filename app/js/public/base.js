@@ -1,8 +1,8 @@
 //公共文件
-mui.init();
+//mui.init();
 //var baseUrl = "http://www.ekexiu.com"; 
 //var baseUrl = "http://192.168.3.233";
-var baseUrl = "http:192.168.3.233:81";    
+var baseUrl = "http://192.168.3.233:81";    
 var wlogurl="http://192.168.3.233:8080"
 //var wlogurl="http://www.ekexiu.com:8082";
 
@@ -285,7 +285,7 @@ function ifcollectionAbout(watchObject,sel, num,flag) {
 		success: function(data) {
 			console.log(JSON.stringify(data))
 			if(data.success && data.data != null) {
-				if(num=="1" || num == "6"){//已关注专家
+				if(num=="1" || num == "6" || num=="8"){//已关注专家
 					if(flag==1){
 						that.classList.add("attenedSpan");
 						that.innerText="已关注";
@@ -298,7 +298,7 @@ function ifcollectionAbout(watchObject,sel, num,flag) {
 					that.classList.add("icon-yishoucang");
 				}
 			} else {
-				if(num=="1" || num == "6"){//关注专家
+				if(num=="1" || num == "6" || num=="8"){//关注专家
 					if(flag==1){
 						that.classList.remove("attenedSpan");
 						that.innerText="关注";
@@ -335,7 +335,7 @@ function collectionAbout(watchObject,sel, num,flag) {
 		success: function(data) {
 			console.log(JSON.stringify(data))
 			if(data.success) {
-				if(num=="1" || num == "6"){//关注专家
+				if(num=="1" || num == "6" || num=="8"){//关注专家
 					if(flag==1){
 						that.classList.add("attenedSpan");
 						that.innerText="已关注";
@@ -373,7 +373,7 @@ function cancelCollectionAbout(watchObject,sel, num,flag) {
 		success: function(data) {
 			console.log(JSON.stringify(data))
 			if(data.success) {
-				if(num=="1" || num == "6"){//关注专家
+				if(num=="1" || num == "6" || num=="8"){//关注专家
 					if(flag==1){
 						that.classList.remove("attenedSpan");
 						that.innerText="关注";

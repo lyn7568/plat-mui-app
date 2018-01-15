@@ -3,11 +3,10 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var title = plus.webview.getWebviewById("qa-going-q-02.html").title;
 		var ws = plus.webview.currentWebview();
-			var cnt = ws.cnt;
-			var img = ws.img;	
+		var cnt = ws.cnt;
+		var img = ws.img;	
 			plus.nativeUI.closeWaiting();
 			ws.show("slide-in-right", 150);
-			console.log(cnt +" ,"+img)
 		//查询学术领域
 		var subjectShow = function(data) {
 			if(data != undefined && data.length != 0) {
@@ -80,6 +79,7 @@ mui.ready(function() {
 				return;
 			}
 			console.log(subjectAll);
+			console.log(img);
 			mui.ajax(baseUrl + '/ajax/question', {
 				data: {
 					"title": title,
@@ -88,17 +88,19 @@ mui.ready(function() {
 					"keys": subjectAll,
 					"uid": userid
 				},
-				dataType: 'json', //数据格式类型
+				dataType: 'json',
+				traditional: true,
 				async: false,
-				type: 'POST', //http请求类型
+				type: 'POST', 
 				success: function(data) {
 					if(data.success) {
 						//console.log(JSON.stringify(data))
-						plus.nativeUI.showWaiting();
 						plus.nativeUI.toast("问题发布成功", toastStyle);
-						plus.webview.create("../html/qa-question-show.html", 'qa-question-show.html', {}, {
-							quid: data.data
-						});
+						var w2 = plus.webview.getWebviewById('qa-going-q-02.html');
+						var w1 = plus.webview.getWebviewById('qa-going-q-01.html');
+					  	plus.webview.close(ws);
+					  	plus.webview.close(w2);
+					  	plus.webview.close(w1);
 					}
 				}
 			});

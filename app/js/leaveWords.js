@@ -1,6 +1,6 @@
 (function(window) {
 	function ajaxRequist(url, obj, type, fn) {
-		mui.ajax(url, {
+		mui.ajax(baseUrl + url, {
 			data: obj,
 			dataType: 'json', //服务器返回json格式数据
 			type: type, //支持'GET'和'POST'
@@ -48,7 +48,7 @@
 	LeaveWord.prototype.init = function() {
 		console.log(JSON.stringify(this))
 		var self = this;
-		ajaxRequist(baseUrl + "/ajax/leavemsg/subject", {
+		ajaxRequist("/ajax/leavemsg/subject", {
 			sid: self.sid,
 			stype: self.stype,
 			time: 0,
@@ -100,7 +100,7 @@
 		})
 	}
 	LeaveWord.prototype.userInfo = function(uId, li, parNum) {
-		ajaxRequist(baseUrl + "/ajax/professor/editBaseInfo/" + uId, {}, "GET", function($data) {
+		ajaxRequist("/ajax/professor/editBaseInfo/" + uId, {}, "GET", function($data) {
 			if(parNum == 1) {
 				if($data.hasHeadImage == 1) {
 					li.getElementsByClassName("useHead")[0].style.backgroundImage = "url(" + baseUrl + "/images/head/" + $data.id + "_l.jpg" + ")";
@@ -129,7 +129,7 @@
 		if(!self.size) {
 			return;
 		}
-		ajaxRequist(baseUrl + "/ajax/leavemsg", {
+		ajaxRequist("/ajax/leavemsg", {
 			cnt: document.getElementById("textInputThis").value,
 			refId: self.sid,
 			refType: self.stype,
@@ -213,7 +213,7 @@
 		})
 	}
 	LeaveWord.prototype.referThup = function(lid, li, num) {
-		ajaxRequist(baseUrl + "/ajax/leavemsg/agree", {
+		ajaxRequist("/ajax/leavemsg/agree", {
 			id: lid,
 			uid: plus.storage.getItem('userid')
 		}, "GET", function(data) {
@@ -225,7 +225,7 @@
 	}
 	LeaveWord.prototype.thub = function(lid) {
 		var self = this;
-		ajaxRequist(baseUrl + "/ajax/leavemsg/agree", {
+		ajaxRequist("/ajax/leavemsg/agree", {
 			id: lid,
 			uid: plus.storage.getItem('userid'),
 			uname: plus.storage.getItem('name')
@@ -240,7 +240,7 @@
 		if(!self.size) {
 			return;
 		}
-		ajaxRequist(baseUrl + "/ajax/leavemsg/reply", {
+		ajaxRequist("/ajax/leavemsg/reply", {
 			cnt: document.getElementById("textInputThis").value,
 			id: lid,
 			uid: plus.storage.getItem('userid'),
@@ -263,7 +263,7 @@
 	}
 	LeaveWord.prototype.LwordDel = function($this, lid) {
 		var self = this;
-		ajaxRequist(baseUrl + "/ajax/leavemsg/del", {
+		ajaxRequist("/ajax/leavemsg/del", {
 			id: lid
 		}, "GET", function(data) {
 			document.getElementsByClassName("commentBlock")[0].removeChild($this.parentNode.parentNode.parentNode);
@@ -272,7 +272,7 @@
 	}
 	LeaveWord.prototype.LwordTotal = function() {
 		var self = this;
-		ajaxRequist(baseUrl + "/ajax/leavemsg/count", {
+		ajaxRequist("/ajax/leavemsg/count", {
 			sid: self.sid,
 			stype: self.stype
 		}, "get", function($data) {

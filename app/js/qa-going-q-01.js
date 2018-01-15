@@ -17,7 +17,7 @@ mui.ready(function(){
 				plus.nativeUI.toast("提问不可超过50个字");
 				return;
 			}
-			if(con.value.length<5) {
+			if(con.value.length<5 || con.value.length==0) {
 				plus.nativeUI.toast("提问不得少于5个字");
 				return;
 			}

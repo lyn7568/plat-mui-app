@@ -69,6 +69,10 @@ mui.ready(function() {
 				mui.fire(consultPage, 'exited', {
 					id: userId
 				});
+				var discoverPage = plus.webview.getWebviewById('discoverNew.html');
+				mui.fire(discoverPage, 'exitOut', {
+					id: userId
+				});
 			}
 		});
 	});

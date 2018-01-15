@@ -325,7 +325,8 @@ function collectionAbout(watchObject,sel, num,flag) {
 		data: {
 			"professorId": plus.storage.getItem('userid'),
 			"watchObject": watchObject,
-			"watchType": num
+			"watchType": num,
+			"uname": plus.storage.getItem('name')
 		},
 		dataType: 'json', //数据格式类型
 		type: 'POST', //http请求类型

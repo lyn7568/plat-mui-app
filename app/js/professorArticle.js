@@ -288,7 +288,8 @@ mui.plusReady(function() {
 				data: {
 					"professorId": userid,
 					"watchObject": proId,
-					"watchType": 3
+					"watchType": 3,
+					"uname": plus.storage.getItem('name')
 				},
 				beforeSend: function() {},
 				success: function(data, textState) {

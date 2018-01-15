@@ -150,6 +150,7 @@
 		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/public/base.js"></script>
 		<script src="../js/public/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="../js/leaveWords.js"></script>
 		<script src="../js/paperShow.js"></script>
 		<script type="text/javascript"> 
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
@@ -158,10 +159,7 @@
 			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
-		    mui("body").on("tap",".mui-content",function(){
-		    	document.getElementById("textInput").style.display="none";
-		    	document.getElementById("operCol").style.display="block";
-		    })
+		    
 		    
 		    //var BtnMore=document.getElementById("BtnMore");
 		    var shareOut=document.getElementById("shareOut");

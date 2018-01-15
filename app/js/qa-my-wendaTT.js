@@ -156,6 +156,11 @@ mui.ready(function () {
                 }
             } else {
                 currentSelf.endPullUpToRefresh(true);
+                var liLen=document.getElementById(aimId).querySelectorAll("li").length;
+                removeAfter(aimId);
+                if(dataStr.length == 0 && liLen == 0 ){
+                    insertAfter(newStr,aimId);
+                }
                 return;
             }
         };
@@ -272,17 +277,17 @@ mui.ready(function () {
                 var kong = document.createElement("div");
                 kong.className = "con-kong";
                 kong.innerHTML = newStr;
-                if (parent.lastChild.className == "con-kong") {
+                if (parent.firstChild.className == "con-kong") {
                     return
                 } else {
-                    parent.insertBefore(kong, document.getElementById(targetE).nextSibling);
+                    parent.insertBefore(kong,parent.firstChild);
                 }
 
             },
             removeAfter = function (targetE) {
                 var parent = document.getElementById(targetE).parentNode;
-                if (parent.lastChild.className == "con-kong") {
-                    parent.removeChild(parent.querySelector(".con-kong"));
+                if (parent.firstChild.className == "con-kong") {
+                    parent.removeChild(parent.firstChild);
                 } else {
                     return
                 }

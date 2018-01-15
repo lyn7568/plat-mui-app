@@ -158,7 +158,7 @@ function lewd(num) {
 					GeTuiSdk.setBadge(data.data.unRead);
 				}
 
-				if(data.data) {
+				if(data.data.unRead) {
 
 					document.getElementById("meLInum").style.display = "block"
 					document.getElementById("meLInum").innerHTML = data.data.unRead;

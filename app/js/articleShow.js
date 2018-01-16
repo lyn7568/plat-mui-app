@@ -26,14 +26,6 @@ mui.plusReady(function() {
 			});
 		}
 	}
-	var leaveWord = {
-		getLeaveWord: function($data) {
-			console.log(JSON.stringify($data));
-		},
-		sendLeaveWord: function($data) {
-			console.log(JSON.stringify($data));
-		}
-	}
 	
 	var oArticleModule = {
 		articleId: oCurren.self.articleId,
@@ -505,14 +497,7 @@ mui.plusReady(function() {
 			cmpId: id
 		});
 	})
-	/*留言*/
-	mui('.commentBlock').on('tap', '.useHead', function() {
-		var id = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting(); //显示原生等待框
-		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
-			proid: id
-		});
-	})
+	
 	/*资源浏览*/
 	mui('#resourceList').on('tap', 'li', function() {
 		var resouId = this.getAttribute("data-id");

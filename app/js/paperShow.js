@@ -690,13 +690,6 @@ function addAgree() {
 	});
 }
 
-mui('.commentBlock').on('tap', '.useHead', function() {
-		var id = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting(); //显示原生等待框
-		plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
-			proid: id
-		});
-	})
 //您可能感兴趣的论文
 	paperInterestingList()
 	function paperInterestingList(){

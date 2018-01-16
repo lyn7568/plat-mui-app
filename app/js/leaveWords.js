@@ -192,6 +192,13 @@
 		mui(".commentBlock").on("tap", ".dele", function() {
 			self.LwordDel(this, this.getAttribute("data-id"));
 		});
+		mui('.commentBlock').on('tap', '.useHead', function() {
+			var id = this.getAttribute("data-id");
+			plus.nativeUI.showWaiting();
+			plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+				proid: id
+			});
+		})
 		mui(".artfoot").on("tap", ".inputShow", function() {
 			if(!lgin()) {
 				return;

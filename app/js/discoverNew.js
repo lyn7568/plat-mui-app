@@ -30,7 +30,7 @@
 		"7": 0,
 		"8": 0
 	}
-	var QAtime, QAid, QArows = 2;
+	var QAtime, QAid, QArows = 2,fTime,fId,fEx;
 	$.ready(function() {
 		$.plusReady(function() {
 			var userid = plus.storage.getItem('userid');
@@ -157,6 +157,7 @@
 						traditional: true,
 						async: true,
 						success: function(data) {
+							console.log(JSON.stringify(data) + obj.url)
 							if(obj.sele) {
 								obj.fun.call(obj.sele, data);
 							} else {
@@ -241,7 +242,16 @@
 													},
 													url: "/ajax/question/answer/byTime"
 												});
-											} else {
+                                            } else if(m == 0) {
+                                                $D({
+                                                    "fun": _this.createFragment,
+                                                    data: {
+                                                        rows:QArows,
+                                                        ex: fEx
+                                                    },
+                                                    url: "/ajax/found/index"
+                                                });
+                                            } else {
 												$D({
 													"fun": _this.createFragment,
 													data: {
@@ -281,6 +291,17 @@
 												},
 												url: "/ajax/question/answer/byTime"
 											});
+										} else if(m == 0) {
+                                            $D({
+                                                "fun": _this.createFragment,
+                                                data: {
+                                                    time:fTime,
+													id:fId,
+													rows:QArows,
+                                                    ex: fEx
+                                                },
+                                                url: "/ajax/found/index"
+                                            });
 										} else {
 											$D({
 												"fun": _this.createFragment,
@@ -365,6 +386,7 @@
 					})
 				},
 				proName: function(data) {
+					console.log("xmtt")
 					if(data.success) {
 						this.innerHTML = data.data.name;
 					}
@@ -419,6 +441,30 @@
 
 					}
 				},
+                questionModule:function(dataStr, liStr) {
+                    var baImg = "../images/default-q&a.jpg";
+                    var subs = new Array();
+                    if(dataStr.img) {
+                        if(dataStr.img.indexOf(',')) {
+                            subs = dataStr.img.split(',');
+                        } else {
+                            subs[0] = dataStr.img;
+                        }
+                        baImg = baseUrl + "/data/question"+ subs[0];
+                    }
+                    var hd = "";
+                    if (dataStr.replyCount > 0) {
+                        hd = '<span>' + dataStr.replyCount + ' 回答</span>'
+                    }
+                    liStr.setAttribute("data-id", dataStr.id);
+                    liStr.className = "mui-table-view-cell";
+                    liStr.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+                        '<div class="madiaHead qa-Head" style="background-image:url(' + baImg + ')"></div>' +
+                        '<div class="madiaInfo OmadiaInfo">' +
+                        '<p class="mui-ellipsis-2 h1Font">' + dataStr.title + '</p>' +
+                        '<p class="show-item mui-ellipsis h2Font">' + hd + '<span>N 关注</span></p>' +
+                        '</div></div>'
+                },
 				leaveMsgCount: function(data) {
 					if(data.success) {
 						if(data.data > 0) {
@@ -427,26 +473,40 @@
 					}
 				},
 				createFragment: function(data) {
-					console.log(JSON.stringify(data))
-					console.log(m)
 					if(data.success) {
 						var $data = data.data.data;
-						if(arguments[1]) {
-							if($data.length > 1) {
-								$data.length = 1;
-							}
+						if(m==0){
+                            if (arguments[1]) {
+                                fEx = $data[0].articleId;
+                                if ($data.length > 1) {
+                                    $data.length = 1;
+                                }
+                            } else {
+                                $data = data.data;
+                                if ($data.length > 0) {
+                                    fTime = $data[$data.length - 1].tm;
+                                    fId = $data[$data.length - 1].id;
+                                }
+                            }
 						}
 
 						for(var i = 0; i < $data.length; i++) {
 							var of ;
-							if($data[i].articleType == 1) { of = 1;
+							if($data[i].articleType == 1 || $data[i].ctype == "1") { of = 1;
 							} else { of = 2;
-							}
-							var arImg = "../images/default-artical.jpg";
+                            }
+                            var arImg = "../images/default-artical.jpg";
 
-							if($data[i].articleImg) {
-								arImg = baseUrl + "/data/article/" + $data[i].articleImg.replace(".", "_s.")
-							}
+
+                            if (m == 0 && !arguments[1]) {
+                                if ($data[i].img) {
+                                    arImg = baseUrl + "/data/article/" + $data[i].img.replace(".", "_s.")
+                                }
+                            } else {
+                                if ($data[i].articleImg) {
+                                    arImg = baseUrl + "/data/article/" + $data[i].articleImg.replace(".", "_s.")
+                                }
+                            }
 							var title = $data[i].articleTitle;
 							var colSpan = "";
 							if(m == 0) {
@@ -460,8 +520,8 @@
 										key1[m].endPullDownToRefresh();
 										pullObj[m] = 0;
 									}
-									if($data[i].colNum != 0) {
-										colSpan = "<span class='column columnOther'>" + columnType[$data[i].colNum].shortName + "</span>"
+									if($data[i].col != 0) {
+										colSpan = "<span class='column columnOther'>" + columnType[$data[i].col].shortName + "</span>"
 									}
 								}
 							} else {
@@ -471,17 +531,40 @@
 								}
 							}
 							var li = document.createElement("li");
-							li.setAttribute("data-id", $data[i].articleId);
-							li.setAttribute("data-flag", 3);
-							li.className = "mui-table-view-cell flexCenter OflexCenter";
-							li.innerHTML = '<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
-								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
-								'<p class="h2Font mui-ellipsis">' + colSpan +
-								'<span class="nameSpan" style="margin-right:10px"></span>' +
-								'<span class="time">' + commenTime($data[i].publishTime) + '</span>' +
-								'</p>' +
-								'</div>'
+                            if (m == 0 && !arguments[1]) {
+                            	if ($data[i].ctype == "3" ){
+                                    $D({
+                                        data: {id:$data[i].id},
+                                        fun: ob.questionModule,
+                                        url: "/ajax/question/qo",
+                                        sele: li
+                                    });
+								}else {
+                                    li.setAttribute("data-id", $data[i].id);
+                                    li.setAttribute("data-flag", 3);
+                                    li.className = "mui-table-view-cell flexCenter OflexCenter";
+                                    li.innerHTML = '<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
+                                        '<div class="madiaInfo OmadiaInfo">' +
+                                        '<p class="mui-ellipsis-2 h1Font">' + $data[i].title + '</p>' +
+                                        '<p class="h2Font mui-ellipsis">' + colSpan +
+                                        '<span class="nameSpan" style="margin-right:10px"></span>' +
+                                        '<span class="time">' + commenTime($data[i].tm) + '</span>' +
+                                        '</p>' +
+                                        '</div>'
+								}
+                            } else {
+                                li.setAttribute("data-id", $data[i].articleId);
+                                li.setAttribute("data-flag", 3);
+                                li.className = "mui-table-view-cell flexCenter OflexCenter";
+                                li.innerHTML = '<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
+                                    '<div class="madiaInfo OmadiaInfo">' +
+                                    '<p class="mui-ellipsis-2 h1Font">' + title + '</p>' +
+                                    '<p class="h2Font mui-ellipsis">' + colSpan +
+                                    '<span class="nameSpan" style="margin-right:10px"></span>' +
+                                    '<span class="time">' + commenTime($data[i].publishTime) + '</span>' +
+                                    '</p>' +
+                                    '</div>'
+                            }
 							if(arguments[1]) {
 								if(document.getElementsByTagName("ul")[m].children[0]) {
 									document.getElementsByTagName("ul")[m].insertBefore(li, document.getElementsByTagName("ul")[m].children[0])
@@ -493,41 +576,71 @@
 							}
 
 							if( of == 1) {
-								li.setAttribute("owner-id", $data[i].professorId);
-								li.setAttribute("data-type", 1);
-								$D({
-									data: {},
-									fun: ob.proName,
-									url: "/ajax/professor/editBaseInfo/" + $data[i].professorId,
-									sele: li.getElementsByClassName("nameSpan")[0]
-								});
+                            	if (m==0 && !arguments[1]){
+                                    li.setAttribute("owner-id", $data[i].uid);
+                                    li.setAttribute("data-type", 1);
+                                    $D({
+                                        data: {},
+                                        fun: ob.proName,
+                                        url: "/ajax/professor/editBaseInfo/" +$data[i].uid,
+                                        sele: li.getElementsByClassName("nameSpan")[0]
+                                    });
+								}else{
+                                    li.setAttribute("owner-id", $data[i].professorId);
+                                    li.setAttribute("data-type", 1);
+                                    $D({
+                                        data: {},
+                                        fun: ob.proName,
+                                        url: "/ajax/professor/editBaseInfo/" + $data[i].professorId,
+                                        sele: li.getElementsByClassName("nameSpan")[0]
+                                    });
+								}
 							} else {
-								li.setAttribute("owner-id", $data[i].orgId);
-								li.setAttribute("data-type", 2);
-								$D({
-									data: {},
-									fun: ob.orgName,
-									url: "/ajax/org/" + $data[i].orgId,
-									sele: li.getElementsByClassName("nameSpan")[0]
-								});
+                            	if (m==0&& !arguments[1]){
+                                    li.setAttribute("owner-id", $data[i].uid);
+                                    li.setAttribute("data-type", 2);
+                                    $D({
+                                        data: {},
+                                        fun: ob.orgName,
+                                        url: "/ajax/org/" + $data[i].uid,
+                                        sele: li.getElementsByClassName("nameSpan")[0]
+                                    });
+								}else{
+                                    li.setAttribute("owner-id", $data[i].orgId);
+                                    li.setAttribute("data-type", 2);
+                                    $D({
+                                        data: {},
+                                        fun: ob.orgName,
+                                        url: "/ajax/org/" + $data[i].orgId,
+                                        sele: li.getElementsByClassName("nameSpan")[0]
+                                    });
+								}
 							}
 						}
 
 						if(arguments[1]) {
-							arr.push($data[0].articleId);
-							console.log(arr + "   273");
-							$D({
-								"fun": ob.createFragment,
-								data: {
-									col: "",
-									pageNo: 1,
-									exclude: arr
-								},
-								url: "/ajax/article/find"
-							});
+							// arr.push($data[0].articleId);
+							// console.log(arr + "   273");
+							// $D({
+							// 	"fun": ob.createFragment,
+							// 	data: {
+							// 		col: "",
+							// 		pageNo: 1,
+							// 		exclude: arr
+							// 	},
+							// 	url: "/ajax/article/find"
+							// });
+                            $D({
+                                "fun": ob.createFragment,
+                                data: {
+                                    rows:QArows,
+                                    ex: fEx
+                                },
+                                url: "/ajax/found/index"
+                            });
 
 						}
-						if(!arguments[1]) {
+						if(!arguments[1]&&m!=0) {
 							document.getElementsByClassName("nodatabox")[m].classList.add("displayNone");
 							if(data.data.data.length == 0) {
 								document.getElementsByClassName("nodatabox")[m].classList.remove("displayNone");
@@ -540,6 +653,19 @@
 							} else {
 								key1[m].endPullUpToRefresh(true);
 							}
+						}else{
+                            var liLen=document.getElementsByTagName("ul")[m].querySelectorAll("li").length;
+                            if($data.length == 0&&liLen==0 ) {
+                                document.getElementsByClassName("nodatabox")[m].classList.remove("displayNone");
+                                key1[m].endPullUpToRefresh(true);
+                                return;
+                            }
+                            if($data.length < QArows) {
+                                key1[m].endPullUpToRefresh(true);
+                            } else {
+                                key1[m].refresh(true);
+                                key1[m].endPullUpToRefresh(false);
+                            }
 						}
 					}
 				},

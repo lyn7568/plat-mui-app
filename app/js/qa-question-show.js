@@ -54,6 +54,7 @@ mui.ready(function() {
 								dataO = {time: "",id: ""};
 								document.getElementById("curAnswers").innerHTML = "";
 								answerList();
+								getConmain();
 								if(userid && userid != null && userid != "null") {
 									anExist();
 								}

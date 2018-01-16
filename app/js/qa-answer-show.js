@@ -3,8 +3,11 @@ mui.ready(function() {
 		var ocollectBtn = document.getElementById("collectBtn")
 		var oattenSpan = document.getElementById("attenSpan"); 
 		var oifCollect = document.getElementById("ifCollect")//星星
+		var thumbs=document.getElementsByClassName("thumbBtn")[0],
+			steps=document.getElementsByClassName("stepBtn")[0]
 
-		var userid = plus.storage.getItem('userid');
+		var userid = plus.storage.getItem('userid'),
+		    username = plus.storage.getItem('name');
 		var self = plus.webview.currentWebview();
 		plus.nativeUI.closeWaiting();
 		self.show("slide-in-right", 150);
@@ -36,7 +39,7 @@ mui.ready(function() {
 						oattenSpan.style.display="block";
 						ifcollectionAbout($da.uid,oattenSpan, 1,1);
 					}else{
-						document.getElementsByClassName('footbox')[0].style.display = "none";
+						isAgree($da.uid);
 					}
 					proinfo($da.uid)
 					questioninfo($da.qid)
@@ -117,13 +120,33 @@ mui.ready(function() {
 						}
 					})
 				})
+			},
+			isAgree=function(id){
+				oAjax('/ajax/question/answer/agree', {
+					"aid": answerId,
+					"uid":id
+				}, "get", function(res) {
+					if(res.success){
+						if(res.data){
+							thumbs.classList.add("thumbedBtn")
+							steps.classList.remove("stepedBtn")
+							steps.innerHTML="踩"
+						}else{
+							thumbs.classList.remove("thumbedBtn")
+							steps.classList.add("stepedBtn")
+							steps.innerHTML="取消踩"
+						}
+					}
+				})
 			}
 			
 			
 		getConmain()
-		module.lWord(answerId, 4);
 		moreMes()
-		
+		if(userid && userid != null && userid != "null") {
+			module.lWord(answerId, 4);
+			ifcollectionAbout(answerId,oifCollect,9);
+		}
 		document.getElementById("ownerCon").addEventListener('tap', function() {
 			var id = this.getAttribute("data-id");
 			plus.nativeUI.showWaiting();
@@ -152,7 +175,6 @@ mui.ready(function() {
 			}
 		});
 		//点击收藏按钮
-		ifcollectionAbout(answerId,oifCollect,9);
 		ocollectBtn.addEventListener('tap', function() {
 			if(userid && userid != null && userid != "null") {
 				if(oifCollect.className=='mui-icon iconfontnew icon-yishoucang'){
@@ -164,6 +186,40 @@ mui.ready(function() {
 				isLogin();
 			}
 		});
+		
+		mui(".thumbBlock").on("tap",".thumbBtn",function(){
+			if(userid && userid != null && userid != "null") {
+				oAjax('/ajax/question/answer/agree', {
+					"id": answerId,
+					"uid":userid,
+					"uname":username
+				}, "POST", function(res) {
+					thumbs.classList.add("thumbedBtn")
+					steps.classList.remove("stepedBtn")
+					steps.innerHTML="踩"
+					getConmain()
+				})
+			}else{
+				isLogin();
+			}
+		})
+		mui(".thumbBlock").on("tap",".stepBtn",function(){
+			if(userid && userid != null && userid != "null") {
+				oAjax('/ajax/question/answer/unAgree', {
+					"id": answerId,
+					"uid":userid,
+					"uname":username
+				}, "POST", function(res) {
+					thumbs.classList.remove("thumbedBtn")
+					steps.classList.add("stepedBtn")
+					steps.innerHTML="取消踩"
+					getConmain()
+				})
+			}else{
+				isLogin();
+			}
+		})
+		
 	})
 
 });

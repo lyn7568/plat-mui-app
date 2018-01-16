@@ -13,7 +13,8 @@ mui.ready(function() {
 		ifAl=1,//是否是首次加载
 		dataO = {
 			time: "",
-			id: ""
+			id: "",
+			score:""
 		};
 	var userid, questionId ,pkey=[],byway;
 	mui.plusReady(function() {
@@ -129,18 +130,25 @@ mui.ready(function() {
 			},
 			answerList = function() {
 				var byway = document.querySelector('.list-hold-count>ul').querySelector("li.active").getAttribute("data-type");
-				var typeurl;
+				var typeurl,dataStr={};
 				if(byway == 1) {
 					typeurl = "/ajax/question/answer/qes/byScore"
+					dataStr={
+						"qid": questionId,
+						"score": dataO.score,
+						"id": dataO.id,
+						"rows": rows
+					}
 				} else if(byway == 2) {
 					typeurl = "/ajax/question/answer/qes/byTime"
+					dataStr={
+						"qid": questionId,
+						"time": dataO.time,
+						"id": dataO.id,
+						"rows": rows
+					}
 				}
-				oAjax(typeurl, {
-					"qid": questionId,
-					"time": dataO.time,
-					"id": dataO.id,
-					"rows": rows
-				}, "get", function(res){
+				oAjax(typeurl,dataStr, "get", function(res){
 					console.log(JSON.stringify(res))
 					var aimId="curAnswers",newStr="暂无回答"
 					var $info = res.data;
@@ -156,8 +164,13 @@ mui.ready(function() {
 						ifAl = 0;
 					}
 					if($info.length > 0) {
-						dataO.time = $info[$info.length - 1].createTime;
-						dataO.id = $info[$info.length - 1].id;
+						if(byway == 1) {
+							dataO.score = $info[$info.length - 1].score;
+							dataO.id = $info[$info.length - 1].id;
+						}else if(byway == 2) {
+							dataO.time = $info[$info.length - 1].createTime;
+							dataO.id = $info[$info.length - 1].id;
+						}
 				
 						for(var i = 0; i < $info.length; i++) {
 							var liStr = document.createElement("li");
@@ -201,20 +214,30 @@ mui.ready(function() {
 				if(dataStr.agree > 0) {
 					hd = '<span>' + dataStr.agree + ' 赞</span>'
 				}
-				if(dataStr.ballot > 0) {
-					hl = '<span>' + dataStr.ballot + ' 留言</span>'
-				}
 				liStr.setAttribute("data-id", dataStr.id);
 				liStr.className = "mui-table-view-cell";
 				liStr.innerHTML = '<div class="madiaInfo">' +
 					'<div class="flexCenter qa-owner"></div>' +
 					'<p class="qa-con mui-ellipsis-5">' + dataStr.cnt + '</p>' +
 					'<div class="showli mui-ellipsis">' +
-					'<span>' + commenTime(dataStr.createTime) + '</span>' + hd + hl +
+					'<span>' + commenTime(dataStr.createTime) + '</span>' + hd + '<span class="leaveMsgCount"></span>' +
 					'</div>' +
 					'</div>'
 				var $str = $(liStr)
 				proinfo(dataStr.uid, $str);
+				leaveMsgCount(dataStr.id, $str);
+			},
+			leaveMsgCount=function(id, $str) {
+				oAjax("/ajax/leavemsg/count", {
+					sid:id,
+					stype: "4"
+				}, "get", function(data) {
+					if(data.success) {
+						if(data.data > 0) {
+							$str.find(".leaveMsgCount").html(data.data + "留言");
+						}
+					}
+				})
 			},
 			proinfo = function(pid, $str) {
 				oAjax("/ajax/professor/baseInfo/" + pid, {}, "get", function(res) {
@@ -244,7 +267,7 @@ mui.ready(function() {
 							}
 						}
 					}
-					var str = '<div class="owner-head useHead" style="background:url(' + baImg + ')"></div>' +
+					var str = '<div class="owner-head useHead" style="background-image:url(' + baImg + ')"></div>' +
 						'<div class="owner-info">' +
 						'<div class="owner-name"><span class="h1Font">' + dataStr.name + '</span><em class="authicon ' + userType.sty + '" title="' + userType.title + '"></em></div>' +
 						'<div class="owner-tit mui-ellipsis h2Font">' + os + '</div>' +
@@ -271,11 +294,11 @@ mui.ready(function() {
 						data: {
 							content: document.getElementById("questionCnt").innerHTML.substring(0, 40),
 							title: document.getElementById("questionTit").innerHTML,
-							href: baseUrl + "/e/w.html?id=" + questionId,
+							href: baseUrl + "/e/wen.html?id=" + questionId,
 							thumbs: [oUrl]
 						},
 						weiboData: {
-							content: document.getElementById("questionTit").innerHTML + baseUrl + "/e/w.html?id=" + questionId,
+							content: document.getElementById("questionTit").innerHTML + baseUrl + "/e/wen.html?id=" + questionId,
 						}
 					})
 				})
@@ -309,7 +332,7 @@ mui.ready(function() {
 			this.classList.add('active');
 			byway = this.getAttribute("data-type");
 			document.getElementById("curAnswers").innerHTML = "";
-			dataO = {time: "",id: ""}
+			dataO = {time: "",id: "",score:""}
 			if(typeof(pkey)==undefined){
 				pkey=[]
 			}else{
@@ -392,7 +415,7 @@ mui.ready(function() {
 						shareMessage(share, "WXSceneSession", {
 							content: document.getElementById("questionCnt").innerHTML.substring(0, 70),
 							title: document.getElementById("questionTit").innerHTML,
-							href: baseUrl + "/e/w.html?id=" + questionId,
+							href: baseUrl + "/e/wen.html?id=" + questionId,
 							thumbs: [oUrl]
 						});
 					}
@@ -405,7 +428,7 @@ mui.ready(function() {
 						shareMessage(share, "WXSceneTimeline", {
 							content: document.getElementById("questionCnt").innerHTML.substring(0, 70),
 							title: document.getElementById("questionTit").innerHTML,
-							href: baseUrl + "/e/w.html?id=" + questionId,
+							href: baseUrl + "/e/wen.html?id=" + questionId,
 							thumbs: [oUrl]
 						});
 					}
@@ -413,7 +436,7 @@ mui.ready(function() {
 					var share = buildShareService("sinaweibo");
 					if(share) {
 						shareMessage(share, "sinaweibo", {
-							content: document.getElementById("questionTit").innerHTML + baseUrl + "/e/w.html?id=" + questionId,
+							content: document.getElementById("questionTit").innerHTML + baseUrl + "/e/wen.html?id=" + questionId,
 						});
 					}
 				}

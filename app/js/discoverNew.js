@@ -396,7 +396,7 @@
 								}
 							}
 						}
-						var str = '<div class="owner-head useHead" style="background:url(' + baImg + ')"></div>' +
+						var str = '<div class="owner-head useHead" style="background-image:url(' + baImg + ')"></div>' +
 							'<div class="owner-info">' +
 							'<div class="owner-name"><span class="h1Font">' + dataStr.name + '</span><em class="authicon ' + userType.sty + '" title="' + userType.title + '"></em></div>' +
 							'<div class="owner-tit mui-ellipsis h2Font">' + os + '</div>' +
@@ -721,7 +721,7 @@
 								baImg = baseUrl + "/images/head/" + res.data.id + "_l.jpg";
 							}
 							var str='<div class="flexCenter madiaBlock">'+
-										'<div class="madiaHead useHead" style="background:url(' + baImg + ')"></div>'+
+										'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>'+
 										'<div class="madiaInfo h1Font">'+
 											'<span class="mui-pull-left">'+res.data.name+'</span>'+
 											'<span class="rightword">我的回答</span>'+

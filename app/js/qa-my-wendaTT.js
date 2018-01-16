@@ -320,7 +320,7 @@ mui.ready(function () {
                             }
                         }
                     }
-                    var str = '<div class="owner-head useHead" style="background:url(' + baImg + ')"></div>' +
+                    var str = '<div class="owner-head useHead" style="background-image:url(' + baImg + ')"></div>' +
                         '<div class="owner-info">' +
                         '<div class="owner-name"><span class="h1Font">' + dataStr.name + '</span><em class="authicon ' + userType.sty + '" title="' + userType.title + '"></em></div>' +
                         '<div class="owner-tit mui-ellipsis h2Font">' + os + '</div>' +
@@ -373,6 +373,7 @@ mui.ready(function () {
             }
         }
 
+		allAgreeNum() 
         oAjaxGet("/ajax/question/my", {
             "uid": userid,
             "rows":rows

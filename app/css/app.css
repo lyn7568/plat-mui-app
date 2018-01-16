@@ -631,7 +631,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .nodatabox .txtbox .currword{font-size: 14px;color: #999999;line-height: 14px;}
 .nodatabox .txtbox .currtip{ font-size:13px;color: #AAAAAA;}
 .nodatabox .txtbox .keyword{ padding:0 6px;}
-.con-kong{line-height: 60px;color: #aaa;font-size: 14px;text-align: center;margin:20% auto;}
+.con-kong{line-height: 60px;color: #aaa;font-size: 14px;text-align: center;padding:20% 0;}
 /***********************缺省页面*******************/
 
 /***********************科袖用户协议*******************/
@@ -1157,7 +1157,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .qa-owner .owner-head.useHead{width:32px;height:32px;margin-top:-16px;background-image: url(../images/default-photo.jpg);border-radius: 50%;}
 .qa-owner .owner-info{padding-left:38px;}
 .owner-name{float: left;}
-.owner-tit{margin-left:10px;float: left;max-width:52%;color:#888888}
+.owner-tit{margin-left:10px;float: left;max-width:70%;color:#888888}
 .qa-con{font-size:14px;line-height: 22px;color:#666;}
 .mui-table-view.partLine{background: none;}
 .mui-table-view.partLine>.mui-table-view-cell{margin-bottom: 10px;background: #fff;}
@@ -1195,7 +1195,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .item_detail .h1Font{font-weight:normal;font-size:18px;line-height:24px;color:#000}
 .item_detail .list_con{font-size: 15px;color: #333;line-height: 24px;margin: 6px 0;text-align:justify}
 .list_image,.item-btn{overflow: hidden;}
-.list_image li,.item-btn li{display: inline-block; overflow: hidden; width: 33.3%; -webkit-box-sizing: border-box;box-sizing: border-box;position: relative;}
+.list_image li,.item-btn li{display: inline-block; overflow: hidden;float:left; width: 33.3%; -webkit-box-sizing: border-box;box-sizing: border-box;position: relative;}
 .list_image li>.imgspan{display: block;width: 98%;height:90px;background-size: cover;background-position: center;}
 @media only screen and (min-width:640px) and (max-width:980px)  {
 	.list_image li>.imgspan{height:140px;width: 96%;}
@@ -1204,7 +1204,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 	.list_image li>.imgspan{height:200px;width: 96%;}
 }
 .item-btn{margin:6px -16px -15px -15px;border-top:1px solid #e5e5e5;}
-.item-btn li{border-right:1px solid #e5e5e5;height: 36px;}
+.item-btn li{border-right:1px solid #e5e5e5;height: 46px;}
 .item-btn li>span{display: inline-block;width: 100%;text-align: center;color:#666;font-size:14px;padding:8px 0;}
 .item-btn li.answered>span{color:#FF0000}
 .item-btn li.collectBtn>span{position:absolute;width:20px;left:50%;margin-left:-10px;top:5px;}

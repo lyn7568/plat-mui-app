@@ -12,6 +12,7 @@ mui.ready(function() {
 		plus.nativeUI.closeWaiting();
 		self.show("slide-in-right", 150);
 		var answerId = self.anid;
+		var flag=0;
 		
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {
@@ -40,6 +41,7 @@ mui.ready(function() {
 						ifcollectionAbout($da.uid,oattenSpan, 1,1);
 					}else{
 						isAgree($da.uid);
+						flag=1
 					}
 					proinfo($da.uid)
 					questioninfo($da.qid)
@@ -107,16 +109,16 @@ mui.ready(function() {
 					var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
 						proid: answerId,
 						quid:document.getElementById("questTit").getAttribute("data-id"),
-						flag:1,
+						flag:flag,
 						name: "answer",
 						data: {
 							content: document.getElementById("answerCnt").innerHTML.substring(0, 40),
 							title: document.getElementById("questTit").innerHTML,
-							href: baseUrl + "/e/d.html?id=" + answerId,
+							href: baseUrl + "/e/da.html?id=" + answerId,
 							thumbs: [oUrl]
 						},
 						weiboData: {
-							content: document.getElementById("questTit").innerHTML + baseUrl + "/e/d.html?id=" + answerId,
+							content: document.getElementById("questTit").innerHTML + baseUrl + "/e/da.html?id=" + answerId,
 						}
 					})
 				})

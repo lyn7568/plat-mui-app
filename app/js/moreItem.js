@@ -150,7 +150,9 @@ mui.ready(function(){
 						success: function(data) {
 							if(data.success) {
 								plus.nativeUI.toast("该回答已删除", toastStyle);
-								mui.back();
+								var w1 = plus.webview.getWebviewById('qa-answer-show.html');
+							  	plus.webview.close(self);
+							  	plus.webview.close(w1);
 							}
 						}
 					});

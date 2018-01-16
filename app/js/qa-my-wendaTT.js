@@ -245,33 +245,55 @@ mui.ready(function () {
                     '<div class="madiaHead qa-Head" style="background-image:url(' + baImg + ')"></div>' +
                     '<div class="madiaInfo OmadiaInfo">' +
                     '<p class="mui-ellipsis-2 h1Font">' + dataStr.title + '</p>' +
-                    '<p class="show-item mui-ellipsis h2Font">' + hd + '<span>N 关注</span></p>' +
-                    '</div></div>'
-            },
+                    '<p class="show-item mui-ellipsis h2Font">' + hd + '<span class="attendCount"></span></p>' +
+				'</div></div>'
+				var $str = $(liStr);
+				attendCount(dataStr.id, $str);
+	        },
+			attendCount=function(id, $str) {
+				oAjaxGet("/ajax/watch/countProfessor", {
+					id:id,
+					type: 8
+				}, "get", function(data) {
+					if(data.success) {
+						if(data.data > 0) {
+							$str.find(".attendCount").html(data.data + "关注");
+						}
+					}
+				})
+			},
             answerModule = function (dataStr, liStr) {
-                var hd = "", hl = "";
+                var hd = "";
                 if (dataStr.agree > 0) {
-                    hd = '<span>' + dataStr.agree + ' 赞</span>'
-                }
-                if (dataStr.ballot > 0) {
-                    hl = '<span>' + dataStr.ballot + ' 留言</span>'
+                    hd = '<span>' + dataStr.agree + '赞</span>'
                 }
                 liStr.setAttribute("data-id", dataStr.id);
                 liStr.className = "mui-table-view-cell";
-                var str = '<div class="madiaInfo">' +
+                liStr.innerHTML = '<div class="madiaInfo">' +
                     '<p class="h1Font mui-ellipsis-2 qa-question"></p>' +
                     '<div class="flexCenter qa-owner"></div>' +
                     '<p class="qa-con mui-ellipsis-5">' + dataStr.cnt + '</p>' +
                     '<div class="showli mui-ellipsis">' +
-                    '<span>' + commenTime(dataStr.createTime) + '</span>' + hd + hl +
+                    '<span>' + commenTime(dataStr.createTime) + '</span>' + hd +'<span class="leaveMsgCount"></span>'+
                     '</div>' +
                     '</div>'
-                var $str = $(str)
-                $str.appendTo(liStr);
+              	var $str = $(liStr);
                 questioninfo(dataStr.qid, $str);
                 proinfo(dataStr.uid, $str);
-
+				leaveMsgCount(dataStr.id, $str);
             },
+			leaveMsgCount=function(id, $str) {
+				oAjax("/ajax/leavemsg/count", {
+					sid:id,
+					stype: "4"
+				}, "get", function(data) {
+					if(data.success) {
+						if(data.data > 0) {
+							$str.find(".leaveMsgCount").html(data.data + "留言");
+						}
+					}
+				})
+			},
             insertAfter = function (newStr, targetE) {
                 var parent = document.getElementById(targetE).parentNode;
                 var kong = document.createElement("div");

@@ -212,7 +212,7 @@ mui.ready(function() {
 				var hd = "",
 					hl = "";
 				if(dataStr.agree > 0) {
-					hd = '<span>' + dataStr.agree + ' 赞</span>'
+					hd = '<span>' + dataStr.agree + '赞</span>'
 				}
 				liStr.setAttribute("data-id", dataStr.id);
 				liStr.className = "mui-table-view-cell";

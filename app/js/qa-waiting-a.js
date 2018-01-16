@@ -83,8 +83,21 @@ mui.ready(function() {
 				'<div class="madiaHead qa-Head" style="background-image:url(' + baImg + ')"></div>' +
 				'<div class="madiaInfo OmadiaInfo">' +
 				'<p class="mui-ellipsis-2 h1Font">' + dataStr.title + '</p>' +
-				'<p class="show-item mui-ellipsis h2Font">' + hd + '<span>N 关注</span></p>' +
+				'<p class="show-item mui-ellipsis h2Font">' + hd + '<span class="attendCount"></span></p>' +
 				'</div></div>'
+			attendCount(dataStr.id, $str);
+        },
+		attendCount=function(id, $str) {
+			oAjax("/ajax/watch/countProfessor", {
+				id:id,
+				type: 9
+			}, "get", function(data) {
+				if(data.success) {
+					if(data.data > 0) {
+						$str.find(".attendCount").html(data.data + "关注");
+					}
+				}
+			})
 		},
 		inviteStatus = function(id, $str) {
 			oAjax("/ajax/question/invite", {

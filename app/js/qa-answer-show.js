@@ -112,11 +112,11 @@ mui.ready(function() {
 						data: {
 							content: document.getElementById("answerCnt").innerHTML.substring(0, 40),
 							title: document.getElementById("questTit").innerHTML,
-							href: baseUrl + "/e/d.html?id=" + answerId,
+							href: baseUrl + "/e/da.html?id=" + answerId,
 							thumbs: [oUrl]
 						},
 						weiboData: {
-							content: document.getElementById("questTit").innerHTML + baseUrl + "/e/d.html?id=" + answerId,
+							content: document.getElementById("questTit").innerHTML + baseUrl + "/e/da.html?id=" + answerId,
 						}
 					})
 				})

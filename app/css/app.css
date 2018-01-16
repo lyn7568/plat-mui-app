@@ -1156,7 +1156,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .qa-owner .owner-head{position:absolute;top:50%;background-position: center;background-size: cover;}
 .qa-owner .owner-head.useHead{width:32px;height:32px;margin-top:-16px;background-image: url(../images/default-photo.jpg);border-radius: 50%;}
 .qa-owner .owner-info{padding-left:38px;}
-.owner-name{float: left;width:100%;}
+.owner-name{float: left;}
 .owner-tit{margin-left:10px;float: left;max-width:70%;color:#888888}
 .qa-con{font-size:14px;line-height: 22px;color:#666;}
 .mui-table-view.partLine{background: none;}

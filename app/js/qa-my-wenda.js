@@ -249,10 +249,10 @@ mui.ready(function() {
 			answerModule: function(dataStr, liStr) {
 				var hd = "",hl="";
 				if(dataStr.agree > 0) {
-					hd = '<span>'+dataStr.agree+' 赞</span>'
+					hd = '<span>'+dataStr.agree+'赞</span>'
 				}
 				if(dataStr.ballot > 0){
-					hl='<span>'+dataStr.ballot+' 留言</span>'
+					hl='<span>'+dataStr.ballot+'留言</span>'
 				}
 				liStr.setAttribute("data-id", dataStr.id);
 				liStr.className = "mui-table-view-cell";

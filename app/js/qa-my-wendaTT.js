@@ -251,9 +251,9 @@ mui.ready(function () {
 				attendCount(dataStr.id, $str);
 	        },
 			attendCount=function(id, $str) {
-				oAjax("/ajax/watch/countProfessor", {
+				oAjaxGet("/ajax/watch/countProfessor", {
 					id:id,
-					type: 9
+					type: 8
 				}, "get", function(data) {
 					if(data.success) {
 						if(data.data > 0) {
@@ -265,7 +265,7 @@ mui.ready(function () {
             answerModule = function (dataStr, liStr) {
                 var hd = "";
                 if (dataStr.agree > 0) {
-                    hd = '<span>' + dataStr.agree + ' 赞</span>'
+                    hd = '<span>' + dataStr.agree + '赞</span>'
                 }
                 liStr.setAttribute("data-id", dataStr.id);
                 liStr.className = "mui-table-view-cell";

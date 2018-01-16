@@ -91,7 +91,7 @@ mui.ready(function() {
 		attendCount=function(id, $str) {
 			oAjax("/ajax/watch/countProfessor", {
 				id:id,
-				type: 9
+				type: 8
 			}, "get", function(data) {
 				if(data.success) {
 					if(data.data > 0) {

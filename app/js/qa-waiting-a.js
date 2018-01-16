@@ -85,6 +85,7 @@ mui.ready(function() {
 				'<p class="mui-ellipsis-2 h1Font">' + dataStr.title + '</p>' +
 				'<p class="show-item mui-ellipsis h2Font">' + hd + '<span class="attendCount"></span></p>' +
 				'</div></div>'
+			var $str = $(liStr);
 			attendCount(dataStr.id, $str);
         },
 		attendCount=function(id, $str) {

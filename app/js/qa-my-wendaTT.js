@@ -247,6 +247,7 @@ mui.ready(function () {
                     '<p class="mui-ellipsis-2 h1Font">' + dataStr.title + '</p>' +
                     '<p class="show-item mui-ellipsis h2Font">' + hd + '<span class="attendCount"></span></p>' +
 				'</div></div>'
+				var $str = $(liStr);
 				attendCount(dataStr.id, $str);
 	        },
 			attendCount=function(id, $str) {
@@ -268,7 +269,7 @@ mui.ready(function () {
                 }
                 liStr.setAttribute("data-id", dataStr.id);
                 liStr.className = "mui-table-view-cell";
-                var str = '<div class="madiaInfo">' +
+                liStr.innerHTML = '<div class="madiaInfo">' +
                     '<p class="h1Font mui-ellipsis-2 qa-question"></p>' +
                     '<div class="flexCenter qa-owner"></div>' +
                     '<p class="qa-con mui-ellipsis-5">' + dataStr.cnt + '</p>' +
@@ -276,8 +277,7 @@ mui.ready(function () {
                     '<span>' + commenTime(dataStr.createTime) + '</span>' + hd +'<span class="leaveMsgCount"></span>'+
                     '</div>' +
                     '</div>'
-                var $str = $(str)
-                $str.appendTo(liStr);
+              	var $str = $(liStr);
                 questioninfo(dataStr.qid, $str);
                 proinfo(dataStr.uid, $str);
 				leaveMsgCount(dataStr.id, $str);

@@ -346,6 +346,7 @@ mui.ready(function() {
 				if(can) {
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
+						"aflag":0,
 						"quid": questionId,
 						"qutit":document.getElementById("questionTit").innerHTML
 					});

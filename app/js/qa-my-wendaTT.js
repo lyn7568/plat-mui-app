@@ -283,7 +283,7 @@ mui.ready(function () {
 				leaveMsgCount(dataStr.id, $str);
             },
 			leaveMsgCount=function(id, $str) {
-				oAjax("/ajax/leavemsg/count", {
+				oAjaxGet("/ajax/leavemsg/count", {
 					sid:id,
 					stype: "4"
 				}, "get", function(data) {

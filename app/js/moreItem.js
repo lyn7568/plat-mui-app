@@ -132,6 +132,7 @@ mui.ready(function(){
 		document.getElementById("corrAnswer").addEventListener('tap',function(){
 			plus.nativeUI.showWaiting(); //显示原生等待框
 			var webviewShow = plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
+				aflag:1,
 				anid: self.proid,
 				quid: self.quid,
 				qutit:self.data.title,

@@ -242,15 +242,6 @@
 													},
 													url: "/ajax/question/answer/byTime"
 												});
-                                            } else if(m == 0) {
-                                                $D({
-                                                    "fun": _this.createFragment,
-                                                    data: {
-                                                        rows:QArows,
-                                                        ex: fEx
-                                                    },
-                                                    url: "/ajax/found/index"
-                                                });
                                             } else {
 												$D({
 													"fun": _this.createFragment,
@@ -386,7 +377,6 @@
 					})
 				},
 				proName: function(data) {
-					console.log("xmtt")
 					if(data.success) {
 						this.innerHTML = data.data.name;
 					}
@@ -441,7 +431,8 @@
 
 					}
 				},
-                questionModule:function(dataStr, liStr) {
+                questionModule:function(data) {
+                	var dataStr = data.data;
                     var baImg = "../images/default-q&a.jpg";
                     var subs = new Array();
                     if(dataStr.img) {
@@ -456,9 +447,9 @@
                     if (dataStr.replyCount > 0) {
                         hd = '<span>' + dataStr.replyCount + ' 回答</span>'
                     }
-                    liStr.setAttribute("data-id", dataStr.id);
-                    liStr.className = "mui-table-view-cell";
-                    liStr.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+                    this.setAttribute("data-id", dataStr.id);
+                    this.className = "mui-table-view-cell";
+                    this.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
                         '<div class="madiaHead qa-Head" style="background-image:url(' + baImg + ')"></div>' +
                         '<div class="madiaInfo OmadiaInfo">' +
                         '<p class="mui-ellipsis-2 h1Font">' + dataStr.title + '</p>' +
@@ -493,7 +484,7 @@
 						for(var i = 0; i < $data.length; i++) {
 							var of ;
 							if($data[i].articleType == 1 || $data[i].ctype == "1") { of = 1;
-							} else { of = 2;
+							} else if ($data[i].articletype == 2 || $data[i].ctype == "2") { of = 2;
                             }
                             var arImg = "../images/default-artical.jpg";
 
@@ -514,15 +505,16 @@
 
 									colSpan = '<span class="column">置顶</span>'
 								} else {
-
 									if(pullObj["0"] == 1) {
 
 										key1[m].endPullDownToRefresh();
 										pullObj[m] = 0;
 									}
-									if($data[i].col != 0) {
-										colSpan = "<span class='column columnOther'>" + columnType[$data[i].col].shortName + "</span>"
-									}
+									if($data[i].ctype == "3"){
+                                        colSpan = "<span class='column columnOther'>问答</span>"
+									}else if($data[i].col != 0) {
+                                        colSpan = "<span class='column columnOther'>" + columnType[$data[i].col].shortName + "</span>"
+                                    }
 								}
 							} else {
 								if(pullObj[m] == 1) {
@@ -595,7 +587,7 @@
                                         sele: li.getElementsByClassName("nameSpan")[0]
                                     });
 								}
-							} else {
+							} else if (of == 2) {
                             	if (m==0&& !arguments[1]){
                                     li.setAttribute("owner-id", $data[i].uid);
                                     li.setAttribute("data-type", 2);

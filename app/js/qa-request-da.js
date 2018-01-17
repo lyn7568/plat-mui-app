@@ -1,6 +1,6 @@
 mui.ready(function() {
 	var qid, userid, username;
-	var rows = 2,
+	var rows = 20,
 		pageNum=1,
 		dataC = {
 			count: "",

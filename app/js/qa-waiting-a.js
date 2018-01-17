@@ -1,5 +1,5 @@
 mui.ready(function() {
-	var rows = 2,
+	var rows = 20,
 		dataC = {
 			time: "",
 			id: ""

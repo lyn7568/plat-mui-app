@@ -13,6 +13,7 @@ mui.ready(function() {
 		self.show("slide-in-right", 150);
 		var answerId = self.anid;
 		var flag=0;
+		var answerTit=""
 		
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {
@@ -34,6 +35,7 @@ mui.ready(function() {
 					document.getElementById("answerTime").innerHTML = commenTime($da.createTime);
 					document.getElementById("snum").innerHTML = $da.agree;
 					if($da.cnt) {
+						answerTit=$da.cnt
 						document.getElementById("answerCnt").innerHTML = ($da.cnt).replace(/\n/g,"<br />");
 					}
 					if(userid != $da.uid) {
@@ -110,7 +112,7 @@ mui.ready(function() {
 						flag:flag,
 						name: "answer",
 						data: {
-							content: document.getElementById("answerCnt").innerHTML.substring(0, 70),
+							content: answerTit.substring(0, 70),
 							title: document.getElementById("questTit").innerHTML,
 							href: baseUrl + "/e/da.html?id=" + answerId,
 							thumbs: [oUrl]

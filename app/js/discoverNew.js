@@ -30,7 +30,7 @@
 		"7": 0,
 		"8": 0
 	}
-	var QAtime, QAid, QArows = 2,fTime,fId,fEx;
+	var QAtime, QAid, QArows = 20,fTime,fId,fEx;
 	$.ready(function() {
 		$.plusReady(function() {
 			var userid = plus.storage.getItem('userid');
@@ -157,7 +157,7 @@
 						traditional: true,
 						async: true,
 						success: function(data) {
-							console.log(JSON.stringify(data) + obj.url)
+							//console.log(JSON.stringify(data) + obj.url)
 							if(obj.sele) {
 								obj.fun.call(obj.sele, data);
 							} else {

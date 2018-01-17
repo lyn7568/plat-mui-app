@@ -8,7 +8,7 @@ mui.ready(function() {
 	var ocollectBtn = document.getElementById("collectBtn"),
 		oanswer = document.getElementsByClassName("go-answer")[0],
 		yaoanswer = document.getElementsByClassName("invite-answer")[0];
-	var rows = 2,
+	var rows = 20,
 		ifkong=1,
 		ifAl=1,//是否是首次加载
 		dataO = {
@@ -170,6 +170,7 @@ mui.ready(function() {
 						ifAl = 0;
 					}
 					if($info.length > 0) {
+						removeAfter(aimId)
 						if(byway == 1) {
 							dataO.score = $info[$info.length - 1].score;
 							dataO.id = $info[$info.length - 1].id;

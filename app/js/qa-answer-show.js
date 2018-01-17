@@ -34,7 +34,7 @@ mui.ready(function() {
 					document.getElementById("answerTime").innerHTML = commenTime($da.createTime);
 					document.getElementById("snum").innerHTML = $da.agree;
 					if($da.cnt) {
-						document.getElementById("answerCnt").innerHTML = $da.cnt;
+						document.getElementById("answerCnt").innerHTML = ($da.cnt).replace(/\n/g,"<br />");
 					}
 					if(userid != $da.uid) {
 						oattenSpan.style.display="block";
@@ -110,7 +110,7 @@ mui.ready(function() {
 						flag:flag,
 						name: "answer",
 						data: {
-							content: document.getElementById("answerCnt").innerHTML.substring(0, 40),
+							content: document.getElementById("answerCnt").innerHTML.substring(0, 70),
 							title: document.getElementById("questTit").innerHTML,
 							href: baseUrl + "/e/da.html?id=" + answerId,
 							thumbs: [oUrl]
@@ -221,6 +221,111 @@ mui.ready(function() {
 			}
 		})
 		
+		/*微信及微信朋友圈分享专家*/
+		var auths, shares;
+		plus.oauth.getServices(function(services) {
+			auths = {};
+			for(var i in services) {
+				var t = services[i];
+				auths[t.id] = t;
+	
+			}
+		}, function(e) {
+			alert("获取登录服务列表失败：" + e.message + " - " + e.code);
+		});
+		plus.share.getServices(function(services) {
+	
+			shares = {};
+			for(var i in services) {
+	
+				var t = services[i];
+	
+				shares[t.id] = t;
+	
+			}
+		}, function(e) {
+			alert("获取分享服务列表失败：" + e.message + " - " + e.code);
+		});
+		
+		mui("#shareBlock").on("tap", "li", function() {
+			document.getElementById("shareBlock").style.display = "none";
+			document.getElementById("maskBlack").style.display = "none";
+			var oFen = this.getElementsByTagName("span")[0].innerHTML;
+	
+			var oUrl = baseUrl + "/images/logo180.png";
+	
+			if(oFen == "微信好友") {
+				if(!weixinClient()) {
+					return;
+				}
+				var share = buildShareService("weixin");
+				if(share) {
+					shareMessage(share, "WXSceneSession", {
+						content: document.getElementById("answerCnt").innerHTML.substring(0, 70),
+						title:  document.getElementById("questTit").innerHTML,
+						href: baseUrl + "/e/da.html?id=" + answerId,
+						thumbs: [oUrl]
+					});
+				}
+			} else if(oFen == "微信朋友圈") {
+				if(!weixinClient()) {
+					return;
+				}
+				var share = buildShareService("weixin");
+				if(share) {
+					shareMessage(share, "WXSceneTimeline", {
+						content: document.getElementById("answerCnt").innerHTML.substring(0, 70),
+						title:  document.getElementById("questTit").innerHTML,
+						href: baseUrl + "/e/da.html?id=" + answerId,
+						thumbs: [oUrl]
+					});
+				}
+			} else if(oFen == "新浪微博") {
+				var share = buildShareService("sinaweibo");
+				if(share) {
+					shareMessage(share, "sinaweibo", {
+						content:  document.getElementById("questTit").innerHTML + baseUrl + "/e/da.html?id=" + answerId,
+					});
+				}
+			}
+	
+		})
+	
+		function buildShareService(ttt) {
+			var share = shares[ttt];
+			if(share) {
+				if(share.authenticated) {
+					console.log("---已授权---");
+				} else {
+					console.log("---未授权---");
+					share.authorize(function() {
+						console.log('授权成功...')
+					}, function(e) {
+						return null;
+					});
+				}
+				return share;
+			} else {
+				alert("没有获取微信分享服务");
+				return null;
+			}
+	
+		}
+	
+		function shareMessage(share, ex, msg) {
+			msg.extra = {
+				scene: ex
+			};
+			share.send(msg, function() {
+				plus.nativeUI.closeWaiting();
+				plus.nativeUI.toast("成功分享需求信息", toastStyle);
+			}, function(e) {
+				plus.nativeUI.closeWaiting();
+				if(e.code == -2) {
+					
+				}
+			});
+		}
 	})
 
 });

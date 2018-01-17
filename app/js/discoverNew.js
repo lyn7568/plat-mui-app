@@ -714,7 +714,7 @@
 							liStr.innerHTML = '<div class="madiaInfo">' +
 								'<p class="h1Font mui-ellipsis-2 qa-question"></p>'+
 								'<div class="flexCenter qa-owner"></div>' +
-								'<p class="qa-con mui-ellipsis-5">' + $data[i].cnt + '</p>' +
+								'<p class="qa-con mui-ellipsis-5">' + ($data[i].cnt).replace(/\n/g,"<br />") + '</p>' +
 								'<div class="showli mui-ellipsis">' +
 								'<span>' + commenTime($data[i].createTime) + '</span>' + hd + '<span class="leaveMsgCount"></span>' +
 								'</div>' +

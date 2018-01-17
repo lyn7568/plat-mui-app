@@ -4,7 +4,7 @@ mui.ready(function() {
 		var title = plus.webview.getWebviewById("qa-going-q-02.html").title;
 		var ws = plus.webview.currentWebview();
 		var cnt = ws.cnt;
-		var img = ws.img;	
+			img = ws.img;	
 			plus.nativeUI.closeWaiting();
 			ws.show("slide-in-right", 150);
 		//查询学术领域
@@ -79,7 +79,7 @@ mui.ready(function() {
 				return;
 			}
 			console.log(subjectAll);
-			console.log(img);
+			console.log(cnt+"++++++"+img);
 			mui.ajax(baseUrl + '/ajax/question', {
 				data: {
 					"title": title,

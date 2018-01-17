@@ -589,7 +589,7 @@ mui.plusReady(function() {
 				proid: paperId,
 				name: "paper",
 				data: {
-					content: document.getElementById("paperAbstract").innerHTML.substring(0, 40),
+					content: document.getElementById("paperAbstract").innerHTML.substring(0, 70),
 					title: document.getElementById("paperName").innerHTML,
 					href: baseUrl + "/e/l.html?id=" + paperId,
 					thumbs: [oUrl]

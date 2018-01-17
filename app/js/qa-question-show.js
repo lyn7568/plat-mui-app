@@ -79,7 +79,7 @@ mui.ready(function() {
 					document.getElementById("questionTime").innerHTML = commenTime($da.createTime);
 					document.getElementById("replyCount").innerHTML = $da.replyCount;
 					if($da.cnt) {
-						document.getElementById("questionCnt").innerHTML = $da.cnt;
+						document.getElementById("questionCnt").innerHTML =($da.cnt).replace(/\n/g,"<br />");
 					}
 					if($da.keys != undefined && $da.keys.length != 0) {
 						var subs = new Array();
@@ -224,7 +224,7 @@ mui.ready(function() {
 				liStr.className = "mui-table-view-cell";
 				liStr.innerHTML = '<div class="madiaInfo">' +
 					'<div class="flexCenter qa-owner"></div>' +
-					'<p class="qa-con mui-ellipsis-5">' + dataStr.cnt + '</p>' +
+					'<p class="qa-con mui-ellipsis-5">' + (dataStr.cnt).replace(/\n/g,"<br />") + '</p>' +
 					'<div class="showli mui-ellipsis">' +
 					'<span>' + commenTime(dataStr.createTime) + '</span>' + hd + '<span class="leaveMsgCount"></span>' +
 					'</div>' +
@@ -298,7 +298,7 @@ mui.ready(function() {
 						proid: questionId,
 						name: "question",
 						data: {
-							content: document.getElementById("questionCnt").innerHTML.substring(0, 40),
+							content: document.getElementById("questionCnt").innerHTML.substring(0, 70),
 							title: document.getElementById("questionTit").innerHTML,
 							href: baseUrl + "/e/wen.html?id=" + questionId,
 							thumbs: [oUrl]
@@ -380,121 +380,6 @@ mui.ready(function() {
 				anid: id
 			});
 		})
-
-		/*微信及微信朋友圈分享专家*/
-			var auths, shares;
-			plus.oauth.getServices(function(services) {
-				auths = {};
-				for(var i in services) {
-					var t = services[i];
-					auths[t.id] = t;
-		
-				}
-			}, function(e) {
-				alert("获取登录服务列表失败：" + e.message + " - " + e.code);
-			});
-			plus.share.getServices(function(services) {
-		
-				shares = {};
-				for(var i in services) {
-		
-					var t = services[i];
-		
-					shares[t.id] = t;
-		
-				}
-			}, function(e) {
-				alert("获取分享服务列表失败：" + e.message + " - " + e.code);
-			});
-			mui("#shareBlock").on("tap", "li", function() {
-				document.getElementById("shareBlock").style.display = "none";
-				document.getElementById("maskBlack").style.display = "none";
-				var oFen = this.getElementsByTagName("span")[0].innerHTML;
-		
-				var oUrl = baseUrl + "/images/logo180.png";
-		
-				if(oFen == "微信好友") {
-					if(!weixinClient()) {
-							return;
-						}
-					var share = buildShareService("weixin");
-					if(share) {
-						shareMessage(share, "WXSceneSession", {
-							content: document.getElementById("questionCnt").innerHTML.substring(0, 70),
-							title: document.getElementById("questionTit").innerHTML,
-							href: baseUrl + "/e/wen.html?id=" + questionId,
-							thumbs: [oUrl]
-						});
-					}
-				} else if(oFen == "微信朋友圈") {
-					if(!weixinClient()) {
-							return;
-						}
-					var share = buildShareService("weixin");
-					if(share) {
-						shareMessage(share, "WXSceneTimeline", {
-							content: document.getElementById("questionCnt").innerHTML.substring(0, 70),
-							title: document.getElementById("questionTit").innerHTML,
-							href: baseUrl + "/e/wen.html?id=" + questionId,
-							thumbs: [oUrl]
-						});
-					}
-				} else if(oFen == "新浪微博") {
-					var share = buildShareService("sinaweibo");
-					if(share) {
-						shareMessage(share, "sinaweibo", {
-							content: document.getElementById("questionTit").innerHTML + baseUrl + "/e/wen.html?id=" + questionId,
-						});
-					}
-				}
-		
-			})
-		
-			function buildShareService(ttt) {
-				var share = shares[ttt];
-				if(share) {
-					if(share.authenticated) {
-						console.log("---已授权---");
-					} else {
-						console.log("---未授权---");
-						share.authorize(function() {
-							console.log('授权成功...')
-						}, function(e) {
-							//alert("认证授权失败：" + e.code + " - " + e.message);
-							return null;
-						});
-					}
-					return share;
-				} else {
-					alert("没有获取微信分享服务");
-					return null;
-				}
-		
-			}
-		
-			function shareMessage(share, ex, msg) {
-				msg.extra = {
-					scene: ex
-				};
-				share.send(msg, function() {
-					plus.nativeUI.closeWaiting();
-					if(plus.storage.getItem('userid')) {
-						//shareAddIntegral(2);
-						if(msg.content=="赶快认领，上千家企业正在期待与您合作") {
-							shareAddIntegral(1);
-						}else{
-							shareAddIntegral(6);
-						}
-					}
-				}, function(e) {
-					plus.nativeUI.closeWaiting();
-					if(e.code == -2) {
-						
-					}
-				});
-			}
-		
-
 
 	})
 })

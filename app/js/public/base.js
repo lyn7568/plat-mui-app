@@ -540,10 +540,10 @@ function client1() {
 					}
 	
 //广告轮播操作
-function addscript(){
+function addscript(that){
 	var script=document.createElement("script");  
 	script.setAttribute("type", "text/javascript");  
-	var srclink= "http://www.ekexiu.com/data/inc/ad/ad_article_app.js?r=" + new Date().getTime();
+	var srclink= "http://www.ekexiu.com/data/inc/ad/"+ that +".js?r=" + new Date().getTime();
 	script.setAttribute("src", srclink);  
 	var heads = document.getElementsByTagName("head");  
 	if(heads.length){  

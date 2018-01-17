@@ -310,6 +310,19 @@ mui.ready(function() {
 					})
 				})
 			}
+		mui.ajax(baseUrl + '/ajax/question/pageViews',{
+			"type" :  "POST" ,
+			"dataType" : "json",
+			"data" :{"qid":questionId},
+			"success" : function(data) {
+				console.log(data);
+				if (data.success){
+				}
+			},
+			"error":function(){
+				
+			}
+		});
 		
 		pullEvent();
 		getConmain();

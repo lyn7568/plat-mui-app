@@ -17,6 +17,11 @@
 			html,body{height:100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
 			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
 		</style>
+		<script type="text/javascript">
+			addscript("ad_article_app_ding");
+			addscript("ad_article_app_top");
+			addscript("ad_article_app_bottom");
+		</script>
 	</head>
 
 	<body>
@@ -66,6 +71,10 @@
 						        </li>
 						    </ul>
 			    		</div>
+			    		<!--广告模块-->
+					<div class="madiaBlock advertItem advertItem-ding">
+						
+					</div>
 				    	<!--文章内容区-->
 					<div class="showMain" id="articleContent">
 						</div>
@@ -96,7 +105,7 @@
 						<span class="thumbBtn">赞 <span id="snum"></span></span><!-- thumbedBtn 已赞 201-->
 					</div>
 					<!--广告模块-->
-					<div class="madiaBlock swiper-container advertItem" style="margin:30px 0 10px">
+					<div class="madiaBlock swiper-container advertItem advertItem-top" style="margin:30px 0 10px">
 					  
 					</div>
 					<!--您可能感兴趣的文章-->
@@ -113,11 +122,16 @@
 					    </ul>
 					</div>
 					<!--留言-->
-					<div class="madiaBlock" style="padding-bottom:50px;">
+					<div class="madiaBlock">
 						<div class="madiaTit" id="olisten">留言</div>
 						<ul class="mui-table-view commentBlock noactiveTab">
 					     
 					   </ul>
+					</div>
+					
+					<!--广告模块-->
+					<div class="madiaBlock swiper-container advertItem advertItem-bottom" style="margin:30px 0 50px;">
+					  
 					</div>
 			    </div>
 			
@@ -144,8 +158,6 @@
 		</div>
 
 		<script type="text/javascript"> 
-			addscript();//动态调用js
-			
 			document.getElementById("listenClick").addEventListener("tap",function(){
 				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop-20+"px"}, 400); 
 			})

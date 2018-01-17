@@ -327,7 +327,12 @@
 								ownerid: ownerid,
 								oFlag: 1
 							});
-						}
+						} else if(datatype == 3){
+                            plus.nativeUI.showWaiting();
+                            plus.webview.create("../html/qa-question-show.html", 'qa-question-show.html', {}, {
+                                quid: id
+                            });
+                        }
 					})
 					mui("#questionItem").on("tap", "li", function() {
 						var id = this.getAttribute("data-id");
@@ -499,8 +504,10 @@
 
 						for(var i = 0; i < $data.length; i++) {
 							var of ;
-							if($data[i].articleType == 1 || $data[i].ctype == "1") { of = 1;
-							} else if ($data[i].articletype == 2 || $data[i].ctype == "2") { of = 2;
+                            if ($data[i].articleType == 1 || $data[i].ctype == "1") {
+                                of = 1;
+                            } else if ($data[i].articleType == 2 || $data[i].ctype == "2") {
+                                of = 2;
                             }
                             var arImg = "../images/default-artical.jpg";
 

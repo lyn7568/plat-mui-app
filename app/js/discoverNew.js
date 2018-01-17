@@ -445,22 +445,38 @@
                     }
                     var hd = "";
                     if (dataStr.replyCount > 0) {
-                        hd = '<span>' + dataStr.replyCount + ' 回答</span>'
+                        hd = '<span>' + dataStr.replyCount + '回答</span>'
                     }
                     this.setAttribute("data-id", dataStr.id);
+                    this.setAttribute("data-type",3);
                     this.className = "mui-table-view-cell";
                     this.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
                         '<div class="madiaHead qa-Head" style="background-image:url(' + baImg + ')"></div>' +
                         '<div class="madiaInfo OmadiaInfo">' +
                         '<p class="mui-ellipsis-2 h1Font">' + dataStr.title + '</p>' +
-                        '<p class="show-item mui-ellipsis h2Font">' + hd + '<span>N 关注</span></p>' +
+                        '<p class="show-item mui-ellipsis h2Font"><span class="column columnOther">问答</span>' + hd + '<span class="attendCount"></span></p>' +
                         '</div></div>'
+                        
+                    $D({
+						data: {
+							id: dataStr.id,
+							type: 8
+						},
+						fun: ob.attendCount,
+						url: "/ajax/watch/countProfessor",
+						sele: this.getElementsByClassName("attendCount")[0]
+					})
                 },
 				leaveMsgCount: function(data) {
 					if(data.success) {
 						if(data.data > 0) {
 							this.innerHTML = data.data + "留言"
 						}
+					}
+				},
+				attendCount:function(data) {
+					if(data.data > 0) {
+						this.innerHTML = data.data + "关注"
 					}
 				},
 				createFragment: function(data) {
@@ -684,7 +700,7 @@
 							var hd = "",
 								hl = "";
 							if($data[i].agree > 0) {
-								hd = '<span>' + $data[i].agree + ' 赞</span>'
+								hd = '<span>' + $data[i].agree + '赞</span>'
 							}
 							liStr.setAttribute("data-id", $data[i].id);
 							liStr.className = "mui-table-view-cell";

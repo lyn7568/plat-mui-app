@@ -93,7 +93,6 @@ mui.ready(function() {
 				
 			},
 	 		isLogin=function() {//判断是否登录，登录才可咨询，关注，收藏
-				var userid = plus.storage.getItem('userid');
 		         if(userid==null || userid=='null'|userid == undefined |userid == 'undefined'){
 					mui.openWindow({
 						url: '../html/login.html',

@@ -6,7 +6,7 @@ mui.ready(function(){
 			quid =self.quid;
 			
 		var userid = plus.storage.getItem('userid'),
-			username = plus.storage.getItem('username');
+			username = plus.storage.getItem('name');
 		
 		plus.nativeUI.closeWaiting();
 		self.show("slide-in-right", 150);

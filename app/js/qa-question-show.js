@@ -51,10 +51,15 @@ mui.ready(function() {
 						callback: function() {
 							var self = this;
 							setTimeout(function() {
-								dataO = {time: "",id: ""};
-								document.getElementById("curAnswers").innerHTML = "";
-								answerList();
 								getConmain();
+								document.getElementById("curAnswers").innerHTML = "";
+								dataO = {time: "",id: "",score:""}
+								if(typeof(pkey)==undefined){
+									pkey=[]
+								}else{
+									pkey.refresh(true)
+								}
+								answerList();
 								if(userid && userid != null && userid != "null") {
 									anExist();
 								}

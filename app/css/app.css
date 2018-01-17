@@ -1177,6 +1177,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .searchTab .qa-btnlink .mui-table-view-cell>div{position:relative;display: inline-block;}
 .show-item{overflow: hidden;}
 .show-item>span{padding-right:10px;}
+.show-item>span.column{padding-right:0;color:#069E21;border-color:#069E21}
 .qa-title{padding:15px;border-bottom:1px solid #e5e5e5;font-size: 16px;}
 .request-qa .yaoqing{position: absolute;right: 15px;top:50%;margin-top:-16px;padding:6px 14px;color:#fff;background: #ff9900;border-radius:4px;}
 .request-qa .yiyaoqing{background: #ccc;padding:6px 7px;}

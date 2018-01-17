@@ -40,7 +40,6 @@ mui.ready(function() {
 						oattenSpan.style.display="block";
 						ifcollectionAbout($da.uid,oattenSpan, 1,1);
 					}else{
-						isAgree($da.uid);
 						flag=1
 					}
 					proinfo($da.uid)
@@ -148,6 +147,7 @@ mui.ready(function() {
 		if(userid && userid != null && userid != "null") {
 			module.lWord(answerId, 4);
 			ifcollectionAbout(answerId,oifCollect,9);
+			isAgree(userid);
 		}
 		document.getElementById("ownerCon").addEventListener('tap', function() {
 			var id = this.getAttribute("data-id");

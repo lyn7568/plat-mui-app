@@ -54,6 +54,7 @@ mui.ready(function() {
 								dataO = {time: "",id: ""};
 								document.getElementById("curAnswers").innerHTML = "";
 								answerList();
+								getConmain();
 								if(userid && userid != null && userid != "null") {
 									anExist();
 								}
@@ -346,6 +347,7 @@ mui.ready(function() {
 				if(can) {
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
+						"aflag":0,
 						"quid": questionId,
 						"qutit":document.getElementById("questionTit").innerHTML
 					});

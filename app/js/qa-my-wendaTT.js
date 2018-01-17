@@ -117,7 +117,7 @@ mui.ready(function () {
                                                 oAjaxGet(url, rs, "get", oWatchA);
                                             }
                                         }
-                                        currentSelf.endPullUpToRefresh()
+                                        // currentSelf.endPullUpToRefresh()
                                     }, 1000);
                                 }
                             }
@@ -150,7 +150,9 @@ mui.ready(function () {
                         currentSelf.endPullUpToRefresh(true);
                     }
                 } else {
-                    if (dataStr.length > rows) {
+                    if (dataStr.length < rows) {
+                        currentSelf.endPullUpToRefresh(true);
+                    }else {
                         currentSelf.endPullUpToRefresh(false);
                     }
                 }
@@ -402,7 +404,7 @@ mui.ready(function () {
         }, "get", oMyQ);
         //左滑及右滑
         document.querySelector('#slider').addEventListener('slide', function (event) {
-            currentSelf.endPullUpToRefresh(false);
+            // currentSelf.endPullUpToRefresh(false);
             mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function ($_index, pullRefreshEl) {
                 var id = pullRefreshEl.getAttribute("data-pullToRefresh");
                 if(id) {
@@ -416,7 +418,7 @@ mui.ready(function () {
         });
         //点击
         document.querySelector('#slider').addEventListener('tap', function (event) {
-            currentSelf.endPullUpToRefresh(false);
+            // currentSelf.endPullUpToRefresh(false);
             mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function ($_index, pullRefreshEl) {
                 var id = pullRefreshEl.getAttribute("data-pullToRefresh");
                 if(id) {

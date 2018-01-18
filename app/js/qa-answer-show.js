@@ -14,6 +14,7 @@ mui.ready(function() {
 		var answerId = self.anid;
 		var flag=0;
 		var answerTit=""
+		var oUrl = baseUrl + "/images/logo180.png";
 		
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {
@@ -91,6 +92,15 @@ mui.ready(function() {
 				}, "get", function(res){
 					document.getElementById("questTit").innerHTML=res.data.title;
 					document.getElementById("questTit").setAttribute("data-id",qid);
+					if(res.data.img) {
+						var subs = new Array();
+						if(res.data.img.indexOf(',')) {
+							subs =res.data.img.split(',');
+						} else {
+							subs[0] = res.data.img;
+						}
+						oUrl=baseUrl + "/data/question"+subs[0].replace(/.jpg/,"_s.jpg");
+					}
 				});
 				
 			},
@@ -104,7 +114,6 @@ mui.ready(function() {
 			},
 			moreMes=function(){
 				document.getElementById("BtnMore").addEventListener("tap", function() {
-					var oUrl = baseUrl + "/images/logo180.png";
 					plus.nativeUI.showWaiting(); //显示原生等待框
 					var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
 						proid: answerId,
@@ -253,8 +262,6 @@ mui.ready(function() {
 			document.getElementById("shareBlock").style.display = "none";
 			document.getElementById("maskBlack").style.display = "none";
 			var oFen = this.getElementsByTagName("span")[0].innerHTML;
-	
-			var oUrl = baseUrl + "/images/logo180.png";
 	
 			if(oFen == "微信好友") {
 				if(!weixinClient()) {

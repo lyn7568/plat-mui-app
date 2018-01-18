@@ -15,6 +15,7 @@ mui.ready(function() {
 			id: "",
 			score:""
 		};
+	var oUrl = baseUrl + "/images/logo180.png";
 	var userid, questionId ,pkey=[],byway;
 	mui.plusReady(function() {
 		userid = plus.storage.getItem('userid');
@@ -99,6 +100,7 @@ mui.ready(function() {
 						} else {
 							subs[0] = $da.img;
 						}
+						oUrl=baseUrl + "/data/question"+subs[0].replace(/.jpg/,"_s.jpg");
 						var pstr = ""
 						if(subs.length > 0) {
 							for(var i = 0; i < subs.length; i++) {
@@ -290,7 +292,6 @@ mui.ready(function() {
 			},
 			moreMes=function(){
 				document.getElementById("BtnMore").addEventListener("tap", function() {
-					var oUrl = baseUrl + "/images/logo180.png";
 					plus.nativeUI.showWaiting(); //显示原生等待框
 					var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
 						proid: questionId,

@@ -145,7 +145,10 @@ mui.ready(function(){
 				var i = e.index;
 				if(i == 0) {
 					mui.ajax(baseUrl + "/ajax/question/answer/delete", {
-						data: {id:self.proid},
+						data: {
+							id:self.proid,
+							qid:self.quid
+						},
 						dataType: 'json',
 						type: 'get',
 						success: function(data) {

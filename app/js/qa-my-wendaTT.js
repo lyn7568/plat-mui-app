@@ -91,34 +91,36 @@ mui.ready(function () {
                         currentSelf = mui(pullRefreshEl).pullToRefresh({
                             up: {
                                 callback: function () {
-                                    setTimeout(function () {
-                                        if (index == 2) {
-                                            var rs = {
-                                                "professorId": userid,
-                                                "watchType": 1,
-                                                "pageSize": pageSize,
-                                                "pageNo": ++pageNo
-                                            };
-                                            oAjaxGet(url, rs, "get", oWatchPro);
-                                        } else {
-                                            var rs = {
-                                                "uid": userid,
-                                                "rows": rows,
-                                                "time": dataO.time,
-                                                "id": dataO.id
-                                            };
-                                            if (index == 0) {
-                                                oAjaxGet(url, rs, "get", oMyQ);
-                                            } else if (index == 1) {
-                                                oAjaxGet(url, rs, "get", oMyA);
-                                            } else if (index == 3) {
-                                                oAjaxGet(url, rs, "get", oWatchQ);
-                                            } else if (index == 4) {
-                                                oAjaxGet(url, rs, "get", oWatchA);
-                                            }
-                                        }
-                                        // currentSelf.endPullUpToRefresh()
-                                    }, 1000);
+                                	if(currentSelf.loading){
+	                                    setTimeout(function () {
+	                                        if (index == 2) {
+	                                            var rs = {
+	                                                "professorId": userid,
+	                                                "watchType": 1,
+	                                                "pageSize": pageSize,
+	                                                "pageNo": ++pageNo
+	                                            };
+	                                            oAjaxGet(url, rs, "get", oWatchPro);
+	                                        } else {
+	                                            var rs = {
+	                                                "uid": userid,
+	                                                "rows": rows,
+	                                                "time": dataO.time,
+	                                                "id": dataO.id
+	                                            };
+	                                            if (index == 0) {
+	                                                oAjaxGet(url, rs, "get", oMyQ);
+	                                            } else if (index == 1) {
+	                                                oAjaxGet(url, rs, "get", oMyA);
+	                                            } else if (index == 3) {
+	                                                oAjaxGet(url, rs, "get", oWatchQ);
+	                                            } else if (index == 4) {
+	                                                oAjaxGet(url, rs, "get", oWatchA);
+	                                            }
+	                                        }
+	                                        // currentSelf.endPullUpToRefresh()
+	                                    }, 1000);
+                                    }
                                 }
                             }
                         });

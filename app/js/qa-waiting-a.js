@@ -23,7 +23,7 @@ mui.ready(function() {
 				data: dataS,
 				success: function(res) {
 					if(res.success) {
-						console.log(JSON.stringify(res))
+						//console.log(JSON.stringify(res))
 						oFun(res)
 					}
 				}

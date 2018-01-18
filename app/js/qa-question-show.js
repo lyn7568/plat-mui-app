@@ -54,11 +54,6 @@ mui.ready(function() {
 								getConmain();
 								document.getElementById("curAnswers").innerHTML = "";
 								dataO = {time: "",id: "",score:""}
-								if(typeof(pkey)==undefined){
-									pkey=[]
-								}else{
-									pkey.refresh(true)
-								}
 								answerList();
 								if(userid && userid != null && userid != "null") {
 									anExist();
@@ -120,15 +115,21 @@ mui.ready(function() {
 				})
 			},
 			anExist = function() {
-				oAjax("/ajax/question/answer/exists", {
+				oAjax("/ajax/question/answer", {
 					"qid": questionId,
 					"uid": userid,
 				}, "get", function(res) {
 					console.log(JSON.stringify(res))
 					if(res.data) {
-						oanswer.setAttribute("data-can", ""); //回答过
-						oanswer.classList.add("answered");
-						oanswer.querySelector("span").innerText = "您已回答"
+						if(res.data.state=="1"){
+							oanswer.setAttribute("data-can", "0"); //回答过
+							oanswer.classList.add("answered");
+							oanswer.querySelector("span").innerText = "您已回答"
+						}else{
+							oanswer.setAttribute("data-anid",res.data.id);
+							oanswer.setAttribute("data-can", "2"); //回答过但已删除
+							oanswer.querySelector("span").innerText = "撤销删除"
+						}
 					} else {
 						oanswer.setAttribute("data-can", "1");
 					}
@@ -158,19 +159,11 @@ mui.ready(function() {
 					console.log(JSON.stringify(res))
 					var aimId="curAnswers",newStr="暂无回答"
 					var $info = res.data;
-					if(!ifkong) {
-						removeAfter(aimId)
-					}
-					if($info.length == 0 && ifkong && ifAl) {
-						insertAfter(newStr, aimId);
-						ifkong = 0
-					}
 					if(ifAl) {
 						pullEvent()
 						ifAl = 0;
 					}
 					if($info.length > 0) {
-						removeAfter(aimId)
 						if(byway == 1) {
 							dataO.score = $info[$info.length - 1].score;
 							dataO.id = $info[$info.length - 1].id;
@@ -191,30 +184,35 @@ mui.ready(function() {
 						}
 					} else {
 						pkey.endPullUpToRefresh(true)
-						return;
 					}
+					var liLen=document.getElementById(aimId).querySelectorAll("li").length;
+	                removeAfter(aimId);
+	                if($info.length == 0 && liLen == 0 ){
+	                    insertAfter(newStr,aimId);
+	                }
 				})
 			},
-			insertAfter=function(newStr, targetE){
-			    var parent = document.getElementById(targetE).parentNode;
-			    var kong = document.createElement("div");
-			   		kong.className="con-kong";
-			   		kong.innerHTML=newStr;
-			   	if(parent.lastChild.className == "con-kong"){
-			        return
-			   	}else{
-			        parent.insertBefore( kong, document.getElementById(targetE).nextSibling );
-			   	}
-			    
-			},
-			removeAfter=function(targetE){
-				var parent = document.getElementById(targetE).parentNode;
-				if(parent.lastChild.className == "con-kong"){
-			   		parent.removeChild(parent.querySelector(".con-kong"));
-			   	}else{
-			        return
-			   	}
-			},
+			insertAfter = function (newStr, targetE) {
+                var parent = document.getElementById(targetE).parentNode;
+                var kong = document.createElement("div");
+                kong.className = "con-kong";
+                kong.innerHTML = newStr;
+                if (parent.firstChild.className == "con-kong") {
+                    return
+                } else {
+                    parent.insertBefore(kong,parent.firstChild);
+                }
+
+            },
+            removeAfter = function (targetE) {
+                var parent = document.getElementById(targetE).parentNode;
+                console.log(parent.firstChild.className);
+                if (parent.firstChild.className == "con-kong") {
+                    parent.removeChild(parent.firstChild);
+                } else {
+                    return
+                }
+            },
 			answerModule = function(dataStr, liStr) {
 				var hd = "",
 					hl = "";
@@ -363,14 +361,27 @@ mui.ready(function() {
 		oanswer.addEventListener('tap', function() {
 			var can = this.getAttribute("data-can");
 			if(userid && userid != null && userid != "null") {
-				if(can) {
+				if(can=="1") {
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
 						"aflag":0,
 						"quid": questionId,
 						"qutit":document.getElementById("questionTit").innerHTML
 					});
-				} else {
+				} else if(can=="2") {
+					var anid= this.getAttribute("data-anid");
+					oAjax("/ajax/question/answer/unDel", {
+						"qid": questionId,
+						"id": anid,
+					}, "get", function(res) {
+						console.log(JSON.stringify(res))
+						if(res.data=="1") {
+							oanswer.setAttribute("data-can", "0"); //回答过
+							oanswer.classList.add("answered");
+							oanswer.querySelector("span").innerText = "您已回答"
+						}
+					})
+				}else{
 					return
 				}
 			} else {

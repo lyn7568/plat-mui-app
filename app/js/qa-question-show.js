@@ -9,7 +9,6 @@ mui.ready(function() {
 		oanswer = document.getElementsByClassName("go-answer")[0],
 		yaoanswer = document.getElementsByClassName("invite-answer")[0];
 	var rows = 20,
-		ifkong=1,
 		ifAl=1,//是否是首次加载
 		dataO = {
 			time: "",

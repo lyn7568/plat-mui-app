@@ -25,8 +25,14 @@
 		self.sid = module.sid;
 		self.stype = module.stype;
 		self.init();
-		self.bindEvent();
+		
 		self.LwordTotal();
+		var str=document.createElement("div");
+		str.className="con-kong displayNone";
+		var tNode=document.createTextNode("暂无留言")
+		str.appendChild(tNode);
+		document.getElementsByClassName('commentBlock')[0].parentNode.appendChild(str);
+		self.bindEvent();
 	}
 
 	function lgin() {
@@ -285,6 +291,9 @@
 		}, "get", function($data) {
 			if($data > 0) {
 				document.getElementsByClassName('mui-badge')[0].innerHTML = $data;
+				document.getElementsByClassName("con-kong")[0].classList.add("displayNone");
+			}else{
+				document.getElementsByClassName("con-kong")[0].classList.remove("displayNone");
 			}
 		})
 	}

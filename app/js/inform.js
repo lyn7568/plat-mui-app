@@ -164,7 +164,7 @@ mui("#consultList").on("tap", ".madiaInfo", function() {
 	if(dobj.opType == 0) {
 		ourl = "userInforShow.html";
 		data = {
-			proid: dobj.pid
+			proid: dobj.uid
 		}
 	} else if(dobj.opType == 1) {
 		ourl = "researchAreaHead.html";
@@ -181,12 +181,12 @@ mui("#consultList").on("tap", ".madiaInfo", function() {
 	} else if(dobj.opType == 3) {
 		ourl = "qa-answer-show.html";
 		data = {
-			anid: dobj.pid
+			anid: dobj.pid.split(":")[0]
 		};
 	} else if(dobj.opType == 4) {
 		ourl = "qa-answer-show.html";
 		data = {
-			anid: dobj.pid
+			anid: dobj.pid.split(":")[0]
 		};
 	} else if(dobj.opType == 5) {
 		ourl = "qa-question-show.html"

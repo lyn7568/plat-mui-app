@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/previewImage.css" rel="stylesheet" type="text/css" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<style type="text/css">
 			.mui-fullscreen .mui-segmented-control~.mui-slider-group{top:-1px;}
@@ -33,7 +34,7 @@
 										<div class="item_detail" id="questionId">
 											<h3 class="h1Font" id="questionTit"></h3>
 											<div class="list_con" id="questionCnt"></div>
-											<ul class="list_image"></ul>
+											<ul class="list_image"><li><span class="imgspan"></span></li></ul>
 											<div class="item_info">
 												<span class="time h3Font" id="questionTime"></span>
 											</div>
@@ -86,6 +87,8 @@
 		</div>
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/mui.pullToRefresh1.js"></script>
+		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/public/base.js"></script>
 		<script type="text/javascript">
 			mui.init()

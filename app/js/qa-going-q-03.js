@@ -80,21 +80,22 @@ mui.ready(function() {
 			}
 			console.log(subjectAll);
 			console.log(cnt+"++++++"+img);
-			mui.ajax(baseUrl + '/ajax/question', {
-				data: {
+			var dataSt={
 					"title": title,
 					"cnt": cnt,
 					"img": img,
 					"keys": subjectAll,
 					"uid": userid
-				},
+				}
+			console.log(JSON.stringify(dataSt))
+			mui.ajax(baseUrl + '/ajax/question', {
+				data: dataSt,
 				dataType: 'json',
 				traditional: true,
-				async: false,
 				type: 'POST', 
 				success: function(data) {
 					if(data.success) {
-						//console.log(JSON.stringify(data))
+						console.log(JSON.stringify(data))
 						plus.nativeUI.toast("问题发布成功", toastStyle);
 						var w2 = plus.webview.getWebviewById('qa-going-q-02.html');
 						var w1 = plus.webview.getWebviewById('qa-going-q-01.html');

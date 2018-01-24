@@ -14,16 +14,17 @@ mui.plusReady(function() {
 			}
 			document.getElementById("fontAdd").innerHTML = this.value.length;
 		})
+	
 	var imgStr=[]
 	document.getElementsByClassName("topsave")[0].addEventListener("tap",function(){
 		mui(".image-item .imgU").each(function() {
 			imgStr.push(this.getAttribute("data-preview-src"));
 		});
-		//alert(imgStr);
+		
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/qa-going-q-03.html", 'qa-going-q-03.html', {}, {
 			cnt: con.value,
-			img: imgStr
+			img: imgStr.join(",")
 		});
 	})
 	
@@ -71,7 +72,7 @@ mui.plusReady(function() {
 						}
 					}
 				);
-				task.addFile( imgurl, {key:"testdoc"} );
+				task.addFile( imgurl, {key:"testwdoc"} );
 				task.start();
 				
 			}, function(e) {
@@ -118,6 +119,7 @@ mui.plusReady(function() {
 			var i = e.index;
 			if(i == 0) {
 				$this.parent().remove();
+				$("#F_CKJLB").show()
 			}
 		}, "删除图片", bts);
 	});
@@ -133,4 +135,10 @@ mui.plusReady(function() {
 		html += '    </span>';
 		html += '</div>';
 		$("#F_CKJLBS").append(html);
+		var imglen = $(".image-item .imgU").length;
+		if(imglen==3){ 
+			$("#F_CKJLB").hide()
+		}else{
+			$("#F_CKJLB").show()
+		}
 	}

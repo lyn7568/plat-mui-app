@@ -101,16 +101,17 @@ mui.ready(function() {
 							subs[0] = $da.img;
 						}
 						oUrl=baseUrl + "/data/question"+subs[0].replace(/.jpg/,"_s.jpg");
+						var imgH=$(".imgspan").height()+"px"
+						var imgW=$(".imgspan").width()+"px"
 						var pstr = ""
 						if(subs.length > 0) {
 							for(var i = 0; i < subs.length; i++) {
 								var imgu= baseUrl + "/data/question"+subs[i]
-								pstr += '<li><span class="imgspan" style="background-image: url('+imgu+');"></span></li>'
+								pstr += '<li><span class="imgspan" style="background-image: url('+imgu+');"><img style="width:'+imgW+';height:'+imgH+'" src="'+imgu+'" data-preview-src=""></img></span></li>'
 							};
+							document.getElementsByClassName("list_image")[0].style.display = "block";
 							document.getElementsByClassName("list_image")[0].innerHTML = pstr;
-						} else {
-							document.getElementsByClassName("list_image")[0].style.display = "none";
-						}
+						} 
 					}
 					
 				})
@@ -125,7 +126,7 @@ mui.ready(function() {
 						if(res.data.state=="1"){
 							oanswer.setAttribute("data-can", "0"); //回答过
 							oanswer.classList.add("answered");
-							oanswer.querySelector("span").innerText = "您已回答"
+							oanswer.querySelector("span").innerText = "我已回答"
 						}else{
 							oanswer.setAttribute("data-anid",res.data.id);
 							oanswer.setAttribute("data-can", "2"); //回答过但已删除
@@ -405,6 +406,9 @@ mui.ready(function() {
 				anid: id
 			});
 		})
+		
+		mui.previewImage();/*图像预览*/
+	
 
 	})
 })

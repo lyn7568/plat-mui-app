@@ -21,11 +21,11 @@ mui.ready(function(){
 				plus.nativeUI.toast("提问不得少于5个字");
 				return;
 			}
-			var lastStr=con.value.substr(con.value.length-1,1)
-			if(lastStr !="?" && lastStr !="？") {
-				plus.nativeUI.toast("提问最好以问号结尾");
-				return;
-			}
+//			var lastStr=con.value.substr(con.value.length-1,1)
+//			if(lastStr !="?" && lastStr !="？") {
+//				plus.nativeUI.toast("提问最好以问号结尾");
+//				return;
+//			}
 			plus.nativeUI.showWaiting();
 			plus.webview.create("../html/qa-going-q-02.html", 'qa-going-q-02.html', {}, {
 				title: con.value

@@ -52,7 +52,7 @@ mui.ready(function() {
 			var $info = res.data;
 			if($info.length > 0) {
 				dataC.count = res.data[res.data.length - 1].kws;
-				dataC.pid = res.data[res.data.length - 1].pid;
+				dataC.pid = res.data[res.data.length - 1].id;
 
 				for(var i = 0; i < $info.length; i++) {
 					var liStr = document.createElement("li");

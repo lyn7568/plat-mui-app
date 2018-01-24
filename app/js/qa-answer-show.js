@@ -34,7 +34,13 @@ mui.ready(function() {
 				}, "get", function(res) {
 					var $da = res.data
 					document.getElementById("answerTime").innerHTML = commenTime($da.createTime);
-					document.getElementById("snum").innerHTML = $da.agree;
+					if($da.agree>0){
+						document.getElementById("snum").innerHTML = $da.agree;
+						document.getElementById("zanNum").innerHTML = $da.agree;
+					}
+					if($da.ballot>0){
+						document.getElementById("caiNum").innerHTML = $da.ballot;
+					}
 					if($da.cnt) {
 						answerTit=$da.cnt
 						document.getElementById("answerCnt").innerHTML = ($da.cnt).replace(/\n/g,"<br />");
@@ -43,6 +49,8 @@ mui.ready(function() {
 						oattenSpan.style.display="block";
 						ifcollectionAbout($da.uid,oattenSpan, 1,1);
 					}else{
+						document.getElementsByClassName("canTap")[0].classList.add("displayNone")
+						document.getElementsByClassName("noTap")[0].classList.remove("displayNone")
 						flag=1
 					}
 					proinfo($da.uid)
@@ -138,12 +146,12 @@ mui.ready(function() {
 					"uid":id
 				}, "get", function(res) {
 					if(res.success){
-						if(res.data){
+						console.log(JSON.stringify(res))
+						if(res.data==null){
+							
+						}else if(res.data.flag){
 							thumbs.classList.add("thumbedBtn")
-							steps.classList.remove("stepedBtn")
-							steps.innerHTML="踩"
 						}else{
-							thumbs.classList.remove("thumbedBtn")
 							steps.classList.add("stepedBtn")
 							steps.innerHTML="取消踩"
 						}
@@ -201,36 +209,64 @@ mui.ready(function() {
 		
 		mui(".thumbBlock").on("tap",".thumbBtn",function(){
 			if(userid && userid != null && userid != "null") {
-				oAjax('/ajax/question/answer/agree', {
-					"id": answerId,
-					"uid":userid,
-					"uname":username
-				}, "POST", function(res) {
-					thumbs.classList.add("thumbedBtn")
-					steps.classList.remove("stepedBtn")
-					steps.innerHTML="踩"
-					getConmain()
-				})
+				if(this.className=="thumbBtn thumbedBtn"){
+					oAjax('/ajax/question/answer/agree/cancle', {
+						"id": answerId,
+						"uid":userid,
+						"uname":username
+					}, "POST", function(res) {
+						thumbs.classList.remove("thumbedBtn")
+						getConmain()
+					})
+				}else{
+					oAjax('/ajax/question/answer/agree', {
+						"id": answerId,
+						"uid":userid,
+						"uname":username
+					}, "POST", function(res) {
+						thumbs.classList.add("thumbedBtn")
+						steps.classList.remove("stepedBtn")
+						steps.innerHTML="踩"
+						getConmain()
+					})
+				}
 			}else{
 				isLogin();
 			}
 		})
 		mui(".thumbBlock").on("tap",".stepBtn",function(){
 			if(userid && userid != null && userid != "null") {
-				oAjax('/ajax/question/answer/unAgree', {
-					"id": answerId,
-					"uid":userid,
-					"uname":username
-				}, "POST", function(res) {
-					thumbs.classList.remove("thumbedBtn")
-					steps.classList.add("stepedBtn")
-					steps.innerHTML="取消踩"
-					getConmain()
-				})
+				if(this.className=="stepBtn stepedBtn"){
+					oAjax('/ajax/question/answer/oppose/cancle', {
+						"id": answerId,
+						"uid":userid,
+						"uname":username
+					}, "POST", function(res) {
+						steps.classList.remove("stepedBtn")
+						steps.innerHTML="踩"
+						getConmain()
+					})
+				}else{
+					oAjax('/ajax/question/answer/oppose', {
+						"id": answerId,
+						"uid":userid,
+						"uname":username
+					}, "POST", function(res) {
+						steps.classList.add("stepedBtn")
+						steps.innerHTML="取消踩"
+						thumbs.classList.remove("thumbedBtn")
+						getConmain()
+					})
+				}
 			}else{
 				isLogin();
 			}
 		})
+		
+		window.addEventListener('customEvent', function(event) {
+		    var detail = event.detail;
+		    getConmain()
+		});
 		
 		/*微信及微信朋友圈分享专家*/
 		var auths, shares;

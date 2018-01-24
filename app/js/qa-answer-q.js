@@ -7,6 +7,8 @@ mui.ready(function(){
 			
 		var userid = plus.storage.getItem('userid'),
 			username = plus.storage.getItem('name');
+			
+		document.getElementById("questionTit").innerHTML=qutit
 		
 		plus.nativeUI.closeWaiting();
 		self.show("slide-in-right", 150);
@@ -14,7 +16,6 @@ mui.ready(function(){
 		if(aflag){
 			var anid=self.anid,
 				qucnt=self.qucnt;
-			document.getElementById("questionTit").innerHTML=qutit
 			document.getElementById("question").value=qucnt
 			var con=document.getElementById("question")
 			document.getElementsByClassName("topsave")[0].addEventListener("tap",function(){
@@ -35,7 +36,8 @@ mui.ready(function(){
 						if(data.success) {
 							console.log("xiugai"+JSON.stringify(data))
 							plus.nativeUI.toast("回答修改成功", toastStyle);
-							mui.back();
+							
+							mui.back()
 						}
 					}
 				})
@@ -60,7 +62,11 @@ mui.ready(function(){
 						console.log("fabu"+JSON.stringify(data))
 						if(data.success) {
 							plus.nativeUI.toast("回答发布成功", toastStyle);
-							mui.back();
+												  	
+						  	plus.nativeUI.showWaiting();
+							plus.webview.create("../html/qa-question-show.html", 'qa-question-show.html', {}, {
+								"quid": quid
+							});
 						}
 					}
 				});

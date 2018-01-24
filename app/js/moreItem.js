@@ -172,5 +172,15 @@ mui.ready(function(){
 				});
 			}
 		})
+		
+		var old_back = mui.back;
+		mui.back = function() {
+		    // 获取目标口窗口对象
+		    var targetP = plus.webview.getWebviewById('qa-answer-show.html');
+		    // 执行相应的事件
+		    mui.fire(targetP, 'customEvent', {});
+		    // 执行关闭
+		    old_back();
+		};
 	})
 })

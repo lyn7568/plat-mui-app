@@ -128,6 +128,9 @@ function uinfo(li, uid) {
 		success: function(data) {
 			if(data.success) {
 				var $data = data.data;
+				if($data==null) {
+					return;
+				}
 				if($data.hasHeadImage == 1) {
 					li.getElementsByClassName("useHead")[0].style.backgroundImage = "url(" + baseUrl + "/images/head/" + $data.id + "_l.jpg" + ")";
 				}

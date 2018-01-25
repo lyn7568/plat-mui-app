@@ -108,10 +108,10 @@ function informHtml($data) {
 		console.log($data[i].readed);
 		var li = document.createElement("li");
 		li.className = "mui-table-view-cell";
-		li.style.height = "80px";
-		li.innerHTML = '<div class="madiaHead useHead" style="../images/default-photo.jpg" data-id="' + $data[i].uid + '"></div>' +
+		li.style.height = "100%";
+		li.innerHTML = '<div class="sty" data-id="' + $data[i].uid + '"></div>' +
 			'<div class="madiaInfo">' +
-			'<div class="h2Font mui-ellipsis-2" style="color: #333;font-weight: 400;">' + $data[i].cnt + '</div>' +
+			'<div class="h2Font" style="color: #333;font-weight: 400;">' + $data[i].cnt + '</div>' +
 			'<div class="h3Font" style="margin: 5px 0;">' + commenTime($data[i].createTime) + '</div></div>'
 		li.getElementsByClassName("madiaInfo")[0].setAttribute("data-obj", par);
 		document.getElementById("consultList").appendChild(li);

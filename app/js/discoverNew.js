@@ -501,7 +501,19 @@
                                 }
                             }
 						}
-
+						if(m == 0) {
+								if(!arguments[1]) {
+									if(pullObj["0"] == 1) {
+										key1[m].endPullDownToRefresh();
+										pullObj[m] = 0;
+									}
+								}
+							} else {
+								if(pullObj[m] == 1) {
+									key1[m].endPullDownToRefresh();
+									pullObj[m] = 0;
+								}
+							}
 						for(var i = 0; i < $data.length; i++) {
 							var of ;
                             if ($data[i].articleType == 1 || $data[i].ctype == "1") {
@@ -528,21 +540,12 @@
 
 									colSpan = '<span class="column">置顶</span>'
 								} else {
-									if(pullObj["0"] == 1) {
-
-										key1[m].endPullDownToRefresh();
-										pullObj[m] = 0;
-									}
+									
 									if($data[i].ctype == "3"){
                                         colSpan = "<span class='column columnOther'>问答</span>"
 									}else if($data[i].col != 0) {
                                         colSpan = "<span class='column columnOther'>" + columnType[$data[i].col].shortName + "</span>"
                                     }
-								}
-							} else {
-								if(pullObj[m] == 1) {
-									key1[m].endPullDownToRefresh();
-									pullObj[m] = 0;
 								}
 							}
 							var li = document.createElement("li");
@@ -696,11 +699,12 @@
 								$data.length = 1;
 							}
 						}
-						for(var i = 0; i < $data.length; i++) {
-							if(pullObj[m] == 1) {
+						if(pullObj[m] == 1) {
 								key1[m].endPullDownToRefresh();
 								pullObj[m] = 0;
 							}
+						for(var i = 0; i < $data.length; i++) {
+							
 							var liStr = document.createElement("li");
 							liStr.className = "mui-table-view-cell";
 							liStr.setAttribute("data-id", $data[i].id);

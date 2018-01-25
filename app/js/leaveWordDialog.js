@@ -43,7 +43,7 @@
 				var oText = "",
 					reply = "",re="";
 					if(data[i].state=="1") 
-					re = '<span class="replyLew" style="margin-right:10px;" data-id="' + data[i].id + '">回复</span>' + '<span class="mui-icon iconfont plusbtn icon-appreciate"style="padding-left:10px;margin-right:10px;font-size:14px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></span><span  class="zan"style="display:' + (data[i].agreeCount ? "inline-block" : "none") + '">' + data[i].agreeCount + ' 赞 </span>';
+					re = '<span class="replyLew" style="margin-right:10px;" data-id="' + data[i].id + '">回复</span>' + '<span class="mui-icon iconfont plusbtn icon-appreciate"style="padding-left:10px;font-size:14px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></span><span  class="zan"style="margin-left:5px;display:' + (data[i].agreeCount ? "inline-block" : "none") + '">' + data[i].agreeCount + '</span>';
 					
 				if(id == data[i].sender) {
 					oText = "删除";
@@ -142,14 +142,13 @@
 			}
 		})
 	}
-	LeaveWord.prototype.referThup = function(lid, li, num) {
+	LeaveWord.prototype.referThup = function(lid, li) {
 		ajaxRequist(baseUrl + "/ajax/leavemsg/agree", {
 			id: lid,
 			uid: plus.storage.getItem('userid')
 		}, "GET", function(data) {
 			if(data) {
 				li.getElementsByClassName("plusbtn")[0].classList.add("icon-appreciatefill");
-				li.getElementsByClassName("zan")[0].innerHTML = "已赞" + num;
 			}
 		})
 	}
@@ -161,7 +160,7 @@
 			uname: plus.storage.getItem('name')
 		}, "POST", function(data) {
 			self.classList.add("icon-appreciatefill");
-			self.nextElementSibling.innerHTML = "已赞" + (Number(self.getAttribute("data-num")) + 1);
+			self.nextElementSibling.innerHTML = Number(self.getAttribute("data-num")) + 1;
 			self.nextElementSibling.style.display = "inline-block";
 		})
 	}

@@ -25,14 +25,13 @@
 		self.sid = module.sid;
 		self.stype = module.stype;
 		self.init();
-		
-		self.LwordTotal();
 		var str=document.createElement("div");
 		str.className="con-kong displayNone";
 		var tNode=document.createTextNode("暂无留言")
 		str.appendChild(tNode);
 		document.getElementsByClassName('commentBlock')[0].parentNode.appendChild(str);
 		self.bindEvent();
+		self.LwordTotal();
 	}
 
 	function lgin() {
@@ -152,6 +151,7 @@
 				id: 0,
 				rows: 500
 			});
+			self.LwordTotal();
 		})
 	}
 	LeaveWord.prototype.bindEvent = function() {
@@ -259,6 +259,7 @@
 			uid: plus.storage.getItem('userid'),
 			uname: plus.storage.getItem('name')
 		}, "POST", function(data) {
+			self.LwordTotal();
 			document.getElementById("textInputThis").value = "";
 			document.getElementById('textInput').style.display = "none";
 			document.getElementById('operCol').style.display = "block";
@@ -271,7 +272,7 @@
 				id: 0,
 				rows: 500
 			});
-			self.LwordTotal();
+			
 		})
 	}
 	LeaveWord.prototype.LwordDel = function($this, lid) {
@@ -288,11 +289,12 @@
 		ajaxRequist("/ajax/leavemsg/count", {
 			sid: self.sid,
 			stype: self.stype
-		}, "get", function($data) {
+		}, "get", function($data) {			
 			if($data > 0) {
 				document.getElementsByClassName('mui-badge')[0].innerHTML = $data;
 				document.getElementsByClassName("con-kong")[0].classList.add("displayNone");
 			}else{
+				document.getElementsByClassName('mui-badge')[0].innerHTML = "";
 				document.getElementsByClassName("con-kong")[0].classList.remove("displayNone");
 			}
 		})

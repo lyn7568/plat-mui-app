@@ -17,6 +17,11 @@
 			html,body{height:100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
 			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
 		</style>
+		<script type="text/javascript">
+			addscript("ad_article_app_ding");
+			addscript("ad_article_app_top");
+			addscript("ad_article_app_bottom");
+		</script>
 	</head>
 
 	<body>
@@ -26,7 +31,7 @@
 			<h1 class="mui-title toptit">文章</h1>
 			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
 		</header>
-		<nav class="mui-bar mui-bar-tab footbox" >
+		<nav class="mui-bar mui-bar-tab footbox" style="position: absolute;">
 			<div class="mui-row artfoot displayNone" id="textInput">
 				<div class="mui-col-xs-12">
 					<textarea name="" placeholder="说点什么吧…" id="textInputThis" maxlength="200"></textarea>
@@ -55,9 +60,9 @@
 			    		<div class="madiaBlock">
 			    			<ul class="mui-table-view noactiveTab infoBlock">
 						        <li class="mui-table-view-cell" id="personAL">
-						            <div class="flexCenter mui-clearfix">
+						            <div class="flexCenter flex-pright">
 						                <div class="madiaHead useHead" id="messImg"></div>
-										<div class="madiaInfo" style="padding-right: 60px;">
+										<div class="madiaInfo">
 											<p class="mui-ellipsis" ><span class="h1Font mui-ellipsis" id="name"></span><em class="authicon " title="" id="auth"></em></p>
 											<p class="h3Font" id="oTime"></p>
 										</div>
@@ -66,6 +71,10 @@
 						        </li>
 						    </ul>
 			    		</div>
+			    		<!--广告模块-->
+					<div class="madiaBlock advertItem advertItem-ding">
+						
+					</div>
 				    	<!--文章内容区-->
 					<div class="showMain" id="articleContent">
 						</div>
@@ -96,7 +105,7 @@
 						<span class="thumbBtn">赞 <span id="snum"></span></span><!-- thumbedBtn 已赞 201-->
 					</div>
 					<!--广告模块-->
-					<div class="madiaBlock swiper-container advertItem" style="margin:30px 0 10px">
+					<div class="madiaBlock swiper-container advertItem advertItem-top" style="margin:30px 0 10px">
 					  
 					</div>
 					<!--您可能感兴趣的文章-->
@@ -113,11 +122,16 @@
 					    </ul>
 					</div>
 					<!--留言-->
-					<div class="madiaBlock" style="padding-bottom:50px;">
+					<div class="madiaBlock">
 						<div class="madiaTit" id="olisten">留言</div>
 						<ul class="mui-table-view commentBlock noactiveTab">
 					     
 					   </ul>
+					</div>
+					
+					<!--广告模块-->
+					<div class="madiaBlock swiper-container advertItem advertItem-bottom" style="margin:30px 0 50px;">
+					  
 					</div>
 			    </div>
 			
@@ -144,18 +158,11 @@
 		</div>
 
 		<script type="text/javascript"> 
-			addscript();//动态调用js
-			
 			document.getElementById("listenClick").addEventListener("tap",function(){
 				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop-20+"px"}, 400); 
 			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
-		    mui("body").on("tap",".mui-content",function(){
-		    	document.getElementById("textInput").style.display="none";
-		    	document.getElementById("operCol").style.display="block";
-		    })
-		    
 		    //var BtnMore=document.getElementById("BtnMore");
 		    var shareOut=document.getElementById("shareOut");
 		    var cancelShare=document.getElementById("cancelShare");
@@ -180,6 +187,7 @@
 		    	shareBlock.style.display="none";
 		    })
 		</script>
+		<script type="text/javascript" src="../js/leaveWords.js"></script>
 		<script type="text/javascript" src="../js/articleShow.js"></script>
 	</body>
 

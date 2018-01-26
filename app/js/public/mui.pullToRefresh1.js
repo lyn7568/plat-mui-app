@@ -111,9 +111,10 @@
 						element.innerHTML = '<div class="mui-pull-top-wrapper"><span class="mui-pull-loading mui-icon mui-icon-pulldown"></span><span class="mui-pull-down-cap">下拉可以刷新</span></div>';
 						element.addEventListener('webkitTransitionEnd', self);
 					}
-					var ul = self.element.querySelector(".mui-table-view");
-					var Vl = self.element.querySelector("#slider1");
-					(Vl)?ul.parentElement.insertBefore(element,Vl):ul.parentElement.insertBefore(element,ul);				
+					var ul = self.element.querySelector(".scroll-view");//mui-table-view
+//					var Vl = self.element.querySelector("#slider1");
+					//(Vl)?ul.parentElement.insertBefore(element,Vl):ul.parentElement.insertBefore(element,ul);
+					ul.parentElement.insertBefore(element,ul)
 					self.pullDownTipsIcon = element.querySelector(SELECTOR_PULL_LOADING);
 					self.pullDownTipsCap=element.querySelector(".mui-pull-down-cap");
 					return element;

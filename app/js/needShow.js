@@ -382,7 +382,7 @@ mui.ready(function() {
 					proid: demandId,
 					name: "demand",
 					data: {
-						content: document.getElementById("demandDesp").innerHTML.substring(0, 40),
+						content: document.getElementById("demandDesp").innerHTML.substring(0, 70),
 						title: document.getElementById("demandTit").innerHTML,
 						href: baseUrl + "/e/d.html?id=" + demandId,
 						thumbs: [oUrl]

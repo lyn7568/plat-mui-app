@@ -7,49 +7,45 @@
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
     <link href="../css/app.css" rel="stylesheet"/>
+    <style>
+    	#tongzhi>li:after{
+    		height:1px;
+    	}
+    	.h2Font.mui-ellipsis>span {
+    		color:#ff9900
+    	}
+    </style>
 </head>
 <body>
     <!-- 主页面内容容器 -->
     <div id="logined">
-		<div id="zixunpullrefresh" class="mui-content mui-scroll-wrapper" >
-		  	<div class="mui-scroll">
-		  		<div class="infocon madiaBlock">
-				    <ul class="mui-table-view consultList" id="consultList">
-				    	<!--<li class="mui-table-view-cell" id='hh'>
-							<div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"></div>
-							<div class="madiaInfo">
-								<div class="h1Font mui-ellipsis">
-									<span>用户姓名</span>
-									<span class="authicon authicon-pro"></span>
-									<span class="thistime">8月17日 18:00</span>
-								</div>
-								<div class="h3Font mui-ellipsis">这里显示对话的最后一条消息，天个人似乎突然今天个人似乎突然今天跟i</div>
+		<div class="mui-content" >
+	  		<div class="infocon madiaBlock">
+	  			<ul class="mui-table-view consultList1" id="tongzhi" style=" margin-bottom:0px;">
+			    	<li class="mui-table-view-cell" id='hh'>
+						<div class="madiaHead inform-icon"><span class="mui-icon icon-messagenew displayNone" id="iconT"><span class="mui-badge" id="iconNum">0</span></span></div>
+						<div class="madiaInfo">
+							<div class="h1Font mui-ellipsis">
+								<span>通知</span>
 							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"></div>
-							<div class="madiaInfo">
-								<div class="h1Font mui-ellipsis">
-									<span>用户姓名</span>
-									<span class="authicon authicon-pro"></span>
-									<span class="thistime">8月17日 18:00</span>
-								</div>
-								<div class="h3Font mui-ellipsis">富贵花开就看看和个人似乎突然</div>
+							<div class="h2Font mui-ellipsis" id="inf">暂无新通知</div>
+						</div>
+					</li>
+					
+			    </ul>
+			    <ul class="mui-table-view consultList" id="consultList" style="margin-top:0px;">
+			    	<!--<li class="mui-table-view-cell">
+						<div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"></div>
+						<div class="madiaInfo">
+							<div class="h1Font mui-ellipsis">
+								<span>用户姓名</span>
+								<span class="authicon authicon-pro"></span>
+								<span class="thistime">8月17日 18:00</span>
 							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="madiaHead useHead" style="background-image:url(../images/default-photo.jpg)"></div>
-							<div class="madiaInfo">
-								<div class="h1Font mui-ellipsis">
-									<span>用户姓名</span>
-									<span class="authicon authicon-pro"></span>
-									<span class="thistime">8月17日 18:00</span>
-								</div>
-								<div class="h3Font mui-ellipsis"></div>
-							</div>
-						</li>-->
-				    </ul>
-				</div>
+							<div class="h3Font mui-ellipsis">这里显示对话的最后一条消息，天个人似乎突然今天个人似乎突然今天跟i</div>
+						</div>
+					</li>-->
+			    </ul>
 			</div>
 		</div>
     </div>

@@ -1,11 +1,11 @@
 //公共文件
-mui.init();
-var baseUrl = "http://www.ekexiu.com";
+//mui.init();
+//var baseUrl = "http://www.ekexiu.com"; 
 //var baseUrl = "http://192.168.3.233";
-//var baseUrl = "http:192.168.3.233:81";   
-//var wlogurl="http://192.168.3.233:8080";
-var wlogurl="http://www.ekexiu.com:8082";
+//var wlogurl="http://www.ekexiu.com:8082";
 
+var baseUrl = "http://192.168.3.233:81";    
+var wlogurl="http://192.168.3.233:8080"
 
 toastStyle = {
 	'verticalAlign': 'top',
@@ -285,7 +285,7 @@ function ifcollectionAbout(watchObject,sel, num,flag) {
 		success: function(data) {
 			console.log(JSON.stringify(data))
 			if(data.success && data.data != null) {
-				if(num=="1" || num == "6"){//已关注专家
+				if(num=="1" || num == "6" || num=="8"){//已关注专家
 					if(flag==1){
 						that.classList.add("attenedSpan");
 						that.innerText="已关注";
@@ -298,7 +298,7 @@ function ifcollectionAbout(watchObject,sel, num,flag) {
 					that.classList.add("icon-yishoucang");
 				}
 			} else {
-				if(num=="1" || num == "6"){//关注专家
+				if(num=="1" || num == "6" || num=="8"){//关注专家
 					if(flag==1){
 						that.classList.remove("attenedSpan");
 						that.innerText="关注";
@@ -325,7 +325,8 @@ function collectionAbout(watchObject,sel, num,flag) {
 		data: {
 			"professorId": plus.storage.getItem('userid'),
 			"watchObject": watchObject,
-			"watchType": num
+			"watchType": num,
+			"uname": plus.storage.getItem('name')
 		},
 		dataType: 'json', //数据格式类型
 		type: 'POST', //http请求类型
@@ -334,7 +335,7 @@ function collectionAbout(watchObject,sel, num,flag) {
 		success: function(data) {
 			console.log(JSON.stringify(data))
 			if(data.success) {
-				if(num=="1" || num == "6"){//关注专家
+				if(num=="1" || num == "6" || num=="8"){//关注专家
 					if(flag==1){
 						that.classList.add("attenedSpan");
 						that.innerText="已关注";
@@ -372,7 +373,7 @@ function cancelCollectionAbout(watchObject,sel, num,flag) {
 		success: function(data) {
 			console.log(JSON.stringify(data))
 			if(data.success) {
-				if(num=="1" || num == "6"){//关注专家
+				if(num=="1" || num == "6" || num=="8"){//关注专家
 					if(flag==1){
 						that.classList.remove("attenedSpan");
 						that.innerText="关注";
@@ -539,10 +540,10 @@ function client1() {
 					}
 	
 //广告轮播操作
-function addscript(){
+function addscript(that){
 	var script=document.createElement("script");  
 	script.setAttribute("type", "text/javascript");  
-	var srclink= "http://www.ekexiu.com/data/inc/ad/ad_article_app.js?r=" + new Date().getTime();
+	var srclink= "http://www.ekexiu.com/data/inc/ad/"+ that +".js?r=" + new Date().getTime();
 	script.setAttribute("src", srclink);  
 	var heads = document.getElementsByTagName("head");  
 	if(heads.length){  

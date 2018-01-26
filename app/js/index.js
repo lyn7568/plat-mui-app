@@ -400,7 +400,9 @@ function checkArguments(){
   		  	paperId:argValue,
   		  	patentId:argValue,
   		  	cmpId:argValue,
-  		  	demanid:argValue
+  		  	demanid:argValue,
+  		  	quid:argValue,
+  		  	anid:argValue
   		  };
   		  var aimWeb=plus.webview.create(aimPage, aimPageId, {}, webArg);
   		  	

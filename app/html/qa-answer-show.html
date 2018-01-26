@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>回答</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
+			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
+		</style>
+	</head>
+
+	<body>
+		<div class="maskBlack" id="maskBlack"></div>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit">回答</h1>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
+		</header>
+		<nav class="mui-bar mui-bar-tab footbox" style="position:absolute;">
+			<div class="mui-row artfoot displayNone" id="textInput">
+				<div class="mui-col-xs-12">
+					<textarea name="" placeholder="说点什么吧…" id="textInputThis"></textarea>
+					<button class="mui-btn" disabled>发表</button>
+				</div>
+			</div>
+			<div class="mui-row artfoot" id="operCol">
+				<div class="mui-col-xs-8">
+					<div class="inputShow"><span>说点什么吧…</span></div>
+				</div>
+				<div class="mui-col-xs-1" id="listenClick">
+					<span class="mui-icon iconfontnew icon-liuyan"><em class="mui-badge"></em></span>
+				</div>
+				<div class="mui-col-xs-2" id="collectBtn">
+					<span class="mui-icon iconfontnew icon-shoucang" id="ifCollect"></span>
+				</div>
+				<div class="mui-col-xs-1" id="shareOut">
+					<span class="mui-icon iconfontnew icon-fenxiang"></span>
+				</div>
+			</div>
+		</nav>
+		<div class="mui-content">
+		    <div class="showDetail">
+		    		<div class="qa-top flexCenter mui-navigate-right">
+		    			<div class="h1Font hWeight flex-pright" id="questTit"></div>
+					</div>
+		    		
+		    		<div class="madiaBlock">
+		    			<ul class="mui-table-view noactiveTab" style="margin:0 -15px;">
+					        <li class="mui-table-view-cell">
+					            <div class="flexCenter flex-pright" id="ownerCon">
+					                <!--<div class="madiaHead useHead"></div>
+									<div class="madiaInfo">
+										<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+										<p class="mui-ellipsis h2Font">职称/职位，所在机构</p>
+									</div>-->
+					            </div>
+					            <span class="mui-icon attenSpan" id="attenSpan">关注</span>
+					        </li>
+					    </ul>
+		    		</div>
+			    	<!--文章内容区-->
+					<div class="showMain"  id="answerCnt"></div>
+					<div class="h3Font" style="margin-top: 10px;" id="answerTime"></div>
+					<!--点赞模块-->
+					<div class="thumbBlock">
+						<div class="canTap">
+							<span class="thumbBtn">赞 <span id="snum"></span></span>
+							<span class="stepBtn">踩</span>
+						</div>
+						<div class="noTap displayNone">
+							<span class="thumbspan">赞 <span id="zanNum"></span></span>
+							<span class="stepspan">踩 <span></span></span>
+						</div>
+					</div>
+					<!--留言-->
+					<div class="madiaBlock">
+						<div class="madiaTit">留言</div>
+						<ul class="mui-table-view commentBlock noactiveTab">
+					        
+					    </ul>
+					</div>
+		    </div>
+		</div>
+		
+		<div class="shareBlock" id="shareBlock">
+			<h2 class="shareTit"><span>分享到</span></h2>
+			<ul class="mui-table-view noactiveTab">
+				<li class="mui-table-view-cell">
+					<em class="wayicon wechaticon"></em>
+					<span>微信好友</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon friendstericon"></em>
+					<span>微信朋友圈</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon sinaicon"></em>
+					<span>新浪微博</span>
+				</li>
+			</ul>
+			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
+		</div>
+		
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/public/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="../js/leaveWords.js"></script>
+		<script src="../js/qa-answer-show.js"></script>
+		<script type="text/javascript">
+			document.getElementById("listenClick").addEventListener("tap",function(){
+				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop-20+"px"}, 400); 
+			})
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		    mui(".artfoot").on("tap",".inputShow",function(){
+		    	document.getElementById("textInput").style.display="block";
+		    	document.getElementById("operCol").style.display="none";
+		    	document.getElementById("textInputThis").focus();
+		    })
+		    mui("body").on("tap",".mui-content",function(){
+		    	document.getElementById("textInput").style.display="none";
+		    	document.getElementById("operCol").style.display="block";
+		    })
+		    
+//		    var BtnMore=document.getElementById("BtnMore");
+		    var shareOut=document.getElementById("shareOut");
+		    var cancelShare=document.getElementById("cancelShare");
+		    var maskBlack=document.getElementById("maskBlack");
+		    var shareBlock=document.getElementById("shareBlock");
+		    
+		    
+//		    BtnMore.addEventListener("tap",function(){
+//		    	maskBlack.style.display="block";
+//		    	shareBlock.style.display="block";
+//		    })
+		    shareOut.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    cancelShare.addEventListener("tap",function(){
+		    	maskBlack.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		    maskBlack.addEventListener("tap",function(){
+		    	this.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		</script>
+	</body>
+
+</html>

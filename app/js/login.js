@@ -125,6 +125,10 @@ mui.ready(function() {
 							id: userId,
 							rd:1
 						});	
+						var discoverPage = plus.webview.getWebviewById('discoverNew.html');
+						mui.fire(discoverPage, 'loginIn', {
+							id: userId
+						});
 					} else {
 						plus.nativeUI.toast("帐号和密码不匹配，请检查后重试", toastStyle);
 						return;

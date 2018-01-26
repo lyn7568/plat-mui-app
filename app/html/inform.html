@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>通知</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit">通知</h1>
+		</header>
+		<div class="mui-content"></div>
+
+		<script src="../js/public/mui.min.js"></script>
+		<script type="text/javascript">
+			//启用双击监听
+			mui.init({
+				subpages: [{
+					url: '../html/inform-sub.html',
+					id: 'inform-sub.html',
+					styles: {
+						top: '44px',
+						bottom: '0px',
+					}
+				}]
+			});
+			document.getElementsByClassName("toptitbox")[0].addEventListener("tap",function(){
+				var web3 = plus.webview.getWebviewById("consultlistNew.html");
+				mui.fire(web3, "newId");
+				return true;
+			})
+		</script>
+	</body>
+
+</html>

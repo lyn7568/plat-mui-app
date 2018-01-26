@@ -62,11 +62,12 @@ mui.ready(function(){
 						console.log("fabu"+JSON.stringify(data))
 						if(data.success) {
 							plus.nativeUI.toast("回答发布成功", toastStyle);
-												  	
-						  	plus.nativeUI.showWaiting();
-							plus.webview.create("../html/qa-question-show.html", 'qa-question-show.html', {}, {
+							
+							var questionPage = plus.webview.getWebviewById('qa-question-show.html');
+							mui.fire(questionPage, 'afterAnswer', {
 								"quid": quid
 							});
+						  	plus.webview.currentWebview().close()
 						}
 					}
 				});

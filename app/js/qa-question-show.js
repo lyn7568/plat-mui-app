@@ -363,11 +363,17 @@ mui.ready(function() {
 			var can = this.getAttribute("data-can");
 			if(userid && userid != null && userid != "null") {
 				if(can=="1") {
-					plus.nativeUI.showWaiting();
-					plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
-						"aflag":0,
-						"quid": questionId,
-						"qutit":document.getElementById("questionTit").innerHTML
+					mui.openWindow({
+						url: '../html/qa-answer-q.html',
+						id: 'qa-answer-q.html',
+						show: {
+							aniShow: "slide-in-right"
+						},
+						extras:{
+							"aflag":0,
+							"quid": questionId,
+							"qutit":document.getElementById("questionTit").innerHTML
+						}
 					});
 				} else if(can=="2") {
 					var anid= this.getAttribute("data-anid");
@@ -389,6 +395,11 @@ mui.ready(function() {
 				isLogin();
 			}
 		})
+		window.addEventListener('afterAnswer', function(event) {
+			question=event.detail.quid
+			anExist();
+			answerList();
+		});
 		yaoanswer.addEventListener('tap', function() {
 			if(userid && userid != null && userid != "null") {
 				plus.nativeUI.showWaiting();

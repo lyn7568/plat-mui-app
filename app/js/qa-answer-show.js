@@ -38,9 +38,7 @@ mui.ready(function() {
 						document.getElementById("snum").innerHTML = $da.agree;
 						document.getElementById("zanNum").innerHTML = $da.agree;
 					}
-					if($da.ballot>0){
-						document.getElementById("caiNum").innerHTML = $da.ballot;
-					}
+					
 					if($da.cnt) {
 						answerTit=$da.cnt
 						document.getElementById("answerCnt").innerHTML = ($da.cnt).replace(/\n/g,"<br />");

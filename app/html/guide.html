@@ -4,9 +4,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>app开屏广告</title>
-		<script src="../js/public/mui.min.js"></script>
-		<script src="../js/public/base.js"></script>
-		<script src="../js/public/jquery-1.11.1.js"></script>
 		<style>
 			.box {position: absolute;z-index: 2;top: 0;bottom: 0;left: 0;right:0;overflow: hidden;background: #ffffff;}			
 			.footer {background: url(../images/logo.png) center center no-repeat #ffffff;background-size:20%;height: 340px;width: 100%;
@@ -14,9 +11,6 @@
 			.skip {position: fixed;top: 3%;right: 5%;background: rgba(0, 0, 0, 0.15);text-align: center;color: #fff;z-index:3;font-size:2em;padding:20px 36px;border-radius: 40px;}
 			.skip:before{content: "跳过广告";}
 		</style>
-		<script type="text/javascript">
-			addscript("ad_opening_app");
-		</script>
 	</head>
 
 	<body>
@@ -26,7 +20,11 @@
 		</div>
 		<div class="skip" id="close"></div>
 	</body>
+	<script src="../js/public/mui.min.js"></script>
+	<script src="../js/public/base.js"></script>
+	<script src="../js/public/jquery-1.11.1.js"></script>
 	<script type="text/javascript">
+		addscript("ad_opening_app");
 		mui.init();
 		mui.ready(function() {
 			mui.plusReady(function() {
@@ -44,6 +42,7 @@
 				var Timer = setInterval(function() {
 					i++;
 					if(i == n - 1) {
+						plus.navigator.setFullscreen(false);
 						plus.webview.currentWebview().close();
 						clearInterval(Timer);
 					}

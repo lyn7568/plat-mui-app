@@ -6,8 +6,8 @@
 		<title>app开屏广告</title>
 		<style>
 			.box {position: absolute;z-index: 2;top: 0;bottom: 0;left: 0;right:0;overflow: hidden;background: #ffffff;}			
-			.footer {width:100%;height:18%;display: flex;align-items: center;justify-content: center;position: fixed;bottom: 0;}
-			.skip {position: fixed;top: 3%;right: 5%;background: rgba(0, 0, 0, 0.15);text-align: center;color: #fff;z-index:3;font-size:16px;padding:10px 20px;border-radius: 40px;}
+			.footer {width:100%;height:18%;background:#fff;display: flex;align-items: center;justify-content: center;position: fixed;bottom: 0;}
+			.skip {position: fixed;top: 3%;right: 5%;background: rgba(0, 0, 0, 0.15);text-align: center;color: #fff;z-index:3;border-radius: 40px;}
 			.skip:before{content: "跳过广告";}
 		</style>
 	</head>
@@ -25,9 +25,26 @@
 	<script src="../js/public/base.js"></script>
 	<script src="../js/public/jquery-1.11.1.js"></script>
 	<script type="text/javascript">
+		var anos=ifiosAmdandroid();
+		var footer=document.getElementsByClassName("footer")[0]
+		var skip=document.getElementsByClassName("skip")[0]
+		if(anos==0){//android
+			skip.style.fontSize="36px";
+			skip.style.padding="20px 36px";
+		}else{
+//			footer.style.height="18%";
+			skip.style.fontSize="16px";
+			skip.style.padding="10px 20px";
+		}
+		
 		addscript("ad_opening_app");
 		mui.init();
 		mui.ready(function() {
+			var ua = navigator.userAgent.toLowerCase(); 
+			if(/android|adr/gi.test(ua)){
+				document.getElementsByClassName("footer")[0].style.height=""
+				document.getElementsByClassName("skip")[0].style.height=""
+			}
 			mui.plusReady(function() {
 				plus.navigator.setFullscreen(true);
 				plus.navigator.closeSplashscreen();

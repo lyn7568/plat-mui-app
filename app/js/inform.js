@@ -61,7 +61,12 @@ function informList(objec) {
 		traditional: true, //传数组必须加这个
 		success: function(data) {
 			if(data.success) {
+				console.log(JSON.stringify(data))
 				var $info = data.data;
+				console.log($info == null)
+				if(data.data==null) {
+					return;
+				}
 
 				if($info.length == 0) {
 					if(count) {

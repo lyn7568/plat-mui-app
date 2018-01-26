@@ -151,6 +151,23 @@ function lewd(num) {
 		"context": this,
 		"success": function(data) {
 			if(data.success) {
+				if(data.data ==null) {
+					if(mui.os.ios) {
+						plus.runtime.setBadgeNumber(num);
+						var GeTuiSdk = plus.ios.importClass('GeTuiSdk');
+						GeTuiSdk.setBadge(num);
+					}
+	
+					if(num) {
+	
+						document.getElementById("meLInum").style.display = "block"
+						document.getElementById("meLInum").innerHTML = num;
+					} else {
+						document.getElementById("meLInum").style.display = "none";
+						document.getElementById("meLInum").innerHTML = 0;
+					}
+					return;
+				}
 				data.data.unRead+=num;
 				if(mui.os.ios) {
 					plus.runtime.setBadgeNumber(data.data.unRead);

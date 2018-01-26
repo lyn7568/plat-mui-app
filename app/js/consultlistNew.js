@@ -238,6 +238,7 @@ mui.ready(function() {
 					//return;
 					if(data.success) {
 						if(data.data==null) {
+							document.getElementById("inf").innerHTML="暂无通知";
 							return;
 						}
 						document.getElementById("inf").innerHTML=data.data.lastCnt;

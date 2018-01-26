@@ -222,7 +222,7 @@ mui("#consultList").on("tap", ".madiaInfo", function() {
 		extras: data
 	})
 })
-mui("#consultList").on("tap", ".useHead", function() {
+mui("#consultList").on("tap", ".sty", function() {
 	var dobj = this.getAttribute("data-id");
 	mui.openWindow({
 		url: '../html/userInforShow.html',

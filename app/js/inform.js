@@ -132,7 +132,7 @@ function uinfo(li, uid) {
 					return;
 				}
 				if($data.hasHeadImage == 1) {
-					li.getElementsByClassName("useHead")[0].style.backgroundImage = "url(" + baseUrl + "/images/head/" + $data.id + "_l.jpg" + ")";
+					li.getElementsByClassName("sty")[0].style.backgroundImage = "url(" + baseUrl + "/images/head/" + $data.id + "_l.jpg" + ")";
 				}
 			}
 		},

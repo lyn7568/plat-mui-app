@@ -237,6 +237,9 @@ mui.ready(function() {
 					console.log(JSON.stringify(data));
 					//return;
 					if(data.success) {
+						if(data.data==null) {
+							return;
+						}
 						document.getElementById("inf").innerHTML=data.data.lastCnt;
 						if(data.data.unRead) {
 							document.getElementById("iconT").style.display="block";

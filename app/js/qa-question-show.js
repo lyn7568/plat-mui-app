@@ -23,6 +23,7 @@ mui.ready(function() {
 		plus.nativeUI.closeWaiting();
 		self.show("slide-in-right", 150);
 		questionId = self.quid;
+		wlog("question",questionId,"1");
 
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {

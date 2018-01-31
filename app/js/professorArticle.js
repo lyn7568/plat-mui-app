@@ -385,12 +385,13 @@ mui.plusReady(function() {
 		}
 		/*文章留言总数*/
 		function leaveWord(){
-			mui.ajax(baseUrl + "/ajax/leaveWord/lwCount", {
+			mui.ajax(baseUrl + "/ajax/leavemsg/count", {
 				type: "GET",
 				timeout: 10000,
 				dataType: "json",
 				data: {
-					"articleId": proId,
+					sid:proId,
+					stype:4
 				},
 				success: function(data) {
 					if(data.success) {

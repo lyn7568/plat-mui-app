@@ -395,7 +395,7 @@ mui.plusReady(function() {
 			document.getElementsByClassName("icon-shoucang")[0].classList.remove("icon-yishoucang");
 		},
 	}
-	wlog("article", oArticleModule.articleId, 2)
+	wlog("article", oArticleModule.articleId, "2")
 	/*文章详细内容*/
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/query", {
 		articleId: oArticleModule.articleId
@@ -625,7 +625,6 @@ mui.plusReady(function() {
 			oCurren.login();
 		}
 	})
-	/*留言总数*/
 	
 	/*微信及微信朋友圈分享专家*/
 	var auths, shares;

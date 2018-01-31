@@ -18,9 +18,9 @@
 			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
 		</style>
 		<script type="text/javascript">
-			addscript("ad_article_app_ding");
-			addscript("ad_article_app_top");
-			addscript("ad_article_app_bottom");
+			addscript("ad_article_app_a");
+			addscript("ad_article_app_b");
+			addscript("ad_article_app_c");
 		</script>
 	</head>
 
@@ -72,9 +72,7 @@
 						    </ul>
 			    		</div>
 			    		<!--广告模块-->
-					<div class="madiaBlock advertItem advertItem-ding">
-						
-					</div>
+					<div class="madiaBlock advertItem advertItem-A" style="margin-bottom:10px;"></div>
 				    	<!--文章内容区-->
 					<div class="showMain" id="articleContent">
 						</div>
@@ -105,9 +103,7 @@
 						<span class="thumbBtn">赞 <span id="snum"></span></span><!-- thumbedBtn 已赞 201-->
 					</div>
 					<!--广告模块-->
-					<div class="madiaBlock swiper-container advertItem advertItem-top" style="margin:30px 0 10px">
-					  
-					</div>
+					<div class="madiaBlock swiper-container advertItem advertItem-B" style="margin:30px 0 10px"></div>
 					<!--您可能感兴趣的文章-->
 					<div class="madiaBlock displayNone" id="article">
 						<div class="madiaTit">您可能感兴趣的文章</div>
@@ -130,9 +126,7 @@
 					</div>
 					
 					<!--广告模块-->
-					<div class="madiaBlock swiper-container advertItem advertItem-bottom" style="margin:30px 0 50px;">
-					  
-					</div>
+					<div class="madiaBlock swiper-container advertItem advertItem-C" style="margin:30px 0 50px;"></div>
 			    </div>
 			
 			</div>
@@ -163,17 +157,11 @@
 			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
-		    //var BtnMore=document.getElementById("BtnMore");
 		    var shareOut=document.getElementById("shareOut");
 		    var cancelShare=document.getElementById("cancelShare");
 		    var maskBlack=document.getElementById("maskBlack");
 		    var shareBlock=document.getElementById("shareBlock");
 		    
-		    
-		   /* BtnMore.addEventListener("tap",function(){
-		    	maskBlack.style.display="block";
-		    	shareBlock.style.display="block";
-		    })*/
 		    shareOut.addEventListener("tap",function(){
 		    	maskBlack.style.display="block";
 		    	shareBlock.style.display="block";

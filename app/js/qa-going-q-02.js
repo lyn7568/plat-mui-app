@@ -128,11 +128,11 @@ mui.plusReady(function() {
 	function showImgDetail(oldsrc) {
 		var newsrc=reUrl+oldsrc
 		var html = "";
-		html += '<div class="image-item" style="float: left;margin-right:10px">';
+		html += '<div class="image-item" style="float: left;margin-right:20px">';
 		html += '    <div class="imgU" data-preview-src="' + oldsrc + '" data-preview-group="1" style="background-image:url(' + newsrc + ');width:65px;height:65px;background-size:cover;border-radius:6px;overflow:hidden"></div>';
-		html += '    <span class="del">';
-		html += '        <div class="fa fa-times-circle">X</div>';
-		html += '    </span>';
+		html += '    <div class="del">';
+		html += '        <span class="fa fa-times-circle">X</span>';
+		html += '    </div>';
 		html += '</div>';
 		$("#F_CKJLBS").append(html);
 		var imglen = $(".image-item .imgU").length;

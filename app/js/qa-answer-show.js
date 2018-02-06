@@ -8,6 +8,7 @@ mui.ready(function() {
 
 		var userid = plus.storage.getItem('userid'),
 		    username = plus.storage.getItem('name');
+		    ownerid=""
 		var self = plus.webview.currentWebview();
 		plus.nativeUI.closeWaiting();
 		self.show("slide-in-right", 150);
@@ -45,6 +46,7 @@ mui.ready(function() {
 						document.getElementById("answerCnt").innerHTML = ($da.cnt).replace(/\n/g,"<br />");
 					}
 					if(userid != $da.uid) {
+						ownerid = $da.uid
 						oattenSpan.style.display="block";
 						ifcollectionAbout($da.uid,oattenSpan, 1,1);
 					}else{
@@ -161,8 +163,8 @@ mui.ready(function() {
 			
 		getConmain()
 		moreMes()
+		module.lWord(answerId, 4);
 		if(userid && userid != null && userid != "null") {
-			module.lWord(answerId, 4);
 			ifcollectionAbout(answerId,oifCollect,9);
 			isAgree(userid);
 		}
@@ -266,6 +268,20 @@ mui.ready(function() {
 		    var detail = event.detail;
 		    getConmain()
 		});
+		/*自定义事件*/
+		window.addEventListener("newId", function(event) {
+			userid = plus.storage.getItem('userid');
+			if(userid != ownerid) {
+				oattenSpan.style.display="block";
+				ifcollectionAbout(ownerid,oattenSpan, 1,1);
+			}else{
+				document.getElementsByClassName("canTap")[0].classList.add("displayNone")
+				document.getElementsByClassName("noTap")[0].classList.remove("displayNone")
+				flag=1
+			}
+			ifcollectionAbout(answerId,oifCollect,9);
+			isAgree(userid);
+		})
 		
 		/*微信及微信朋友圈分享专家*/
 		var auths, shares;

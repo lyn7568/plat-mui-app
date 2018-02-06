@@ -8,6 +8,11 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/public/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="../js/leaveWords.js"></script>
+		<script src="../js/qa-answer-show.js"></script>
 		<style>
 			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
 			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
@@ -79,7 +84,7 @@
 					</div>
 					<!--留言-->
 					<div class="madiaBlock">
-						<div class="madiaTit">留言</div>
+						<div class="madiaTit" id="olisten">留言</div>
 						<ul class="mui-table-view commentBlock noactiveTab">
 					        
 					    </ul>
@@ -106,38 +111,19 @@
 			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
 		</div>
 		
-		<script src="../js/public/mui.min.js"></script>
-		<script src="../js/public/base.js"></script>
-		<script src="../js/public/jquery-1.11.1.js"></script>
-		<script type="text/javascript" src="../js/leaveWords.js"></script>
-		<script src="../js/qa-answer-show.js"></script>
 		<script type="text/javascript">
 			document.getElementById("listenClick").addEventListener("tap",function(){
 				$(".mui-content").animate({"scrollTop": document.getElementById("olisten").offsetTop-20+"px"}, 400); 
 			})
 			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
 		    iosheader();
-		    mui(".artfoot").on("tap",".inputShow",function(){
-		    	document.getElementById("textInput").style.display="block";
-		    	document.getElementById("operCol").style.display="none";
-		    	document.getElementById("textInputThis").focus();
-		    })
-		    mui("body").on("tap",".mui-content",function(){
-		    	document.getElementById("textInput").style.display="none";
-		    	document.getElementById("operCol").style.display="block";
-		    })
 		    
-//		    var BtnMore=document.getElementById("BtnMore");
 		    var shareOut=document.getElementById("shareOut");
 		    var cancelShare=document.getElementById("cancelShare");
 		    var maskBlack=document.getElementById("maskBlack");
 		    var shareBlock=document.getElementById("shareBlock");
 		    
 		    
-//		    BtnMore.addEventListener("tap",function(){
-//		    	maskBlack.style.display="block";
-//		    	shareBlock.style.display="block";
-//		    })
 		    shareOut.addEventListener("tap",function(){
 		    	maskBlack.style.display="block";
 		    	shareBlock.style.display="block";

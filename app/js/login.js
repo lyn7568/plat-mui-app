@@ -129,6 +129,8 @@ mui.ready(function() {
 						mui.fire(discoverPage, 'loginIn', {
 							id: userId
 						});
+						var answerPage = plus.webview.getWebviewById('qa-answer-show.html');
+						mui.fire(answerPage, 'newId', {});
 					} else {
 						plus.nativeUI.toast("帐号和密码不匹配，请检查后重试", toastStyle);
 						return;

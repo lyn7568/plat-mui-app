@@ -869,7 +869,7 @@
 										'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>'+
 										'<div class="madiaInfo h1Font">'+
 											'<span class="mui-pull-left">'+res.data.name+'</span>'+
-											'<span class="rightword">我的回答</span>'+
+											'<span class="rightword">我的问答</span>'+
 										'</div>'+
 									'</div>'
 							document.getElementById("my-q&a").innerHTML=str;

@@ -19,6 +19,25 @@
 				oField.style.height=document.getElementById("tt").scrollHeight+"px";
 			}
 		</script>
+		<style type="text/css">
+			.del{position: absolute;
+			    top: -18px;
+			    right: -24px;
+			    width: 50px;
+			    height: 50px;
+			    border:none;
+			    background: rgba(247, 127, 247, 0);
+			    z-index: 9999;}
+			.fa-times-circle{
+				display: block;
+			    width: 22px;
+			    height: 22px;
+			    margin: 10px auto;
+			    line-height: 22px;
+			    border-radius: 100%;
+			    font-size: 12px;
+			    background: red;}
+		</style>
 	</head>
 
 	<body>
@@ -39,7 +58,7 @@
 					<form>  
 					    <label class="row-label"></label>  
 					    <div id='F_CKJLBS' class="row image-list" style="float: left;">  
-					        <div class="image-item " id="F_CKJLB" onclick="showActionSheet(this);"></div>  
+					        <div class="image-item " id="F_CKJLB" style="overflow:hidden;" onclick="showActionSheet(this);"></div>  
 					    </div>  
 					</form>  
 				</div>  

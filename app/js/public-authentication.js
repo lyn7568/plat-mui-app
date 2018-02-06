@@ -81,7 +81,7 @@ function galleryImg() {
 }
 
 //删除图片
-mui(document).on("click", '.del', function() {
+mui(document).on("tap", '.del', function() {
 	var $this = $(this);
 	var bts = ["是", "否"];
 	plus.nativeUI.confirm("是否删除图片？", function(e) {

@@ -43,32 +43,32 @@
 				var oText = "",
 					reply = "",re="";
 					if(data[i].state=="1") 
-					re = '<span class="replyLew" style="margin-right:10px;" data-id="' + data[i].id + '">回复</span>' + '<span class="mui-icon iconfont plusbtn icon-appreciate"style="padding-left:10px;font-size:14px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></span><span  class="zan"style="margin-left:5px;display:' + (data[i].agreeCount ? "inline-block" : "none") + '">' + data[i].agreeCount + '</span>';
-					
+					re = '<span class="spanitem"><em class="mui-icon iconfont plusbtn plusbtnCan icon-appreciate" style="font-size:16px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></em><em style="margin-left:3px;display:' + (data[i].agreeCount ? "inline-block" : "none") + '">' + data[i].agreeCount + ' </em></span>'+
+						 '<span class="spanitem replyLew" data-id="' + data[i].id + '">回复</span>';
 				if(id == data[i].sender) {
-					oText = "删除";
-					re = "";
+					oText = '<span class="spanitem"><em class="mui-icon iconfont plusbtn icon-appreciate" style="font-size:16px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></em><em style="margin-left:3px;display:' + (data[i].agreeCount ? "inline-block" : "none") + '">' + data[i].agreeCount + ' </em></span>'+
+							'<span class="spanitem dele" data-id="' + data[i].id + '">删除</span>';
+					re = '';
 				}
 				if(data[i].state=="0") {
 					oText = ""
 				}
 				if(data[i].reciver) {
-					reply = " 回复 " + "<span class='reply2'></span>"
+					reply = '<em style="font-style:normal;padding:0 6px;">回复</em>' +  '<span class="h1Font reply2"></span>'
 				}
 				var baImg = "../images/default-photo.jpg";
 				var li = document.createElement("li");
-				li.className = "mui-table-view-cell";
+				li.className = "mui-table-view-cell leaveWord";
 				li.innerHTML = '<div class="flexCenter mui-clearfix">' +
 					'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')" data-id="' + data[i].sender + '"></div>' +
 					'<div class="madiaInfo">' +
-					'<p><span class="replay1"></span>' + reply + '</p>' +
+					'<p class="h2Font"><span class="h1Font replay1"></span>' + reply + '</p>' +
 					'</div>' +
 					'</div>' +
 					'<div class="madiaInfo">' +
-					'<p class="h2Font">' + ((data[i].state=="1")?data[i].cnt:"该留言已被其本人删除。") + '</p>' +
+					'<p class="h1Font">' + ((data[i].state=="1")?data[i].cnt:"<span class='h2Font'>该留言已被其本人删除。</span>") + '</p>' +
 					'<p class="operateSpan">' +
-					'<span class="commenttime">' + commenTime(data[i].createTime) + '</span>' + re +
-					'<span data-id="' + data[i].id + '" class="dele">' + oText + '</span>' +
+					'<span class="spanitem commenttime">' + commenTime(data[i].createTime) + '</span>' + re + oText +
 					'</p>' +
 					'</div>'
 				document.getElementsByClassName("commentBlock")[0].appendChild(li);
@@ -91,7 +91,11 @@
 				}
 			}
 			var userType = autho($data.authType, $data.orgAuth, $data.authStatus);
-			var str = '<span class="h1Font" >' + $data.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em>'
+			var styStr='<em class="authicon ' + userType.sty + '" title="科袖认证专家"></em>'
+			if(userType.sty=="e"){
+				styStr=""
+			}
+			var str = '<span class="h1Font" >' + $data.name + '</span>'+styStr
 			if(parNum == 1) {
 				li.getElementsByClassName("replay1")[0].innerHTML = str;
 			} else {
@@ -113,7 +117,7 @@
 		document.getElementsByClassName("mui-btn")[0].addEventListener("tap", function() {
 				self.replyLword(document.getElementById("textInputThis").getAttribute("oid"));
 		});
-		mui(".commentBlock").on("tap", ".plusbtn", function() {
+		mui(".commentBlock").on("tap", ".plusbtnCan", function() {
 			if(this.classList.contains('icon-appreciatefill') == true) {
 				return;
 			}
@@ -148,7 +152,7 @@
 			uid: plus.storage.getItem('userid')
 		}, "GET", function(data) {
 			if(data) {
-				li.getElementsByClassName("plusbtn")[0].classList.add("icon-appreciatefill");
+				li.getElementsByClassName("plusbtnCan")[0].classList.add("icon-appreciatefill");
 			}
 		})
 	}

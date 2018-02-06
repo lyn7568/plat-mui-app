@@ -401,7 +401,9 @@ mui.ready(function() {
 			}
 		})
 		window.addEventListener('afterAnswer', function(event) {
-			question=event.detail.quid
+			questionId=event.detail.quid
+			document.getElementById("curAnswers").innerHTML = "";
+			dataO = {time: "",id: "",score:""}
 			anExist();
 			answerList();
 		});

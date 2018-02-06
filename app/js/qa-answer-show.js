@@ -34,6 +34,7 @@ mui.ready(function() {
 				oAjax('/ajax/question/answer', {
 					"id": answerId
 				}, "get", function(res) {
+					console.log(JSON.stringify(res))
 					var $da = res.data
 					document.getElementById("answerTime").innerHTML = commenTime($da.createTime);
 					if($da.agree>0){
@@ -57,6 +58,19 @@ mui.ready(function() {
 					proinfo($da.uid)
 					questioninfo($da.qid)
 				})
+			},
+			getagreeNum=function(){
+				oAjax('/ajax/question/answer', {
+					"id": answerId
+				}, "get", function(res) {
+					var $da = res.data
+					if($da.agree==0){
+						$da.agree=''
+					}
+					document.getElementById("snum").innerHTML = $da.agree;
+					document.getElementById("zanNum").innerHTML = $da.agree;
+				})
+					
 			},
 			proinfo = function(uid) {
 				oAjax("/ajax/professor/baseInfo/" + uid, {}, "get", function(res) {
@@ -217,7 +231,7 @@ mui.ready(function() {
 						"uname":username
 					}, "POST", function(res) {
 						thumbs.classList.remove("thumbedBtn")
-						getConmain()
+						getagreeNum()
 					})
 				}else{
 					oAjax('/ajax/question/answer/agree', {
@@ -228,7 +242,7 @@ mui.ready(function() {
 						thumbs.classList.add("thumbedBtn")
 						steps.classList.remove("stepedBtn")
 						steps.innerHTML="踩"
-						getConmain()
+						getagreeNum()
 					})
 				}
 			}else{
@@ -245,7 +259,7 @@ mui.ready(function() {
 					}, "POST", function(res) {
 						steps.classList.remove("stepedBtn")
 						steps.innerHTML="踩"
-						getConmain()
+						getagreeNum()
 					})
 				}else{
 					oAjax('/ajax/question/answer/oppose', {
@@ -256,7 +270,7 @@ mui.ready(function() {
 						steps.classList.add("stepedBtn")
 						steps.innerHTML="取消踩"
 						thumbs.classList.remove("thumbedBtn")
-						getConmain()
+						getagreeNum()
 					})
 				}
 			}else{

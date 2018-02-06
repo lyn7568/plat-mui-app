@@ -1160,9 +1160,9 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .searchTab .qa-owner{min-height:40px;}
 .qa-owner .owner-head{position:absolute;top:50%;background-position: center;background-size: cover;}
 .qa-owner .owner-head.useHead{width:32px;height:32px;margin-top:-16px;background-image: url(../images/default-photo.jpg);border-radius: 50%;}
-.qa-owner .owner-info{padding-left:38px;}
+.qa-owner .owner-info{padding-left:38px;width: 100%;overflow: hidden;height: 26px;}
 .owner-name{float: left;}
-.owner-tit{margin-left:10px;float: left;max-width:60%;color:#888888}
+.owner-tit{padding-left:8px;color:#888888}
 .qa-con{font-size:14px;line-height: 22px;color:#666;}
 .mui-table-view.partLine{background: none;}
 .mui-table-view.partLine>.mui-table-view-cell{margin-bottom: 10px;background: #fff;}

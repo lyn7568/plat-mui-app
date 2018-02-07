@@ -81,15 +81,15 @@ function userInformation() {
 			if(data.success && data.data) {
 				//alert(oFlag1)
 				if($info.authType==0) {
-					document.getElementById("consuitSta").style.display="block";
-					document.getElementById("consuitSta2").style.display="none";
+					/*document.getElementById("consuitSta").style.display="block";
+					document.getElementById("consuitSta2").style.display="none";*/
 					document.getElementById("newszixun").innerHTML="待回复";
 					document.getElementById("newsok").innerHTML="被谢绝";
 					document.getElementById("newwc").innerHTML="待评价";
 					document.getElementById("newwc").setAttribute("ck3","5")
 				}else{
-					document.getElementById("consuitSta").style.display="none";
-					document.getElementById("consuitSta2").style.display="block";
+					/*document.getElementById("consuitSta").style.display="none";
+					document.getElementById("consuitSta2").style.display="block";*/
 					if(oneedval.value==2){
 						document.getElementById("newszixun").innerHTML="待回复";
 						document.getElementById("newsok").innerHTML="被谢绝";
@@ -214,9 +214,9 @@ function initData() {
 		userInformation();
 		var userid = plus.storage.getItem('userid');
 		plus.nativeUI.showWaiting(); //显示原生等待框
-		if(oFlag1!=1){
+		/*if(oFlag1!=1){
 			oneedval.value = "2";
-		}
+		}*/
 		mui.ajax(baseUrl + '/ajax/consult/pq', {
 			data: {
 				"professorId": userid,
@@ -269,9 +269,9 @@ function getOnePage() {
 		userInformation();
 		var userid = plus.storage.getItem('userid');
 		var pageIndex = 1;
-		if(oFlag1!=1){
+		/*if(oFlag1!=1){
 			oneedval.value = "2";
-		}
+		}*/
 		
 		mui.ajax(baseUrl + '/ajax/consult/pq', {
 			data: {
@@ -320,9 +320,9 @@ function getOnePage() {
 function getaData() {
 	mui.plusReady(function() {
 		var userid = plus.storage.getItem('userid');
-		if(oFlag1!=1){
+		/*if(oFlag1!=1){
 			oneedval.value = "2";
-		}
+		}*/
 		
 		mui.ajax(baseUrl + '/ajax/consult/pq', {
 			data: {
@@ -576,7 +576,7 @@ function eachData(userid, datalist) {
 
 			var str = '';
 			str += '<div class="coutopicbox"><span class="coutheme mui-ellipsis mui-pull-left">' + title + '</span>' +
-				'<div class="coustatus mui-pull-right"><span class="aimlabel">' + consultType + '</span>' +
+				'<div class="coustatus mui-pull-right">' +//<span class="aimlabel">' + consultType + '</span>
 				'<span class="' + statusStyle + ' status" consultId="' + item["consultId"] + '">' + status + '</span></div></div>' +
 				'<a class="proinfor itemBtn" consultId="' + item["consultId"] + '" consultantId="' + item["consultantId"] + '" consultStatus="'+item["consultStatus"]+'" >' +
 				'<span class="mui-badge mui-badge-danger readstate ' + unreadStyle + '" consultId="' + item["consultId"] + '">' + unreadCount + '</span>' +
@@ -701,7 +701,7 @@ function checkedFun(i) {
 				otypeval.value = '0';
 				ostateval.value = '0';
 				osortval.value = '1'; 
-				document.getElementById("headck2").innerHTML = "咨询类型";
+				/*document.getElementById("headck2").innerHTML = "咨询类型";*/
 				document.getElementById("headck3").innerHTML = "咨询状态";
 				document.getElementById("headck4").innerHTML = "按最后回复排序";
 			    var aSpan=document.getElementById("logined").querySelectorAll("li");
@@ -713,11 +713,11 @@ function checkedFun(i) {
 				var value = this.getAttribute("ck" + i);
 				document.getElementById("headck" + i).setAttribute('headck', value); 
 				//咨询类型传值不同，传""(空)，技术咨询、资源咨询、其他事务 
-				otypeval.value = document.getElementById("headck2").getAttribute('headck');
+				//otypeval.value = document.getElementById("headck2").getAttribute('headck');
 				if(otypeval.value == 0) {
 					otypeval.value = '';
 				} else {
-					otypeval.value = document.getElementById("headck2").innerHTML;
+					//otypeval.value = document.getElementById("headck2").innerHTML;
 				}
 				
 				if(oFlag1==1){

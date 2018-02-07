@@ -7,7 +7,7 @@
 		<style>
 			.box {position: absolute;z-index: 2;top: 0;bottom: 0;left: 0;right:0;overflow: hidden;background: #ffffff;}			
 			.footer {width:100%;height:18%;background:#fff;display: flex;align-items: center;justify-content: center;position: fixed;bottom: 0;}
-			.skip {position: fixed;top: 3%;right: 5%;background: rgba(0, 0, 0, 0.15);text-align: center;color: #fff;z-index:3;border-radius: 40px;}
+			.skip {position: fixed;top: 3%;right: 5%;background: rgba(0, 0, 0, 0.15);text-align: center;color: #fff;z-index:3;border-radius: 60px;}
 			.skip:before{content: "跳过广告";}
 		</style>
 	</head>
@@ -19,7 +19,7 @@
 				<img class="logo" src="../images/logo.png" width="20%"/>
 			</div>
 		</div>
-		<div class="skip" id="close"></div>
+		<div class="skip" id="close"><span></span></div>
 	</body>
 	<script src="../js/public/mui.min.js"></script>
 	<script src="../js/public/base.js"></script>
@@ -28,11 +28,11 @@
 		var anos=ifiosAmdandroid();
 		var footer=document.getElementsByClassName("footer")[0]
 		var skip=document.getElementsByClassName("skip")[0]
+		var closet=document.getElementById("close")
 		if(anos==0){//android
 			skip.style.fontSize="36px";
-			skip.style.padding="20px 36px";
+			skip.style.padding="18px 36px";
 		}else{
-//			footer.style.height="18%";
 			skip.style.fontSize="16px";
 			skip.style.padding="10px 20px";
 		}
@@ -42,28 +42,29 @@
 		mui.ready(function() {
 			var ua = navigator.userAgent.toLowerCase(); 
 			if(/android|adr/gi.test(ua)){
-				document.getElementsByClassName("footer")[0].style.height=""
-				document.getElementsByClassName("skip")[0].style.height=""
+				footer.style.height=""
+				skip.style.height=""
 			}
 			mui.plusReady(function() {
 				plus.navigator.setFullscreen(true);
 				plus.navigator.closeSplashscreen();
 			});
-			document.getElementById("close").addEventListener('tap', function(event) {
+			closet.addEventListener('tap', function(event) {
 				plus.navigator.setFullscreen(false);
 				plus.webview.currentWebview().close();
 			}, false);
 			setTimeMiu(5)
 
 			function setTimeMiu(n) {
-				var i = 0;
+				var i = n;
 				var Timer = setInterval(function() {
-					i++;
-					if(i == n - 1) {
+					closet.querySelector("span").innerHTML=i+"s"
+					if(i == 0) {
 						plus.navigator.setFullscreen(false);
 						plus.webview.currentWebview().close();
 						clearInterval(Timer);
 					}
+					i--;
 				}, 1000);
 			}
 		})

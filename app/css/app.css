@@ -1009,7 +1009,7 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 .showDetail .attenedSpan:before{content:"";}
 .showDetail .invite{min-width: 56px;text-align:center;margin-top: -14px;border-radius: 4px;display: inline-block;line-height: normal; position: absolute;top: 50%;right: 15px;padding: 6px 8px; background-color:#ff9900;color: #fff;font-size: 14px;}
 .showDetail .invite.invite2{/*width:56px;*/}
-.showDetail .showMain{font-size:15px;color:#333;line-height:28px;/*text-indent: 2em;*/}
+.showDetail .showMain{font-size:15px;color:#333;line-height:28px; word-break: break-word;}
 .showDetail .showMain img{max-width: 100%;/*margin-left:-32px;*/}
 .showDetail .showMain p{margin-bottom:16px;font-size:15px;color:#333;text-align:justify}
 .showDetail .showMain *{ -webkit-user-select:text; word-break: break-word;}
@@ -1062,8 +1062,8 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .commentBlock .madiaInfo{padding-left:52px;}
 .commentBlock .operateSpan{margin:8px 0 0;color:#9d9ea8;font-size: 13px;color: #999;cursor: pointer;}
 .commentBlock .madiaInfo .h2Font{ -webkit-user-select:text;word-break:break-word;}
-.leaveWord .madiaInfo .h1Font{font-size:14px} 
-.leaveWord .madiaInfo .h2Font{font-size:14px} 
+.leaveWord .madiaInfo .h1Font{font-size:14px;word-break: break-word;} 
+.leaveWord .madiaInfo .h2Font{font-size:14px;word-break: break-word;} 
 /*资源文章底部操作栏*/
 .mui-bar-tab.footbox .artfoot.mui-row{padding:2px 15px 0;text-align: center;}
 .mui-bar-tab.footbox .artfoot.mui-row>[class*=mui-col-]{}
@@ -1165,7 +1165,9 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .qa-owner .owner-info{padding-left:38px;width: 100%;overflow: hidden;height: 26px;}
 .owner-name{float: left;}
 .owner-tit{padding-left:8px;color:#888888}
-.qa-con{font-size:14px;line-height: 22px;color:#666;}
+.qa-con{font-size:14px;line-height: 22px;color:#666;word-break: break-word;}
+.showliSpan{overflow: hidden;margin-top:10px;margin-right:-10px;}
+.showliSpan>span{font-size:13px;line-height: 22px;color: #999999;padding-right:10px}
 .mui-table-view.partLine{background: none;}
 .mui-table-view.partLine>.mui-table-view-cell{margin-bottom: 10px;background: #fff;}
 .mui-table-view.partLine>.mui-table-view-cell:after{content:none;}
@@ -1201,7 +1203,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .list-hold-count>ul>li.active>span{background: #ff9900;color:#fff;border-color: #ff9900}
 .list-hold .qa-owner{margin: 0;}
 .item_detail .h1Font{font-weight:normal;font-size:18px;line-height:24px;color:#000}
-.item_detail .list_con{font-size: 15px;color: #333;line-height: 24px;margin: 6px 0;text-align:justify}
+.item_detail .list_con{font-size: 15px;color: #333;line-height: 24px;margin: 6px 0;text-align:justify;word-break: break-word;}
 .list_image,.item-btn{overflow: hidden;}
 .list-main .list_image{display: none;}
 .list_image li,.item-btn li{display: inline-block; overflow: hidden;float:left; width: 33.3%; -webkit-box-sizing: border-box;box-sizing: border-box;position: relative;}

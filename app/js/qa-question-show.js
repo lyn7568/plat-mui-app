@@ -220,14 +220,14 @@ mui.ready(function() {
 				var hd = "",
 					hl = "";
 				if(dataStr.agree > 0) {
-					hd = '<span>' + dataStr.agree + '赞</span>'
+					hd = '<span>赞 ' + dataStr.agree + '</span>'
 				}
 				liStr.setAttribute("data-id", dataStr.id);
 				liStr.className = "mui-table-view-cell";
 				liStr.innerHTML = '<div class="madiaInfo">' +
 					'<div class="flexCenter qa-owner"></div>' +
 					'<p class="qa-con mui-ellipsis-5">' + (dataStr.cnt).replace(/\n/g,"<br />") + '</p>' +
-					'<div class="showli mui-ellipsis">' +
+					'<div class="showliSpan mui-ellipsis">' +
 					'<span>' + commenTime(dataStr.createTime) + '</span>' + hd + '<span class="leaveMsgCount"></span>' +
 					'</div>' +
 					'</div>'
@@ -242,7 +242,7 @@ mui.ready(function() {
 				}, "get", function(data) {
 					if(data.success) {
 						if(data.data > 0) {
-							$str.find(".leaveMsgCount").html(data.data + "留言");
+							$str.find(".leaveMsgCount").html("留言 " + data.data);
 						}
 					}
 				})
@@ -406,6 +406,7 @@ mui.ready(function() {
 			dataO = {time: "",id: "",score:""}
 			anExist();
 			answerList();
+			getConmain();
 		});
 		yaoanswer.addEventListener('tap', function() {
 			if(userid && userid != null && userid != "null") {

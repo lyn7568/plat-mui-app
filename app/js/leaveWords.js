@@ -88,7 +88,7 @@
 					'</div>' +
 					'</div>' +
 					'<div class="madiaInfo">' +
-					'<p class="h1Font">' + data[i].cnt + '</p>' +
+					'<p class="h1Font messageContent">' + data[i].cnt + '</p>' +
 					'<p class="operateSpan">' +
 					'<span class="spanitem commenttime">' + commenTime(data[i].createTime) + '</span>' + re + oText +
 					'</p>' +

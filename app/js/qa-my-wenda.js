@@ -241,7 +241,7 @@ mui.ready(function () {
 				}
                 var hd = "";
                 if (dataStr.replyCount > 0) {
-                    hd = '<span>' + dataStr.replyCount + ' 回答</span>'
+                    hd = '<span>回答 ' + dataStr.replyCount + '</span>'
                 }
                 liStr.setAttribute("data-id", dataStr.id);
                 liStr.className = "mui-table-view-cell";
@@ -261,7 +261,7 @@ mui.ready(function () {
 				}, "get", function(data) {
 					if(data.success) {
 						if(data.data > 0) {
-							$str.find(".attendCount").html(data.data + "关注");
+							$str.find(".attendCount").html("关注 " + data.data);
 						}
 					}
 				})
@@ -269,7 +269,7 @@ mui.ready(function () {
             answerModule = function (dataStr, liStr) {
                 var hd = "";
                 if (dataStr.agree > 0) {
-                    hd = '<span>' + dataStr.agree + '赞</span>'
+                    hd = '<span>赞 ' + dataStr.agree + '</span>'
                 }
                 liStr.setAttribute("data-id", dataStr.id);
                 liStr.className = "mui-table-view-cell";
@@ -277,7 +277,7 @@ mui.ready(function () {
                     '<p class="h1Font mui-ellipsis-2 qa-question"></p>' +
                     '<div class="flexCenter qa-owner"></div>' +
                     '<p class="qa-con mui-ellipsis-5">' + (dataStr.cnt).replace(/\n/g,"<br />") + '</p>' +
-                    '<div class="showli mui-ellipsis">' +
+                    '<div class="showliSpan mui-ellipsis">' +
                     '<span>' + commenTime(dataStr.createTime) + '</span>' + hd +'<span class="leaveMsgCount"></span>'+
                     '</div>' +
                     '</div>'
@@ -293,7 +293,7 @@ mui.ready(function () {
 				}, "get", function(data) {
 					if(data.success) {
 						if(data.data > 0) {
-							$str.find(".leaveMsgCount").html(data.data + "留言");
+							$str.find(".leaveMsgCount").html("留言 " + data.data);
 						}
 					}
 				})

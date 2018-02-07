@@ -76,7 +76,7 @@ mui.ready(function() {
 			}
 			var hd = "";
 			if(dataStr.replyCount > 0) {
-				hd = '<span>' + dataStr.replyCount + ' 回答</span>'
+				hd = '<span>回答 ' + dataStr.replyCount + '</span>'
 			}
 			liStr.className = "mui-table-view-cell";
 			liStr.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
@@ -95,7 +95,7 @@ mui.ready(function() {
 			}, "get", function(data) {
 				if(data.success) {
 					if(data.data > 0) {
-						$str.find(".attendCount").html(data.data + "关注");
+						$str.find(".attendCount").html("关注 " + data.data);
 					}
 				}
 			})

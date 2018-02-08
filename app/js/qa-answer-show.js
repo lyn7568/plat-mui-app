@@ -16,7 +16,7 @@ mui.ready(function() {
 		var flag=0;
 		var answerTit=""
 		var oUrl = baseUrl + "/images/logo180.png";
-		wlog("answer",answerId,"1");
+		wlog("answer",answerId,"2");
 		
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {

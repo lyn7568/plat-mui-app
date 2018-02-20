@@ -37,6 +37,7 @@
  		var showUserPickerButton = doc.getElementById('showDegreePicker');
  		var degreeResult = doc.getElementById('degreeResult');
  		showUserPickerButton.addEventListener('tap', function(event) {
+ 			 hide()
  			userPicker.show(function(items) {
  				degreeResult.innerText = items[0].text;
  				showUserPickerButton.setAttribute('flag',items[0].value);
@@ -66,6 +67,7 @@
  	var ExpecteDuration = doc.getElementById('ExpecteDuration');
  	var ExpecteResult = doc.getElementById('ExpecteResult');
  	ExpecteDuration.addEventListener('tap', function(event) {
+ 		 hide()
  		userPicker1.show(function(items) {
  			ExpecteResult.innerText = items[0].text;
  			ExpecteDuration.setAttribute("flag",items[0].value) 
@@ -132,12 +134,33 @@
  	var showCityPickerButton = doc.getElementById('showCityPicker');
 	var cityResult=document.querySelector("#cityResult")
  	showCityPickerButton.addEventListener('tap', function(event) {
+ 		 hide()
  		cityPicker.show(function(items) {
  			cityResult.innerText = items[0].text + "-" + items[1].text;
  			cityResult.setAttribute('city',items[1].text);
  			cityResult.setAttribute('province',items[0].text)
  		});
  	}, false);
+ 	function focu(par) {
+	 	document.querySelector(par).addEventListener("focus",function(){
+	   		document.querySelectorAll('.mui-poppicker')[0].style.display='none';
+	   		document.querySelectorAll('.mui-poppicker')[1].style.display='none';
+	   		document.querySelectorAll('.mui-poppicker')[2].style.display='none';
+	 	},false);
+ 	}
+ 	function hide() {
+ 		document.querySelector("#demandTitle").blur();
+ 		document.querySelector("#org").blur();
+ 		document.querySelector("#phone").blur();
+ 		document.querySelector("#demandContent").blur();
+ 		document.querySelectorAll('.mui-poppicker')[0].style.display='block';
+ 		document.querySelectorAll('.mui-poppicker')[1].style.display='block';
+ 		document.querySelectorAll('.mui-poppicker')[2].style.display='block';
+ 	}
+ 	focu('#demandTitle');
+ 	focu('#demandContent');
+ 	focu('#phone');
+ 	focu('#org');
  	queryPerson()
  	/*个人信息*/
  	function queryPerson() {

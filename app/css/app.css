@@ -1164,7 +1164,7 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 .qa-owner .owner-head.useHead{width:32px;height:32px;margin-top:-16px;background-image: url(../images/default-photo.jpg);border-radius: 50%;}
 .qa-owner .owner-info{padding-left:38px;width: 100%;overflow: hidden;height: 26px;}
 .owner-name{float: left;}
-.owner-tit{padding-left:8px;color:#888888}
+.owner-tit{padding-left:8px;color:#888888;line-height:24px;}
 .qa-con{font-size:14px;line-height: 22px;color:#666;word-break: break-word;}
 .showliSpan{overflow: hidden;margin-top:10px;margin-right:-10px;}
 .showliSpan>span{font-size:13px;line-height: 22px;color: #999999;padding-right:10px}

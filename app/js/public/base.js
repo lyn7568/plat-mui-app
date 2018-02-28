@@ -166,6 +166,14 @@ function shareAddIntegral(num) {
 	});
 }
 
+function listConCut(str){//**回答内容过滤html标签**//
+	var regTag =/<\/?[a-zA-Z]+[^><]*?>/g;
+	var strTo=str.replace(/<img(.*?)>/g, "[图片]").replace(regTag,"")
+	return strTo
+}
+function checkHtmltag(htmlStr) {/*字符串是否含有html标签的检测*/
+    return htmlStr.substr(0,1)=="<"
+}
 //时间显示规则
 function commenTime(startTime){
 	var nowTimg =  new Date();

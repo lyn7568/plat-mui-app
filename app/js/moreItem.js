@@ -130,14 +130,20 @@ mui.ready(function(){
 			})
 		})
 		document.getElementById("corrAnswer").addEventListener('tap',function(){
-			plus.nativeUI.showWaiting(); //显示原生等待框
-			var webviewShow = plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
-				aflag:1,
-				anid: self.proid,
-				quid: self.quid,
-				qutit:self.data.title,
-				qucnt:self.data.content
-			})
+			console.log(JSON.stringify(checkHtmltag(self.data.content)))
+			if(!checkHtmltag(self.data.content)){
+				plus.nativeUI.showWaiting(); //显示原生等待框
+				var webviewShow = plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
+					aflag:1,
+					anid: self.proid,
+					quid: self.quid,
+					qutit:self.data.title,
+					qucnt:self.data.content
+				})
+			}else{
+				plus.nativeUI.toast("该回答中包含html不能修改，如需修改，请移步科袖网站", toastStyle);
+			}
+			
 		})
 		document.getElementsByClassName("exitbtn")[0].addEventListener("tap",function(){
 			var bts = ["是", "否"];

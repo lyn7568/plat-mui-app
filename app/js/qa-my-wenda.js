@@ -276,7 +276,7 @@ mui.ready(function () {
                 liStr.innerHTML = '<div class="madiaInfo">' +
                     '<p class="h1Font mui-ellipsis-2 qa-question"></p>' +
                     '<div class="flexCenter qa-owner"></div>' +
-                    '<p class="qa-con mui-ellipsis-5">' + (dataStr.cnt).replace(/\n/g,"<br />") + '</p>' +
+                    '<div class="qa-con mui-ellipsis-5">' + listConCut(dataStr.cnt) + '</div>' +
                     '<div class="showliSpan mui-ellipsis">' +
                     '<span>' + commenTime(dataStr.createTime) + '</span>' + hd +'<span class="leaveMsgCount"></span>'+
                     '</div>' +

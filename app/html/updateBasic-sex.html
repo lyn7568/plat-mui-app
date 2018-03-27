@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>编辑个人资料-性别</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;}
+			.mui-content{height:100%;overflow: auto;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav toptitbox">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+		    <h1 class="mui-title toptit">性别</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-table-view-radio" id="sexRadio">
+				<li class="mui-table-view-cell" data-val="1">
+					<a class="mui-navigate-right">
+						男
+					</a>
+				</li>
+				<li class="mui-table-view-cell" data-val="2">
+					<a class="mui-navigate-right">
+						女
+					</a>
+				</li>
+			</ul>
+			<div class="mui-content-padded frmboxNew">
+				<button id="login" class="mui-btn mui-btn-block frmbtn frmactive" >保存</button>
+			</div>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/updateBasic-sex.js"></script>
+	</body>
+
+</html>

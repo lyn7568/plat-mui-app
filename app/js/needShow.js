@@ -19,7 +19,7 @@ mui.ready(function() {
 	    var attBtn=document.getElementById("attBtn");
 		 
 		getDemandinfo();
-		pageViewsVal();
+		pageViewLog(demandId, 7)
 		moreMes();//更多
 		
 		document.getElementById("personAL").addEventListener("tap", function() {//企业详情
@@ -226,23 +226,6 @@ mui.ready(function() {
 				}
 			});
 			
-		}
-		//浏览量
-		function pageViewsVal() {
-			mui.ajax(baseUrl+"/ajax/demand/incPageViews",{
-				"type": "POST",
-				"dataType": "json",
-				"data": {
-					"id": demandId
-				},
-				"success": function(data) {
-					if(data.success) {}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
-				}
-			});
 		}
 		/*企业用户信息*/
 		function cmpFun(id) {

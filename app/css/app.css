@@ -332,24 +332,19 @@ ul.boxnav li.set span:before{font-family:"iconfont";content: "\e733";font-size:1
 .personinfo .listtit{ font-size: 20px; line-height: 30px; color: #333333;}
 .personinfo .listtit3{font-size: 14px; line-height: 24px; color: #AAAAAA; margin: 0;}
 /*咨询记录及等级*/
-/*.peolevelbox{ display: block; padding:4% 16px; border-top:1px #F0F0F0 solid;}
-.peocountbox{width: 150px;}
-.peocount { color:#888888 ; overflow:hidden; }
-.peocount span em{font-size: 14px; padding: 0 3px; color: #FF9900; font-weight: 600;}
-.peocount .dialogicon{color: #FF9900;}
-.peocount:before{position: absolute;right: 0; top: 0;left: 15px; height: 1px; content: ''; -webkit-transform: scaleY(.5); transform: scaleY(.5);background-color: #c8c7cc;}*/
 .levelbox{margin: auto; overflow: hidden; }
 .levelbox .mui-icon{ font-size: 14px; color: #CCCCCC;}
 .levelbox .icon-favorfill{ color:#F4C600;}
 .starShow{position: absolute;right: 0;top:-4px;overflow: hidden;}
 .commentsArea .madiaHead.useHeadMsg{top:36px;margin-top:0;}
 /*专家相关信息*/
-.infocontit{font-size:16px;line-height: 40px;min-height:40px;border-bottom: 1px solid #E5E5E5; position: relative;padding-left: 26px;color:#333}
+.infocontit{font-size:16px;line-height: 40px;min-height:40px; position: relative;padding-left: 26px;color:#333}
 .infocontit:before{position:absolute;top:50%;margin-top:-10px;left: 15px;;display:inline-block;content:"";width:4px;height:18px;border-radius:10px;background:#ff9900;}
 .infocontitM{padding-left: 15px;font-size:15px;}
 .infocontitM:before{content: none;}
 .OnetitM{border-color: transparent;}
 .infocon{padding:15px; font-size: 14px;color:#666;}
+.infoconM{border-top: 1px solid #E5E5E5;}
 .infocon .breifinfo{line-height: 22px;word-wrap: break-word;}
 .infocon ul{ padding:0; margin: 0; overflow: hidden;}
 .infocon ul>li{list-style: none;}
@@ -621,9 +616,9 @@ footer.chatFooter .mui-icon-paperplane {font-size: 16px;word-break: keep-all;lin
 
 /***********************缺省页面*******************/
 .nodatabox{width:100%;height: 100%;padding:50px 10px; margin:auto;text-align: center;}
-.nodatabox .picbox{margin:8px auto;display:inline-block;width:140px;height:140px;background-position: center;background-repeat: no-repeat;background-size:cover;}
-.nodatabox .picbox.picNull{background-image:url(../images/points_icon_ku_nor@3x.png);}
-.nodatabox .txtbox { margin:6px auto;}
+.picbox{margin:8px auto;display:inline-block;width:140px;height:140px;background-position: center;background-repeat: no-repeat;background-size:cover;}
+.picbox.picNull{background-image:url(../images/points_icon_ku_nor@3x.png);}
+.txtbox { margin:6px auto;line-height: 22px;}
 .nodatabox .noContip{font-size:12px;color:#BBBBBB;line-height:40px;}
 .nodatabox .picbox .defpic{display:block;margin:auto;width:160px; height: 160px;background: url(../images/nodata.png) -6px 0 no-repeat;}
 .nodatabox .picbox .defpic.consult-pic{background-position: -232px -1320px;}/*咨询页面未登录*/

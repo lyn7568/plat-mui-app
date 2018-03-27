@@ -317,23 +317,10 @@ mui.ready(function() {
 					})
 				})
 			}
-		mui.ajax(baseUrl + '/ajax/question/pageViews',{
-			"type" :  "POST" ,
-			"dataType" : "json",
-			"data" :{"qid":questionId},
-			"success" : function(data) {
-				console.log(data);
-				if (data.success){
-				}
-			},
-			"error":function(){
-				
-			}
-		});
-		
 		pullEvent();
 		getConmain();
 		answerList();
+		pageViewLog(questionId,8)
 		moreMes();
 		if(userid && userid != null && userid != "null") {
 			anExist(); //判断是否回答过该问题

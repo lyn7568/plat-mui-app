@@ -182,17 +182,16 @@ mui('.gridbg').on('tap', 'li', function() {
 })
 
 function ruZhuCmp(){//入驻企业
-	mui.ajax(baseUrl+"/ajax/org/find/pq",{
+	mui.ajax(baseUrl+"/ajax/org/index/search",{
 		type: "GET",
 		timeout: 10000,
 		dataType: "json",
 		data:{
-			"pageSize": 5,
-			"pageNo": 1
+			"rows": 5
 		},
 		success: function(data) {
 			if(data.success) {
-				var $info = data.data.data;
+				var $info = data.data;
 				for(var i = 0; i < $info.length; i++) {
 					var liStr=document.createElement("li");
 					liStr.className="mui-table-view-cell";
@@ -243,17 +242,16 @@ function ruZhuCmp(){//入驻企业
 	})
 }
 function resShare(){//资源共享
-	mui.ajax(baseUrl+"/ajax/resource/firstpq",{
+	mui.ajax(baseUrl+ "/ajax/resource/index/search",{
 		type: "GET",
 		timeout: 10000,
 		dataType: "json",
 		data:{
-			"pageSize":5,
-			"pageNo": 1
+			"rows":5
 		},
 		success: function(data) {
 			if(data.success) {
-				var $info = data.data.data;
+				var $info = data.data;
 				for(var i = 0; i < $info.length; i++) {
 					var liStr = document.createElement("li");
 					liStr.setAttribute("data-id", $info[i].resourceId);
@@ -301,17 +299,16 @@ function resShare(){//资源共享
 	})
 }
 function proShow(){//专家
-	mui.ajax(baseUrl+"/ajax/professor/pqBaseInfo",{
+	mui.ajax(baseUrl+"/ajax/professor/index/search",{
 		type: "GET",
 		timeout: 10000,
 		dataType: "json",
 		data:{
-			"pageSize":5,
-			"pageNo": 1
+			"rows": 5
 		},
 		success: function(data) {
 			if(data.success) {
-				var $info = data.data.data;
+				var $info = data.data;
 				for(var i = 0; i < $info.length; i++) {
 					var liStr = document.createElement("li");
 					liStr.setAttribute("data-id", $info[i].id);

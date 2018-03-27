@@ -11,6 +11,9 @@
 		<link href="../css/iconfont.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<script src="../js/public/jquery-1.11.1.js"></script>
+		<style type="text/css">
+			.mui-scroll-wrapper{top:45px}
+		</style>
 	</head>
 
 	<body>
@@ -22,37 +25,38 @@
 				</form>
 			</div>
 		</header>
-		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
-			<div class="mui-scroll">
-				<ul class="mui-table-view madiaBlock request-qa" id="questList">
-					<li class="mui-table-view-cell">
-			            <div class="flexCenter flex-pright">
-			                <div class="madiaHead useHead"></div>
-							<div class="madiaInfo">
-								<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
-								<p class="mui-ellipsis h2Font">职称/职位,所在机构</p>
-								<p class="mui-ellipsis h3Font">研究方向；研究方向；研究方向；研究方向；研究方向；研究方向；研究方向；</p>
-							</div>
-			            </div>
-			            <span class="yaoqing">邀请</span>
-			        </li>
-					<!--<li class="mui-table-view-cell">
-			            <div class="flexCenter flex-pright">
-			                <div class="madiaHead useHead"></div>
-							<div class="madiaInfo">
-								<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
-								<p class="mui-ellipsis h2Font">职称/职位,所在机构</p>
-								<p class="mui-ellipsis h3Font">研究方向；研究方向；研究方向；研究方向；研究方向；研究方向；研究方向；</p>
-							</div>
-			            </div>
-			            <span class="yaoqing yiyaoqing">已邀请</span>
-			        </li>-->
-				</ul>
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper" id="pullrefresh1">
+				<div class="mui-scroll">
+					<ul class="mui-table-view madiaBlock request-qa" id="questList">
+						<!--<li class="mui-table-view-cell">
+				            <div class="flexCenter flex-pright">
+				                <div class="madiaHead useHead"></div>
+								<div class="madiaInfo">
+									<p><span class="h1Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+									<p class="mui-ellipsis h2Font">职称/职位,所在机构</p>
+									<p class="mui-ellipsis h3Font">研究方向；研究方向；研究方向；研究方向；研究方向；研究方向；研究方向；</p>
+								</div>
+				            </div>
+				            <span class="yaoqing yiyaoqing">已邀请</span>
+				        </li>-->
+					</ul>
+				</div>
+			</div>
+			<div class="mui-scroll-wrapper displayNone" id="pullrefresh2">
+				<div class="mui-scroll">
+					<ul class="mui-table-view madiaBlock request-qa" id="questListSearch">
+						
+					</ul>
+				</div>
 			</div>
 		</div>
+		
 
 		<script src="../js/public/mui.min.js"></script>
 		<script src="../js/public/base.js"></script>
+		<script src="../js/public/mui.pullToRefresh.js"></script>
+		<script src="../js/public/mui.pullToRefresh.material.js"></script>
 		<script src="../js/qa-request-da.js"></script>
 	</body>
 

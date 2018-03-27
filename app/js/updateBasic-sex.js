@@ -3,35 +3,26 @@ mui.ready(function() {
 		var web = plus.webview.currentWebview()
 		web.show("slide-in-right", 150);
 		var userid = plus.storage.getItem('userid');
+		var sexRadio = document.getElementById("sexRadio");
 		function person() {
 			plus.nativeUI.closeWaiting();
-			var title = document.getElementById("title");
-			title.value = web.department;
-			if(web.department.length) {
-				document.getElementById("fontAdd").innerHTML = web.department.length;
-				document.getElementById("login").removeAttribute("disabled");
+			if(web.sex==1){
+				sexRadio.getElementsByTagName('li')[0].classList.add("mui-selected")
+			}else if(web.sex==2){
+				sexRadio.getElementsByTagName('li')[1].classList.add("mui-selected")
 			}
-			document.getElementById("title").addEventListener("input", function() {
-					document.getElementById("fontAdd").innerHTML = this.value.length;
-			})
 		}
 		person();
 		document.getElementById("login").addEventListener("tap",function(){
-			 savePro();
+			savePro();
 		})
 		function savePro() {
 			var mess = {};
-			if(document.getElementById("title").value.length) {
-				if(document.getElementById("title").value.length>20) {
-					plus.nativeUI.toast("所属部门不得超过20个字", toastStyle);
-					return;
-				}
-			}
-			mess.sex=web.sex;
+			mess.sex=sexRadio.getElementsByClassName("mui-selected")[0].getAttribute("data-val");
 			mess.birthday=web.birthday;
 			mess.name = web.name;
 			mess.orgName = web.orgName;
-			mess.department = document.getElementById("title").value;
+			mess.department =web.department;
 			mess.title = web.title;
 			mess.office =web.office;	
 			mess.address = web.address;
@@ -41,7 +32,7 @@ mui.ready(function() {
 			mess.id = userid;
 			var mess1 = JSON.stringify(mess);
 			console.log(JSON.stringify(mess))
-			$.ajax({
+			mui.ajax({
 				"url": baseUrl + '/ajax/professor',
 				"type": "PUT",
 				"async": true,
@@ -51,11 +42,11 @@ mui.ready(function() {
 					console.log(JSON.stringify(data))
 					if(data.success) {
 						plus.nativeUI.showWaiting();
-							var aa = plus.webview.getWebviewById("updateBasic.html");
-							mui.fire(aa, "newId", {
+							var web = plus.webview.getWebviewById("updateBasic.html");
+							mui.fire(web, "newId", {
 								rd: 1
 							});
-							mui.back();						
+						mui.back();
 					} else {
 						plus.nativeUI.toast("服务器链接超时", toastStyle);
 					}

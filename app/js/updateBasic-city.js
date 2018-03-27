@@ -54,6 +54,8 @@ mui.ready(function() {
 
 		function savePro() {
 			var mess = {};
+			mess.sex=web.sex;
+			mess.birthday=web.birthday;
 			mess.name = web.name;
 			mess.orgName = web.orgName;
 			mess.department = web.department;

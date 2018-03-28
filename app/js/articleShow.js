@@ -283,12 +283,15 @@ mui.plusReady(function() {
 				}
 				document.getElementById("correlationService").style.display = "block";
 				for(var i = 0; i < $data.length; i++) {
-					var rImg="../images/default-service.jpg"
+					var cnt="", rImg="../images/default-service.jpg"
 					if($data[i].images) {
 						var subs = strToAry($data[i].images)
 						if(subs.length > 0) {
 							rImg=baseUrl+"/data/ware" + subs[0]
 						}
+					}
+					if($data.cnt){
+						cnt="内容："+$data.cnt
 					}
 					var li = document.createElement("li");
 					li.setAttribute("data-id",$data[i].id);
@@ -298,6 +301,7 @@ mui.plusReady(function() {
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 						'<p><span class="h2Font ownerName"></span><em class="authicon ownerSty"></em></p>' +
+						//'<p class="mui-ellipsis h2Font">' + cnt + '</p>' +
 						'</div>' +
 						'</div>'
 					document.getElementById("serviceList").appendChild(li);
@@ -436,20 +440,22 @@ mui.plusReady(function() {
 		proSigInfo:function(id,$list){
 			oArticleModule.oAjaxGet(baseUrl + "/ajax/professor/baseInfo/"+id,{
 			}, "get", function(data){
-				var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
-				$list.find(".ownerName").html(data.data.name)
+				var datas=data
+				var userType = autho(datas.authType, datas.orgAuth, datas.authStatus);
+				$list.find(".ownerName").html(datas.name)
 				$list.find(".ownerSty").addClass(userType.sty)
 			});
 		},
 		orgSigInfo:function(id,$list){
 			oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + id,{
 			}, "get", function(data){
-				var name=data.data.name;
-				if(data.data.forShort){
-					name=data.data.forShort
+				var datas=data
+				var name=datas.name;
+				if(datas.forShort){
+					name=datas.forShort
 				}
 				$list.find(".ownerName").html(name)
-				if(data.data.authStatus == 3){
+				if(datas.authStatus == 3){
 					$list.find(".ownerSty").addClass("authicon-com-ok")
 				}
 			});

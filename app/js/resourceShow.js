@@ -466,6 +466,13 @@ mui.plusReady(function() {
 				
 			}, false);
 	});
+	mui('#likeService').on('tap', 'li', function() {
+		var resouId = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
+			serviceId: resouId
+		});
+	});
 	//判断是否登录，登录才可咨询，关注，收藏
 	function isLogin() {
 		var userid = plus.storage.getItem('userid');

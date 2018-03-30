@@ -102,6 +102,8 @@ mui.ready(function(){
 						shareAddIntegral(6);
 					}else if(self.name=="patent"){
 						shareAddIntegral(5);
+					}else if(self.name=="ware"){
+						shareAddIntegral(7);
 					}
 				}
 				if(self.name=="demand"){

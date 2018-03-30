@@ -149,6 +149,9 @@ function shareAddIntegral(num) {
 	} else if(num == 6) {
 		burl = "/ajax/growth/sharePaper";
 		title = "成功分享论文信息";
+	}else if(num == 7) {
+		burl = "/ajax/growth/share";
+		title = "成功分享服务信息";
 	}
 	mui.ajax(baseUrl + burl, {
 		dataType: 'json', //数据格式类型

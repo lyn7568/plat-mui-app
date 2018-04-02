@@ -330,7 +330,6 @@ mui.plusReady(function() {
 		patentListVal=function(){
 			var aimId="patent"
 			oAjax("/ajax/ppatent/professor",{
-				"category":"1",
 				"owner":proId,
 				"rows": rows
 			}, "get", function(res){
@@ -356,7 +355,6 @@ mui.plusReady(function() {
 		paperListVal=function(){
 			var aimId="paper"
 			oAjax("/ajax/ppaper/professor",{
-				"category":"1",
 				"owner":proId,
 				"rows": rows
 			}, "get", function(res){

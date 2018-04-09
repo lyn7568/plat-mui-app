@@ -49,6 +49,8 @@ mui.ready(function() {
 					return;
 				}
 			}
+			mess.sex=web.sex;
+			mess.birthday=web.birthday;
 			mess.name = web.name;
 			mess.orgName = document.getElementById("title").value;
 			mess.department =web.department;

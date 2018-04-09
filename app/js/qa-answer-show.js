@@ -16,6 +16,10 @@ mui.ready(function() {
 		var flag=0;
 		var answerTit=""
 		var oUrl = baseUrl + "/images/logo180.png";
+		
+		mui('#answerCnt').on('tap','a',function(){
+			plus.runtime.openURL( this.href);
+		});
 		wlog("answer",answerId,"2");
 		
 		var oAjax = function(url, dataS, otype, oFun) {
@@ -44,7 +48,14 @@ mui.ready(function() {
 					
 					if($da.cnt) {
 						answerTit=$da.cnt
-						document.getElementById("answerCnt").innerHTML = ($da.cnt).replace(/\n/g,"<br />");
+						document.getElementById("answerCnt").innerHTML = $da.cnt;
+						var oImg = document.getElementById("answerCnt").getElementsByTagName("img");
+						for(var i = 0; i < oImg.length; i++) {
+							(function(n) {
+								var att = oImg[n].src.substr(7);
+								oImg[n].setAttribute("src", baseUrl + att);
+							})(i);
+						}
 					}
 					if(userid != $da.uid) {
 						ownerid = $da.uid
@@ -144,7 +155,7 @@ mui.ready(function() {
 						flag:flag,
 						name: "answer",
 						data: {
-							content: answerTit.substring(0, 70),
+							content: answerTit,
 							title: document.getElementById("questTit").innerHTML,
 							href: baseUrl + "/e/da.html?id=" + answerId,
 							thumbs: [oUrl]

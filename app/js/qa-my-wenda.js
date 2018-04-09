@@ -14,15 +14,14 @@ mui.ready(function () {
 		self.show("slide-in-right", 150);
         var currentIndex,
             currentSelf,
-            pageNo = 1,
-            rows = 20,
-            pageSize = 20;
-        var listData = [{
-                type: 0,
-                aimid: "myQ",
-                url: "/ajax/question/my",
-                notip: "您还没有提过问题"
-            },
+            rows = 20
+        var listData = [
+        		{
+	                type: 0,
+	                aimid: "myQ",
+	                url: "/ajax/question/my",
+	                notip: "您还没有提过问题"
+            	},
                 {
                     type: 1,
                     aimid: "myA",
@@ -32,7 +31,7 @@ mui.ready(function () {
                 {
                     type: 2,
                     aimid: "watchPro",
-                    url: "/ajax/watch/qaPro",
+                    url: "/ajax/watch/proList",
                     notip: "您还没有关注的人"
                 },
                 {
@@ -48,7 +47,11 @@ mui.ready(function () {
                     notip: "您还没有收藏的回答"
                 }
             ],
-            dataO = {time: "", id: ""};
+            dataO = {time: "", id: ""},
+            watchO={
+				watchTime:"",
+				watchObjId:"",
+			};
         var userid = plus.storage.getItem('userid');
 
         function allAgreeNum() {
@@ -80,7 +83,7 @@ mui.ready(function () {
                 });
             })
         };
-        var comPull = function (dataStr, index, reStr) {
+        var comPull = function (dataStr, index) {
             var url = listData[index].url,
                 aimId = listData[index].aimid,
                 newStr = listData[index].notip;
@@ -95,10 +98,11 @@ mui.ready(function () {
 	                                    setTimeout(function () {
 	                                        if (index == 2) {
 	                                            var rs = {
-	                                                "professorId": userid,
-	                                                "watchType": 1,
-	                                                "pageSize": pageSize,
-	                                                "pageNo": ++pageNo
+	                                            	"professorId": userid,
+													"watchType":1,
+													"createTime": watchO.watchTime,
+													"watchObject":watchO.watchObjId,
+													"rows":rows
 	                                            };
 	                                            oAjaxGet(url, rs, "get", oWatchPro);
 	                                        } else {
@@ -128,36 +132,33 @@ mui.ready(function () {
                 })
             }
             if (dataStr.length > 0) {
-                dataO.time = dataStr[dataStr.length - 1].createTime;
-                dataO.id = dataStr[dataStr.length - 1].id;
-
-                for (var i = 0; i < dataStr.length; i++) {
-                    var liStr = document.createElement("li");
-                    document.getElementById(aimId).appendChild(liStr);
-                    if (index == 0 || index == 3) {
-                        questionModule(dataStr[i], liStr);
-                    } else if (index == 1 || index == 4) {
-                        answerModule(dataStr[i], liStr);
-                    } else if (index == 2) {
-                        proModule(dataStr[i], liStr);
-                    }
+				var arr=[];
+				if(index == 2){
+					watchO.watchTime = dataStr[dataStr.length - 1].createTime;
+					watchO.watchObjId = dataStr[dataStr.length - 1].watchObject;
+					for(var i in dataStr) {
+						arr[i]=dataStr[i].watchObject;
+					}
+					proModule(arr,aimId);
+				}else{
+					dataO.time = dataStr[dataStr.length - 1].createTime;
+               		dataO.id = dataStr[dataStr.length - 1].id;	
+               		for (var i = 0; i < dataStr.length; i++) {
+	                    var liStr = document.createElement("li");
+	                    document.getElementById(aimId).appendChild(liStr);
+	                    if (index == 0 || index == 3) {
+	                        questionModule(dataStr[i], liStr);
+	                    } else if (index == 1 || index == 4) {
+	                        answerModule(dataStr[i], liStr);
+	                    }
+	                }
+				}
+                if (dataStr.length < rows) {
+                    currentSelf.endPullUpToRefresh(true);
+                }else {
+                    currentSelf.endPullUpToRefresh(false);
                 }
-                if (index == 2) {
-                    if (pageNo < Math.ceil(reStr.total / reStr.pageSize)) {
-                        currentSelf.endPullUpToRefresh(false);
-                    } else {
-                        currentSelf.endPullUpToRefresh(true);
-                    }
-                    if(reStr.total<=reStr.pageSize){
-                        currentSelf.endPullUpToRefresh(true);
-                    }
-                } else {
-                    if (dataStr.length < rows) {
-                        currentSelf.endPullUpToRefresh(true);
-                    }else {
-                        currentSelf.endPullUpToRefresh(false);
-                    }
-                }
+               
             } else {
                 currentSelf.endPullUpToRefresh(true);
                 var liLen=document.getElementById(aimId).querySelectorAll("li").length;
@@ -175,7 +176,7 @@ mui.ready(function () {
                 comPull(res.data, 1);
             },
             oWatchPro = function (res) {
-                comPull(res.data.data, 2, res.data);
+                comPull(res.data, 2);
             },
             oWatchQ = function (res) {
                 comPull(res.data, 3);
@@ -183,51 +184,52 @@ mui.ready(function () {
             oWatchA = function (res) {
                 comPull(res.data, 4);
             },
-            proModule = function (dataStr, liStr) {
-                var dataStr = dataStr.professor;
-                var userType = autho(dataStr.authType, dataStr.orgAuth, dataStr.authStatus);
-                var os = "";
-                if (dataStr.title) {
-                    if (dataStr.orgName) {
-                        os = dataStr.title + "，" + dataStr.orgName;
-                    } else {
-                        os = dataStr.title;
-                    }
-                } else {
-                    if (dataStr.office) {
-                        if (dataStr.orgName) {
-                            os = dataStr.office + "，" + dataStr.orgName;
-                        } else {
-                            os = dataStr.office;
-                        }
-                    } else {
-                        if (dataStr.orgName) {
-                            os = dataStr.orgName;
-                        }
-                    }
-                }
-                var baImg = "../images/default-photo.jpg";
-                if (dataStr.hasHeadImage == 1) {
-                    baImg = baseUrl + "/images/head/" + dataStr.id + "_l.jpg";
-                }
-                var oSub = "";
-                if (dataStr.researchAreas.length) {
-                    var arr = [];
-                    for (var n = 0; n < dataStr.researchAreas.length; n++) {
-                        arr[n] = dataStr.researchAreas[n].caption;
-                    }
-                    oSub = "研究方向：" + arr.join("；");
-                }
-                liStr.setAttribute("data-id", dataStr.id);
-                liStr.setAttribute("data-flag", 1);
-                liStr.className = "mui-table-view-cell flexCenter";
-                liStr.innerHTML = ' <div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>' +
-                    '<div class="madiaInfo">' +
-                    '<p><span class="h1Font">' + dataStr.name + '</span><em class="authicon ' + userType.sty + '" title="' + userType.title + '"></em></p>' +
-                    '<p class="mui-ellipsis h2Font">' + os + '</p>' +
-                    '<p class="mui-ellipsis h2Font">' + oSub + '</p>' +
-                    '</div>'
-            },
+            proModule=function(arr,obj) {
+				oAjaxGet("/ajax/professor/qm",{
+					id:arr,
+				},"get",function(data){
+					var dataStr=data.data;
+					for(var i = 0; i < dataStr.length; i++) {
+						var userType = autho(dataStr[i].authType, dataStr[i].orgAuth, dataStr[i].authStatus);
+						var os = "";
+						if(dataStr[i].title) {
+							if(dataStr[i].orgName) {
+								os = dataStr[i].title + "，" + dataStr[i].orgName;
+							} else {
+								os = dataStr[i].title;
+							}
+						} else {
+							if(dataStr[i].office) {
+								if(dataStr[i].orgName) {
+									os = dataStr[i].office + "，" + dataStr[i].orgName;
+								} else {
+									os = dataStr[i].office;
+								}
+							} else {
+								if(dataStr[i].orgName) {
+									os = dataStr[i].orgName;
+								}
+							}
+						}
+						var baImg = "../images/default-photo.jpg";
+						if(dataStr[i].hasHeadImage == 1) {
+							baImg = baseUrl+"/images/head/" + dataStr[i].id + "_l.jpg";
+						}
+						
+						var li = document.createElement("li");
+						li.setAttribute("data-id", dataStr[i].id);
+						li.setAttribute("data-flag", 1);
+						li.className = "mui-table-view-cell flexCenter";
+						li.innerHTML =
+							' <div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>' +
+							'<div class="madiaInfo">' +
+							'<p><span class="h1Font">' + dataStr[i].name + '</span><em class="authicon ' + userType.sty + '"></em></p>' +
+							'<p class="mui-ellipsis h2Font">' + os + '</p>' +
+							'</div>'
+						document.getElementById(obj).appendChild(li);
+					}
+				});
+			},
             questionModule = function (dataStr, liStr) {
                 var baImg = "../images/default-q&a.jpg";
 				var subs = new Array();
@@ -276,7 +278,7 @@ mui.ready(function () {
                 liStr.innerHTML = '<div class="madiaInfo">' +
                     '<p class="h1Font mui-ellipsis-2 qa-question"></p>' +
                     '<div class="flexCenter qa-owner"></div>' +
-                    '<p class="qa-con mui-ellipsis-5">' + (dataStr.cnt).replace(/\n/g,"<br />") + '</p>' +
+                    '<div class="qa-con mui-ellipsis-5">' + listConCut(dataStr.cnt) + '</div>' +
                     '<div class="showliSpan mui-ellipsis">' +
                     '<span>' + commenTime(dataStr.createTime) + '</span>' + hd +'<span class="leaveMsgCount"></span>'+
                     '</div>' +
@@ -368,35 +370,38 @@ mui.ready(function () {
             }
 
         var slideFun = function (index) {
+        	var url=listData[index].url,
+        		obj=listData[index].aimid
             if (index == "0") {
-                document.getElementById("myQ").innerHTML = "";
-                oAjaxGet("/ajax/question/my", {
+                document.getElementById(obj).innerHTML = "";
+                oAjaxGet(url, {
                     "uid": userid,
                     "rows": rows
                 }, "get", oMyQ);
             } else if (index == "1") {
-                document.getElementById("myA").innerHTML = "";
-                oAjaxGet("/ajax/question/answer/bySelf", {
+                document.getElementById(obj).innerHTML = "";
+                oAjaxGet(url, {
                     "uid": userid,
                     "rows": rows
                 }, "get", oMyA);
             } else if (index == "2") {
-                document.getElementById("watchPro").innerHTML = "";
-                oAjaxGet("/ajax/watch/qaPro", {
+                document.getElementById(obj).innerHTML = "";
+                oAjaxGet(url, {
                     "professorId": userid,
-                    "watchType": 1,
-                    "pageSize": pageSize,
-                    "pageNo": pageNo
+					"watchType":1,
+					"createTime": watchO.watchTime,
+					"watchObject":watchO.watchObjId,
+					"rows":rows
                 }, "get", oWatchPro);
             } else if (index == "3") {
-                document.getElementById("watchQ").innerHTML = "";
-                oAjaxGet("/ajax/question/watch", {
+                document.getElementById(obj).innerHTML = "";
+                oAjaxGet(url, {
                     "uid": userid,
                     "rows": rows
                 }, "get", oWatchQ);
             } else if (index == "4") {
-                document.getElementById("watchA").innerHTML = "";
-                oAjaxGet("/ajax/question/answer/byWatch", {
+                document.getElementById(obj).innerHTML = "";
+                oAjaxGet(url, {
                     "uid": userid,
                     "rows": rows
                 }, "get", oWatchA);
@@ -404,34 +409,40 @@ mui.ready(function () {
         }
 
 		allAgreeNum() 
-        oAjaxGet("/ajax/question/my", {
+        oAjaxGet(listData[0].url, {
             "uid": userid,
             "rows":rows
         }, "get", oMyQ);
         //左滑及右滑
         document.querySelector('#slider').addEventListener('slide', function (event) {
-            // currentSelf.endPullUpToRefresh(false);
             mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function ($_index, pullRefreshEl) {
                 var id = pullRefreshEl.getAttribute("data-pullToRefresh");
                 if(id) {
                     pullRefreshEl.removeAttribute("data-pullToRefresh");
                 }
             });
-            dataO = {time: "", id: ""};pageNo = 1;
+            dataO = {time: "", id: ""};
+            watchO={
+				watchTime:"",
+				watchObjId:"",
+			};
             var $this = document.querySelector(".mui-scroll .mui-active");
             var $type = $this.getAttribute("data-type");
             slideFun($type);
         });
         //点击
         document.querySelector('#slider').addEventListener('tap', function (event) {
-            // currentSelf.endPullUpToRefresh(false);
             mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function ($_index, pullRefreshEl) {
                 var id = pullRefreshEl.getAttribute("data-pullToRefresh");
                 if(id) {
                     pullRefreshEl.removeAttribute("data-pullToRefresh");
                 }
             });
-            dataO = {time: "", id: ""};pageNo = 1;
+            dataO = {time: "", id: ""};
+            watchO={
+				watchTime:"",
+				watchObjId:"",
+			};
             var $this = document.querySelector(".mui-scroll .mui-active");
             var $type = $this.getAttribute("data-type");
             slideFun($type);

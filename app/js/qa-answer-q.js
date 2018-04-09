@@ -16,17 +16,19 @@ mui.ready(function(){
 		if(aflag){
 			var anid=self.anid,
 				qucnt=self.qucnt;
-			document.getElementById("question").value=qucnt
+			document.getElementById("question").innerHTML=qucnt
 			var con=document.getElementById("question")
 			document.getElementsByClassName("topsave")[0].addEventListener("tap",function(){
 				if(con.value.length<10) {
 					plus.nativeUI.toast("回答不得少于10个字");
 					return;
 				}
+				var lgCon=con.value.replace(/\>/g,"&gt;").replace(/\</g,"&lt;")
+				
 				mui.ajax(baseUrl + '/ajax/question/answer/modify', {
 					data: {
 						"id": anid,
-						"cnt": con.value,
+						"cnt": lgCon,
 						"uid": userid,
 						"uname": username
 					},
@@ -49,10 +51,11 @@ mui.ready(function(){
 					plus.nativeUI.toast("回答不得少于10个字");
 					return;
 				}
+				var lgCon=con.value.replace(/\>/g,"&gt;").replace(/\</g,"&lt;")
 				mui.ajax(baseUrl + '/ajax/question/answer', {
 					data: {
 						"qid": quid,
-						"cnt": con.value,
+						"cnt": lgCon,
 						"uid": userid,
 						"uname": username
 					},

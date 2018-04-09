@@ -13,8 +13,8 @@ mui.ready(function() {
 			currentIndex,
 			currentSelf,
 			dataO = {
-				resPublishTime:"",
-				resShareId:"",
+				serModifyTime: "",
+				serId: "",
 			}
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {
@@ -52,14 +52,13 @@ mui.ready(function() {
 	                return
 	            }
 	        },
-			resourceListVal = function(tabIndex) {
-				var aimId = "resourceShow",
-					newStr = "他尚未发布任何资源"
-				oAjax("/ajax/resource/publish",{
-					"category": "1",
+			serviceListVal = function(tabIndex) {
+				var aimId = "serviceShow",
+					newStr = "企业尚未发布任何服务"
+				oAjax("/ajax/ware/publish",{
+					"category":"1",
 					"owner":proId,
-					"publishTime":dataO.resPublishTime,
-					"shareId": dataO.resShareId,
+					"modifyTime":dataO.serModifyTime,
 					"rows": rows
 				}, "get", function(res){
 					plus.nativeUI.closeWaiting();
@@ -67,25 +66,27 @@ mui.ready(function() {
 					console.log(JSON.stringify(res))
 					var obj = res.data;
 					if(obj.length > 0) {
-						dataO.resPublishTime = obj[obj.length - 1].publishTime;
-						dataO.resShareId = obj[obj.length - 1].shareId;
+						dataO.serModifyTime = obj[obj.length - 1].modifyTime;
 						
 						for(var i = 0; i < obj.length; i++) {
 							var cnt = "",
-								hasImg = "../images/default-resource.jpg"
-							if(obj[i].images.length) {
-								hasImg = baseUrl + '/data/resource/' + obj[i].images[0].imageSrc
+								hasImg = "../images/default-service.jpg"
+							if(obj[i].images) {
+								var subs = strToAry(obj[i].images)
+								if(subs.length > 0) {
+									hasImg = baseUrl + "/data/ware" + subs[0]
+								}
 							}
-							if(obj[i].supportedServices) {
-								cnt = "用途：" + obj[i].supportedServices
+							if(obj[i].cnt) {
+								cnt = "内容：" + obj[i].cnt
 							}
 							var li = document.createElement("li");
-							li.setAttribute("data-id", obj[i].resourceId);
+							li.setAttribute("data-id", obj[i].id);
 							li.className = "mui-table-view-cell";
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
 								'<div class="madiaHead resouseHead" style="background-image:url(' + hasImg + ')"></div>' +
 								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis-2 h1Font">' + obj[i].resourceName + '</p>' +
+								'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
 								'<p class="mui-ellipsis h2Font">' + cnt + '</p>' +
 								'</div>' +
 								'</div>'
@@ -101,7 +102,7 @@ mui.ready(function() {
 		                                callback: function () {
 		                                	if(currentSelf.loading){
 			                                    setTimeout(function () {
-			                                         resourceListVal(tabIndex)
+			                                         serviceListVal(tabIndex)
 			                                         currentSelf.endPullUpToRefresh();
 			                                    }, 1000);
 		                                    }
@@ -125,11 +126,11 @@ mui.ready(function() {
 				})
 			},
 			bindClikFun=function(){
-				mui('#resourceShow').on('tap', 'li', function() {
+				mui('#serviceShow').on('tap', 'li', function() {
 					var id = this.getAttribute("data-id");
 					plus.nativeUI.showWaiting();
-					plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
-						resourceId: id
+					plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
+						serviceId: id,
 					});
 				})
 				document.getElementsByClassName("topback")[0].addEventListener("tap", function() {
@@ -141,7 +142,7 @@ mui.ready(function() {
 				})
 			}
 			
-		resourceListVal(0)
+		serviceListVal(0)
 		bindClikFun()
 		
 	})

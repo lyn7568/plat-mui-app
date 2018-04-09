@@ -76,7 +76,7 @@ mui.plusReady(function() {
 
 						var serviceImages = $data.images.split(",");
 						if(serviceImages.length) {
-							serviceImageFlag = true;
+							self.serviceImageFlag = true;
 							var lastImg = document.getElementById("lastImg");
 							lastImg.innerHTML = '<a class="tab-re"><img src="' + self.baseUrl + '/data/ware' + serviceImages[serviceImages.length - 1] + '" /></a>';
 							var firstImg = document.getElementById("firstImg");
@@ -140,10 +140,10 @@ mui.plusReady(function() {
 					var otitleInfo = "";
 					var oOrgInfo = "";
 					if($data.title) {
-						otitleInfo = $data.title + ",";
+						otitleInfo = $data.title + "，";
 					} else {
 						if($data.office) {
-							otitleInfo = $data.office + ",";
+							otitleInfo = $data.office + "，";
 						} else {
 							otitleInfo = "";
 						}
@@ -391,9 +391,9 @@ mui.plusReady(function() {
 	mui(".tagList").on("tap", "li", function() {
 		var tagText = this.getElementsByTagName("span")[0].innerText;
 		plus.nativeUI.showWaiting();
-		var web = plus.webview.create("../html/searchListNew2.html?content=3", "../html/searchListNew2.html", {}, {
+		var web = plus.webview.create("../html/searchListNew2.html?content=2", "../html/searchListNew2.html", {}, {
 			key: tagText,
-			qiFlag: 2
+			qiFlag: 7
 		});
 	})
 	//进入资源发布者详情页面
@@ -615,7 +615,7 @@ mui.plusReady(function() {
 		document.getElementById("maskBlack").style.display = "none";
 		var oFen = this.getElementsByTagName("span")[0].innerHTML;
 		var oUrl = baseUrl + "/images/logo180.png";
-		if(imgFlag) {
+		if(service.serviceImageFlag) {
 			oUrl = document.getElementById('firstImg').querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/, "_s.jpg");
 		}
 		if(oFen == "微信好友") {

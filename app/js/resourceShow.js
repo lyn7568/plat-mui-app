@@ -72,10 +72,10 @@ mui.plusReady(function() {
 							var otitleInfo="";
 							var oOrgInfo="";
 							if(mydata.editProfessor.title) {
-								otitleInfo = mydata.editProfessor.title + ",";
+								otitleInfo = mydata.editProfessor.title + "，";
 							} else {
 								if(mydata.editProfessor.office) {
-									otitleInfo = mydata.editProfessor.office + ",";
+									otitleInfo = mydata.editProfessor.office + "，";
 								}else{
 									otitleInfo = "";
 								}

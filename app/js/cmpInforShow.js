@@ -298,7 +298,7 @@ mui.ready(function() {
 						if($data.resMgr){
 							resourceListVal();
 							serviceListVal();
-							document.getElementsByClassName("establishments").style.display="block"
+							document.getElementsByClassName("establishments")[0].style.display="block"
 						}
 						if($data.forShort) {
 							document.getElementById("companyNameT").innerText = $data.forShort;
@@ -345,10 +345,6 @@ mui.ready(function() {
 						}
 
 					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
 				}
 			});
 		}
@@ -430,19 +426,11 @@ mui.ready(function() {
 											add.innerHTML = itemlist;
 											document.getElementById("relateArt").appendChild(add);
 										}
-									},
-									error: function() {
-										plus.nativeUI.toast("服务器链接超时", toastStyle);
-										return;
 									}
 								});
 							})(i);
 						}
 					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
 				}
 			});
 		}
@@ -469,10 +457,6 @@ mui.ready(function() {
 						}
 
 					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
 				}
 			});
 		}
@@ -515,10 +499,6 @@ mui.ready(function() {
 						document.getElementById("likePro").appendChild(add);
 
 					}
-				},
-				error: function() {
-					plus.nativeUI.toast("服务器链接超时", toastStyle);
-					return;
 				}
 			});
 		}

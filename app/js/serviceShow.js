@@ -284,7 +284,7 @@ mui.plusReady(function() {
 					}
 					for(var i = 0, len = $data.length; i < len; i++) {
 						var li = document.createElement("li"),
-							img = '';
+							img = '../images/default-resource.jpg';
 
 						if($data[i].images.length) {
 							img = self.baseUrl + '/data/resource/' + $data[i].images[0].imageSrc

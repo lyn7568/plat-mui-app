@@ -143,7 +143,7 @@ mui.ready(function(){
 					qucnt:self.data.content
 				})
 			}else{
-				plus.nativeUI.toast("该回答中包含html不能修改，如需修改，请移步科袖网站", toastStyle);
+				plus.nativeUI.toast("该回答目前只支持在PC端科袖网中修改", toastStyle);
 			}
 			
 		})

@@ -131,7 +131,7 @@ mui('#ruZhuCmp').on('tap', 'li', function() {
 })
 document.getElementById("moreRcmp").addEventListener("tap",function(){//查看更多企业
 	 plus.nativeUI.showWaiting();
-	var web = plus.webview.create("../html/searchListNew2.html?content=2", "../html/searchListNew2.html", {}, {
+	var web = plus.webview.create("../html/searchListNew2.html?content=7", "../html/searchListNew2.html", {}, {
 		key:"",
 		qiFlag:6
 	}); 

@@ -22,8 +22,8 @@ mui.ready(function() {
 			demandListVal = function() {
 				var aimId = "demandShow"
 				oAjax("/ajax/demand/pq", {
-					"state": '2',
-					"uid": orgId,
+					"state": '1',
+					"oid": orgId,
 					"pageSize": 5
 				}, "get", function(res) {
 					console.log(JSON.stringify(res));

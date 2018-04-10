@@ -440,11 +440,16 @@ mui.plusReady(function() {
                         }
                     }
                 }
-                var str = '<div class="owner-head useHead" style="background-image:url(' + baImg + ')"></div>' +
-                    '<div class="owner-info">' +
-                    '<div class="owner-name"><span class="h1Font">' + dataStr.name + '</span><em class="authiconNew ' + userType.sty + '" title="' + userType.title + '"></em></div>' +
-                    '<div class="owner-tit mui-ellipsis h2Font">' + os + '</div>' +
-                    '</div>'
+                var styStr='<em class="authicon ' + userType.sty + '" title="' + userType.title + '"></em>'
+				if(userType.sty=="e"){
+					styStr=""
+				}
+				var str = '<div class="owner-head useHead" style="background-image:url(' + baImg + ')"></div>' +
+					'<div class="owner-info">' +
+					'<div class="owner-name"><span class="h1Font">' + dataStr.name + '</span>'+styStr+'</div>' +
+					'<div class="owner-tit mui-ellipsis h2Font" style="margin-top:0;">' + os + '</div>' +
+					'</div>'
+
                 $str.find(".qa-owner").html(str)
 	        });
 	    },

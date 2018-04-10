@@ -525,7 +525,7 @@ for(var n=0;n<6;n++) {
 				}
 			},
 			patent: function(data) {
-				
+				console.log(JSON.stringify(data))
 				if(key2[3] == 1) {
 					plus.nativeUI.closeWaiting();
 					plus.webview.currentWebview().show("slide-in-right", 150);
@@ -540,7 +540,7 @@ for(var n=0;n<6;n++) {
 											var ul = self.element.querySelector('.mui-table-view')
 											if(index == 3) {
 												search.oAjaxGet(baseUrl + "/ajax/ppatent/index/search", {
-													"qw": obj.pt,
+													"key": obj.pt,
 													"rows": pageSize,
 													"sortNum":pageNo.pt.sortNum,
 													"createTime":pageNo.pt.createTime,
@@ -610,7 +610,7 @@ for(var n=0;n<6;n++) {
 											var ul = self.element.querySelector('.mui-table-view')
 											if(index == 4) {
 												search.oAjaxGet(baseUrl + "/ajax/ppaper/index/search", {
-													"qw": obj.pp,
+													"key": obj.pp,
 													"rows": pageSize,
 													sortNum:pageNo.pp.sortNum,
 													createTime:pageNo.pp.createTime,
@@ -775,7 +775,7 @@ for(var n=0;n<6;n++) {
 			document.getElementById("searB").classList.remove("searchboxNewT");	
 			
 			search.oAjaxGet(baseUrl + "/ajax/ppatent/index/search", {
-				"qw": obj.pt,
+				"key": obj.pt,
 				"rows": pageSize
 			}, "get", search.patent);
 		} else if(webview.qiFlag == 5) {
@@ -783,7 +783,7 @@ for(var n=0;n<6;n++) {
 			document.getElementById("sele").classList.add("displayNone");
 			document.getElementById("searB").classList.remove("searchboxNewT");	
 			search.oAjaxGet(baseUrl + "/ajax/ppaper/index/search", {
-				"qw": obj.pp,
+				"key": obj.pp,
 				"rows": pageSize
 			}, "get", search.paper);
 		} else if(webview.qiFlag == 6) {
@@ -914,44 +914,63 @@ for(var n=0;n<6;n++) {
 				if(searchval.replace(/^\s*|\s*$/,"")) {
 				wlog("kw", searchval);
 			}
+				
 				if(tabFlag == 1) {
 					if(obj.ex != searchval) {
 						flag = 1;
 						obj.ex = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							document.getElementById("searchval").value=inputVlue;
+						}
 						key1[0].refresh(true);
 						pageNo.ex = {},
 							search.oAjaxGet(baseUrl + "/ajax/professor/index/search", {
-								"key": obj.ex,
+								"key": inputVlue,
 								"subject": subject,
 								"industry": industry,
 								"address": address,
 								"authType": authType,
 								"rows": pageSize
 							}, "get", search.oExeprt);
+					}else{
+						document.getElementById("searchval").value=inputVlue;
 					}
 				} else if(tabFlag == 2) {
 					if(obj.rs != searchval) {
 						key1[2].refresh(true);
 						obj.rs = searchval
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							document.getElementById("searchval").value=inputVlue;
+						}
 						pageNo.rs = 1;
 						flag = 1;
 						obj.rs = searchval;
 						search.oAjaxGet(baseUrl + "/ajax/resource/index/search", {
-							"key": obj.rs,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.resource);
+					}else{
+						document.getElementById("searchval").value=inputVlue;
 					}
 				} else if(tabFlag == 3) {
 					if(obj.ar != searchval) {
 						key1[5].refresh(true);
 						obj.ar = searchval
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							document.getElementById("searchval").value=inputVlue;
+						}
 						pageNo.ar = {};
 						flag = 1;
 						obj.ar = searchval;
 						search.oAjaxGet(baseUrl + "/ajax/article/index/search", {
-							"key": obj.ar,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.article);
+					}else{
+						document.getElementById("searchval").value=inputVlue;
 					}
 				} else if(tabFlag == 4) {
 					
@@ -960,10 +979,17 @@ for(var n=0;n<6;n++) {
 						pageNo.pt = {};
 						flag = 1;
 						obj.pt = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							document.getElementById("searchval").value=inputVlue;
+						}
+						console.log(inputVlue)
 						search.oAjaxGet(baseUrl + "/ajax/ppatent/index/search", {
-							"qw": obj.pt,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.patent);
+					}else{
+						document.getElementById("searchval").value=inputVlue;
 					}
 
 				} else if(tabFlag == 5) {
@@ -972,10 +998,16 @@ for(var n=0;n<6;n++) {
 						pageNo.pp = {};
 						flag = 1;
 						obj.pp = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							document.getElementById("searchval").value=inputVlue;
+						}
 						search.oAjaxGet(baseUrl + "/ajax/ppaper/index/search", {
-							"qw": obj.pp,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.paper);
+					}else{
+						document.getElementById("searchval").value=inputVlue;
 					}
 
 				}else if(tabFlag == 6) {
@@ -984,10 +1016,16 @@ for(var n=0;n<6;n++) {
 						pageNo.co = {};
 						flag = 1;
 						obj.co = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							document.getElementById("searchval").value=inputVlue;
+						}
 						search.oAjaxGet(baseUrl + "/ajax/org/index/search", {
-							"key": obj.co,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.company);
+					}else{
+						document.getElementById("searchval").value=inputVlue;
 					}
 				}else if(tabFlag == 7) {
 					if(obj.se != searchval) {
@@ -995,11 +1033,17 @@ for(var n=0;n<6;n++) {
 						pageNo.se = {};
 						flag = 1;
 						obj.se = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							document.getElementById("searchval").value=inputVlue;
+						}
 						search.oAjaxGet(baseUrl + "/ajax/ware/index/search", {
-							"key": obj.se,
+							"key": inputVlue,
 							"rows": pageSize
 					}, "get", search.service);
 					}
+				}else{
+					document.getElementById("searchval").value=inputVlue;
 				}
 			}
 
@@ -1014,13 +1058,18 @@ for(var n=0;n<6;n++) {
 				document.getElementById("sele").classList.remove("displayNone");
 				document.getElementById("searB").classList.add("searchboxNewT");
 				if(key2[0] == 1) {
+					
 					if(obj.ex != searchval) {
 						obj.ex = searchval;
 					}
+					if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 					flag = 1;
 					pageNo.ex = {};
 					search.oAjaxGet(baseUrl + "/ajax/professor/index/search", {
-						"key": obj.ex,
+						"key": inputVlue,
 						"subject": subject,
 						"industry": industry,
 						"address": address,
@@ -1032,9 +1081,13 @@ for(var n=0;n<6;n++) {
 						pageNo.ex = {};
 						key1[0].refresh(true);
 						obj.ex = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							}
+						document.getElementById("searchval").value=inputVlue;
 						flag = 1;
 						search.oAjaxGet(baseUrl + "/ajax/professor/index/search", {
-							"key": obj.ex,
+							"key": inputVlue,
 							"subject": subject,
 							"industry": industry,
 							"address": address,
@@ -1043,7 +1096,7 @@ for(var n=0;n<6;n++) {
 						}, "get", search.oExeprt);
 
 					} else {
-						return;
+						document.getElementById("searchval").value=inputVlue;
 					}
 				}
 			} else if($this.innerHTML == "找资源") {
@@ -1055,10 +1108,14 @@ for(var n=0;n<6;n++) {
 					if(obj.rs != searchval) {
 						obj.rs = searchval;
 					}
+					if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 					flag = 1;
 					pageNo.rs = {};
 					search.oAjaxGet(baseUrl + "/ajax/resource/index/search", {
-						"key": obj.rs,
+						"key": inputVlue,
 						"rows": pageSize
 					}, "get", search.resource);
 				} else {
@@ -1066,13 +1123,17 @@ for(var n=0;n<6;n++) {
 						pageNo.rs = {};
 						key1[2].refresh(true);
 						obj.rs = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+							}
+						document.getElementById("searchval").value=inputVlue;
 						flag = 1;
 						search.oAjaxGet(baseUrl + "/ajax/resource/index/search", {
-							"key": obj.rs,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.resource);
 					} else {
-						return;
+						document.getElementById("searchval").value=inputVlue;
 					}
 				}
 			} else if($this.innerHTML == "找文章") {
@@ -1084,10 +1145,14 @@ for(var n=0;n<6;n++) {
 					if(obj.ar != searchval) {
 						obj.ar = searchval;
 					}
+					if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 					flag = 1;
 					pageNo.ar = {};
 					search.oAjaxGet(baseUrl + "/ajax/article/index/search", {
-						"key": obj.ar,
+						"key": inputVlue,
 						"rows": pageSize
 					}, "get", search.article);
 				} else {
@@ -1095,13 +1160,17 @@ for(var n=0;n<6;n++) {
 						pageNo.ar = {};
 						key1[5].refresh(true);
 						obj.ar = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 						flag = 1;
 						search.oAjaxGet(baseUrl + "/ajax/article/index/search", {
-							"key": obj.ar,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.article);
 					} else {
-						return;
+						document.getElementById("searchval").value=inputVlue;
 					}
 				}
 			} else if($this.innerHTML == "找专利") {
@@ -1113,10 +1182,15 @@ for(var n=0;n<6;n++) {
 					if(obj.pt != searchval) {
 						obj.pt = searchval;
 					}
+					if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 					flag = 1;
 					pageNo.pt = {};
+					console.log(inputVlue)
 					search.oAjaxGet(baseUrl + "/ajax/ppatent/index/search", {
-						"qw": obj.pt,
+						"key": inputVlue,
 						"rows": pageSize
 					}, "get", search.patent);
 				} else {
@@ -1124,13 +1198,17 @@ for(var n=0;n<6;n++) {
 						pageNo.pt = {};
 						key1[3].refresh(true);
 						obj.pt = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 						flag = 1;
 						search.oAjaxGet(baseUrl + "/ajax/ppatent/index/search", {
-							"qw": obj.pt,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.patent);
 					} else {
-						return;
+						document.getElementById("searchval").value=inputVlue;
 					}
 				}
 			} else if($this.innerHTML == "找论文") {
@@ -1143,10 +1221,14 @@ for(var n=0;n<6;n++) {
 					if(obj.pp != searchval) {
 						obj.pp = searchval; 
 					}
+					if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 					flag = 1;
 					pageNo.pp = {};
 					search.oAjaxGet(baseUrl + "/ajax/ppaper/index/search", {
-						"qw": obj.pp,
+						"key": inputVlue,
 						"rows": pageSize
 					}, "get", search.paper);
 				} else {
@@ -1154,13 +1236,17 @@ for(var n=0;n<6;n++) {
 						pageNo.pp = {};
 						key1[4].refresh(true);
 						obj.pp = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 						flag = 1;
 						search.oAjaxGet(baseUrl + "/ajax/ppaper/index/search", {
-							"qw": obj.pt,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.paper);
 					} else {
-						return;
+						document.getElementById("searchval").value=inputVlue;
 					}
 				}
 			}else if($this.innerHTML == "找企业") {
@@ -1173,10 +1259,14 @@ for(var n=0;n<6;n++) {
 					if(obj.co != searchval) {
 						obj.co = searchval;
 					}
+					if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 					flag = 1;
 					pageNo.co = {};
 					search.oAjaxGet(baseUrl + "/ajax/org/index/search", {
-						"key": obj.co,
+						"key": inputVlue,
 						"rows": pageSize
 					}, "get", search.company);
 				} else {
@@ -1184,13 +1274,17 @@ for(var n=0;n<6;n++) {
 						pageNo.co = {};
 						key1[6].refresh(true);
 						obj.co = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 						flag = 1;
 						search.oAjaxGet(baseUrl + "/ajax/org/index/search", {
-							"key": obj.co,
+							"key": inputVlue,
 							"rows": pageSize
 						}, "get", search.company);
 					} else {
-						return;
+						document.getElementById("searchval").value=inputVlue;
 					}
 				}
 			}else if($this.innerHTML == "找服务") {
@@ -1203,10 +1297,14 @@ for(var n=0;n<6;n++) {
 					if(obj.se != searchval) {
 						obj.se = searchval;
 					}
+					if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 					flag = 1;
 					pageNo.se = {};
 					search.oAjaxGet(baseUrl + "/ajax/ware/index/search", {
-							"key": obj.se,
+							"key": inputVlue,
 							"rows": pageSize
 					}, "get", search.service);
 				} else {
@@ -1214,13 +1312,17 @@ for(var n=0;n<6;n++) {
 						pageNo.se = {};
 						key1[1].refresh(true);
 						obj.se = searchval;
+						if(searchval.trim()) {
+							inputVlue=searchval;
+					}
+					document.getElementById("searchval").value=inputVlue;
 						flag = 1;
 						search.oAjaxGet(baseUrl + "/ajax/ware/index/search", {
-							"key": obj.se,
+							"key": inputVlue,
 							"rows": pageSize
 					}, "get", search.service);
 					} else {
-						return;
+						document.getElementById("searchval").value=inputVlue;
 					}
 				}
 			}

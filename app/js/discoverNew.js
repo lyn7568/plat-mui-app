@@ -520,7 +520,7 @@
 							}
 						for(var i = 0; i < $data.length; i++) {
 							var of ;
-                            if ($data[i].articleType == 1 || $data[i].ctype == "1") {
+                            if ($data[i].articleType == 1 || $data[i].ctype == "1" || $data[i].ctype == "3") {
                                 of = 1;
                             } else if ($data[i].articleType == 2 || $data[i].ctype == "2") {
                                 of = 2;

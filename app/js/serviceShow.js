@@ -174,7 +174,7 @@ mui.plusReady(function() {
 					} else if(p1 == 2) {
 						p2.querySelector(".pName").innerHTML = ($data.forShort) ? $data.forShort : $data.name;
 						if($data.authStatus == 3)
-							p2.querySelector(".authicon").classList.add(authicon - com - ok);
+							p2.querySelector(".authicon").classList.add("authicon-com-ok");
 						return;
 					}
 					self.authorProperty.setAttribute("data-id", $data.id);

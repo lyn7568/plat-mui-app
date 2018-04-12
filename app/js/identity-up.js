@@ -122,6 +122,7 @@ function galleryImg() {
 
 	}, function(e) {
 		console.log("取消选择图片");
+		plus.nativeUI.toast("请在系统设置中，允许科袖访问您的相册，用于上传照片。", toastStyle);
 	}, {
 		filename: "_doc/camera/",
 		filter: "image",
@@ -140,7 +141,9 @@ function getImage() {
 		}, function(e) {
 			plus.nativeUI.toast("读取拍照文件错误：" + e.message);
 		});
-	}, function(e) {}, {
+	}, function(e) {
+		plus.nativeUI.toast("请在系统设置中，允许科袖访问您的相机，用于拍摄照片。", toastStyle);
+	}, {
 		filename: "_doc/camera/",
 		index: 1
 	});

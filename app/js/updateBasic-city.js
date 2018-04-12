@@ -90,7 +90,10 @@ mui.ready(function() {
 			});
 		}
 		document.getElementById('currentLocation').addEventListener("tap",function(){
-			if(suc==0) return;
+			if(suc==0) {
+				plus.nativeUI.toast("请在系统设置中，打开定位服务，并允许科袖访问您的位置信息。", toastStyle);
+				return;
+			}
 			cityResult.innerText = oadd.address + "-" + oadd.province;
 			city=oadd.address;
 			province=oadd.province;

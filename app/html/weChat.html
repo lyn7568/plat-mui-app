@@ -807,7 +807,9 @@
 											type: 'image',
 											content: "file://" + plus.io.convertLocalFileSystemURL(path)
 										});
-									}, function(err) {});
+									}, function(err) {
+										plus.nativeUI.toast("请在系统设置中，允许科袖访问您的相机，用于拍摄照片。", toastStyle);
+									});
 									break;
 								case 2:
 									plus.gallery.pick(function(path) {
@@ -816,7 +818,9 @@
 											type: 'image',
 											content: path
 										});
-									}, function(err) {}, null);
+									}, function(err) {
+										plus.nativeUI.toast("请在系统设置中，允许科袖访问您的相册，用于上传照片。", toastStyle);
+									}, null);
 									break;
 							}
 						});

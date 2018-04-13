@@ -67,7 +67,8 @@ mui.plusReady(function() {
 				plus.nativeUI.toast("读取拍照文件错误", toastStyle);
 			});
 		}, function(s) {
-			console.log("error" + s);
+			console.log(JSON.stringify(s));
+			if(s.code==11)
 			plus.nativeUI.toast("请在系统设置中，允许科袖访问您的相机，用于拍摄照片。", toastStyle);
 		}, {
 			filename: ""

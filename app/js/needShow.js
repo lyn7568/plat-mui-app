@@ -23,6 +23,8 @@ mui.ready(function() {
 		moreMes();//更多
 		
 		document.getElementById("personAL").addEventListener("tap", function() {//企业详情
+			if(tiaoFlag) {
+			
 			var cmpId=this.getAttribute("data-id");
 			mui.openWindow({
 				url: '../html/cmpInforShow.html',
@@ -35,6 +37,8 @@ mui.ready(function() {
 					cmpId: cmpId
 				}
 			});
+				
+			}
 		})
 		//收藏
 		var oifCollect=document.getElementById("ifCollect");
@@ -132,6 +136,7 @@ mui.ready(function() {
 				"async": false,
 				"dataType": "json",
 				"success": function(data) {
+					console.log(111111111111111111111)
 					console.log(JSON.stringify(data));
 					if(data.success) {
 						var ws=plus.webview.currentWebview();
@@ -148,7 +153,7 @@ mui.ready(function() {
 						
 						var strCon="";
 						if($da.city){ strCon+='<div class="showTit">所在城市：<span class="showCon">'+$da.city+'</span></div>' }
-						if($da.duration!=0){ strCon+='<div class="showTit">预期时长：<span class="showCon">'+demandDuration[$da.duration]+'</span></div>' }
+						if($da.duration!=0){ strCon+='<div class="showTit">预计周期：<span class="showCon">'+demandDuration[$da.duration]+'</span></div>' }
 						if($da.cost!=0){ strCon+='<div class="showTit">费用预算：<span class="showCon">'+demandCost[$da.cost]+'</span></div>' }
 						if($da.invalidDay){ strCon+='<div class="showTit">有效期至：<span class="showCon">'+TimeTr($da.invalidDay)+'</span></div>' }
 						document.getElementById("demandInfo").innerHTML=strCon;
@@ -212,7 +217,7 @@ mui.ready(function() {
 								}
 							}
 						}
-						cmpFun($da.orgId);
+						cmpFun($da.orgName);
 						
 						orgThis=$da.orgId;
 						consuId = $da.creator;
@@ -227,26 +232,36 @@ mui.ready(function() {
 			});
 			
 		}
+		var tiaoFlag=false;
 		/*企业用户信息*/
-		function cmpFun(id) {
-			mui.ajax(baseUrl+"/ajax/org/" + id,{
+		function cmpFun(par) {
+			mui.ajax(baseUrl+"/ajax/org/queryByName",{
 				"type": "get",
+				'data': {
+					name: par
+				},
 				"async": true,
 				"success": function(data) {
 					if(data.success && data.data) {
-						if(data.data.forShort) {
-							document.getElementById("cmpname").innerHTML=data.data.forShort;
-						}else{
-							document.getElementById("cmpname").innerHTML=data.data.name;
-						}
-						var img="../images/default-icon.jpg";
-						if(data.data.hasOrgLogo==1){
-							img=baseUrl+"/images/org/" + data.data.id + ".jpg";
-						}
-						document.getElementById("personAL").setAttribute("data-id",data.data.id);
-						document.getElementById("companyImg").setAttribute("src",img);
-						if(data.data.authStatus==3){
-							document.getElementById("QauthFlag").classList.add("authicon-com-ok");
+						if(data.data.name) {
+							tiaoFlag = true;
+							document.getElementById('attBtn').style.display = 'block';
+							if(data.data.forShort) {
+								document.getElementById("cmpname").innerHTML=data.data.forShort;
+							}else{
+								document.getElementById("cmpname").innerHTML=data.data.name;
+							}
+							var img="../images/default-icon.jpg";
+							if(data.data.hasOrgLogo==1){
+								img=baseUrl+"/images/org/" + data.data.id + ".jpg";
+							}
+							document.getElementById("personAL").setAttribute("data-id",data.data.id);
+							document.getElementById("companyImg").setAttribute("src",img);
+							if(data.data.authStatus==3){
+								document.getElementById("QauthFlag").classList.add("authicon-com-ok");
+							}
+						} else {
+							document.getElementById("cmpname").innerHTML = par;
 						}
 					}
 				},

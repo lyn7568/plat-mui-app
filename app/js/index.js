@@ -18,65 +18,6 @@ mui.plusReady(function() {
 		checkVersion();
 	}, false)
 })
-function orName() {
-	mui.ajax(baseUrl + "/ajax/professor/baseInfo/" + plus.storage.getItem('userid'), {
-		dataType: 'json', //数据格式类型
-		type: 'GET', //http请求类型
-		timeout: 10000, //超时设置
-		success: function(data) {
-			if(data.success && data.data) {
-				var $info = data.data || {};
-				dem($info.id, $info.orgId)
-			}
-		},
-		error: function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-			return;
-		}
-	});
-}
-
-function dem(uid, oid) {
-	mui.ajax(baseUrl + "/ajax/demand/qc", {
-		dataType: 'json', //数据格式类型
-		type: 'GET', //http请求类型
-		timeout: 10000, //超时设置
-		data: {
-			"state": [0, 1],
-			"uid": uid,
-			"oid": oid
-		},
-		traditional: true,
-		success: function(data) {
-			if(data.success) {
-				var $data = data.data;
-				if($data) {
-					mui.openWindow({
-						url: '../html/demandPublish.html',
-						id: 'demandPublish.html',
-						show: {
-							autoShow: true,
-							aniShow: "slide-in-right"
-						}
-					});
-				} else {
-					mui.openWindow({
-						url: '../html/sureOrg.html',
-						id: 'sureOrg.html',
-						show: {
-							autoShow: true,
-							aniShow: "slide-in-right",
-						}
-					});
-				}
-			}
-		},
-		error: function() {
-			plus.nativeUI.toast("服务器链接超时", toastStyle);
-			return;
-		}
-	});
-}
 document.getElementById("demandP").addEventListener("tap", function() {
 	var userid = plus.storage.getItem('userid');
 	if(userid == null) {
@@ -86,7 +27,14 @@ document.getElementById("demandP").addEventListener("tap", function() {
 		})
 		return;
 	}
-	orName()
+	mui.openWindow({
+						url: '../html/demandPublish.html',
+						id: 'demandPublish.html',
+						show: {
+							autoShow: true,
+							aniShow: "slide-in-right"
+						}
+					});
 
 })
 document.getElementById("improfessor").addEventListener("tap", function() {

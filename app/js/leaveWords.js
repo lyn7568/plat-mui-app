@@ -68,27 +68,27 @@
 			for(var i = 0; i < data.length; i++) {
 				var oText = "",
 					reply = "",
-					re ='<span class="spanitem"><em class="mui-icon iconfont plusbtn icon-appreciate" style="font-size:16px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></em><em style="margin-left:3px;display:' + (data[i].agreeCount ? "inline-block" : "none") + '">' + data[i].agreeCount + ' </em></span>'+
+					re ='<span class="spanitem"><em class="mui-icon iconfont plusbtn plusbtnCan icon-appreciate" style="font-size:16px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></em><em style="margin-left:3px;display:' + (data[i].agreeCount ? "inline-block" : "none") + '">' + data[i].agreeCount + ' </em></span>'+
 						'<span class="spanitem replyLew" data-id="' + data[i].id + '">回复</span>';
 				if(id == data[i].sender) {
 					oText = '<span class="spanitem"><em class="mui-icon iconfont plusbtn icon-appreciate" style="font-size:16px;" data-id="' + data[i].id + '" data-num="' + data[i].agreeCount + '"></em><em style="margin-left:3px;display:' + (data[i].agreeCount ? "inline-block" : "none") + '">' + data[i].agreeCount + ' </em></span>'+
-							'<span class="spanitem" data-id="' + data[i].id + '" class="dele">删除</span>';
+							'<span class="spanitem dele" data-id="' + data[i].id + '">删除</span>';
 					re = '';
 				}
 				if(data[i].reciver) {
-					reply = " 回复 " + "<span class='reply2'></span>"
+					reply = '<em style="font-style:normal;padding:0 6px;">回复</em>' +  '<span class="h1Font reply2"></span>'
 				}
 				var baImg = "../images/default-photo.jpg";
 				var li = document.createElement("li");
-				li.className = "mui-table-view-cell";
+				li.className = "mui-table-view-cell leaveWord";
 				li.innerHTML = '<div class="flexCenter mui-clearfix">' +
 					'<div class="madiaHead useHead" style="background-image:url(' + baImg + ')" data-id="' + data[i].sender + '"></div>' +
 					'<div class="madiaInfo">' +
-					'<p><span class="replay1"></span>' + reply + '</p>' +
+					'<p class="h2Font"><span class="h1Font replay1"></span>' + reply + '</p>' +
 					'</div>' +
 					'</div>' +
 					'<div class="madiaInfo">' +
-					'<p class="h2Font">' + data[i].cnt + '</p>' +
+					'<p class="h1Font messageContent">' + data[i].cnt + '</p>' +
 					'<p class="operateSpan">' +
 					'<span class="spanitem commenttime">' + commenTime(data[i].createTime) + '</span>' + re + oText +
 					'</p>' +
@@ -113,7 +113,11 @@
 				}
 			}
 			var userType = autho($data.authType, $data.orgAuth, $data.authStatus);
-			var str = '<span class="h1Font" >' + $data.name + '</span><em class="authicon ' + userType.sty + '" title="科袖认证专家"></em>'
+			var styStr='<em class="authicon ' + userType.sty + '" title="科袖认证专家"></em>'
+			if(userType.sty=="e"){
+				styStr=""
+			}
+			var str = '<span class="h1Font" >' + $data.name + '</span>'+styStr
 			if(parNum == 1) {
 				li.getElementsByClassName("replay1")[0].innerHTML = str;
 			} else {

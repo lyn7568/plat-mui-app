@@ -54,6 +54,8 @@ mui.ready(function() {
 
 		function savePro() {
 			var mess = {};
+			mess.sex=web.sex;
+			mess.birthday=web.birthday;
 			mess.name = web.name;
 			mess.orgName = web.orgName;
 			mess.department = web.department;
@@ -88,7 +90,10 @@ mui.ready(function() {
 			});
 		}
 		document.getElementById('currentLocation').addEventListener("tap",function(){
-			if(suc==0) return;
+			if(suc==0) {
+				plus.nativeUI.toast("请在系统设置中，打开定位服务，并允许科袖访问您的位置信息。", toastStyle);
+				return;
+			}
 			cityResult.innerText = oadd.address + "-" + oadd.province;
 			city=oadd.address;
 			province=oadd.province;

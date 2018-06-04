@@ -169,7 +169,6 @@
  			timeout: 10000,
  			async: true,
  			success: function(data) {
- 				console.log(JSON.stringify(data))
  				if(data.success) {
  					var $data=data.data;
  					document.querySelector("#cityResult").innerHTML=$data.province + "-" + $data.city ;
@@ -185,6 +184,9 @@
 					if($data.duration) {
 						document.querySelector("#ExpecteResult").innerHTML=oSpend[ $data.duration ] ;
 						document.querySelector("#ExpecteDuration").setAttribute('flag', $data.duration );
+					}
+					if($data.orgName) {
+						document.getElementById("org").value = $data.orgName;
 					}
  				}
  			},
@@ -209,6 +211,12 @@
  				length : 2
  			},
  			arr[2] = {
+ 				demand : document.querySelector("#org"),
+ 				fontNum : 50,
+ 				alertTitle : "您所在的企业" ,
+ 				length : 3
+ 			};
+ 			arr[3] = {
  				demand : document.querySelector("#phone"),
  				fontNum : 50,
  				alertTitle : "联系电话" ,
@@ -267,7 +275,9 @@
 				"duration": document.querySelector("#ExpecteDuration").getAttribute('flag')==null?'':document.querySelector("#ExpecteDuration").getAttribute('flag'),
 				"invalidDay": btns.getAttribute('flag'),
 				"contactNum": document.querySelector("#phone").value,
-				"modifier" : userid
+				"modifier" : userid,
+				'orgName': document.querySelector("#org").value,
+				'source': 'ekexiuApp'
  			},
  			timeout: 10000,
  			async: true,

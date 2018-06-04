@@ -461,7 +461,7 @@
                     }
                     var hd = "";
                     if (dataStr.replyCount > 0) {
-                        hd = '<span>' + dataStr.replyCount + '回答</span>'
+                        hd = '<span>回答 ' + dataStr.replyCount + '</span>'
                     }
                     this.setAttribute("data-id", dataStr.id);
                     this.setAttribute("data-type",3);
@@ -486,13 +486,13 @@
 				leaveMsgCount: function(data) {
 					if(data.success) {
 						if(data.data > 0) {
-							this.innerHTML = data.data + "留言"
+							this.innerHTML ="留言 " + data.data
 						}
 					}
 				},
 				attendCount:function(data) {
 					if(data.data > 0) {
-						this.innerHTML = data.data + "关注"
+						this.innerHTML = "关注 " + data.data
 					}
 				},
 				createFragment: function(data) {
@@ -527,7 +527,7 @@
 							}
 						for(var i = 0; i < $data.length; i++) {
 							var of ;
-                            if ($data[i].articleType == 1 || $data[i].ctype == "1") {
+                            if ($data[i].articleType == 1 || $data[i].ctype == "1" || $data[i].ctype == "3") {
                                 of = 1;
                             } else if ($data[i].articleType == 2 || $data[i].ctype == "2") {
                                 of = 2;
@@ -744,15 +744,15 @@
 							var hd = "",
 								hl = "";
 							if($data[i].agree > 0) {
-								hd = '<span>' + $data[i].agree + '赞</span>'
+								hd = '<span>赞 ' + $data[i].agree + '</span>'
 							}
 							liStr.setAttribute("data-id", $data[i].id);
 							liStr.className = "mui-table-view-cell";
 							liStr.innerHTML = '<div class="madiaInfo">' +
 								'<p class="h1Font mui-ellipsis-2 qa-question"></p>'+
 								'<div class="flexCenter qa-owner"></div>' +
-								'<p class="qa-con mui-ellipsis-5">' + ($data[i].cnt).replace(/\n/g,"<br />") + '</p>' +
-								'<div class="showli mui-ellipsis">' +
+								'<div class="qa-con mui-ellipsis-5">' + listConCut($data[i].cnt) + '</div>' +
+								'<div class="showliSpan mui-ellipsis">' +
 								'<span>' + commenTime($data[i].createTime) + '</span>' + hd + '<span class="leaveMsgCount"></span>' +
 								'</div>' +
 								'</div>'

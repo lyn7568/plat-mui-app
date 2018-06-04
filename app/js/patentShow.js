@@ -8,6 +8,7 @@ mui.plusReady(function() {
 	patentId = self.patentId;
 	getRecourceMe();/*获取资源信息*/
 	module.lWord(patentId, 3);
+	pageViewLog(patentId, 4)
 	//关键词标签点击进去搜索
 	mui(".tagList").on("tap","li",function(){
 		var tagText = this.getElementsByTagName("span")[0].innerText;
@@ -32,20 +33,6 @@ mui.plusReady(function() {
 		}
 	});
 	
-	
-	mui.ajax(baseUrl + '/ajax/ppatent/incPageViews',{
-			"type": "POST",
-			"dataType": "json",
-			"data": {
-				"id": patentId
-			},
-			"success": function(data) {
-				if(data.success) {}
-			},
-			"error": function() {
-				
-			}
-		});
 	//点击进入个人详情页面
 	mui("#aboutAuthors").on("tap","li",function(){
 		var oDataId =this.getAttribute("data-id");
@@ -96,6 +83,11 @@ mui.plusReady(function() {
 		document.getElementById("patentName").innerHTML = $da.name; //名字
 		document.getElementById("patentAbstract").innerHTML = $da.summary; //摘要内容
 		document.getElementById("Znum1").innerHTML = $da.code;//专利号
+		if($da.cooperation){
+			document.getElementById("patentRemarks").innerHTML = $da.cooperation;
+		}else{
+			document.getElementById("patentRemarks").parentNode.style.display="none";
+		}
 		if($da.pubDay){
 			document.getElementById("Znum2").innerHTML = TimeTr($da.pubDay);
 		}else{

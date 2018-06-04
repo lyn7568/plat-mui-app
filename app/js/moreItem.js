@@ -102,6 +102,8 @@ mui.ready(function(){
 						shareAddIntegral(6);
 					}else if(self.name=="patent"){
 						shareAddIntegral(5);
+					}else if(self.name=="ware"){
+						shareAddIntegral(7);
 					}
 				}
 				if(self.name=="demand"){
@@ -130,14 +132,20 @@ mui.ready(function(){
 			})
 		})
 		document.getElementById("corrAnswer").addEventListener('tap',function(){
-			plus.nativeUI.showWaiting(); //显示原生等待框
-			var webviewShow = plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
-				aflag:1,
-				anid: self.proid,
-				quid: self.quid,
-				qutit:self.data.title,
-				qucnt:self.data.content
-			})
+			console.log(JSON.stringify(checkHtmltag(self.data.content)))
+			if(!checkHtmltag(self.data.content)){
+				plus.nativeUI.showWaiting(); //显示原生等待框
+				var webviewShow = plus.webview.create("../html/qa-answer-q.html", 'qa-answer-q.html', {}, {
+					aflag:1,
+					anid: self.proid,
+					quid: self.quid,
+					qutit:self.data.title,
+					qucnt:self.data.content
+				})
+			}else{
+				plus.nativeUI.toast("该回答目前只支持在PC端科袖网中修改", toastStyle);
+			}
+			
 		})
 		document.getElementsByClassName("exitbtn")[0].addEventListener("tap",function(){
 			var bts = ["是", "否"];

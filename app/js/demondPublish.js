@@ -3,8 +3,6 @@
  	$.plusReady(function() {
 
  		var userid = plus.storage.getItem('userid');
- 		var oRd="";
- 		
  		/**
  		 * 获取对象属性的值
  		 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
@@ -153,13 +151,16 @@
  					if( data.data.province ) {
  						document.querySelector("#cityResult").innerHTML = data.data.province + "-" + data.data.address ;
  						cityResult.setAttribute('city', data.data.address );
- 						cityResult.setAttribute('province', data.data.province )
+ 						cityResult.setAttribute('province', data.data.province );
+ 						
+ 					}
+ 					if(data.data.orgName) {
+ 						document.getElementById("org").value = data.data.orgName;
  					}
  					if( data.data.phone ) {
  						document.querySelector("#phone").value = data.data.phone ;
  					}
- 					oRd = data.data.orgId ;
- 					queryCompany( data.data.orgId );
+ 					
  				}
  			},
  			error: function() {
@@ -167,26 +168,7 @@
  			}
  		});
  	}
- 	/*企业信息*/
- 	function queryCompany(orgId) {
- 		$.ajax(baseUrl + '/ajax/org/' + orgId, {
- 			dataType: 'json', //数据格式类型
- 			type: 'GET', //http请求类型
- 			timeout: 10000,
- 			async: true,
- 			success: function(data) {
- 				if(data.success) {
- 					var osur = plus.webview.getWebviewById("sureOrg.html");
- 					if(osur!=null)
- 					osur.close();
- 					document.querySelector("#publisher").innerHTML = data.data.forShort ? data.data.forShort : data.data.name;
- 				}
- 			},
- 			error: function() {
- 				plus.nativeUI.toast("服务器链接超时", toastStyle);
- 			}
- 		});
- 	}
+ 	
  	/*检查格式是否合格*/
  	function  checkout() {
  		var arr=[];
@@ -215,6 +197,12 @@
  				length : 2
  			},
  			arr[4] = {
+ 				demand : document.querySelector("#org"),
+ 				fontNum : 50,
+ 				alertTitle : "您所在的企业" ,
+ 				length : 3
+ 			};
+ 			arr[5] = {
  				demand : document.querySelector("#phone"),
  				fontNum : 50,
  				alertTitle : "联系电话" ,
@@ -259,7 +247,8 @@
 				"invalidDay": btns.getAttribute('flag'),
 				"contactNum": document.querySelector("#phone").value,
 				"creator": userid,
-				"orgId": oRd
+				'orgName':document.querySelector("#org").value,
+				'source' :'ekexiuApp'
  			},
  			timeout: 10000,
  			async: true,

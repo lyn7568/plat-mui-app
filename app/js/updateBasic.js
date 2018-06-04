@@ -45,6 +45,23 @@ mui.ready(function() {
 							
 						}
 						person.name=$data.name;
+						if($data.sex == 1) {
+							document.getElementById('sex').innerHTML="男";
+							person.sex=$data.sex;
+						}else if($data.sex == 2){
+							document.getElementById('sex').innerHTML="女";
+							person.sex=$data.sex;
+						}else{
+							person.sex="";
+							document.getElementById('sex').innerHTML="请选择性别";
+						}
+						if($data.birthday) {
+							document.getElementById('birthday').innerHTML=$data.birthday;
+							person.birthday=$data.birthday;
+						}else{
+							person.birthday="";
+							document.getElementById('birthday').innerHTML="请选择出生日期";
+						}
 						if($data.orgName) {
 							document.getElementById('orgName').innerHTML=$data.orgName;
 							person.orgName=$data.orgName;
@@ -126,7 +143,9 @@ mui.ready(function() {
 			openNewWebview(obj.web);
 		})
 		}
-		//职称
+		
+		bindEvent({selector:"sex",txt:"请选择性别",web:{html:'updateBasic-sex.html',id:"updateBasic-sex.html"}});
+		bindEvent({selector:"birthday",txt:"请选择出生日期",web:{html:'updateBasic-birthday.html',id:"updateBasic-birthday.html"}});
 		bindEvent({selector:"title",txt:"请填写最高职位",web:{html:'updateBasic-title.html',id:"updateBasic-title.html"}});
 		bindEvent({selector:"department",txt:"请填写当前就职的部门",web:{html:'updateBasic-depart.html',id:"updateBasic-depart.html"}});
 		bindEvent({selector:"office",txt:"请填写当前担任的职位",web:{html:'updateBasic-post.html',id:"updateBasic-post.html"}});

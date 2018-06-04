@@ -43,11 +43,12 @@
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll">
 						<a class="mui-control-item  mui-active" href="#item1mobile">找专家</a>
-						<a class="mui-control-item" href="#item2mobile">找企业</a>
+						<a class="mui-control-item" href="#item2mobile">找服务</a>
 						<a class="mui-control-item" href="#item3mobile">找资源</a>
 						<a class="mui-control-item" href="#item4mobile">找专利</a>
 						<a class="mui-control-item" href="#item5mobile">找论文</a>
 						<a class="mui-control-item tab-article" href="#item6mobile">找文章</a>
+						<a class="mui-control-item" href="#item7mobile">找企业</a>
 					</div>
 				</div>
 				<div class="mui-slider-group">
@@ -72,7 +73,7 @@
 					<div id="item2mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="companyList">
+								<ul class="mui-table-view" id="serviceList">
 									<!--<li class="mui-table-view-cell flexCenter OflexCenter ">
 										<div class="mui-clearfix">
 											<div class="madiaHead companyHead">
@@ -87,7 +88,7 @@
 									
 								</ul>
 								<!--无搜索结果-->
-								<div class="nodatabox displayNone" id="coNoSearch">
+								<div class="nodatabox displayNone" id="seNoSearch">
 									<div class="nodata">
 										<div class="picbox picNull"></div>
 										<div class="txtbox">
@@ -169,6 +170,35 @@
 							</div>
 						</div>
 					</div>
+					<div id="item7mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="companyList">
+									<!--<li class="mui-table-view-cell flexCenter OflexCenter ">
+										<div class="mui-clearfix">
+											<div class="madiaHead companyHead">
+												<div class="boxBlock"><img class="boxBlockimg companyImg" src="../images/default-icon.jpg"></div>
+											</div>
+											<div class="madiaInfo OmadiaInfo">
+												<p class="mui-ellipsis h1Font">企业名称<em class="authicon authicon-com-ok" title="科袖认证企业"></em></p>
+												<p class="mui-ellipsis h2Font"><span id="">企业类型</span> <span id="">所属行业 | 所属行业</span></p>
+											</div>
+										</div>
+									</li>-->
+									
+								</ul>
+								<!--无搜索结果-->
+								<div class="nodatabox displayNone" id="coNoSearch">
+									<div class="nodata">
+										<div class="picbox picNull"></div>
+										<div class="txtbox">
+											<p class="noContip">暂时没有符合该搜索条件的内容</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -208,6 +238,9 @@
 			} else if(searchModule == "6") {
 				document.querySelectorAll(".mui-control-item")[5].classList.add("mui-active");
 				document.querySelectorAll(".mui-slider-item")[5].classList.add("mui-active");
+			}else if(searchModule == "7") {
+				document.querySelectorAll(".mui-control-item")[6].classList.add("mui-active");
+				document.querySelectorAll(".mui-slider-item")[6].classList.add("mui-active");
 			}
 		</script>
 

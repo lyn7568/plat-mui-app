@@ -10,6 +10,7 @@ mui.plusReady(function() {
 	getRecourceMe(); /*获取资源信息*/
 	//关键词标签点击进去搜索
 	module.lWord(paperId, 2);
+	pageViewLog(paperId, 5)
 	mui(".tagList").on("tap", "li", function() {
 		var tagText = this.getElementsByTagName("span")[0].innerText;
 		plus.nativeUI.showWaiting();
@@ -30,20 +31,6 @@ mui.plusReady(function() {
 			}
 		} else {
 			isLogin();
-		}
-	});
-
-	mui.ajax(baseUrl + '/ajax/ppaper/incPageViews', {
-		"type": "POST",
-		"dataType": "json",
-		"data": {
-			"id": paperId
-		},
-		"success": function(data) {
-			if(data.success) {}
-		},
-		"error": function() {
-
 		}
 	});
 

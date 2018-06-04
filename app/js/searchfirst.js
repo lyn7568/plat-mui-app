@@ -79,6 +79,9 @@ mui.plusReady(function() {
 		if(e.keyCode == 13) {
 			if(this.value.replace(/^\s*|\s*$/,"")) {
 				wlog("kw", this.value);
+			}else{
+				plus.nativeUI.toast("请输入关键词", toastStyle);
+				return;
 			}
 			search.createWin(this.value);
 		}

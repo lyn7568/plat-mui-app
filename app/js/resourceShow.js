@@ -31,23 +31,13 @@ mui.plusReady(function() {
 	resourceId = self.resourceId;
 	getRecourceMe();/*获取资源信息*/
 	relatedArticles();/*相关文章信息*/
+	relatedServices();
 	interestingResources();
+	pageViewLog(resourceId,2)
 	mui('#detailDescp').on('tap','a',function(){
 		plus.runtime.openURL( this.href);
 	});
-	mui.ajax(baseUrl + '/ajax/resource/pageViews',{
-			"type": "POST",
-			"dataType": "json",
-			"data": {
-				"resourceId": resourceId
-			},
-			"success": function(data) {
-				if(data.success) {}
-			},
-			"error": function() {
-				
-			}
-		});
+	
 	function getRecourceMe() {
 		mui.plusReady(function() {
 			mui.ajax(baseUrl + '/ajax/resource/queryOne', {
@@ -82,10 +72,10 @@ mui.plusReady(function() {
 							var otitleInfo="";
 							var oOrgInfo="";
 							if(mydata.editProfessor.title) {
-								otitleInfo = mydata.editProfessor.title + ",";
+								otitleInfo = mydata.editProfessor.title + "，";
 							} else {
 								if(mydata.editProfessor.office) {
-									otitleInfo = mydata.editProfessor.office + ",";
+									otitleInfo = mydata.editProfessor.office + "，";
 								}else{
 									otitleInfo = "";
 								}
@@ -280,9 +270,52 @@ mui.plusReady(function() {
 				
 					}
 				}
+			}
+		});
+	}
+	function relatedServices() {
+		mui.ajax(baseUrl + '/ajax/ware/byResourceWithModifyTime', {
+			type: "GET",
+			data: {
+				"id": resourceId,
+				"rows":5
 			},
-			error:  function(xhr, type, errorThrown) {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
+			dataType: "json",
+			success: function(data) {
+				console.log(JSON.stringify(data));
+				if(data.success) {
+					if(data.data.length == 0) {
+						return;
+					}
+					document.getElementById("likeService").parentNode.classList.remove("displayNone");
+					var $html= data.data;
+					for(var i = 0; i < $html.length; i++) {
+						var rImg="../images/default-service.jpg"
+						if($html[i].images) {
+							var subs = strToAry($html[i].images)
+							if(subs.length > 0) {
+								rImg=baseUrl+"/data/ware" + subs[0]
+							}
+						}
+						var li = document.createElement("li");
+						li.setAttribute("data-id",$html[i].id);
+						li.className = "mui-table-view-cell";
+						li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+							' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
+							'<div class="madiaInfo OmadiaInfo">' +
+							'<p class="mui-ellipsis-2 h1Font">' + $html[i].name + '</p>' +
+							'<p><span class="h2Font ownerName"></span><em class="authicon ownerSty"></em></p>' +
+							'</div>' +
+							'</div>'
+						var $li=$(li)
+						document.getElementById("likeService").appendChild(li);
+						if($html[i].category==1){
+							proSigInfo($html[i].owner,$li)
+						}else{
+							orgSigInfo($html[i].owner,$li)
+						}
+					}
+				}
 			}
 		});
 	}
@@ -433,6 +466,13 @@ mui.plusReady(function() {
 				
 			}, false);
 	});
+	mui('#likeService').on('tap', 'li', function() {
+		var resouId = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
+			serviceId: resouId
+		});
+	});
 	//判断是否登录，登录才可咨询，关注，收藏
 	function isLogin() {
 		var userid = plus.storage.getItem('userid');
@@ -443,6 +483,36 @@ mui.plusReady(function() {
 			})
 		}
 	};
+	function proSigInfo(id,$list){
+		mui.ajax(baseUrl + "/ajax/professor/baseInfo/"+id, {
+			type: "GET",
+			data: {},
+			dataType: "json",
+			success: function(data) {
+				var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
+				$list.find(".ownerName").html(data.data.name)
+				$list.find(".ownerSty").addClass(userType.sty)
+			}
+		});
+	}
+	function orgSigInfo(id,$list){
+		mui.ajax(baseUrl + "/ajax/org/" + id, {
+			type: "GET",
+			data: {},
+			dataType: "json",
+			success: function(data) {
+				var name=data.data.name;
+				if(data.forShort){
+					name=data.data.forShort
+				}
+				$list.find(".ownerName").html(name)
+				if(data.data.authStatus == 3){
+					$list.find(".ownerSty").addClass("authicon-com-ok")
+				}
+			}
+		});
+	}
+	
 	//咨询
 	oconsultBtn.addEventListener('tap', function() {
 		var reType = othisInfo.getAttribute("data-type");

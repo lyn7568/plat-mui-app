@@ -271,6 +271,49 @@ mui.plusReady(function() {
 				'</div>'
 			document.getElementById("resourceList").appendChild(li);
 		},
+		correlationService: function() {
+			oArticleModule.oAjaxGet(baseUrl + "/ajax/ware/byArticle",{
+				"id": oArticleModule.articleId,
+				"rows":5
+			}, "get", function(res){
+				console.log(JSON.stringify(res));
+				var $data=res
+				if($data.length == 0) {
+					return;
+				}
+				document.getElementById("correlationService").style.display = "block";
+				for(var i = 0; i < $data.length; i++) {
+					var cnt="", rImg="../images/default-service.jpg"
+					if($data[i].images) {
+						var subs = strToAry($data[i].images)
+						if(subs.length > 0) {
+							rImg=baseUrl+"/data/ware" + subs[0]
+						}
+					}
+					if($data.cnt){
+						cnt="内容："+$data.cnt
+					}
+					var li = document.createElement("li");
+					li.setAttribute("data-id",$data[i].id);
+					li.className = "mui-table-view-cell";
+					li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+						' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
+						'<div class="madiaInfo OmadiaInfo">' +
+						'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
+						'<p><span class="h2Font ownerName"></span><em class="authicon ownerSty"></em></p>' +
+						//'<p class="mui-ellipsis h2Font">' + cnt + '</p>' +
+						'</div>' +
+						'</div>'
+					document.getElementById("serviceList").appendChild(li);
+					var $li=$(li)
+					if($data[i].category==1){
+						oArticleModule.proSigInfo($data[i].owner,$li)
+					}else{
+						oArticleModule.orgSigInfo($data[i].owner,$li)
+					}
+				}
+			});
+		},
 		correlationArticle: function($data) {
 				if($data.total) {
 					if($data.data.length == 0) {
@@ -394,25 +437,37 @@ mui.plusReady(function() {
 			plus.nativeUI.toast("已取消收藏", toastStyle);
 			document.getElementsByClassName("icon-shoucang")[0].classList.remove("icon-yishoucang");
 		},
+		proSigInfo:function(id,$list){
+			oArticleModule.oAjaxGet(baseUrl + "/ajax/professor/baseInfo/"+id,{
+			}, "get", function(data){
+				var datas=data
+				var userType = autho(datas.authType, datas.orgAuth, datas.authStatus);
+				$list.find(".ownerName").html(datas.name)
+				$list.find(".ownerSty").addClass(userType.sty)
+			});
+		},
+		orgSigInfo:function(id,$list){
+			oArticleModule.oAjaxGet(baseUrl + "/ajax/org/" + id,{
+			}, "get", function(data){
+				var datas=data
+				var name=datas.name;
+				if(datas.forShort){
+					name=datas.forShort
+				}
+				$list.find(".ownerName").html(name)
+				if(datas.authStatus == 3){
+					$list.find(".ownerSty").addClass("authicon-com-ok")
+				}
+			});
+		}
 	}
+	pageViewLog(oArticleModule.articleId, 3)
 	wlog("article", oArticleModule.articleId, "2")
 	/*文章详细内容*/
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/query", {
 		articleId: oArticleModule.articleId
 	}, "get", oArticleModule.articleMess);
-	mui.ajax(baseUrl + '/ajax/article/pageViews',{
-		"type" :  "POST" ,
-		"dataType" : "json",
-		"data" :{"articleId":oArticleModule.articleId},
-		"success" : function(data) {
-			console.log(data);
-			if (data.success){
-			}
-		},
-		"error":function(){
-			
-		}
-	});
+	
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/find", {pageSize:5}, "get", oArticleModule.correlationArticle);
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralatePro", {
 		"articleId": oArticleModule.articleId
@@ -420,6 +475,7 @@ mui.plusReady(function() {
 	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralateRes", {
 		"articleId": oArticleModule.articleId
 	}, "get", oArticleModule.correlationResource);
+	oArticleModule.correlationService()
 	//相关企业
 	function companylist() {
 		mui.ajax(baseUrl+"/ajax/article/ralateOrg",{
@@ -504,6 +560,13 @@ mui.plusReady(function() {
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
 			resourceId: resouId
+		});
+	})
+	mui("#serviceList").on('tap', 'li', function() {
+		var serviceId = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
+			serviceId: serviceId
 		});
 	})
 	mui('#articleList,#newarticleList').on('tap', 'li', function() {

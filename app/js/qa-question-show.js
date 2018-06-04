@@ -13,7 +13,8 @@ mui.ready(function() {
 		dataO = {
 			time: "",
 			id: "",
-			score:""
+			score:"",
+			agree:""
 		};
 	var oUrl = baseUrl + "/images/logo180.png";
 	var userid, questionId ,pkey=[],byway;
@@ -23,7 +24,7 @@ mui.ready(function() {
 		plus.nativeUI.closeWaiting();
 		self.show("slide-in-right", 150);
 		questionId = self.quid;
-		wlog("question",questionId,"1");
+		wlog("question",questionId,"2");
 
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {
@@ -54,7 +55,7 @@ mui.ready(function() {
 							setTimeout(function() {
 								getConmain();
 								document.getElementById("curAnswers").innerHTML = "";
-								dataO = {time: "",id: "",score:""}
+								dataO = {time: "",id: "",score:"",agree:""}
 								answerList();
 								if(userid && userid != null && userid != "null") {
 									anExist();
@@ -75,7 +76,7 @@ mui.ready(function() {
 					document.getElementById("questionTime").innerHTML = commenTime($da.createTime);
 					document.getElementById("replyCount").innerHTML = $da.replyCount;
 					if($da.cnt) {
-						document.getElementById("questionCnt").innerHTML =($da.cnt).replace(/\n/g,"<br />");
+						document.getElementById("questionCnt").innerHTML =$da.cnt.replace(/\n/g,"<br />");
 					}
 					if($da.keys != undefined && $da.keys.length != 0) {
 						var subs = new Array();
@@ -146,6 +147,7 @@ mui.ready(function() {
 					dataStr={
 						"qid": questionId,
 						"score": dataO.score,
+						"agree":dataO.agree,
 						"id": dataO.id,
 						"rows": rows
 					}
@@ -169,6 +171,7 @@ mui.ready(function() {
 					if($info.length > 0) {
 						if(byway == 1) {
 							dataO.score = $info[$info.length - 1].score;
+							dataO.agree = $info[$info.length - 1].agree;
 							dataO.id = $info[$info.length - 1].id;
 						}else if(byway == 2) {
 							dataO.time = $info[$info.length - 1].createTime;
@@ -220,14 +223,14 @@ mui.ready(function() {
 				var hd = "",
 					hl = "";
 				if(dataStr.agree > 0) {
-					hd = '<span>' + dataStr.agree + '赞</span>'
+					hd = '<span>赞 ' + dataStr.agree + '</span>'
 				}
 				liStr.setAttribute("data-id", dataStr.id);
 				liStr.className = "mui-table-view-cell";
 				liStr.innerHTML = '<div class="madiaInfo">' +
 					'<div class="flexCenter qa-owner"></div>' +
-					'<p class="qa-con mui-ellipsis-5">' + (dataStr.cnt).replace(/\n/g,"<br />") + '</p>' +
-					'<div class="showli mui-ellipsis">' +
+					'<div class="qa-con mui-ellipsis-5">' + listConCut(dataStr.cnt)  + '</div>' +
+					'<div class="showliSpan mui-ellipsis">' +
 					'<span>' + commenTime(dataStr.createTime) + '</span>' + hd + '<span class="leaveMsgCount"></span>' +
 					'</div>' +
 					'</div>'
@@ -242,7 +245,7 @@ mui.ready(function() {
 				}, "get", function(data) {
 					if(data.success) {
 						if(data.data > 0) {
-							$str.find(".leaveMsgCount").html(data.data + "留言");
+							$str.find(".leaveMsgCount").html("留言 " + data.data);
 						}
 					}
 				})
@@ -314,23 +317,10 @@ mui.ready(function() {
 					})
 				})
 			}
-		mui.ajax(baseUrl + '/ajax/question/pageViews',{
-			"type" :  "POST" ,
-			"dataType" : "json",
-			"data" :{"qid":questionId},
-			"success" : function(data) {
-				console.log(data);
-				if (data.success){
-				}
-			},
-			"error":function(){
-				
-			}
-		});
-		
 		pullEvent();
 		getConmain();
 		answerList();
+		pageViewLog(questionId,8)
 		moreMes();
 		if(userid && userid != null && userid != "null") {
 			anExist(); //判断是否回答过该问题
@@ -356,7 +346,7 @@ mui.ready(function() {
 			this.classList.add('active');
 			byway = this.getAttribute("data-type");
 			document.getElementById("curAnswers").innerHTML = "";
-			dataO = {time: "",id: "",score:""}
+			dataO = {time: "",id: "",score:"",agree:""}
 			if(typeof(pkey)==undefined){
 				pkey=[]
 			}else{
@@ -401,9 +391,12 @@ mui.ready(function() {
 			}
 		})
 		window.addEventListener('afterAnswer', function(event) {
-			question=event.detail.quid
+			questionId=event.detail.quid
+			document.getElementById("curAnswers").innerHTML = "";
+			dataO = {time: "",id: "",score:"",agree:""}
 			anExist();
 			answerList();
+			getConmain();
 		});
 		yaoanswer.addEventListener('tap', function() {
 			if(userid && userid != null && userid != "null") {

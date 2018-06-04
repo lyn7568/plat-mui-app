@@ -26,6 +26,8 @@ mui.ready(function() {
 					return;
 				}
 			}
+			mess.sex=web.sex;
+			mess.birthday=web.birthday;
 			mess.name = web.name;
 			mess.orgName = web.orgName;
 			mess.department = web.department;

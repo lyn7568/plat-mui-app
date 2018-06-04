@@ -1,5 +1,4 @@
 mui.plusReady(function() {
-	//test git1 
 	var userid = plus.storage.getItem('userid');
 	var self = plus.webview.currentWebview();
 	var ozixun = document.getElementById("consultBtn");
@@ -7,9 +6,10 @@ mui.plusReady(function() {
 	var title="";
 	if(userid == proId) {
 		document.getElementsByClassName('footbox')[0].style.display = "none";
+	}else{
+		pageViewLog(proId,1)
 	}
 	var induSubjectShow = function(obj) {
-		//console.log(JSON.stringify(obj));
 		if(obj.data != undefined && obj.data.length != 0) {
 			var subs = new Array();
 			if(obj.data.indexOf(',')) {
@@ -27,6 +27,21 @@ mui.plusReady(function() {
 		}
 	}
 	var resear = "";
+	//查询研究方向	
+	var getRecords = function($researchAreaLogs, caption) {
+		var ret = [];
+		var t = 0;
+		for(var i = 0; i < $researchAreaLogs.length; i++) {
+			if(caption == $researchAreaLogs[i].caption) {
+				ret[t] = {
+					id: $researchAreaLogs[i].opreteProfessorId,
+					img: $researchAreaLogs[i].hasHeadImage
+				}
+				t++;
+			}
+		}
+		return ret;
+	}
 	var researchAreaShow = function($datas, $datarecords) {
 		if($datas != undefined && $datas.length != 0) {
 			var html = [];
@@ -76,7 +91,6 @@ mui.plusReady(function() {
 			document.getElementsByClassName("reserachMess")[0].innerHTML = html.join('')
 		}
 	}
-	personalMessage();
 	var authName = "";
 	/*获取个人信息*/
 	function personalMessage() {
@@ -85,7 +99,6 @@ mui.plusReady(function() {
 			type: 'GET', //http请求类型
 			timeout: 10000, //超时设置
 			success: function(data) {
-				console.log(JSON.stringify(data))
 				plus.nativeUI.closeWaiting();
 				plus.webview.currentWebview().show("slide-in-right", 150);
 				var $data = data.data;
@@ -166,188 +179,190 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	/*进入个人简介页面*/
-	document.getElementById("detailProfessor").addEventListener("tap", function() {
-		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/userInforShow-more.html", 'userInforShow-more.html', {}, {
-			pId: proId
-		})
-	})
 	
-	getResource();
-	getArticel();
-	getPaper();
-	getPatent();
-	//historyEvaluate();
-	relevantExperts();//合作专家
-	relevantarticalList();//相关文章
-	likeExperts();//感兴趣专家
-	usersBrowse();
-	//用户浏览页内容
-	function usersBrowse(){
-		mui.ajax(baseUrl + "/ajax/demand/pq", {
-			type: "GET",
-			timeout: 10000,
-			dataType: "json",
-			data:{
-				"state":1,
-				"uid":proId
-			},
-			success: function(data) {
-				if(data.success){
-					var obj = data.data.data;
-					if(obj.length>0){
-						for(var i=0;i<obj.length;i++){
-							var li = document.createElement("li");
-							li.setAttribute("id",obj[i].id);
-							var needDate=obj[i].invalidDay;
-							var lastDate=TimeTr(needDate);
-							li.className = "mui-table-view-cell";
-							var oString = '<div class="madiaInfo">'
-								oString += '<p class="h1Font mui-ellipsis-2">'+obj[i].title+'</p>';
-								oString += '<p class="h2Font mui-ellipsis-5">'+obj[i].descp+'</p>'
-								oString += '<div class="showli mui-ellipsis">'
-								oString += '<span>'+obj[i].province+'</span>'
-								if(obj[i].duration!=0){oString += '<span>预期 '+demandDuration[obj[i].duration]+'</span>'}
-								if(obj[i].cost!=0){oString += '<span>预算 '+demandCost[obj[i].cost]+'</span>'}
-								oString += '<span>有效期至'+lastDate+' </span>'
-							    oString += '</div>'
-								oString += '</div>'
-							
-								li.innerHTML = oString;
-								document.getElementById("bower_u").appendChild(li);
-							
-						}
-					}else{
-						document.getElementById("bower_u").parentNode.parentNode.style.display = "none";
+	var rows = 1
+	var oAjax = function(url, dataS, otype, oFun) {
+			mui.ajax(baseUrl+url,{
+				dataType: 'json',
+				type: otype,
+				data: dataS,
+				traditional: true,
+				success: function(res) {
+					if(res.success) {
+						oFun(res)
 					}
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
-			}
-		})
-		
-	}
-	mui("#bower_u").on("tap","li",function(){
-		var dId=this.getAttribute("id");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
-			demanid: dId,
-			professorId:proId
-		});
-	})
-	function getResource() {
-		mui.ajax(baseUrl + "/ajax/resource/pqProPublish", {
-			type: "GET",
-			timeout: 10000,
-			dataType: "json",
-			data: {
-				"professorId": proId
-			},
-			success: function(data) {
-//				console.log(JSON.stringify(data))
-				if(data.success) {
-					var obj = data.data.data;
-					if(obj.length > 0) {
-						document.getElementById("resourceNum").innerText = data.data.total;
-						if(obj.length > 2) {
-							obj.length = 2;
-							document.getElementById("seeMoreResource").classList.remove("displayNone");
+			});
+		},	
+		demandListVal=function() {
+			var aimId="demandShow"
+			oAjax("/ajax/demand/pq",{
+				"state":'1',
+				"uid":proId,
+				"pageSize":5
+			}, "get", function(res){
+				console.log(JSON.stringify(res));
+				var obj = res.data.data;
+				if(obj.length > 0) {
+					document.getElementById(aimId).parentNode.parentNode.classList.remove("displayNone");
+					for(var i = 0; i < obj.length; i++) {
+						var li = document.createElement("li");
+						li.setAttribute("data-id",obj[i].id);
+						var needDate=obj[i].invalidDay;
+						var lastDate=TimeTr(needDate);
+						li.className = "mui-table-view-cell";
+						var oString = '<div class="madiaInfo">'
+							oString += '<p class="h1Font mui-ellipsis-2">'+obj[i].title+'</p>';
+							oString += '<p class="h2Font mui-ellipsis-5">'+obj[i].descp+'</p>'
+							oString += '<div class="showli mui-ellipsis h3Font">'
+							oString += '<span>'+obj[i].province+'</span>'
+							if(obj[i].duration!=0){oString += '<span>预期 '+demandDuration[obj[i].duration]+'</span>'}
+							if(obj[i].cost!=0){oString += '<span>预算 '+demandCost[obj[i].cost]+'</span>'}
+							oString += '<span>有效期至'+lastDate+' </span>'
+						    oString += '</div>'
+							oString += '</div>'
+						li.innerHTML=oString
+						document.getElementById(aimId).appendChild(li);
+					}
+				}
+			})
+		},
+        articalListVal=function(){
+			var aimId="articelShow"
+			oAjax("/ajax/article/publish",{
+				"category": "1",
+				"owner":proId,
+				"rows": rows
+			}, "get", function(res){
+				var obj = res.data;
+				if(obj.length > 0) {
+					document.getElementById(aimId).parentNode.parentNode.classList.remove("displayNone");
+			
+					for(var i = 0; i < obj.length; i++) {
+						var hasImg="../images/default-artical.jpg"
+						if(obj[i].articleImg) {
+							hasImg=baseUrl+"/data/article/" + obj[i].articleImg
 						}
-						for(var i = 0; i < obj.length; i++) {
-							var liItem = document.createElement("li");
-							liItem.className = "mui-table-view-cell"
-							liItem.setAttribute("data-id", obj[i].resourceId)
-							var oString = '<div class="flexCenter OflexCenter mui-clearfix">'
-							if(obj[i].images.length) {
-								oString += '<div class="madiaHead resouseHead" style="background-image:url(' + baseUrl + '/data/resource/' + obj[i].images[0].imageSrc + ')"></div>'
-							} else {
-								oString += '<div class="madiaHead resouseHead"></div>'
+						var li = document.createElement("li");
+						li.setAttribute("data-id", obj[i].articleId);
+						li.className = "mui-table-view-cell";
+						li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+							'<div class="madiaHead resouseHead" style="background-image:url(' + hasImg + ')"></div>' +
+							'<div class="madiaInfo OmadiaInfo">' +
+							'<p class="mui-ellipsis-2 h1Font">' + obj[i].articleTitle + '</p>' +
+							'<p class="h2Font mui-ellipsis"><span class="time">'+commenTime(obj[i].publishTime)+'</span></p>'+
+							'</div>' +
+							'</div>'
+						document.getElementById(aimId).appendChild(li);
+					}
+				}
+			})
+		},
+		resourceListVal=function(){
+			var aimId="resourceShow"
+			oAjax("/ajax/resource/publish",{
+				"category": "1",
+				"owner":proId,
+				"rows": rows
+			}, "get", function(res){
+				var obj = res.data;
+				if(obj.length > 0) {
+					document.getElementById(aimId).parentNode.parentNode.classList.remove("displayNone");
+					for(var i = 0; i < obj.length; i++) {
+						var cnt="", hasImg="../images/default-resource.jpg"
+						if(obj[i].images.length) {
+							hasImg= baseUrl + '/data/resource/' + obj[i].images[0].imageSrc 
+						}
+						if(obj[i].supportedServices){
+							cnt="用途："+ obj[i].supportedServices
+						}
+						var li = document.createElement("li");
+						li.setAttribute("data-id", obj[i].resourceId);
+						li.className = "mui-table-view-cell";
+						li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+							'<div class="madiaHead resouseHead" style="background-image:url(' + hasImg + ')"></div>' +
+							'<div class="madiaInfo OmadiaInfo">' +
+							'<p class="mui-ellipsis-2 h1Font">' + obj[i].resourceName + '</p>' +
+							'<p class="mui-ellipsis h2Font">' + cnt+ '</p>' +
+							'</div>' +
+							'</div>'
+						document.getElementById(aimId).appendChild(li);
+					}
+				}
+			})
+		},
+		serviceListVal=function(){
+			var aimId="serviceShow"
+			oAjax("/ajax/ware/publish",{
+				"category":"1",
+				"owner":proId,
+				"rows": rows
+			}, "get", function(res){
+				var obj = res.data;
+				if(obj.length > 0) {
+					document.getElementById(aimId).parentNode.parentNode.classList.remove("displayNone");
+					for(var i = 0; i < obj.length; i++) {
+						var cnt="", hasImg="../images/default-service.jpg"
+						if(obj[i].images) {
+							var subs = strToAry(obj[i].images)
+							if(subs.length > 0) {
+								hasImg=baseUrl+"/data/ware" + subs[0]
 							}
-							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis h1Font">' + obj[i].resourceName + '</p><p class="h2Font mui-ellipsis-2">用途：' + obj[i].supportedServices + '</p>'
-							oString += '</div></div>'
-							liItem.innerHTML = oString;
-							document.getElementById("resourceShow").appendChild(liItem);
 						}
-					} else {
-						document.getElementById("resourceShow").parentNode.parentNode.style.display = "none";
+						if(obj[i].cnt){
+							cnt="内容："+obj[i].cnt
+						}
+						var li = document.createElement("li");
+						li.setAttribute("data-id", obj[i].id);
+						li.className = "mui-table-view-cell";
+						li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+							'<div class="madiaHead resouseHead" style="background-image:url(' + hasImg + ')"></div>' +
+							'<div class="madiaInfo OmadiaInfo">' +
+							'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
+							'<p class="mui-ellipsis h2Font">' + cnt+ '</p>' +
+							'</div>' +
+							'</div>'
+						document.getElementById(aimId).appendChild(li);
 					}
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
-			}
-		})
-	}
-	function getArticel() {
-		mui.ajax(baseUrl + "/ajax/article/pqProPublish", {
-			type: "GET",
-			timeout: 10000,
-			dataType: "json",
-			data: {
-				"professorId": proId
-			},
-			success: function(data) {
-				console.log(JSON.stringify(data))
-				if(data.success) {
-					var obj = data.data.data;
-					if(obj.length > 0) {
-						document.getElementById("articalNum").innerText = data.data.total;
-						if(obj.length > 2) {
-							obj.length = 2;
-							document.getElementById("seeMoreArtical").classList.remove("displayNone");
-						}
-						for(var i = 0; i < obj.length; i++) {
-							var liItem = document.createElement("li");
-							liItem.setAttribute("data-id", obj[i].articleId);
-							liItem.setAttribute("owner-id", obj[i].professorId);
-							liItem.className = "mui-table-view-cell"
-							var oString = '<div class="flexCenter OflexCenter mui-clearfix">'
-							if(obj[i].articleImg) {
-								oString += '<div class="madiaHead artHead" style="background-image:url(' + baseUrl + '/data/article/' + obj[i].articleImg + ')"></div>'
-							} else {
-								oString += '<div class="madiaHead artHead"></div>'
-							}
-							oString += '<div class="madiaInfo OmadiaInfo"><p class="mui-ellipsis-2 h1Font">' + obj[i].articleTitle + '</p>'
-							oString += '<p class="h2Font mui-ellipsis"><span class="time">'+commenTime(obj[i].publishTime)+'</span></p>'
-							oString += '</div></div>'
-							liItem.innerHTML = oString;
-							document.getElementById("articelShow").appendChild(liItem);
-						}
-					} else {
-						document.getElementById("articelShow").parentNode.parentNode.style.display = "none";
+			})
+		},
+		patentListVal=function(){
+			var aimId="patent"
+			oAjax("/ajax/ppatent/professor",{
+				"owner":proId,
+				"rows": rows
+			}, "get", function(res){
+				var obj = res.data;
+				if(obj.length > 0) {
+					document.getElementById(aimId).parentNode.parentNode.classList.remove("displayNone");
+					for(var i = 0; i < obj.length; i++) {
+						var li = document.createElement("li");
+						li.setAttribute("data-id", obj[i].id);
+						li.className = "mui-table-view-cell";
+						li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+							'<div class="madiaHead patentHead"></div>' +
+							'<div class="madiaInfo OmadiaInfo">' +
+							'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
+							'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +
+							'</div>' +
+							'</div>'
+						document.getElementById(aimId).appendChild(li);
 					}
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
-			}
-		})
-	}
-	function getPaper() {
-		mui.ajax(baseUrl + "/ajax/ppaper/byProfessor", {
-			type: "GET",
-			timeout: 10000,
-			dataType: "json",
-			data: {
-				"id": proId
-			},
-			success: function(data) {
-				console.log(JSON.stringify(data))
-				if(data.success) {
-					var obj = data.data.data;
-					if(obj.length > 0) {
-						document.getElementById("paperNum").innerText = data.data.total;
-						if(obj.length > 2) {
-							obj.length = 2;
-							document.getElementById("seeMorePaper").classList.remove("displayNone");
-						}
-						for(var i = 0; i < obj.length; i++) {
-							var li = document.createElement("li");
+			})
+		},
+		paperListVal=function(){
+			var aimId="paper"
+			oAjax("/ajax/ppaper/professor",{
+				"owner":proId,
+				"rows": rows
+			}, "get", function(res){
+				var obj = res.data;
+				if(obj.length > 0) {
+					document.getElementById(aimId).parentNode.parentNode.classList.remove("displayNone");
+					for(var i = 0; i < obj.length; i++) {
+						var li = document.createElement("li");
 							li.setAttribute("data-id", obj[i].id);
 							li.className = "mui-table-view-cell";
 							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
@@ -357,127 +372,403 @@ mui.plusReady(function() {
 								'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +
 								'</div>' +
 								'</div>'
-							document.getElementById("paper").appendChild(li);
-						}
-					} else {
-						document.getElementById("paper").parentNode.parentNode.style.display = "none";
+						document.getElementById(aimId).appendChild(li);
 					}
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
-			}
-		})
-	}
-	function getPatent() {
-		mui.ajax(baseUrl + "/ajax/ppatent/byProfessor", {
-			type: "GET",
-			timeout: 10000,
-			dataType: "json",
-			data: {
-				"id": proId
-			},
-			success: function(data) {
-				if(data.success) {
-					var obj = data.data.data;
-					if(obj.length > 0) {
-						document.getElementById("patentNum").innerText = data.data.total;
-						if(obj.length > 2) {
-							obj.length = 2;
-							document.getElementById("seeMorePatent").classList.remove("displayNone");
-						}
-						for(var i = 0; i < obj.length; i++) {
-							var li = document.createElement("li");
+				
+			})
+		},
+		answerListVal=function(){
+        	var aimId="QAShow"
+			oAjax("/ajax/question/answer/bySelf",{
+                "uid":proId,
+                "rows":rows
+			}, "get", function(res){
+				var obj = res.data;
+				if(obj.length > 0) {
+					document.getElementById(aimId).parentNode.parentNode.classList.remove("displayNone");
+					for(var i = 0; i < obj.length; i++) {
+						var hd = "";
+		                if (obj[i].agree > 0) {
+		                    hd = '<span>赞 ' + obj[i].agree + '</span>'
+		                }
+						var li = document.createElement("li");
 							li.setAttribute("data-id", obj[i].id);
 							li.className = "mui-table-view-cell";
-							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
-								'<div class="madiaHead patentHead"></div>' +
-								'<div class="madiaInfo OmadiaInfo">' +
-								'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
-								'<p class="mui-ellipsis h2Font">' + obj[i].authors.substring(0, obj[i].authors.length - 1) + '</p>' +
-								'</div>' +
-								'</div>'
-							document.getElementById("patent").appendChild(li);
-						}
-					} else {
-						document.getElementById("patent").parentNode.parentNode.style.display = "none";
+							li.innerHTML = '<div class="madiaInfo">' +
+			                    '<p class="h1Font mui-ellipsis-2 qa-question"></p>' +
+			                    '<div class="flexCenter qa-owner"></div>' +
+			                    '<div class="qa-con mui-ellipsis-5">' + listConCut(obj[i].cnt) + '</div>' +
+			                    '<div class="showliSpan mui-ellipsis">' +
+			                    '<span>' + commenTime(obj[i].createTime) + '</span>' + hd +'<span class="leaveMsgCount"></span>'+
+			                    '</div>' +
+			                    '</div>'
+						document.getElementById(aimId).appendChild(li);
+						var $str = $(li);
+		                questioninfo(obj[i].qid, $str);
+		                proinfo(obj[i].uid, $str);
+						leaveMsgCount(obj[i].id, $str);
 					}
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
-			}
-		})
-	}
-	function historyEvaluate(){
-		mui.ajax(baseUrl + "/ajax/consult/pqAssessHis", {
-			"type": "get",
-			"data": {
-				"professorId": proId
-			},
-			"async": false,
-			"success": function(response) {
-				if(response.success) {
-					var $data = response.data.data;
-					if($data.length>0){
-						document.getElementById("evaluateNum").innerText = response.data.total;
-						if($data.length>2){
-							$data.length =2;
-							document.getElementById("seeMoreEvaluate").classList.remove("displayNone");
-						}
-						for(var i = 0; i < $data.length; i++) {
-							var add = document.createElement("li");
-							var assessTime = commenTime($data[i].assessTime);
-							var assessContant ="";
-							if($data[i].assessContant) {
-								assessContant = $data[i].assessContant;
-							}
-							var userhed='';
-							if($data[i].professor.hasHeadImage) {
-								userhed = 'background-image:url('+baseUrl+'/images/head/' + $data[i].professor.id + '_l.jpg)';
-							} else {
-								userhed = 'background-image:url(../images/default-photo.jpg)';
-							}
+			})
+    	},
+    	proinfo=function(pid, $str) {
+			oAjax("/ajax/professor/baseInfo/" + pid,{}, "get", function(data){
+                var dataStr = data.data
+                var baImg = "../images/default-photo.jpg";
+                if (dataStr.hasHeadImage == 1) {
+                    baImg = baseUrl+"/images/head/" + dataStr.id + "_l.jpg";
+                }
+                var userType = autho(dataStr.authType, dataStr.orgAuth, dataStr.authStatus);
+                var os = "";
+                if (dataStr.title) {
+                    if (dataStr.orgName) {
+                        os = dataStr.title + "，" + dataStr.orgName;
+                    } else {
+                        os = dataStr.title;
+                    }
+                } else {
+                    if (dataStr.office) {
+                        if (dataStr.orgName) {
+                            os = dataStr.office + "，" + dataStr.orgName;
+                        } else {
+                            os = dataStr.office;
+                        }
+                    } else {
+                        if (dataStr.orgName) {
+                            os = dataStr.orgName;
+                        }
+                    }
+                }
+                var styStr='<em class="authicon ' + userType.sty + '" title="' + userType.title + '"></em>'
+				if(userType.sty=="e"){
+					styStr=""
+				}
+				var str = '<div class="owner-head useHead" style="background-image:url(' + baImg + ')"></div>' +
+					'<div class="owner-info">' +
+					'<div class="owner-name"><span class="h1Font">' + dataStr.name + '</span>'+styStr+'</div>' +
+					'<div class="owner-tit mui-ellipsis h2Font" style="margin-top:0;">' + os + '</div>' +
+					'</div>'
 
-							add.className = "mui-table-view-cell flexCenter levelbox";
-							
-							add.innerHTML='<div class="madiaHead useHead useHeadMsg urlhref" style="'+ userhed +'" data-id='+$data[i].professor.id+'></div>'+
-							       '<div class="madiaInfo"><div class="mui-clearfix" style="position:relative">'+			
-							       '<span class="h1Font urlhref" data-id='+$data[i].professor.id+'>'+ $data[i].professor.name +'</span>'+
-							       '<em class="authicon authicon-pro"></em>'+			
-							       '<ul class="starShow">'+					
-								       '<li class="mui-icon iconfont icon-favor"></li>'+ 
-								       '<li class="mui-icon iconfont icon-favor"></li>'+
-								       '<li class="mui-icon iconfont icon-favor"></li>'+
-								       '<li class="mui-icon iconfont icon-favor"></li>'+
-								       '<li class="mui-icon iconfont icon-favor"></li>'+
-							       '</ul></div>'+		
-							       '<p class="h2Font messageContent">'+ assessContant +'</p>'+
-							       '<span class="commenttime">'+ assessTime +'</span>'+
-							       '</div>';
-							document.getElementById("evaluateShow").appendChild(add);
-							var startLeval = parseInt($data[i].assessStar);
-							var start = document.getElementsByClassName("levelbox")[i].querySelectorAll(".icon-favor");
-							for(var j = 0; j < startLeval; j++) {
-								start[j].classList.remove("icon-favor");
-								start[j].classList.add("icon-favorfill");
-							}
-						}
-					}else{
-						document.getElementById("evaluateShow").parentNode.parentNode.style.display="none";	
+                $str.find(".qa-owner").html(str)
+	        });
+	    },
+	    questioninfo=function(qid, $str) {
+	        oAjax("/ajax/question/qo",{
+	        	id:qid
+	        }, "get", function(data){
+                $str.find(".qa-question").html(data.data.title);
+                if(data.data.pageViews>0){
+                    $str.find(".qaPageview").html("阅读量 "+data.data.pageViews);
+                }else{
+                    $str.find(".qaPageview").hide()
+                }
+	        });
+	    },
+	    leaveMsgCount=function(id, $str) {
+			oAjax("/ajax/leavemsg/count", {
+				sid:id,
+				stype: "4"
+			}, "get", function(data) {
+				if(data.success) {
+					if(data.data > 0) {
+						$str.find(".leaveMsgCount").html("留言 " + data.data);
 					}
-					
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
-			}
-		})
-	}
-     //合作专家
+			})
+		},
+		queryPubCount=function(){
+			oAjax("/ajax/article/count/publish",{//文章总数
+				"owner": proId,
+				"category":"1"
+			}, "GET", function(data){
+				if(data.data>rows){
+					$("#seeMoreArtical").removeClass("displayNone")
+					$("#articalNum").text(data.data);
+				}
+			});
+			oAjax("/ajax/resource/count/publish",{//资源总数
+				"owner": proId,
+				"category":"1"
+			}, "GET", function(data){
+				if(data.data>rows){
+					$("#seeMoreResource").removeClass("displayNone")
+					$("#resourceNum").text(data.data);
+				}
+			});
+			oAjax("/ajax/ware/count/publish",{//服务总数
+				"owner": proId,
+				"category":"1"
+			}, "GET", function(data){
+				if(data.data>rows){
+					$("#seeMoreService").removeClass("displayNone")
+					$("#serviceNum").text(data.data);
+				}
+			});
+			oAjax("/ajax/ppatent/count/publish",{//专利总数
+				"owner": proId,
+			}, "GET", function(data){
+				if(data.data>rows){
+					$("#seeMorePatent").removeClass("displayNone")
+					$("#patentNum").text(data.data);
+				}
+			});
+			oAjax("/ajax/ppaper/count/publish",{//论文总数
+				"owner": proId,
+			}, "GET", function(data){
+				if(data.data>rows){
+					$("#seeMorePaper").removeClass("displayNone")
+					$("#paperNum").text(data.data);
+				}
+			});
+			oAjax("/ajax/question/answer/bySelf/count",{//回答总数
+				"uid": proId,
+			}, "GET", function(data){
+				if(data.data>rows){
+					$("#seeMoreQA").removeClass("displayNone")
+					$("#QANum").text(data.data);
+				}
+			});
+		},
+		bindClickFun=function(){
+			/*进入个人简介页面*/
+			document.getElementById("detailProfessor").addEventListener("tap", function() {
+				plus.nativeUI.showWaiting(); //显示原生等待框
+				var webviewShow = plus.webview.create("../html/userInforShow-more.html", 'userInforShow-more.html', {}, {
+					pId: proId
+				})
+			})
+			
+			var clFlag = 1;//点赞
+			mui(".reserachMess").on("click", ".plusbtn", function() {
+				if(userid && userid != null && userid != "null") {
+					if(clFlag) {
+						clFlag = 0;
+					} else {
+						return;
+					}
+					if(this.getAttribute("data-isagree") > -1) {
+						this.classList.remove("icon-appreciatefill");
+						this.classList.add("icon-appreciate");
+					} else {
+						this.classList.add("icon-appreciatefill");
+						//this.classlist.remove("plusbtn");
+					}
+		
+					mui.ajax(this.getAttribute("data-isagree") > -1 ? baseUrl + "/ajax/researchArea/unAgree" : baseUrl + "/ajax/researchArea/agree", {
+						"type": "POST",
+						"data": {
+							"targetId": this.getAttribute("data-pid"),
+							"targetCaption": this.getAttribute("data-caption"),
+							"opId": userid,
+							"uname":plus.storage.getItem('name')
+						},
+						"contentType": "application/x-www-form-urlencoded",
+						"success": function($data) {
+		
+							if($data.success) {
+								mui.ajax(baseUrl + "/ajax/professor/info/" + proId, {
+									dataType: 'json', //数据格式类型
+									type: 'GET', //http请求类型
+									timeout: 10000, //超时设置
+									success: function(data) {
+										clFlag = 1;
+										var $data = data.data;
+										//研究方向
+										document.getElementsByClassName("reserachMess")[0].innerHTML = "";
+										if($data.researchAreas.length) {
+		
+											researchAreaShow($data.researchAreas, $data.editResearchAreaLogs);
+										}
+		
+									},
+									error: function() {
+										plus.nativeUI.toast("服务器链接超时", toastStyle);
+										return;
+									}
+								});
+							}
+		
+						}
+					})
+				} else {
+					isLogin();
+				}
+		
+			})
+			/*进入研究方向点赞页面*/
+			mui("#professorReserachMess").on('tap', '.listbrowse,.likenum', function() {
+				var dataCap = this.getAttribute("dataCaption");
+				plus.nativeUI.showWaiting();
+				plus.webview.close("researchAreaHead.html");
+				setTimeout(function() {
+					plus.webview.create("../html/researchAreaHead.html", 'researchAreaHead.html', {}, {
+						dataCaption: dataCap,
+						professorId: proId
+					});
+				}, 500);
+			});
+		
+			ozixun.addEventListener('tap', function() {
+				isLogin();
+			});
+			var oifAttend=document.getElementById("ifAttend")
+			ifcollectionAbout(proId,oifAttend,1);
+			document.getElementById('ifAttend').addEventListener("tap", function() {
+				if(!userid) {
+					mui.openWindow({
+						url: '../html/login.html',
+						id: '../html/login.html',
+						show: {
+							aniShow: "slide-in-right"
+						},
+						extras:{
+							ourl:self.id
+						}
+					});
+					return;
+				}
+				if(this.className == "mui-icon iconfontnew icon-yishoucang") {
+					cancelCollectionAbout(proId,this, 1);
+				} else {
+					collectionAbout(proId,this,1);
+				}
+		
+			})
+			mui("#resourceShow").on("tap", "li", function() {
+				var resouId = this.getAttribute("data-id");
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
+					resourceId: resouId
+				});
+			})
+			mui("#serviceShow").on("tap", "li", function() {
+				var serviceId = this.getAttribute("data-id");
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
+					serviceId: serviceId
+				});
+			})
+			mui("#articelShow").on("tap", "li", function() {
+				var id = this.getAttribute("data-id");
+				var ownerid = this.getAttribute("owner-id");
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+					articleId: id,
+					ownerid: ownerid,
+				});
+			})
+			mui("#paper").on("tap", "li", function() {
+				var id = this.getAttribute("data-id");
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/paperShow.html", 'paperShow.html', {}, {
+					"paperId": id
+				});
+			})
+			mui("#patent").on("tap", "li", function() {
+				var id = this.getAttribute("data-id");
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/patentShow.html", 'patentShow.html', {}, {
+					"patentId": id
+				});
+			})
+			mui("#relatePro,#likePro").on("tap", "li", function() {
+				var id = this.getAttribute("data-id");
+				plus.nativeUI.showWaiting();
+				var webviewShow1=plus.webview.create("userInforShow.html", 'userInforShow.html', {}, {
+					"proid": id,
+				});
+//				webviewShow1.addEventListener("loaded", function() {
+//					setTimeout(function(){plus.webview.currentWebview().close()},1000)
+//				}, false);
+			})
+			mui("#relateArt").on("tap", "li", function() {
+				var id = this.getAttribute("data-id");
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+					articleId: id
+				});
+			})
+			mui("#demandShow").on("tap","li",function(){
+				var dId=this.getAttribute("data-id");
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
+					demanid: dId,
+					professorId:proId
+				});
+			})
+			mui("#QAShow").on("tap","li",function(){
+				var AId=this.getAttribute("data-id");
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/qa-answer-show.html", 'qa-answer-show.html', {}, {
+					"anid":AId
+				});
+			})
+			
+			document.getElementById("seeMoreResource").addEventListener("tap", function() {
+				plus.nativeUI.showWaiting();
+				var webviewShow = plus.webview.create("../html/userresourceList.html", 'userresourceList.html', {}, {
+					proid: proId
+				})
+			})
+			document.getElementById("seeMorePatent").addEventListener("tap", function() {
+				plus.nativeUI.showWaiting();
+				var webviewShow = plus.webview.create("../html/userpatentList.html", 'userpatentList.html', {}, {
+					proid: proId,
+					authName: authName
+				})
+			})
+			document.getElementById("seeMorePaper").addEventListener("tap", function() {
+				plus.nativeUI.showWaiting();
+				var webviewShow = plus.webview.create("../html/userpaperList.html", 'userpaperList.html', {}, {
+					proid: proId,
+					authName: authName
+				})
+			})
+			document.getElementById("seeMoreArtical").addEventListener("tap", function() {
+				plus.nativeUI.showWaiting();
+				var webviewShow = plus.webview.create("../html/useraiticleList.html", 'useraiticleList.html', {}, {
+					proid: proId
+				})
+			})
+			document.getElementById("seeMoreService").addEventListener("tap", function() {
+				plus.nativeUI.showWaiting(); 
+				var webviewShow = plus.webview.create("../html/userService.html", 'userService.html', {}, {
+					proid: proId
+				})
+			})
+			document.getElementById("seeMoreQA").addEventListener("tap", function() {
+				plus.nativeUI.showWaiting();
+				var webviewShow = plus.webview.create("../html/userQAList.html", 'userQAList.html', {}, {
+					proid: proId
+				})
+			})
+			window.addEventListener("newId", function(event) {
+				personalMessage();
+				userid = plus.storage.getItem('userid')
+				if(userid == proId) {
+					document.getElementsByClassName('footbox')[0].style.display = "none";
+				}
+				ifcollectionAbout(proId, '1');
+			});
+	
+		}
+	
+	personalMessage();
+	demandListVal()
+	serviceListVal()
+	resourceListVal()
+	articalListVal()
+	patentListVal()
+	paperListVal()
+	answerListVal()
+	relevantExperts();//合作专家
+	relevantarticalList();//相关文章
+	likeExperts();//感兴趣专家
+	bindClickFun()
+	queryPubCount();
+	
+	//合作专家
 	function relevantExperts(){
 		mui.ajax(baseUrl + "/ajax/professor/coadjutant", {
 			"type": "get",
@@ -502,10 +793,6 @@ mui.plusReady(function() {
 					}
 					
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
 			}
 		});
 	}
@@ -565,10 +852,6 @@ mui.plusReady(function() {
 					liItem.innerHTML = itemlist
 					liItem.setAttribute("data-id",data.data.id)
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
 			}
 		});
 	}
@@ -581,7 +864,6 @@ mui.plusReady(function() {
 			"async":"false",
 			"traditional": true, //传数组必须加这个
 			"success" : function(data) {
-				console.log(JSON.stringify(data));
 				if (data.success && data.data!=""){
 					document.getElementById("relateArt").parentNode.parentNode.classList.remove("displayNone");
 					document.getElementById("relateArt").innerHTML="";
@@ -609,7 +891,6 @@ mui.plusReady(function() {
 								'dataType': "json",
 								"success": function(data) {
 									if(data.success) {
-										console.log(JSON.stringify(data));
 										var thisName,userType,thisAuth,thisTitle
 										if(data.data.forShort){
 											thisName=data.data.forShort;
@@ -638,14 +919,9 @@ mui.plusReady(function() {
 						})(i);
 					}
 				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
 			}
 		});
 	}
-    
     //感兴趣
 	function likeExperts(){
 		mui.ajax(baseUrl + "/ajax/professor/ralateProfessors", {
@@ -667,13 +943,9 @@ mui.plusReady(function() {
 					
 				}
 			},
-			"error": function() {
-				$.MsgBox.Alert('提示', '链接服务器超时')
-			}
 		});
 	}
-	//感兴趣专家
-	function likeExpertsList(ExpId){
+	function likeExpertsList(ExpId){//感兴趣专家
 		mui.ajax(baseUrl + "/ajax/professor/info/"+ExpId, {
 			"type" :  "GET" ,
 			"dataType" : "json",
@@ -720,90 +992,13 @@ mui.plusReady(function() {
 					
 				}
 			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
-			}
 		});
 	}
-	
-	
-	//点赞
-	var clFlag = 1;
-	mui(".reserachMess").on("click", ".plusbtn", function() {
-		if(userid && userid != null && userid != "null") {
-			if(clFlag) {
-				clFlag = 0;
-			} else {
-				return;
-			}
-			if(this.getAttribute("data-isagree") > -1) {
-				this.classList.remove("icon-appreciatefill");
-				this.classList.add("icon-appreciate");
-			} else {
-				this.classList.add("icon-appreciatefill");
-				//this.classlist.remove("plusbtn");
-			}
-
-			mui.ajax(this.getAttribute("data-isagree") > -1 ? baseUrl + "/ajax/researchArea/unAgree" : baseUrl + "/ajax/researchArea/agree", {
-				"type": "POST",
-				"data": {
-					"targetId": this.getAttribute("data-pid"),
-					"targetCaption": this.getAttribute("data-caption"),
-					"opId": userid,
-					"uname":plus.storage.getItem('name')
-				},
-				"contentType": "application/x-www-form-urlencoded",
-				"success": function($data) {
-
-					if($data.success) {
-						mui.ajax(baseUrl + "/ajax/professor/info/" + proId, {
-							dataType: 'json', //数据格式类型
-							type: 'GET', //http请求类型
-							timeout: 10000, //超时设置
-							success: function(data) {
-								clFlag = 1;
-								var $data = data.data;
-								//研究方向
-								document.getElementsByClassName("reserachMess")[0].innerHTML = "";
-								if($data.researchAreas.length) {
-
-									researchAreaShow($data.researchAreas, $data.editResearchAreaLogs);
-								}
-
-							},
-							error: function() {
-								plus.nativeUI.toast("服务器链接超时", toastStyle);
-								return;
-							}
-						});
-					}
-
-				}
-			})
-		} else {
-			//			plus.nativeUI.toast("请先登录");
-			isLogin();
-		}
-
-	})
 
 	function isLogin() {
 		var userid = plus.storage.getItem('userid');
 
 		if(userid && userid != null && userid != 'null' && userid != undefined && userid != 'undefined') {
-
-//			var flag = 'professor';
-//			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
-//			webviewShow = plus.webview.create("../html/consultapply.html", 'consultapply.html', {}, {
-//				'proId': proId,
-//				'flag': flag
-//			});
-//
-//			webviewShow.addEventListener("loaded", function() {
-//
-//			}, false);
-			
 			var wechat=plus.webview.getWebviewById('weChat.html');
 			var jubao=plus.webview.getWebviewById('jubao.html');
 			
@@ -842,182 +1037,32 @@ mui.plusReady(function() {
 			});
 		}
 	}
-	//查询研究方向	
-	var getRecords = function($researchAreaLogs, caption) {
-		var ret = [];
-		var t = 0;
-		for(var i = 0; i < $researchAreaLogs.length; i++) {
-			if(caption == $researchAreaLogs[i].caption) {
-				ret[t] = {
-					id: $researchAreaLogs[i].opreteProfessorId,
-					img: $researchAreaLogs[i].hasHeadImage
-				}
-				t++;
-			}
-		}
-		return ret;
-	}
-	/*进入研究方向点赞页面*/
-	mui("#professorReserachMess").on('tap', '.listbrowse,.likenum', function() {
-		var dataCap = this.getAttribute("dataCaption");
-		plus.nativeUI.showWaiting();
-		plus.webview.close("researchAreaHead.html");
-		setTimeout(function() {
-			plus.webview.create("../html/researchAreaHead.html", 'researchAreaHead.html', {}, {
-				dataCaption: dataCap,
-				professorId: proId
-			});
-		}, 500);
-	});
-
-	ozixun.addEventListener('tap', function() {
-		isLogin();
-	});
-	var oifAttend=document.getElementById("ifAttend")
-	ifcollectionAbout(proId,oifAttend,1);
-	document.getElementById('ifAttend').addEventListener("tap", function() {
-		if(!userid) {
-			mui.openWindow({
-				url: '../html/login.html',
-				id: '../html/login.html',
-				show: {
-					aniShow: "slide-in-right"
-				},
-				extras:{
-					ourl:self.id
-				}
-			});
-			return;
-		}
-		if(this.className == "mui-icon iconfontnew icon-yishoucang") {
-			cancelCollectionAbout(proId,this, 1);
-		} else {
-			collectionAbout(proId,this,1);
-		}
-
-	})
-	mui("#resourceShow").on("tap", "li", function() {
-		var resouId = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
-			resourceId: resouId
-		});
-	})
-	mui("#articelShow").on("tap", "li", function() {
-		var id = this.getAttribute("data-id");
-		var ownerid = this.getAttribute("owner-id");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-			articleId: id,
-			ownerid: ownerid,
-		});
-	})
-	mui("#paper").on("tap", "li", function() {
-		var id = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/paperShow.html", 'paperShow.html', {}, {
-			"paperId": id
-		});
-	})
-	mui("#patent").on("tap", "li", function() {
-		var id = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/patentShow.html", 'patentShow.html', {}, {
-			"patentId": id
-		});
-	})
-	mui("#evaluateShow").on("tap", ".urlhref", function() {
-		var id = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting();
-		var webviewShow1=plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
-			"proid": id,
-		});
-		webviewShow1.addEventListener("loaded", function() {
-				setTimeout(function(){plus.webview.currentWebview().close()},1000)
-				
-			}, false);
-	})
-	mui("#relatePro,#likePro").on("tap", "li", function() {
-		var id = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting();
-		var webviewShow1=plus.webview.create("userInforShow.html", 'userInforShow.html', {}, {
-			"proid": id,
-		});
-		webviewShow1.addEventListener("loaded", function() {
-				setTimeout(function(){plus.webview.currentWebview().close()},1000)
-				
-			}, false);
-	})
-	mui("#relateArt").on("tap", "li", function() {
-		var id = this.getAttribute("data-id");
-		plus.nativeUI.showWaiting();
-		plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-			articleId: id
-		});
-	})
-
-	document.getElementById("seeMoreResource").addEventListener("tap", function() {
-		console.log(proId)
-		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/userresourceList.html", 'userresourceList.html', {}, {
-			proid: proId
-		})
-	})
-	document.getElementById("seeMorePatent").addEventListener("tap", function() {
-		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/userpatentList.html", 'userpatentList.html', {}, {
-			proid: proId,
-			authName: authName
-		})
-	})
-	document.getElementById("seeMorePaper").addEventListener("tap", function() {
-		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/userpaperList.html", 'userpaperList.html', {}, {
-			proid: proId,
-			authName: authName
-		})
-	})
-	document.getElementById("seeMoreArtical").addEventListener("tap", function() {
-		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/useraiticleList.html", 'useraiticleList.html', {}, {
-			proid: proId
-		})
-	})
-	document.getElementById("seeMoreEvaluate").addEventListener("tap", function() {
-		plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/userEvaluate.html", 'userEvaluate.html', {}, {
-			proid: proId
-		})
-	})
-	window.addEventListener("newId", function(event) {
-		personalMessage();
-		userid = plus.storage.getItem('userid')
-		if(userid == proId) {
-			document.getElementsByClassName('footbox')[0].style.display = "none";
-		}
-		ifcollectionAbout(proId, '1');
-	});
 	
-	liulanNum();
-	function liulanNum() {
-		mui.ajax(baseUrl+"/ajax/professor/incPageViews",{
-			"type": "POST",
-			"dataType": "json",
-			"async": true,
-			"data": {
-				"id": proId,
-			},
-			"success": function(data) {
-				if(data.success) {
-					console.log(JSON.stringify(data))
-				}
-			},
-			error: function() {
-				plus.nativeUI.toast("服务器链接超时", toastStyle);
-				return;
+	moreMes();
+	function moreMes(){
+		document.getElementById("BtnMore").addEventListener("tap",function(){
+			var str;
+			if(resear) {
+				str = "研究方向：" + resear
 			}
-		});
+			plus.nativeUI.showWaiting(); //显示原生等待框
+		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
+			proid: proId,
+			name:"professor",
+			data:{
+					content: str,
+					title: "【科袖名片】" + authName + " " + title + "",
+					href: baseUrl + "/e/p.html?id=" + proId,
+					thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
+				},
+			weiboData:{
+					content:  "【科袖名片】" + authName + " " + title + ""+baseUrl + "/e/p.html?id=" + proId
+				}
+		})
+		})
 	}
+
+	
 	/*微信及微信朋友圈分享专家*/
 	var auths, shares;
 	plus.oauth.getServices(function(services) {
@@ -1087,7 +1132,6 @@ mui.plusReady(function() {
 		}
 
 	})
-
 	function buildShareService(ttt) {
 		var share = shares[ttt];
 		if(share) {
@@ -1109,7 +1153,6 @@ mui.plusReady(function() {
 		}
 
 	}
-
 	function shareMessage(share, ex, msg) {
 		msg.extra = {
 			scene: ex
@@ -1128,29 +1171,6 @@ mui.plusReady(function() {
 			}
 		});
 	}
-	/*图像预览*/
-	mui.previewImage();
-	 moreMes();
-	function moreMes(){
-		document.getElementById("BtnMore").addEventListener("tap",function(){
-			var str;
-			if(resear) {
-				str = "研究方向：" + resear
-			}
-			plus.nativeUI.showWaiting(); //显示原生等待框
-		var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {
-			proid: proId,
-			name:"professor",
-			data:{
-					content: str,
-					title: "【科袖名片】" + authName + " " + title + "",
-					href: baseUrl + "/e/p.html?id=" + proId,
-					thumbs: [baseUrl + "/images/head/" + proId + "_m.jpg"]
-				},
-			weiboData:{
-					content:  "【科袖名片】" + authName + " " + title + ""+baseUrl + "/e/p.html?id=" + proId
-				}
-		})
-		})
-	}
+	
+	mui.previewImage();/*图像预览*/
 });

@@ -67,7 +67,9 @@ mui.plusReady(function() {
 				plus.nativeUI.toast("读取拍照文件错误", toastStyle);
 			});
 		}, function(s) {
-			console.log("error" + s);
+			console.log(JSON.stringify(s));
+			if(s.code==11)
+			plus.nativeUI.toast("请在系统设置中，允许科袖访问您的相机，用于拍摄照片。", toastStyle);
 		}, {
 			filename: ""
 		})
@@ -79,6 +81,8 @@ mui.plusReady(function() {
 			changeToLocalUrl(file);
 		}, function(err) {
 			console.log(JSON.stringify(err));
+			if(err.code==8) 
+			plus.nativeUI.toast("请在系统设置中，允许科袖访问您的相册，用于上传照片。", toastStyle);
 		}, {
 			filter: 'image',
 			multiple: false

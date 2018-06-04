@@ -16,7 +16,11 @@ mui.ready(function() {
 		var flag=0;
 		var answerTit=""
 		var oUrl = baseUrl + "/images/logo180.png";
-		wlog("answer",answerId,"1");
+		
+		mui('#answerCnt').on('tap','a',function(){
+			plus.runtime.openURL( this.href);
+		});
+		wlog("answer",answerId,"2");
 		
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {
@@ -34,6 +38,7 @@ mui.ready(function() {
 				oAjax('/ajax/question/answer', {
 					"id": answerId
 				}, "get", function(res) {
+					console.log(JSON.stringify(res))
 					var $da = res.data
 					document.getElementById("answerTime").innerHTML = commenTime($da.createTime);
 					if($da.agree>0){
@@ -43,7 +48,14 @@ mui.ready(function() {
 					
 					if($da.cnt) {
 						answerTit=$da.cnt
-						document.getElementById("answerCnt").innerHTML = ($da.cnt).replace(/\n/g,"<br />");
+						document.getElementById("answerCnt").innerHTML = $da.cnt;
+						var oImg = document.getElementById("answerCnt").getElementsByTagName("img");
+						for(var i = 0; i < oImg.length; i++) {
+							(function(n) {
+								var att = oImg[n].src.substr(7);
+								oImg[n].setAttribute("src", baseUrl + att);
+							})(i);
+						}
 					}
 					if(userid != $da.uid) {
 						ownerid = $da.uid
@@ -57,6 +69,19 @@ mui.ready(function() {
 					proinfo($da.uid)
 					questioninfo($da.qid)
 				})
+			},
+			getagreeNum=function(){
+				oAjax('/ajax/question/answer', {
+					"id": answerId
+				}, "get", function(res) {
+					var $da = res.data
+					if($da.agree==0){
+						$da.agree=''
+					}
+					document.getElementById("snum").innerHTML = $da.agree;
+					document.getElementById("zanNum").innerHTML = $da.agree;
+				})
+					
 			},
 			proinfo = function(uid) {
 				oAjax("/ajax/professor/baseInfo/" + uid, {}, "get", function(res) {
@@ -130,7 +155,7 @@ mui.ready(function() {
 						flag:flag,
 						name: "answer",
 						data: {
-							content: answerTit.substring(0, 70),
+							content: answerTit,
 							title: document.getElementById("questTit").innerHTML,
 							href: baseUrl + "/e/da.html?id=" + answerId,
 							thumbs: [oUrl]
@@ -217,7 +242,7 @@ mui.ready(function() {
 						"uname":username
 					}, "POST", function(res) {
 						thumbs.classList.remove("thumbedBtn")
-						getConmain()
+						getagreeNum()
 					})
 				}else{
 					oAjax('/ajax/question/answer/agree', {
@@ -228,7 +253,7 @@ mui.ready(function() {
 						thumbs.classList.add("thumbedBtn")
 						steps.classList.remove("stepedBtn")
 						steps.innerHTML="踩"
-						getConmain()
+						getagreeNum()
 					})
 				}
 			}else{
@@ -245,7 +270,7 @@ mui.ready(function() {
 					}, "POST", function(res) {
 						steps.classList.remove("stepedBtn")
 						steps.innerHTML="踩"
-						getConmain()
+						getagreeNum()
 					})
 				}else{
 					oAjax('/ajax/question/answer/oppose', {
@@ -256,7 +281,7 @@ mui.ready(function() {
 						steps.classList.add("stepedBtn")
 						steps.innerHTML="取消踩"
 						thumbs.classList.remove("thumbedBtn")
-						getConmain()
+						getagreeNum()
 					})
 				}
 			}else{

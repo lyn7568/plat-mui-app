@@ -502,7 +502,9 @@ for(var n=0;n<6;n++) {
 					} else if( of == 3){
 						li.setAttribute("owner-id", $data[i].editOrganization.id);
 						li.setAttribute("data-type", 3);
-						name = $data[i].editOrganization.name;
+						search.oAjaxGet(baseUrl + "/ajax/platform/info",{id:$data[i].ownerId},"get",function (platform) {
+                            name = platform.name;
+                        })
 					}
 					li.setAttribute("data-id", $data[i].articleId);
 					li.setAttribute("data-flag", 3);
@@ -833,13 +835,21 @@ for(var n=0;n<6;n++) {
 				plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
 					articleId: id,
 					ownerid: ownerid,
+					oFlag:1
 				});
 			} else if(datatype == 2) {
 				plus.nativeUI.showWaiting();
 				plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
 					articleId: id,
 					ownerid: ownerid,
-					oFlag: 1
+					oFlag: 2
+				});
+			} else if(datatype == 3) {
+				plus.nativeUI.showWaiting();
+				plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+                    articleId: id,
+                    ownerid: ownerid,
+                    oFlag: 3
 				});
 			}
 		})

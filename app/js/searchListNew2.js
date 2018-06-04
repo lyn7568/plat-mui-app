@@ -328,7 +328,8 @@ for(var n=0;n<6;n++) {
 				for(var i = 0; i < $data.length; i++) {
 					var of ;
 					if($data[i].articleType == 1) { of = 1;
-					} else { of = 2;
+					} else if($data[i].articleType == 2){ of = 2;
+					} else if($data[i].articleType == 3){ of = 3;
 					}
 					var arImg = "../images/default-artical.jpg";
 					if($data[i].articleImg) {
@@ -341,7 +342,7 @@ for(var n=0;n<6;n++) {
 						li.setAttribute("owner-id", $data[i].professor.id);
 						li.setAttribute("data-type", 1);
 						name = $data[i].professor.name;
-					} else {
+					} else if( of == 2){
 						li.setAttribute("owner-id", $data[i].editOrganization.id);
 						li.setAttribute("data-type", 2);
 						if($data[i].editOrganization.forShort){
@@ -349,6 +350,10 @@ for(var n=0;n<6;n++) {
 						}else{
 							name = $data[i].editOrganization.name;
 						}
+					} else if( of == 3){
+						li.setAttribute("owner-id", $data[i].editOrganization.id);
+						li.setAttribute("data-type", 3);
+						name = $data[i].editOrganization.name;
 					}
 					li.setAttribute("data-id", $data[i].articleId);
 					li.setAttribute("data-flag", 3);

@@ -7,44 +7,46 @@ mui.plusReady(function() {
 	var proticleName = "";
 	var oImgShare = ""
 	if(oFlag == 1) {
-		comBro();
-		mui.ajax(baseUrl + "/ajax/org/authStatus", {
-			dataType: 'json', //数据格式类型
-			type: 'GET', //http请求类型
-			timeout: 10000, //超时设置
-			data: {
-				"id": ownerid
-			},
-			success: function(data) {
-				if(data.success) {
-					document.getElementById("proInfor").addEventListener("tap", function() {
-						mui.openWindow({
-							url: '../html/cmpInforShow.html',
-							id: 'cmpInforShow.html',
-							show: {
-								autoShow: false,
-								aniShow: "slide-in-right",
-							},
-							extras: {
-								cmpId: ownerid,
-							}
-						})
-					})
-				}
-			},
-			error: function(XMLHttpRequest) {
-				console.log(XMLHttpRequest)
-			}
-		});
-	} else {
-		personMess();
-		document.getElementById("proInfor").addEventListener("tap", function() {
-			plus.nativeUI.showWaiting(); //显示原生等待框
-			webviewShow = plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
-				proid: ownerid
-			}); //后台创建webview并打开show.html
-		})
-	}
+        personMess();
+        document.getElementById("proInfor").addEventListener("tap", function() {
+            plus.nativeUI.showWaiting(); //显示原生等待框
+            webviewShow = plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
+                proid: ownerid
+            }); //后台创建webview并打开show.html
+        })
+	} else if(oFlag == 2) {
+        comBro();
+        mui.ajax(baseUrl + "/ajax/org/authStatus", {
+            dataType: 'json', //数据格式类型
+            type: 'GET', //http请求类型
+            timeout: 10000, //超时设置
+            data: {
+                "id": ownerid
+            },
+            success: function(data) {
+                if(data.success) {
+                    document.getElementById("proInfor").addEventListener("tap", function() {
+                        mui.openWindow({
+                            url: '../html/cmpInforShow.html',
+                            id: 'cmpInforShow.html',
+                            show: {
+                                autoShow: false,
+                                aniShow: "slide-in-right",
+                            },
+                            extras: {
+                                cmpId: ownerid,
+                            }
+                        })
+                    })
+                }
+            },
+            error: function(XMLHttpRequest) {
+                console.log(XMLHttpRequest)
+            }
+        });
+	}else if(oFlag == 3){
+        platfrom();
+    }
 
 	function proInfoMain() {
 		mui.ajax(baseUrl + "/ajax/article/query", {
@@ -113,6 +115,30 @@ mui.plusReady(function() {
 					
 					var oSty = autho($profesor.authType, $profesor.orgAuth, $profesor.authStatus);
 				    document.getElementById("flSta").classList.add(oSty.sty);
+				}
+			},
+			error: function(XMLHttpRequest) {
+				console.log(XMLHttpRequest)
+			}
+		});
+	}
+	/*平台信息*/
+	function platfrom() {
+		mui.ajax(baseUrl + "/ajax/platform/info", {
+			dataType: 'json', //数据格式类型
+			type: 'GET', //http请求类型
+			data:{id: ownerid},
+			timeout: 10000, //超时设置
+			success: function(data) {
+				if(data.success && data.data) {
+					var $platform = data.data;
+					if($platform.hasHeadImage) {
+						document.getElementById('proHead').src = baseUrl + "/data/platform" + data.data.logo;
+					} else {
+						document.getElementById('proHead').src = "../images/default-plat.jpg";
+					}
+					var proName = document.getElementById("proName");
+					proName.innerText = $platform.name;
 				}
 			},
 			error: function(XMLHttpRequest) {

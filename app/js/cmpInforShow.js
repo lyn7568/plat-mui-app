@@ -388,14 +388,20 @@ mui.ready(function() {
 								if(StrData[i].articleImg) {
 									imgL = baseUrl + '/data/article/' + StrData[i].articleImg
 								}
-								var oURL;
-								if(StrData[i].articleType == 1) {
-									oURL = "/ajax/professor/baseInfo/" + StrData[i].professorId;
-								} else {
-									oURL = "/ajax/org/" + StrData[i].orgId;
+								var oURL,oData='';
+								if(StrData[i].articleType=='1') {
+									oURL="/ajax/professor/baseInfo/"+StrData[i].ownerId;
+								}else if(StrData[i].articleType=='2'){
+									oURL="/ajax/org/" + StrData[i].ownerId;
+								}else if(StrData[i].articleType=='3'){
+									oURL="/ajax/platform/info";
+									oData={
+										id: StrData[i].ownerId 
+									}
 								}
 								mui.ajax(baseUrl + oURL, {
 									"type": "GET",
+									"data": oData,
 									'dataType': "json",
 									"success": function(data) {
 										if(data.success) {
@@ -409,12 +415,15 @@ mui.ready(function() {
 											} else {
 												thisName = data.data.name;
 											}
-											if(StrData[n].articleType == 1) {
+											if(StrData[n].articleType == '1') {
 												add.setAttribute("owner-id", data.data.id);
 												add.setAttribute("data-type", 1);
-											} else {
+											} else if(StrData[n].articleType == '2'){
 												add.setAttribute("owner-id", data.data.id);
 												add.setAttribute("data-type", 2);
+											} else if(StrData[n].articleType == '3'){
+												add.setAttribute("owner-id", data.data.id);
+												add.setAttribute("data-type", 3);
 											}
 
 											var itemlist = '<div class="flexCenter OflexCenter mui-clearfix"><div class="madiaHead artHead" style="background-image:url(' + imgL + ')"></div>';

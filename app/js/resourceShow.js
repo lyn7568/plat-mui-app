@@ -216,14 +216,20 @@ mui.plusReady(function() {
 					}
 					for(var i = 0; i < lengthT; i++) {
 						(function(n) {
-							var oURL;
-							if($html[i].articleType==1) {
-								oURL=baseUrl+"/ajax/professor/baseInfo/" + $html[i].professorId;
-							}else{
-								oURL=baseUrl+"/ajax/org/" + $html[i].orgId;
+							var oURL,oData='';
+							if($html[i].articleType=='1') {
+								oURL=baseUrl+"/ajax/professor/baseInfo/" + $html[i].ownerId;
+							}else if($html[i].articleType=='2') {
+								oURL=baseUrl+"/ajax/org/" + $html[i].ownerId;
+							}else if($html[i].articleType=='3') {
+								oURL=baseUrl+"/ajax/platform/info";
+								oData={
+									id:$html[i].ownerId
+								}
 							}
 							mui.ajax(oURL, {
 								type: "GET",
+								data:oData,
 								dataType: "json",
 								success: function(data) {
 									if(data.success) {
@@ -233,16 +239,19 @@ mui.plusReady(function() {
 										likeRli.setAttribute("data-id", $html[n].articleId);
 										
 										var comName="";
-										if($html[n].articleType==1) {
+										if($html[n].articleType=='1') {
 											comName=data.data.name;
 											likeRli.setAttribute("data-type", 1);
-										}else {
+										}else if($html[n].articleType=='2'){
 											if(data.data.forShort){
 												comName=data.data.forShort;
 											}else{
 												comName=data.data.name;
 											}
 											likeRli.setAttribute("data-type", 2);
+										} else if($html[n].articleType=='3'){
+											comName=data.data.name;
+											likeRli.setAttribute("data-type", 3);
 										}
 										
 										var str = '<div class="flexCenter OflexCenter">'

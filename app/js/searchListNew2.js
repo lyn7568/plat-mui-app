@@ -500,11 +500,14 @@ for(var n=0;n<6;n++) {
 							name = $data[i].editOrganization.name;
 						}
 					} else if( of == 3){
-						li.setAttribute("owner-id", $data[i].editOrganization.id);
 						li.setAttribute("data-type", 3);
-						search.oAjaxGet(baseUrl + "/ajax/platform/info",{id:$data[i].ownerId},"get",function (platform) {
-                            name = platform.name;
-                        })
+						(function(n,li){
+							search.oAjaxGet(baseUrl + "/ajax/platform/info",{id:$data[n].ownerId},"get",function (platform) {
+	                            console.log(JSON.stringify(platform));
+	                            li.getElementsByClassName("nameSpan")[0].innerHTML=platform.data.name;
+	                            li.setAttribute("owner-id", platform.data.id);
+	                        })
+						}(i,li))
 					}
 					li.setAttribute("data-id", $data[i].articleId);
 					li.setAttribute("data-flag", 3);

@@ -203,6 +203,36 @@ mui.plusReady(function() {
 				}
 			})
 		},
+		serviceAuthorPlat: function(pId, p1, p2) {
+			var self = this;
+			self.ajaxRequest({
+				url: "/ajax/platform/info",
+				data: pId,
+				type: "get",
+				parameter: {},
+				fn: function(data) {
+					var $data = data.data;
+					if(p1 == 1) {
+						p2.querySelector(".pName").innerHTML = $data.name;
+						return;
+					} else if(p1 == 2) {
+						p2.querySelector(".pName").innerHTML = $data.name;
+					}
+					self.authorProperty.setAttribute("data-id", $data.id);
+					self.authorProperty.setAttribute("data-type", 3);
+					self.ownerId = $data.id;
+					if($data.industry) {
+						self.authorIndustry.innerHTML = ($data.industry).replace(/,/, " | ");
+					}
+					self.authorHeadImage.classList.add("cmpHead2");
+					self.authorHeadImage.innerHTML = '<div class="boxBlock"><img class="boxBlockimg" id="platImg" src="../images/default-plat.jpg"></div>'
+					if($data.logo) {
+						document.getElementById("platImg").src = baseUrl + "/data/platform/" + $data.logo;
+					}
+					
+				}
+			})
+		},
 		relatedArticles: function() {
 			var self = this;
 			self.ajaxRequest({
@@ -237,12 +267,15 @@ mui.plusReady(function() {
 						str += '</div></div>'
 						li.innerHTML = str;
 						articleList.appendChild(li);
-						if($data[i].articleType == 1) {
+						if($data[i].articleType == '1') {
 							li.setAttribute("data-type", 1);
-							self.serviceAuthorPersonal($data[i].professorId, 1, li);
-						} else {
+							self.serviceAuthorPersonal($data[i].ownerId, 1, li);
+						} else if($data[i].articleType == '2'){
 							li.setAttribute("data-type", 2);
-							self.serviceAuthorCompany($data[i].orgId, 1, li);
+							self.serviceAuthorCompany($data[i].ownerId, 1, li);
+						} else if($data[i].articleType == '3'){
+							li.setAttribute("data-type", 3);
+							self.serviceAuthorPlat($data[i].ownerId, 1, li);
 						}
 					}
 				}

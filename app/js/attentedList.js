@@ -309,9 +309,11 @@ mui.ready(function() {
 						var $itemlist = $(li);
 						document.getElementById(obj).appendChild(li);
 						if(dataItem.articleType=="1"){
-							proSigInfo(dataItem.professorId,$itemlist)
+							proSigInfo(dataItem.ownerId,$itemlist)
 						}else if(dataItem.articleType=="2"){
-							orgSigInfo(dataItem.orgId,$itemlist)
+							orgSigInfo(dataItem.ownerId,$itemlist)
+						}else if(dataItem.articleType=="3"){
+							platSigInfo(dataItem.ownerId,$itemlist)
 						}
 					}
 				});
@@ -402,6 +404,14 @@ mui.ready(function() {
 					if(data.data.authStatus == 3){
 						$list.find(".ownerSty").addClass("authicon-com-ok")
 					}
+				});
+			},
+			platSigInfo=function(id,$list){
+				oAjax("/ajax/platform/info",{
+					id:id
+				}, "get", function(data){
+					var name=data.data.name;
+					$list.find(".ownerName").html(name)
 				});
 			},
 			tabToFun=function($this){

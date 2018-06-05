@@ -880,14 +880,20 @@ mui.plusReady(function() {
 							if(StrData[i].articleImg){
 								imgL=baseUrl+'/data/article/' + StrData[i].articleImg 
 							}
-							var oURL;
-							if(StrData[i].articleType==1) {
-								oURL="/ajax/professor/baseInfo/"+StrData[i].professorId;
-							}else{
-								oURL="/ajax/org/" + StrData[i].orgId;
+							var oURL,oData='';
+							if(StrData[i].articleType=='1') {
+								oURL="/ajax/professor/baseInfo/"+StrData[i].ownerId;
+							}else if(StrData[i].articleType=='2'){
+								oURL="/ajax/org/" + StrData[i].ownerId;
+							}else if(StrData[i].articleType=='3'){
+								oURL="/ajax/platform/info";
+								oData={
+									id: StrData[i].ownerId 
+								}
 							}
 							mui.ajax(baseUrl + oURL, {
 								"type": "GET",
+								"data": oData,
 								'dataType': "json",
 								"success": function(data) {
 									if(data.success) {

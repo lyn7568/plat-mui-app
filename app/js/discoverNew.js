@@ -314,18 +314,10 @@
 						var id = this.getAttribute("data-id");
 						var datatype = this.getAttribute("data-type");
 						var ownerid = this.getAttribute("owner-id");
-						if(datatype == 1) {
+						if(datatype == 1 || datatype == 2 || datatype == 4) {
 							plus.nativeUI.showWaiting();
 							plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-								articleId: id,
-								ownerid: ownerid,
-							});
-						} else if(datatype == 2) {
-							plus.nativeUI.showWaiting();
-							plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-								articleId: id,
-								ownerid: ownerid,
-								oFlag: 1
+								articleId: id
 							});
 						} else if(datatype == 3){
                             plus.nativeUI.showWaiting();
@@ -653,7 +645,7 @@
                                     $D({
                                         data: {id:$data[i].uid},
                                         fun: ob.platformName,
-                                        url: "/ajax/platform/info" + $data[i].uid,
+                                        url: "/ajax/platform/info",
                                         sele: li.getElementsByClassName("nameSpan")[0]
                                     });
 								}else{
@@ -662,7 +654,7 @@
                                     $D({
                                         data: {id:$data[i].ownerId},
                                         fun: ob.platformName,
-                                        url: "/ajax/platform/info" + $data[i].ownerId,
+                                        url: "/ajax/platform/info",
                                         sele: li.getElementsByClassName("nameSpan")[0]
                                     });
 								}
@@ -939,29 +931,9 @@
 					async: true,
 					success: function(data) {
 						if(data.success) {
-							var ownerid;
-							if(data.data.articleType == 1) {
-								ownerid = data.data.ownerId;
-								plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-									articleId: id,
-									ownerid: ownerid,
-									oFlag:1
-								});
-							} else if(data.data.articleType == 2){
-								ownerid = data.data.ownerid;
-								plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-									articleId: id,
-									ownerid: ownerid,
-									oFlag: 2
-								});
-							} else if(data.data.articleType == 3){
-								ownerid = data.data.ownerId;
-								plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-									articleId: id,
-									ownerid: ownerid,
-									oFlag: 3
-								});
-							}
+							plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
+								articleId: id
+							});
 						}
 
 					},

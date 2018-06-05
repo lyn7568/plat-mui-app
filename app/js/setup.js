@@ -53,6 +53,7 @@ mui.ready(function() {
 			if(e.index == 0) {
 				plus.storage.removeItem("userid");
 				plus.storage.removeItem("name");
+				plus.storage.removeItem('mobilePhone');
 				console.log('点击退出时id=='+plus.storage.getItem('userid'));
 				//plus.cache.clear();
 				//plus.storage.clear();

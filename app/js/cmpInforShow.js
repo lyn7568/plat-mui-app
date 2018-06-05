@@ -19,11 +19,11 @@ mui.ready(function() {
 					}
 				});
 			},
-			demandListVal = function() {
+			demandListVal = function(oname) {
 				var aimId = "demandShow"
 				oAjax("/ajax/demand/pq", {
-					"state": '1',
-					"oid": orgId,
+					"state": [1],
+					"oname": oname,
 					"pageSize": 5
 				}, "get", function(res) {
 					console.log(JSON.stringify(res));
@@ -279,7 +279,7 @@ mui.ready(function() {
 		companyMessage(orgId);
 		relevantarticalList(); //相关文章
 		likeExperts(); //感兴趣企业	
-		demandListVal()
+		
 		articalListVal()
 		bindClickFun()
 		queryPubCount();
@@ -300,14 +300,14 @@ mui.ready(function() {
 							serviceListVal();
 							document.getElementsByClassName("establishments")[0].style.display="block"
 						}
-						if($data.forShort) {
+						if(demandListVal()) {
 							document.getElementById("companyNameT").innerText = $data.forShort;
 							document.getElementById("companyName").innerText = $data.forShort;
 						} else {
 							document.getElementById("companyNameT").innerText = $data.name;
 							document.getElementById("companyName").innerHTML = $data.name;
 						}
-
+						demandListVal($data.name);
 						if($data.hasOrgLogo) {
 							document.getElementById("oimg").src = baseUrl + "/images/org/" + $data.id + ".jpg";
 						} else {

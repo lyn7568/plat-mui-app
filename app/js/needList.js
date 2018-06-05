@@ -43,7 +43,9 @@
 				dataType: 'json', //数据格式类型
 				type: 'GET', //http请求类型
 				timeout: 10000, //超时设置
+				traditional:true,
 				data: {
+					'status': [0,1,2,3],
 					"uid": plus.storage.getItem('userid'),
 					"pageNo": pageNo,
 					"pageSize": pageSize

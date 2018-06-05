@@ -242,8 +242,8 @@ mui.ready(function() {
 				},
 				"async": true,
 				"success": function(data) {
-					if(data.success && data.data) {
-						if(data.data.name) {
+					if(data.success) {
+						if(data.data != null) {
 							tiaoFlag = true;
 							document.getElementById('attBtn').style.display = 'block';
 							if(data.data.forShort) {

@@ -143,6 +143,10 @@ mui.ready(function() {
 						var userId = data.data.id;
 						plus.storage.setItem('userid', userId);
 						plus.nativeUI.toast("登录成功", toastStyle)
+						plus.storage.setItem('name', data.data.name);
+						if(data.data.mobilePhone) {
+							plus.storage.setItem('mobilePhone', data.data.mobilePhone);
+						}
 						var article = plus.webview.currentWebview();
 						if(article.flag==1){
 							var proAiticle =plus.webview.getWebviewById('professorArticle.html')

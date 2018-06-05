@@ -112,6 +112,9 @@ mui.ready(function() {
 						var userId = data.data.id;
 						plus.storage.setItem('userid', userId);
 						plus.storage.setItem('name', data.data.name);
+						if(data.data.mobilePhone) {
+							plus.storage.setItem('mobilePhone', data.data.mobilePhone);
+						}
 						plus.nativeUI.toast("登录成功", toastStyle);
 						var article = plus.webview.currentWebview();
 						if(article.ourl) {

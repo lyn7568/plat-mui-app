@@ -49,7 +49,7 @@ function demandList(pageSize, pageNo) {
 			dataType: "json",
 			traditional:true,
 			data: {
-				"state":"1",
+				"state":[1],
 				"pageNo": pageNo,
 				"pageSize":pageSize
 			},

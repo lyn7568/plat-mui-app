@@ -141,7 +141,7 @@
  	queryPerson()
  	/*个人信息*/
  	function queryPerson() {
- 		$.ajax(baseUrl + '/ajax/professor/baseInfo/' + userid, {
+ 		$.ajax(baseUrl + '/ajax/professor/editBaseInfo/' + userid, {
  			dataType: 'json', //数据格式类型
  			type: 'GET', //http请求类型
  			timeout: 10000,
@@ -159,6 +159,10 @@
  					}
  					if( data.data.phone ) {
  						document.querySelector("#phone").value = data.data.phone ;
+ 					}else {
+ 						if(plus.storage.getItem('mobilePhone')) {
+ 							document.querySelector("#phone").value = plus.storage.getItem('mobilePhone');
+ 						}
  					}
  					
  				}

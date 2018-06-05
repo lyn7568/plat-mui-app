@@ -236,6 +236,7 @@ phone.addEventListener("keyup",function(){
 						var userId = data.data;
 						plus.storage.setItem('userid', userId);
 						plus.storage.setItem('name', weiChatName.value);
+						plus.storage.setItem('mobilePhone', phone.value);
 						plus.nativeUI.toast("已完成注册，请填写个人信息", toastStyle);
 						mui.openWindow({
 							url: 'fill-select.html',

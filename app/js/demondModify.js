@@ -170,6 +170,8 @@
  			async: true,
  			success: function(data) {
  				if(data.success) {
+ 					console.log(1111111111111)
+ 					console.log(JSON.stringify(data))
  					var $data=data.data;
  					document.querySelector("#cityResult").innerHTML=$data.province + "-" + $data.city ;
 					document.querySelector("#showCityPicker").setAttribute('city', data.data.city );

@@ -36,20 +36,6 @@
 			/*点击按钮*/
 			mui.plusReady(function(){
 				document.getElementById("needIssue").addEventListener('tap', function() {
-					var $status=["0","1"];
-					mui.ajax(baseUrl+"/ajax/demand/qc",{//查询是否有发布中和已过期的需求
-						type:"get",
-						data:{
-							state:$status,
-							uid:plus.storage.getItem('userid')
-						},
-						async:true,
-						datatype:"json",
-						traditional: true,
-						success:function(data){
-							console.log(JSON.stringify(data))
-							var statusN=data.data;
-							if(statusN!=0){
 								mui.openWindow({
 									url: '../html/demandPublish.html',
 									id: '../html/demandPublish.html',
@@ -57,22 +43,7 @@
 										aniShow: "slide-in-right"
 									}
 								});
-							}else{
-								mui.openWindow({
-									url: '../html/sureOrg.html',
-									id: 'sureOrg.html',
-									show: {
-										aniShow: "slide-in-right"
-									}
-								});
-							}
-						},
-						error: function() {
-							plus.nativeUI.toast("服务器链接超时", toastStyle);
-							return;
-						}
-					})
-				});
+				})
 			})
 		</script>
 	</body>

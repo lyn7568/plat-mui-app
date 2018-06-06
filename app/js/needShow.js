@@ -58,7 +58,7 @@ mui.ready(function() {
 		
 		if(userid){
 			ifcollectionAbout(demandId,oifCollect, 7);
-			ifcollectionAbout(orgThis,attBtn, 6,1);
+			
 		}
 		attBtn.addEventListener('tap', function() {
 			if(userid && userid != null && userid != "null") {
@@ -136,8 +136,6 @@ mui.ready(function() {
 				"async": false,
 				"dataType": "json",
 				"success": function(data) {
-					console.log(111111111111111111111)
-					console.log(JSON.stringify(data));
 					if(data.success) {
 						var ws=plus.webview.currentWebview();
 						
@@ -218,8 +216,6 @@ mui.ready(function() {
 							}
 						}
 						cmpFun($da.orgName);
-						
-						orgThis=$da.orgId;
 						consuId = $da.creator;
 						demandTitle = $da.title;
 						demandContent = $da.descp;
@@ -244,6 +240,7 @@ mui.ready(function() {
 				"success": function(data) {
 					if(data.success) {
 						if(data.data != null) {
+							orgThis=data.data.id;
 							tiaoFlag = true;
 							document.getElementById('attBtn').style.display = 'block';
 							if(data.data.forShort) {
@@ -251,6 +248,7 @@ mui.ready(function() {
 							}else{
 								document.getElementById("cmpname").innerHTML=data.data.name;
 							}
+							ifcollectionAbout(orgThis,attBtn, 6,1);
 							var img="../images/default-icon.jpg";
 							if(data.data.hasOrgLogo==1){
 								img=baseUrl+"/images/org/" + data.data.id + ".jpg";

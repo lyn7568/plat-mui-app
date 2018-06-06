@@ -259,7 +259,13 @@ mui.ready(function() {
 								document.getElementById("QauthFlag").classList.add("authicon-com-ok");
 							}
 						} else {
+							document.getElementById('attBtn').style.display = 'none';
+							document.getElementById('attBtn').className ='mui-icon attenSpan'
+							tiaoFlag = false;
 							document.getElementById("cmpname").innerHTML = par;
+							document.getElementById("companyImg").setAttribute("src",'../images/default-icon.jpg');
+							document.getElementById("QauthFlag").className='authicon ';
+							document.getElementById("oTime").innerHTML=''
 						}
 					}
 				},

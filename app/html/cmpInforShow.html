@@ -15,6 +15,7 @@
 			.showCardI{background-image: url(../images/enterprise_img_bg_nor@3x.png)}
 			.infocontit:before{background: #28b8fa;}
 			.establishments{display: none;}
+			.productions{display: none;}
 		</style>
 	</head>
 
@@ -29,8 +30,11 @@
 		<!--主页面底部菜单-->
 		<nav class="mui-bar mui-bar-tab footbox">
 			<div class="mui-row artfoot">
-				<div class="mui-col-xs-9">
+				<!--<div class="mui-col-xs-9">
 					<div class="consultdiv notopen">更多功能即将开放</div>
+				</div>-->
+				<div class="mui-col-xs-9" id="consultBtn">
+					<div class="consultdiv">联系</div>
 				</div>
 				<div class="mui-col-xs-2" id="collectBtn">
 					<span class="mui-icon iconfontnew icon-shoucang" id="ifAttend"></span><!--已收藏 icon-yishoucang-->
@@ -79,6 +83,17 @@
 					    </ul>
 					</div>
 					<div class="seeMore displayNone" id="seeMoreResource"><em>查看全部 <span id="resourceNum">0</span>个</em></div>
+				</div>
+			</div>
+			<div class="productions">
+				<div class="mui-input-group mainbox displayNone">
+					<div class="infocontit">我们的产品</div>
+					<div class="infocon infoconM madiaBlock">
+						<ul class="mui-table-view" id="productShow">
+					        
+					    </ul>
+					</div>
+					<div class="seeMore displayNone" id="seeMoreProduct"><em>查看全部 <span id="productNum">0</span>个</em></div>
 				</div>
 			</div>
 			<div class="mui-input-group mainbox" id="goCmpBrief">

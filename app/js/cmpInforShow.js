@@ -5,7 +5,7 @@ mui.ready(function() {
 		var self = plus.webview.currentWebview();
 		var orgId = self.cmpId;
 
-		var rows = 1
+		var rows = 1,ifHasDefaultUser=false,firstLinkman;
 		var oAjax = function(url, dataS, otype, oFun) {
 				mui.ajax(baseUrl + url, {
 					dataType: 'json',
@@ -158,6 +158,42 @@ mui.ready(function() {
 					}
 				})
 			},
+			productListVal = function() {
+				var aimId = "productShow"
+				oAjax("/ajax/product/publish", {
+					"owner":orgId,
+					"rows": rows
+				}, "get", function(res) {
+					var obj = res.data;
+					if(obj.length > 0) {
+						document.getElementById(aimId).parentNode.parentNode.classList.remove("displayNone");
+						for(var i = 0; i < obj.length; i++) {
+							var cnt = "",
+								hasImg = "../images/default-product.jpg"
+							if(obj[i].images) {
+								var subs = strToAry(obj[i].images)
+								if(subs.length > 0) {
+									hasImg = baseUrl + "/data/product" + subs[0]
+								}
+							}
+							if(obj[i].cnt) {
+								cnt = "简介：" + obj[i].cnt
+							}
+							var li = document.createElement("li");
+							li.setAttribute("data-id", obj[i].id);
+							li.className = "mui-table-view-cell";
+							li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+								'<div class="madiaHead resouseHead" style="background-image:url(' + hasImg + ')"></div>' +
+								'<div class="madiaInfo OmadiaInfo">' +
+								'<p class="mui-ellipsis-2 h1Font">' + obj[i].name + '</p>' +
+								'<p class="mui-ellipsis h2Font">' + cnt + '</p>' +
+								'</div>' +
+								'</div>'
+							document.getElementById(aimId).appendChild(li);
+						}
+					}
+				})
+			},
 			queryPubCount = function() {
 				oAjax("/ajax/article/count/publish", { //文章总数
 					"owner": orgId,
@@ -186,6 +222,27 @@ mui.ready(function() {
 						$("#serviceNum").text(data.data);
 					}
 				});
+				oAjax("/ajax/product/count/publish", { //产品总数
+					"owner": orgId
+				}, "GET", function(data) {
+					if(data.data > rows) {
+						$("#seeMoreProduct").removeClass("displayNone")
+						$("#productNum").text(data.data);
+					}
+				});
+			},
+			getDefaultLink=function(){
+				oAjax("/ajax/org/linkman/queryAll",{
+					"oid": orgId
+				}, "GET", function(data){
+					if(data.success) {
+						var $data = data.data;
+						if($data.length>0){
+							firstLinkman=$data[0].pid
+							ifHasDefaultUser = true;
+						}
+					}
+				});
 			},
 			bindClickFun = function() {
 				//点击收藏按钮
@@ -198,6 +255,46 @@ mui.ready(function() {
 						} else {
 							collectionAbout(orgId, oifAttend, 6);
 						}
+					} else {
+						isLogin();
+					}
+				});
+				document.getElementById("consultBtn").addEventListener('tap', function() {
+					if(userid && userid != null && userid != "null") {
+						oAjax("/ajax/professor/baseInfo/"+userid, {}, "get", function(res) {
+							var obj = res.data;
+							if(obj.orgId === orgId){
+								document.getElementsByClassName('footbox')[0].style.display = "none";
+							}else{
+								if(ifHasDefaultUser){
+									var wechat=plus.webview.getWebviewById('weChat.html');
+									var jubao=plus.webview.getWebviewById('jubao.html');
+									
+									if(wechat) {
+										wechat.close();
+									}
+									if(jubao) {
+										jubao.close();
+									}
+									setTimeout(function() {
+										mui.openWindow({
+											url: '../html/weChat.html',
+											id: 'weChat.html',
+											show: {
+												autoShow: true,
+												aniShow: "slide-in-right",
+											},
+											extras: {
+												professorId: firstLinkman,
+												flag:1
+											}
+										})
+									},100);
+								}else{
+									plus.nativeUI.toast("暂时无法取得联系", toastStyle);
+								}
+							}
+						})
 					} else {
 						isLogin();
 					}
@@ -231,18 +328,18 @@ mui.ready(function() {
 					});
 					web.addEventListener("loaded", function() {}, false);
 				});
+				document.getElementById("seeMoreProduct").addEventListener("tap", function() {
+					var nwaiting = plus.nativeUI.showWaiting();
+					var web = plus.webview.create("../html/cmpInforShow-product.html", "cmpInforShow-product.html", {}, {
+						cmpId: orgId
+					});
+					web.addEventListener("loaded", function() {}, false);
+				});
 				mui('#articelShow,#relateArt').on('tap', 'li', function() {
 					var id = this.getAttribute("data-id");
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
 						articleId: id,
-					});
-				})
-				mui('#serviceShow').on('tap', 'li', function() {
-					var id = this.getAttribute("data-id");
-					plus.nativeUI.showWaiting();
-					plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
-						serviceId: id,
 					});
 				})
 				mui('#resourceShow').on('tap', 'li', function() {
@@ -257,6 +354,20 @@ mui.ready(function() {
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
 						demanid: dId
+					});
+				})
+				mui('#serviceShow').on('tap', 'li', function() {
+					var id = this.getAttribute("data-id");
+					plus.nativeUI.showWaiting();
+					plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
+						serviceId: id,
+					});
+				})
+				mui('#productShow').on('tap', 'li', function() {
+					var id = this.getAttribute("data-id");
+					plus.nativeUI.showWaiting();
+					plus.webview.create("../html/productShow.html", 'productShow.html', {}, {
+						productId: id,
 					});
 				})
 				mui('#likePro').on('tap', 'li', function() {
@@ -277,6 +388,7 @@ mui.ready(function() {
 
 		pageViewLog(orgId, 6)
 		companyMessage(orgId);
+		getDefaultLink();
 		relevantarticalList(); //相关文章
 		likeExperts(); //感兴趣企业	
 		
@@ -299,6 +411,10 @@ mui.ready(function() {
 							resourceListVal();
 							serviceListVal();
 							document.getElementsByClassName("establishments")[0].style.display="block"
+						}
+						if(!$data.colMgr && !$data.resMgr){
+							productListVal();
+							document.getElementsByClassName("productions")[0].style.display="block"
 						}
 						if(demandListVal()) {
 							document.getElementById("companyNameT").innerText = $data.forShort;

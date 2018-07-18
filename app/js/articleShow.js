@@ -50,6 +50,17 @@ mui.plusReady(function() {
 				}
 			});
 		},
+		queryFileAtach:function(){
+			oArticleModule.oAjaxGet(baseUrl + "/ajax/article/files/byArticleId",{
+				"id":oArticleModule.articleId
+			}, "get", function(data){
+				if(data){
+					if(data.length>0){
+						document.getElementsByClassName('atachList')[0].style.display='block';
+					}
+				}
+			});
+		},
 		articleMess: function($data) {
 			plus.nativeUI.closeWaiting();
 			plus.webview.currentWebview().show("slide-in-right", 150);
@@ -68,7 +79,6 @@ mui.plusReady(function() {
 			if($data.articleImg){
 				stt = $data.articleImg.substring(0, 9);
 			}
-			console.log(stt)
 			if($data.articleContent) {
 				document.getElementById("articleContent").innerHTML = $data.articleContent;
 				var oImg = document.getElementById("articleContent").getElementsByTagName("img");
@@ -150,7 +160,6 @@ mui.plusReady(function() {
 			
 		},
 		professorMess: function($data) {
-			//console.log(JSON.stringify($data));
 			document.getElementById('name').innerHTML = $data.name;
 			if($data.hasHeadImage == 1) {
 				document.getElementById("messImg").style.backgroundImage = "url(" + baseUrl + "/images/head/" + $data.id + "_l.jpg" + ")";
@@ -159,7 +168,6 @@ mui.plusReady(function() {
 			document.getElementById("auth").classList.add(userType.sty);
 		},
 		business: function($data) {
-			//console.log(JSON.stringify($data));
 			if($data.forShort){
 				document.getElementById('name').innerHTML = $data.forShort;
 			}else{
@@ -186,6 +194,12 @@ mui.plusReady(function() {
 					}
 				});
 			})
+			if(!$data.colMgr && !$data.resMgr) {
+				oArticleModule.correlationProduct();
+			}
+			if($data.colMgr) {
+				oArticleModule.queryFileAtach();
+			}
 		},
 		platform: function($data) {
 			console.log(JSON.stringify($data));
@@ -196,18 +210,21 @@ mui.plusReady(function() {
 				document.getElementById("platImg").src= baseUrl + "/data/platform" + $data.logo;
 			}
 		},
-		correlationExpert: function($data) {
-			if($data.length == 0) {
-				return;
-			}
-			document.getElementById("correlationExpert").style.display = "block";
-			for(var i = 0; i < $data.length; i++) {
-				(function(n) {
-					oArticleModule.oAjaxGet(baseUrl + "/ajax/professor/editBaseInfo/" + $data[n].professorId, "", "get", oArticleModule.expertList);
-				})(i)
-
-			}
-
+		correlationExpert: function() {
+			oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralatePro", {
+				"articleId": oArticleModule.articleId
+			}, "get", function($data){
+				if($data.length == 0) {
+					return;
+				}
+				document.getElementById("correlationExpert").style.display = "block";
+				for(var i = 0; i < $data.length; i++) {
+					(function(n) {
+						oArticleModule.oAjaxGet(baseUrl + "/ajax/professor/editBaseInfo/" + $data[n].professorId, "", "get", oArticleModule.expertList);
+					})(i)
+	
+				}
+			})
 		},
 		expertList: function($data) {
 			var os = "";
@@ -247,18 +264,20 @@ mui.plusReady(function() {
 				'</div>'
 			document.getElementById("expertList").appendChild(li);
 		},
-		correlationResource: function($data) {
-			//console.log(JSON.stringify($data));
-			if($data.length == 0) {
-				return;
-			}
-			document.getElementById("resource").style.display = "block";
-			for(var i = 0; i < $data.length; i++) {
-				oArticleModule.oAjaxGet(baseUrl + "/ajax/resource/queryOne", {
-					"resourceId": $data[i].resourceId
-				}, "get", oArticleModule.rsourceList);
-			}
-
+		correlationResource: function() {
+			oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralateRes", {
+				"articleId": oArticleModule.articleId
+			}, "get", function($data){
+				if($data.length == 0) {
+					return;
+				}
+				document.getElementById("resource").style.display = "block";
+				for(var i = 0; i < $data.length; i++) {
+					oArticleModule.oAjaxGet(baseUrl + "/ajax/resource/queryOne", {
+						"resourceId": $data[i].resourceId
+					}, "get", oArticleModule.rsourceList);
+				}
+			})
 		},
 		rsourceList: function($data) {
 			var namepo, userType;
@@ -324,7 +343,7 @@ mui.plusReady(function() {
 						'<div class="madiaInfo OmadiaInfo">' +
 						'<p class="mui-ellipsis-2 h1Font">' + $data[i].name + '</p>' +
 						'<p><span class="h2Font ownerName"></span><em class="authicon ownerSty"></em></p>' +
-						//'<p class="mui-ellipsis h2Font">' + cnt + '</p>' +
+//						'<p class="mui-ellipsis h2Font">' + cnt + '</p>' +
 						'</div>' +
 						'</div>'
 					document.getElementById("serviceList").appendChild(li);
@@ -337,20 +356,63 @@ mui.plusReady(function() {
 				}
 			});
 		},
-		correlationArticle: function($data) {
-				if($data.total) {
-					if($data.data.length == 0) {
-						return;
-					}
-				}else{
-					if($data.length == 0) {
-						return;
-					}
+		correlationProduct: function() {
+			oArticleModule.oAjaxGet(baseUrl + "/ajax/article/product",{
+				"id": oArticleModule.articleId,
+				"rows":5
+			}, "get", function(res){
+				var $data=res
+				console.log(JSON.stringify(res));
+				if($data.length == 0) {
+					return;
 				}
-				var oo=1;
+				document.getElementById("correlationProduct").style.display = "block";
+				for(var i = 0; i < $data.length; i++) {
+					oArticleModule.oAjaxGet(baseUrl + "/ajax/product/qo", {
+						"id": $data[i].product
+					}, "get", oArticleModule.productList);
+				}
+			});
+		},
+		productList: function($data) {
+			var cnt="", rImg="../images/default-product.jpg"
+			if($data.images) {
+				var subs = strToAry($data.images)
+				if(subs.length > 0) {
+					rImg=baseUrl+"/data/product" + subs[0]
+				}
+			}
+			if($data.cnt){
+				cnt="简介："+$data.cnt
+			}
+			var li = document.createElement("li");
+			li.setAttribute("data-id",$data.id);
+			li.className = "mui-table-view-cell";
+			li.innerHTML = '<div class="flexCenter OflexCenter mui-clearfix">' +
+				' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
+				'<div class="madiaInfo OmadiaInfo">' +
+				'<p class="mui-ellipsis-2 h1Font">' + $data.name + '</p>' +
+				'<p><span class="h2Font ownerName"></span><em class="authicon ownerSty"></em></p>' +
+				'</div>' +
+				'</div>'
+			document.getElementById("productList").appendChild(li);
+			var $li=$(li)
+			oArticleModule.orgSigInfo($data.owner,$li)
+		},
+		correlationArticle: function($data) {
+			if($data.total) {
+				if($data.data.length == 0) {
+					return;
+				}
+			}else{
+				if($data.length == 0) {
+					return;
+				}
+			}
+			var oo=1;
 			if($data.total) {
 				var $data=$data.data;
-				
+				console.log(JSON.stringify($data))
 				document.getElementById('newarticle').style.display = "block";
 				oo=0;
 			}else{
@@ -359,13 +421,14 @@ mui.plusReady(function() {
 			}
 			
 			for(var i = 0; i < $data.length; i++) {
-				var ourl, of ;
+				var ourl, of,dataSt;
 				if($data[i].articleType == '1') {
 					ourl = baseUrl + "/ajax/professor/editBaseInfo/" + $data[i].ownerId; of = 1;
 				} else if($data[i].articleType == '2'){
 					ourl = baseUrl + "/ajax/org/" + $data[i].ownerId; of = 2;
 				} else if($data[i].articleType == '3'){
 					ourl = baseUrl + "/ajax/platform/info"; of = 3;
+					dataSt ={ id:$data[i].ownerId };
 				}
 				var arImg = "../images/default-artical.jpg";
 				if($data[i].articleImg) {
@@ -374,6 +437,7 @@ mui.plusReady(function() {
 				var title = $data[i].articleTitle;
 				mui.ajax(ourl, {
 					dataType: 'json', //服务器返回json格式数据
+					data: dataSt,
 					type: "get", //HTTP请求类型
 					timeout: 10000, //超时时间设置为10秒；
 					async: false,
@@ -387,7 +451,7 @@ mui.plusReady(function() {
 								var userType = autho(data.data.authType, data.data.orgAuth, data.data.authStatus);
 								li.setAttribute("owner-id", data.data.id);
 								li.setAttribute("data-type", 1);
-							} else {
+							} else if(of == 2){
 								if(data.data.forShort){
 									namepo = data.data.forShort;
 								}else{
@@ -401,6 +465,11 @@ mui.plusReady(function() {
 								}
 								li.setAttribute("owner-id", data.data.id);
 								li.setAttribute("data-type", 2);
+							}else if(of == 3){
+								namepo = data.data.name;
+								
+								li.setAttribute("owner-id", data.data.id);
+								li.setAttribute("data-type", 3);
 							}
 							li.setAttribute("data-id", $data[i].articleId);
 							li.className = "mui-table-view-cell";
@@ -414,7 +483,9 @@ mui.plusReady(function() {
 							
 							if(oo==0){
 								document.getElementById("newarticleList").appendChild(li)
-							}else{document.getElementById("articleList").appendChild(li);}
+							}else{
+								document.getElementById("articleList").appendChild(li);
+							}
 						}
 					},
 					error: function(xhr, type, errorThrown) {
@@ -485,6 +556,7 @@ mui.plusReady(function() {
 				}
 			});
 		}
+		
 	}
 	pageViewLog(oArticleModule.articleId, 3)
 	wlog("article", oArticleModule.articleId, "2")
@@ -493,14 +565,14 @@ mui.plusReady(function() {
 		articleId: oArticleModule.articleId
 	}, "get", oArticleModule.articleMess);
 	
-	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/find", {pageSize:5}, "get", oArticleModule.correlationArticle);
-	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralatePro", {
-		"articleId": oArticleModule.articleId
-	}, "get", oArticleModule.correlationExpert);
-	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/ralateRes", {
-		"articleId": oArticleModule.articleId
-	}, "get", oArticleModule.correlationResource);
-	oArticleModule.correlationService()
+	oArticleModule.oAjaxGet(baseUrl + "/ajax/article/find", {
+		"pageSize":5,
+		"exclude":oArticleModule.articleId
+	}, "get", oArticleModule.correlationArticle);
+	oArticleModule.correlationExpert();
+	oArticleModule.correlationResource();
+	oArticleModule.correlationService();
+	oArticleModule.correlationProduct()
 	//相关企业
 	function companylist() {
 		mui.ajax(baseUrl+"/ajax/article/ralateOrg",{
@@ -592,6 +664,13 @@ mui.plusReady(function() {
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
 			serviceId: serviceId
+		});
+	})
+	mui("#productList").on('tap', 'li', function() {
+		var Id = this.getAttribute("data-id");
+		plus.nativeUI.showWaiting();
+		plus.webview.create("../html/productShow.html", 'productShow.html', {}, {
+			productId: Id
 		});
 	})
 	mui('#articleList,#newarticleList').on('tap', 'li', function() {

@@ -1218,3 +1218,6 @@ ul.tagList>li .h2Font{color: #666; -webkit-user-select:text;}
 /*单webview*/
 .singleView .mui-scroll-wrapper{top: 44px;}
 .singleView #pullDownTips{margin:auto}
+
+/*附件提示*/
+.atachList{color:#017eb8;background:#e7f5fb;padding:10px 20px;text-align: center;font-size:12px;}

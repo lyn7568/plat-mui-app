@@ -733,7 +733,7 @@ mui.plusReady(function() {
 			})
 			document.getElementById("seeMoreService").addEventListener("tap", function() {
 				plus.nativeUI.showWaiting(); 
-				var webviewShow = plus.webview.create("../html/userService.html", 'userService.html', {}, {
+				var webviewShow = plus.webview.create("../html/userserviceList.html", 'userserviceList.html', {}, {
 					proid: proId
 				})
 			})

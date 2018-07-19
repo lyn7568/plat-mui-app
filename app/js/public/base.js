@@ -536,6 +536,12 @@ function pageViewLog(id, type) { //增加浏览量
 			data: {
 				'id': id
 			}
+		},
+		"11": { //服务
+			url: '/ajax/product/incPageViews',
+			data: {
+				'id': id
+			}
 		}
 
 	};

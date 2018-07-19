@@ -103,7 +103,25 @@ mui.plusReady(function() {
 					if($data.category === "1") {
 						self.serviceAuthorPersonal($data.owner);
 					} else {
+						if(self.userid)
+						self.isCompanyStaff(self.userid,$data.owner);
 						self.serviceAuthorCompany($data.owner);
+					}
+				}
+			})
+		},
+		isCompanyStaff: function(pid,par) {
+			console.log(par)
+			var self = this;
+			self.ajaxRequest({
+				url: "/ajax/professor/baseInfo/" + pid,
+				type: "get",
+				parameter: {},
+				fn: function(data) {
+					console.log(JSON.stringify(data))
+					console.log(data.orgId)
+					if(data.data.orgId === par) {
+						document.getElementsByClassName('footbox')[0].style.display = "none";
 					}
 				}
 			})
@@ -419,6 +437,7 @@ mui.plusReady(function() {
 			this.pageView();
 		}
 	}
+
 	service.init();
 	//关键词标签点击进去搜索
 	mui(".tagList").on("tap", "li", function() {

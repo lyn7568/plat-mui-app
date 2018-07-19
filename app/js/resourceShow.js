@@ -92,6 +92,8 @@ mui.plusReady(function() {
 								othisPic.style.backgroundImage = 'url('+ baseUrl +'/images/head/' + mydata.editProfessor.id + '_l.jpg)';
 							}
 						}else{
+							if(userid)
+							isCompanyStaff(userid,mydata.organization.id)
 							othisInfo.setAttribute("data-id",mydata.organization.id);
 							othisInfo.setAttribute("data-status",mydata.organization.authStatus);
 							othisInfo.setAttribute("data-type",mydata.resourceType);
@@ -193,6 +195,23 @@ mui.plusReady(function() {
 			qiFlag: 2
 		}); 
 	})
+	function isCompanyStaff(pid,par) {
+		mui.ajax(baseUrl + '/ajax/professor/baseInfo/' + pid, {
+			type: "GET",
+			data: {
+				"id": resourceId,
+			},
+			dataType: "json",
+			success: function(data) {
+				if(data.success) {
+					console.log(JSON.stringify(data))
+					if(data.data.orgId === par) {
+						document.getElementsByClassName('footbox')[0].style.display = "none";
+					}
+				}
+			}
+		});
+	}
 	/*资源里面相关文章*/
 	function relatedArticles() {
 		mui.ajax(baseUrl + '/ajax/article/byAssResource', {
@@ -566,7 +585,10 @@ mui.plusReady(function() {
 					type: "GET",
 					success: function(data) {
 						if(data.success){
-							console.log(JSON.stringify(data))
+							if(data.data.length == 0) {
+								plus.nativeUI.toast("暂时无法取得联系", toastStyle);
+								return;
+							}
 							var linkProfirstId = data.data[0].professorId;
 							mui.openWindow({
 								url: '../html/weChat.html',

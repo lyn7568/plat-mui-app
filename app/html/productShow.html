@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>资源浏览-科袖</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/previewImage.css" rel="stylesheet" type="text/css" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<script src="../js/public/jquery-1.11.1.js"></script>
+		<style>
+			html,body{height: 100%;margin:0;padding:0px;overflow: hidden;background: #FFFFFF;}
+			.mui-content{height:100%;overflow: auto;background: #FFFFFF;}
+		</style>
+	</head>
+
+	<body>
+		<div class="maskBlack" id="maskBlack"></div>
+		<header class="mui-bar mui-bar-nav toptitbox">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left topback"></a>
+			<h1 class="mui-title toptit" id="resourceTit"></h1>
+			<a class="mui-icon iconfont icon-moreandroid mui-pull-right button topmore" id="BtnMore"></a>
+		</header>
+		<nav class="mui-bar mui-bar-tab footbox">
+			<div class="mui-row artfoot">
+				<div class="mui-col-xs-9" id="consultBtn">
+					<div class="consultdiv">联系</div>
+				</div>
+				<div class="mui-col-xs-2" id="collectBtn">
+					<span class="mui-icon iconfontnew icon-shoucang" id="ifCollect"></span><!--已收藏 icon-yishoucang-->
+				</div>
+				<div class="mui-col-xs-1" id="shareOut">
+					<span class="mui-icon iconfontnew icon-fenxiang"></span>
+				</div>
+			</div>
+		</nav>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider tab-slider">
+			    <div class="mui-slider-group mui-slider-loop" id="resorcePic">
+				    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) last-->
+				    <div class="mui-slider-item mui-slider-item-duplicate" id="lastImg">
+				    </div>
+				    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) first-->
+				    <div class="mui-slider-item mui-slider-item-duplicate" id="firstImg">
+				    </div>
+			    </div>
+			    <div class="mui-slider-indicator" id="resorcePoint">
+				    <div class="mui-indicator mui-active"></div>
+			    </div>
+			</div>
+		    <div class="showDetail">
+	    		<div class="h1Font hWeight" id="resourceName"></div>
+	    		<div class="showFont" id="application"></div>
+	    		<div class="madiaBlock">
+	    			<ul class="mui-table-view noactiveTab infoBlock">
+				        <li class="mui-table-view-cell">
+				            <div class="flexCenter flex-pright" id="thisInfo">
+				                <div class="madiaHead" id="thisPic"></div>
+								<div class="madiaInfo">
+									<p class="mui-ellipsis"><span class="h1Font mui-ellipsis" id="thisName"></span><em class="authicon" title="" id="authFlag"></em></p>
+									<p class="h3Font mui-ellipsis" id="thisOther"></p>
+								</div>
+				            </div>
+				            <span class="mui-icon attenSpan" id="attenSpan" style="display:inline-block">关注</span>
+				        </li>
+				    </ul>
+	    		</div>
+		    	<!--内容区-->
+				<div class="showMain showRes">
+					<ul>
+						<li>
+							<div class="showTit">厂商型号</div>
+							<div class="showCon" id="modelNumber"></div>
+						</li>
+						<li>
+							<div class="showTit">产地</div>
+							<div class="showCon" id="productArea"></div>
+						</li>
+						<li>
+							<div class="showTit">官方价格</div>
+							<div class="showCon" id="officialPrice"></div>
+						</li>
+						<li>
+							<div class="showTit">性能参数</div>
+							<div class="showCon" id="performancePa"></div>
+						</li>
+						<li id="articleContent">
+							<div class="showTit">详细介绍</div>
+							<div class="showCon" id="detailDescp"></div>
+						</li>
+					</ul>
+				</div>
+	    		<!--标签模块-->
+				<ul class="tagList">
+					<!--<li>
+						<span class="h2Font"></span>
+					</li>-->
+				</ul>
+				<div class="madiaBlock displayNone">
+					<div class="madiaTit">相关文章</div>
+					<ul class="mui-table-view" id="likeArtical">
+				        <!--<li class="mui-table-view-cell">
+				            <div class="flexCenter OflexCenter mui-clearfix">
+				                <div class="madiaHead artHead"></div>
+								<div class="madiaInfo OmadiaInfo">
+									<p class="mui-ellipsis-2 h1Font">文章名称章名称文章名称</p>
+									<p><span class="h2Font">张某某</span><em class="authicon authicon-pro" title="科袖认证专家"></em></p>
+								</div>
+				            </div>
+				        </li>-->
+				    </ul>
+				</div>
+		    </div>
+		</div>
+		
+		<div class="shareBlock" id="shareBlock">
+			<h2 class="shareTit"><span>分享到</span></h2>
+			<ul class="mui-table-view noactiveTab">
+				<li class="mui-table-view-cell">
+					<em class="wayicon wechaticon"></em>
+					<span>微信好友</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon friendstericon"></em>
+					<span>微信朋友圈</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<em class="wayicon sinaicon"></em>
+					<span>新浪微博</span>
+				</li>
+			</ul>
+			<button type="button" class="mui-btn mui-btn-block" id="cancelShare">取消</button>
+		</div>
+		<script src="../js/public/mui.min.js"></script>
+		<script src="../js/public/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/base.js"></script>
+		<script src="../js/productShow.js"></script>
+		<script type="text/javascript"> 
+			//处理iOS下弹出软键盘后头部会随页面的滚动条消失问题
+		    iosheader();
+		    
+		   // var BtnMore=document.getElementById("BtnMore");
+		    var shareOut=document.getElementById("shareOut");
+		    var cancelShare=document.getElementById("cancelShare");
+		    var maskBlack=document.getElementById("maskBlack");
+		    var shareBlock=document.getElementById("shareBlock");
+		    
+		    
+//		    BtnMore.addEventListener("tap",function(){
+//		    	maskBlack.style.display="block";
+//		    	shareBlock.style.display="block";
+//		    })
+		    shareOut.addEventListener("tap",function(){
+		    	maskBlack.style.display="block";
+		    	shareBlock.style.display="block";
+		    })
+		    cancelShare.addEventListener("tap",function(){
+		    	maskBlack.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		    maskBlack.addEventListener("tap",function(){
+		    	this.style.display="none";
+		    	shareBlock.style.display="none";
+		    })
+		</script>
+	</body>
+
+</html>

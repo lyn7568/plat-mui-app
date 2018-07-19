@@ -115,6 +115,9 @@ mui.ready(function(){
 				if(self.name=="answer"){
 				 	plus.nativeUI.toast("成功分享回答信息", toastStyle);
 				}
+				if(self.name=="product"){
+				 	plus.nativeUI.toast("成功分享产品信息", toastStyle);
+				}
 				
 			}, function(e) {
 				console.log(JSON.stringify(e))

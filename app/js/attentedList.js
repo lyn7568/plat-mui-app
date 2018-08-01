@@ -110,6 +110,10 @@ mui.ready(function() {
 						aimId="likeSer"
 						newStr="您还未收藏任何服务"
 						detailService(arr,aimId);
+					}else if(type==11){
+						aimId="likeProduct"
+						newStr="您还未收藏任何产品"
+						detailProduct(arr,aimId);
 					}
 					if (currentIndex != tabIndex) {
 		                currentIndex = tabIndex;
@@ -177,7 +181,6 @@ mui.ready(function() {
 						
 						var li = document.createElement("li");
 						li.setAttribute("data-id", dataStr[i].id);
-						li.setAttribute("data-flag", 1);
 						li.className = "mui-table-view-cell flexCenter";
 						li.innerHTML =
 							' <div class="madiaHead useHead" style="background-image:url(' + baImg + ')"></div>' +
@@ -266,7 +269,6 @@ mui.ready(function() {
 						}
 						var li = document.createElement("li");
 						li.setAttribute("data-id", dataStr.resourceId);
-						li.setAttribute("data-flag", 2);
 						li.className = "mui-table-view-cell flexCenter OflexCenter";
 						li.innerHTML =
 							' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
@@ -298,7 +300,6 @@ mui.ready(function() {
 						}
 						var li = document.createElement("li");
 						li.setAttribute("data-id", dataItem.articleId);
-						li.setAttribute("data-flag", 3);
 						li.className = "mui-table-view-cell flexCenter OflexCenter";
 						li.innerHTML = 
 							'<div class="madiaHead artHead" style="background-image:url(' + arImg + ')"></div>' +
@@ -344,7 +345,7 @@ mui.ready(function() {
 					}
 					
 				});
-			}
+			},
 			detailService=function(arr,obj) {
 				oAjax("/ajax/ware/qm",{
 					id:arr,
@@ -364,8 +365,7 @@ mui.ready(function() {
 							cnt="内容："+dataStr.cnt
 						}
 						var li = document.createElement("li");
-						li.setAttribute("data-id", dataStr.resourceId);
-						li.setAttribute("data-flag", 2);
+						li.setAttribute("data-id", dataStr.id);
 						li.className = "mui-table-view-cell flexCenter OflexCenter";
 						li.innerHTML =
 							' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
@@ -382,6 +382,39 @@ mui.ready(function() {
 							orgSigInfo(dataStr.owner,$itemlist)
 						}
 						
+					}
+				});
+			},
+			detailProduct=function(arr,obj) {
+				oAjax("/ajax/product/qm",{
+					id:arr,
+				},"get",function(data){
+					var dataItem=data.data;
+					for(var i = 0; i < dataItem.length; i++) {
+						var dataStr=dataItem[i]
+						var cnt="", rImg = "../images/default-product.jpg";
+						if(dataStr.images) {
+							var subs = strToAry(dataStr.images)
+							if(subs.length > 0) {
+								rImg=baseUrl+"/data/product" + subs[0]
+							}
+						}
+						if(dataStr.cnt){
+							cnt="简介："+dataStr.cnt
+						}
+						var li = document.createElement("li");
+						li.setAttribute("data-id", dataStr.id);
+						li.className = "mui-table-view-cell flexCenter OflexCenter";
+						li.innerHTML =
+							' <div class="madiaHead resouseHead" style="background-image:url(' + rImg + ')"></div>' +
+							'<div class="madiaInfo OmadiaInfo">' +
+							'<p class="mui-ellipsis h1Font">' + dataStr.name + '</p>' +
+							'<p><span class="h2Font ownerName"></span><em class="authicon ownerSty"></em></p>' +
+							'<p class="mui-ellipsis h2Font">'+ cnt+'</p>' +
+							'</div>'
+						var $itemlist = $(li);
+						document.getElementById(obj).appendChild(li);
+						orgSigInfo(dataStr.owner,$itemlist)
 					}
 				});
 			},
@@ -453,28 +486,28 @@ mui.ready(function() {
 					var id = this.getAttribute("data-id");
 					plus.nativeUI.showWaiting(); //显示原生等待框
 					plus.webview.create("../html/userInforShow.html", 'userInforShow.html', {}, {
-						proid: id
+						"proid": id
 					});
 				})
 				mui("#likeSer").on("tap", "li", function() {
 					var serviceId = this.getAttribute("data-id");
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/serviceShow.html", 'serviceShow.html', {}, {
-						serviceId: serviceId
+						"serviceId": serviceId
 					});
 				})
 				mui("#likeRes").on("tap", "li", function() {
 					var resouId = this.getAttribute("data-id");
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/resourceShow.html", 'resourceShow.html', {}, {
-						resourceId: resouId
+						"resourceId": resouId
 					});
 				})
 				mui("#likeArt").on("tap", "li", function() {
 					var id = this.getAttribute("data-id");
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/professorArticle.html", '../html/professorArticle.html', {}, {
-						articleId: id
+						"articleId": id
 					});
 				})
 				mui("#likePer").on("tap", "li", function() {
@@ -503,6 +536,13 @@ mui.ready(function() {
 					plus.nativeUI.showWaiting();
 					plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
 						"demanid": id
+					});
+				})
+				mui("#likeProduct").on("tap", "li", function() {
+					var Id = this.getAttribute("data-id");
+					plus.nativeUI.showWaiting();
+					plus.webview.create("../html/productShow.html", 'productShow.html', {}, {
+						"productId": Id
 					});
 				})
 			}

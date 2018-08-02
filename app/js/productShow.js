@@ -493,7 +493,7 @@ mui.plusReady(function() {
 			data:{
 					content: oapplication.innerHTML,
 					title: oresourceName.innerHTML,
-					href: baseUrl + "/e/r.html?id=" + resourceId ,
+					href: baseUrl + "/e/pr.html?id=" + resourceId ,
 					thumbs: [oUrl]
 				},
 			weiboData:{

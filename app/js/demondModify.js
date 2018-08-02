@@ -277,7 +277,7 @@
 				"duration": document.querySelector("#ExpecteDuration").getAttribute('flag')==null?'':document.querySelector("#ExpecteDuration").getAttribute('flag'),
 				"invalidDay": btns.getAttribute('flag'),
 				"contactNum": document.querySelector("#phone").value,
-				"modifier" : userid,
+				"creator" : userid,
 				'orgName': document.querySelector("#org").value,
 				'source': 'ekexiuApp'
  			},

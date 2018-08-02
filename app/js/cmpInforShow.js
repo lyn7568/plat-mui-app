@@ -21,7 +21,7 @@ mui.ready(function() {
 			},
 			demandListVal = function(oname) {
 				var aimId = "demandShow"
-				oAjax("/ajax/demand/pq", {
+				oAjax("/ajax/demand/pq/org", {
 					"state": [1],
 					"oname": oname,
 					"pageSize": 5

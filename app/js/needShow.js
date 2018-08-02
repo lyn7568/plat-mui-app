@@ -4,7 +4,7 @@ mui.ready(function() {
 		var userid = plus.storage.getItem('userid');
 		var ws = plus.webview.currentWebview();
 		var demandId = ws.demanid;
-		var professorId=ws.professorId;
+		var professorId;
 		var mySelf=document.getElementsByClassName("mySelf")[0];
 		var mySelf2=document.getElementsByClassName("mySelf2")[0];
 		var notSelf=document.getElementsByClassName("notSelf")[0];
@@ -144,6 +144,7 @@ mui.ready(function() {
 						ws.show("slide-in-right", 150);
 						
 						var $da=data.data;
+						professorId=$da.creator;
 						document.getElementById("needTit").innerHTML=$da.title; //名字
 						document.getElementById("demandTit").innerHTML=$da.title; //名字
 						document.getElementById("oTime").innerHTML=commenTime($da.createTime);
@@ -332,17 +333,17 @@ mui.ready(function() {
 			
 			if(userid && userid != null && userid != "null") {
 				mui.openWindow({
-								url: '../html/weChat.html',
-								id: 'weChat.html',
-								show: {
-									autoShow: true,
-									aniShow: "slide-in-right",
-								},
-								extras: {
-									professorId: professorId,
-									flag:1
-								}
-							})
+					url: '../html/weChat.html',
+					id: 'weChat.html',
+					show: {
+						autoShow: true,
+						aniShow: "slide-in-right",
+					},
+					extras: {
+						professorId: professorId,
+						flag:1
+					}
+				})
 				
 			}else{
 				isLogin();

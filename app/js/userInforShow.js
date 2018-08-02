@@ -693,8 +693,7 @@ mui.plusReady(function() {
 				var dId=this.getAttribute("data-id");
 				plus.nativeUI.showWaiting();
 				plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
-					demanid: dId,
-					professorId:proId
+					demanid: dId
 				});
 			})
 			mui("#QAShow").on("tap","li",function(){

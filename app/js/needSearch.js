@@ -30,11 +30,9 @@ function pulldownRefresh() {
 mui.plusReady(function() {
 	mui("#demandList").on("tap", "li", function() {
 		var oDemandId = this.getAttribute("data-id");
-		var poD=this.getAttribute("data-creator");
 		plus.nativeUI.showWaiting();
 		plus.webview.create("../html/needShow.html", 'needShow.html', {}, {
-			demanid: oDemandId,
-			professorId:poD
+			demanid: oDemandId
 		});
 	})
 })

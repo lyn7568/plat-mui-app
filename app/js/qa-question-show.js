@@ -102,7 +102,7 @@ mui.ready(function() {
 						} else {
 							subs[0] = $da.img;
 						}
-						oUrl=baseUrl + "/data/question"+subs[0].replace(/.jpg/,"_s.jpg");
+						oUrl=baseUrl + "/data/question"+subs[0].replace(/\.(jpg|jpeg|png)$/,"_s.jpg");
 						var imgH=$(".imgspan").height()+"px"
 						var imgW=$(".imgspan").width()+"px"
 						var pstr = ""

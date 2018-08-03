@@ -133,7 +133,7 @@ mui.ready(function() {
 						} else {
 							subs[0] = res.data.img;
 						}
-						oUrl=baseUrl + "/data/question"+subs[0].replace(/.jpg/,"_s.jpg");
+						oUrl=baseUrl + "/data/question"+subs[0].replace(/\.(jpg|jpeg|png)$/,"_s.jpg");
 					}
 				});
 				

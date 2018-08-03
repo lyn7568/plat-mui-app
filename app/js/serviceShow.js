@@ -752,7 +752,7 @@ mui.plusReady(function() {
 		document.getElementById("BtnMore").addEventListener("tap", function() {
 			var oUrl = baseUrl + "/images/logo180.png";
 			if(service.serviceImageFlag) {
-				oUrl = document.getElementById('firstImg').querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/, "_s.jpg");
+				oUrl = document.getElementById('firstImg').querySelectorAll("img")[0].getAttribute("src").replace(/\.(jpg|jpeg|png)$/, "_s.jpg");
 			}
 			plus.nativeUI.showWaiting(); //显示原生等待框
 			var webviewShow = plus.webview.create("../html/moreItem.html", 'moreItem.html', {}, {

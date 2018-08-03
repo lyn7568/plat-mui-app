@@ -668,7 +668,7 @@ mui.plusReady(function() {
 		var oFen = this.getElementsByTagName("span")[0].innerHTML;
 		var oUrl = baseUrl + "/images/logo180.png";
 		if(service.serviceImageFlag) {
-			oUrl = document.getElementById('firstImg').querySelectorAll("img")[0].getAttribute("src").replace(/\.(jpg|jpeg|png)$/, "_s.png");
+			oUrl = document.getElementById('firstImg').querySelectorAll("img")[0].getAttribute("src").replace(/\.(jpg|jpeg|png)$/, "_s.jpg");
 		}
 		if(oFen == "微信好友") {
 			if(!weixinClient()) {

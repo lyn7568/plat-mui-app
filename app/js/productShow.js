@@ -399,7 +399,7 @@ mui.plusReady(function() {
 //		}
 		var oUrl=baseUrl + "/images/logo180.png";
 		if(imgFlag==1) {
-			oUrl=firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/.jpg/,"_s.jpg");
+			oUrl=firstImg.querySelectorAll("img")[0].getAttribute("src").replace(/./,"_s.");
 		}
 		if(oFen == "微信好友") {
 			if(!weixinClient()) {

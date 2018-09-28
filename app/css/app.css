@@ -38,6 +38,8 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #99
 /*清除mui部分原有样式*/
 html{-webkit-text-size-adjust: none;}
 body,.mui-content{background:#f4f6f8;}
+table{border-collapse:collapse;border-spacing:0;}
+table>tbody>tr>td,table>tbody>tr>th{padding: 5px 10px;border: 1px solid #DDD;}
 .mui-ellipsis-5
 {
     display: -webkit-box;
